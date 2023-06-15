@@ -13,6 +13,12 @@ const nextConfig = {
       exclude: ["error"],
     },
   },
+  webpack: (config) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    config.resolve.alias["@mui/material"] = "@mui/joy";
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return config;
+  },
   headers: () => [
     {
       source: "/:path*",

@@ -10,10 +10,11 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@chakra-ui/next-js": "^2.1.4",
-    "@chakra-ui/react": "^2.7.0",
+    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/joy": "^5.0.0-alpha.84",
     "@vercel/analytics": "^1.0.1",
     "framer-motion": "^10.12.16",
     "next": "13.4.5",

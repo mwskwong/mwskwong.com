@@ -20,7 +20,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@mui/material/*": ["./node_modules/@mui/joy/*"]
     }
   },
   "include": [

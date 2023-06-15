@@ -1,16 +1,25 @@
 import { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Inter, Source_Code_Pro } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
+
+import Header from "@/components/shared/header";
 
 import Analytics from "./analytics";
 import Providers from "./providers";
 
-const rubik = Rubik({ subsets: ["latin"], variable: "--font-rubik" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  variable: "--font-source-code-pro",
+});
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-  <html lang="en" className={rubik.variable}>
+  <html lang="en" className={`${inter.variable} ${sourceCodePro.variable}`}>
     <body>
-      <Providers>{children}</Providers>
+      <Providers>
+        <Header />
+        {children}
+      </Providers>
       <Analytics />
     </body>
   </html>

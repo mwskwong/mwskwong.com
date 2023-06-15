@@ -1,13 +1,11 @@
-import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react";
+import { extendTheme } from "@mui/joy";
 
-const theme = extendTheme(
-  {
-    fonts: {
-      heading: "var(--font-rubik)",
-      body: "var(--font-rubik)",
-    },
+const theme = extendTheme({
+  fontFamily: {
+    body: "var(--font-inter), var(--joy-fontFamily-fallback)",
+    display: "var(--font-inter), var(--joy-fontFamily-fallback)",
+    code: "var(--font-source-code-pro)",
   },
-  withDefaultColorScheme({ colorScheme: "blue" })
-);
+});
 
 export default theme;
