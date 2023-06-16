@@ -1,24 +1,97 @@
 "use client";
 
-import { Box, BoxProps, Container } from "@mui/joy";
-import { FC } from "react";
+import { Close, Menu } from "@mui/icons-material";
+import {
+  Box,
+  Container,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  Sheet,
+  SheetProps,
+  Stack,
+} from "@mui/joy";
+import { mergeSx } from "merge-sx";
+import Link from "next/link";
+import { FC, useState } from "react";
 
-type Props = Omit<BoxProps<"header">, "children">;
+import nav, { home } from "@/constants/nav";
 
-const Header: FC<Props> = (props) => {
+type Props = Omit<SheetProps<"header">, "children">;
+
+const Header: FC<Props> = ({ sx, ...props }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
-    <Box
+    <Sheet
+      variant="outlined"
       component="header"
-      position="sticky"
-      top={0}
-      bgcolor="background.surface"
-      width="100%"
-      borderBottom={1}
-      borderColor="divider"
+      sx={mergeSx(
+        {
+          position: "sticky",
+          top: 0,
+          width: "100%",
+          borderTop: 0,
+          borderLeft: 0,
+          borderRight: 0,
+        },
+        sx
+      )}
       {...props}
     >
-      <Container sx={{ py: 1 }}>Logo</Container>
-    </Box>
+      <Container>
+        <Box sx={{ display: "flex", justifyContent: "space-between", py: 1.5 }}>
+          <Stack
+            spacing={1}
+            direction="row"
+            sx={{ alignItems: "center", textDecoration: "none" }}
+            component={Link}
+            href={home.href}
+          >
+            Logo
+          </Stack>
+          <Box component="nav" sx={{ display: { xs: "none", sm: "block" } }}>
+            <List
+              orientation="horizontal"
+              sx={{
+                "--List-radius": (theme) => theme.vars.radius.sm,
+                "--List-padding": "0px",
+              }}
+            >
+              {nav.map(({ id, name, href }) => (
+                <ListItem key={id}>
+                  <ListItemButton component={Link} href={href}>
+                    {name}
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+          <IconButton
+            variant="outlined"
+            color="neutral"
+            size="sm"
+            sx={{ display: { sm: "none" } }}
+            onClick={() => setDropdownOpen((prev) => !prev)}
+          >
+            {dropdownOpen ? <Close /> : <Menu />}
+          </IconButton>
+        </Box>
+        {dropdownOpen && (
+          <Box component="nav" sx={{ display: { sm: "none" }, mx: -2 }}>
+            <List>
+              {nav.map(({ id, name, href }) => (
+                <ListItem key={id}>
+                  <ListItemButton component={Link} href={href}>
+                    {name}
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+        )}
+      </Container>
+    </Sheet>
   );
 };
 
