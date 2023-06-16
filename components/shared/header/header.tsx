@@ -43,14 +43,33 @@ const Header: FC<Props> = ({ sx, ...props }) => {
       {...props}
     >
       <Container>
-        <Box sx={{ display: "flex", justifyContent: "space-between", py: 1.5 }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            py: 1.5,
+          }}
+        >
           <Stack
-            spacing={1}
+            spacing={1.5}
             direction="row"
-            sx={{ alignItems: "center", textDecoration: "none" }}
+            sx={{
+              alignItems: "center",
+              typography: "h4",
+              textDecoration: "none",
+            }}
             component={Link}
             href={home.href}
           >
+            <Box
+              sx={{
+                width: 36,
+                aspectRatio: 1,
+                bgcolor: "background.level1",
+                borderRadius: "sm",
+              }}
+            />
             Logo
           </Stack>
           <Box component="nav" sx={{ display: { xs: "none", sm: "block" } }}>
