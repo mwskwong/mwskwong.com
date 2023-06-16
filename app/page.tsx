@@ -49,7 +49,7 @@ const Home: FC = () => {
             <Button size="lg">Download Resume</Button>
             <Button
               color="neutral"
-              variant="soft"
+              variant="outlined"
               size="lg"
               startDecorator={
                 <SiLinkedin className={simpleIconsClasses.root} />
