@@ -21,7 +21,7 @@ import { FC, useRef, useState } from "react";
 import nav, { home } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
 
-import Icon from "../icon";
+import Icon from "./icon";
 
 type Props = Omit<SheetProps<"header">, "children">;
 
@@ -41,6 +41,7 @@ const Header: FC<Props> = ({ sx, ...props }) => {
           borderTop: 0,
           borderLeft: 0,
           borderRight: 0,
+          zIndex: 1100, // TODO: is there a built-in way to do this in the future?
         },
         sx
       )}

@@ -1,9 +1,10 @@
 "use client";
 
 import { SiLinkedin } from "@icons-pack/react-simple-icons";
-import { Button, Container, Divider, Stack, Typography } from "@mui/joy";
+import { Box, Button, Container, Divider, Stack, Typography } from "@mui/joy";
 import { FC } from "react";
 
+import SectionDivider from "@/components/divider";
 import { home } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
 
@@ -11,7 +12,7 @@ const Home: FC = () => {
   return (
     <>
       <Container component="section" id={home.id} sx={{ pt: { sm: 16 } }}>
-        <Stack sx={{ justifyContent: "center" }}>
+        <Stack spacing={5} sx={{ justifyContent: "center" }}>
           <Stack spacing={2} sx={{ textAlign: "center" }}>
             <Divider
               component="div"
@@ -34,7 +35,7 @@ const Home: FC = () => {
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={2}
-            sx={{ mt: 5, justifyContent: "center" }}
+            sx={{ justifyContent: "center" }}
           >
             <Button size="lg">Download Resume</Button>
             <Button
@@ -53,6 +54,15 @@ const Home: FC = () => {
           </Stack>
         </Stack>
       </Container>
+      <SectionDivider
+        sx={{ color: "background.body", bgcolor: "background.level1" }}
+      />
+      <Box
+        component="section"
+        sx={{ bgcolor: "background.level1", height: 1000 }}
+      >
+        <Container></Container>
+      </Box>
     </>
   );
 };

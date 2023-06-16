@@ -12,7 +12,7 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
     <GlobalStyles
       styles={(theme) => ({
         ":root": {
-          "--Section-paddingY": theme.spacing(5),
+          "--Section-paddingY": theme.spacing(10),
           "--Section-scrollPaddingTop": 64,
         },
         svg: {

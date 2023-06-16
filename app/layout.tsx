@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Rubik, Source_Code_Pro } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
 
-import Header from "@/components/shared/header";
+import Header from "@/components/header";
 
 import Analytics from "./analytics";
 import Providers from "./providers";
