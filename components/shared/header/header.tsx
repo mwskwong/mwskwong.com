@@ -1,5 +1,6 @@
 "use client";
 
+import { ClickAwayListener } from "@mui/base";
 import { Close, Menu } from "@mui/icons-material";
 import {
   Box,
@@ -14,7 +15,7 @@ import {
 } from "@mui/joy";
 import { mergeSx } from "merge-sx";
 import Link from "next/link";
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 
 import nav, { home } from "@/constants/nav";
 
@@ -22,6 +23,8 @@ type Props = Omit<SheetProps<"header">, "children">;
 
 const Header: FC<Props> = ({ sx, ...props }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
   return (
     <Sheet
       variant="outlined"
@@ -68,6 +71,7 @@ const Header: FC<Props> = ({ sx, ...props }) => {
             </List>
           </Box>
           <IconButton
+            ref={menuButtonRef}
             variant="outlined"
             color="neutral"
             size="sm"
@@ -78,17 +82,27 @@ const Header: FC<Props> = ({ sx, ...props }) => {
           </IconButton>
         </Box>
         {dropdownOpen && (
-          <Box component="nav" sx={{ display: { sm: "none" }, mx: -2 }}>
-            <List>
-              {nav.map(({ id, name, href }) => (
-                <ListItem key={id}>
-                  <ListItemButton component={Link} href={href}>
-                    {name}
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
+          <ClickAwayListener
+            onClickAway={(event) => {
+              if (
+                !menuButtonRef.current?.contains(event.target as HTMLElement)
+              ) {
+                setDropdownOpen(false);
+              }
+            }}
+          >
+            <Box component="nav" sx={{ display: { sm: "none" }, mx: -2 }}>
+              <List>
+                {nav.map(({ id, name, href }) => (
+                  <ListItem key={id}>
+                    <ListItemButton component={Link} href={href}>
+                      {name}
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Box>
+          </ClickAwayListener>
         )}
       </Container>
     </Sheet>
