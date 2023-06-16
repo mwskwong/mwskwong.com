@@ -7,6 +7,7 @@ import {
   Container,
   Divider,
   Grid,
+  Sheet,
   Stack,
   Typography,
 } from "@mui/joy";
@@ -74,12 +75,12 @@ const Home: FC = () => {
         <Container>
           <Stack spacing={6} sx={{ alignItems: "center", textAlign: "center" }}>
             <Typography level="h2">About</Typography>
-            <Box
+            <Sheet
+              variant="outlined"
               sx={{
                 width: 200,
                 aspectRatio: 1,
                 borderRadius: "md",
-                bgcolor: "background.level2",
               }}
             />
             <Stack spacing={2}>
