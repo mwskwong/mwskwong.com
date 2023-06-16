@@ -1,5 +1,5 @@
 import { DashboardRounded } from "@mui/icons-material";
-import { Box, Chip, Stack, StackProps, Typography } from "@mui/joy";
+import { Chip, Sheet, Stack, StackProps, Typography } from "@mui/joy";
 import { mergeSx } from "merge-sx";
 import { FC } from "react";
 
@@ -11,17 +11,12 @@ interface Props extends StackProps {
 const SKillCategory: FC<Props> = ({ category, skills = [], sx, ...props }) => {
   return (
     <Stack spacing={2} sx={mergeSx({ alignItems: "center" }, sx)} {...props}>
-      <Box
-        sx={{
-          display: "flex",
-          borderRadius: "sm",
-          p: 1.5,
-          color: "neutral.softColor",
-          bgcolor: "neutral.softBg",
-        }}
+      <Sheet
+        variant="outlined"
+        sx={{ display: "flex", borderRadius: "sm", p: 1.5 }}
       >
         <DashboardRounded fontSize="xl4" />
-      </Box>
+      </Sheet>
       <Typography level="h6" component="h4" color="primary">
         {category}
       </Typography>

@@ -12,7 +12,7 @@ import {
 } from "@mui/joy";
 import { FC } from "react";
 
-import SectionDivider from "@/components/divider";
+import SectionDivider from "@/components/section-divider";
 import SKillCategory from "@/components/skill-category";
 import { about, home } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
@@ -122,13 +122,8 @@ const Home: FC = () => {
           </Stack>
         </Container>
       </Box>
-      <SectionDivider
-        sx={{ color: "background.level1", bgcolor: "background.level2" }}
-      />
-      <Box
-        component="section"
-        sx={{ bgcolor: "background.level2", height: 1000 }}
-      >
+      <SectionDivider sx={{ color: "background.level1" }} />
+      <Box component="section" sx={{ height: 1000 }}>
         <Container sx={{ textAlign: "center" }}></Container>
       </Box>
     </>

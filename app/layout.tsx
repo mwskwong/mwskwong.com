@@ -2,7 +2,9 @@ import { Metadata } from "next";
 import { Rubik, Source_Code_Pro } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
 
+import Footer from "@/components/footer";
 import Header from "@/components/header";
+import SectionDivider from "@/components/section-divider";
 
 import Analytics from "./analytics";
 import Providers from "./providers";
@@ -19,6 +21,8 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
       <Providers>
         <Header />
         {children}
+        <SectionDivider sx={{ bgcolor: "background.level1" }} />
+        <Footer />
       </Providers>
       <Analytics />
     </body>

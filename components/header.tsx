@@ -2,7 +2,12 @@
 
 import { SiGithub, SiStackoverflow } from "@icons-pack/react-simple-icons";
 import { ClickAwayListener } from "@mui/base";
-import { CloseRounded, MenuRounded } from "@mui/icons-material";
+import {
+  CloseRounded,
+  DarkModeRounded,
+  LightModeRounded,
+  MenuRounded,
+} from "@mui/icons-material";
 import {
   Box,
   Container,
@@ -13,6 +18,7 @@ import {
   Sheet,
   SheetProps,
   Stack,
+  useColorScheme,
 } from "@mui/joy";
 import { mergeSx } from "merge-sx";
 import Link from "next/link";
@@ -27,6 +33,7 @@ type Props = Omit<SheetProps<"header">, "children">;
 
 const Header: FC<Props> = ({ sx, ...props }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { mode, setMode } = useColorScheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
@@ -85,6 +92,7 @@ const Header: FC<Props> = ({ sx, ...props }) => {
               size="sm"
               component="a"
               href="https://github.com/mwskwong"
+              target="_blank"
             >
               {<SiGithub className={simpleIconsClasses.root} />}
             </IconButton>
@@ -94,8 +102,17 @@ const Header: FC<Props> = ({ sx, ...props }) => {
               size="sm"
               component="a"
               href="https://stackoverflow.com/users/10579013/matthew-kwong"
+              target="_blank"
             >
               {<SiStackoverflow className={simpleIconsClasses.root} />}
+            </IconButton>
+            <IconButton
+              variant="outlined"
+              color="neutral"
+              size="sm"
+              onClick={() => setMode(mode === "dark" ? "light" : "dark")}
+            >
+              {mode === "dark" ? <LightModeRounded /> : <DarkModeRounded />}
             </IconButton>
             <IconButton
               ref={menuButtonRef}
