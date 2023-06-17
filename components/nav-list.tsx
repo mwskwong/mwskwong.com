@@ -7,7 +7,7 @@ import {
   ListProps,
 } from "@mui/joy";
 import Link from "next/link";
-import React from "react";
+import React, { forwardRef } from "react";
 import { FC } from "react";
 
 import nav from "@/constants/nav";
@@ -16,8 +16,8 @@ interface Props extends BoxProps<"nav"> {
   orientation?: ListProps["orientation"];
 }
 
-const NavList: FC<Props> = ({ orientation, ...props }) => (
-  <Box component="nav" {...props}>
+const NavList: FC<Props> = forwardRef(({ orientation, ...props }, ref) => (
+  <Box ref={ref} component="nav" {...props}>
     <List
       orientation={orientation}
       sx={{
@@ -34,6 +34,8 @@ const NavList: FC<Props> = ({ orientation, ...props }) => (
       ))}
     </List>
   </Box>
-);
+));
+
+NavList.displayName = "NavList";
 
 export default NavList;
