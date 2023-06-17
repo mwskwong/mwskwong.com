@@ -1,6 +1,6 @@
 "use client";
 
-import { ClickAwayListener } from "@mui/base";
+import { ClickAwayListener, NoSsr } from "@mui/base";
 import {
   CloseRounded,
   DarkModeRounded,
@@ -113,7 +113,9 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
               size="sm"
               onClick={() => setMode(mode === "dark" ? "light" : "dark")}
             >
-              {mode === "dark" ? <LightModeRounded /> : <DarkModeRounded />}
+              <NoSsr>
+                {mode === "dark" ? <LightModeRounded /> : <DarkModeRounded />}
+              </NoSsr>
             </IconButton>
             <IconButton
               ref={menuButtonRef}
