@@ -8,12 +8,8 @@ import {
   MenuRounded,
 } from "@mui/icons-material";
 import {
-  Box,
   Container,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
   Sheet,
   SheetProps,
   Stack,
@@ -24,10 +20,11 @@ import Link from "next/link";
 import { FC, useRef, useState } from "react";
 
 import { getPlatformProfiles } from "@/api";
-import nav, { home } from "@/constants/nav";
+import { home } from "@/constants/nav";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
 import Icon from "./icon";
+import NavList from "./nav-list";
 
 interface Props extends Omit<SheetProps<"header">, "children"> {
   platformProfiles?: Awaited<ReturnType<typeof getPlatformProfiles>>;
@@ -69,23 +66,10 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
             <Link href={home.href}>
               <Icon width={32} />
             </Link>
-            <Box component="nav" sx={{ display: { xs: "none", sm: "block" } }}>
-              <List
-                orientation="horizontal"
-                sx={{
-                  "--List-radius": (theme) => theme.vars.radius.sm,
-                  "--List-padding": "0px",
-                }}
-              >
-                {nav.map(({ id, name, href }) => (
-                  <ListItem key={id}>
-                    <ListItemButton component={Link} href={href}>
-                      {name}
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
+            <NavList
+              orientation="horizontal"
+              sx={{ display: { xs: "none", sm: "block" } }}
+            />
           </Stack>
           <Stack direction="row" spacing={1}>
             {platformProfiles.map(({ platform, url }) => {
@@ -139,17 +123,7 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
               }
             }}
           >
-            <Box component="nav" sx={{ display: { sm: "none" }, mx: -2 }}>
-              <List>
-                {nav.map(({ id, name, href }) => (
-                  <ListItem key={id}>
-                    <ListItemButton component={Link} href={href}>
-                      {name}
-                    </ListItemButton>
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
+            <NavList sx={{ display: { sm: "none" }, mx: -1.5 }} />
           </ClickAwayListener>
         )}
       </Container>
