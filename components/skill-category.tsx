@@ -1,24 +1,47 @@
-import { DashboardRounded } from "@mui/icons-material";
-import { Chip, Sheet, Stack, StackProps, Typography } from "@mui/joy";
+import { IconType } from "@icons-pack/react-simple-icons/types";
+import {
+  Chip,
+  Sheet,
+  Stack,
+  StackProps,
+  SvgIcon,
+  SvgIconProps,
+  Typography,
+} from "@mui/joy";
 import { mergeSx } from "merge-sx";
 import { FC } from "react";
 
-interface Props extends StackProps {
-  category?: string;
+type Props = StackProps & {
+  name?: string;
   skills?: string[];
-}
+  slots?: Partial<{
+    icon: typeof SvgIcon | FC<SvgIconProps> | IconType;
+  }>;
+};
 
-const SKillCategory: FC<Props> = ({ category, skills = [], sx, ...props }) => {
+const SKillCategory: FC<Props> = ({
+  name,
+  skills = [],
+  sx,
+  slots = {},
+  ...props
+}) => {
+  const { icon: Icon, ...restSlots } = slots;
   return (
-    <Stack spacing={2} sx={mergeSx({ alignItems: "center" }, sx)} {...props}>
+    <Stack
+      spacing={2}
+      sx={mergeSx({ alignItems: "center" }, sx)}
+      slots={restSlots}
+      {...props}
+    >
       <Sheet
         variant="outlined"
         sx={{ display: "flex", borderRadius: "sm", p: 1.5 }}
       >
-        <DashboardRounded fontSize="xl4" />
+        {Icon && <Icon fontSize="xl4" />}
       </Sheet>
       <Typography level="h6" component="h4" color="primary">
-        {category}
+        {name}
       </Typography>
       <Stack
         direction="row"

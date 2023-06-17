@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { Rubik, Source_Code_Pro } from "next/font/google";
-import { FC, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
+import { getPlatformProfiles } from "@/api";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import SectionDivider from "@/components/section-divider";
@@ -21,19 +22,27 @@ const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
 });
 
-const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-  <html lang="en" className={`${rubik.variable} ${sourceCodePro.variable}`}>
-    <body>
-      <Providers>
-        <Header />
-        {children}
-        <SectionDivider sx={{ bgcolor: "background.level1" }} />
-        <Footer />
-      </Providers>
-      <Analytics />
-    </body>
-  </html>
-);
+const RootLayout = async ({ children }: PropsWithChildren) => {
+  const platformProfiles = await getPlatformProfiles();
+
+  return (
+    <html lang="en" className={`${rubik.variable} ${sourceCodePro.variable}`}>
+      <body>
+        <Providers>
+          <Header
+            platformProfiles={platformProfiles.filter(
+              ({ platform }) => platform?.id !== "1pixZwU07yhCdpEdkxGVof" // not LinkedIn
+            )}
+          />
+          {children}
+          <SectionDivider sx={{ bgcolor: "background.level1" }} />
+          <Footer platformProfiles={platformProfiles} />
+        </Providers>
+        <Analytics />
+      </body>
+    </html>
+  );
+};
 
 const fullName = `${firstName} ${lastName}`;
 const title: Metadata["title"] = {

@@ -1,6 +1,5 @@
 "use client";
 
-import { SiGithub, SiStackoverflow } from "@icons-pack/react-simple-icons";
 import { ClickAwayListener } from "@mui/base";
 import {
   CloseRounded,
@@ -24,14 +23,17 @@ import { mergeSx } from "merge-sx";
 import Link from "next/link";
 import { FC, useRef, useState } from "react";
 
+import { getPlatformProfiles } from "@/api";
 import nav, { home } from "@/constants/nav";
-import { simpleIconsClasses } from "@/theme";
+import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
 import Icon from "./icon";
 
-type Props = Omit<SheetProps<"header">, "children">;
+interface Props extends Omit<SheetProps<"header">, "children"> {
+  platformProfiles?: Awaited<ReturnType<typeof getPlatformProfiles>>;
+}
 
-const Header: FC<Props> = ({ sx, ...props }) => {
+const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { mode, setMode } = useColorScheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -86,26 +88,25 @@ const Header: FC<Props> = ({ sx, ...props }) => {
             </Box>
           </Stack>
           <Stack direction="row" spacing={1}>
-            <IconButton
-              variant="outlined"
-              color="neutral"
-              size="sm"
-              component="a"
-              href="https://github.com/mwskwong"
-              target="_blank"
-            >
-              {<SiGithub className={simpleIconsClasses.root} />}
-            </IconButton>
-            <IconButton
-              variant="outlined"
-              color="neutral"
-              size="sm"
-              component="a"
-              href="https://stackoverflow.com/users/10579013/matthew-kwong"
-              target="_blank"
-            >
-              {<SiStackoverflow className={simpleIconsClasses.root} />}
-            </IconButton>
+            {platformProfiles.map(({ platform, url }) => {
+              const Icon = platform?.id
+                ? getIconByContentfulId(platform.id)
+                : undefined;
+
+              return (
+                <IconButton
+                  key={platform?.id}
+                  variant="outlined"
+                  color="neutral"
+                  size="sm"
+                  component="a"
+                  href={url}
+                  target="_blank"
+                >
+                  {Icon && <Icon />}
+                </IconButton>
+              );
+            })}
             <IconButton
               variant="outlined"
               color="neutral"
