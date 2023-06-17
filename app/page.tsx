@@ -15,6 +15,12 @@ import { FC } from "react";
 
 import SectionDivider from "@/components/section-divider";
 import SKillCategory from "@/components/skill-category";
+import {
+  firstName,
+  jobTitles,
+  lastName,
+  selfIntroduction,
+} from "@/constants/data";
 import { about, home } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
 
@@ -36,10 +42,11 @@ const Home: FC = () => {
               Hello
             </Divider>
             <Typography level="h1">
-              I&apos;m <Typography color="primary">Matthew</Typography> Kwong
+              {"I'm "}
+              <Typography color="primary">{firstName}</Typography> {lastName}
             </Typography>
             <Typography level="h5" component="p">
-              Frontend Dev & System DBA
+              {jobTitles.join(" & ")}
             </Typography>
           </Stack>
           <Stack
@@ -47,7 +54,7 @@ const Home: FC = () => {
             spacing={2}
             sx={{ justifyContent: "center" }}
           >
-            <Button size="lg">Download Resume</Button>
+            <Button size="lg">Download CV</Button>
             <Button
               color="neutral"
               variant="outlined"
@@ -86,14 +93,13 @@ const Home: FC = () => {
             <Stack spacing={2}>
               <Typography level="h3">
                 {"Hello again! "}
-                <Typography color="primary">I&apos;m Matthew Kwong</Typography>.
+                <Typography color="primary">
+                  {`I'm ${firstName} ${lastName}`}
+                </Typography>
+                .
               </Typography>
               <Typography sx={{ maxWidth: "60ch" }}>
-                Dynamic and experienced Frontend Developer and System DBA.
-                Skilled in frontend development, database management, analytical
-                thinking, and creative problem-solving. Adaptable team player
-                with the ability to work independently and an eagerness to
-                succeed.
+                {selfIntroduction}
               </Typography>
             </Stack>
             <Grid container spacing={6} disableEqualOverflow>
