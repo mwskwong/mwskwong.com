@@ -183,7 +183,18 @@ const HomeClient: FC<Props> = ({
       <SectionDivider
         sx={{ color: "background.level1", bgcolor: "primary.solidBg" }}
       />
-      <Sheet component="section" variant="solid" color="primary" invertedColors>
+      <Sheet
+        component="section"
+        variant="solid"
+        color="primary"
+        invertedColors
+        sx={{
+          "& ::selection": {
+            bgcolor: "var(--variant-solidBg)",
+            color: "var(--variant-solidColor)",
+          },
+        }}
+      >
         <Container>
           <Stack
             spacing={6}

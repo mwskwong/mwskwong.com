@@ -23,6 +23,10 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
             "--Footer-paddingY": theme.spacing(6),
             "--Section-scrollPaddingTop": 64,
           },
+          "::selection": {
+            backgroundColor: theme.vars.palette.primary.solidBg,
+            color: theme.vars.palette.primary.solidColor,
+          },
           svg: {
             display: "block",
           },
