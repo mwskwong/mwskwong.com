@@ -1,18 +1,24 @@
 "use client";
 
 import { SiLinkedin } from "@icons-pack/react-simple-icons";
-import { KeyboardArrowRightRounded } from "@mui/icons-material";
+import {
+  ClearRounded,
+  KeyboardArrowRightRounded,
+  SearchRounded,
+} from "@mui/icons-material";
 import {
   Box,
   Button,
   Container,
   Divider,
   Grid,
+  IconButton,
+  Input,
   Sheet,
   Stack,
   Typography,
 } from "@mui/joy";
-import { FC } from "react";
+import { FC, useDeferredValue, useMemo, useState } from "react";
 
 import {
   getCv,
@@ -20,6 +26,8 @@ import {
   getPlatformProfiles,
   getSkillCategories,
 } from "@/api";
+import getCourses from "@/api/get-courses";
+import CourseCard from "@/components/course-card";
 import Image from "@/components/image";
 import SectionDivider from "@/components/section-divider";
 import SKillCategory from "@/components/skill-category";
@@ -31,6 +39,7 @@ import {
   websiteTechStack,
 } from "@/constants/data";
 import { about, home } from "@/constants/nav";
+import { education } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 import { contentfulLoader } from "@/utils/image-loaders";
@@ -40,6 +49,7 @@ interface Props {
   platformProfiles?: Awaited<ReturnType<typeof getPlatformProfiles>>;
   personalPhoto?: Awaited<ReturnType<typeof getPersonalPhoto>>;
   skillCategories?: Awaited<ReturnType<typeof getSkillCategories>>;
+  courses?: Awaited<ReturnType<typeof getCourses>>;
 }
 
 const HomeClient: FC<Props> = ({
@@ -47,9 +57,28 @@ const HomeClient: FC<Props> = ({
   platformProfiles = [],
   personalPhoto,
   skillCategories = [],
+  courses = [],
 }) => {
-  const linkedin = platformProfiles.find(
-    (profile) => profile.platform?.id === "1pixZwU07yhCdpEdkxGVof"
+  const linkedin = useMemo(
+    () =>
+      platformProfiles.find(
+        (profile) => profile.platform?.id === "1pixZwU07yhCdpEdkxGVof"
+      ),
+    [platformProfiles]
+  );
+
+  const [courseSearch, setCourseSearch] = useState("");
+  const deferredCourseSearch = useDeferredValue(courseSearch);
+  const filteredCourses = useMemo(
+    () =>
+      courses.filter(
+        ({ name, institution }) =>
+          name.toLowerCase().includes(deferredCourseSearch.toLowerCase()) ||
+          institution?.name
+            .toLowerCase()
+            .includes(deferredCourseSearch.toLowerCase())
+      ),
+    [courses, deferredCourseSearch]
   );
 
   return (
@@ -225,19 +254,48 @@ const HomeClient: FC<Props> = ({
       <SectionDivider sx={{ bgcolor: "background.level1" }} />
       <Box
         component="section"
-        sx={{ height: 1000, bgcolor: "background.level1" }}
+        id={education.id}
+        sx={{ bgcolor: "background.level1" }}
       >
-        <Container
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-          }}
-        >
-          <Typography level="h1" sx={{ color: "text.tertiary" }}>
-            Education section
-          </Typography>
+        <Container>
+          <Stack spacing={6}>
+            <Typography level="h2" sx={{ textAlign: "center" }}>
+              Education
+            </Typography>
+            <Typography
+              level="h1"
+              sx={{ textAlign: "center", color: "text.tertiary" }}
+            >
+              Education timeline
+            </Typography>
+            <Stack spacing={2}>
+              <Input
+                size="lg"
+                placeholder="Search courses..."
+                startDecorator={<SearchRounded />}
+                endDecorator={
+                  courseSearch.length > 0 && (
+                    <IconButton
+                      color="neutral"
+                      onClick={() => setCourseSearch("")}
+                    >
+                      <ClearRounded />
+                    </IconButton>
+                  )
+                }
+                sx={{ width: "100%", maxWidth: 400, mx: "auto" }}
+                value={courseSearch}
+                onChange={(event) => setCourseSearch(event.target.value)}
+              />
+              <Grid container spacing={2}>
+                {filteredCourses.map((course) => (
+                  <Grid key={course.name} xs={12} md={6}>
+                    <CourseCard {...course} sx={{ height: "100%" }} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Stack>
+          </Stack>
         </Container>
       </Box>
       <SectionDivider sx={{ color: "background.level1" }} />

@@ -4,16 +4,18 @@ import {
   getPlatformProfiles,
   getSkillCategories,
 } from "@/api";
+import getCourses from "@/api/get-courses";
 
 import HomeClient from "./page-client";
 
 const Home = async () => {
-  const [cv, platformProfiles, personalPhoto, skillCategories] =
+  const [cv, platformProfiles, personalPhoto, skillCategories, courses] =
     await Promise.all([
       getCv(),
       getPlatformProfiles(),
       getPersonalPhoto(),
       getSkillCategories(),
+      getCourses(),
     ]);
 
   return (
@@ -22,6 +24,7 @@ const Home = async () => {
       platformProfiles={platformProfiles}
       personalPhoto={personalPhoto}
       skillCategories={skillCategories}
+      courses={courses}
     />
   );
 };
