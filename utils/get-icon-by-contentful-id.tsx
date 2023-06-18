@@ -12,12 +12,12 @@ import {
 } from "@icons-pack/react-simple-icons";
 import { IconType } from "@icons-pack/react-simple-icons/types";
 import {
-  TerminalRounded as Backend,
-  CloudRounded as Cloud,
-  AllInclusiveRounded as DataOps,
-  DashboardRounded as Frontend,
-  DevicesOtherRounded as Mobile,
-  BugReportRounded as QualityAssurance,
+  AllInclusiveRounded,
+  BugReportRounded,
+  CloudRounded,
+  DashboardRounded,
+  DevicesOtherRounded,
+  TerminalRounded,
 } from "@mui/icons-material";
 import clsx from "clsx";
 import { forwardRef } from "react";
@@ -50,14 +50,14 @@ const Icons = {
   "7zGOgiIofeUxiotCfqQlxr": createSimpleIcon(SiOracle as IconType),
   "1VVUJjfmnMSqIYZcpbQVLI": createSimpleIcon(SiStackoverflow as IconType),
   "1HehJlTFU3uyHsvibs0jGk": createSimpleIcon(SiUdemy as IconType),
-  "2FtEFXEYpFad3n0eE4CNyF": Backend,
-  BZg9YwYqAGvFoarrIqk4M: Cloud,
+  "2FtEFXEYpFad3n0eE4CNyF": TerminalRounded,
+  BZg9YwYqAGvFoarrIqk4M: CloudRounded,
   "1lgdoqAo3anMd8oMWkvou2": Database,
-  "9zrJS3ggkoVadUxZTvwyc": DataOps,
-  "3sdnCkE0j79D4kRSGuUjhp": Frontend,
+  "9zrJS3ggkoVadUxZTvwyc": AllInclusiveRounded,
+  "3sdnCkE0j79D4kRSGuUjhp": DashboardRounded,
   "4nOEnXVl1fCJGetHGVnsZ8": MachineLearning,
-  "3biweEjbkRyZaII8ZgkQhI": Mobile,
-  "119H1LBXMmT8xLTdnAq1PS": QualityAssurance,
+  "3biweEjbkRyZaII8ZgkQhI": DevicesOtherRounded,
+  "119H1LBXMmT8xLTdnAq1PS": BugReportRounded,
 };
 
 const getIconByContentfulId = (id: string) => {

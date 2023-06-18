@@ -1,12 +1,14 @@
 "use client";
 
 import { SiLinkedin } from "@icons-pack/react-simple-icons";
+import { KeyboardArrowRightRounded } from "@mui/icons-material";
 import {
   Box,
   Button,
   Container,
   Divider,
   Grid,
+  Sheet,
   Stack,
   Typography,
 } from "@mui/joy";
@@ -26,6 +28,7 @@ import {
   jobTitles,
   lastName,
   selfIntroduction,
+  websiteTechStack,
 } from "@/constants/data";
 import { about, home } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
@@ -48,6 +51,7 @@ const HomeClient: FC<Props> = ({
   const linkedin = platformProfiles.find(
     (profile) => profile.platform?.id === "1pixZwU07yhCdpEdkxGVof"
   );
+
   return (
     <>
       <Container component="section" id={home.id} sx={{ pt: { sm: 16 } }}>
@@ -147,9 +151,65 @@ const HomeClient: FC<Props> = ({
           </Stack>
         </Container>
       </Box>
-      <SectionDivider sx={{ color: "background.level1" }} />
+      <SectionDivider
+        sx={{ color: "background.level1", bgcolor: "primary.solidBg" }}
+      />
+      <Sheet component="section" variant="solid" color="primary" invertedColors>
+        <Container>
+          <Stack
+            spacing={6}
+            sx={{ alignItems: { sm: "center" }, textAlign: "center" }}
+          >
+            <Stack spacing={2}>
+              <Typography level="h2">Fun Fact</Typography>
+              <Typography>
+                This website is built on top of the following technologies and
+                platforms.
+              </Typography>
+            </Stack>
+            <Grid
+              container
+              spacing={6}
+              sx={{
+                justifyContent: "center",
+                "--Icon-fontSize": (theme) => theme.vars.fontSize.xl7,
+              }}
+              disableEqualOverflow
+            >
+              {websiteTechStack.map(({ name, Icon, url }) => (
+                <Grid key={name} xs={6} sm={3}>
+                  <Stack
+                    spacing={2}
+                    sx={{
+                      alignItems: "center",
+                      color: "inherit",
+                      textDecoration: "none",
+                    }}
+                    component="a"
+                    href={url}
+                    target="_blank"
+                  >
+                    <Icon className={simpleIconsClasses.root} />
+                    <Typography>{name}</Typography>
+                  </Stack>
+                </Grid>
+              ))}
+            </Grid>
+            <Button
+              size="lg"
+              endDecorator={<KeyboardArrowRightRounded />}
+              component="a"
+              href="https://github.com/mwskwong/resume"
+              target="_blank"
+            >
+              See the source code
+            </Button>
+          </Stack>
+        </Container>
+      </Sheet>
+      <SectionDivider sx={{ color: "primary.solidBg" }} />
       <Box component="section" sx={{ height: 1000 }}>
-        <Container sx={{ textAlign: "center" }}></Container>
+        <Container />
       </Box>
     </>
   );
