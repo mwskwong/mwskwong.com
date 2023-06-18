@@ -1,5 +1,5 @@
 import { IconType } from "@icons-pack/react-simple-icons/types";
-import { Card, CardContent, CardProps, Link, Typography } from "@mui/joy";
+import { Box, Card, CardContent, CardProps, Link, Typography } from "@mui/joy";
 import { mergeSx } from "merge-sx";
 import { FC } from "react";
 
@@ -40,7 +40,16 @@ const CourseCard: FC<Props> = ({
       )}
       {...props}
     >
-      {Icon && <Icon color="default" />}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: 45,
+        }}
+      >
+        {Icon && <Icon color="default" />}
+      </Box>
       <CardContent>
         <Link
           overlay
