@@ -235,6 +235,7 @@ const HomeClient: FC<Props> = ({
                 </Grid>
               ))}
             </Grid>
+            <Typography>And more...</Typography>
             <Button
               size="lg"
               endDecorator={<KeyboardArrowRightRounded />}
