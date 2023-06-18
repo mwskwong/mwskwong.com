@@ -218,7 +218,40 @@ const HomeClient: FC<Props> = ({
           }}
         >
           <Typography level="h1" sx={{ color: "text.tertiary" }}>
-            Dummy section
+            Experience section
+          </Typography>
+        </Container>
+      </Box>
+      <SectionDivider sx={{ bgcolor: "background.level1" }} />
+      <Box
+        component="section"
+        sx={{ height: 1000, bgcolor: "background.level1" }}
+      >
+        <Container
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <Typography level="h1" sx={{ color: "text.tertiary" }}>
+            Education section
+          </Typography>
+        </Container>
+      </Box>
+      <SectionDivider sx={{ color: "background.level1" }} />
+      <Box component="section" sx={{ height: 1000 }}>
+        <Container
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <Typography level="h1" sx={{ color: "text.tertiary" }}>
+            Contact section
           </Typography>
         </Container>
       </Box>
