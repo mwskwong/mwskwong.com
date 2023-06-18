@@ -123,7 +123,10 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
               }
             }}
           >
-            <NavList sx={{ display: { sm: "none" }, mx: -1.5 }} />
+            <NavList
+              sx={{ display: { sm: "none" }, mx: -1.5 }}
+              onNavLinkClick={() => setDropdownOpen(false)}
+            />
           </ClickAwayListener>
         )}
       </Container>
