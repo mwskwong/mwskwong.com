@@ -34,7 +34,7 @@ const NavList: FC<Props> = forwardRef(
           "--List-padding": "0px",
         }}
       >
-        {nav.map((section) => (
+        {nav.slice(1).map((section) => (
           <ListItem key={section.id}>
             <ListItemButton
               component={Link}
