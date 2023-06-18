@@ -143,7 +143,7 @@ const HomeClient: FC<Props> = ({
                 const Icon = getIconByContentfulId(id);
                 return (
                   <Grid key={id} xs={12} sm={6} lg={4}>
-                    <SKillCategory slots={{ icon: Icon }} {...skillCategory} />
+                    <SKillCategory icon={Icon && <Icon />} {...skillCategory} />
                   </Grid>
                 );
               })}
@@ -209,7 +209,18 @@ const HomeClient: FC<Props> = ({
       </Sheet>
       <SectionDivider sx={{ color: "primary.solidBg" }} />
       <Box component="section" sx={{ height: 1000 }}>
-        <Container />
+        <Container
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <Typography level="h1" sx={{ color: "text.tertiary" }}>
+            Dummy section
+          </Typography>
+        </Container>
       </Box>
     </>
   );

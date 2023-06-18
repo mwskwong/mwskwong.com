@@ -1,44 +1,32 @@
-import { IconType } from "@icons-pack/react-simple-icons/types";
-import {
-  Chip,
-  Sheet,
-  Stack,
-  StackProps,
-  SvgIcon,
-  SvgIconProps,
-  Typography,
-} from "@mui/joy";
+import { Chip, Sheet, Stack, StackProps, Typography } from "@mui/joy";
 import { mergeSx } from "merge-sx";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 type Props = StackProps & {
   name?: string;
   skills?: string[];
-  slots?: Partial<{
-    icon: typeof SvgIcon | FC<SvgIconProps> | IconType;
-  }>;
+  icon?: ReactNode;
 };
 
 const SKillCategory: FC<Props> = ({
   name,
   skills = [],
   sx,
-  slots = {},
+  icon,
   ...props
 }) => {
-  const { icon: Icon, ...restSlots } = slots;
   return (
-    <Stack
-      spacing={2}
-      sx={mergeSx({ alignItems: "center" }, sx)}
-      slots={restSlots}
-      {...props}
-    >
+    <Stack spacing={2} sx={mergeSx({ alignItems: "center" }, sx)} {...props}>
       <Sheet
         variant="outlined"
-        sx={{ display: "flex", borderRadius: "sm", p: 1.5 }}
+        sx={{
+          display: "flex",
+          borderRadius: "sm",
+          p: 1.5,
+          "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
+        }}
       >
-        {Icon && <Icon fontSize="xl4" />}
+        {icon}
       </Sheet>
       <Typography level="h6" component="h4" color="primary">
         {name}
