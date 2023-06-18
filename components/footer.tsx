@@ -19,10 +19,9 @@ const Footer: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
     <Sheet
       component="footer"
       variant="solid"
-      invertedColors
       sx={mergeSx(
         {
-          bgcolor: "neutral.800",
+          bgcolor: "background.level1",
           "--Icon-color": (theme) => theme.vars.palette.text.secondary,
         },
         sx

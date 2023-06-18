@@ -35,7 +35,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
             )}
           />
           {children}
-          <SectionDivider sx={{ bgcolor: "neutral.800" }} />
+          <SectionDivider sx={{ bgcolor: "background.level1" }} />
           <Footer platformProfiles={platformProfiles} />
         </Providers>
         <Analytics />

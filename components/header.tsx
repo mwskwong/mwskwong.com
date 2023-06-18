@@ -47,7 +47,7 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
           borderTop: 0,
           borderLeft: 0,
           borderRight: 0,
-          zIndex: 1100, // TODO: is there a built-in way to do this in the future?
+          zIndex: "header",
         },
         sx
       )}
