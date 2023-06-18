@@ -63,7 +63,7 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
           }}
         >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Link href={home.href}>
+            <Link href={home.href} aria-label="Go to home page">
               <Icon width={32} />
             </Link>
             <NavList
