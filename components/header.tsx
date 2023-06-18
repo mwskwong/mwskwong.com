@@ -86,6 +86,7 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
                   component="a"
                   href={url}
                   target="_blank"
+                  aria-label={`Go to my ${platform?.name ?? ""} profile`}
                 >
                   {Icon && <Icon />}
                 </IconButton>
@@ -96,6 +97,7 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
               color="neutral"
               size="sm"
               onClick={() => setMode(mode === "dark" ? "light" : "dark")}
+              aria-label="Toggle color scheme"
             >
               <NoSsr>
                 {mode === "dark" ? <LightModeRounded /> : <DarkModeRounded />}
@@ -108,6 +110,7 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
               size="sm"
               sx={{ display: { sm: "none" } }}
               onClick={() => setDropdownOpen((prev) => !prev)}
+              aria-label="Toggle navigation dropdown"
             >
               {dropdownOpen ? <CloseRounded /> : <MenuRounded />}
             </IconButton>

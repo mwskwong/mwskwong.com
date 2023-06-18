@@ -48,6 +48,7 @@ const Footer: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
                 component="a"
                 href={url}
                 target="_blank"
+                aria-label={`Go to my ${platform?.name ?? ""} profile`}
               >
                 {Icon && <Icon />}
               </IconButton>
