@@ -152,6 +152,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
               columnSpacing={2}
               xs={12}
               md={8}
+              // TODO: Nested grid doesn't seem to be working when being wrapped in a fragment
               sx={{ display: state.succeeded ? "none" : "flex" }}
             >
               <Grid xs={12} sm={6}>
