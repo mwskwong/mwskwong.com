@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { Rubik, Source_Code_Pro } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
@@ -12,7 +13,6 @@ import {
   selfIntroduction,
 } from "@/constants/data";
 
-import Analytics from "./analytics";
 import Providers from "./providers";
 
 const rubik = Rubik({ subsets: ["latin"], variable: "--font-rubik" });
