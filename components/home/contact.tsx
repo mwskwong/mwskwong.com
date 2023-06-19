@@ -3,9 +3,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   EmailRounded,
+  KeyboardArrowUpRounded,
   LocationOnRounded,
   SendRounded,
   SmartphoneRounded,
+  ThumbUpRounded,
 } from "@mui/icons-material";
 import {
   Alert,
@@ -14,15 +16,17 @@ import {
   Button,
   Container,
   Grid,
-  Link,
+  Link as JoyLink,
+  Sheet,
   Stack,
   Typography,
 } from "@mui/joy";
-import { FC, useEffect } from "react";
+import Link from "next/link";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 
 import { address, email, phone } from "@/constants/data";
-import { contact } from "@/constants/nav";
+import { contact, home } from "@/constants/nav";
 
 import ContactInput from "./contact-input";
 import ContactTextarea from "./contact-textarea";
@@ -51,21 +55,16 @@ const personalInfo = [
 ];
 
 const Contact: FC<BoxProps<"section">> = (props) => {
-  const { handleSubmit, control, reset } = useForm<TFormSchema>({
+  const { handleSubmit, control } = useForm<TFormSchema>({
     resolver: zodResolver(FormSchema),
     defaultValues: { name: "", email: "", subject: "", message: "" },
     mode: "onChange",
   });
-
-  const [state, handleFormspreeSubmit, resetFormspree] = useFormspree(
+  const [state, handleFormspreeSubmit] = useFormspree(
     process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? ""
   );
 
-  useEffect(() => {
-    if (state.succeeded) {
-      reset();
-    }
-  }, [reset, state.succeeded]);
+  // state.succeeded = true;
 
   return (
     <Box component="section" id={contact.id} {...props}>
@@ -76,7 +75,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
           </Typography>
           <Grid
             container
-            spacing={4}
+            spacing={6}
             disableEqualOverflow
             component="form"
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -95,17 +94,66 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                   <Stack spacing={1} sx={{ alignItems: "center" }}>
                     <Icon />
                     <Typography>{title}</Typography>
-                    <Link
+                    <JoyLink
                       href={url}
                       target={url.startsWith("http") ? "_blank" : undefined}
                     >
                       {value}
-                    </Link>
+                    </JoyLink>
                   </Stack>
                 </Grid>
               ))}
             </Grid>
-            <Grid container rowSpacing={1} columnSpacing={2} xs={12} md={8}>
+            <Grid
+              xs={12}
+              md={8}
+              sx={{ display: state.succeeded ? "block" : "none" }}
+            >
+              <Stack
+                spacing={2}
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "100%",
+                  textAlign: "center",
+                }}
+              >
+                <Sheet
+                  color="success"
+                  variant="soft"
+                  sx={{
+                    display: "flex",
+                    borderRadius: "sm",
+                    p: 1.5,
+                    "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
+                  }}
+                >
+                  <ThumbUpRounded />
+                </Sheet>
+                <Typography level="h1" color="primary">
+                  Thank You!
+                </Typography>
+                <Typography>
+                  {"I've received your message and we'll be in touch soon!"}
+                </Typography>
+                <Button
+                  size="lg"
+                  endDecorator={<KeyboardArrowUpRounded />}
+                  component={Link}
+                  href={home.href}
+                >
+                  Back To Top
+                </Button>
+              </Stack>
+            </Grid>
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={2}
+              xs={12}
+              md={8}
+              sx={{ display: state.succeeded ? "none" : "flex" }}
+            >
               <Grid xs={12} sm={6}>
                 <ContactInput
                   control={control}
@@ -141,7 +189,17 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 />
               </Grid>
             </Grid>
-            <Grid xs={12} md={8} mdOffset={4}>
+            <Grid
+              xs={12}
+              md={8}
+              mdOffset={4}
+              sx={{
+                display:
+                  state.errors.length === 0 || state.succeeded
+                    ? "none"
+                    : "block",
+              }}
+            >
               <Stack spacing={1}>
                 {state.errors.map(({ message }, index) => (
                   <Alert key={index} color="danger">
@@ -150,7 +208,12 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 ))}
               </Stack>
             </Grid>
-            <Grid xs={12} sm="auto" smOffset="auto">
+            <Grid
+              xs={12}
+              sm="auto"
+              smOffset="auto"
+              sx={{ display: state.succeeded ? "none" : "block" }}
+            >
               <Button
                 type="submit"
                 size="lg"
