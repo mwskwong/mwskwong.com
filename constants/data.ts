@@ -7,6 +7,11 @@ import {
   SiVercel,
 } from "@icons-pack/react-simple-icons";
 import { IconType } from "@icons-pack/react-simple-icons/types";
+import {
+  EmailRounded,
+  LocationOnRounded,
+  SmartphoneRounded,
+} from "@mui/icons-material";
 
 import SiFormspree from "@/components/icons/si-formspree";
 import SiImprovMX from "@/components/icons/si-improvmx";
@@ -66,5 +71,26 @@ export const websiteTechStack = [
     name: "ImprovMX",
     Icon: SiImprovMX,
     url: "https://improvmx.com/",
+  },
+];
+
+export const personalInfo = [
+  {
+    Icon: SmartphoneRounded,
+    title: "Call Me At",
+    value: phone,
+    url: `tel:${phone}`,
+  },
+  {
+    Icon: EmailRounded,
+    title: "Email Me At",
+    value: email,
+    url: `mailto:${email}`,
+  },
+  {
+    Icon: LocationOnRounded,
+    title: "Find Me At",
+    value: address,
+    url: "https://www.google.com/maps/place/Hong+Kong",
   },
 ];

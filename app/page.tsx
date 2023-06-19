@@ -1,10 +1,10 @@
 import {
+  getCourses,
   getCv,
   getPersonalPhoto,
   getPlatformProfiles,
   getSkillCategories,
 } from "@/api";
-import getCourses from "@/api/get-courses";
 
 import HomeClient from "./page-client";
 

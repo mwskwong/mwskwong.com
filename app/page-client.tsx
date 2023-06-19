@@ -3,11 +3,8 @@
 import { SiLinkedin } from "@icons-pack/react-simple-icons";
 import {
   ClearRounded,
-  EmailRounded,
   KeyboardArrowRightRounded,
-  LocationOnRounded,
   SearchRounded,
-  SmartphoneRounded,
 } from "@mui/icons-material";
 import {
   Box,
@@ -25,28 +22,25 @@ import {
 import { FC, useDeferredValue, useMemo, useState } from "react";
 
 import {
+  getCourses,
   getCv,
   getPersonalPhoto,
   getPlatformProfiles,
   getSkillCategories,
 } from "@/api";
-import getCourses from "@/api/get-courses";
 import CourseCard from "@/components/course-card";
 import Image from "@/components/image";
 import SectionDivider from "@/components/section-divider";
 import SKillCategory from "@/components/skill-category";
 import {
-  address,
-  email,
   firstName,
   jobTitles,
   lastName,
-  phone,
+  personalInfo,
   selfIntroduction,
   websiteTechStack,
 } from "@/constants/data";
-import { about, contact, home } from "@/constants/nav";
-import { education } from "@/constants/nav";
+import { about, contact, education, home } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 import { contentfulLoader } from "@/utils/image-loaders";
@@ -58,27 +52,6 @@ interface Props {
   skillCategories?: Awaited<ReturnType<typeof getSkillCategories>>;
   courses?: Awaited<ReturnType<typeof getCourses>>;
 }
-
-const personalInfo = [
-  {
-    Icon: SmartphoneRounded,
-    title: "Call Me At",
-    value: phone,
-    url: `tel:${phone}`,
-  },
-  {
-    Icon: EmailRounded,
-    title: "Email Me At",
-    value: email,
-    url: `mailto:${email}`,
-  },
-  {
-    Icon: LocationOnRounded,
-    title: "Find Me At",
-    value: address,
-    url: "https://www.google.com/maps/place/Hong+Kong",
-  },
-];
 
 const HomeClient: FC<Props> = ({
   cv,
