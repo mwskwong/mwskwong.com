@@ -26,6 +26,9 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
             backgroundColor: theme.vars.palette.primary.solidBg,
             color: theme.vars.palette.primary.solidColor,
           },
+          code: {
+            fontFamily: theme.vars.fontFamily.code,
+          },
           svg: {
             display: "block",
           },

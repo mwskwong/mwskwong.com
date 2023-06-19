@@ -24,7 +24,7 @@ import { forwardRef } from "react";
 
 import Database from "@/components/icons/database";
 import MachineLearning from "@/components/icons/machine-learning";
-import contentfulIds from "@/constants/contentfulIds";
+import contentfulIds from "@/constants/contentful-ids";
 import { simpleIconsClasses } from "@/theme";
 
 const createSimpleIcon = (Icon: IconType) => {

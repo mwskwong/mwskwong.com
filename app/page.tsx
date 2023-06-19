@@ -1,31 +1,41 @@
-import {
-  getCourses,
-  getCv,
-  getPersonalPhoto,
-  getPlatformProfiles,
-  getSkillCategories,
-} from "@/api";
+import { FC } from "react";
 
-import HomeClient from "./page-client";
+import About from "@/components/home/about";
+import Education from "@/components/home/education";
+import FunFact from "@/components/home/funFact";
+import Hero from "@/components/home/hero";
+import SectionDivider from "@/components/section-divider";
 
-const Home = async () => {
-  const [cv, platformProfiles, personalPhoto, skillCategories, courses] =
-    await Promise.all([
-      getCv(),
-      getPlatformProfiles(),
-      getPersonalPhoto(),
-      getSkillCategories(),
-      getCourses(),
-    ]);
+const bgcolors = {
+  hero: undefined,
+  about: "background.level1",
+  funFact: "primary.solidBg",
+  experience: undefined,
+  education: "background.level1",
+  contact: undefined,
+};
 
+const Home: FC = () => {
   return (
-    <HomeClient
-      cv={cv}
-      platformProfiles={platformProfiles}
-      personalPhoto={personalPhoto}
-      skillCategories={skillCategories}
-      courses={courses}
-    />
+    <>
+      <Hero sx={{ bgcolor: bgcolors.hero }} />
+      <SectionDivider sx={{ color: bgcolors.hero, bgcolor: bgcolors.about }} />
+      <About sx={{ bgcolor: bgcolors.about }} />
+      <SectionDivider
+        sx={{ color: bgcolors.about, bgcolor: bgcolors.funFact }}
+      />
+      <FunFact />
+      <SectionDivider
+        sx={{ color: bgcolors.funFact, bgcolor: bgcolors.experience }}
+      />
+      <SectionDivider
+        sx={{ color: bgcolors.experience, bgcolor: bgcolors.education }}
+      />
+      <Education sx={{ bgcolor: bgcolors.education }} />
+      <SectionDivider
+        sx={{ color: bgcolors.education, bgcolor: bgcolors.contact }}
+      />
+    </>
   );
 };
 
