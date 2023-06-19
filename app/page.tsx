@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import About from "@/components/home/about";
+import Contact from "@/components/home/contact";
 import Education from "@/components/home/education";
 import FunFact from "@/components/home/funFact";
 import Hero from "@/components/home/hero";
@@ -35,6 +36,7 @@ const Home: FC = () => {
       <SectionDivider
         sx={{ color: bgcolors.education, bgcolor: bgcolors.contact }}
       />
+      <Contact sx={{ bgcolor: bgcolors.contact }} />
     </>
   );
 };
