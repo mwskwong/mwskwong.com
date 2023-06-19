@@ -3,8 +3,11 @@
 import { SiLinkedin } from "@icons-pack/react-simple-icons";
 import {
   ClearRounded,
+  EmailRounded,
   KeyboardArrowRightRounded,
+  LocationOnRounded,
   SearchRounded,
+  SmartphoneRounded,
 } from "@mui/icons-material";
 import {
   Box,
@@ -14,6 +17,7 @@ import {
   Grid,
   IconButton,
   Input,
+  Link,
   Sheet,
   Stack,
   Typography,
@@ -32,13 +36,16 @@ import Image from "@/components/image";
 import SectionDivider from "@/components/section-divider";
 import SKillCategory from "@/components/skill-category";
 import {
+  address,
+  email,
   firstName,
   jobTitles,
   lastName,
+  phone,
   selfIntroduction,
   websiteTechStack,
 } from "@/constants/data";
-import { about, home } from "@/constants/nav";
+import { about, contact, home } from "@/constants/nav";
 import { education } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
@@ -51,6 +58,27 @@ interface Props {
   skillCategories?: Awaited<ReturnType<typeof getSkillCategories>>;
   courses?: Awaited<ReturnType<typeof getCourses>>;
 }
+
+const personalInfo = [
+  {
+    Icon: SmartphoneRounded,
+    title: "Call Me At",
+    value: phone,
+    url: `tel:${phone}`,
+  },
+  {
+    Icon: EmailRounded,
+    title: "Email Me At",
+    value: email,
+    url: `mailto:${email}`,
+  },
+  {
+    Icon: LocationOnRounded,
+    title: "Find Me At",
+    value: address,
+    url: "https://www.google.com/maps/place/Hong+Kong",
+  },
+];
 
 const HomeClient: FC<Props> = ({
   cv,
@@ -311,20 +339,38 @@ const HomeClient: FC<Props> = ({
         </Container>
       </Box>
       <SectionDivider sx={{ color: "background.level1" }} />
-      <Box component="section" sx={{ height: 1000 }}>
-        <Container
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-          }}
-        >
-          <Typography level="h1" sx={{ color: "text.tertiary" }}>
-            Contact section
+      <Container component="section" id={contact.id}>
+        <Stack spacing={6}>
+          <Typography level="h2" sx={{ textAlign: "center" }}>
+            Contact
           </Typography>
-        </Container>
-      </Box>
+          <Grid container spacing={6}>
+            <Grid
+              component="address"
+              container
+              xs={12}
+              md={4}
+              spacing={3}
+              sx={{ "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4 }}
+            >
+              {personalInfo.map(({ Icon, title, value, url }) => (
+                <Grid key={title} xs={12} sm={4} md={12}>
+                  <Stack spacing={1} sx={{ alignItems: "center" }}>
+                    <Icon />
+                    <Typography>{title}</Typography>
+                    <Link
+                      href={url}
+                      target={url.startsWith("http") ? "_blank" : undefined}
+                    >
+                      {value}
+                    </Link>
+                  </Stack>
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </Stack>
+      </Container>
     </>
   );
 };

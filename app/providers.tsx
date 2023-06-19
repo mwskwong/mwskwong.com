@@ -38,6 +38,9 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
             paddingTop: "var(--Footer-paddingY)",
             paddingBottom: "var(--Footer-paddingY)",
           },
+          address: {
+            fontStyle: "unset",
+          },
           [`.${simpleIconsClasses.root}`]: {
             color: "var(--Icon-color)",
             margin: "var(--Icon-margin)",
