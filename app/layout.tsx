@@ -12,6 +12,7 @@ import {
   lastName,
   selfIntroduction,
 } from "@/constants/data";
+import { LINKEDIN } from "@/utils/get-icon-by-contentful-id";
 
 import Analytics from "./analytics";
 import Providers from "./providers";
@@ -31,7 +32,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
         <Providers>
           <Header
             platformProfiles={platformProfiles.filter(
-              ({ platform }) => platform?.id !== "1pixZwU07yhCdpEdkxGVof" // not LinkedIn
+              ({ platform }) => platform?.id !== LINKEDIN
             )}
           />
           {children}

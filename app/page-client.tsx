@@ -42,7 +42,9 @@ import {
 } from "@/constants/data";
 import { about, contact, education, home } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
-import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
+import getIconByContentfulId, {
+  LINKEDIN,
+} from "@/utils/get-icon-by-contentful-id";
 import { contentfulLoader } from "@/utils/image-loaders";
 
 interface Props {
@@ -61,10 +63,7 @@ const HomeClient: FC<Props> = ({
   courses = [],
 }) => {
   const linkedin = useMemo(
-    () =>
-      platformProfiles.find(
-        (profile) => profile.platform?.id === "1pixZwU07yhCdpEdkxGVof"
-      ),
+    () => platformProfiles.find(({ platform }) => platform?.id === LINKEDIN),
     [platformProfiles]
   );
 
@@ -72,13 +71,13 @@ const HomeClient: FC<Props> = ({
   const deferredCourseSearch = useDeferredValue(courseSearch);
   const filteredCourses = useMemo(
     () =>
-      courses.filter(
-        ({ name, institution }) =>
-          name.toLowerCase().includes(deferredCourseSearch.toLowerCase()) ||
-          institution?.name
-            .toLowerCase()
-            .includes(deferredCourseSearch.toLowerCase())
-      ),
+      courses.filter(({ name, institution }) => {
+        const searchStr = deferredCourseSearch.toLowerCase();
+        return (
+          name.toLowerCase().includes(searchStr) ||
+          institution?.name.toLowerCase().includes(searchStr)
+        );
+      }),
     [courses, deferredCourseSearch]
   );
 
