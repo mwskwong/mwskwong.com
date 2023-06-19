@@ -89,6 +89,7 @@ const EducationClient: FC<Props> = ({ courses, ...props }) => {
                           boxShadow: "md",
                           borderColor: "neutral.outlinedHoverBorder",
                         },
+                        height: "100%",
                       }}
                     >
                       <Box
