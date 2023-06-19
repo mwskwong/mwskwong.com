@@ -7,8 +7,7 @@ import {
   ListProps,
 } from "@mui/joy";
 import Link from "next/link";
-import React, { MouseEvent, forwardRef } from "react";
-import { FC } from "react";
+import React, { FC, MouseEvent, forwardRef } from "react";
 
 import nav from "@/constants/nav";
 

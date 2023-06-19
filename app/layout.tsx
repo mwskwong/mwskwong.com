@@ -6,13 +6,13 @@ import { getPlatformProfiles } from "@/api";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import SectionDivider from "@/components/section-divider";
+import { linkedin } from "@/constants/contentfulIds";
 import {
   firstName,
   jobTitles,
   lastName,
   selfIntroduction,
 } from "@/constants/data";
-import { LINKEDIN } from "@/utils/get-icon-by-contentful-id";
 
 import Analytics from "./analytics";
 import Providers from "./providers";
@@ -32,7 +32,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
         <Providers>
           <Header
             platformProfiles={platformProfiles.filter(
-              ({ platform }) => platform?.id !== LINKEDIN
+              ({ platform }) => platform?.id !== linkedin
             )}
           />
           {children}

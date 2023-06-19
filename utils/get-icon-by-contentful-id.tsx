@@ -24,6 +24,7 @@ import { forwardRef } from "react";
 
 import Database from "@/components/icons/database";
 import MachineLearning from "@/components/icons/machine-learning";
+import contentfulIds from "@/constants/contentfulIds";
 import { simpleIconsClasses } from "@/theme";
 
 const createSimpleIcon = (Icon: IconType) => {
@@ -39,44 +40,25 @@ const createSimpleIcon = (Icon: IconType) => {
   return SimpleIcon;
 };
 
-export const DATACAMP = "39xxsgQxQ8QkkLanehShwM";
-export const ENTERPRISE_DB = "2H5GgFU9w93zAuYJC9Ei77";
-export const GITHUB = "5okHEYjphz0Ijf8buAc53L";
-export const GOOGLE = "7g52E2sWK3NrJrkHpo0FgM";
-export const LINKEDIN = "1pixZwU07yhCdpEdkxGVof";
-export const MICROSOFT = "3evl5GGoKX4ReIAqDHJOU5";
-export const MONGODB = "31rWywCQiI78yNjvDJBhgT";
-export const ORACLE = "7zGOgiIofeUxiotCfqQlxr";
-export const STACK_OVERFLOW = "1VVUJjfmnMSqIYZcpbQVLI";
-export const UDEMY = "1HehJlTFU3uyHsvibs0jGk";
-export const BACKEND = "2FtEFXEYpFad3n0eE4CNyF";
-export const CLOUD = "BZg9YwYqAGvFoarrIqk4M";
-export const DATABASE = "1lgdoqAo3anMd8oMWkvou2";
-export const DATA_OPS = "9zrJS3ggkoVadUxZTvwyc";
-export const FRONTEND = "3sdnCkE0j79D4kRSGuUjhp";
-export const MACHINE_LEARNING = "4nOEnXVl1fCJGetHGVnsZ8";
-export const MOBILE = "3biweEjbkRyZaII8ZgkQhI";
-export const QA = "119H1LBXMmT8xLTdnAq1PS";
-
 const Icons = {
-  [DATACAMP]: createSimpleIcon(SiDatacamp as IconType),
-  [ENTERPRISE_DB]: createSimpleIcon(SiEnterprisedb as IconType),
-  [GITHUB]: createSimpleIcon(SiGithub as IconType),
-  [GOOGLE]: createSimpleIcon(SiGoogle as IconType),
-  [LINKEDIN]: createSimpleIcon(SiLinkedin as IconType),
-  [MICROSOFT]: createSimpleIcon(SiMicrosoft as IconType),
-  [MONGODB]: createSimpleIcon(SiMongodb as IconType),
-  [ORACLE]: createSimpleIcon(SiOracle as IconType),
-  [STACK_OVERFLOW]: createSimpleIcon(SiStackoverflow as IconType),
-  [UDEMY]: createSimpleIcon(SiUdemy as IconType),
-  [BACKEND]: TerminalRounded,
-  [CLOUD]: CloudRounded,
-  [DATABASE]: Database,
-  [DATA_OPS]: AllInclusiveRounded,
-  [FRONTEND]: DashboardRounded,
-  [MACHINE_LEARNING]: MachineLearning,
-  [MOBILE]: DevicesOtherRounded,
-  [QA]: BugReportRounded,
+  [contentfulIds.datacamp]: createSimpleIcon(SiDatacamp as IconType),
+  [contentfulIds.enterprisedb]: createSimpleIcon(SiEnterprisedb as IconType),
+  [contentfulIds.github]: createSimpleIcon(SiGithub as IconType),
+  [contentfulIds.google]: createSimpleIcon(SiGoogle as IconType),
+  [contentfulIds.linkedin]: createSimpleIcon(SiLinkedin as IconType),
+  [contentfulIds.microsoft]: createSimpleIcon(SiMicrosoft as IconType),
+  [contentfulIds.mongodb]: createSimpleIcon(SiMongodb as IconType),
+  [contentfulIds.oracle]: createSimpleIcon(SiOracle as IconType),
+  [contentfulIds.stackoverflow]: createSimpleIcon(SiStackoverflow as IconType),
+  [contentfulIds.udemy]: createSimpleIcon(SiUdemy as IconType),
+  [contentfulIds.backend]: TerminalRounded,
+  [contentfulIds.cloud]: CloudRounded,
+  [contentfulIds.database]: Database,
+  [contentfulIds.dataOps]: AllInclusiveRounded,
+  [contentfulIds.frontend]: DashboardRounded,
+  [contentfulIds.machineLearning]: MachineLearning,
+  [contentfulIds.mobile]: DevicesOtherRounded,
+  [contentfulIds.qa]: BugReportRounded,
 };
 
 const getIconByContentfulId = (id: string) => {

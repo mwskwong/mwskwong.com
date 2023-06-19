@@ -1,10 +1,22 @@
 "use client";
 
-import { SiLinkedin } from "@icons-pack/react-simple-icons";
+import {
+  SiContentful,
+  SiLinkedin,
+  SiMui,
+  SiNextdotjs,
+  SiReact,
+  SiReacthookform,
+  SiVercel,
+} from "@icons-pack/react-simple-icons";
+import { IconType } from "@icons-pack/react-simple-icons/types";
 import {
   ClearRounded,
+  EmailRounded,
   KeyboardArrowRightRounded,
+  LocationOnRounded,
   SearchRounded,
+  SmartphoneRounded,
 } from "@mui/icons-material";
 import {
   Box,
@@ -29,22 +41,24 @@ import {
   getSkillCategories,
 } from "@/api";
 import CourseCard from "@/components/course-card";
+import SiFormspree from "@/components/icons/si-formspree";
+import SiImprovMX from "@/components/icons/si-improvmx";
 import Image from "@/components/image";
 import SectionDivider from "@/components/section-divider";
 import SKillCategory from "@/components/skill-category";
+import { linkedin as linkedinId } from "@/constants/contentfulIds";
 import {
+  address,
+  email,
   firstName,
   jobTitles,
   lastName,
-  personalInfo,
+  phone,
   selfIntroduction,
-  websiteTechStack,
 } from "@/constants/data";
 import { about, contact, education, home } from "@/constants/nav";
 import { simpleIconsClasses } from "@/theme";
-import getIconByContentfulId, {
-  LINKEDIN,
-} from "@/utils/get-icon-by-contentful-id";
+import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 import { contentfulLoader } from "@/utils/image-loaders";
 
 interface Props {
@@ -55,6 +69,70 @@ interface Props {
   courses?: Awaited<ReturnType<typeof getCourses>>;
 }
 
+export const websiteTechStack = [
+  {
+    name: "React",
+    Icon: SiReact as IconType,
+    url: "https://react.dev/",
+  },
+  {
+    name: "Next.js",
+    Icon: SiNextdotjs as IconType,
+    url: "https://nextjs.org/",
+  },
+  {
+    name: "MUI Joy UI",
+    Icon: SiMui as IconType,
+    url: "https://mui.com/",
+  },
+  {
+    name: "React Hook Form",
+    Icon: SiReacthookform as IconType,
+    url: "https://react-hook-form.com/",
+  },
+  {
+    name: "Vercel",
+    Icon: SiVercel as IconType,
+    url: "https://vercel.com/",
+  },
+  {
+    name: "Contentful",
+    Icon: SiContentful as IconType,
+    url: "https://www.contentful.com/",
+  },
+  {
+    name: "Formspree",
+    Icon: SiFormspree,
+    url: "https://formspree.io/",
+  },
+  {
+    name: "ImprovMX",
+    Icon: SiImprovMX,
+    url: "https://improvmx.com/",
+  },
+];
+
+export const personalInfo = [
+  {
+    Icon: SmartphoneRounded,
+    title: "Call Me At",
+    value: phone,
+    url: `tel:${phone}`,
+  },
+  {
+    Icon: EmailRounded,
+    title: "Email Me At",
+    value: email,
+    url: `mailto:${email}`,
+  },
+  {
+    Icon: LocationOnRounded,
+    title: "Find Me At",
+    value: address,
+    url: "https://www.google.com/maps/place/Hong+Kong",
+  },
+];
+
 const HomeClient: FC<Props> = ({
   cv,
   platformProfiles = [],
@@ -63,7 +141,7 @@ const HomeClient: FC<Props> = ({
   courses = [],
 }) => {
   const linkedin = useMemo(
-    () => platformProfiles.find(({ platform }) => platform?.id === LINKEDIN),
+    () => platformProfiles.find(({ platform }) => platform?.id === linkedinId),
     [platformProfiles]
   );
 
