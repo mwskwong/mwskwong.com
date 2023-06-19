@@ -27,15 +27,15 @@
     "next": "^13.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.45.0-next.1",
+    "react-hook-form": "^7.45.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.6",
     "@types/lodash-es": "^4.17.7",
     "@types/node": "^18.16.18",
-    "@types/react": "^18.2.12",
-    "@types/react-dom": "^18.2.5",
+    "@types/react": "^18.2.13",
+    "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.59.11",
     "@typescript-eslint/parser": "^5.59.11",
     "eslint": "^8.43.0",
