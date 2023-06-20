@@ -47,6 +47,7 @@ const FooterClient: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
               <IconButton
                 key={platform?.id}
                 variant="plain"
+                color="neutral"
                 size="sm"
                 component="a"
                 href={url}
