@@ -5,8 +5,8 @@ import getExperiences from "@/api/get-experiences";
 import ExperienceClient from "./experience-client";
 
 const Experience = async (props: BoxProps<"section">) => {
-  const experience = await getExperiences();
-  return <ExperienceClient {...props} />;
+  const experiences = await getExperiences();
+  return <ExperienceClient experiences={experiences} {...props} />;
 };
 
 export default Experience;
