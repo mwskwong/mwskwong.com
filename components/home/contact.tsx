@@ -101,127 +101,109 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 </Grid>
               ))}
             </Grid>
-            <Grid
-              xs={12}
-              md={8}
-              sx={{ display: state.succeeded ? "block" : "none" }}
-            >
-              <Stack
-                spacing={2}
-                sx={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "100%",
-                  textAlign: "center",
-                }}
-              >
-                <Sheet
-                  color="success"
-                  variant="soft"
+            {state.succeeded && (
+              <Grid xs={12} md={8}>
+                <Stack
+                  spacing={2}
                   sx={{
-                    display: "flex",
-                    borderRadius: "sm",
-                    p: 1.5,
-                    "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100%",
+                    textAlign: "center",
                   }}
                 >
-                  <ThumbUpRounded />
-                </Sheet>
-                <Typography level="h1" color="primary">
-                  Thank You!
-                </Typography>
-                <Typography>
-                  {"I've received your message and we'll be in touch soon!"}
-                </Typography>
+                  <Sheet
+                    color="success"
+                    variant="soft"
+                    sx={{
+                      display: "flex",
+                      borderRadius: "sm",
+                      p: 1.5,
+                      "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
+                    }}
+                  >
+                    <ThumbUpRounded />
+                  </Sheet>
+                  <Typography level="h1" color="primary">
+                    Thank You!
+                  </Typography>
+                  <Typography>
+                    {"I've received your message and we'll be in touch soon!"}
+                  </Typography>
+                  <Button
+                    size="lg"
+                    endDecorator={<KeyboardArrowUpRounded />}
+                    component={Link}
+                    href={home.href}
+                  >
+                    Back To Top
+                  </Button>
+                </Stack>
+              </Grid>
+            )}
+            {/* Nested grid doesn't work when being wrapped in a fragment */}
+            {!state.succeeded && (
+              <Grid container rowSpacing={1} columnSpacing={2} xs={12} md={8}>
+                <Grid xs={12} sm={6}>
+                  <FormInput
+                    control={control}
+                    name="name"
+                    label="Name"
+                    disabled={state.submitting}
+                  />
+                </Grid>
+                <Grid xs={12} sm={6}>
+                  <FormInput
+                    control={control}
+                    name="email"
+                    label="Email"
+                    disabled={state.submitting}
+                    slotProps={{ input: { type: "email" } }}
+                  />
+                </Grid>
+                <Grid xs={12}>
+                  <FormInput
+                    control={control}
+                    name="subject"
+                    label="Subject"
+                    disabled={state.submitting}
+                  />
+                </Grid>
+                <Grid xs={12}>
+                  <FormTextarea
+                    control={control}
+                    name="message"
+                    label="Message"
+                    disabled={state.submitting}
+                    slotProps={{ textarea: { minRows: 5, maxRows: 5 } }}
+                  />
+                </Grid>
+              </Grid>
+            )}
+            {!state.succeeded && Boolean(state.errors.length) && (
+              <Grid xs={12} md={8} mdOffset={4}>
+                <Stack spacing={1}>
+                  {state.errors.map(({ message }, index) => (
+                    <Alert key={index} color="danger">
+                      {message}
+                    </Alert>
+                  ))}
+                </Stack>
+              </Grid>
+            )}
+            {!state.succeeded && (
+              <Grid xs={12} sm="auto" smOffset="auto">
                 <Button
+                  type="submit"
                   size="lg"
-                  endDecorator={<KeyboardArrowUpRounded />}
-                  component={Link}
-                  href={home.href}
+                  startDecorator={<SendRounded />}
+                  sx={{ width: "100%" }}
+                  loading={state.submitting}
                 >
-                  Back To Top
+                  Send Message
                 </Button>
-              </Stack>
-            </Grid>
-            <Grid
-              container
-              rowSpacing={1}
-              columnSpacing={2}
-              xs={12}
-              md={8}
-              // TODO: Nested grid doesn't seem to be working when being wrapped in a fragment
-              sx={{ display: state.succeeded ? "none" : "flex" }}
-            >
-              <Grid xs={12} sm={6}>
-                <FormInput
-                  control={control}
-                  name="name"
-                  label="Name"
-                  disabled={state.submitting}
-                />
               </Grid>
-              <Grid xs={12} sm={6}>
-                <FormInput
-                  control={control}
-                  name="email"
-                  label="Email"
-                  disabled={state.submitting}
-                  slotProps={{ input: { type: "email" } }}
-                />
-              </Grid>
-              <Grid xs={12}>
-                <FormInput
-                  control={control}
-                  name="subject"
-                  label="Subject"
-                  disabled={state.submitting}
-                />
-              </Grid>
-              <Grid xs={12}>
-                <FormTextarea
-                  control={control}
-                  name="message"
-                  label="Message"
-                  disabled={state.submitting}
-                  slotProps={{ textarea: { minRows: 5, maxRows: 5 } }}
-                />
-              </Grid>
-            </Grid>
-            <Grid
-              xs={12}
-              md={8}
-              mdOffset={4}
-              sx={{
-                display:
-                  state.errors.length === 0 || state.succeeded
-                    ? "none"
-                    : "block",
-              }}
-            >
-              <Stack spacing={1}>
-                {state.errors.map(({ message }, index) => (
-                  <Alert key={index} color="danger">
-                    {message}
-                  </Alert>
-                ))}
-              </Stack>
-            </Grid>
-            <Grid
-              xs={12}
-              sm="auto"
-              smOffset="auto"
-              sx={{ display: state.succeeded ? "none" : "block" }}
-            >
-              <Button
-                type="submit"
-                size="lg"
-                startDecorator={<SendRounded />}
-                sx={{ width: "100%" }}
-                loading={state.submitting}
-              >
-                Send Message
-              </Button>
-            </Grid>
+            )}
           </Grid>
         </Stack>
       </Container>
