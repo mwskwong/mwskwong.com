@@ -23,12 +23,12 @@ type Props = FormControlProps &
     }>;
   };
 
-const ContactTextarea: FC<Props> = ({ label, slotProps = {}, ...props }) => {
+const FormTextarea: FC<Props> = ({ label, slotProps = {}, ...props }) => {
   const { root, formLabel, textarea, formHelperText } = slotProps;
   const {
     field,
     fieldState: { error },
-  } = useController(props);
+  } = useController({ defaultValue: "", ...props });
 
   return (
     <FormControl error={Boolean(error)} slotProps={{ root }} {...props}>
@@ -39,4 +39,4 @@ const ContactTextarea: FC<Props> = ({ label, slotProps = {}, ...props }) => {
   );
 };
 
-export default ContactTextarea;
+export default FormTextarea;

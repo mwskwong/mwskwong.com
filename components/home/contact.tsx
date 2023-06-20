@@ -28,9 +28,9 @@ import { useForm } from "react-hook-form";
 import { address, email, phone } from "@/constants/data";
 import { contact, home } from "@/constants/nav";
 
-import ContactInput from "./contact-input";
-import ContactTextarea from "./contact-textarea";
+import FormInput from "./form-input";
 import FormSchema, { FormSchema as TFormSchema } from "./form-schema";
+import FormTextarea from "./form-textarea";
 import useFormspree from "./use-formspree";
 
 const personalInfo = [
@@ -57,14 +57,11 @@ const personalInfo = [
 const Contact: FC<BoxProps<"section">> = (props) => {
   const { handleSubmit, control } = useForm<TFormSchema>({
     resolver: zodResolver(FormSchema),
-    defaultValues: { name: "", email: "", subject: "", message: "" },
     mode: "onChange",
   });
   const [state, handleFormspreeSubmit] = useFormspree(
     process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? ""
   );
-
-  // state.succeeded = true;
 
   return (
     <Box component="section" id={contact.id} {...props}>
@@ -156,7 +153,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
               sx={{ display: state.succeeded ? "none" : "flex" }}
             >
               <Grid xs={12} sm={6}>
-                <ContactInput
+                <FormInput
                   control={control}
                   name="name"
                   label="Name"
@@ -164,7 +161,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 />
               </Grid>
               <Grid xs={12} sm={6}>
-                <ContactInput
+                <FormInput
                   control={control}
                   name="email"
                   label="Email"
@@ -173,7 +170,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 />
               </Grid>
               <Grid xs={12}>
-                <ContactInput
+                <FormInput
                   control={control}
                   name="subject"
                   label="Subject"
@@ -181,7 +178,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 />
               </Grid>
               <Grid xs={12}>
-                <ContactTextarea
+                <FormTextarea
                   control={control}
                   name="message"
                   label="Message"
