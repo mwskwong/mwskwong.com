@@ -139,6 +139,7 @@ const EducationClient: FC<Props> = ({
                       </Box>
                       <CardContent>
                         <Link
+                          component={certificate ? "a" : "button"}
                           overlay
                           underline="none"
                           href={certificate}
