@@ -3,6 +3,7 @@ import { FC } from "react";
 import About from "@/components/home/about";
 import Contact from "@/components/home/contact";
 import Education from "@/components/home/education";
+import Experience from "@/components/home/experience";
 import FunFact from "@/components/home/fun-fact";
 import Hero from "@/components/home/hero";
 import SectionDivider from "@/components/section-divider";
@@ -29,6 +30,7 @@ const Home: FC = () => {
       <SectionDivider
         sx={{ color: bgcolors.funFact, bgcolor: bgcolors.experience }}
       />
+      <Experience sx={{ bgcolor: bgcolors.experience }} />
       <SectionDivider
         sx={{ color: bgcolors.experience, bgcolor: bgcolors.education }}
       />

@@ -20,7 +20,7 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
           ":root": {
             "--Section-paddingY": theme.spacing(10),
             "--Footer-paddingY": theme.spacing(6),
-            "--Section-scrollPaddingTop": 64,
+            "--Section-scrollPaddingTop": "64px",
           },
           "::selection": {
             backgroundColor: theme.vars.palette.primary.solidBg,
