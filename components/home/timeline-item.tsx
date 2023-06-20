@@ -111,15 +111,16 @@ const TimelineItem: FC<Props> = forwardRef(
                 sx={{
                   "--List-radius": (theme) => theme.vars.radius.sm,
                   "--List-padding": "0px",
-                  "--ListItem-paddingX": "0px",
-                  "--ListItemDecorator-size": (theme) =>
-                    `calc(80px + ${theme.spacing(1.5)})`,
+                  "--ListItemDecorator-size":
+                    "calc(80px + var(--ListItem-paddingX))",
                 }}
               >
                 {supportingDocuments.map(({ title, url }) => (
                   <ListItem key={title}>
                     <ListItemButton component="a" href={url} target="_blank">
-                      <ListItemDecorator>
+                      <ListItemDecorator
+                        sx={{ ml: "calc(var(--ListItem-paddingX) * -1)" }}
+                      >
                         <Image
                           loader={thumIoLoader}
                           src={url}
