@@ -20,7 +20,23 @@ import { FC, useDeferredValue, useMemo, useState } from "react";
 import { education } from "@/constants/nav";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
+import Timeline from "./timeline";
+import TimelineItem from "./timeline-item";
+
 interface Props extends BoxProps<"section"> {
+  educations: {
+    from: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
+    to?: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
+    program: string;
+    school?: {
+      name: string;
+      url?: string;
+    };
+    supportingDocuments?: {
+      title: string;
+      url: string;
+    }[];
+  }[];
   courses: {
     institution?: {
       id: string;
@@ -31,7 +47,21 @@ interface Props extends BoxProps<"section"> {
   }[];
 }
 
-const EducationClient: FC<Props> = ({ courses, ...props }) => {
+const EducationClient: FC<Props> = ({
+  educations: educationsProp,
+  courses,
+  ...props
+}) => {
+  const educations = educationsProp.map(
+    ({ from, to, program, school, ...rest }) => ({
+      from: new Date(from),
+      to: to && new Date(to),
+      title: program,
+      organizations: school && [school],
+      ...rest,
+    })
+  );
+
   const [courseSearch, setCourseSearch] = useState("");
   const deferredCourseSearch = useDeferredValue(courseSearch);
   const filteredCourses = useMemo(
@@ -53,6 +83,11 @@ const EducationClient: FC<Props> = ({ courses, ...props }) => {
           <Typography level="h2" sx={{ textAlign: "center" }}>
             Education
           </Typography>
+          <Timeline>
+            {educations.map((education) => (
+              <TimelineItem key={education.title} {...education} />
+            ))}
+          </Timeline>
           <Stack spacing={2}>
             <Input
               size="lg"

@@ -118,7 +118,7 @@ const TimelineItem: FC<Props> = forwardRef(
               >
                 {supportingDocuments.map(({ title, url }) => (
                   <ListItem key={title}>
-                    <ListItemButton>
+                    <ListItemButton component="a" href={url} target="_blank">
                       <ListItemDecorator>
                         <Image
                           loader={thumIoLoader}
