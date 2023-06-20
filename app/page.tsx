@@ -3,7 +3,7 @@ import { FC } from "react";
 import About from "@/components/home/about";
 import Contact from "@/components/home/contact";
 import Education from "@/components/home/education";
-import FunFact from "@/components/home/funFact";
+import FunFact from "@/components/home/fun-fact";
 import Hero from "@/components/home/hero";
 import SectionDivider from "@/components/section-divider";
 
