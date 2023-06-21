@@ -2,17 +2,19 @@ import { Analytics } from "@vercel/analytics/react";
 import clsx from "clsx";
 import { Metadata } from "next";
 import { Rubik, Source_Code_Pro } from "next/font/google";
-import { FC, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import SectionDivider from "@/components/section-divider";
+import { linkedin } from "@/constants/contentful-ids";
 import {
   firstName,
   jobTitles,
   lastName,
   selfIntroduction,
 } from "@/constants/data";
+import { getPlatformProfiles } from "@/lib";
 
 import Providers from "./providers";
 
@@ -22,31 +24,38 @@ const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
 });
 
-const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-  <html lang="en" className={clsx(rubik.variable, sourceCodePro.variable)}>
-    <body>
-      <Providers>
-        <Header />
-        {children}
-        <SectionDivider sx={{ bgcolor: "background.level1" }} />
-        <Footer />
-      </Providers>
-      <Analytics />
-    </body>
-  </html>
-);
+const RootLayout = async ({ children }: PropsWithChildren) => {
+  const platformProfiles = await getPlatformProfiles();
+  return (
+    <html lang="en" className={clsx(rubik.variable, sourceCodePro.variable)}>
+      <body>
+        <Providers>
+          <Header
+            platformProfiles={platformProfiles.filter(
+              ({ platform }) => platform?.id !== linkedin
+            )}
+          />
+          {children}
+          <SectionDivider sx={{ bgcolor: "background.level1" }} />
+          <Footer />
+        </Providers>
+        <Analytics />
+      </body>
+    </html>
+  );
+};
 
-const fullName = `${firstName} ${lastName}`;
+const name = `${firstName} ${lastName}`;
 const title: Metadata["title"] = {
-  default: `${fullName} - ${jobTitles.join(" & ")}`,
-  template: `%s | ${fullName}`,
+  default: `${name} - ${jobTitles.join(" & ")}`,
+  template: `%s | ${name}`,
 };
 const description = selfIntroduction;
 
 export const metadata: Metadata = {
   title,
   description,
-  authors: { name: `${firstName} ${lastName}` },
+  authors: { name },
   metadataBase: process.env.NEXT_PUBLIC_URL
     ? new URL(process.env.NEXT_PUBLIC_URL)
     : undefined,

@@ -4,6 +4,7 @@ import { getPersonalPhoto, getSkillCategories } from "@/lib";
 
 import AboutClient from "./about-client";
 
+// workaround until MUI Joy supports using components without specifying "use client"
 const About = async (props: BoxProps<"section">) => {
   const [personalPhoto, skillCategories] = await Promise.all([
     getPersonalPhoto(),

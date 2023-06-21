@@ -5,6 +5,7 @@ import { getCv, getPlatformProfiles } from "@/lib";
 
 import HeroClient from "./hero-client";
 
+// workaround until MUI Joy supports using components without specifying "use client"
 const Hero = async (props: BoxProps<"section">) => {
   const [cv, platformProfiles] = await Promise.all([
     getCv(),
