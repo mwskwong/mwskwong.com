@@ -21,7 +21,6 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
-import Link from "next/link";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 
@@ -133,7 +132,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                   <Button
                     size="lg"
                     endDecorator={<KeyboardArrowUpRounded />}
-                    component={Link}
+                    component="a"
                     href={home.href}
                   >
                     Back To Top

@@ -26,6 +26,9 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
             backgroundColor: theme.vars.palette.primary.solidBg,
             color: theme.vars.palette.primary.solidColor,
           },
+          html: {
+            scrollBehavior: "smooth",
+          },
           code: {
             fontFamily: theme.vars.fontFamily.code,
           },
