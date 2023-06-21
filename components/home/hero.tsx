@@ -1,7 +1,7 @@
 import { BoxProps } from "@mui/joy";
 
-import { getCv, getPlatformProfiles } from "@/api";
 import { linkedin } from "@/constants/contentful-ids";
+import { getCv, getPlatformProfiles } from "@/lib";
 
 import HeroClient from "./hero-client";
 
