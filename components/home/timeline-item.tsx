@@ -32,7 +32,7 @@ interface Props extends GridProps {
   tags?: string[];
 }
 
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
+const dateFormatter = new Intl.DateTimeFormat("en", {
   month: "short",
   year: "numeric",
 });
