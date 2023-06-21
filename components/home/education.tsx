@@ -1,7 +1,6 @@
 import { BoxProps } from "@mui/joy";
 
-import { getCourses } from "@/lib";
-import getEducations from "@/lib/get-educations";
+import { getCourses, getEducations } from "@/lib";
 
 import EducationClient from "./education-client";
 

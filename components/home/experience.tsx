@@ -1,6 +1,6 @@
 import { BoxProps } from "@mui/joy";
 
-import getExperiences from "@/lib/get-experiences";
+import { getExperiences } from "@/lib";
 
 import ExperienceClient from "./experience-client";
 
