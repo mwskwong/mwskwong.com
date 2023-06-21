@@ -16,7 +16,6 @@ import {
   useColorScheme,
 } from "@mui/joy";
 import { mergeSx } from "merge-sx";
-import Link from "next/link";
 import { FC, useRef, useState } from "react";
 
 import { home } from "@/constants/nav";
@@ -68,9 +67,9 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
           }}
         >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Link href={home.href} aria-label="Go to home page">
+            <a href={home.href} aria-label="Go to home page">
               <Icon width={32} />
-            </Link>
+            </a>
             <NavList
               orientation="horizontal"
               sx={{ display: { xs: "none", sm: "block" } }}

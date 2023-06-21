@@ -6,7 +6,6 @@ import {
   ListItemButton,
   ListProps,
 } from "@mui/joy";
-import Link from "next/link";
 import React, { FC, MouseEvent, forwardRef } from "react";
 
 import nav from "@/constants/nav";
@@ -40,7 +39,7 @@ const NavList: FC<Props> = forwardRef(
           {nav.slice(1).map((section) => (
             <ListItem key={section.id}>
               <ListItemButton
-                component={Link}
+                component="a"
                 href={section.href}
                 selected={section.id === activeSection.id}
                 onClick={(event) => onNavLinkClick?.(section, event)}
