@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
+import clsx from "clsx";
 import { Metadata } from "next";
 import { Rubik, Source_Code_Pro } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
@@ -22,7 +23,7 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-  <html lang="en" className={`${rubik.variable} ${sourceCodePro.variable}`}>
+  <html lang="en" className={clsx(rubik.variable, sourceCodePro.variable)}>
     <body>
       <Providers>
         <Header />
