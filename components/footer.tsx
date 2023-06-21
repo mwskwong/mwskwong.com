@@ -1,6 +1,6 @@
 import { SheetProps } from "@mui/joy";
 
-import { getPlatformProfiles } from "@/api";
+import { getPlatformProfiles } from "@/lib";
 
 import FooterClient from "./footer-client";
 

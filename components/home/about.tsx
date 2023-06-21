@@ -1,6 +1,6 @@
 import { BoxProps } from "@mui/joy";
 
-import { getPersonalPhoto, getSkillCategories } from "@/api";
+import { getPersonalPhoto, getSkillCategories } from "@/lib";
 
 import AboutClient from "./about-client";
 

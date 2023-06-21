@@ -1,7 +1,7 @@
 import { SheetProps } from "@mui/joy";
 
-import { getPlatformProfiles } from "@/api";
 import { linkedin } from "@/constants/contentful-ids";
+import { getPlatformProfiles } from "@/lib";
 
 import HeaderClient from "./header-client";
 
