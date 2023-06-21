@@ -10,7 +10,7 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
-import { FC, forwardRef } from "react";
+import { FC, Fragment, forwardRef } from "react";
 
 import Image from "@/components/image";
 import { thumIoLoader } from "@/utils/image-loaders";
@@ -32,7 +32,7 @@ interface Props extends GridProps {
   tags?: string[];
 }
 
-const dateFormatter = new Intl.DateTimeFormat("en-HK", {
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
   year: "numeric",
 });
@@ -81,12 +81,12 @@ const TimelineItem: FC<Props> = forwardRef(
             <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
               <Typography>
                 {organizations.map(({ name, url }, index) => (
-                  <>
+                  <Fragment key={name}>
                     {index !== 0 && " · "}
-                    <Link key={name} href={url} target="_blank">
+                    <Link href={url} target="_blank">
                       {name}
                     </Link>
-                  </>
+                  </Fragment>
                 ))}
               </Typography>
               {organizationsRelationship && (

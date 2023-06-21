@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 import About from "@/components/home/about";
 import Contact from "@/components/home/contact";
 import Education from "@/components/home/education";
@@ -7,6 +5,7 @@ import Experience from "@/components/home/experience";
 import FunFact from "@/components/home/fun-fact";
 import Hero from "@/components/home/hero";
 import SectionDivider from "@/components/section-divider";
+import { getCourses, getEducations } from "@/lib";
 
 const bgcolors = {
   hero: undefined,
@@ -17,7 +16,12 @@ const bgcolors = {
   contact: undefined,
 };
 
-const Home: FC = () => {
+const Home = async () => {
+  const [educations, courses] = await Promise.all([
+    getEducations(),
+    getCourses(),
+  ]);
+
   return (
     <>
       <Hero sx={{ bgcolor: bgcolors.hero }} />
@@ -34,7 +38,11 @@ const Home: FC = () => {
       <SectionDivider
         sx={{ color: bgcolors.experience, bgcolor: bgcolors.education }}
       />
-      <Education sx={{ bgcolor: bgcolors.education }} />
+      <Education
+        sx={{ bgcolor: bgcolors.education }}
+        educations={educations}
+        courses={courses}
+      />
       <SectionDivider
         sx={{ color: bgcolors.education, bgcolor: bgcolors.contact }}
       />
