@@ -126,7 +126,7 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
             </Grid>
           ))}
         </Grid>
-        <Typography>and more...</Typography>
+        <Typography>...and more</Typography>
         <Button
           size="lg"
           endDecorator={<KeyboardArrowRightRounded />}
