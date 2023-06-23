@@ -14,7 +14,7 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
-import { LazyMotion, m } from "framer-motion";
+import { AnimatePresence, LazyMotion, m } from "framer-motion";
 import { FC, useDeferredValue, useMemo, useState } from "react";
 
 import { education } from "@/constants/nav";
@@ -24,6 +24,7 @@ import loadFramerMotionFeatures from "@/utils/load-framer-motion-features";
 import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
 
+const MotionIconButton = m(IconButton);
 const MotionGrid = m(Grid);
 
 interface Props extends BoxProps<"section"> {
@@ -92,26 +93,32 @@ const EducationClient: FC<Props> = ({
             ))}
           </Timeline>
           <Stack spacing={2}>
-            <Input
-              size="lg"
-              placeholder="Search courses..."
-              startDecorator={<SearchRounded />}
-              endDecorator={
-                courseSearch.length > 0 && (
-                  <IconButton
-                    color="neutral"
-                    variant="plain"
-                    onClick={() => setCourseSearch("")}
-                  >
-                    <ClearRounded />
-                  </IconButton>
-                )
-              }
-              sx={{ width: "100%", maxWidth: 400, mx: "auto" }}
-              value={courseSearch}
-              onChange={(event) => setCourseSearch(event.target.value)}
-            />
             <LazyMotion features={loadFramerMotionFeatures} strict>
+              <Input
+                size="lg"
+                placeholder="Search courses..."
+                startDecorator={<SearchRounded />}
+                endDecorator={
+                  <AnimatePresence>
+                    {courseSearch.length > 0 && (
+                      <MotionIconButton
+                        color="neutral"
+                        variant="plain"
+                        onClick={() => setCourseSearch("")}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      >
+                        <ClearRounded />
+                      </MotionIconButton>
+                    )}
+                  </AnimatePresence>
+                }
+                sx={{ width: "100%", maxWidth: 400, mx: "auto" }}
+                value={courseSearch}
+                onChange={(event) => setCourseSearch(event.target.value)}
+              />
+
               <Grid container spacing={2}>
                 {filteredCourses.map(({ name, institution, certificate }) => {
                   const Icon =
