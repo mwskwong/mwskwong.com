@@ -111,7 +111,7 @@ const EducationClient: FC<Props> = ({
               value={courseSearch}
               onChange={(event) => setCourseSearch(event.target.value)}
             />
-            <LazyMotion features={loadFramerMotionFeatures}>
+            <LazyMotion features={loadFramerMotionFeatures} strict>
               <Grid container spacing={2}>
                 {filteredCourses.map(({ name, institution, certificate }) => {
                   const Icon =

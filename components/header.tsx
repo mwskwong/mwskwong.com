@@ -26,6 +26,10 @@ import loadFramerMotionFeatures from "@/utils/load-framer-motion-features";
 import Icon from "./icon";
 import NavList from "./nav-list";
 
+const MotionClose = m(CloseRounded);
+const MotionMenu = m(MenuRounded);
+const MotionLightMode = m(LightModeRounded);
+const MotionDarkMode = m(DarkModeRounded);
 const MotionNavList = m(NavList);
 
 interface Props extends SheetProps<"header"> {
@@ -60,69 +64,97 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
       {...props}
     >
       <Container>
-        <Stack
-          direction="row"
-          sx={{
-            alignItems: "center",
-            justifyContent: "space-between",
-            py: 1.5,
-          }}
-        >
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <a href={home.href} aria-label="Go to home page">
-              <Icon width={32} />
-            </a>
-            <NavList
-              orientation="horizontal"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            />
-          </Stack>
-          <Stack direction="row" spacing={1}>
-            {platformProfiles.map(({ platform, url }) => {
-              const Icon = platform?.id
-                ? getIconByContentfulId(platform.id)
-                : undefined;
+        <LazyMotion features={loadFramerMotionFeatures} strict>
+          <Stack
+            direction="row"
+            sx={{
+              alignItems: "center",
+              justifyContent: "space-between",
+              py: 1.5,
+            }}
+          >
+            <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+              <a href={home.href} aria-label="Go to home page">
+                <Icon width={32} />
+              </a>
+              <NavList
+                orientation="horizontal"
+                sx={{ display: { xs: "none", sm: "block" } }}
+              />
+            </Stack>
+            <Stack direction="row" spacing={1}>
+              {platformProfiles.map(({ platform, url }) => {
+                const Icon = platform?.id
+                  ? getIconByContentfulId(platform.id)
+                  : undefined;
 
-              return (
-                <IconButton
-                  key={platform?.id}
-                  variant="outlined"
-                  color="neutral"
-                  size="sm"
-                  component="a"
-                  href={url}
-                  target="_blank"
-                  aria-label={`Go to my ${platform?.name ?? ""} profile`}
-                >
-                  {Icon && <Icon />}
-                </IconButton>
-              );
-            })}
-            <IconButton
-              variant="outlined"
-              color="neutral"
-              size="sm"
-              onClick={() => setMode(mode === "dark" ? "light" : "dark")}
-              aria-label="Toggle color scheme"
-            >
-              <NoSsr>
-                {mode === "dark" ? <LightModeRounded /> : <DarkModeRounded />}
-              </NoSsr>
-            </IconButton>
-            <IconButton
-              ref={menuButtonRef}
-              variant="outlined"
-              color="neutral"
-              size="sm"
-              sx={{ display: { sm: "none" } }}
-              onClick={() => setDropdownOpen((prev) => !prev)}
-              aria-label="Toggle navigation dropdown"
-            >
-              {dropdownOpen ? <CloseRounded /> : <MenuRounded />}
-            </IconButton>
+                return (
+                  <IconButton
+                    key={platform?.id}
+                    variant="outlined"
+                    color="neutral"
+                    size="sm"
+                    component="a"
+                    href={url}
+                    target="_blank"
+                    aria-label={`Go to my ${platform?.name ?? ""} profile`}
+                  >
+                    {Icon && <Icon />}
+                  </IconButton>
+                );
+              })}
+              <IconButton
+                variant="outlined"
+                color="neutral"
+                size="sm"
+                onClick={() => setMode(mode === "dark" ? "light" : "dark")}
+                aria-label="Toggle color scheme"
+              >
+                <AnimatePresence initial={false}>
+                  <NoSsr>
+                    {mode === "dark" ? (
+                      <MotionLightMode
+                        initial={{ rotate: -45, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -45, opacity: 0 }}
+                      />
+                    ) : (
+                      <MotionDarkMode
+                        initial={{ rotate: 45, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 45, opacity: 0 }}
+                      />
+                    )}
+                  </NoSsr>
+                </AnimatePresence>
+              </IconButton>
+              <IconButton
+                ref={menuButtonRef}
+                variant="outlined"
+                color="neutral"
+                size="sm"
+                sx={{ display: { sm: "none" } }}
+                onClick={() => setDropdownOpen((prev) => !prev)}
+                aria-label="Toggle navigation dropdown"
+              >
+                <AnimatePresence initial={false}>
+                  {dropdownOpen ? (
+                    <MotionClose
+                      initial={{ rotate: 45, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 45, opacity: 0 }}
+                    />
+                  ) : (
+                    <MotionMenu
+                      initial={{ rotate: -45, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -45, opacity: 0 }}
+                    />
+                  )}
+                </AnimatePresence>
+              </IconButton>
+            </Stack>
           </Stack>
-        </Stack>
-        <LazyMotion features={loadFramerMotionFeatures}>
           <AnimatePresence>
             {dropdownOpen && (
               <ClickAwayListener
