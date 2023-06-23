@@ -6,6 +6,7 @@ import {
   GlobalStyles,
   getInitColorSchemeScript,
 } from "@mui/joy";
+import { MotionConfig } from "framer-motion";
 import { FC, PropsWithChildren } from "react";
 
 import theme, { simpleIconsClasses } from "@/theme";
@@ -56,7 +57,7 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
           },
         })}
       />
-      {children}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </CssVarsProvider>
   </>
 );

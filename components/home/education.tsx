@@ -6,7 +6,6 @@ import {
   Box,
   BoxProps,
   Card,
-  CardContent,
   Container,
   Grid,
   IconButton,
@@ -15,13 +14,17 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
+import { LazyMotion, m } from "framer-motion";
 import { FC, useDeferredValue, useMemo, useState } from "react";
 
 import { education } from "@/constants/nav";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
+import loadFramerMotionFeatures from "@/utils/load-framer-motion-features";
 
 import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
+
+const MotionGrid = m(Grid);
 
 interface Props extends BoxProps<"section"> {
   educations: {
@@ -108,56 +111,58 @@ const EducationClient: FC<Props> = ({
               value={courseSearch}
               onChange={(event) => setCourseSearch(event.target.value)}
             />
-            <Grid container spacing={2}>
-              {filteredCourses.map(({ name, institution, certificate }) => {
-                const Icon =
-                  institution &&
-                  (getIconByContentfulId(institution.id) as IconType);
+            <LazyMotion features={loadFramerMotionFeatures}>
+              <Grid container spacing={2}>
+                {filteredCourses.map(({ name, institution, certificate }) => {
+                  const Icon =
+                    institution &&
+                    (getIconByContentfulId(institution.id) as IconType);
 
-                return (
-                  <Grid key={name} xs={12} md={6}>
-                    <Card
-                      variant="outlined"
-                      orientation="horizontal"
-                      sx={{
-                        "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
-                        "&:hover": {
-                          boxShadow: "md",
-                          borderColor: "neutral.outlinedHoverBorder",
-                        },
-                        height: "100%",
-                      }}
-                    >
-                      <Box
+                  return (
+                    <MotionGrid key={name} xs={12} md={6} layout>
+                      <Card
+                        variant="outlined"
+                        orientation="horizontal"
                         sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          height: 45,
+                          "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
+                          "&:hover": {
+                            boxShadow: "md",
+                            borderColor: "neutral.outlinedHoverBorder",
+                          },
+                          height: "100%",
                         }}
                       >
-                        {Icon && <Icon color="default" />}
-                      </Box>
-                      <CardContent>
-                        <Link
-                          component={certificate ? "a" : "button"}
-                          overlay
-                          underline="none"
-                          href={certificate}
-                          target="_blank"
-                          sx={{ color: "inherit" }}
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            height: 45,
+                          }}
                         >
-                          {name}
-                        </Link>
-                        <Typography level="body2">
-                          {institution?.name}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                );
-              })}
-            </Grid>
+                          {Icon && <Icon color="default" />}
+                        </Box>
+                        <Box>
+                          <Link
+                            component={certificate ? "a" : "button"}
+                            overlay
+                            underline="none"
+                            href={certificate}
+                            target="_blank"
+                            sx={{ color: "inherit" }}
+                          >
+                            {name}
+                          </Link>
+                          <Typography level="body2">
+                            {institution?.name}
+                          </Typography>
+                        </Box>
+                      </Card>
+                    </MotionGrid>
+                  );
+                })}
+              </Grid>
+            </LazyMotion>
           </Stack>
         </Stack>
       </Container>
