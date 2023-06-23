@@ -15,18 +15,14 @@ import {
   Stack,
   useColorScheme,
 } from "@mui/joy";
-import { AnimatePresence, LazyMotion, m } from "framer-motion";
 import { mergeSx } from "merge-sx";
 import { FC, useRef, useState } from "react";
 
 import { home } from "@/constants/nav";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
-import loadFramerMotionFeatures from "@/utils/load-framer-motion-features";
 
 import Icon from "./icon";
 import NavList from "./nav-list";
-
-const MotionNavList = m(NavList);
 
 interface Props extends SheetProps<"header"> {
   platformProfiles?: {
@@ -122,35 +118,22 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
             </IconButton>
           </Stack>
         </Stack>
-        <LazyMotion features={loadFramerMotionFeatures}>
-          <AnimatePresence>
-            {dropdownOpen && (
-              <ClickAwayListener
-                onClickAway={(event) => {
-                  if (
-                    !menuButtonRef.current?.contains(
-                      event.target as HTMLElement
-                    )
-                  ) {
-                    setDropdownOpen(false);
-                  }
-                }}
-              >
-                <MotionNavList
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  sx={{
-                    display: { sm: "none" },
-                    mx: -1.5,
-                    overflowY: "hidden",
-                  }}
-                  onNavLinkClick={() => setDropdownOpen(false)}
-                />
-              </ClickAwayListener>
-            )}
-          </AnimatePresence>
-        </LazyMotion>
+        {dropdownOpen && (
+          <ClickAwayListener
+            onClickAway={(event) => {
+              if (
+                !menuButtonRef.current?.contains(event.target as HTMLElement)
+              ) {
+                setDropdownOpen(false);
+              }
+            }}
+          >
+            <NavList
+              sx={{ display: { sm: "none" }, mx: -1.5 }}
+              onNavLinkClick={() => setDropdownOpen(false)}
+            />
+          </ClickAwayListener>
+        )}
       </Container>
     </Box>
   );
