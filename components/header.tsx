@@ -8,9 +8,9 @@ import {
   MenuRounded,
 } from "@mui/icons-material";
 import {
+  Box,
   Container,
   IconButton,
-  Sheet,
   SheetProps,
   Stack,
   useColorScheme,
@@ -40,17 +40,15 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <Sheet
-      variant="outlined"
+    <Box
       component="header"
       sx={mergeSx(
         {
           position: "sticky",
           top: 0,
-          width: "100%",
-          borderTop: 0,
-          borderLeft: 0,
-          borderRight: 0,
+          borderBottom: 1,
+          borderColor: "divider",
+          bgcolor: "background.surface",
           zIndex: "header",
         },
         sx
@@ -137,7 +135,7 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
           </ClickAwayListener>
         )}
       </Container>
-    </Sheet>
+    </Box>
   );
 };
 

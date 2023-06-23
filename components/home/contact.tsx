@@ -77,18 +77,11 @@ const Contact: FC<BoxProps<"section">> = (props) => {
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onSubmit={handleSubmit(handleFormspreeSubmit)}
           >
-            <Grid
-              component="address"
-              container
-              xs={12}
-              md={4}
-              spacing={3}
-              sx={{ "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4 }}
-            >
+            <Grid component="address" container xs={12} md={4} spacing={3}>
               {personalInfo.map(({ Icon, title, value, url }) => (
                 <Grid key={title} xs={12} sm={4} md={12}>
                   <Stack spacing={1} sx={{ alignItems: "center" }}>
-                    <Icon />
+                    <Icon fontSize="xl4" />
                     <Typography>{title}</Typography>
                     <JoyLink
                       href={url}
@@ -114,14 +107,9 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                   <Sheet
                     color="success"
                     variant="soft"
-                    sx={{
-                      display: "flex",
-                      borderRadius: "sm",
-                      p: 1.5,
-                      "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
-                    }}
+                    sx={{ display: "flex", borderRadius: "sm", p: 1.5 }}
                   >
-                    <ThumbUpRounded />
+                    <ThumbUpRounded fontSize="xl4" />
                   </Sheet>
                   <Typography level="h1" color="primary">
                     Thank You!

@@ -9,3 +9,9 @@
 ## Greetings 👋.
 
 Welcome to the source code of [v3.mwskwong.com](https://v3.mwskwong.com). You can see how I created my own personal site here.
+
+## TODO
+
+- [ ] Icon (Freelancer working)
+- [ ] OG image (Freelancer working)
+- [ ] Animation (Framer Motion? Official integration with MUI Joy?)

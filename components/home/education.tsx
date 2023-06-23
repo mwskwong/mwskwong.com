@@ -97,6 +97,7 @@ const EducationClient: FC<Props> = ({
                 courseSearch.length > 0 && (
                   <IconButton
                     color="neutral"
+                    variant="plain"
                     onClick={() => setCourseSearch("")}
                   >
                     <ClearRounded />

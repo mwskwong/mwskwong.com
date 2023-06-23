@@ -10,7 +10,6 @@ const useFormspree: typeof useForm = (formKey, args) => {
     async (submissionData) => {
       try {
         setClientErrors([]);
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return await submitHandler(submissionData);
       } catch (error) {
         setClientErrors([{ message: String(error) }]);

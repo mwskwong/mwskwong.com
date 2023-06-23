@@ -1,6 +1,6 @@
 "use client";
 
-import { IconButton, Sheet, SheetProps, Stack, Typography } from "@mui/joy";
+import { Box, IconButton, SheetProps, Stack, Typography } from "@mui/joy";
 import { mergeSx } from "merge-sx";
 import { FC } from "react";
 
@@ -21,9 +21,8 @@ const FooterClient: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
   const currYear = new Date().getFullYear();
 
   return (
-    <Sheet
+    <Box
       component="footer"
-      variant="solid"
       sx={mergeSx(
         {
           bgcolor: "background.level1",
@@ -60,7 +59,7 @@ const FooterClient: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
           })}
         </Stack>
       </Stack>
-    </Sheet>
+    </Box>
   );
 };
 
