@@ -19,12 +19,6 @@ const nextConfig = {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return config;
   },
-  modularizeImports: {
-    "@mui/icons-material": {
-      transform: "@mui/icons-material/{{member}}",
-      preventFullImport: true,
-    },
-  },
   headers: () => [
     {
       source: "/:path*",

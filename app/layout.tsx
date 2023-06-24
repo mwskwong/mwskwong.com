@@ -65,15 +65,9 @@ export const metadata: Metadata = {
     url: "/",
     type: "website",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
   themeColor: "#ffffff",
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
   },
 };
 
