@@ -23,7 +23,7 @@ const getExperiences = async () => {
       item.fields.skills,
       ["fields.proficiency", "fields.name"],
       ["desc", "asc"]
-    ) as typeof item.fields.skills;
+    );
   }
 
   return items.map((item) => ({
