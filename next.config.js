@@ -14,10 +14,32 @@ const nextConfig = {
     },
   },
   webpack: (config) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    /* eslint-disable @typescript-eslint/no-unsafe-call */
+    /* eslint-disable @typescript-eslint/no-unsafe-return */
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+    /* eslint-disable @typescript-eslint/no-unsafe-member-access */
     config.resolve.alias["@mui/material"] = "@mui/joy";
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      rule.test?.test?.(".svg")
+    );
+    config.module.rules.push(
+      {
+        ...fileLoaderRule,
+        test: /\.svg$/i,
+        resourceQuery: /url/, // *.svg?url
+      },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        resourceQuery: { not: /url/ }, // exclude if *.svg?url
+        use: ["@svgr/webpack"],
+      }
+    );
+    fileLoaderRule.exclude = /\.svg$/i;
+
     return config;
+    /* eslint-enable */
   },
   headers: () => [
     {

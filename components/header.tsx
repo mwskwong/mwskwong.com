@@ -11,6 +11,7 @@ import {
   Box,
   Container,
   IconButton,
+  Link,
   SheetProps,
   Stack,
   useColorScheme,
@@ -18,10 +19,10 @@ import {
 import { mergeSx } from "merge-sx";
 import { FC, useRef, useState } from "react";
 
+import Icon from "@/app/icon.svg";
 import { home } from "@/constants/nav";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
-import Icon from "./icon";
 import NavList from "./nav-list";
 
 interface Props extends SheetProps<"header"> {
@@ -65,9 +66,9 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
           }}
         >
           <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <a href={home.href} aria-label="Go to home page">
+            <Link href={home.href} aria-label="Go to home page">
               <Icon width={32} />
-            </a>
+            </Link>
             <NavList
               orientation="horizontal"
               sx={{ display: { xs: "none", sm: "block" } }}
