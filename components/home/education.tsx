@@ -121,7 +121,7 @@ const EducationClient: FC<Props> = ({
                       orientation="horizontal"
                       sx={{
                         "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
-                        "&:hover": {
+                        "&:hover": certificate && {
                           boxShadow: "md",
                           borderColor: "neutral.outlinedHoverBorder",
                         },
@@ -139,16 +139,19 @@ const EducationClient: FC<Props> = ({
                         {Icon && <Icon color="default" />}
                       </Box>
                       <CardContent>
-                        <Link
-                          component={certificate ? "a" : "button"}
-                          overlay
-                          underline="none"
-                          href={certificate}
-                          target="_blank"
-                          sx={{ color: "inherit" }}
-                        >
-                          {name}
-                        </Link>
+                        {certificate ? (
+                          <Link
+                            overlay
+                            underline="none"
+                            href={certificate}
+                            target="_blank"
+                            sx={{ color: "inherit" }}
+                          >
+                            {name}
+                          </Link>
+                        ) : (
+                          name
+                        )}
                         <Typography level="body2">
                           {institution?.name}
                         </Typography>
