@@ -1,12 +1,12 @@
 "use client";
 
-import { IconType } from "@icons-pack/react-simple-icons/types";
 import { ClearRounded, SearchRounded } from "@mui/icons-material";
 import {
   Box,
   BoxProps,
   Card,
   CardContent,
+  CardOverflow,
   Container,
   Grid,
   IconButton,
@@ -111,8 +111,7 @@ const EducationClient: FC<Props> = ({
             <Grid container spacing={2}>
               {filteredCourses.map(({ name, institution, certificate }) => {
                 const Icon =
-                  institution &&
-                  (getIconByContentfulId(institution.id) as IconType);
+                  institution && getIconByContentfulId(institution.id);
 
                 return (
                   <Grid key={name} xs={12} md={6}>
@@ -120,7 +119,6 @@ const EducationClient: FC<Props> = ({
                       variant="outlined"
                       orientation="horizontal"
                       sx={{
-                        "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
                         "&:hover": certificate && {
                           boxShadow: "md",
                           borderColor: "neutral.outlinedHoverBorder",
@@ -128,16 +126,18 @@ const EducationClient: FC<Props> = ({
                         height: "100%",
                       }}
                     >
-                      <Box
+                      <CardOverflow
+                        variant="solid"
+                        color="primary"
                         sx={{
                           display: "flex",
                           alignItems: "center",
-                          justifyContent: "center",
-                          height: 45,
+                          px: "var(--Card-padding)",
+                          "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
                         }}
                       >
-                        {Icon && <Icon color="default" />}
-                      </Box>
+                        {Icon && <Icon />}
+                      </CardOverflow>
                       <CardContent>
                         {certificate ? (
                           <Link
