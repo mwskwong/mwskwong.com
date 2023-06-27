@@ -121,11 +121,12 @@ const EducationClient: FC<Props> = ({
                       orientation="horizontal"
                       sx={{
                         "--Icon-fontSize": (theme) => theme.vars.fontSize.xl2,
-                        "&:hover": certificate && {
-                          boxShadow: "md",
-                          borderColor: "neutral.outlinedHoverBorder",
-                        },
-                        height: "100%",
+                        "&:hover": certificate
+                          ? {
+                              boxShadow: "md",
+                              borderColor: "neutral.outlinedHoverBorder",
+                            }
+                          : null,
                       }}
                     >
                       {Icon && <Icon color="default" />}
