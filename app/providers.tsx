@@ -48,8 +48,9 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
               color: "var(--Icon-color)",
               margin: "var(--Icon-margin)",
               fontSize: "var(--Icon-fontSize, 20px)",
-              width: "0.83em",
-              height: "0.83em",
+              padding: "0.083em", // 2 / 24; Material icons standard, leaving 2dp padding around a 24dp icon.
+              width: "1em",
+              height: "1em",
             },
           })}
         />

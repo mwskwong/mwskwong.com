@@ -1,12 +1,12 @@
 "use client";
 
+import { IconType } from "@icons-pack/react-simple-icons/types";
 import { ClearRounded, SearchRounded } from "@mui/icons-material";
 import {
   Box,
   BoxProps,
   Card,
   CardContent,
-  CardOverflow,
   Container,
   Grid,
   IconButton,
@@ -111,7 +111,8 @@ const EducationClient: FC<Props> = ({
             <Grid container spacing={2}>
               {filteredCourses.map(({ name, institution, certificate }) => {
                 const Icon =
-                  institution && getIconByContentfulId(institution.id);
+                  institution &&
+                  (getIconByContentfulId(institution.id) as IconType);
 
                 return (
                   <Grid key={name} xs={12} md={6}>
@@ -119,6 +120,7 @@ const EducationClient: FC<Props> = ({
                       variant="outlined"
                       orientation="horizontal"
                       sx={{
+                        "--Icon-fontSize": (theme) => theme.vars.fontSize.xl2,
                         "&:hover": certificate && {
                           boxShadow: "md",
                           borderColor: "neutral.outlinedHoverBorder",
@@ -126,18 +128,7 @@ const EducationClient: FC<Props> = ({
                         height: "100%",
                       }}
                     >
-                      <CardOverflow
-                        variant="solid"
-                        color="primary"
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          px: "var(--Card-padding)",
-                          "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
-                        }}
-                      >
-                        {Icon && <Icon />}
-                      </CardOverflow>
+                      {Icon && <Icon color="default" />}
                       <CardContent>
                         {certificate ? (
                           <Link
