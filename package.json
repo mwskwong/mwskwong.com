@@ -26,7 +26,7 @@
     "next": "canary",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.45.0",
+    "react-hook-form": "^7.45.1",
     "tss-react": "^4.8.6",
     "zod": "^3.21.4"
   },
@@ -45,6 +45,6 @@
     "eslint-config-prettier": "^8.8.0",
     "prettier": "^2.8.8",
     "server-only": "^0.0.1",
-    "typescript": "^5.1.5"
+    "typescript": "^5.1.6"
   }
 }
