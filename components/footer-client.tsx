@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, IconButton, SheetProps, Stack, Typography } from "@mui/joy";
+import { Box, IconButton, Link, SheetProps, Stack, Typography } from "@mui/joy";
 import { mergeSx } from "merge-sx";
 import { FC } from "react";
 
@@ -33,9 +33,20 @@ const FooterClient: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
       {...props}
     >
       <Stack spacing={2} sx={{ alignItems: "center" }}>
-        <Typography level="body2">
-          {`Copyright © ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
-        </Typography>
+        <Box sx={{ textAlign: "center" }}>
+          <Typography level="body2">
+            {`Copyright © ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
+          </Typography>
+          <Typography level="body2">
+            {"Branding logo designed by "}
+            <Link
+              href="https://www.upwork.com/freelancers/manojk4?s=1017484851352698959"
+              target="_blank"
+            >
+              Manoj Kumar
+            </Link>
+          </Typography>
+        </Box>
         <Stack direction="row">
           {platformProfiles.map(({ platform, url }) => {
             const Icon = platform?.id
