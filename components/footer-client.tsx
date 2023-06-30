@@ -40,7 +40,7 @@ const FooterClient: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
           <Typography level="body2">
             {"Branding logo designed by "}
             <Link
-              href="https://www.upwork.com/freelancers/manojk4?s=1017484851352698959"
+              href="https://www.upwork.com/freelancers/manojk4"
               target="_blank"
             >
               Manoj Kumar
