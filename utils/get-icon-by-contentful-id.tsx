@@ -61,9 +61,11 @@ const Icons = {
   [contentfulIds.qa]: BugReportRounded,
 };
 
-const getIconByContentfulId = (id: string) => {
-  if (Object.hasOwn(Icons, id)) {
-    return Icons[id as keyof typeof Icons];
+type IconId = keyof typeof Icons;
+const isIconId = (id: string): id is IconId => id in Icons;
+const getIconByContentfulId = (id: IconId | string) => {
+  if (isIconId(id)) {
+    return Icons[id];
   }
 };
 

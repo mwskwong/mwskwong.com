@@ -36,6 +36,6 @@ const contentfulIds = {
   machineLearning,
   mobile,
   qa,
-};
+} as const;
 
 export default contentfulIds;

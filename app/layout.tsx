@@ -56,6 +56,7 @@ export const metadata: Metadata = {
   title,
   description,
   authors: { name },
+  // TODO: change to mwskwong.com when push to PROD
   metadataBase: process.env.NEXT_PUBLIC_URL
     ? new URL(process.env.NEXT_PUBLIC_URL)
     : undefined,
@@ -65,15 +66,9 @@ export const metadata: Metadata = {
     url: "/",
     type: "website",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
   themeColor: "#ffffff",
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
   },
 };
 

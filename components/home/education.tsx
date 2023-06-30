@@ -120,35 +120,30 @@ const EducationClient: FC<Props> = ({
                       variant="outlined"
                       orientation="horizontal"
                       sx={{
-                        "--Icon-fontSize": (theme) => theme.vars.fontSize.xl4,
-                        "&:hover": {
-                          boxShadow: "md",
-                          borderColor: "neutral.outlinedHoverBorder",
-                        },
-                        height: "100%",
+                        "--Icon-fontSize": (theme) => theme.vars.fontSize.xl2,
+                        "&:hover": certificate
+                          ? {
+                              boxShadow: "md",
+                              borderColor: "neutral.outlinedHoverBorder",
+                            }
+                          : null,
                       }}
                     >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          height: 45,
-                        }}
-                      >
-                        {Icon && <Icon color="default" />}
-                      </Box>
+                      {Icon && <Icon color="default" />}
                       <CardContent>
-                        <Link
-                          component={certificate ? "a" : "button"}
-                          overlay
-                          underline="none"
-                          href={certificate}
-                          target="_blank"
-                          sx={{ color: "inherit" }}
-                        >
-                          {name}
-                        </Link>
+                        {certificate ? (
+                          <Link
+                            overlay
+                            underline="none"
+                            href={certificate}
+                            target="_blank"
+                            sx={{ color: "inherit" }}
+                          >
+                            {name}
+                          </Link>
+                        ) : (
+                          name
+                        )}
                         <Typography level="body2">
                           {institution?.name}
                         </Typography>
