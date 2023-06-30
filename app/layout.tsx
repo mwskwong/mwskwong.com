@@ -56,7 +56,6 @@ export const metadata: Metadata = {
   title,
   description,
   authors: { name },
-  // TODO: change to mwskwong.com when push to PROD
   metadataBase: process.env.NEXT_PUBLIC_URL
     ? new URL(process.env.NEXT_PUBLIC_URL)
     : undefined,

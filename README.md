@@ -12,6 +12,6 @@ Welcome to the source code of [v3.mwskwong.com](https://v3.mwskwong.com). You ca
 
 ## TODO
 
-- [ ] Icon (Freelancer working)
-- [ ] OG image (Freelancer working)
+- [x] Icon (Freelancer working)
+- [x] OG image (Freelancer working)
 - [ ] Animation (Framer Motion? Official integration with MUI Joy?)
