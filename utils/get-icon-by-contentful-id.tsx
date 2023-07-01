@@ -9,6 +9,7 @@ import {
   SiOracle,
   SiStackoverflow,
   SiUdemy,
+  SiYoutube,
 } from "@icons-pack/react-simple-icons";
 import { IconType } from "@icons-pack/react-simple-icons/types";
 import {
@@ -24,7 +25,7 @@ import { forwardRef } from "react";
 
 import Database from "@/components/icons/database";
 import MachineLearning from "@/components/icons/machine-learning";
-import contentfulIds from "@/constants/contentful-ids";
+import * as contentfulIds from "@/constants/contentful-ids";
 import { simpleIconsClasses } from "@/theme";
 
 const createSimpleIcon = (Icon: IconType) => {
@@ -51,6 +52,7 @@ const Icons = {
   [contentfulIds.oracle]: createSimpleIcon(SiOracle as IconType),
   [contentfulIds.stackoverflow]: createSimpleIcon(SiStackoverflow as IconType),
   [contentfulIds.udemy]: createSimpleIcon(SiUdemy as IconType),
+  [contentfulIds.youtube]: createSimpleIcon(SiYoutube as IconType),
   [contentfulIds.backend]: TerminalRounded,
   [contentfulIds.cloud]: CloudRounded,
   [contentfulIds.database]: Database,
