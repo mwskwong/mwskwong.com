@@ -19,7 +19,7 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
-import { mergeSx } from "merge-sx";
+import mergeSx from "merge-sx";
 import { FC } from "react";
 
 import SiFormspree from "@/components/icons/si-formspree";

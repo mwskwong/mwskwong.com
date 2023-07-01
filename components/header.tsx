@@ -16,7 +16,7 @@ import {
   Stack,
   useColorScheme,
 } from "@mui/joy";
-import { mergeSx } from "merge-sx";
+import mergeSx from "merge-sx";
 import { FC, useRef, useState } from "react";
 
 import Icon from "@/app/icon.svg";
