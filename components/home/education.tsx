@@ -88,6 +88,9 @@ const EducationClient: FC<Props> = ({
               <TimelineItem key={education.title} {...education} />
             ))}
           </Timeline>
+          <Typography level="h3" sx={{ textAlign: "center" }}>
+            Self-learning
+          </Typography>
           <Stack spacing={2}>
             <Input
               size="lg"
