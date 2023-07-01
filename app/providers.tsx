@@ -34,12 +34,10 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
               display: "block",
             },
             section: {
-              paddingTop: "var(--Section-paddingY)",
-              paddingBottom: "var(--Section-paddingY)",
+              paddingBlock: "var(--Section-paddingY)",
             },
             footer: {
-              paddingTop: "var(--Footer-paddingY)",
-              paddingBottom: "var(--Footer-paddingY)",
+              paddingBlock: "var(--Footer-paddingY)",
             },
             address: {
               fontStyle: "unset",
