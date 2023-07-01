@@ -38,6 +38,13 @@ const theme = extendTheme({
         }),
       },
     },
+    JoyLink: {
+      styleOverrides: {
+        root: {
+          userSelect: "unset",
+        },
+      },
+    },
     JoyStack: {
       defaultProps: {
         useFlexGap: true,
