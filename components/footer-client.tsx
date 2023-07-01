@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, IconButton, Link, SheetProps, Stack, Typography } from "@mui/joy";
-import { mergeSx } from "merge-sx";
+import mergeSx from "merge-sx";
 import { FC } from "react";
 
 import { firstName, lastName, middleName } from "@/constants/data";

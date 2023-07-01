@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, BoxProps } from "@mui/joy";
-import { mergeSx } from "merge-sx";
+import mergeSx from "merge-sx";
 import { FC } from "react";
 
 const Divider: FC<BoxProps<"svg">> = ({ sx, ...props }) => (
