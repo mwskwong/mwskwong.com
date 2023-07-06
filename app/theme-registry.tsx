@@ -11,10 +11,10 @@ import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
 
 import theme, { simpleIconsClasses } from "@/theme";
 
-const Providers: FC<PropsWithChildren> = ({ children }) => (
+const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => (
   <>
     {getInitColorSchemeScript()}
-    <NextAppDirEmotionCacheProvider options={{ key: "css" }}>
+    <NextAppDirEmotionCacheProvider options={{ key: "joy" }}>
       <CssVarsProvider theme={theme}>
         <CssBaseline />
         <GlobalStyles
@@ -58,4 +58,4 @@ const Providers: FC<PropsWithChildren> = ({ children }) => (
   </>
 );
 
-export default Providers;
+export default ThemeRegistry;
