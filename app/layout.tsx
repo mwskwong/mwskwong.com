@@ -29,7 +29,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
   return (
     <html lang="en" className={clsx(rubik.variable, sourceCodePro.variable)}>
       <body>
-        <ThemeRegistry>
+        <ThemeRegistry options={{ key: "joy" }}>
           <Header
             platformProfiles={platformProfiles.filter(
               ({ platform }) => platform?.id !== linkedin
