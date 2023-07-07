@@ -16,7 +16,7 @@ import {
 } from "@/constants/data";
 import { getPlatformProfiles } from "@/lib";
 
-import Providers from "./providers";
+import ThemeRegistry from "./theme-registry";
 
 const rubik = Rubik({ subsets: ["latin"], variable: "--font-rubik" });
 const sourceCodePro = Source_Code_Pro({
@@ -29,7 +29,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
   return (
     <html lang="en" className={clsx(rubik.variable, sourceCodePro.variable)}>
       <body>
-        <Providers>
+        <ThemeRegistry options={{ key: "joy" }}>
           <Header
             platformProfiles={platformProfiles.filter(
               ({ platform }) => platform?.id !== linkedin
@@ -38,7 +38,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
           {children}
           <SectionDivider sx={{ bgcolor: "background.level1" }} />
           <Footer />
-        </Providers>
+        </ThemeRegistry>
         <Analytics />
       </body>
     </html>
