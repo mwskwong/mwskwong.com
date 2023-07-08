@@ -44,7 +44,11 @@ const AboutClient: FC<Props> = ({
             alt={`Picture of ${firstName} ${lastName}`}
             width={200}
             height={200}
-            sx={{ borderRadius: "md" }}
+            sx={{
+              borderRadius: "md",
+              border: 1,
+              borderColor: "neutral.outlinedBorder",
+            }}
           />
         )}
         <Stack spacing={2}>
