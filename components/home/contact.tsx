@@ -128,7 +128,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 </Stack>
               </Grid>
             )}
-            {/* Nested grid doesn't work when being wrapped in a fragment */}
+            {/* Nested grid container MUST be a direct child inside another grid container. i.e. cannot be wrapped in Fragment */}
             {!state.succeeded && (
               <Grid container rowSpacing={1} columnSpacing={2} xs={12} md={8}>
                 <Grid xs={12} sm={6}>
