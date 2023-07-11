@@ -1,9 +1,8 @@
 module.exports = {
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:@typescript-eslint/strict",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
     "next/core-web-vitals",
     "prettier",
   ],
@@ -14,6 +13,12 @@ module.exports = {
   },
   plugins: ["@typescript-eslint"],
   root: true,
+  rules: {
+    "@typescript-eslint/no-confusing-void-expression": [
+      "error",
+      { ignoreArrowShorthand: true },
+    ],
+  },
   overrides: [
     {
       files: ["**/*.*js"],
