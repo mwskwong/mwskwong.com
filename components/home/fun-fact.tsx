@@ -1,5 +1,3 @@
-"use client";
-
 import {
   SiContentful,
   SiMui,
@@ -24,7 +22,7 @@ import { FC } from "react";
 
 import SiFormspree from "@/components/icons/si-formspree";
 import SiImprovMX from "@/components/icons/si-improvmx";
-import { simpleIconsClasses } from "@/theme";
+import { simpleIconsClasses } from "@/theme/classes";
 
 const websiteTechStack = [
   {
@@ -103,7 +101,7 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
           spacing={6}
           sx={{
             justifyContent: "center",
-            "--Icon-fontSize": (theme) => theme.vars.fontSize.xl7,
+            "--Icon-fontSize": "var(--joy-fontSize-xl7)",
           }}
           disableEqualOverflow
         >
