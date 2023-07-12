@@ -53,5 +53,4 @@ const theme = extendTheme({
   },
 });
 
-export const simpleIconsClasses = { root: "SimpleIcons-root" } as const;
 export default theme;

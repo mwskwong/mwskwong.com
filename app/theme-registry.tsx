@@ -11,7 +11,8 @@ import {
 import { useServerInsertedHTML } from "next/navigation";
 import { FC, PropsWithChildren, useState } from "react";
 
-import theme, { simpleIconsClasses } from "@/theme";
+import theme from "@/theme";
+import { simpleIconsClasses } from "@/theme/classes";
 
 // This implementation is from emotion-js
 // https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902

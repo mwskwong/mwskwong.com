@@ -26,7 +26,7 @@ import { forwardRef } from "react";
 import Database from "@/components/icons/database";
 import MachineLearning from "@/components/icons/machine-learning";
 import * as contentfulIds from "@/constants/contentful-ids";
-import { simpleIconsClasses } from "@/theme";
+import { simpleIconsClasses } from "@/theme/classes";
 
 const createSimpleIcon = (Icon: IconType) => {
   const SimpleIcon: IconType = forwardRef(({ className, ...props }, ref) => (
@@ -63,9 +63,8 @@ const Icons = {
   [contentfulIds.qa]: BugReportRounded,
 };
 
-type IconId = keyof typeof Icons;
-const isIconId = (id: string): id is IconId => id in Icons;
-const getIconByContentfulId = (id: IconId | string) => {
+const isIconId = (id: string): id is keyof typeof Icons => id in Icons;
+const getIconByContentfulId = (id: string) => {
   if (isIconId(id)) {
     return Icons[id];
   }

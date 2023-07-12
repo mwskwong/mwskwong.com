@@ -1,17 +1,75 @@
-import { BoxProps } from "@mui/joy";
+"use client";
 
-import { getExperiences } from "@/lib";
+import { Box, BoxProps, Container, Stack, Typography } from "@mui/joy";
+import { FC } from "react";
 
-import ExperienceClient from "./experience-client";
+import { experience } from "@/constants/nav";
 
-// workaround until MUI Joy supports using components without specifying "use client"
-const Experience = async (props: BoxProps<"section">) => {
-  const experiences = (await getExperiences()).map(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    ({ employmentType, ...experience }) => experience
+import Timeline from "./timeline";
+import TimelineItem from "./timeline-item";
+
+interface Props extends BoxProps<"section"> {
+  experiences?: {
+    from: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
+    to?: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
+    jobTitle: string;
+    companies: {
+      name: string;
+      url?: string;
+    }[];
+    companiesRelationship?: string;
+    jobDuties?: string[];
+    supportingDocuments?: {
+      title: string;
+      url: string;
+    }[];
+    skills: string[];
+  }[];
+}
+
+// TODO: move this to server component once nested Grid is supported
+const Experience: FC<Props> = ({
+  experiences: experiencesProps = [],
+  ...props
+}) => {
+  const experiences = experiencesProps.map(
+    ({
+      from,
+      to,
+      jobTitle,
+      companies,
+      companiesRelationship,
+      jobDuties,
+      skills,
+      supportingDocuments,
+    }) => ({
+      from: new Date(from),
+      to: to && new Date(to),
+      title: jobTitle,
+      organizations: companies,
+      organizationsRelationship: companiesRelationship,
+      descriptions: jobDuties,
+      tags: skills,
+      supportingDocuments,
+    })
   );
 
-  return <ExperienceClient experiences={experiences} {...props} />;
+  return (
+    <Box component="section" id={experience.id} {...props}>
+      <Container>
+        <Stack spacing={6}>
+          <Typography level="h2" sx={{ textAlign: "center" }}>
+            Experience
+          </Typography>
+          <Timeline>
+            {experiences.map((experience) => (
+              <TimelineItem key={experience.title} {...experience} />
+            ))}
+          </Timeline>
+        </Stack>
+      </Container>
+    </Box>
+  );
 };
 
 export default Experience;
