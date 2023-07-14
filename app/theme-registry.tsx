@@ -78,20 +78,26 @@ const ThemeRegistry: FC<PropsWithChildren<{ options: Options }>> = ({
                 backgroundColor: theme.vars.palette.primary.solidBg,
                 color: theme.vars.palette.primary.solidColor,
               },
+              address: {
+                fontStyle: "unset",
+              },
+              blockquote: {
+                margin: 0,
+              },
               code: {
                 fontFamily: theme.vars.fontFamily.code,
               },
-              svg: {
-                display: "block",
-              },
-              section: {
-                paddingBlock: "var(--Section-paddingY)",
+              figure: {
+                margin: 0,
               },
               footer: {
                 paddingBlock: "var(--Footer-paddingY)",
               },
-              address: {
-                fontStyle: "unset",
+              section: {
+                paddingBlock: "var(--Section-paddingY)",
+              },
+              svg: {
+                display: "block",
               },
               [`.${simpleIconsClasses.root}`]: {
                 color: "var(--Icon-color)",

@@ -88,9 +88,25 @@ const EducationClient: FC<Props> = ({
               <TimelineItem key={education.title} {...education} />
             ))}
           </Timeline>
-          <Typography level="h3" sx={{ textAlign: "center" }}>
-            Self-learning
-          </Typography>
+          <Stack spacing={2} sx={{ textAlign: "center", alignItems: "center" }}>
+            <Typography level="h3" sx={{ textAlign: "center" }}>
+              Self-learning
+            </Typography>
+            <Box component="figure" sx={{ maxWidth: "60ch" }}>
+              <blockquote>
+                <Typography
+                  sx={{
+                    "::before": { content: "'“'" },
+                    "::after": { content: "'”'" },
+                  }}
+                >
+                  Stay hungry. Stay foolish. Never let go of your appetite to go
+                  after new ideas, new experiences, and new adventures.
+                </Typography>
+              </blockquote>
+              <Typography component="figcaption">― Steve Jobs</Typography>
+            </Box>
+          </Stack>
           <Stack spacing={2}>
             <Input
               size="lg"
