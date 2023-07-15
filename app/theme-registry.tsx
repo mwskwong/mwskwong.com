@@ -1,71 +1,22 @@
 "use client";
 
-import createCache, { Options } from "@emotion/cache";
-import { CacheProvider } from "@emotion/react";
 import {
   CssBaseline,
   CssVarsProvider,
   GlobalStyles,
   getInitColorSchemeScript,
 } from "@mui/joy";
-import { useServerInsertedHTML } from "next/navigation";
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren } from "react";
+import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
 
 import theme from "@/theme";
 import { simpleIconsClasses } from "@/theme/classes";
 
-// This implementation is from emotion-js
-// https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902
-const ThemeRegistry: FC<PropsWithChildren<{ options: Options }>> = ({
-  options,
-  children,
-}) => {
-  const [{ cache, flush }] = useState(() => {
-    const cache = createCache(options);
-    cache.compat = true;
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    const prevInsert = cache.insert;
-    let inserted: string[] = [];
-    cache.insert = (...args) => {
-      const serialized = args[1];
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      if (cache.inserted[serialized.name] === undefined) {
-        inserted.push(serialized.name);
-      }
-      return prevInsert(...args);
-    };
-    const flush = () => {
-      const prevInserted = inserted;
-      inserted = [];
-      return prevInserted;
-    };
-    return { cache, flush };
-  });
-
-  useServerInsertedHTML(() => {
-    const names = flush();
-    if (names.length === 0) {
-      return null;
-    }
-    let styles = "";
-    for (const name of names) {
-      styles += cache.inserted[name];
-    }
-    return (
-      <style
-        key={cache.key}
-        data-emotion={`${cache.key} ${names.join(" ")}`}
-        dangerouslySetInnerHTML={{
-          __html: styles,
-        }}
-      />
-    );
-  });
-
+const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       {getInitColorSchemeScript()}
-      <CacheProvider value={cache}>
+      <NextAppDirEmotionCacheProvider options={{ key: "joy" }}>
         <CssVarsProvider theme={theme}>
           <CssBaseline />
           <GlobalStyles
@@ -111,7 +62,7 @@ const ThemeRegistry: FC<PropsWithChildren<{ options: Options }>> = ({
           />
           {children}
         </CssVarsProvider>
-      </CacheProvider>
+      </NextAppDirEmotionCacheProvider>
     </>
   );
 };
