@@ -1,5 +1,3 @@
-"use client";
-
 import { Box, BoxProps, Container, Stack, Typography } from "@mui/joy";
 import { FC } from "react";
 
