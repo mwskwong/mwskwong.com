@@ -70,7 +70,12 @@ const TimelineItem: FC<Props> = forwardRef(
         <Grid xs={12} sm={3}>
           <Typography
             level="body3"
-            sx={{ textTransform: "uppercase", mt: 0.5, mb: 1 }}
+            sx={{
+              color: "text.secondary",
+              textTransform: "uppercase",
+              mt: 0.5,
+              mb: 1,
+            }}
           >
             {duration}
           </Typography>
