@@ -2,25 +2,26 @@ import { FormError, useForm } from "@formspree/react";
 import { useState } from "react";
 
 const useFormspree: typeof useForm = (formKey, args) => {
-  const [state, submitHandler, reset] = useForm(formKey, args);
-  const [clientErrors, setClientErrors] = useState<FormError[]>([]);
+  const [state, submitHandler, ...rest] = useForm(formKey, args);
+  const [errors, setErrors] = useState<FormError[]>([]);
 
   return [
-    clientErrors.length ? { ...state, errors: clientErrors } : state,
+    { ...state, errors: [...errors, ...state.errors] },
     async (submissionData) => {
       try {
-        setClientErrors([]);
+        setErrors([]);
         return await submitHandler(submissionData);
       } catch (error) {
-        setClientErrors([{ message: String(error) }]);
+        const errors = [{ message: String(error) }];
+        setErrors(errors);
 
-        return Promise.resolve({
-          body: { errors: [] },
+        return {
+          body: { errors },
           response: null,
-        });
+        };
       }
     },
-    reset,
+    ...rest,
   ];
 };
 
