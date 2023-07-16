@@ -33,7 +33,9 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
                 fontStyle: "unset",
               },
               blockquote: {
-                margin: 0,
+                fontStyle: "italic",
+                "::before": { content: "'“'" },
+                "::after": { content: "'”'" },
               },
               code: {
                 fontFamily: theme.vars.fontFamily.code,

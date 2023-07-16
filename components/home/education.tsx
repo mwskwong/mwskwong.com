@@ -93,17 +93,10 @@ const EducationClient: FC<Props> = ({
               Self-learning
             </Typography>
             <Box component="figure" sx={{ maxWidth: "60ch" }}>
-              <blockquote>
-                <Typography
-                  sx={{
-                    "::before": { content: "'“'" },
-                    "::after": { content: "'”'" },
-                  }}
-                >
-                  Stay hungry. Stay foolish. Never let go of your appetite to go
-                  after new ideas, new experiences, and new adventures.
-                </Typography>
-              </blockquote>
+              <Typography component="blockquote">
+                Stay hungry. Stay foolish. Never let go of your appetite to go
+                after new ideas, new experiences, and new adventures.
+              </Typography>
               <Typography component="figcaption">― Steve Jobs</Typography>
             </Box>
           </Stack>
