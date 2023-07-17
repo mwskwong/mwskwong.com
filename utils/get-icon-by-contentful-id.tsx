@@ -15,7 +15,6 @@ import { IconType } from "@icons-pack/react-simple-icons/types";
 import {
   AllInclusiveRounded,
   BugReportRounded,
-  CloudRounded,
   DashboardRounded,
   DevicesOtherRounded,
   TerminalRounded,
@@ -23,6 +22,7 @@ import {
 import clsx from "clsx";
 import { forwardRef } from "react";
 
+import Cms from "@/components/icons/cms";
 import Database from "@/components/icons/database";
 import MachineLearning from "@/components/icons/machine-learning";
 import * as contentfulIds from "@/constants/contentful-ids";
@@ -54,7 +54,7 @@ const Icons = {
   [contentfulIds.udemy]: createSimpleIcon(SiUdemy as IconType),
   [contentfulIds.youtube]: createSimpleIcon(SiYoutube as IconType),
   [contentfulIds.backend]: TerminalRounded,
-  [contentfulIds.cloud]: CloudRounded,
+  [contentfulIds.cms]: Cms,
   [contentfulIds.database]: Database,
   [contentfulIds.dataOps]: AllInclusiveRounded,
   [contentfulIds.frontend]: DashboardRounded,
