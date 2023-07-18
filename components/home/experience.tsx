@@ -1,36 +1,13 @@
 import { Box, BoxProps, Container, Stack, Typography } from "@mui/joy";
-import { FC } from "react";
 
 import { experience } from "@/constants/nav";
+import { getExperiences } from "@/lib";
 
 import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
 
-interface Props extends BoxProps<"section"> {
-  experiences?: {
-    from: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
-    to?: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
-    jobTitle: string;
-    companies: {
-      name: string;
-      url?: string;
-    }[];
-    companiesRelationship?: string;
-    jobDuties?: string[];
-    supportingDocuments?: {
-      title: string;
-      url: string;
-    }[];
-    skills: string[];
-  }[];
-}
-
-// TODO: move this to server component once nested Grid is supported
-const Experience: FC<Props> = ({
-  experiences: experiencesProps = [],
-  ...props
-}) => {
-  const experiences = experiencesProps.map(
+const Experience = async (props: BoxProps<"section">) => {
+  const experiences = (await getExperiences()).map(
     ({
       from,
       to,

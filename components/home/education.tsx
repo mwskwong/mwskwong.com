@@ -47,7 +47,7 @@ interface Props extends BoxProps<"section"> {
   }[];
 }
 
-const EducationClient: FC<Props> = ({
+const Education: FC<Props> = ({
   educations: educationsProp = [],
   courses,
   ...props
@@ -172,4 +172,4 @@ const EducationClient: FC<Props> = ({
   );
 };
 
-export default EducationClient;
+export default Education;

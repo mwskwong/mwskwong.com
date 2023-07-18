@@ -16,7 +16,7 @@ import { home } from "@/constants/nav";
 import { getCv, getPlatformProfiles } from "@/lib";
 import { simpleIconsClasses } from "@/theme/classes";
 
-const HeroClient = async ({ sx, ...props }: BoxProps<"section">) => {
+const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
   const [cv, platformProfiles] = await Promise.all([
     getCv(),
     getPlatformProfiles(),
@@ -82,4 +82,4 @@ const HeroClient = async ({ sx, ...props }: BoxProps<"section">) => {
   );
 };
 
-export default HeroClient;
+export default Hero;

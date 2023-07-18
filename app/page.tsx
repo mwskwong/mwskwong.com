@@ -8,7 +8,6 @@ import SectionDivider from "@/components/section-divider";
 import {
   getCourses,
   getEducations,
-  getExperiences,
   getPersonalPhoto,
   getSkillCategories,
 } from "@/lib";
@@ -23,11 +22,10 @@ const bgcolors = {
 };
 
 const Home = async () => {
-  const [personalPhoto, skillCategories, experiences, educations, courses] =
+  const [personalPhoto, skillCategories, educations, courses] =
     await Promise.all([
       getPersonalPhoto(),
       getSkillCategories(),
-      getExperiences(),
       getEducations(),
       getCourses(),
     ]);
@@ -48,10 +46,7 @@ const Home = async () => {
       <SectionDivider
         sx={{ color: bgcolors.funFact, bgcolor: bgcolors.experience }}
       />
-      <Experience
-        sx={{ bgcolor: bgcolors.experience }}
-        experiences={experiences}
-      />
+      <Experience sx={{ bgcolor: bgcolors.experience }} />
       <SectionDivider
         sx={{ color: bgcolors.experience, bgcolor: bgcolors.education }}
       />
