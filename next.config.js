@@ -7,7 +7,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 /** @type {NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" && {
       exclude: ["error"],
