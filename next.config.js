@@ -1,11 +1,8 @@
-/** @typedef {import("next").NextConfig} NextConfig */
-
-/** @type {(config?: NextConfig) => NextConfig} */
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-/** @type {NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" && {
