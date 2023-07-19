@@ -31,13 +31,6 @@ const theme = extendTheme({
     header: 1100,
   },
   components: {
-    JoyCard: {
-      styleOverrides: {
-        root: ({ ownerState }) => ({
-          boxShadow: ownerState.variant === "outlined" ? "none" : undefined,
-        }),
-      },
-    },
     JoyLink: {
       styleOverrides: {
         root: {
