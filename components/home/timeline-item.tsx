@@ -15,7 +15,7 @@ import {
 import { FC, Fragment, forwardRef } from "react";
 
 import Image from "@/components/image";
-import { thumIoLoader } from "@/utils/image-loaders";
+import { thumIoPdfLoader } from "@/utils/image-loaders";
 
 interface Props extends GridProps {
   from?: Date;
@@ -129,7 +129,7 @@ const TimelineItem: FC<Props> = forwardRef(
                         sx={{ ml: "calc(var(--ListItem-paddingX) * -1)" }}
                       >
                         <Image
-                          loader={thumIoLoader}
+                          loader={thumIoPdfLoader}
                           src={url}
                           alt={title}
                           width={80}

@@ -13,6 +13,10 @@ const nextConfig = {
       exclude: ["error"],
     },
   },
+  images: {
+    loader: "custom",
+    loaderFile: "./utils/image-loaders.ts",
+  },
   webpack: (config) => {
     /* eslint-disable @typescript-eslint/no-unsafe-call */
     /* eslint-disable @typescript-eslint/no-unsafe-return */

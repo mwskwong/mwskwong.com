@@ -5,12 +5,7 @@ import Experience from "@/components/home/experience";
 import FunFact from "@/components/home/fun-fact";
 import Hero from "@/components/home/hero";
 import SectionDivider from "@/components/section-divider";
-import {
-  getCourses,
-  getEducations,
-  getPersonalPhoto,
-  getSkillCategories,
-} from "@/lib";
+import { getCourses, getEducations } from "@/lib";
 
 const bgcolors = {
   hero: undefined,
@@ -22,23 +17,16 @@ const bgcolors = {
 };
 
 const Home = async () => {
-  const [personalPhoto, skillCategories, educations, courses] =
-    await Promise.all([
-      getPersonalPhoto(),
-      getSkillCategories(),
-      getEducations(),
-      getCourses(),
-    ]);
+  const [educations, courses] = await Promise.all([
+    getEducations(),
+    getCourses(),
+  ]);
 
   return (
     <>
       <Hero sx={{ bgcolor: bgcolors.hero }} />
       <SectionDivider sx={{ color: bgcolors.hero, bgcolor: bgcolors.about }} />
-      <About
-        sx={{ bgcolor: bgcolors.about }}
-        personalPhoto={personalPhoto}
-        skillCategories={skillCategories}
-      />
+      <About sx={{ bgcolor: bgcolors.about }} />
       <SectionDivider
         sx={{ color: bgcolors.about, bgcolor: bgcolors.funFact }}
       />
