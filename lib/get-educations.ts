@@ -27,7 +27,7 @@ const getEducations = async () => {
           supportingDocument.fields.file && {
             title: supportingDocument.fields.title,
             url: `https:${supportingDocument.fields.file.url}`,
-          }
+          },
       )
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
   }));

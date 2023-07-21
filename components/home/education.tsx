@@ -59,7 +59,7 @@ const Education: FC<Props> = ({
       title: program,
       organizations: school && [school],
       ...rest,
-    })
+    }),
   );
 
   const [courseSearch, setCourseSearch] = useState("");
@@ -73,7 +73,7 @@ const Education: FC<Props> = ({
           institution?.name.toLowerCase().includes(searchStr)
         );
       }),
-    [courses, deferredCourseSearch]
+    [courses, deferredCourseSearch],
   );
 
   return (

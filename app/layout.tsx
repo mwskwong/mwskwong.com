@@ -32,7 +32,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
         <ThemeRegistry>
           <Header
             platformProfiles={platformProfiles.filter(
-              ({ platform }) => platform?.id !== linkedin
+              ({ platform }) => platform?.id !== linkedin,
             )}
           />
           {children}

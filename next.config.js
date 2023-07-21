@@ -21,7 +21,7 @@ const nextConfig = {
     config.resolve.alias["@mui/material"] = "@mui/joy";
 
     const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg")
+      rule.test?.test?.(".svg"),
     );
     config.module.rules.push(
       {
@@ -34,7 +34,7 @@ const nextConfig = {
         issuer: /\.[jt]sx?$/,
         resourceQuery: { not: /url/ }, // exclude if *.svg?url
         use: ["@svgr/webpack"],
-      }
+      },
     );
     fileLoaderRule.exclude = /\.svg$/i;
 

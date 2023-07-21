@@ -80,7 +80,7 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
           color: "var(--variant-solidColor)",
         },
       },
-      sx
+      sx,
     )}
     {...props}
   >

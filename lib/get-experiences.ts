@@ -22,7 +22,7 @@ const getExperiences = async () => {
     item.fields.skills = orderBy(
       item.fields.skills,
       ["fields.proficiency", "fields.name"],
-      ["desc", "asc"]
+      ["desc", "asc"],
     );
   }
 
@@ -31,11 +31,11 @@ const getExperiences = async () => {
     companies: item.fields.companies
       .filter(
         (
-          elem
+          elem,
         ): elem is Entry<
           OrganizationEntrySkeleton,
           "WITHOUT_UNRESOLVABLE_LINKS"
-        > => Boolean(elem)
+        > => Boolean(elem),
       )
       .map((company) => ({
         ...company.fields,
@@ -50,15 +50,15 @@ const getExperiences = async () => {
           supportingDocument.fields.file && {
             title: supportingDocument.fields.title,
             url: `https:${supportingDocument.fields.file.url}`,
-          }
+          },
       )
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
     skills: item.fields.skills
       .filter(
         (
-          elem
+          elem,
         ): elem is Entry<SkillEntrySkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> =>
-          Boolean(elem)
+          Boolean(elem),
       )
       .map((skill) => skill.fields.name),
   }));

@@ -63,7 +63,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
     defaultValues: { name: "", email: "", subject: "", message: "" },
   });
   const [state, handleFormspreeSubmit] = useFormspree(
-    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? ""
+    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "",
   );
 
   return (

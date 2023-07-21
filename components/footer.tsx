@@ -17,7 +17,7 @@ const Footer = async ({ sx, ...props }: SheetProps<"footer">) => {
           bgcolor: "background.level1",
           "--Icon-color": "var(--joy-palette-text-secondary)",
         },
-        sx
+        sx,
       )}
       {...props}
     >

@@ -19,7 +19,7 @@ interface Props extends BoxProps<"nav"> {
       name: string;
       href: string;
     },
-    event: MouseEvent<HTMLAnchorElement>
+    event: MouseEvent<HTMLAnchorElement>,
   ) => void;
 }
 
@@ -51,7 +51,7 @@ const NavList: FC<Props> = forwardRef(
         </List>
       </Box>
     );
-  }
+  },
 );
 
 NavList.displayName = "NavList";

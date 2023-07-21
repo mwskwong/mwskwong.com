@@ -52,7 +52,7 @@ const TimelineItem: FC<Props> = forwardRef(
       tags = [],
       ...props
     },
-    ref
+    ref,
   ) => {
     const duration = to
       ? dateFormatter.formatRange(from, to)
@@ -163,7 +163,7 @@ const TimelineItem: FC<Props> = forwardRef(
         </Grid>
       </Grid>
     );
-  }
+  },
 );
 
 TimelineItem.displayName = "TimelineItem";

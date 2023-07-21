@@ -26,7 +26,7 @@ const Experience = async (props: BoxProps<"section">) => {
       descriptions: jobDuties,
       tags: skills,
       supportingDocuments,
-    })
+    }),
   );
 
   return (

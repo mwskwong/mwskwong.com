@@ -52,7 +52,7 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
           bgcolor: "background.surface",
           zIndex: "header",
         },
-        sx
+        sx,
       )}
       {...props}
     >

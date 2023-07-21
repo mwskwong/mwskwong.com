@@ -22,7 +22,7 @@ const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
     getPlatformProfiles(),
   ]);
   const linkedinProfile = platformProfiles.find(
-    ({ platform }) => platform?.id === linkedin
+    ({ platform }) => platform?.id === linkedin,
   );
 
   return (
