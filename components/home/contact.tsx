@@ -15,21 +15,24 @@ import {
   BoxProps,
   Button,
   Container,
+  FormControl,
+  FormHelperText,
+  FormLabel,
   Grid,
-  Link as JoyLink,
+  Input,
+  Link,
   Sheet,
   Stack,
+  Textarea,
   Typography,
 } from "@mui/joy";
 import { FC } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import { address, email, phone } from "@/constants/data";
 import { contact, home } from "@/constants/nav";
 
-import FormInput from "./form-input";
-import FormSchema, { FormSchema as TFormSchema } from "./form-schema";
-import FormTextarea from "./form-textarea";
+import formSchema, { FormSchema } from "./form-schema";
 import useFormspree from "./use-formspree";
 
 const personalInfo = [
@@ -54,9 +57,10 @@ const personalInfo = [
 ];
 
 const Contact: FC<BoxProps<"section">> = (props) => {
-  const { handleSubmit, control } = useForm<TFormSchema>({
-    resolver: zodResolver(FormSchema),
+  const { handleSubmit, control } = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     mode: "onChange",
+    defaultValues: { name: "", email: "", subject: "", message: "" },
   });
   const [state, handleFormspreeSubmit] = useFormspree(
     process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? ""
@@ -83,12 +87,12 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                   <Stack spacing={1} sx={{ alignItems: "center" }}>
                     <Icon fontSize="xl4" />
                     <Typography>{title}</Typography>
-                    <JoyLink
+                    <Link
                       href={url}
                       target={url.startsWith("http") ? "_blank" : undefined}
                     >
                       {value}
-                    </JoyLink>
+                    </Link>
                   </Stack>
                 </Grid>
               ))}
@@ -139,37 +143,67 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                   md={8}
                 >
                   <Grid xs={12} sm={6}>
-                    <FormInput
-                      control={control}
+                    <Controller
                       name="name"
-                      label="Name"
-                      disabled={state.submitting}
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <FormControl
+                          error={Boolean(error)}
+                          disabled={state.submitting}
+                        >
+                          <FormLabel>Name</FormLabel>
+                          <Input {...field} />
+                          <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
                     />
                   </Grid>
                   <Grid xs={12} sm={6}>
-                    <FormInput
-                      control={control}
+                    <Controller
                       name="email"
-                      label="Email"
-                      disabled={state.submitting}
-                      slotProps={{ input: { type: "email" } }}
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <FormControl
+                          error={Boolean(error)}
+                          disabled={state.submitting}
+                        >
+                          <FormLabel>Email</FormLabel>
+                          <Input {...field} />
+                          <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
                     />
                   </Grid>
                   <Grid xs={12}>
-                    <FormInput
-                      control={control}
+                    <Controller
                       name="subject"
-                      label="Subject"
-                      disabled={state.submitting}
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <FormControl
+                          error={Boolean(error)}
+                          disabled={state.submitting}
+                        >
+                          <FormLabel>Subject</FormLabel>
+                          <Input {...field} />
+                          <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
                     />
                   </Grid>
                   <Grid xs={12}>
-                    <FormTextarea
-                      control={control}
+                    <Controller
                       name="message"
-                      label="Message"
-                      disabled={state.submitting}
-                      slotProps={{ textarea: { minRows: 5, maxRows: 5 } }}
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <FormControl
+                          error={Boolean(error)}
+                          disabled={state.submitting}
+                        >
+                          <FormLabel>Message</FormLabel>
+                          <Textarea minRows={5} maxRows={5} {...field} />
+                          <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
                     />
                   </Grid>
                 </Grid>
