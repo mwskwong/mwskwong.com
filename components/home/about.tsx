@@ -33,6 +33,7 @@ const About = async (props: BoxProps<"section">) => {
               alt={`Picture of ${firstName} ${lastName}`}
               width={200}
               height={200}
+              priority
               sx={{
                 borderRadius: "md",
                 border: 1,
