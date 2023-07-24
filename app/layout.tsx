@@ -1,7 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
-import clsx from "clsx";
 import { Metadata } from "next";
-import { Rubik, Source_Code_Pro } from "next/font/google";
 import { PropsWithChildren } from "react";
 
 import Footer from "@/components/footer";
@@ -18,16 +16,10 @@ import { getPlatformProfiles } from "@/lib";
 
 import ThemeRegistry from "./theme-registry";
 
-const rubik = Rubik({ subsets: ["latin"], variable: "--font-rubik" });
-const sourceCodePro = Source_Code_Pro({
-  subsets: ["latin"],
-  variable: "--font-source-code-pro",
-});
-
 const RootLayout = async ({ children }: PropsWithChildren) => {
   const platformProfiles = await getPlatformProfiles();
   return (
-    <html lang="en" className={clsx(rubik.variable, sourceCodePro.variable)}>
+    <html lang="en">
       <body>
         <ThemeRegistry>
           <Header
