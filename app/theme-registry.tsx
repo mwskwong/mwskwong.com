@@ -34,8 +34,8 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
               },
               blockquote: {
                 fontStyle: "italic",
-                "::before": { content: "'“'" },
-                "::after": { content: "'”'" },
+                "&::before": { content: "'“'" },
+                "&::after": { content: "'”'" },
               },
               code: {
                 fontFamily: theme.vars.fontFamily.code,
