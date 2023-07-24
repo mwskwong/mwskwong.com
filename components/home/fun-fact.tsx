@@ -1,12 +1,3 @@
-import {
-  SiContentful,
-  SiMui,
-  SiNextdotjs,
-  SiReact,
-  SiReacthookform,
-  SiVercel,
-} from "@icons-pack/react-simple-icons";
-import { IconType } from "@icons-pack/react-simple-icons/types";
 import { KeyboardArrowRightRounded } from "@mui/icons-material";
 import {
   Button,
@@ -20,52 +11,8 @@ import {
 import mergeSx from "merge-sx";
 import { FC } from "react";
 
-import SiFormspree from "@/components/icons/si-formspree";
-import SiImprovMX from "@/components/icons/si-improvmx";
+import { websiteTechStack } from "@/constants/data";
 import { simpleIconsClasses } from "@/theme/classes";
-
-const websiteTechStack = [
-  {
-    name: "React",
-    Icon: SiReact as IconType,
-    url: "https://react.dev/",
-  },
-  {
-    name: "Next.js",
-    Icon: SiNextdotjs as IconType,
-    url: "https://nextjs.org/",
-  },
-  {
-    name: "MUI Joy UI",
-    Icon: SiMui as IconType,
-    url: "https://mui.com/",
-  },
-  {
-    name: "React Hook Form",
-    Icon: SiReacthookform as IconType,
-    url: "https://react-hook-form.com/",
-  },
-  {
-    name: "Vercel",
-    Icon: SiVercel as IconType,
-    url: "https://vercel.com/",
-  },
-  {
-    name: "Contentful",
-    Icon: SiContentful as IconType,
-    url: "https://www.contentful.com/",
-  },
-  {
-    name: "Formspree",
-    Icon: SiFormspree,
-    url: "https://formspree.io/",
-  },
-  {
-    name: "ImprovMX",
-    Icon: SiImprovMX,
-    url: "https://improvmx.com/",
-  },
-];
 
 const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
   <Sheet
