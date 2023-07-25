@@ -10,7 +10,6 @@
     "format": "prettier --ignore-path .gitignore --write ."
   },
   "dependencies": {
-    "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@formspree/react": "^2.4.4",
