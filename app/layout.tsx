@@ -77,13 +77,9 @@ export const metadata: Metadata = {
     url: "/",
     type: "website",
   },
-  themeColor: "#ffffff",
-  twitter: {
-    card: "summary_large_image",
-  },
-  alternates: {
-    canonical: "/",
-  },
+  twitter: { card: "summary_large_image" },
+  alternates: { canonical: "/" },
+  archives: ["https://v2.mwskwong.com"],
 };
 
 export default RootLayout;
