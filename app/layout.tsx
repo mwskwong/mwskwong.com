@@ -26,7 +26,6 @@ const description = selfIntroduction;
 
 const RootLayout = async ({ children }: PropsWithChildren) => {
   const platformProfiles = await getPlatformProfiles();
-
   const jsonLd: WithContext<Article> = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -38,6 +37,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
       "@type": "Person",
       name,
       url: process.env.NEXT_PUBLIC_URL,
+      jobTitle: jobTitles.join(" & "),
     },
   };
 
