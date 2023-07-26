@@ -33,6 +33,10 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
     image: `${process.env.NEXT_PUBLIC_URL}/opengraph-image.jpg`,
     datePublished: new Date("2019-07-15").toISOString(),
     dateModified: new Date().toISOString(),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": process.env.NEXT_PUBLIC_URL,
+    },
     author: {
       "@type": "Person",
       name,
