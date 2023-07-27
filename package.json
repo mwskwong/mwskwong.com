@@ -17,7 +17,7 @@
     "@icons-pack/react-simple-icons": "^8.0.1",
     "@mui/base": "5.0.0-beta.8",
     "@mui/icons-material": "^5.14.1",
-    "@mui/joy": "https://pkg.csb.dev/mui/material-ui/commit/fcc6196b/@mui/joy",
+    "@mui/joy": "https://pkg.csb.dev/mui/material-ui/commit/2c04ead4/@mui/joy",
     "@vercel/analytics": "^1.0.1",
     "clsx": "^2.0.0",
     "contentful": "^10.3.6",

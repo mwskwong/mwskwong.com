@@ -94,7 +94,7 @@ const TimelineItem: FC<Props> = forwardRef(
                 ))}
               </Typography>
               {organizationsRelationship && (
-                <Chip variant="outlined" color="info" size="sm">
+                <Chip variant="outlined" color="warning" size="sm">
                   {organizationsRelationship}
                 </Chip>
               )}
