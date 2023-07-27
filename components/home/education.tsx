@@ -156,7 +156,7 @@ const Education: FC<Props> = ({
                         ) : (
                           name
                         )}
-                        <Typography level="body2">
+                        <Typography level="body-sm">
                           {institution?.name}
                         </Typography>
                       </CardContent>

@@ -84,7 +84,7 @@ const About = async (props: BoxProps<"section">) => {
                       sx={{ justifyContent: "center", flexWrap: "wrap" }}
                     >
                       {skills.map((skill) => (
-                        <Chip key={skill} color="neutral" variant="outlined">
+                        <Chip key={skill} variant="outlined">
                           {skill}
                         </Chip>
                       ))}

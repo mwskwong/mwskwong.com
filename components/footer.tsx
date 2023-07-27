@@ -23,10 +23,10 @@ const Footer = async ({ sx, ...props }: SheetProps<"footer">) => {
     >
       <Stack spacing={2} sx={{ alignItems: "center" }}>
         <Box sx={{ textAlign: "center" }}>
-          <Typography level="body2">
+          <Typography level="body-sm">
             {`Copyright © ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
           </Typography>
-          <Typography level="body2">
+          <Typography level="body-sm">
             {"Branding logo designed by "}
             <Link
               href="https://www.upwork.com/freelancers/manojk4"
