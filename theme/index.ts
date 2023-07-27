@@ -63,6 +63,9 @@ const theme = extendTheme({
           solidDisabledColor: "#fff",
           solidDisabledBg: "var(--joy-palette-info-200)",
         },
+        text: {
+          icon: "inherit",
+        },
       },
     },
     dark: {
@@ -92,6 +95,9 @@ const theme = extendTheme({
           solidActiveBg: "var(--joy-palette-info-800)",
           solidDisabledColor: "var(--joy-palette-info-700)",
           solidDisabledBg: "var(--joy-palette-info-900)",
+        },
+        text: {
+          icon: "inherit",
         },
       },
     },
