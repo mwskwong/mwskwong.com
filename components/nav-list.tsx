@@ -32,8 +32,10 @@ const NavList: FC<Props> = forwardRef(
         <List
           orientation={orientation}
           sx={{
-            "--List-radius": "var(--joy-radius-sm)",
+            "--List-radius": "var(--joy-radius-md)",
             "--List-padding": "0px",
+            "--List-gap": (theme) =>
+              orientation === "horizontal" ? theme.spacing(1) : "0px",
           }}
         >
           {nav.slice(1).map((section) => (

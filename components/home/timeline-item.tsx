@@ -71,7 +71,6 @@ const TimelineItem: FC<Props> = forwardRef(
           <Typography
             level="body-xs"
             sx={{
-              color: "text.secondary",
               textTransform: "uppercase",
               mt: 0.5,
               mb: 1,

@@ -75,7 +75,7 @@ const About = async (props: BoxProps<"section">) => {
                     >
                       {Icon && <Icon />}
                     </Sheet>
-                    <Typography level="h6" component="h4" color="primary">
+                    <Typography level="title-md" color="primary">
                       {name}
                     </Typography>
                     <Stack
