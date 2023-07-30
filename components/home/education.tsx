@@ -145,6 +145,7 @@ const Education: FC<Props> = ({
                       <CardContent>
                         {certificate ? (
                           <Link
+                            level="title-md"
                             overlay
                             underline="none"
                             href={certificate}
@@ -154,7 +155,7 @@ const Education: FC<Props> = ({
                             {name}
                           </Link>
                         ) : (
-                          name
+                          <Typography level="title-md">{name}</Typography>
                         )}
                         <Typography level="body-sm">
                           {institution?.name}
