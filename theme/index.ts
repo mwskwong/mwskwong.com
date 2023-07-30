@@ -26,35 +26,7 @@ const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        primary: {
-          ...primary,
-          plainColor: `var(--joy-palette-primary-600)`,
-          plainHoverBg: `var(--joy-palette-primary-100)`,
-          plainActiveBg: `var(--joy-palette-primary-200)`,
-          plainDisabledColor: `var(--joy-palette-primary-200)`,
-
-          outlinedColor: `var(--joy-palette-primary-500)`,
-          outlinedBorder: `var(--joy-palette-primary-200)`,
-          outlinedHoverBg: `var(--joy-palette-primary-100)`,
-          outlinedHoverBorder: `var(--joy-palette-primary-300)`,
-          outlinedActiveBg: `var(--joy-palette-primary-200)`,
-          outlinedDisabledColor: `var(--joy-palette-primary-100)`,
-          outlinedDisabledBorder: `var(--joy-palette-primary-100)`,
-
-          softColor: `var(--joy-palette-primary-600)`,
-          softBg: `var(--joy-palette-primary-100)`,
-          softHoverBg: `var(--joy-palette-primary-200)`,
-          softActiveBg: `var(--joy-palette-primary-300)`,
-          softDisabledColor: `var(--joy-palette-primary-300)`,
-          softDisabledBg: `var(--joy-palette-primary}-)50`,
-          solidColor: "var(--joy-palette-common-white)",
-
-          solidBg: `var(--joy-palette-primary-500)`,
-          solidHoverBg: `var(--joy-palette-primary-600)`,
-          solidActiveBg: `var(--joy-palette-primary-700)`,
-          solidDisabledColor: "var(--joy-palette-common-white)",
-          solidDisabledBg: `var(--joy-palette-primary-200)`,
-        },
+        primary,
         background: {
           body: "var(--joy-palette-common-white)",
           level1: "var(--joy-palette-neutral-50)",
@@ -65,35 +37,7 @@ const theme = extendTheme({
     },
     dark: {
       palette: {
-        primary: {
-          ...primary,
-          plainColor: `var(--joy-palette-primary-300)`,
-          plainHoverBg: `var(--joy-palette-primary-800)`,
-          plainActiveBg: `var(--joy-palette-primary-700)`,
-          plainDisabledColor: `var(--joy-palette-primary-800)`,
-
-          outlinedColor: `var(--joy-palette-primary-200)`,
-          outlinedBorder: `var(--joy-palette-primary-700)`,
-          outlinedHoverBg: `var(--joy-palette-primary-800)`,
-          outlinedHoverBorder: `var(--joy-palette-primary-600)`,
-          outlinedActiveBg: `var(--joy-palette-primary-900)`,
-          outlinedDisabledColor: `var(--joy-palette-primary-800)`,
-          outlinedDisabledBorder: `var(--joy-palette-primary-800)`,
-
-          softColor: `var(--joy-palette-primary-200)`,
-          softBg: `var(--joy-palette-primary-900)`,
-          softHoverBg: `var(--joy-palette-primary-800)`,
-          softActiveBg: `var(--joy-palette-primary-700)`,
-          softDisabledColor: `var(--joy-palette-primary-800)`,
-          softDisabledBg: `var(--joy-palette-primary-900)`,
-
-          solidColor: "var(--joy-palette-common-white)",
-          solidBg: `var(--joy-palette-primary-600)`,
-          solidHoverBg: `var(--joy-palette-primary-700)`,
-          solidActiveBg: `var(--joy-palette-primary-800)`,
-          solidDisabledColor: `var(--joy-palette-primary-700)`,
-          solidDisabledBg: `var(--joy-palette-primary-900)`,
-        },
+        primary,
         background: {
           level1: "var(--joy-palette-neutral-900)",
           level2: "var(--joy-palette-neutral-800)",
