@@ -75,7 +75,7 @@ const About = async (props: BoxProps<"section">) => {
                     >
                       {Icon && <Icon />}
                     </Sheet>
-                    <Typography level="h6" component="h4" color="primary">
+                    <Typography level="title-md" color="primary">
                       {name}
                     </Typography>
                     <Stack
@@ -84,7 +84,7 @@ const About = async (props: BoxProps<"section">) => {
                       sx={{ justifyContent: "center", flexWrap: "wrap" }}
                     >
                       {skills.map((skill) => (
-                        <Chip key={skill} color="neutral" variant="outlined">
+                        <Chip key={skill} variant="outlined">
                           {skill}
                         </Chip>
                       ))}

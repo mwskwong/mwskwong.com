@@ -12,21 +12,15 @@ const Footer = async ({ sx, ...props }: SheetProps<"footer">) => {
   return (
     <Box
       component="footer"
-      sx={mergeSx(
-        {
-          bgcolor: "background.level1",
-          "--Icon-color": "var(--joy-palette-text-secondary)",
-        },
-        sx,
-      )}
+      sx={mergeSx({ bgcolor: "background.level1" }, sx)}
       {...props}
     >
       <Stack spacing={2} sx={{ alignItems: "center" }}>
         <Box sx={{ textAlign: "center" }}>
-          <Typography level="body2">
+          <Typography level="body-sm">
             {`Copyright © ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
           </Typography>
-          <Typography level="body2">
+          <Typography level="body-sm">
             {"Branding logo designed by "}
             <Link
               href="https://www.upwork.com/freelancers/manojk4"

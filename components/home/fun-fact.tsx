@@ -48,7 +48,7 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
           spacing={6}
           sx={{
             justifyContent: "center",
-            "--Icon-fontSize": "var(--joy-fontSize-xl7)",
+            "--Icon-fontSize": "3.75rem",
           }}
           disableEqualOverflow
         >

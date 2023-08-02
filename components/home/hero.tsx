@@ -50,9 +50,7 @@ const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
               {"I'm "}
               <Typography color="primary">{firstName}</Typography> {lastName}
             </Typography>
-            <Typography level="h5" component="p">
-              {jobTitles.join(" & ")}
-            </Typography>
+            <Typography level="title-lg">{jobTitles.join(" & ")}</Typography>
           </Stack>
           <Stack
             direction={{ xs: "column", sm: "row" }}
