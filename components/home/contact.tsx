@@ -63,7 +63,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
     mode: "onChange",
     defaultValues: { name: "", email: "", subject: "", message: "" },
   });
-  const handleFormspreeSubmit = useSubmit<FormSchema>(
+  const handleFormSubmit = useSubmit<FormSchema>(
     process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "",
     {
       onError: (error) => {
@@ -88,7 +88,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
             spacing={6}
             disableEqualOverflow
             component="form"
-            onSubmit={handleSubmit(handleFormspreeSubmit)}
+            onSubmit={handleSubmit(handleFormSubmit)}
           >
             <Grid component="address" container xs={12} md={4} spacing={3}>
               {personalInfo.map(({ Icon, title, value, url }) => (
