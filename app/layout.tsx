@@ -30,7 +30,7 @@ const RootLayout = async ({ children }: PropsWithChildren) => {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title.default,
-    image: `${process.env.NEXT_PUBLIC_URL}/opengraph-image.jpg`,
+    image: `${process.env.NEXT_PUBLIC_URL}/opengraph-image.png`,
     datePublished: new Date("2019-07-15").toISOString(),
     dateModified: new Date().toISOString(),
     mainEntityOfPage: {
