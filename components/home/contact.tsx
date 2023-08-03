@@ -1,5 +1,6 @@
 "use client";
 
+import { useSubmit } from "@formspree/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   EmailRounded,
@@ -10,7 +11,6 @@ import {
   ThumbUpRounded,
 } from "@mui/icons-material";
 import {
-  Alert,
   Box,
   BoxProps,
   Button,
@@ -33,7 +33,6 @@ import { address, email, phone } from "@/constants/data";
 import { contact, home } from "@/constants/nav";
 
 import formSchema, { FormSchema } from "./form-schema";
-import useFormspree from "./use-formspree";
 
 const personalInfo = [
   {
@@ -57,12 +56,12 @@ const personalInfo = [
 ];
 
 const Contact: FC<BoxProps<"section">> = (props) => {
-  const { handleSubmit, control } = useForm<FormSchema>({
+  const { formState, handleSubmit, control } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
     defaultValues: { name: "", email: "", subject: "", message: "" },
   });
-  const [state, handleFormspreeSubmit] = useFormspree(
+  const handleFormspreeSubmit = useSubmit<FormSchema>(
     process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "",
   );
 
@@ -78,7 +77,6 @@ const Contact: FC<BoxProps<"section">> = (props) => {
             spacing={6}
             disableEqualOverflow
             component="form"
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onSubmit={handleSubmit(handleFormspreeSubmit)}
           >
             <Grid component="address" container xs={12} md={4} spacing={3}>
@@ -97,7 +95,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 </Grid>
               ))}
             </Grid>
-            {state.succeeded ? (
+            {formState.isSubmitSuccessful ? (
               <Grid xs={12} md={8}>
                 <Stack
                   spacing={2}
@@ -149,7 +147,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                       render={({ field, fieldState: { error } }) => (
                         <FormControl
                           error={Boolean(error)}
-                          disabled={state.submitting}
+                          disabled={formState.isSubmitting}
                         >
                           <FormLabel>Name</FormLabel>
                           <Input {...field} />
@@ -165,7 +163,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                       render={({ field, fieldState: { error } }) => (
                         <FormControl
                           error={Boolean(error)}
-                          disabled={state.submitting}
+                          disabled={formState.isSubmitting}
                         >
                           <FormLabel>Email</FormLabel>
                           <Input {...field} />
@@ -181,7 +179,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                       render={({ field, fieldState: { error } }) => (
                         <FormControl
                           error={Boolean(error)}
-                          disabled={state.submitting}
+                          disabled={formState.isSubmitting}
                         >
                           <FormLabel>Subject</FormLabel>
                           <Input {...field} />
@@ -197,7 +195,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                       render={({ field, fieldState: { error } }) => (
                         <FormControl
                           error={Boolean(error)}
-                          disabled={state.submitting}
+                          disabled={formState.isSubmitting}
                         >
                           <FormLabel>Message</FormLabel>
                           <Textarea minRows={5} maxRows={5} {...field} />
@@ -207,24 +205,13 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                     />
                   </Grid>
                 </Grid>
-                {Boolean(state.errors.length) && (
-                  <Grid xs={12} md={8} mdOffset={4}>
-                    <Stack spacing={1}>
-                      {state.errors.map(({ message }, index) => (
-                        <Alert key={index} color="danger">
-                          {message}
-                        </Alert>
-                      ))}
-                    </Stack>
-                  </Grid>
-                )}
                 <Grid xs={12} sm="auto" smOffset="auto">
                   <Button
                     type="submit"
                     size="lg"
                     startDecorator={<SendRounded />}
                     sx={{ width: "100%" }}
-                    loading={state.submitting}
+                    loading={formState.isSubmitting}
                   >
                     Send Message
                   </Button>
