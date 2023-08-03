@@ -30,7 +30,7 @@ const Footer = async ({ sx, ...props }: SheetProps<"footer">) => {
             </Link>
           </Typography>
         </Box>
-        <Stack direction="row">
+        <Stack direction="row" spacing={1}>
           {platformProfiles.map(({ platform, url }) => {
             const Icon = platform?.id
               ? getIconByContentfulId(platform.id)
