@@ -107,11 +107,7 @@ const Education: FC<Props> = ({
               startDecorator={<SearchRounded />}
               endDecorator={
                 courseSearch.length > 0 && (
-                  <IconButton
-                    color="neutral"
-                    variant="plain"
-                    onClick={() => setCourseSearch("")}
-                  >
+                  <IconButton onClick={() => setCourseSearch("")}>
                     <ClearRounded />
                   </IconButton>
                 )

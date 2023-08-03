@@ -84,7 +84,6 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
                 <IconButton
                   key={platform?.id}
                   variant="outlined"
-                  color="neutral"
                   size="sm"
                   component="a"
                   href={url}
@@ -97,7 +96,6 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
             })}
             <IconButton
               variant="outlined"
-              color="neutral"
               size="sm"
               onClick={() => setMode(mode === "dark" ? "light" : "dark")}
               aria-label="Toggle color scheme"
@@ -109,7 +107,6 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
             <IconButton
               ref={menuButtonRef}
               variant="outlined"
-              color="neutral"
               size="sm"
               sx={{ display: { sm: "none" } }}
               onClick={() => setDropdownOpen((prev) => !prev)}

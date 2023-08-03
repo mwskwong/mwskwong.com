@@ -39,8 +39,6 @@ const Footer = async ({ sx, ...props }: SheetProps<"footer">) => {
             return (
               <IconButton
                 key={platform?.id}
-                variant="plain"
-                color="neutral"
                 size="sm"
                 component="a"
                 href={url}
