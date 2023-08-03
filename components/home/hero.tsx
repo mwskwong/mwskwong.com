@@ -1,13 +1,5 @@
 import { SiLinkedin } from "@icons-pack/react-simple-icons";
-import {
-  Box,
-  BoxProps,
-  Button,
-  Container,
-  Divider,
-  Stack,
-  Typography,
-} from "@mui/joy";
+import { Box, BoxProps, Button, Container, Stack, Typography } from "@mui/joy";
 import mergeSx from "merge-sx";
 
 import { linkedin } from "@/constants/contentful-ids";
@@ -35,17 +27,7 @@ const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
       <Container>
         <Stack spacing={5} sx={{ justifyContent: "center" }}>
           <Stack spacing={2} sx={{ textAlign: "center" }}>
-            <Divider
-              component="div"
-              role="presentation"
-              sx={{
-                textTransform: "uppercase",
-                width: 120,
-                mx: "auto",
-              }}
-            >
-              Hello
-            </Divider>
+            <Typography level="body-sm">HELLO</Typography>
             <Typography level="h1">
               {"I'm "}
               <Typography color="primary">{firstName}</Typography> {lastName}
