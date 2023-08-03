@@ -9,8 +9,10 @@ import {
   SendRounded,
   SmartphoneRounded,
   ThumbUpRounded,
+  WarningRounded,
 } from "@mui/icons-material";
 import {
+  Alert,
   Box,
   BoxProps,
   Button,
@@ -56,13 +58,22 @@ const personalInfo = [
 ];
 
 const Contact: FC<BoxProps<"section">> = (props) => {
-  const { formState, handleSubmit, control } = useForm<FormSchema>({
+  const { handleSubmit, control, formState, setError } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
     defaultValues: { name: "", email: "", subject: "", message: "" },
   });
   const handleFormspreeSubmit = useSubmit<FormSchema>(
     process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "",
+    {
+      onError: (error) => {
+        const formErrors = error.getFormErrors();
+        for (const { code, message } of formErrors) {
+          setError("root", { type: code, message });
+          break;
+        }
+      },
+    },
   );
 
   return (
@@ -205,6 +216,17 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                     />
                   </Grid>
                 </Grid>
+                {formState.errors.root && (
+                  <Grid xs={12} md={8} mdOffset={4}>
+                    <Alert
+                      variant="soft"
+                      color="danger"
+                      startDecorator={<WarningRounded />}
+                    >
+                      {formState.errors.root.message}
+                    </Alert>
+                  </Grid>
+                )}
                 <Grid xs={12} sm="auto" smOffset="auto">
                   <Button
                     type="submit"
