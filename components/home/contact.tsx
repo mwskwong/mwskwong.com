@@ -94,7 +94,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
               {personalInfo.map(({ Icon, title, value, url }) => (
                 <Grid key={title} xs={12} sm={4} md={12}>
                   <Stack spacing={1} sx={{ alignItems: "center" }}>
-                    <Icon fontSize="xl4" />
+                    <Icon sx={{ fontSize: "xl4" }} />
                     <Typography>{title}</Typography>
                     <Link
                       href={url}
@@ -122,7 +122,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                     variant="soft"
                     sx={{ display: "flex", borderRadius: "sm", p: 1.5 }}
                   >
-                    <ThumbUpRounded fontSize="xl4" />
+                    <ThumbUpRounded sx={{ fontSize: "xl4" }} />
                   </Sheet>
                   <Typography level="h1" color="primary">
                     Thank You!

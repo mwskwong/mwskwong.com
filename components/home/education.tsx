@@ -1,6 +1,5 @@
 "use client";
 
-import { IconType } from "@icons-pack/react-simple-icons/types";
 import { ClearRounded, SearchRounded } from "@mui/icons-material";
 import {
   Box,
@@ -119,8 +118,7 @@ const Education: FC<Props> = ({
             <Grid container spacing={2}>
               {filteredCourses.map(({ name, institution, certificate }) => {
                 const Icon =
-                  institution &&
-                  (getIconByContentfulId(institution.id) as IconType);
+                  institution && getIconByContentfulId(institution.id);
 
                 return (
                   <Grid key={name} xs={12} md={6}>
@@ -128,7 +126,6 @@ const Education: FC<Props> = ({
                       variant="outlined"
                       orientation="horizontal"
                       sx={{
-                        "--Icon-fontSize": "var(--joy-fontSize-xl2)",
                         "&:hover": certificate
                           ? {
                               boxShadow: "md",
@@ -137,7 +134,9 @@ const Education: FC<Props> = ({
                           : null,
                       }}
                     >
-                      {Icon && <Icon color="default" />}
+                      {Icon && (
+                        <Icon color="branding" sx={{ fontSize: "xl2" }} />
+                      )}
                       <CardContent>
                         {certificate ? (
                           <Link

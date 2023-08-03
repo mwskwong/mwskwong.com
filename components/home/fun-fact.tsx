@@ -12,7 +12,6 @@ import mergeSx from "merge-sx";
 import { FC } from "react";
 
 import { websiteTechStack } from "@/constants/data";
-import { simpleIconsClasses } from "@/theme/classes";
 
 const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
   <Sheet
@@ -51,7 +50,6 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
           spacing={6}
           sx={{
             justifyContent: "center",
-            "--Icon-fontSize": "3.75rem",
           }}
           disableEqualOverflow
         >
@@ -68,7 +66,7 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
                 href={url}
                 target="_blank"
               >
-                <Icon className={simpleIconsClasses.root} />
+                <Icon sx={{ fontSize: "3.75rem" }} />
                 <Typography>{name}</Typography>
               </Stack>
             </Grid>

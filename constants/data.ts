@@ -1,15 +1,11 @@
-import {
-  SiContentful,
-  SiMui,
-  SiNextdotjs,
-  SiReact,
-  SiReacthookform,
-  SiVercel,
-} from "@icons-pack/react-simple-icons";
-import { IconType } from "@icons-pack/react-simple-icons/types";
-
-import SiFormspree from "@/components/icons/si-formspree";
-import SiImprovMX from "@/components/icons/si-improvmx";
+import Contentful from "@/components/icons/contentful";
+import Formspree from "@/components/icons/formspree";
+import ImprovMx from "@/components/icons/improvmx";
+import Mui from "@/components/icons/mui";
+import NextJs from "@/components/icons/nextjs";
+import React from "@/components/icons/react";
+import ReactHookForm from "@/components/icons/react-hook-form";
+import Vercel from "@/components/icons/vercel";
 
 export const phone = "+852 6095 4241";
 export const email = "contact@mwskwong.com";
@@ -29,42 +25,42 @@ export const selfIntroduction =
 export const websiteTechStack = [
   {
     name: "React",
-    Icon: SiReact as IconType,
+    Icon: React,
     url: "https://react.dev/",
   },
   {
     name: "Next.js",
-    Icon: SiNextdotjs as IconType,
+    Icon: NextJs,
     url: "https://nextjs.org/",
   },
   {
     name: "MUI Joy UI",
-    Icon: SiMui as IconType,
+    Icon: Mui,
     url: "https://mui.com/",
   },
   {
     name: "React Hook Form",
-    Icon: SiReacthookform as IconType,
+    Icon: ReactHookForm,
     url: "https://react-hook-form.com/",
   },
   {
     name: "Vercel",
-    Icon: SiVercel as IconType,
+    Icon: Vercel,
     url: "https://vercel.com/",
   },
   {
     name: "Contentful",
-    Icon: SiContentful as IconType,
+    Icon: Contentful,
     url: "https://www.contentful.com/",
   },
   {
     name: "Formspree",
-    Icon: SiFormspree,
+    Icon: Formspree,
     url: "https://formspree.io/",
   },
   {
     name: "ImprovMX",
-    Icon: SiImprovMX,
+    Icon: ImprovMx,
     url: "https://improvmx.com/",
   },
 ];

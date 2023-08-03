@@ -70,10 +70,9 @@ const About = async (props: BoxProps<"section">) => {
                         display: "flex",
                         borderRadius: "sm",
                         p: 1.5,
-                        "--Icon-fontSize": "var(--joy-fontSize-xl4)",
                       }}
                     >
-                      {Icon && <Icon />}
+                      {Icon && <Icon sx={{ fontSize: "xl4" }} />}
                     </Sheet>
                     <Typography level="title-md" color="primary">
                       {name}

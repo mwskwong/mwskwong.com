@@ -1,12 +1,11 @@
-import { SiLinkedin } from "@icons-pack/react-simple-icons";
 import { Box, BoxProps, Button, Container, Stack, Typography } from "@mui/joy";
 import mergeSx from "merge-sx";
 
+import LinkedIn from "@/components/icons/linkedin";
 import { linkedin } from "@/constants/contentful-ids";
 import { firstName, jobTitles, lastName } from "@/constants/data";
 import { home } from "@/constants/nav";
 import { getCv, getPlatformProfiles } from "@/lib";
-import { simpleIconsClasses } from "@/theme/classes";
 
 const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
   const [cv, platformProfiles] = await Promise.all([
@@ -46,9 +45,7 @@ const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
               color="neutral"
               variant="outlined"
               size="lg"
-              startDecorator={
-                <SiLinkedin className={simpleIconsClasses.root} />
-              }
+              startDecorator={<LinkedIn />}
               component="a"
               href={linkedinProfile?.url}
               target="_blank"

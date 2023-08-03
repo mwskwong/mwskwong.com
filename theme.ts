@@ -7,6 +7,12 @@ declare module "@mui/joy/styles/types/zIndex" {
   }
 }
 
+declare module "@mui/joy" {
+  interface SvgIconPropsColorOverrides {
+    branding: true;
+  }
+}
+
 const rubik = Rubik({ subsets: ["latin"] });
 const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
 const theme = extendTheme({

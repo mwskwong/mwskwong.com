@@ -10,7 +10,6 @@ import { FC, PropsWithChildren } from "react";
 import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
 
 import theme from "@/theme";
-import { simpleIconsClasses } from "@/theme/classes";
 
 const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -51,14 +50,6 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
               },
               svg: {
                 display: "block",
-              },
-              [`.${simpleIconsClasses.root}`]: {
-                color: `var(--Icon-color, ${theme.vars.palette.text.icon})`,
-                margin: "var(--Icon-margin)",
-                fontSize: "var(--Icon-fontSize, 20px)",
-                padding: "0.083em", // 2 / 24; Material icons standard, leaving 2dp padding around a 24dp icon.
-                width: "1em",
-                height: "1em",
               },
             })}
           />

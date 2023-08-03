@@ -1,58 +1,52 @@
 import {
-  SiDatacamp,
-  SiEnterprisedb,
-  SiGithub,
-  SiGoogle,
-  SiLinkedin,
-  SiMicrosoft,
-  SiMongodb,
-  SiOracle,
-  SiStackoverflow,
-  SiUdemy,
-  SiYoutube,
-} from "@icons-pack/react-simple-icons";
-import { IconType } from "@icons-pack/react-simple-icons/types";
-import {
   AllInclusiveRounded,
   BugReportRounded,
   DashboardRounded,
   DevicesOtherRounded,
   TerminalRounded,
 } from "@mui/icons-material";
-import clsx from "clsx";
-import { forwardRef } from "react";
 
 import Cms from "@/components/icons/cms";
 import Database from "@/components/icons/database";
+import DataCamp from "@/components/icons/datacamp";
+import EnterpriseDb from "@/components/icons/enterprisedb";
+import GitHub from "@/components/icons/github";
+import Google from "@/components/icons/google";
+import LinkedIn from "@/components/icons/linkedin";
 import MachineLearning from "@/components/icons/machine-learning";
+import Microsoft from "@/components/icons/microsoft";
+import MongoDb from "@/components/icons/mongodb";
+import Oracle from "@/components/icons/oracle";
+import StackOverflow from "@/components/icons/stackoverflow";
+import Udemy from "@/components/icons/udemy";
+import YouTube from "@/components/icons/youtube";
 import * as contentfulIds from "@/constants/contentful-ids";
-import { simpleIconsClasses } from "@/theme/classes";
 
-const createSimpleIcon = (Icon: IconType) => {
-  const SimpleIcon: IconType = forwardRef(({ className, ...props }, ref) => (
-    <Icon
-      ref={ref}
-      className={clsx(simpleIconsClasses.root, className)}
-      {...props}
-    />
-  ));
-  SimpleIcon.displayName = Icon.displayName;
+// const createSimpleIcon = (Icon: IconType) => {
+//   const SimpleIcon: IconType = forwardRef(({ className, ...props }, ref) => (
+//     <Icon
+//       ref={ref}
+//       className={clsx(simpleIconsClasses.root, className)}
+//       {...props}
+//     />
+//   ));
+//   SimpleIcon.displayName = Icon.displayName;
 
-  return SimpleIcon;
-};
+//   return SimpleIcon;
+// };
 
 const Icons = {
-  [contentfulIds.datacamp]: createSimpleIcon(SiDatacamp as IconType),
-  [contentfulIds.enterprisedb]: createSimpleIcon(SiEnterprisedb as IconType),
-  [contentfulIds.github]: createSimpleIcon(SiGithub as IconType),
-  [contentfulIds.google]: createSimpleIcon(SiGoogle as IconType),
-  [contentfulIds.linkedin]: createSimpleIcon(SiLinkedin as IconType),
-  [contentfulIds.microsoft]: createSimpleIcon(SiMicrosoft as IconType),
-  [contentfulIds.mongodb]: createSimpleIcon(SiMongodb as IconType),
-  [contentfulIds.oracle]: createSimpleIcon(SiOracle as IconType),
-  [contentfulIds.stackoverflow]: createSimpleIcon(SiStackoverflow as IconType),
-  [contentfulIds.udemy]: createSimpleIcon(SiUdemy as IconType),
-  [contentfulIds.youtube]: createSimpleIcon(SiYoutube as IconType),
+  [contentfulIds.datacamp]: DataCamp,
+  [contentfulIds.enterprisedb]: EnterpriseDb,
+  [contentfulIds.github]: GitHub,
+  [contentfulIds.google]: Google,
+  [contentfulIds.linkedin]: LinkedIn,
+  [contentfulIds.microsoft]: Microsoft,
+  [contentfulIds.mongodb]: MongoDb,
+  [contentfulIds.oracle]: Oracle,
+  [contentfulIds.stackoverflow]: StackOverflow,
+  [contentfulIds.udemy]: Udemy,
+  [contentfulIds.youtube]: YouTube,
   [contentfulIds.backend]: TerminalRounded,
   [contentfulIds.cms]: Cms,
   [contentfulIds.database]: Database,
