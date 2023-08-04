@@ -165,7 +165,6 @@ const TimelineItem: FC<Props> = forwardRef(
 
 TimelineItem.displayName = "TimelineItem";
 // @ts-expect-error MUI specific checking
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-TimelineItem.muiName = Grid.muiName;
+TimelineItem.muiName = "Grid";
 
 export default TimelineItem;

@@ -25,8 +25,7 @@ const createSimpleSvgIcon = (simpleIcon: SimpleIcon, displayName: string) => {
 
   SimpleSvgIcon.displayName = displayName;
   // @ts-expect-error MUI specific checking
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  SimpleSvgIcon.muiName = SvgIcon.muiName;
+  SimpleSvgIcon.muiName = "SvgIcon";
 
   return memo(SimpleSvgIcon);
 };
