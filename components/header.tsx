@@ -46,9 +46,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
       const themeColorMeta = document.querySelector('meta[name="theme-color"]');
       themeColorMeta?.setAttribute(
         "content",
-        theme.colorSchemes.light.palette.common[
-          mode === "dark" ? "black" : "white"
-        ],
+        theme.colorSchemes[mode].palette.background.surface,
       );
     }
   }, [mode, theme.colorSchemes]);
