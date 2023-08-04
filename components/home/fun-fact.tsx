@@ -3,6 +3,7 @@ import {
   Button,
   Container,
   Grid,
+  Link,
   Sheet,
   SheetProps,
   Stack,
@@ -50,17 +51,17 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
         >
           {websiteTechStack.map(({ name, Icon, url }) => (
             <Grid key={name} xs={6} sm={3}>
-              <Stack
-                spacing={2}
-                alignItems="center"
-                color="inherit"
-                sx={{ textDecoration: "none" }}
-                component="a"
-                href={url}
-                target="_blank"
-              >
+              <Stack spacing={2} position="relative" alignItems="center">
                 <Icon fontSize="xl6" />
-                <Typography>{name}</Typography>
+                <Link
+                  overlay
+                  textColor="text.secondary"
+                  underline="none"
+                  href={url}
+                  target="_blank"
+                >
+                  {name}
+                </Link>
               </Stack>
             </Grid>
           ))}
