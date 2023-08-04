@@ -81,6 +81,7 @@ export const metadata: Metadata = {
     url: "/",
     type: "website",
   },
+  themeColor: "#FBFCFD",
   twitter: { card: "summary_large_image" },
   alternates: { canonical: "/" },
   archives: ["https://v2.mwskwong.com"],

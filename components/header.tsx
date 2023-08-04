@@ -15,8 +15,9 @@ import {
   SheetProps,
   Stack,
   useColorScheme,
+  useTheme,
 } from "@mui/joy";
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 import Icon from "@/app/icon.svg";
 import { home } from "@/constants/nav";
@@ -38,6 +39,19 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { mode, setMode } = useColorScheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const theme = useTheme();
+
+  useEffect(() => {
+    if (mode && mode !== "system") {
+      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      themeColorMeta?.setAttribute(
+        "content",
+        theme.colorSchemes.light.palette.common[
+          mode === "dark" ? "black" : "white"
+        ],
+      );
+    }
+  }, [mode, theme.colorSchemes]);
 
   return (
     <Box

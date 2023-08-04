@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-import { firstName, lastName, selfIntroduction } from "@/constants/data";
+import { firstName, lastName, selfIntroduction } from "@/constants/content";
 
 export const runtime = "edge";
 
@@ -9,8 +9,6 @@ const manifest = (): MetadataRoute.Manifest => ({
   short_name: firstName,
   description: selfIntroduction,
   start_url: "/",
-  theme_color: "#fbfcfd",
-  background_color: "#fbfcfd",
   display: "standalone",
   icons: [
     // @ts-expect-error the purpose field is valid
