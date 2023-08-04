@@ -2,8 +2,8 @@ import { Box, BoxProps, Button, Container, Stack, Typography } from "@mui/joy";
 import mergeSx from "merge-sx";
 
 import LinkedIn from "@/components/icons/linkedin";
+import { firstName, jobTitles, lastName } from "@/constants/content";
 import { linkedin } from "@/constants/contentful-ids";
-import { firstName, jobTitles, lastName } from "@/constants/data";
 import { home } from "@/constants/nav";
 import { getCv, getPlatformProfiles } from "@/lib";
 

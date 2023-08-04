@@ -6,13 +6,13 @@ import { Article, WithContext } from "schema-dts";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import SectionDivider from "@/components/section-divider";
-import { linkedin } from "@/constants/contentful-ids";
 import {
   firstName,
   jobTitles,
   lastName,
   selfIntroduction,
-} from "@/constants/data";
+} from "@/constants/content";
+import { linkedin } from "@/constants/contentful-ids";
 import { getPlatformProfiles } from "@/lib";
 
 import ThemeRegistry from "./theme-registry";

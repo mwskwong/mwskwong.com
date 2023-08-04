@@ -1,7 +1,7 @@
 import { Box, IconButton, Link, SheetProps, Stack, Typography } from "@mui/joy";
 import mergeSx from "merge-sx";
 
-import { firstName, lastName, middleName } from "@/constants/data";
+import { firstName, lastName, middleName } from "@/constants/content";
 import { getPlatformProfiles } from "@/lib";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 

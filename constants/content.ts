@@ -1,3 +1,9 @@
+import {
+  EmailRounded,
+  LocationOnRounded,
+  SmartphoneRounded,
+} from "@mui/icons-material";
+
 import Contentful from "@/components/icons/contentful";
 import Formspree from "@/components/icons/formspree";
 import ImprovMx from "@/components/icons/improvmx";
@@ -62,5 +68,26 @@ export const websiteTechStack = [
     name: "ImprovMX",
     Icon: ImprovMx,
     url: "https://improvmx.com/",
+  },
+];
+
+export const contactInfo = [
+  {
+    Icon: SmartphoneRounded,
+    title: "Call Me At",
+    value: phone,
+    url: `tel:${phone}`,
+  },
+  {
+    Icon: EmailRounded,
+    title: "Email Me At",
+    value: email,
+    url: `mailto:${email}`,
+  },
+  {
+    Icon: LocationOnRounded,
+    title: "Find Me At",
+    value: address,
+    url: "https://www.google.com/maps/place/Hong+Kong",
   },
 ];

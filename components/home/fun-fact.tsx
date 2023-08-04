@@ -11,7 +11,7 @@ import {
 import mergeSx from "merge-sx";
 import { FC } from "react";
 
-import { websiteTechStack } from "@/constants/data";
+import { websiteTechStack } from "@/constants/content";
 
 const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
   <Sheet

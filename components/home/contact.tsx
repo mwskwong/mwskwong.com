@@ -3,11 +3,8 @@
 import { useSubmit } from "@formspree/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  EmailRounded,
   KeyboardArrowUpRounded,
-  LocationOnRounded,
   SendRounded,
-  SmartphoneRounded,
   ThumbUpRounded,
   WarningRounded,
 } from "@mui/icons-material";
@@ -31,31 +28,10 @@ import {
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { address, email, phone } from "@/constants/data";
+import { address, contactInfo, email, phone } from "@/constants/content";
 import { contact, home } from "@/constants/nav";
 
 import formSchema, { FormSchema } from "./form-schema";
-
-const personalInfo = [
-  {
-    Icon: SmartphoneRounded,
-    title: "Call Me At",
-    value: phone,
-    url: `tel:${phone}`,
-  },
-  {
-    Icon: EmailRounded,
-    title: "Email Me At",
-    value: email,
-    url: `mailto:${email}`,
-  },
-  {
-    Icon: LocationOnRounded,
-    title: "Find Me At",
-    value: address,
-    url: "https://www.google.com/maps/place/Hong+Kong",
-  },
-];
 
 const Contact: FC<BoxProps<"section">> = (props) => {
   const { handleSubmit, control, formState, setError } = useForm<FormSchema>({
@@ -91,7 +67,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
             onSubmit={handleSubmit(handleFormSubmit)}
           >
             <Grid component="address" container xs={12} md={4} spacing={3}>
-              {personalInfo.map(({ Icon, title, value, url }) => (
+              {contactInfo.map(({ Icon, title, value, url }) => (
                 <Grid key={title} xs={12} sm={4} md={12}>
                   <Stack spacing={1} sx={{ alignItems: "center" }}>
                     <Icon sx={{ fontSize: "xl4" }} />

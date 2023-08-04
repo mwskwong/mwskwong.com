@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/joy";
 
-import { firstName, lastName, selfIntroduction } from "@/constants/data";
+import { firstName, lastName, selfIntroduction } from "@/constants/content";
 import { about } from "@/constants/nav";
 import { getPersonalPhoto, getSkillCategories } from "@/lib";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
