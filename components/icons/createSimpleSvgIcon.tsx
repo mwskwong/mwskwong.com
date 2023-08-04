@@ -8,7 +8,7 @@ const createSimpleSvgIcon = (simpleIcon: SimpleIcon, displayName: string) => {
     <SvgIcon
       sx={mergeSx(
         {
-          p: "0.083em",
+          p: "var(--MaterialIcon-padding)",
           color: props.color === "branding" ? `#${simpleIcon.hex}` : undefined,
         },
         sx,
