@@ -36,7 +36,7 @@ import formSchema, { FormSchema } from "./form-schema";
 const Contact: FC<BoxProps<"section">> = (props) => {
   const { handleSubmit, control, formState, setError } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    mode: "onChange",
+    mode: "onBlur",
     defaultValues: { name: "", email: "", subject: "", message: "" },
   });
   const handleFormSubmit = useSubmit<FormSchema>(
