@@ -66,7 +66,7 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
                 href={url}
                 target="_blank"
               >
-                <Icon sx={{ fontSize: "3.75rem" }} />
+                <Icon sx={{ fontSize: "xl6" }} />
                 <Typography>{name}</Typography>
               </Stack>
             </Grid>

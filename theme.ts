@@ -11,6 +11,12 @@ declare module "@mui/joy" {
   interface SvgIconPropsColorOverrides {
     branding: true;
   }
+
+  interface FontSizeOverrides {
+    xl7: true;
+    xl6: true;
+    xl5: true;
+  }
 }
 
 const rubik = Rubik({ subsets: ["latin"] });
@@ -41,6 +47,11 @@ const theme = extendTheme({
     body: rubik.style.fontFamily,
     display: rubik.style.fontFamily,
     code: sourceCodePro.style.fontFamily,
+  },
+  fontSize: {
+    xl7: "4.5rem",
+    xl6: "3.75rem",
+    xl5: "3rem",
   },
   zIndex: {
     header: 1100,
