@@ -34,7 +34,12 @@ import { contact, home } from "@/constants/nav";
 import formSchema, { FormSchema } from "./form-schema";
 
 const Contact: FC<BoxProps<"section">> = (props) => {
-  const { handleSubmit, control, formState, setError } = useForm<FormSchema>({
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitting, isSubmitSuccessful, errors },
+    setError,
+  } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     mode: "onBlur",
     defaultValues: { name: "", email: "", subject: "", message: "" },
@@ -82,7 +87,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                 </Grid>
               ))}
             </Grid>
-            {formState.isSubmitSuccessful ? (
+            {isSubmitSuccessful ? (
               <Grid xs={12} md={8}>
                 <Stack
                   spacing={2}
@@ -132,7 +137,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                       render={({ field, fieldState: { error } }) => (
                         <FormControl
                           error={Boolean(error)}
-                          disabled={formState.isSubmitting}
+                          disabled={isSubmitting}
                         >
                           <FormLabel>Name</FormLabel>
                           <Input {...field} />
@@ -148,7 +153,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                       render={({ field, fieldState: { error } }) => (
                         <FormControl
                           error={Boolean(error)}
-                          disabled={formState.isSubmitting}
+                          disabled={isSubmitting}
                         >
                           <FormLabel>Email</FormLabel>
                           <Input {...field} />
@@ -164,7 +169,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                       render={({ field, fieldState: { error } }) => (
                         <FormControl
                           error={Boolean(error)}
-                          disabled={formState.isSubmitting}
+                          disabled={isSubmitting}
                         >
                           <FormLabel>Subject</FormLabel>
                           <Input {...field} />
@@ -180,7 +185,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                       render={({ field, fieldState: { error } }) => (
                         <FormControl
                           error={Boolean(error)}
-                          disabled={formState.isSubmitting}
+                          disabled={isSubmitting}
                         >
                           <FormLabel>Message</FormLabel>
                           <Textarea minRows={5} maxRows={5} {...field} />
@@ -190,14 +195,14 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                     />
                   </Grid>
                 </Grid>
-                {formState.errors.root && (
+                {errors.root && (
                   <Grid xs={12} md={8} mdOffset={4}>
                     <Alert
                       variant="soft"
                       color="danger"
                       startDecorator={<ReportRounded />}
                     >
-                      {formState.errors.root.message}
+                      {errors.root.message}
                     </Alert>
                   </Grid>
                 )}
@@ -207,7 +212,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                     size="lg"
                     startDecorator={<SendRounded />}
                     fullWidth
-                    loading={formState.isSubmitting}
+                    loading={isSubmitting}
                   >
                     Send Message
                   </Button>
