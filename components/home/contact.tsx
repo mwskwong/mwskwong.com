@@ -56,7 +56,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
     <Box component="section" id={contact.id} {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" sx={{ textAlign: "center" }}>
+          <Typography level="h2" textAlign="center">
             Contact
           </Typography>
           <Grid
@@ -69,8 +69,8 @@ const Contact: FC<BoxProps<"section">> = (props) => {
             <Grid component="address" container xs={12} md={4} spacing={3}>
               {contactInfo.map(({ Icon, title, value, url }) => (
                 <Grid key={title} xs={12} sm={4} md={12}>
-                  <Stack spacing={1} sx={{ alignItems: "center" }}>
-                    <Icon sx={{ fontSize: "xl4" }} />
+                  <Stack spacing={1} alignItems="center">
+                    <Icon fontSize="xl4" />
                     <Typography>{title}</Typography>
                     <Link
                       href={url}
@@ -86,19 +86,17 @@ const Contact: FC<BoxProps<"section">> = (props) => {
               <Grid xs={12} md={8}>
                 <Stack
                   spacing={2}
-                  sx={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    height: "100%",
-                    textAlign: "center",
-                  }}
+                  alignItems="center"
+                  justifyContent="center"
+                  height="100%"
+                  textAlign="center"
                 >
                   <Sheet
                     color="success"
                     variant="soft"
                     sx={{ display: "flex", borderRadius: "sm", p: 1.5 }}
                   >
-                    <ThumbUpRounded sx={{ fontSize: "xl4" }} />
+                    <ThumbUpRounded fontSize="xl4" />
                   </Sheet>
                   <Typography level="h1" color="primary">
                     Thank You!
@@ -208,7 +206,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                     type="submit"
                     size="lg"
                     startDecorator={<SendRounded />}
-                    sx={{ width: "100%" }}
+                    fullWidth
                     loading={formState.isSubmitting}
                   >
                     Send Message

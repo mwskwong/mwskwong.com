@@ -1,22 +1,17 @@
 import { Box, IconButton, Link, SheetProps, Stack, Typography } from "@mui/joy";
-import mergeSx from "merge-sx";
 
 import { firstName, lastName, middleName } from "@/constants/content";
 import { getPlatformProfiles } from "@/lib";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
-const Footer = async ({ sx, ...props }: SheetProps<"footer">) => {
+const Footer = async (props: SheetProps<"footer">) => {
   const platformProfiles = await getPlatformProfiles();
   const currYear = new Date().getFullYear();
 
   return (
-    <Box
-      component="footer"
-      sx={mergeSx({ bgcolor: "background.level1" }, sx)}
-      {...props}
-    >
-      <Stack spacing={2} sx={{ alignItems: "center" }}>
-        <Box sx={{ textAlign: "center" }}>
+    <Box component="footer" bgcolor="background.level1" {...props}>
+      <Stack spacing={2} alignItems="center">
+        <Box textAlign="center">
           <Typography level="body-sm">
             {`Copyright © ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
           </Typography>

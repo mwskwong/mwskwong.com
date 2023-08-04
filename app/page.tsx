@@ -8,12 +8,12 @@ import SectionDivider from "@/components/section-divider";
 import { getCourses, getEducations } from "@/lib";
 
 const bgcolors = {
-  hero: undefined,
+  hero: "background.body",
   about: "background.level1",
   funFact: "primary.solidBg",
-  experience: undefined,
+  experience: "background.body",
   education: "background.level1",
-  contact: undefined,
+  contact: "background.body",
 };
 
 const Home = async () => {
@@ -24,29 +24,24 @@ const Home = async () => {
 
   return (
     <>
-      <Hero sx={{ bgcolor: bgcolors.hero }} />
-      <SectionDivider sx={{ color: bgcolors.hero, bgcolor: bgcolors.about }} />
-      <About sx={{ bgcolor: bgcolors.about }} />
-      <SectionDivider
-        sx={{ color: bgcolors.about, bgcolor: bgcolors.funFact }}
-      />
+      <Hero bgcolor={bgcolors.hero} />
+      <SectionDivider color={bgcolors.hero} bgcolor={bgcolors.about} />
+      <About bgcolor={bgcolors.about} />
+      <SectionDivider color={bgcolors.about} bgcolor={bgcolors.funFact} />
       <FunFact />
+      <SectionDivider color={bgcolors.funFact} bgcolor={bgcolors.experience} />
+      <Experience color={bgcolors.experience} />
       <SectionDivider
-        sx={{ color: bgcolors.funFact, bgcolor: bgcolors.experience }}
-      />
-      <Experience sx={{ bgcolor: bgcolors.experience }} />
-      <SectionDivider
-        sx={{ color: bgcolors.experience, bgcolor: bgcolors.education }}
+        color={bgcolors.experience}
+        bgcolor={bgcolors.education}
       />
       <Education
-        sx={{ bgcolor: bgcolors.education }}
+        bgcolor={bgcolors.education}
         educations={educations}
         courses={courses}
       />
-      <SectionDivider
-        sx={{ color: bgcolors.education, bgcolor: bgcolors.contact }}
-      />
-      <Contact sx={{ bgcolor: bgcolors.contact }} />
+      <SectionDivider color={bgcolors.education} bgcolor={bgcolors.contact} />
+      <Contact bgcolor={bgcolors.contact} />
     </>
   );
 };

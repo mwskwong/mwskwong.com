@@ -68,21 +68,14 @@ const TimelineItem: FC<Props> = forwardRef(
         {...props}
       >
         <Grid xs={12} sm={3}>
-          <Typography
-            level="body-xs"
-            sx={{
-              textTransform: "uppercase",
-              mt: 0.5,
-              mb: 1,
-            }}
-          >
+          <Typography level="body-xs" textTransform="uppercase" mt={0.5} mb={1}>
             {duration}
           </Typography>
         </Grid>
         <Grid xs={12} sm>
           <Typography level="title-md">{title}</Typography>
           <Stack spacing={1}>
-            <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
+            <Stack direction="row" spacing={1} flexWrap="wrap">
               <Typography>
                 {organizations.map(({ name, url }, index) => (
                   <Fragment key={name}>
@@ -148,7 +141,7 @@ const TimelineItem: FC<Props> = forwardRef(
               </List>
             )}
             {tags.length > 0 && (
-              <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
+              <Stack direction="row" spacing={1} flexWrap="wrap">
                 {tags.map((tag) => (
                   <Chip key={tag} color="primary" size="sm">
                     {tag}

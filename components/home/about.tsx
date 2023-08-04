@@ -25,7 +25,7 @@ const About = async (props: BoxProps<"section">) => {
   return (
     <Box component="section" id={about.id} {...props}>
       <Container>
-        <Stack spacing={6} sx={{ alignItems: "center", textAlign: "center" }}>
+        <Stack spacing={6} alignItems="center" textAlign="center">
           <Typography level="h2">About</Typography>
           {personalPhoto && (
             <Image
@@ -49,21 +49,19 @@ const About = async (props: BoxProps<"section">) => {
               </Typography>
               .
             </Typography>
-            <Typography sx={{ maxWidth: "60ch" }}>
-              {selfIntroduction}
-            </Typography>
+            <Typography maxWidth="60ch">{selfIntroduction}</Typography>
           </Stack>
           <Grid
             container
             spacing={6}
-            sx={{ justifyContent: "center" }}
+            justifyContent="center"
             disableEqualOverflow
           >
             {skillCategories.map(({ id, name, skills }) => {
               const Icon = getIconByContentfulId(id);
               return (
                 <Grid key={id} xs={12} sm={6} lg={4}>
-                  <Stack spacing={2} sx={{ alignItems: "center" }}>
+                  <Stack spacing={2} alignItems="center">
                     <Sheet
                       variant="outlined"
                       sx={{
@@ -72,7 +70,7 @@ const About = async (props: BoxProps<"section">) => {
                         p: 1.5,
                       }}
                     >
-                      {Icon && <Icon sx={{ fontSize: "xl4" }} />}
+                      {Icon && <Icon fontSize="xl4" />}
                     </Sheet>
                     <Typography level="title-md" color="primary">
                       {name}
@@ -80,7 +78,8 @@ const About = async (props: BoxProps<"section">) => {
                     <Stack
                       direction="row"
                       spacing={1}
-                      sx={{ justifyContent: "center", flexWrap: "wrap" }}
+                      justifyContent="center"
+                      flexWrap="wrap"
                     >
                       {skills.map((skill) => (
                         <Chip key={skill} variant="outlined">

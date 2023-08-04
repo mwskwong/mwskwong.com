@@ -34,10 +34,7 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
     {...props}
   >
     <Container>
-      <Stack
-        spacing={6}
-        sx={{ alignItems: { sm: "center" }, textAlign: "center" }}
-      >
+      <Stack spacing={6} alignItems={{ sm: "center" }} textAlign="center">
         <Stack spacing={2}>
           <Typography level="h2">Fun Fact</Typography>
           <Typography>
@@ -48,25 +45,21 @@ const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
         <Grid
           container
           spacing={6}
-          sx={{
-            justifyContent: "center",
-          }}
+          justifyContent="center"
           disableEqualOverflow
         >
           {websiteTechStack.map(({ name, Icon, url }) => (
             <Grid key={name} xs={6} sm={3}>
               <Stack
                 spacing={2}
-                sx={{
-                  alignItems: "center",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
+                alignItems="center"
+                color="inherit"
+                sx={{ textDecoration: "none" }}
                 component="a"
                 href={url}
                 target="_blank"
               >
-                <Icon sx={{ fontSize: "xl6" }} />
+                <Icon fontSize="xl6" />
                 <Typography>{name}</Typography>
               </Stack>
             </Grid>

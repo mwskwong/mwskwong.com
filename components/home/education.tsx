@@ -79,7 +79,7 @@ const Education: FC<Props> = ({
     <Box component="section" id={education.id} {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" sx={{ textAlign: "center" }}>
+          <Typography level="h2" textAlign="center">
             Education
           </Typography>
           <Timeline>
@@ -87,11 +87,11 @@ const Education: FC<Props> = ({
               <TimelineItem key={education.title} {...education} />
             ))}
           </Timeline>
-          <Stack spacing={2} sx={{ textAlign: "center", alignItems: "center" }}>
-            <Typography level="h3" sx={{ textAlign: "center" }}>
+          <Stack spacing={2} textAlign="center" alignItems="center">
+            <Typography level="h3" textAlign="center">
               Self-learning
             </Typography>
-            <Box component="figure" sx={{ maxWidth: "60ch" }}>
+            <Box component="figure" maxWidth="60ch">
               <Typography component="blockquote">
                 Stay hungry. Stay foolish. Never let go of your appetite to go
                 after new ideas, new experiences, and new adventures.
@@ -111,7 +111,8 @@ const Education: FC<Props> = ({
                   </IconButton>
                 )
               }
-              sx={{ width: "100%", maxWidth: 400, mx: "auto" }}
+              fullWidth
+              sx={{ maxWidth: 400, mx: "auto" }}
               value={courseSearch}
               onChange={(event) => setCourseSearch(event.target.value)}
             />
@@ -134,9 +135,7 @@ const Education: FC<Props> = ({
                           : null,
                       }}
                     >
-                      {Icon && (
-                        <Icon color="branding" sx={{ fontSize: "xl2" }} />
-                      )}
+                      {Icon && <Icon color="branding" fontSize="xl2" />}
                       <CardContent>
                         {certificate ? (
                           <Link
@@ -145,7 +144,7 @@ const Education: FC<Props> = ({
                             underline="none"
                             href={certificate}
                             target="_blank"
-                            sx={{ color: "inherit" }}
+                            sx={{ color: "text.primary" }}
                           >
                             {name}
                           </Link>

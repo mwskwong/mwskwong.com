@@ -1,5 +1,4 @@
 import { Box, BoxProps, Button, Container, Stack, Typography } from "@mui/joy";
-import mergeSx from "merge-sx";
 
 import LinkedIn from "@/components/icons/linkedin";
 import { firstName, jobTitles, lastName } from "@/constants/content";
@@ -7,7 +6,7 @@ import { linkedin } from "@/constants/contentful-ids";
 import { home } from "@/constants/nav";
 import { getCv, getPlatformProfiles } from "@/lib";
 
-const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
+const Hero = async (props: BoxProps<"section">) => {
   const [cv, platformProfiles] = await Promise.all([
     getCv(),
     getPlatformProfiles(),
@@ -17,15 +16,10 @@ const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
   );
 
   return (
-    <Box
-      component="section"
-      id={home.id}
-      sx={mergeSx({ pt: { sm: 16 } }, sx)}
-      {...props}
-    >
+    <Box component="section" id={home.id} pt={{ sm: 16 }} {...props}>
       <Container>
-        <Stack spacing={5} sx={{ justifyContent: "center" }}>
-          <Stack spacing={2} sx={{ textAlign: "center" }}>
+        <Stack spacing={5} justifyContent="center">
+          <Stack spacing={2} textAlign="center">
             <Typography level="body-sm">HELLO</Typography>
             <Typography level="h1">
               {"I'm "}
@@ -36,7 +30,7 @@ const Hero = async ({ sx, ...props }: BoxProps<"section">) => {
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={2}
-            sx={{ justifyContent: "center" }}
+            justifyContent="center"
           >
             <Button size="lg" component="a" href={cv} target="_blank">
               Download CV

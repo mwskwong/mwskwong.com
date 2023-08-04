@@ -33,7 +33,7 @@ const Experience = async (props: BoxProps<"section">) => {
     <Box component="section" id={experience.id} {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" sx={{ textAlign: "center" }}>
+          <Typography level="h2" textAlign="center">
             Experience
           </Typography>
           <Timeline>

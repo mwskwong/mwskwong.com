@@ -16,7 +16,6 @@ import {
   Stack,
   useColorScheme,
 } from "@mui/joy";
-import mergeSx from "merge-sx";
 import { FC, useRef, useState } from "react";
 
 import Icon from "@/app/icon.svg";
@@ -35,7 +34,7 @@ interface Props extends SheetProps<"header"> {
   }[];
 }
 
-const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
+const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { mode, setMode } = useColorScheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -43,35 +42,28 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
   return (
     <Box
       component="header"
-      sx={mergeSx(
-        {
-          position: "sticky",
-          top: 0,
-          borderBottom: 1,
-          borderColor: "divider",
-          bgcolor: "background.surface",
-          zIndex: "header",
-        },
-        sx,
-      )}
+      position="sticky"
+      top={0}
+      borderBottom={1}
+      borderColor="divider"
+      bgcolor="background.surface"
+      zIndex="header"
       {...props}
     >
       <Container>
         <Stack
           direction="row"
-          sx={{
-            alignItems: "center",
-            justifyContent: "space-between",
-            py: 1.5,
-          }}
+          alignItems="center"
+          justifyContent="space-between"
+          py={1.5}
         >
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+          <Stack direction="row" spacing={2} alignItems="center">
             <Link href={home.href} aria-label="Go to home page">
               <Icon width={32} />
             </Link>
             <NavList
               orientation="horizontal"
-              sx={{ display: { xs: "none", sm: "block" } }}
+              display={{ xs: "none", sm: "block" }}
             />
           </Stack>
           <Stack direction="row" spacing={1}>
@@ -127,7 +119,9 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
             }}
           >
             <NavList
-              sx={{ display: { sm: "none" }, mx: -1.5, my: 0.5 }}
+              display={{ sm: "none" }}
+              mx={-1.5}
+              my={0.5}
               onNavLinkClick={() => setDropdownOpen(false)}
             />
           </ClickAwayListener>
