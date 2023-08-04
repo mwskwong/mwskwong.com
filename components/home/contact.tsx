@@ -4,9 +4,9 @@ import { useSubmit } from "@formspree/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   KeyboardArrowUpRounded,
+  ReportRounded,
   SendRounded,
   ThumbUpRounded,
-  WarningRounded,
 } from "@mui/icons-material";
 import {
   Alert,
@@ -28,7 +28,7 @@ import {
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { address, contactInfo, email, phone } from "@/constants/content";
+import { contactInfo } from "@/constants/content";
 import { contact, home } from "@/constants/nav";
 
 import formSchema, { FormSchema } from "./form-schema";
@@ -44,9 +44,9 @@ const Contact: FC<BoxProps<"section">> = (props) => {
     {
       onError: (error) => {
         const formErrors = error.getFormErrors();
-        for (const { code, message } of formErrors) {
+        if (formErrors.length) {
+          const { code, message } = formErrors[0];
           setError("root", { type: code, message });
-          break;
         }
       },
     },
@@ -197,7 +197,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                     <Alert
                       variant="soft"
                       color="danger"
-                      startDecorator={<WarningRounded />}
+                      startDecorator={<ReportRounded />}
                     >
                       {formState.errors.root.message}
                     </Alert>
