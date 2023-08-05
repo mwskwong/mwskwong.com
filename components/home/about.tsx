@@ -41,7 +41,7 @@ const About = async (props: BoxProps<"section">) => {
               }}
             />
           )}
-          <Stack spacing={2}>
+          <Stack spacing={1}>
             <Typography level="title-lg">
               {"Hello again! "}
               <Typography color="primary">
