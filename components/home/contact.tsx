@@ -41,7 +41,7 @@ const Contact: FC<BoxProps<"section">> = (props) => {
     setError,
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    mode: "onBlur",
+    mode: "onTouched",
     defaultValues: { name: "", email: "", subject: "", message: "" },
   });
   const handleFormSubmit = useSubmit<FormSchema>(
