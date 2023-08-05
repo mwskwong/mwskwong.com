@@ -41,7 +41,7 @@ const About = async (props: BoxProps<"section">) => {
               }}
             />
           )}
-          <Stack spacing={1}>
+          <Box>
             <Typography level="title-lg">
               {"Hello again! "}
               <Typography color="primary">
@@ -50,7 +50,7 @@ const About = async (props: BoxProps<"section">) => {
               .
             </Typography>
             <Typography maxWidth="60ch">{selfIntroduction}</Typography>
-          </Stack>
+          </Box>
           <Grid
             container
             spacing={6}
