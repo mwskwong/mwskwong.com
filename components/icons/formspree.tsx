@@ -6,7 +6,7 @@ const Formspree: FC<SvgIconProps> = ({ sx, ...props }) => (
   <SvgIcon
     sx={mergeSx(
       {
-        p: "0.083em",
+        p: "var(--MaterialIcon-padding)",
         color: props.color === "branding" ? "#E5122E" : undefined,
       },
       sx,

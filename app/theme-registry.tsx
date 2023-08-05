@@ -23,7 +23,7 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
               ":root": {
                 "--Section-paddingY": theme.spacing(10),
                 "--Footer-paddingY": theme.spacing(6),
-                "--MaterialIcon-padding": "0.083em",
+                "--MaterialIcon-padding": `${(2 / 24).toFixed(5)}em`,
               },
               "::selection": {
                 backgroundColor: theme.vars.palette.primary.solidBg,
