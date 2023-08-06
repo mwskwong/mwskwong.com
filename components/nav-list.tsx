@@ -13,18 +13,14 @@ import useActiveSection from "@/utils/use-active-section";
 
 interface Props extends BoxProps<"nav"> {
   orientation?: ListProps["orientation"];
-  onNavLinkClick?: (
-    section: {
-      id: string;
-      name: string;
-      href: string;
-    },
+  onNavItemClick?: (
+    section: (typeof nav)[number],
     event: MouseEvent<HTMLAnchorElement>,
   ) => void;
 }
 
 const NavList: FC<Props> = forwardRef(
-  ({ orientation, onNavLinkClick, ...props }, ref) => {
+  ({ orientation, onNavItemClick, ...props }, ref) => {
     const activeSection = useActiveSection();
 
     return (
@@ -44,7 +40,7 @@ const NavList: FC<Props> = forwardRef(
                 component="a"
                 href={section.href}
                 selected={section.id === activeSection.id}
-                onClick={(event) => onNavLinkClick?.(section, event)}
+                onClick={(event) => onNavItemClick?.(section, event)}
               >
                 {section.name}
               </ListItemButton>

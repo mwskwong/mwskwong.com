@@ -28,9 +28,9 @@ interface Props extends SheetProps<"header"> {
   platformProfiles?: {
     platform?: {
       id: string;
-      name: string;
+      name?: string;
     };
-    url: string;
+    url?: string;
   }[];
 }
 
@@ -122,7 +122,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
               display={{ sm: "none" }}
               mx={-1.5}
               my={0.5}
-              onNavLinkClick={() => setDropdownOpen(false)}
+              onNavItemClick={() => setDropdownOpen(false)}
             />
           </ClickAwayListener>
         )}

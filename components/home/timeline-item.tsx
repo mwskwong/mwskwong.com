@@ -22,7 +22,7 @@ interface Props extends GridProps {
   to?: Date;
   title?: string;
   organizations?: {
-    name: string;
+    name?: string;
     url?: string;
   }[];
   organizationsRelationship?: string;
