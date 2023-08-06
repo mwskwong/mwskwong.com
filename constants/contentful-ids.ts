@@ -1,12 +1,12 @@
-export const datacamp = "39xxsgQxQ8QkkLanehShwM";
-export const enterprisedb = "2H5GgFU9w93zAuYJC9Ei77";
+export const dataCamp = "39xxsgQxQ8QkkLanehShwM";
+export const enterpriseDb = "2H5GgFU9w93zAuYJC9Ei77";
 export const github = "5okHEYjphz0Ijf8buAc53L";
 export const google = "7g52E2sWK3NrJrkHpo0FgM";
 export const linkedin = "1pixZwU07yhCdpEdkxGVof";
 export const microsoft = "3evl5GGoKX4ReIAqDHJOU5";
 export const mongodb = "31rWywCQiI78yNjvDJBhgT";
 export const oracle = "7zGOgiIofeUxiotCfqQlxr";
-export const stackoverflow = "1VVUJjfmnMSqIYZcpbQVLI";
+export const stackOverflow = "1VVUJjfmnMSqIYZcpbQVLI";
 export const udemy = "1HehJlTFU3uyHsvibs0jGk";
 export const youtube = "2tWpm6AFYaWAIBo6JoVufQ";
 export const backend = "2FtEFXEYpFad3n0eE4CNyF";

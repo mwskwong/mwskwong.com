@@ -23,15 +23,15 @@ import YouTube from "@/components/icons/youtube";
 import * as contentfulIds from "@/constants/contentful-ids";
 
 const Icons = {
-  [contentfulIds.datacamp]: DataCamp,
-  [contentfulIds.enterprisedb]: EnterpriseDb,
+  [contentfulIds.dataCamp]: DataCamp,
+  [contentfulIds.enterpriseDb]: EnterpriseDb,
   [contentfulIds.github]: GitHub,
   [contentfulIds.google]: Google,
   [contentfulIds.linkedin]: LinkedIn,
   [contentfulIds.microsoft]: Microsoft,
   [contentfulIds.mongodb]: MongoDb,
   [contentfulIds.oracle]: Oracle,
-  [contentfulIds.stackoverflow]: StackOverflow,
+  [contentfulIds.stackOverflow]: StackOverflow,
   [contentfulIds.udemy]: Udemy,
   [contentfulIds.youtube]: YouTube,
   [contentfulIds.backend]: TerminalRounded,
