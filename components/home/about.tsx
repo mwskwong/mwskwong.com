@@ -8,6 +8,7 @@ import {
   Stack,
   Typography,
 } from "@mui/joy";
+import { FC } from "react";
 
 import { firstName, lastName, selfIntroduction } from "@/constants/content";
 import { about } from "@/constants/nav";
@@ -16,7 +17,7 @@ import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
 import Image from "../image";
 
-const About = async (props: BoxProps<"section">) => {
+const About: FC<BoxProps<"section">> = async (props) => {
   const [personalPhoto, skillCategories] = await Promise.all([
     getPersonalPhoto(),
     getSkillCategories(),

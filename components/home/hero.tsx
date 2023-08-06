@@ -1,4 +1,5 @@
 import { Box, BoxProps, Button, Container, Stack, Typography } from "@mui/joy";
+import { FC } from "react";
 
 import LinkedIn from "@/components/icons/linkedin";
 import { firstName, jobTitles, lastName } from "@/constants/content";
@@ -6,7 +7,7 @@ import { linkedin } from "@/constants/contentful-ids";
 import { home } from "@/constants/nav";
 import { getCv, getPlatformProfiles } from "@/lib";
 
-const Hero = async (props: BoxProps<"section">) => {
+const Hero: FC<BoxProps<"section">> = async (props) => {
   const [cv, platformProfiles] = await Promise.all([
     getCv(),
     getPlatformProfiles(),

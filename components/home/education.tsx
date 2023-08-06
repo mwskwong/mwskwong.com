@@ -1,79 +1,27 @@
-"use client";
-
-import { ClearRounded, SearchRounded } from "@mui/icons-material";
-import {
-  Box,
-  BoxProps,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  IconButton,
-  Input,
-  Link,
-  Stack,
-  Typography,
-} from "@mui/joy";
-import { FC, useDeferredValue, useMemo, useState } from "react";
+import { Box, BoxProps, Container, Stack, Typography } from "@mui/joy";
+import { FC } from "react";
 
 import { education } from "@/constants/nav";
-import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
+import getCourses from "@/lib/get-courses";
+import getEducations from "@/lib/get-educations";
 
+import SelfLearning from "./self-learning";
 import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
 
-interface Props extends BoxProps<"section"> {
-  educations?: {
-    from: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
-    to?: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
-    program: string;
-    school?: {
-      name: string;
-      url?: string;
-    };
-    supportingDocuments?: {
-      title: string;
-      url: string;
-    }[];
-  }[];
-  courses: {
-    institution?: {
-      id: string;
-      name: string;
-    };
-    certificate?: string;
-    name: string;
-  }[];
-}
-
-const Education: FC<Props> = ({
-  educations: educationsProp = [],
-  courses,
-  ...props
-}) => {
-  const educations = educationsProp.map(
-    ({ from, to, program, school, ...rest }) => ({
-      from: new Date(from),
-      to: to && new Date(to),
-      title: program,
-      organizations: school && [school],
-      ...rest,
-    }),
-  );
-
-  const [courseSearch, setCourseSearch] = useState("");
-  const deferredCourseSearch = useDeferredValue(courseSearch);
-  const filteredCourses = useMemo(
-    () =>
-      courses.filter(({ name, institution }) => {
-        const searchStr = deferredCourseSearch.toLowerCase();
-        return (
-          name.toLowerCase().includes(searchStr) ||
-          institution?.name.toLowerCase().includes(searchStr)
-        );
-      }),
-    [courses, deferredCourseSearch],
-  );
+const Education: FC<BoxProps<"section">> = async (props) => {
+  const [educations, courses] = await Promise.all([
+    getEducations().then((educations) =>
+      educations.map(({ from, to, program, school, ...rest }) => ({
+        from: new Date(from),
+        to: to && new Date(to),
+        title: program,
+        organizations: school && [school],
+        ...rest,
+      })),
+    ),
+    getCourses(),
+  ]);
 
   return (
     <Box component="section" id={education.id} {...props}>
@@ -99,68 +47,7 @@ const Education: FC<Props> = ({
               <Typography component="figcaption">― Steve Jobs</Typography>
             </Box>
           </Stack>
-          <Stack spacing={2}>
-            <Input
-              size="lg"
-              placeholder="Search courses..."
-              startDecorator={<SearchRounded />}
-              endDecorator={
-                courseSearch.length > 0 && (
-                  <IconButton onClick={() => setCourseSearch("")}>
-                    <ClearRounded />
-                  </IconButton>
-                )
-              }
-              fullWidth
-              sx={{ maxWidth: 400, mx: "auto" }}
-              value={courseSearch}
-              onChange={(event) => setCourseSearch(event.target.value)}
-            />
-            <Grid container spacing={2}>
-              {filteredCourses.map(({ name, institution, certificate }) => {
-                const Icon =
-                  institution && getIconByContentfulId(institution.id);
-
-                return (
-                  <Grid key={name} xs={12} md={6}>
-                    <Card
-                      variant="outlined"
-                      orientation="horizontal"
-                      sx={{
-                        "&:hover": certificate
-                          ? {
-                              boxShadow: "md",
-                              borderColor: "neutral.outlinedHoverBorder",
-                            }
-                          : null,
-                      }}
-                    >
-                      {Icon && <Icon color="branding" fontSize="xl2" />}
-                      <CardContent>
-                        {certificate ? (
-                          <Link
-                            level="title-md"
-                            overlay
-                            underline="none"
-                            href={certificate}
-                            target="_blank"
-                            sx={{ color: "text.primary" }}
-                          >
-                            {name}
-                          </Link>
-                        ) : (
-                          <Typography level="title-md">{name}</Typography>
-                        )}
-                        <Typography level="body-sm">
-                          {institution?.name}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </Stack>
+          <SelfLearning courses={courses} />
         </Stack>
       </Container>
     </Box>

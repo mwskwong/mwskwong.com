@@ -1,4 +1,5 @@
 import { Box, BoxProps, Container, Stack, Typography } from "@mui/joy";
+import { FC } from "react";
 
 import { experience } from "@/constants/nav";
 import { getExperiences } from "@/lib";
@@ -6,7 +7,7 @@ import { getExperiences } from "@/lib";
 import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
 
-const Experience = async (props: BoxProps<"section">) => {
+const Experience: FC<BoxProps<"section">> = async (props) => {
   const experiences = (await getExperiences()).map(
     ({
       from,

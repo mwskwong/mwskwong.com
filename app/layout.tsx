@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
-import { PropsWithChildren } from "react";
+import { FC, PropsWithChildren } from "react";
 import { Article, WithContext } from "schema-dts";
 
 import Footer from "@/components/footer";
@@ -24,7 +24,7 @@ const title: Metadata["title"] = {
 };
 const description = selfIntroduction;
 
-const RootLayout = async ({ children }: PropsWithChildren) => {
+const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
   const platformProfiles = await getPlatformProfiles();
   const jsonLd: WithContext<Article> = {
     "@context": "https://schema.org",

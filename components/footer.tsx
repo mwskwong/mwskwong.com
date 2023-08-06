@@ -1,10 +1,11 @@
 import { Box, IconButton, Link, SheetProps, Stack, Typography } from "@mui/joy";
+import { FC } from "react";
 
 import { firstName, lastName, middleName } from "@/constants/content";
 import { getPlatformProfiles } from "@/lib";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
-const Footer = async (props: SheetProps<"footer">) => {
+const Footer: FC<SheetProps<"footer">> = async (props) => {
   const platformProfiles = await getPlatformProfiles();
   const currYear = new Date().getFullYear();
 
