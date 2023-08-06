@@ -19,8 +19,25 @@ declare module "@mui/joy" {
   }
 }
 
-const rubik = Rubik({ subsets: ["latin"] });
-const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
+const rubik = Rubik({
+  subsets: ["latin"],
+  adjustFontFallback: false,
+  fallback: ["var(--joy-fontFamily-fallback)"],
+});
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  adjustFontFallback: false,
+  fallback: [
+    "ui-monospace",
+    "SFMono-Regular",
+    "Menlo",
+    "Monaco",
+    "Consolas",
+    "Liberation Mono",
+    "Courier New",
+    "monospace",
+  ],
+});
 const theme = extendTheme({
   colorSchemes: {
     light: {
