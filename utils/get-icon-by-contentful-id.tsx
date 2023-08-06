@@ -22,19 +22,6 @@ import Udemy from "@/components/icons/udemy";
 import YouTube from "@/components/icons/youtube";
 import * as contentfulIds from "@/constants/contentful-ids";
 
-// const createSimpleIcon = (Icon: IconType) => {
-//   const SimpleIcon: IconType = forwardRef(({ className, ...props }, ref) => (
-//     <Icon
-//       ref={ref}
-//       className={clsx(simpleIconsClasses.root, className)}
-//       {...props}
-//     />
-//   ));
-//   SimpleIcon.displayName = Icon.displayName;
-
-//   return SimpleIcon;
-// };
-
 const Icons = {
   [contentfulIds.datacamp]: DataCamp,
   [contentfulIds.enterprisedb]: EnterpriseDb,
