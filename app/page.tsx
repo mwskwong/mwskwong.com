@@ -28,7 +28,7 @@ const Home = async () => {
       <SectionDivider color={bgcolors.hero} bgcolor={bgcolors.about} />
       <About bgcolor={bgcolors.about} />
       <SectionDivider color={bgcolors.about} bgcolor={bgcolors.funFact} />
-      <FunFact />
+      <FunFact sx={{ bgcolor: bgcolors.funFact }} />
       <SectionDivider color={bgcolors.funFact} bgcolor={bgcolors.experience} />
       <Experience color={bgcolors.experience} />
       <SectionDivider
