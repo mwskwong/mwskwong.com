@@ -34,7 +34,10 @@ const useActiveSection = () => {
     }, 1000 / 6); // 6 fps
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      handleScroll.cancel();
+    };
   }, []);
 
   return activeSection;
