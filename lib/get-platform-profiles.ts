@@ -1,10 +1,10 @@
 import { orderBy } from "lodash-es";
 
 import client from "./client";
-import { PlatformProfileEntrySkeleton } from "./types";
+import { PlatformProfileSkeleton } from "./types";
 
 const getPlatformProfiles = async () => {
-  const { items } = await client.getEntries<PlatformProfileEntrySkeleton>({
+  const { items } = await client.getEntries<PlatformProfileSkeleton>({
     content_type: "platformProfile",
   });
 

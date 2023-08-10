@@ -3,16 +3,16 @@ import { orderBy } from "lodash-es";
 
 import client from "./client";
 import {
-  ExperienceEntrySkeleton,
-  OrganizationEntrySkeleton,
-  SkillEntrySkeleton,
+  ExperienceSkeleton,
+  OrganizationSkeleton,
+  SkillSkeleton,
 } from "./types";
 
 const getExperiences = async () => {
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
-  const { items } = await client.getEntries<ExperienceEntrySkeleton>({
+  const { items } = await client.getEntries<ExperienceSkeleton>({
     content_type: "experience",
     order: ["fields.to"],
   });
@@ -32,10 +32,8 @@ const getExperiences = async () => {
       .filter(
         (
           elem,
-        ): elem is Entry<
-          OrganizationEntrySkeleton,
-          "WITHOUT_UNRESOLVABLE_LINKS"
-        > => Boolean(elem),
+        ): elem is Entry<OrganizationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> =>
+          Boolean(elem),
       )
       .map((company) => ({
         ...company.fields,
@@ -55,9 +53,7 @@ const getExperiences = async () => {
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
     skills: item.fields.skills
       .filter(
-        (
-          elem,
-        ): elem is Entry<SkillEntrySkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> =>
+        (elem): elem is Entry<SkillSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> =>
           Boolean(elem),
       )
       .map((skill) => skill.fields.name),
