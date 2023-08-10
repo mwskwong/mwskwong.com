@@ -106,7 +106,7 @@ const SelfLearning: FC<Props> = ({ courses = [], ...props }) => {
                         {institution?.name}
                       </Typography>
                     </Box>
-                    <Stack direction="row" spacing={0.5}>
+                    <Stack direction="row" spacing={1}>
                       {categories?.map((category) => (
                         <Chip key={category} size="sm">
                           {category}
