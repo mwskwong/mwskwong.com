@@ -24,7 +24,7 @@ import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
 
 interface Props extends BoxProps<"section"> {
-  educations?: {
+  educations: {
     from: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
     to?: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
     program: string;
@@ -48,7 +48,7 @@ interface Props extends BoxProps<"section"> {
 }
 
 const EducationClient: FC<Props> = ({
-  educations: educationsProp = [],
+  educations: educationsProp,
   courses,
   ...props
 }) => {
@@ -123,7 +123,7 @@ const EducationClient: FC<Props> = ({
                       variant="outlined"
                       orientation="horizontal"
                       sx={{
-                        "--Icon-fontSize": "var(--joy-fontSize-xl2)",
+                        "--Icon-fontSize": (theme) => theme.vars.fontSize.xl2,
                         "&:hover": certificate
                           ? {
                               boxShadow: "md",

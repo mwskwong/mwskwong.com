@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, BoxProps } from "@mui/joy";
 import mergeSx from "merge-sx";
 import { FC } from "react";
