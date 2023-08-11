@@ -3,8 +3,6 @@ import {
   LocationOnRounded,
   SmartphoneRounded,
 } from "@mui/icons-material";
-import { Stack } from "@mui/joy";
-import { HK } from "country-flag-icons/react/3x2";
 
 import Contentful from "@/components/icons/contentful";
 import Formspree from "@/components/icons/formspree";
@@ -89,12 +87,7 @@ export const contactInfo = [
   {
     Icon: LocationOnRounded,
     title: "Find Me At",
-    value: (
-      <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
-        <HK height="0.8em" fontSize="inherit" />
-        {address}
-      </Stack>
-    ),
+    value: address,
     url: "https://www.google.com/maps/place/Hong+Kong",
   },
 ];
