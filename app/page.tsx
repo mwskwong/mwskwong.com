@@ -18,7 +18,7 @@ const bgcolors = {
 };
 
 const Home: FC = () => (
-  <>
+  <main role="main">
     <Hero bgcolor={bgcolors.hero} />
     <SectionDivider color={bgcolors.hero} bgcolor={bgcolors.about} />
 
@@ -35,7 +35,7 @@ const Home: FC = () => (
     <SectionDivider color={bgcolors.education} bgcolor={bgcolors.contact} />
 
     <Contact bgcolor={bgcolors.contact} />
-  </>
+  </main>
 );
 
 export default Home;

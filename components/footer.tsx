@@ -14,7 +14,12 @@ const Footer: FC<BoxProps<"footer">> = async (props) => {
   const currYear = new Date().getFullYear();
 
   return (
-    <Box component="footer" bgcolor="background.level1" {...props}>
+    <Box
+      component="footer"
+      role="contentinfo"
+      bgcolor="background.level1"
+      {...props}
+    >
       <Stack spacing={2} alignItems="center">
         <Box textAlign="center">
           <Typography level="body-sm">
