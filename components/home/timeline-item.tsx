@@ -118,7 +118,7 @@ const TimelineItem: FC<Props> = forwardRef(
                         <Image
                           loader={thumIoPdfLoader}
                           src={url}
-                          alt={title}
+                          alt=""
                           width={80}
                           height={56}
                           sx={{

@@ -23,6 +23,7 @@ const Footer: FC<BoxProps<"footer">> = async (props) => {
           <Typography level="body-sm">
             {"Branding logo designed by "}
             <Link
+              underline="always"
               href="https://www.upwork.com/freelancers/manojk4"
               target="_blank"
             >
