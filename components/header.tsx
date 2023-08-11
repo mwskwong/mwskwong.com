@@ -1,21 +1,19 @@
 "use client";
 
-import { ClickAwayListener, NoSsr } from "@mui/base";
+import { ClickAwayListener } from "@mui/base/ClickAwayListener";
+import { NoSsr } from "@mui/base/NoSsr";
 import {
   CloseRounded,
   DarkModeRounded,
   LightModeRounded,
   MenuRounded,
 } from "@mui/icons-material";
-import {
-  Box,
-  Container,
-  IconButton,
-  Link,
-  SheetProps,
-  Stack,
-  useColorScheme,
-} from "@mui/joy";
+import Box, { BoxProps } from "@mui/joy/Box";
+import Container from "@mui/joy/Container";
+import IconButton from "@mui/joy/IconButton";
+import Link from "@mui/joy/Link";
+import Stack from "@mui/joy/Stack";
+import { useColorScheme } from "@mui/joy/styles";
 import { FC, useRef, useState } from "react";
 
 import Icon from "@/app/icon.svg";
@@ -24,7 +22,7 @@ import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
 import NavList from "./nav-list";
 
-interface Props extends SheetProps<"header"> {
+interface Props extends BoxProps<"header"> {
   platformProfiles?: {
     platform?: {
       id: string;

@@ -1,4 +1,8 @@
-import { Box, BoxProps, Button, Container, Stack, Typography } from "@mui/joy";
+import Box, { BoxProps } from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import Container from "@mui/joy/Container";
+import Stack from "@mui/joy/Stack";
+import Typography from "@mui/joy/Typography";
 import { FC } from "react";
 
 import LinkedIn from "@/components/icons/linkedin";

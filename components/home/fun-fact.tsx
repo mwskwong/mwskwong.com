@@ -1,14 +1,11 @@
 import { KeyboardArrowRightRounded } from "@mui/icons-material";
-import {
-  Button,
-  Container,
-  Grid,
-  Link,
-  Sheet,
-  SheetProps,
-  Stack,
-  Typography,
-} from "@mui/joy";
+import Button from "@mui/joy/Button";
+import Container from "@mui/joy/Container";
+import Grid from "@mui/joy/Grid";
+import Link from "@mui/joy/Link";
+import Sheet, { SheetProps } from "@mui/joy/Sheet";
+import Stack from "@mui/joy/Stack";
+import Typography from "@mui/joy/Typography";
 import mergeSx from "merge-sx";
 import { FC } from "react";
 

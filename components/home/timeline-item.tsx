@@ -1,17 +1,14 @@
 "use client";
 
-import {
-  Chip,
-  Grid,
-  GridProps,
-  Link,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemDecorator,
-  Stack,
-  Typography,
-} from "@mui/joy";
+import Chip from "@mui/joy/Chip";
+import Grid, { GridProps } from "@mui/joy/Grid";
+import Link from "@mui/joy/Link";
+import List from "@mui/joy/List";
+import ListItem from "@mui/joy/ListItem";
+import ListItemButton from "@mui/joy/ListItemButton";
+import ListItemDecorator from "@mui/joy/ListItemDecorator";
+import Stack from "@mui/joy/Stack";
+import Typography from "@mui/joy/Typography";
 import { FC, Fragment, forwardRef } from "react";
 
 import Image from "@/components/image";

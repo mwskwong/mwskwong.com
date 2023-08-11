@@ -1,6 +1,6 @@
 "use client";
 
-import { Grid, GridProps } from "@mui/joy";
+import Grid, { GridProps } from "@mui/joy/Grid";
 import { Children, FC, cloneElement, isValidElement } from "react";
 
 const Timeline: FC<GridProps> = ({ children, ...props }) => (

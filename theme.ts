@@ -1,4 +1,4 @@
-import { extendTheme } from "@mui/joy";
+import { extendTheme } from "@mui/joy/styles";
 import { Rubik, Source_Code_Pro } from "next/font/google";
 
 declare module "@mui/joy/styles/types/zIndex" {
@@ -7,15 +7,17 @@ declare module "@mui/joy/styles/types/zIndex" {
   }
 }
 
-declare module "@mui/joy" {
-  interface SvgIconPropsColorOverrides {
-    branding: true;
-  }
-
+declare module "@mui/joy/styles" {
   interface FontSizeOverrides {
     xl7: true;
     xl6: true;
     xl5: true;
+  }
+}
+
+declare module "@mui/joy/SvgIcon" {
+  interface SvgIconPropsColorOverrides {
+    branding: true;
   }
 }
 

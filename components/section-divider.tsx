@@ -1,4 +1,4 @@
-import { Box, BoxProps } from "@mui/joy";
+import Box, { BoxProps } from "@mui/joy/Box";
 import { FC } from "react";
 
 const Divider: FC<BoxProps<"svg">> = (props) => (

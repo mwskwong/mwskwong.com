@@ -1,11 +1,15 @@
-import { Box, IconButton, Link, SheetProps, Stack, Typography } from "@mui/joy";
+import Box, { BoxProps } from "@mui/joy/Box";
+import IconButton from "@mui/joy/IconButton";
+import Link from "@mui/joy/Link";
+import Stack from "@mui/joy/Stack";
+import Typography from "@mui/joy/Typography";
 import { FC } from "react";
 
 import { firstName, lastName, middleName } from "@/constants/content";
 import { getPlatformProfiles } from "@/lib";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
-const Footer: FC<SheetProps<"footer">> = async (props) => {
+const Footer: FC<BoxProps<"footer">> = async (props) => {
   const platformProfiles = await getPlatformProfiles();
   const currYear = new Date().getFullYear();
 
