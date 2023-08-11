@@ -11,7 +11,9 @@ import Mui from "@/components/icons/mui";
 import NextJs from "@/components/icons/nextjs";
 import React from "@/components/icons/react";
 import ReactHookForm from "@/components/icons/react-hook-form";
+import TypeScript from "@/components/icons/typescript";
 import Vercel from "@/components/icons/vercel";
+import Zod from "@/components/icons/zod";
 
 export const phone = "+852 6095 4241";
 export const email = "contact@mwskwong.com";
@@ -35,9 +37,14 @@ export const websiteTechStack = [
     url: "https://react.dev/",
   },
   {
-    name: "Next.js",
+    name: "Next.js App Router",
     Icon: NextJs,
     url: "https://nextjs.org/",
+  },
+  {
+    name: "TypeScript",
+    Icon: TypeScript,
+    url: "https://www.typescriptlang.org/",
   },
   {
     name: "MUI Joy UI",
@@ -48,6 +55,11 @@ export const websiteTechStack = [
     name: "React Hook Form",
     Icon: ReactHookForm,
     url: "https://react-hook-form.com/",
+  },
+  {
+    name: "Zod",
+    Icon: Zod,
+    url: "https://zod.dev/",
   },
   {
     name: "Vercel",
