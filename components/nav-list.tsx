@@ -6,7 +6,7 @@ import {
   ListItemButton,
   ListProps,
 } from "@mui/joy";
-import { FC, MouseEvent, forwardRef } from "react";
+import React, { FC, MouseEvent, forwardRef } from "react";
 
 import nav from "@/constants/nav";
 import useActiveSection from "@/utils/use-active-section";
@@ -32,7 +32,7 @@ const NavList: FC<Props> = forwardRef(
         <List
           orientation={orientation}
           sx={{
-            "--List-radius": "var(--joy-radius-sm)",
+            "--List-radius": (theme) => theme.vars.radius.sm,
             "--List-padding": "0px",
           }}
         >

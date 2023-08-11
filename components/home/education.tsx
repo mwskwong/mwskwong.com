@@ -123,7 +123,7 @@ const EducationClient: FC<Props> = ({
                       variant="outlined"
                       orientation="horizontal"
                       sx={{
-                        "--Icon-fontSize": "var(--joy-fontSize-xl2)",
+                        "--Icon-fontSize": (theme) => theme.vars.fontSize.xl2,
                         "&:hover": certificate
                           ? {
                               boxShadow: "md",
