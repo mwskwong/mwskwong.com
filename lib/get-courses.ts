@@ -1,10 +1,10 @@
-import "server-only";
+import { orderBy } from "lodash-es";
 
 import client from "./client";
-import { CourseEntrySkeleton } from "./types";
+import { CourseSkeleton } from "./types";
 
 const getCourses = async () => {
-  const { items } = await client.getEntries<CourseEntrySkeleton>({
+  const { items } = await client.getEntries<CourseSkeleton>({
     content_type: "course",
     order: ["fields.name"],
   });
@@ -18,6 +18,11 @@ const getCourses = async () => {
     certificate:
       item.fields.certificate?.fields.file &&
       `https:${item.fields.certificate.fields.file.url}`,
+    categories: orderBy(
+      item.fields.categories
+        .map((category) => category?.fields.name)
+        .filter((category): category is string => Boolean(category)),
+    ),
   }));
 };
 

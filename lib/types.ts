@@ -1,46 +1,54 @@
 import { EntryFieldTypes } from "contentful";
 
-export interface CourseEntrySkeleton {
-  contentTypeId: "course";
+export interface CourseCategorySkeleton {
+  contentTypeId: "courseCategory";
   fields: {
     name: EntryFieldTypes.Symbol;
-    institution: EntryFieldTypes.EntryLink<OrganizationEntrySkeleton>;
-    certificate?: EntryFieldTypes.AssetLink;
   };
 }
 
-export interface EducationEntrySkeleton {
+export interface CourseSkeleton {
+  contentTypeId: "course";
+  fields: {
+    name: EntryFieldTypes.Symbol;
+    institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
+    certificate?: EntryFieldTypes.AssetLink;
+    categories: EntryFieldTypes.Array<
+      EntryFieldTypes.EntryLink<CourseCategorySkeleton>
+    >;
+  };
+}
+
+export interface EducationSkeleton {
   contentTypeId: "education";
   fields: {
     from: EntryFieldTypes.Date;
     to?: EntryFieldTypes.Date;
     program: EntryFieldTypes.Symbol;
-    school: EntryFieldTypes.EntryLink<OrganizationEntrySkeleton>;
+    school: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     mode: EntryFieldTypes.Symbol;
     supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
   };
 }
 
-export interface ExperienceEntrySkeleton {
+export interface ExperienceSkeleton {
   contentTypeId: "experience";
   fields: {
     from: EntryFieldTypes.Date;
     to?: EntryFieldTypes.Date;
     jobTitle: EntryFieldTypes.Symbol;
     companies: EntryFieldTypes.Array<
-      EntryFieldTypes.EntryLink<OrganizationEntrySkeleton>
+      EntryFieldTypes.EntryLink<OrganizationSkeleton>
     >;
     companiesRelationship?: EntryFieldTypes.Symbol;
     employmentType: EntryFieldTypes.Symbol;
     jobDuties?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
-    skills: EntryFieldTypes.Array<
-      EntryFieldTypes.EntryLink<SkillEntrySkeleton>
-    >;
+    skills: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<SkillSkeleton>>;
   };
 }
 
-export interface OrganizationEntrySkeleton {
+export interface OrganizationSkeleton {
   contentTypeId: "organization";
   fields: {
     name: EntryFieldTypes.Symbol;
@@ -49,24 +57,24 @@ export interface OrganizationEntrySkeleton {
   };
 }
 
-export interface PlatformProfileEntrySkeleton {
+export interface PlatformProfileSkeleton {
   contentTypeId: "platformProfile";
   fields: {
-    platform: EntryFieldTypes.EntryLink<OrganizationEntrySkeleton>;
+    platform: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     url: EntryFieldTypes.Symbol;
   };
 }
 
-export interface SkillEntrySkeleton {
+export interface SkillSkeleton {
   contentTypeId: "skill";
   fields: {
     name: EntryFieldTypes.Symbol;
-    category?: EntryFieldTypes.EntryLink<SkillCategoryEntrySkeleton>;
+    category?: EntryFieldTypes.EntryLink<SkillCategorySkeleton>;
     proficiency: EntryFieldTypes.Integer;
   };
 }
 
-export interface SkillCategoryEntrySkeleton {
+export interface SkillCategorySkeleton {
   contentTypeId: "skillCategory";
   fields: {
     name: EntryFieldTypes.Symbol;

@@ -17,7 +17,8 @@ const useActiveSection = () => {
           startTransition(() => setActiveSection(lastSection));
         }
       } else {
-        for (const section of nav.slice().reverse()) {
+        for (let i = nav.length - 1; i >= 0; i--) {
+          const section = nav[i];
           const sectionElem = document.getElementById(section.id);
           const sectionActive =
             sectionElem &&
@@ -34,7 +35,10 @@ const useActiveSection = () => {
     }, 1000 / 6); // 6 fps
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      handleScroll.cancel();
+    };
   }, []);
 
   return activeSection;

@@ -1,11 +1,11 @@
 import client from "./client";
-import { EducationEntrySkeleton } from "./types";
+import { EducationSkeleton } from "./types";
 
 const getEducations = async () => {
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
-  const { items } = await client.getEntries<EducationEntrySkeleton>({
+  const { items } = await client.getEntries<EducationSkeleton>({
     content_type: "education",
     order: ["fields.to"],
   });
@@ -27,7 +27,7 @@ const getEducations = async () => {
           supportingDocument.fields.file && {
             title: supportingDocument.fields.title,
             url: `https:${supportingDocument.fields.file.url}`,
-          }
+          },
       )
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
   }));

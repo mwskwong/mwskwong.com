@@ -1,26 +1,25 @@
-import {
-  Chip,
-  Grid,
-  GridProps,
-  Link,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemDecorator,
-  Stack,
-  Typography,
-} from "@mui/joy";
+"use client";
+
+import Chip from "@mui/joy/Chip";
+import Grid, { GridProps } from "@mui/joy/Grid";
+import Link from "@mui/joy/Link";
+import List from "@mui/joy/List";
+import ListItem from "@mui/joy/ListItem";
+import ListItemButton from "@mui/joy/ListItemButton";
+import ListItemDecorator from "@mui/joy/ListItemDecorator";
+import Stack from "@mui/joy/Stack";
+import Typography from "@mui/joy/Typography";
 import { FC, Fragment, forwardRef } from "react";
 
 import Image from "@/components/image";
-import { thumIoLoader } from "@/utils/image-loaders";
+import { thumIoPdfLoader } from "@/utils/image-loaders";
 
 interface Props extends GridProps {
   from?: Date;
   to?: Date;
   title?: string;
   organizations?: {
-    name: string;
+    name?: string;
     url?: string;
   }[];
   organizationsRelationship?: string;
@@ -50,7 +49,7 @@ const TimelineItem: FC<Props> = forwardRef(
       tags = [],
       ...props
     },
-    ref
+    ref,
   ) => {
     const duration = to
       ? dateFormatter.formatRange(from, to)
@@ -66,19 +65,14 @@ const TimelineItem: FC<Props> = forwardRef(
         {...props}
       >
         <Grid xs={12} sm={3}>
-          <Typography
-            level="body3"
-            sx={{ textTransform: "uppercase", mt: 0.5, mb: 1 }}
-          >
+          <Typography level="body-xs" textTransform="uppercase" mt={0.5} mb={1}>
             {duration}
           </Typography>
         </Grid>
         <Grid xs={12} sm>
-          <Typography level="h6" component="h3">
-            {title}
-          </Typography>
+          <Typography level="title-md">{title}</Typography>
           <Stack spacing={1}>
-            <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
+            <Stack direction="row" spacing={1} flexWrap="wrap">
               <Typography>
                 {organizations.map(({ name, url }, index) => (
                   <Fragment key={name}>
@@ -90,7 +84,7 @@ const TimelineItem: FC<Props> = forwardRef(
                 ))}
               </Typography>
               {organizationsRelationship && (
-                <Chip variant="outlined" color="info" size="sm">
+                <Chip variant="outlined" color="warning" size="sm">
                   {organizationsRelationship}
                 </Chip>
               )}
@@ -109,7 +103,7 @@ const TimelineItem: FC<Props> = forwardRef(
               <List
                 size="sm"
                 sx={{
-                  "--List-radius": (theme) => theme.vars.radius.sm,
+                  "--List-radius": "var(--joy-radius-sm)",
                   "--List-padding": "0px",
                   "--ListItemDecorator-size":
                     "calc(80px + var(--ListItem-paddingX))",
@@ -122,9 +116,9 @@ const TimelineItem: FC<Props> = forwardRef(
                         sx={{ ml: "calc(var(--ListItem-paddingX) * -1)" }}
                       >
                         <Image
-                          loader={thumIoLoader}
+                          loader={thumIoPdfLoader}
                           src={url}
-                          alt={title}
+                          alt=""
                           width={80}
                           height={56}
                           sx={{
@@ -144,9 +138,9 @@ const TimelineItem: FC<Props> = forwardRef(
               </List>
             )}
             {tags.length > 0 && (
-              <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
+              <Stack direction="row" spacing={1} flexWrap="wrap">
                 {tags.map((tag) => (
-                  <Chip key={tag} variant="soft" size="sm">
+                  <Chip key={tag} color="primary" size="sm">
                     {tag}
                   </Chip>
                 ))}
@@ -156,12 +150,11 @@ const TimelineItem: FC<Props> = forwardRef(
         </Grid>
       </Grid>
     );
-  }
+  },
 );
 
 TimelineItem.displayName = "TimelineItem";
-// @ts-expect-error MUI specific checking on nested grid
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-TimelineItem.muiName = Grid.muiName;
+// @ts-expect-error MUI specific checking
+TimelineItem.muiName = "Grid";
 
 export default TimelineItem;

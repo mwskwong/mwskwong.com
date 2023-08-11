@@ -1,17 +1,17 @@
-/** @typedef {import("next").NextConfig} NextConfig */
-
-/** @type {(config?: NextConfig) => NextConfig} */
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-/** @type {NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" && {
       exclude: ["error"],
     },
+  },
+  images: {
+    loader: "custom",
+    loaderFile: "./utils/image-loaders.ts",
   },
   webpack: (config) => {
     /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -21,7 +21,7 @@ const nextConfig = {
     config.resolve.alias["@mui/material"] = "@mui/joy";
 
     const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg")
+      rule.test?.test?.(".svg"),
     );
     config.module.rules.push(
       {
@@ -34,7 +34,7 @@ const nextConfig = {
         issuer: /\.[jt]sx?$/,
         resourceQuery: { not: /url/ }, // exclude if *.svg?url
         use: ["@svgr/webpack"],
-      }
+      },
     );
     fileLoaderRule.exclude = /\.svg$/i;
 

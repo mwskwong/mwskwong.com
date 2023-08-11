@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import About from "@/components/home/about";
 import Contact from "@/components/home/contact";
 import Education from "@/components/home/education";
@@ -5,50 +7,35 @@ import Experience from "@/components/home/experience";
 import FunFact from "@/components/home/fun-fact";
 import Hero from "@/components/home/hero";
 import SectionDivider from "@/components/section-divider";
-import { getCourses, getEducations } from "@/lib";
 
 const bgcolors = {
-  hero: undefined,
+  hero: "background.body",
   about: "background.level1",
   funFact: "primary.solidBg",
-  experience: undefined,
+  experience: "background.body",
   education: "background.level1",
-  contact: undefined,
+  contact: "background.body",
 };
 
-const Home = async () => {
-  const [educations, courses] = await Promise.all([
-    getEducations(),
-    getCourses(),
-  ]);
+const Home: FC = () => (
+  <main role="main">
+    <Hero bgcolor={bgcolors.hero} />
+    <SectionDivider color={bgcolors.hero} bgcolor={bgcolors.about} />
 
-  return (
-    <>
-      <Hero sx={{ bgcolor: bgcolors.hero }} />
-      <SectionDivider sx={{ color: bgcolors.hero, bgcolor: bgcolors.about }} />
-      <About sx={{ bgcolor: bgcolors.about }} />
-      <SectionDivider
-        sx={{ color: bgcolors.about, bgcolor: bgcolors.funFact }}
-      />
-      <FunFact />
-      <SectionDivider
-        sx={{ color: bgcolors.funFact, bgcolor: bgcolors.experience }}
-      />
-      <Experience sx={{ bgcolor: bgcolors.experience }} />
-      <SectionDivider
-        sx={{ color: bgcolors.experience, bgcolor: bgcolors.education }}
-      />
-      <Education
-        sx={{ bgcolor: bgcolors.education }}
-        educations={educations}
-        courses={courses}
-      />
-      <SectionDivider
-        sx={{ color: bgcolors.education, bgcolor: bgcolors.contact }}
-      />
-      <Contact sx={{ bgcolor: bgcolors.contact }} />
-    </>
-  );
-};
+    <About bgcolor={bgcolors.about} />
+    <SectionDivider color={bgcolors.about} bgcolor={bgcolors.funFact} />
+
+    <FunFact sx={{ bgcolor: bgcolors.funFact }} />
+    <SectionDivider color={bgcolors.funFact} bgcolor={bgcolors.experience} />
+
+    <Experience color={bgcolors.experience} />
+    <SectionDivider color={bgcolors.experience} bgcolor={bgcolors.education} />
+
+    <Education bgcolor={bgcolors.education} />
+    <SectionDivider color={bgcolors.education} bgcolor={bgcolors.contact} />
+
+    <Contact bgcolor={bgcolors.contact} />
+  </main>
+);
 
 export default Home;

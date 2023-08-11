@@ -1,70 +1,18 @@
 "use client";
 
-import createCache, { Options } from "@emotion/cache";
-import { CacheProvider } from "@emotion/react";
-import {
-  CssBaseline,
-  CssVarsProvider,
-  GlobalStyles,
-  getInitColorSchemeScript,
-} from "@mui/joy";
-import { useServerInsertedHTML } from "next/navigation";
-import { FC, PropsWithChildren, useState } from "react";
+import CssBaseline from "@mui/joy/CssBaseline";
+import GlobalStyles from "@mui/joy/GlobalStyles";
+import { CssVarsProvider, getInitColorSchemeScript } from "@mui/joy/styles";
+import { FC, PropsWithChildren } from "react";
+import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
 
-import theme, { simpleIconsClasses } from "@/theme";
+import theme from "@/theme";
 
-// This implementation is from emotion-js
-// https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902
-const ThemeRegistry: FC<PropsWithChildren<{ options: Options }>> = ({
-  options,
-  children,
-}) => {
-  const [{ cache, flush }] = useState(() => {
-    const cache = createCache(options);
-    cache.compat = true;
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    const prevInsert = cache.insert;
-    let inserted: string[] = [];
-    cache.insert = (...args) => {
-      const serialized = args[1];
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      if (cache.inserted[serialized.name] === undefined) {
-        inserted.push(serialized.name);
-      }
-      return prevInsert(...args);
-    };
-    const flush = () => {
-      const prevInserted = inserted;
-      inserted = [];
-      return prevInserted;
-    };
-    return { cache, flush };
-  });
-
-  useServerInsertedHTML(() => {
-    const names = flush();
-    if (names.length === 0) {
-      return null;
-    }
-    let styles = "";
-    for (const name of names) {
-      styles += cache.inserted[name];
-    }
-    return (
-      <style
-        key={cache.key}
-        data-emotion={`${cache.key} ${names.join(" ")}`}
-        dangerouslySetInnerHTML={{
-          __html: styles,
-        }}
-      />
-    );
-  });
-
+const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       {getInitColorSchemeScript()}
-      <CacheProvider value={cache}>
+      <NextAppDirEmotionCacheProvider options={{ key: "joy" }}>
         <CssVarsProvider theme={theme}>
           <CssBaseline />
           <GlobalStyles
@@ -72,39 +20,40 @@ const ThemeRegistry: FC<PropsWithChildren<{ options: Options }>> = ({
               ":root": {
                 "--Section-paddingY": theme.spacing(10),
                 "--Footer-paddingY": theme.spacing(6),
+                "--MaterialIcon-padding": `${(2 / 24).toFixed(5)}em`,
               },
               "::selection": {
                 backgroundColor: theme.vars.palette.primary.solidBg,
                 color: theme.vars.palette.primary.solidColor,
               },
+              address: {
+                fontStyle: "unset",
+              },
+              blockquote: {
+                fontStyle: "italic",
+                "&::before": { content: "'“'" },
+                "&::after": { content: "'”'" },
+              },
               code: {
                 fontFamily: theme.vars.fontFamily.code,
               },
-              svg: {
-                display: "block",
-              },
-              section: {
-                paddingBlock: "var(--Section-paddingY)",
+              figure: {
+                margin: 0,
               },
               footer: {
                 paddingBlock: "var(--Footer-paddingY)",
               },
-              address: {
-                fontStyle: "unset",
+              section: {
+                paddingBlock: "var(--Section-paddingY)",
               },
-              [`.${simpleIconsClasses.root}`]: {
-                color: "var(--Icon-color)",
-                margin: "var(--Icon-margin)",
-                fontSize: "var(--Icon-fontSize, 20px)",
-                padding: "0.083em", // 2 / 24; Material icons standard, leaving 2dp padding around a 24dp icon.
-                width: "1em",
-                height: "1em",
+              svg: {
+                display: "block",
               },
             })}
           />
           {children}
         </CssVarsProvider>
-      </CacheProvider>
+      </NextAppDirEmotionCacheProvider>
     </>
   );
 };

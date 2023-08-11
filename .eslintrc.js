@@ -18,6 +18,10 @@ module.exports = {
       "error",
       { ignoreArrowShorthand: true },
     ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { checksVoidReturn: false },
+    ],
   },
   overrides: [
     {

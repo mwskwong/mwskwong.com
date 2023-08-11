@@ -1,16 +1,14 @@
-import "server-only";
-
 import client from "./client";
-import { SkillCategoryEntrySkeleton, SkillEntrySkeleton } from "./types";
+import { SkillCategorySkeleton, SkillSkeleton } from "./types";
 
 const getSkillCategories = async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
-    client.getEntries<SkillEntrySkeleton>({
+    client.getEntries<SkillSkeleton>({
       content_type: "skill",
       "fields.category[exists]": true,
       order: ["-fields.proficiency", "fields.name"],
     }),
-    client.getEntries<SkillCategoryEntrySkeleton>({
+    client.getEntries<SkillCategorySkeleton>({
       content_type: "skillCategory",
       order: ["-fields.proficiency", "fields.name"],
     }),

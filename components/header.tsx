@@ -1,22 +1,19 @@
 "use client";
 
-import { ClickAwayListener, NoSsr } from "@mui/base";
+import { ClickAwayListener } from "@mui/base/ClickAwayListener";
+import { NoSsr } from "@mui/base/NoSsr";
 import {
   CloseRounded,
   DarkModeRounded,
   LightModeRounded,
   MenuRounded,
 } from "@mui/icons-material";
-import {
-  Box,
-  Container,
-  IconButton,
-  Link,
-  SheetProps,
-  Stack,
-  useColorScheme,
-} from "@mui/joy";
-import mergeSx from "merge-sx";
+import Box, { BoxProps } from "@mui/joy/Box";
+import Container from "@mui/joy/Container";
+import IconButton from "@mui/joy/IconButton";
+import Link from "@mui/joy/Link";
+import Stack from "@mui/joy/Stack";
+import { useColorScheme } from "@mui/joy/styles";
 import { FC, useRef, useState } from "react";
 
 import Icon from "@/app/icon.svg";
@@ -25,17 +22,17 @@ import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
 import NavList from "./nav-list";
 
-interface Props extends SheetProps<"header"> {
+interface Props extends BoxProps<"header"> {
   platformProfiles?: {
     platform?: {
       id: string;
-      name: string;
+      name?: string;
     };
-    url: string;
+    url?: string;
   }[];
 }
 
-const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
+const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { mode, setMode } = useColorScheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -43,35 +40,28 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
   return (
     <Box
       component="header"
-      sx={mergeSx(
-        {
-          position: "sticky",
-          top: 0,
-          borderBottom: 1,
-          borderColor: "divider",
-          bgcolor: "background.surface",
-          zIndex: "header",
-        },
-        sx
-      )}
+      position="sticky"
+      top={0}
+      borderBottom={1}
+      borderColor="divider"
+      bgcolor="background.surface"
+      zIndex="header"
       {...props}
     >
       <Container>
         <Stack
           direction="row"
-          sx={{
-            alignItems: "center",
-            justifyContent: "space-between",
-            py: 1.5,
-          }}
+          alignItems="center"
+          justifyContent="space-between"
+          py={1.5}
         >
-          <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+          <Stack direction="row" spacing={2} alignItems="center">
             <Link href={home.href} aria-label="Go to home page">
               <Icon width={32} />
             </Link>
             <NavList
               orientation="horizontal"
-              sx={{ display: { xs: "none", sm: "block" } }}
+              display={{ xs: "none", sm: "block" }}
             />
           </Stack>
           <Stack direction="row" spacing={1}>
@@ -84,7 +74,6 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
                 <IconButton
                   key={platform?.id}
                   variant="outlined"
-                  color="neutral"
                   size="sm"
                   component="a"
                   href={url}
@@ -97,7 +86,6 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
             })}
             <IconButton
               variant="outlined"
-              color="neutral"
               size="sm"
               onClick={() => setMode(mode === "dark" ? "light" : "dark")}
               aria-label="Toggle color scheme"
@@ -109,7 +97,6 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
             <IconButton
               ref={menuButtonRef}
               variant="outlined"
-              color="neutral"
               size="sm"
               sx={{ display: { sm: "none" } }}
               onClick={() => setDropdownOpen((prev) => !prev)}
@@ -130,8 +117,10 @@ const Header: FC<Props> = ({ platformProfiles = [], sx, ...props }) => {
             }}
           >
             <NavList
-              sx={{ display: { sm: "none" }, mx: -1.5 }}
-              onNavLinkClick={() => setDropdownOpen(false)}
+              display={{ sm: "none" }}
+              mx={-1.5}
+              my={0.5}
+              onNavItemClick={() => setDropdownOpen(false)}
             />
           </ClickAwayListener>
         )}

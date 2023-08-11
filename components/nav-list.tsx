@@ -1,39 +1,33 @@
-import {
-  Box,
-  BoxProps,
-  List,
-  ListItem,
-  ListItemButton,
-  ListProps,
-} from "@mui/joy";
-import React, { FC, MouseEvent, forwardRef } from "react";
+import Box, { BoxProps } from "@mui/joy/Box";
+import List, { ListProps } from "@mui/joy/List";
+import ListItem from "@mui/joy/ListItem";
+import ListItemButton from "@mui/joy/ListItemButton";
+import { FC, MouseEvent, forwardRef } from "react";
 
 import nav from "@/constants/nav";
 import useActiveSection from "@/utils/use-active-section";
 
 interface Props extends BoxProps<"nav"> {
   orientation?: ListProps["orientation"];
-  onNavLinkClick?: (
-    section: {
-      id: string;
-      name: string;
-      href: string;
-    },
-    event: MouseEvent<HTMLAnchorElement>
+  onNavItemClick?: (
+    section: (typeof nav)[number],
+    event: MouseEvent<HTMLAnchorElement>,
   ) => void;
 }
 
 const NavList: FC<Props> = forwardRef(
-  ({ orientation, onNavLinkClick, ...props }, ref) => {
+  ({ orientation, onNavItemClick, ...props }, ref) => {
     const activeSection = useActiveSection();
 
     return (
-      <Box ref={ref} component="nav" {...props}>
+      <Box ref={ref} component="nav" role="navigation" {...props}>
         <List
           orientation={orientation}
           sx={{
-            "--List-radius": (theme) => theme.vars.radius.sm,
+            "--List-radius": "var(--joy-radius-md)",
             "--List-padding": "0px",
+            "--List-gap": (theme) =>
+              orientation === "horizontal" ? theme.spacing(1) : "0px",
           }}
         >
           {nav.slice(1).map((section) => (
@@ -42,7 +36,7 @@ const NavList: FC<Props> = forwardRef(
                 component="a"
                 href={section.href}
                 selected={section.id === activeSection.id}
-                onClick={(event) => onNavLinkClick?.(section, event)}
+                onClick={(event) => onNavItemClick?.(section, event)}
               >
                 {section.name}
               </ListItemButton>
@@ -51,7 +45,7 @@ const NavList: FC<Props> = forwardRef(
         </List>
       </Box>
     );
-  }
+  },
 );
 
 NavList.displayName = "NavList";

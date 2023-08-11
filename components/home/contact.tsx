@@ -1,72 +1,64 @@
 "use client";
 
+import { useSubmit } from "@formspree/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  EmailRounded,
   KeyboardArrowUpRounded,
-  LocationOnRounded,
+  ReportRounded,
   SendRounded,
-  SmartphoneRounded,
   ThumbUpRounded,
 } from "@mui/icons-material";
-import {
-  Alert,
-  Box,
-  BoxProps,
-  Button,
-  Container,
-  Grid,
-  Link as JoyLink,
-  Sheet,
-  Stack,
-  Typography,
-} from "@mui/joy";
+import Alert from "@mui/joy/Alert";
+import Box, { BoxProps } from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import Container from "@mui/joy/Container";
+import FormControl from "@mui/joy/FormControl";
+import FormHelperText from "@mui/joy/FormHelperText";
+import FormLabel from "@mui/joy/FormLabel";
+import Grid from "@mui/joy/Grid";
+import Input from "@mui/joy/Input";
+import Link from "@mui/joy/Link";
+import Sheet from "@mui/joy/Sheet";
+import Stack from "@mui/joy/Stack";
+import Textarea from "@mui/joy/Textarea";
+import Typography from "@mui/joy/Typography";
 import { FC } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
-import { address, email, phone } from "@/constants/data";
+import { contactInfo } from "@/constants/content";
 import { contact, home } from "@/constants/nav";
 
-import FormInput from "./form-input";
-import FormSchema, { FormSchema as TFormSchema } from "./form-schema";
-import FormTextarea from "./form-textarea";
-import useFormspree from "./use-formspree";
-
-const personalInfo = [
-  {
-    Icon: SmartphoneRounded,
-    title: "Call Me At",
-    value: phone,
-    url: `tel:${phone}`,
-  },
-  {
-    Icon: EmailRounded,
-    title: "Email Me At",
-    value: email,
-    url: `mailto:${email}`,
-  },
-  {
-    Icon: LocationOnRounded,
-    title: "Find Me At",
-    value: address,
-    url: "https://www.google.com/maps/place/Hong+Kong",
-  },
-];
+import formSchema, { FormSchema } from "./form-schema";
 
 const Contact: FC<BoxProps<"section">> = (props) => {
-  const { handleSubmit, control } = useForm<TFormSchema>({
-    resolver: zodResolver(FormSchema),
-    mode: "onChange",
+  const {
+    handleSubmit,
+    control,
+    formState: { isSubmitting, isSubmitSuccessful, errors },
+    setError,
+  } = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+    mode: "onTouched",
+    defaultValues: { name: "", email: "", subject: "", message: "" },
   });
-  const [state, handleFormspreeSubmit] = useFormspree(
-    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? ""
+  const handleFormSubmit = useSubmit<FormSchema>(
+    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "",
+    {
+      onError: (error) => {
+        const formErrors = error.getFormErrors();
+        if (formErrors.length) {
+          const { code, message } = formErrors[0];
+          setError("root", { type: code, message });
+        }
+      },
+    },
   );
 
   return (
     <Box component="section" id={contact.id} {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" sx={{ textAlign: "center" }}>
+          <Typography level="h2" textAlign="center">
             Contact
           </Typography>
           <Grid
@@ -74,35 +66,32 @@ const Contact: FC<BoxProps<"section">> = (props) => {
             spacing={6}
             disableEqualOverflow
             component="form"
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            onSubmit={handleSubmit(handleFormspreeSubmit)}
+            onSubmit={handleSubmit(handleFormSubmit)}
           >
             <Grid component="address" container xs={12} md={4} spacing={3}>
-              {personalInfo.map(({ Icon, title, value, url }) => (
+              {contactInfo.map(({ Icon, title, value, url }) => (
                 <Grid key={title} xs={12} sm={4} md={12}>
-                  <Stack spacing={1} sx={{ alignItems: "center" }}>
+                  <Stack spacing={1} alignItems="center">
                     <Icon fontSize="xl4" />
                     <Typography>{title}</Typography>
-                    <JoyLink
+                    <Link
                       href={url}
                       target={url.startsWith("http") ? "_blank" : undefined}
                     >
                       {value}
-                    </JoyLink>
+                    </Link>
                   </Stack>
                 </Grid>
               ))}
             </Grid>
-            {state.succeeded && (
+            {isSubmitSuccessful ? (
               <Grid xs={12} md={8}>
                 <Stack
                   spacing={2}
-                  sx={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    height: "100%",
-                    textAlign: "center",
-                  }}
+                  alignItems="center"
+                  justifyContent="center"
+                  height="100%"
+                  textAlign="center"
                 >
                   <Sheet
                     color="success"
@@ -127,69 +116,105 @@ const Contact: FC<BoxProps<"section">> = (props) => {
                   </Button>
                 </Stack>
               </Grid>
-            )}
-            {/* Nested grid container MUST be a direct child inside another grid container. i.e. cannot be wrapped in Fragment */}
-            {!state.succeeded && (
-              <Grid container rowSpacing={1} columnSpacing={2} xs={12} md={8}>
-                <Grid xs={12} sm={6}>
-                  <FormInput
-                    control={control}
-                    name="name"
-                    label="Name"
-                    disabled={state.submitting}
-                  />
-                </Grid>
-                <Grid xs={12} sm={6}>
-                  <FormInput
-                    control={control}
-                    name="email"
-                    label="Email"
-                    disabled={state.submitting}
-                    slotProps={{ input: { type: "email" } }}
-                  />
-                </Grid>
-                <Grid xs={12}>
-                  <FormInput
-                    control={control}
-                    name="subject"
-                    label="Subject"
-                    disabled={state.submitting}
-                  />
-                </Grid>
-                <Grid xs={12}>
-                  <FormTextarea
-                    control={control}
-                    name="message"
-                    label="Message"
-                    disabled={state.submitting}
-                    slotProps={{ textarea: { minRows: 5, maxRows: 5 } }}
-                  />
-                </Grid>
-              </Grid>
-            )}
-            {!state.succeeded && Boolean(state.errors.length) && (
-              <Grid xs={12} md={8} mdOffset={4}>
-                <Stack spacing={1}>
-                  {state.errors.map(({ message }, index) => (
-                    <Alert key={index} color="danger">
-                      {message}
-                    </Alert>
-                  ))}
-                </Stack>
-              </Grid>
-            )}
-            {!state.succeeded && (
-              <Grid xs={12} sm="auto" smOffset="auto">
-                <Button
-                  type="submit"
-                  size="lg"
-                  startDecorator={<SendRounded />}
-                  sx={{ width: "100%" }}
-                  loading={state.submitting}
+            ) : (
+              <>
+                <Grid
+                  // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
+                  unstable_level={1}
+                  container
+                  rowSpacing={1}
+                  columnSpacing={2}
+                  xs={12}
+                  md={8}
                 >
-                  Send Message
-                </Button>
-              </Grid>
+                  <Grid xs={12} sm={6}>
+                    <Controller
+                      name="name"
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <FormControl
+                          error={Boolean(error)}
+                          disabled={isSubmitting}
+                        >
+                          <FormLabel>Name</FormLabel>
+                          <Input {...field} />
+                          <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
+                    />
+                  </Grid>
+                  <Grid xs={12} sm={6}>
+                    <Controller
+                      name="email"
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <FormControl
+                          error={Boolean(error)}
+                          disabled={isSubmitting}
+                        >
+                          <FormLabel>Email</FormLabel>
+                          <Input {...field} />
+                          <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
+                    />
+                  </Grid>
+                  <Grid xs={12}>
+                    <Controller
+                      name="subject"
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <FormControl
+                          error={Boolean(error)}
+                          disabled={isSubmitting}
+                        >
+                          <FormLabel>Subject</FormLabel>
+                          <Input {...field} />
+                          <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
+                    />
+                  </Grid>
+                  <Grid xs={12}>
+                    <Controller
+                      name="message"
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <FormControl
+                          error={Boolean(error)}
+                          disabled={isSubmitting}
+                        >
+                          <FormLabel>Message</FormLabel>
+                          <Textarea minRows={5} maxRows={5} {...field} />
+                          <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
+                    />
+                  </Grid>
+                </Grid>
+                {errors.root && (
+                  <Grid xs={12} md={8} mdOffset={4}>
+                    <Alert
+                      variant="soft"
+                      color="danger"
+                      startDecorator={<ReportRounded />}
+                    >
+                      {errors.root.message}
+                    </Alert>
+                  </Grid>
+                )}
+                <Grid xs={12} sm="auto" smOffset="auto">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    startDecorator={<SendRounded />}
+                    fullWidth
+                    loading={isSubmitting}
+                  >
+                    Send Message
+                  </Button>
+                </Grid>
+              </>
             )}
           </Grid>
         </Stack>
