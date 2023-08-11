@@ -109,7 +109,7 @@ const TimelineItem: FC<Props> = forwardRef(
               <List
                 size="sm"
                 sx={{
-                  "--List-radius": "var(--joy-radius-sm)",
+                  "--List-radius": (theme) => theme.vars.radius.sm,
                   "--List-padding": "0px",
                   "--ListItemDecorator-size":
                     "calc(80px + var(--ListItem-paddingX))",
