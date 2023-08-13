@@ -11,7 +11,10 @@ import { FC } from "react";
 
 import { websiteTechStack } from "@/constants/content";
 
-const FunFact: FC<SheetProps> = ({ sx, ...props }) => (
+const FunFact: FC<Omit<SheetProps<"section">, "children">> = ({
+  sx,
+  ...props
+}) => (
   <Sheet
     component="section"
     variant="solid"

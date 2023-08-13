@@ -30,7 +30,7 @@ import { contact, home } from "@/constants/nav";
 
 import formSchema, { FormSchema } from "./form-schema";
 
-const Contact: FC<BoxProps<"section">> = (props) => {
+const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
   const {
     handleSubmit,
     control,
