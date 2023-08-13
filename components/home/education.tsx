@@ -12,7 +12,7 @@ import SelfLearning from "./self-learning";
 import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
 
-const Education: FC<BoxProps<"section">> = async (props) => {
+const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   const [educations, courses] = await Promise.all([
     getEducations().then((educations) =>
       educations.map(({ from, to, program, school, ...rest }) => ({

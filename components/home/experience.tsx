@@ -10,7 +10,7 @@ import { getExperiences } from "@/lib";
 import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
 
-const Experience: FC<BoxProps<"section">> = async (props) => {
+const Experience: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   const experiences = (await getExperiences()).map(
     ({
       from,

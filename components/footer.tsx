@@ -9,7 +9,7 @@ import { firstName, lastName, middleName } from "@/constants/content";
 import { getPlatformProfiles } from "@/lib";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
-const Footer: FC<BoxProps<"footer">> = async (props) => {
+const Footer: FC<Omit<BoxProps<"footer">, "children">> = async (props) => {
   const platformProfiles = await getPlatformProfiles();
   const currYear = new Date().getFullYear();
 

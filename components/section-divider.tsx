@@ -1,7 +1,7 @@
 import Box, { BoxProps } from "@mui/joy/Box";
 import { FC } from "react";
 
-const Divider: FC<BoxProps<"svg">> = (props) => (
+const Divider: FC<Omit<BoxProps<"svg">, "children">> = (props) => (
   <Box
     component="svg"
     xmlns="http://www.w3.org/2000/svg"

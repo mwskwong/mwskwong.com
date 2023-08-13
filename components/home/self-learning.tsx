@@ -15,7 +15,7 @@ import { FC, useDeferredValue, useMemo, useState } from "react";
 
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
-interface Props extends StackProps {
+interface Props extends Omit<StackProps, "children"> {
   courses?: {
     institution?: {
       id: string;

@@ -11,7 +11,7 @@ import { linkedin } from "@/constants/contentful-ids";
 import { home } from "@/constants/nav";
 import { getCv, getPlatformProfiles } from "@/lib";
 
-const Hero: FC<BoxProps<"section">> = async (props) => {
+const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   const [cv, platformProfiles] = await Promise.all([
     getCv(),
     getPlatformProfiles(),

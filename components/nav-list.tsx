@@ -7,7 +7,7 @@ import { FC, MouseEvent, forwardRef } from "react";
 import nav from "@/constants/nav";
 import useActiveSection from "@/utils/use-active-section";
 
-interface Props extends BoxProps<"nav"> {
+interface Props extends Omit<BoxProps<"nav">, "children"> {
   orientation?: ListProps["orientation"];
   onNavItemClick?: (
     section: (typeof nav)[number],

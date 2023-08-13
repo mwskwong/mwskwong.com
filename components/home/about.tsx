@@ -14,7 +14,7 @@ import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
 import Image from "../image";
 
-const About: FC<BoxProps<"section">> = async (props) => {
+const About: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   const [personalPhoto, skillCategories] = await Promise.all([
     getPersonalPhoto(),
     getSkillCategories(),

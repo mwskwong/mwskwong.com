@@ -22,7 +22,7 @@ import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
 import NavList from "./nav-list";
 
-interface Props extends BoxProps<"header"> {
+interface Props extends Omit<BoxProps<"header">, "children"> {
   platformProfiles?: {
     platform?: {
       id: string;

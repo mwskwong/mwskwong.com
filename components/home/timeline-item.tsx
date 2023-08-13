@@ -14,7 +14,7 @@ import { FC, Fragment, forwardRef } from "react";
 import Image from "@/components/image";
 import { thumIoPdfLoader } from "@/utils/image-loaders";
 
-interface Props extends GridProps {
+interface Props extends Omit<GridProps, "children"> {
   from?: Date;
   to?: Date;
   title?: string;
