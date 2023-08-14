@@ -62,11 +62,7 @@ const About: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
                   <Stack spacing={2} alignItems="center">
                     <Sheet
                       variant="outlined"
-                      sx={{
-                        display: "flex",
-                        borderRadius: "sm",
-                        p: 1.5,
-                      }}
+                      sx={{ display: "flex", borderRadius: "sm", p: 1.5 }}
                     >
                       {Icon && <Icon fontSize="xl4" />}
                     </Sheet>

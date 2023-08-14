@@ -74,12 +74,12 @@ const SelfLearning: FC<Props> = ({ courses = [], ...props }) => {
                   variant="outlined"
                   orientation="horizontal"
                   sx={{
-                    "&:hover": certificate
-                      ? {
-                          boxShadow: "md",
-                          borderColor: "neutral.outlinedHoverBorder",
-                        }
-                      : null,
+                    ...(certificate && {
+                      "&:hover": {
+                        boxShadow: "md",
+                        borderColor: "neutral.outlinedHoverBorder",
+                      },
+                    }),
                   }}
                 >
                   {Icon && <Icon color="branding" fontSize="xl2" />}
