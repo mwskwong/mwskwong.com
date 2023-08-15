@@ -18,7 +18,7 @@ const bgcolors = {
 };
 
 const Home: FC = () => (
-  <main role="main">
+  <main>
     <Hero bgcolor={bgcolors.hero} />
     <SectionDivider color={bgcolors.hero} bgcolor={bgcolors.about} />
 
