@@ -50,7 +50,6 @@ const SelfLearning: FC<Props> = ({ courses = [], ...props }) => {
       <Input
         size="lg"
         placeholder="Search courses..."
-        title="Courses free text search"
         startDecorator={<SearchRounded />}
         endDecorator={
           search.length > 0 && (
