@@ -20,7 +20,7 @@ const NavList: FC<Props> = forwardRef(
     const activeSection = useActiveSection();
 
     return (
-      <Box ref={ref} component="nav" role="navigation" {...props}>
+      <Box ref={ref} component="nav" {...props}>
         <List
           orientation={orientation}
           sx={{

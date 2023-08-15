@@ -88,7 +88,7 @@ export const contactInfo = [
     Icon: SmartphoneRounded,
     title: "Call Me At",
     value: phone,
-    url: `tel:${phone}`,
+    url: `tel:${phone.replaceAll(" ", "")}`,
   },
   {
     Icon: EmailRounded,
