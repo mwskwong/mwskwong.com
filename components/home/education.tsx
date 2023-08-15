@@ -34,7 +34,6 @@ const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
             Education
           </Typography>
           <Timeline>
-            {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
             {educations.map((education) => (
               <TimelineItem key={education.title} {...education} />
             ))}
