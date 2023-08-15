@@ -15,12 +15,12 @@ import TimelineItem from "./timeline-item";
 const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   const [educations, courses] = await Promise.all([
     getEducations().then((educations) =>
-      educations.map(({ from, to, program, school, ...rest }) => ({
+      educations.map(({ from, to, program, school, supportingDocuments }) => ({
         from: new Date(from),
         to: to && new Date(to),
         title: program,
         organizations: school && [school],
-        ...rest,
+        supportingDocuments,
       })),
     ),
     getCourses(),
@@ -34,6 +34,7 @@ const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
             Education
           </Typography>
           <Timeline>
+            {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
             {educations.map((education) => (
               <TimelineItem key={education.title} {...education} />
             ))}
