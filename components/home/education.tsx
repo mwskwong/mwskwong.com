@@ -5,8 +5,7 @@ import Typography from "@mui/joy/Typography";
 import { FC } from "react";
 
 import { education } from "@/constants/nav";
-import getCourses from "@/lib/get-courses";
-import getEducations from "@/lib/get-educations";
+import { getCourses, getEducations } from "@/lib";
 
 import SelfLearning from "./self-learning";
 import Timeline from "./timeline";
