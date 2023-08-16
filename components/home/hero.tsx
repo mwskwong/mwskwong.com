@@ -12,13 +12,12 @@ import { home } from "@/constants/nav";
 import { getCv, getPlatformProfiles } from "@/lib";
 
 const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
-  const [cv, platformProfiles] = await Promise.all([
+  const [cv, linkedinProfile] = await Promise.all([
     getCv(),
-    getPlatformProfiles(),
+    getPlatformProfiles().then((platformProfiles) =>
+      platformProfiles.find(({ platform }) => platform?.id === linkedin),
+    ),
   ]);
-  const linkedinProfile = platformProfiles.find(
-    ({ platform }) => platform?.id === linkedin,
-  );
 
   return (
     <Box component="section" id={home.id} pt={{ sm: 16 }} {...props}>
