@@ -11,26 +11,28 @@ import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";
 
 const Experience: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
-  const experiences = (await getExperiences()).map(
-    ({
-      from,
-      to,
-      jobTitle,
-      companies,
-      companiesRelationship,
-      jobDuties,
-      skills,
-      supportingDocuments,
-    }) => ({
-      from: new Date(from),
-      to: to && new Date(to),
-      title: jobTitle,
-      organizations: companies,
-      organizationsRelationship: companiesRelationship,
-      descriptions: jobDuties,
-      tags: skills,
-      supportingDocuments,
-    }),
+  const experiences = await getExperiences().then((experiences) =>
+    experiences.map(
+      ({
+        from,
+        to,
+        jobTitle,
+        companies,
+        companiesRelationship,
+        jobDuties,
+        skills,
+        supportingDocuments,
+      }) => ({
+        from: new Date(from),
+        to: to && new Date(to),
+        title: jobTitle,
+        organizations: companies,
+        organizationsRelationship: companiesRelationship,
+        descriptions: jobDuties,
+        tags: skills,
+        supportingDocuments,
+      }),
+    ),
   );
 
   return (
