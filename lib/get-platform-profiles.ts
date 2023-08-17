@@ -5,7 +5,6 @@ import client from "./client";
 import { PlatformProfileSkeleton } from "./types";
 
 const getPlatformProfiles = cache(async () => {
-  console.log("getPlatformProfiles called");
   const { items } = await client.getEntries<PlatformProfileSkeleton>({
     content_type: "platformProfile",
   });
