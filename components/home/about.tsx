@@ -16,7 +16,6 @@ import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 import Image from "../image";
 
 const About: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const [personalPhoto, skillCategories] = await Promise.all([
     getPersonalPhoto(),
     getSkillCategories(),
