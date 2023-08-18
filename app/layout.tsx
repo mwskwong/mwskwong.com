@@ -13,7 +13,7 @@ import {
   selfIntroduction,
 } from "@/constants/content";
 import { linkedin } from "@/constants/contentful-ids";
-import { getPlatformProfiles } from "@/lib";
+import getPlatformProfiles from "@/lib/get-platform-profiles";
 
 import ThemeRegistry from "./theme-registry";
 

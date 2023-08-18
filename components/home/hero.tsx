@@ -9,7 +9,8 @@ import LinkedIn from "@/components/icons/linkedin";
 import { firstName, jobTitles, lastName } from "@/constants/content";
 import { linkedin } from "@/constants/contentful-ids";
 import { home } from "@/constants/nav";
-import { getCv, getPlatformProfiles } from "@/lib";
+import getCv from "@/lib/get-cv";
+import getPlatformProfiles from "@/lib/get-platform-profiles";
 
 const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   const [cv, linkedinProfile] = await Promise.all([

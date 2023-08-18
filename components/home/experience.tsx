@@ -5,7 +5,7 @@ import Typography from "@mui/joy/Typography";
 import { FC } from "react";
 
 import { experience } from "@/constants/nav";
-import { getExperiences } from "@/lib";
+import getExperiences from "@/lib/get-experiences";
 
 import Timeline from "./timeline";
 import TimelineItem from "./timeline-item";

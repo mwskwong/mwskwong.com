@@ -1,5 +1,6 @@
 import { Entry } from "contentful";
 import { orderBy } from "lodash-es";
+import { cache } from "react";
 
 import client from "./client";
 import {
@@ -8,7 +9,7 @@ import {
   SkillSkeleton,
 } from "./types";
 
-const getExperiences = async () => {
+const getExperiences = cache(async () => {
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
@@ -58,6 +59,6 @@ const getExperiences = async () => {
       )
       .map((skill) => skill.fields.name),
   }));
-};
+});
 
 export default getExperiences;

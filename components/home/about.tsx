@@ -9,7 +9,8 @@ import { FC } from "react";
 
 import { firstName, lastName, selfIntroduction } from "@/constants/content";
 import { about } from "@/constants/nav";
-import { getPersonalPhoto, getSkillCategories } from "@/lib";
+import getPersonalPhoto from "@/lib/get-personal-photo";
+import getSkillCategories from "@/lib/get-skill-categories";
 import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
 
 import Image from "../image";
