@@ -26,7 +26,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "simple-icons": "^9.10.0",
-    "tss-react": "^4.8.8",
+    "tss-react": "^4.9.0",
     "zod": "^3.22.1"
   },
   "devDependencies": {
