@@ -1,5 +1,5 @@
 import { extendTheme } from "@mui/joy/styles";
-import { Inter, Source_Code_Pro } from "next/font/google";
+import { Rubik, Source_Code_Pro } from "next/font/google";
 
 declare module "@mui/joy/styles/types/zIndex" {
   interface ZIndexOverrides {
@@ -21,7 +21,7 @@ declare module "@mui/joy/SvgIcon" {
   }
 }
 
-const inter = Inter({
+const rubik = Rubik({
   subsets: ["latin"],
   adjustFontFallback: false,
   fallback: ["var(--joy-fontFamily-fallback)"],
@@ -63,8 +63,8 @@ const theme = extendTheme({
     },
   },
   fontFamily: {
-    body: inter.style.fontFamily,
-    display: inter.style.fontFamily,
+    body: rubik.style.fontFamily,
+    display: rubik.style.fontFamily,
     code: sourceCodePro.style.fontFamily,
   },
   fontSize: {
