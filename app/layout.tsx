@@ -8,7 +8,7 @@ import Header from "@/components/header";
 import SectionDivider from "@/components/section-divider";
 import {
   firstName,
-  jobTitles,
+  jobTitle,
   lastName,
   selfIntroduction,
 } from "@/constants/content";
@@ -19,7 +19,7 @@ import ThemeRegistry from "./theme-registry";
 
 const name = `${firstName} ${lastName}`;
 const title: Metadata["title"] = {
-  default: `${name} - ${jobTitles.join(" & ")}`,
+  default: `${name} - ${jobTitle}`,
   template: `%s | ${name}`,
 };
 const description = selfIntroduction;
@@ -41,7 +41,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
       "@type": "Person",
       name,
       url: process.env.NEXT_PUBLIC_URL,
-      jobTitle: jobTitles.join(" & "),
+      jobTitle,
     },
   };
 
