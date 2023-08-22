@@ -20,7 +20,7 @@ export const email = "contact@mwskwong.com";
 export const address = "Hong Kong";
 export const contact = { phone, email, address };
 
-export const headline = "Senior Web Engineer @Viu";
+export const headline = "Senior Web Engineer @ Viu";
 
 export const firstName = "Matthew";
 export const middleName = "Wang Shun";
