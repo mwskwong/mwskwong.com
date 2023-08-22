@@ -6,7 +6,7 @@ import Typography from "@mui/joy/Typography";
 import { FC } from "react";
 
 import LinkedIn from "@/components/icons/linkedin";
-import { firstName, jobTitle, lastName } from "@/constants/content";
+import { firstName, headline, lastName } from "@/constants/content";
 import { linkedin } from "@/constants/contentful-ids";
 import { home } from "@/constants/nav";
 import getCv from "@/lib/get-cv";
@@ -30,7 +30,7 @@ const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
               {"I'm "}
               <Typography color="primary">{firstName}</Typography> {lastName}
             </Typography>
-            <Typography level="title-lg">{jobTitle}</Typography>
+            <Typography level="title-lg">{headline}</Typography>
           </Stack>
           <Stack
             direction={{ xs: "column", sm: "row" }}

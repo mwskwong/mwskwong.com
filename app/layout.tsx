@@ -8,24 +8,29 @@ import Header from "@/components/header";
 import SectionDivider from "@/components/section-divider";
 import {
   firstName,
-  jobTitle,
+  headline,
   lastName,
   selfIntroduction,
 } from "@/constants/content";
 import { linkedin } from "@/constants/contentful-ids";
+import getExperiences from "@/lib/get-experiences";
 import getPlatformProfiles from "@/lib/get-platform-profiles";
 
 import ThemeRegistry from "./theme-registry";
 
 const name = `${firstName} ${lastName}`;
 const title: Metadata["title"] = {
-  default: `${name} - ${jobTitle}`,
+  default: `${name} - ${headline}`,
   template: `%s | ${name}`,
 };
 const description = selfIntroduction;
 
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
-  const platformProfiles = await getPlatformProfiles();
+  const [platformProfiles, latestJobTitle] = await Promise.all([
+    getPlatformProfiles(),
+    getExperiences().then((experience) => experience[0].jobTitle),
+  ]);
+
   const jsonLd: WithContext<Article> = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -41,7 +46,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
       "@type": "Person",
       name,
       url: process.env.NEXT_PUBLIC_URL,
-      jobTitle,
+      jobTitle: latestJobTitle,
     },
   };
 
