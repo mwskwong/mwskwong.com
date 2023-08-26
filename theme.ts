@@ -59,9 +59,11 @@ const theme = extendTheme({
   components: {
     JoyLink: {
       styleOverrides: {
-        root: {
+        root: ({ ownerState }) => ({
           userSelect: "unset",
-        },
+          // WORKAROUND: to ensure the overlay is always on top of everything
+          "&::after": { zIndex: ownerState.overlay && 1 },
+        }),
       },
     },
     JoyStack: {
