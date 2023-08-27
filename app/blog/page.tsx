@@ -16,12 +16,20 @@ const Blogs: FC = async () => {
       </Typography>
       <Grid container spacing={2}>
         {blogs.map(
-          ({ coverPhoto = "", categories, title, slug, updatedAt }) => (
+          ({
+            coverPhoto = "",
+            categories,
+            title,
+            slug,
+            description,
+            updatedAt,
+          }) => (
             <Grid key={slug} xs={12} sm={6} md={4}>
               <BlogCard
                 coverImgSrc={coverPhoto}
                 categories={categories}
                 title={title}
+                description={description}
                 href={`/blog/${slug}`}
                 updatedAt={updatedAt}
               />

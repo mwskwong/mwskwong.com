@@ -16,6 +16,7 @@ export interface BlogSkeleton {
     >;
     title: EntryFieldTypes.Symbol;
     slug: EntryFieldTypes.Symbol;
+    description: EntryFieldTypes.Text;
     content?: EntryFieldTypes.Text;
   };
 }

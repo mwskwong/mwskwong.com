@@ -21,18 +21,19 @@ export const generateMetadata = async (
   { params: { slug } }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const blog = await getBlogBySlug(slug);
+  const { title, description, coverPhoto } = await getBlogBySlug(slug);
   const path = `/blog/${slug}`;
   const { openGraph } = await parent;
 
-  // TODO: add description
   return {
-    title: blog.title,
+    title,
+    description,
     openGraph: {
       ...openGraph,
-      title: blog.title,
+      title: title,
+      description,
       url: path,
-      images: blog.coverPhoto,
+      images: coverPhoto,
     },
     alternates: { canonical: path },
   };

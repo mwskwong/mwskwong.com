@@ -22,6 +22,7 @@ const getBlogs = cache(async () => {
     ),
     title: item.fields.title,
     slug: item.fields.slug,
+    description: item.fields.description,
   }));
 });
 

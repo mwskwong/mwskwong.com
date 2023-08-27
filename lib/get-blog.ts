@@ -25,6 +25,7 @@ const getBlogBySlug = cache(async (slug: string) => {
     ),
     title: item.fields.title,
     slug: item.fields.slug,
+    description: item.fields.description,
     content: item.fields.content,
   };
 });

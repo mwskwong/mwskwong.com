@@ -1,5 +1,6 @@
 "use client";
 
+import { CardContent } from "@mui/joy";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Card, { CardProps } from "@mui/joy/Card";
 import Chip from "@mui/joy/Chip";
@@ -23,6 +24,7 @@ interface Props extends CardProps {
   coverImgSrc: string | StaticImageData;
   categories?: string[];
   title?: string;
+  description?: string;
   href?: string;
   updatedAt?: Date;
 }
@@ -31,6 +33,7 @@ const BlogCard: FC<Props> = ({
   coverImgSrc,
   categories = [],
   title,
+  description,
   href = "",
   updatedAt,
   ...props
@@ -63,16 +66,19 @@ const BlogCard: FC<Props> = ({
           </Chip>
         ))}
       </Stack>
-      <Link
-        component={NextLink}
-        color="neutral"
-        textColor="text.primary"
-        level="title-lg"
-        overlay
-        href={href}
-      >
-        {title}
-      </Link>
+      <CardContent>
+        <Link
+          component={NextLink}
+          color="neutral"
+          textColor="text.primary"
+          level="title-lg"
+          overlay
+          href={href}
+        >
+          {title}
+        </Link>
+        <Typography>{description}</Typography>
+      </CardContent>
       <Typography level="body-xs">{dateFormatter.format(updatedAt)}</Typography>
     </Card>
   );
