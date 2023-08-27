@@ -42,30 +42,24 @@ const ShareDropDown: FC<Props> = ({
       {
         Icon: X,
         name: "X",
-        url: encodeURI(
-          `https://twitter.com/intent/tweet?text=${title} by ${firstName} ${lastName}&url=${url}&hashtags=${categories?.join(
-            ",",
-          )}`,
-        ),
+        url: `https://twitter.com/intent/tweet?text=${title} by ${firstName} ${lastName}&url=${url}&hashtags=${categories?.join(
+          ",",
+        )}`,
       },
       {
         Icon: Facebook,
         name: "Facebook",
-        url: encodeURI(`https://www.facebook.com/sharer/sharer.php?u=${url}`),
+        url: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
       },
       {
         Icon: LinkedIn,
         name: "LinkedIn",
-        url: encodeURI(
-          `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-        ),
+        url: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
       },
       {
         Icon: Reddit,
         name: "Reddit",
-        url: encodeURI(
-          `http://www.reddit.com/submit/?title=${title}&url=${url}`,
-        ),
+        url: `http://www.reddit.com/submit/?title=${title}&url=${url}`,
       },
     ],
     [categories, title, url],
@@ -90,7 +84,7 @@ const ShareDropDown: FC<Props> = ({
             key={name}
             onClick={() =>
               window.open(
-                url,
+                encodeURI(url),
                 undefined,
                 [
                   "popup=true",
