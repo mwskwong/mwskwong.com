@@ -10,7 +10,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import NextLink from "next/link";
 import { FC } from "react";
 
-import ShareButton from "@/components/blog/share-button";
+import ShareDropDown from "@/components/blog/share-dropdown";
 import Image from "@/components/image";
 import getBlogBySlug from "@/lib/get-blog";
 import getBlogs from "@/lib/get-blogs";
@@ -60,8 +60,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             </Chip>
           ))}
         </Stack>
-        <ShareButton blog={{ url, ...blog }} />
-        {/* <ShareDropDown blog={{ url, ...blog }} /> */}
+        <ShareDropDown blog={{ url, ...blog }} />
       </Stack>
       {blog.coverPhoto && (
         <Image
