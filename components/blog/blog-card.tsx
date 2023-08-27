@@ -56,7 +56,6 @@ const BlogCard: FC<Props> = ({
             `${theme.breakpoints.up("sm")} ${Math.round((6 / 12) * 100)}vw`,
             "100vw",
           ].join(",")}
-          sx={{ objectFit: "cover" }}
         />
       </AspectRatio>
       <Stack direction="row" spacing={1}>

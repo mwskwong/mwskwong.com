@@ -1,10 +1,10 @@
-import Container from "@mui/joy/Container";
+import Box from "@mui/joy/Box";
 import { FC, PropsWithChildren } from "react";
 
 const BlogLayout: FC<PropsWithChildren> = ({ children }) => (
-  <Container sx={{ py: "var(--Section-paddingY)", flex: 1 }}>
+  <Box component="main" py="var(--Section-paddingY)" flex={1}>
     {children}
-  </Container>
+  </Box>
 );
 
 export default BlogLayout;

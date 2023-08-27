@@ -18,51 +18,43 @@ import Reddit from "../icons/reddit";
 import X from "../icons/x";
 
 interface Props extends Omit<DropdownProps, "children"> {
-  updatedAt?: Date;
-  coverPhoto?: string;
-  categories?: string[];
-  title?: string;
-  description?: string;
-  url?: string;
+  blog?: {
+    updatedAt: Date;
+    coverPhoto?: string;
+    categories: string[];
+    title: string;
+    description: string;
+    url: string;
+  };
 }
 
-const ShareDropDown: FC<Props> = ({
-  /* eslint-disable @typescript-eslint/no-unused-vars */
-  updatedAt,
-  coverPhoto,
-  categories,
-  title,
-  description,
-  /* eslint-enable */
-  url,
-  ...props
-}) => {
+const ShareDropDown: FC<Props> = ({ blog, ...props }) => {
   const socialMediaOptions = useMemo(
     () => [
       {
         Icon: X,
         name: "X",
-        url: `https://twitter.com/intent/tweet?text=${title} by ${firstName} ${lastName}&url=${url}&hashtags=${categories?.join(
+        url: `https://twitter.com/intent/tweet?text=${blog?.title} by ${firstName} ${lastName}&url=${blog?.url}&hashtags=${blog?.categories.join(
           ",",
         )}`,
       },
       {
         Icon: Facebook,
         name: "Facebook",
-        url: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+        url: `https://www.facebook.com/sharer/sharer.php?u=${blog?.url}`,
       },
       {
         Icon: LinkedIn,
         name: "LinkedIn",
-        url: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+        url: `https://www.linkedin.com/sharing/share-offsite/?url=${blog?.url}`,
       },
       {
         Icon: Reddit,
         name: "Reddit",
-        url: `http://www.reddit.com/submit/?title=${title}&url=${url}`,
+        url: `http://www.reddit.com/submit/?title=${blog?.title}&url=${blog?.url}`,
       },
     ],
-    [categories, title, url],
+    [blog?.categories, blog?.title, blog?.url],
   );
 
   return (
@@ -72,7 +64,9 @@ const ShareDropDown: FC<Props> = ({
       </MenuButton>
       <Menu placement="bottom-end">
         {/* TODO: prompt Snackbar when success */}
-        <MenuItem onClick={() => url && navigator.clipboard.writeText(url)}>
+        <MenuItem
+          onClick={() => blog && navigator.clipboard.writeText(blog.url)}
+        >
           <ListItemDecorator>
             <LinkRounded />
           </ListItemDecorator>
