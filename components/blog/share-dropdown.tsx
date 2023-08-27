@@ -89,7 +89,17 @@ const ShareDropDown: FC<Props> = ({
           <MenuItem
             key={name}
             onClick={() =>
-              window.open(url, undefined, "popup=true,width=650,height=700")
+              window.open(
+                url,
+                undefined,
+                [
+                  "popup=true",
+                  "width=650",
+                  "height=700",
+                  `left=${(window.screen.width - 650) / 2}`,
+                  `top=${(window.screen.height - 700) / 2}`,
+                ].join(","),
+              )
             }
           >
             <ListItemDecorator>
