@@ -39,9 +39,6 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
                 "&::before": { content: "'“'" },
                 "&::after": { content: "'”'" },
               },
-              code: {
-                fontFamily: theme.vars.fontFamily.code,
-              },
               figure: {
                 margin: 0,
               },

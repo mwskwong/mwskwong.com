@@ -99,7 +99,13 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             ),
             p: ({ color, ref, ...props }) => <Typography mb={2} {...props} />,
             code: ({ color, ref, ...props }) => (
-              <Typography component="code" variant="soft" {...props} />
+              <Typography
+                component="code"
+                variant="soft"
+                fontFamily="code"
+                overflow="auto"
+                {...props}
+              />
             ),
             a: ({ color, ref, ...props }) => (
               <Link underline="always" {...props} />
