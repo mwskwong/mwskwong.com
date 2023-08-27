@@ -1,4 +1,3 @@
-import Box from "@mui/joy/Box";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { FC, PropsWithChildren } from "react";
@@ -53,12 +52,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
 
   return (
     <html lang="en">
-      <Box
-        component="body"
-        display="flex"
-        flexDirection="column"
-        minHeight="100vh"
-      >
+      <body>
         <ThemeRegistry>
           <Header
             platformProfiles={platformProfiles.filter(
@@ -74,7 +68,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Analytics />
-      </Box>
+      </body>
     </html>
   );
 };

@@ -21,7 +21,7 @@ const getCourses = cache(async () => {
       `https:${item.fields.certificate.fields.file.url}`,
     categories: orderBy(
       item.fields.categories
-        .map((category) => category?.fields.name)
+        ?.map((category) => category?.fields.name)
         .filter((category): category is string => Boolean(category)),
     ),
   }));

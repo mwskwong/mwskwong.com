@@ -61,7 +61,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
             </Link>
             <NavList
               orientation="horizontal"
-              display={{ xs: "none", sm: "block" }}
+              display={{ xs: "none", md: "block" }}
             />
           </Stack>
           <Stack direction="row" spacing={1}>
@@ -98,7 +98,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
               ref={menuButtonRef}
               variant="outlined"
               size="sm"
-              sx={{ display: { sm: "none" } }}
+              sx={{ display: { md: "none" } }}
               onClick={() => setDropdownOpen((prev) => !prev)}
               aria-label="Toggle navigation dropdown"
             >
@@ -117,7 +117,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
             }}
           >
             <NavList
-              display={{ sm: "none" }}
+              display={{ md: "none" }}
               mx={-1.5}
               my={0.5}
               onNavItemClick={() => setDropdownOpen(false)}

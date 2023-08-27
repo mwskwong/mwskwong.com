@@ -26,6 +26,11 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
                 backgroundColor: theme.vars.palette.primary.solidBg,
                 color: theme.vars.palette.primary.solidColor,
               },
+              body: {
+                display: "flex",
+                flexDirection: "column",
+                minHeight: "100vh",
+              },
               address: {
                 fontStyle: "unset",
               },
