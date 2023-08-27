@@ -23,7 +23,7 @@ const title: Metadata["title"] = {
   default: `${name} - ${headline}`,
   template: `%s | ${name}`,
 };
-const description = selfIntroduction;
+const path = "/";
 
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
   const [platformProfiles, latestJobTitle] = await Promise.all([
@@ -75,18 +75,18 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
 
 export const metadata: Metadata = {
   title,
-  description,
+  description: selfIntroduction,
   authors: { name, url: process.env.NEXT_PUBLIC_URL },
   metadataBase: process.env.NEXT_PUBLIC_URL
     ? new URL(process.env.NEXT_PUBLIC_URL)
     : undefined,
   openGraph: {
     title,
-    description,
-    url: "/",
+    description: selfIntroduction,
+    url: path,
     type: "website",
   },
-  alternates: { canonical: "/" },
+  alternates: { canonical: path },
   archives: ["https://v2.mwskwong.com"],
 };
 

@@ -11,7 +11,9 @@ const getBlogBySlug = cache(async (slug: string) => {
     limit: 1,
   });
 
-  return items.map((item) => ({
+  const item = items[0];
+
+  return {
     updatedAt: new Date(item.sys.updatedAt),
     coverPhoto:
       item.fields.coverPhoto?.fields.file &&
@@ -24,7 +26,7 @@ const getBlogBySlug = cache(async (slug: string) => {
     title: item.fields.title,
     slug: item.fields.slug,
     content: item.fields.content,
-  }));
+  };
 });
 
 export default getBlogBySlug;
