@@ -1,3 +1,4 @@
+import Box from "@mui/joy/Box";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { FC, PropsWithChildren } from "react";
@@ -52,7 +53,12 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
 
   return (
     <html lang="en">
-      <body>
+      <Box
+        component="body"
+        display="flex"
+        flexDirection="column"
+        minHeight="100vh"
+      >
         <ThemeRegistry>
           <Header
             platformProfiles={platformProfiles.filter(
@@ -68,7 +74,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Analytics />
-      </body>
+      </Box>
     </html>
   );
 };
@@ -76,7 +82,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
 export const metadata: Metadata = {
   title,
   description,
-  authors: { name },
+  authors: { name, url: process.env.NEXT_PUBLIC_URL },
   metadataBase: process.env.NEXT_PUBLIC_URL
     ? new URL(process.env.NEXT_PUBLIC_URL)
     : undefined,
