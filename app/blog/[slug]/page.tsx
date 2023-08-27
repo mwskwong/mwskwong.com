@@ -1,5 +1,4 @@
 import { KeyboardArrowLeftRounded } from "@mui/icons-material";
-import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Chip from "@mui/joy/Chip";
 import Container from "@mui/joy/Container";
@@ -30,8 +29,6 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
 const Blog: FC<Props> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   const url = `${process.env.NEXT_PUBLIC_URL}/blog/${slug}`;
-
-  console.log(blog.content);
 
   return (
     <Container component="article" maxWidth="md">
@@ -67,19 +64,25 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
         {/* <ShareDropDown blog={{ url, ...blog }} /> */}
       </Stack>
       {blog.coverPhoto && (
-        <AspectRatio
-          ratio="1200/630"
-          variant="outlined"
-          sx={{ position: "relative", borderRadius: "md" }}
-        >
-          <Image
-            src={blog.coverPhoto}
-            role="presentation"
-            alt=""
-            fill
-            sizes="100vw"
-          />
-        </AspectRatio>
+        <Image
+          src={blog.coverPhoto}
+          role="presentation"
+          alt=""
+          // WORKAROUND: Next.js requires width and height to be specified for remote image
+          // while with sizes specified, they are meaningless in this case meaningless
+          width={0}
+          height={0}
+          sizes="100vw"
+          sx={{
+            width: "100%",
+            height: "auto",
+            borderRadius: "md",
+            border: 1,
+            borderColor: "neutral.outlinedBorder",
+            objectFit: "cover",
+            aspectRatio: "1200/630",
+          }}
+        />
       )}
       {blog.content && (
         <MDXRemote

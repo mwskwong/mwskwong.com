@@ -1,6 +1,5 @@
 "use client";
 
-import AspectRatio from "@mui/joy/AspectRatio";
 import Card, { CardProps } from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Chip from "@mui/joy/Chip";
@@ -42,22 +41,29 @@ const BlogCard: FC<Props> = ({
 
   return (
     <Card component="article" variant="outlined" {...props}>
-      <AspectRatio
-        ratio="1200/630"
-        variant="outlined"
-        sx={{ position: "relative" }}
-      >
-        <Image
-          src={coverImgSrc}
-          alt=""
-          fill
-          sizes={[
-            `${theme.breakpoints.up("md")} ${Math.round((4 / 12) * 100)}vw`,
-            `${theme.breakpoints.up("sm")} ${Math.round((6 / 12) * 100)}vw`,
-            "100vw",
-          ].join(",")}
-        />
-      </AspectRatio>
+      <Image
+        src={coverImgSrc}
+        alt=""
+        // WORKAROUND: Next.js requires width and height to be specified for remote image
+        // while with sizes specified, they are meaningless in this case meaningless
+        width={0}
+        height={0}
+        sizes={[
+          `${theme.breakpoints.up("md")} ${Math.round((4 / 12) * 100)}vw`,
+          `${theme.breakpoints.up("sm")} ${Math.round((6 / 12) * 100)}vw`,
+          "100vw",
+        ].join(",")}
+        sx={{
+          width: "100%",
+          height: "auto",
+          borderRadius: "md",
+          border: 1,
+          borderColor: "neutral.outlinedBorder",
+          objectFit: "cover",
+          aspectRatio: "1200/630",
+        }}
+      />
+
       <Stack direction="row" spacing={1}>
         {categories.map((category) => (
           <Chip key={category} color="primary" size="sm">
