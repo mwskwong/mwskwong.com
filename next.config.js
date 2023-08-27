@@ -73,9 +73,6 @@ const nextConfig = {
       ],
     },
   ],
-  experimental: {
-    serverActions: true,
-  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
