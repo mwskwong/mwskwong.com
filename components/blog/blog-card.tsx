@@ -1,8 +1,8 @@
 "use client";
 
-import { CardContent } from "@mui/joy";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Card, { CardProps } from "@mui/joy/Card";
+import CardContent from "@mui/joy/CardContent";
 import Chip from "@mui/joy/Chip";
 import Link from "@mui/joy/Link";
 import Stack from "@mui/joy/Stack";
@@ -20,7 +20,7 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   day: "numeric",
 });
 
-interface Props extends CardProps {
+interface Props extends Omit<CardProps, "children"> {
   coverImgSrc: string | StaticImageData;
   categories?: string[];
   title?: string;
