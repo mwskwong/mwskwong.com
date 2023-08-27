@@ -12,8 +12,8 @@ const getBlogBySlug = cache(async (slug: string) => {
   });
 
   const item = items[0];
-
   return {
+    id: item.sys.id,
     updatedAt: new Date(item.sys.updatedAt),
     coverPhoto:
       item.fields.coverPhoto?.fields.file &&

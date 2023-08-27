@@ -1,16 +1,17 @@
 import { KeyboardArrowLeftRounded } from "@mui/icons-material";
 import AspectRatio from "@mui/joy/AspectRatio";
+import Box from "@mui/joy/Box";
 import Chip from "@mui/joy/Chip";
 import Container from "@mui/joy/Container";
 import Link from "@mui/joy/Link";
 import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import { Metadata, ResolvingMetadata } from "next";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import NextLink from "next/link";
 import { FC } from "react";
 
-import Like from "@/components/blog/like";
-import ShareDropDown from "@/components/blog/share-dropdown";
+import ShareButton from "@/components/blog/share-button";
 import Image from "@/components/image";
 import getBlogBySlug from "@/lib/get-blog";
 import getBlogs from "@/lib/get-blogs";
@@ -29,6 +30,8 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
 const Blog: FC<Props> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   const url = `${process.env.NEXT_PUBLIC_URL}/blog/${slug}`;
+
+  console.log(blog.content);
 
   return (
     <Container component="article" maxWidth="md">
@@ -60,10 +63,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             </Chip>
           ))}
         </Stack>
-        <Stack direction="row" spacing={1}>
-          <Like />
-          <ShareDropDown blog={{ url, ...blog }} />
-        </Stack>
+        <ShareButton blog={{ url, ...blog }} />
+        {/* <ShareDropDown blog={{ url, ...blog }} /> */}
       </Stack>
       {blog.coverPhoto && (
         <AspectRatio
@@ -79,6 +80,31 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             sizes="100vw"
           />
         </AspectRatio>
+      )}
+      {blog.content && (
+        <MDXRemote
+          source={blog.content}
+          components={{
+            /* eslint-disable @typescript-eslint/no-unused-vars */
+            h2: ({ color, ref, ...props }) => (
+              <Typography level="h2" mt={6} mb={3} {...props} />
+            ),
+            h3: ({ color, ref, ...props }) => (
+              <Typography level="h3" mt={4} mb={1.5} {...props} />
+            ),
+            h4: ({ color, ref, ...props }) => (
+              <Typography level="h4" mt={3} mb={1} {...props} />
+            ),
+            p: ({ color, ref, ...props }) => <Typography mb={2} {...props} />,
+            a: ({ color, ref, ...props }) => (
+              <Link underline="always" {...props} />
+            ),
+            li: ({ color, ref, ...props }) => (
+              <Box component="li" my={1} {...props} />
+            ),
+            /* eslint-enable */
+          }}
+        />
       )}
     </Container>
   );

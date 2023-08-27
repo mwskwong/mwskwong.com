@@ -19,6 +19,7 @@ import X from "../icons/x";
 
 interface Props extends Omit<DropdownProps, "children"> {
   blog?: {
+    id: string;
     updatedAt: Date;
     coverPhoto?: string;
     categories: string[];
@@ -62,7 +63,7 @@ const ShareDropDown: FC<Props> = ({ blog, ...props }) => {
       <MenuButton slots={{ root: IconButton }}>
         <ShareRounded />
       </MenuButton>
-      <Menu placement="bottom-end">
+      <Menu>
         {/* TODO: prompt Snackbar when success */}
         <MenuItem
           onClick={() => blog && navigator.clipboard.writeText(blog.url)}
