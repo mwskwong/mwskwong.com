@@ -1,5 +1,5 @@
 import { extendTheme } from "@mui/joy/styles";
-import { Rubik } from "next/font/google";
+import { Rubik, Source_Code_Pro } from "next/font/google";
 
 declare module "@mui/joy/styles/types/zIndex" {
   interface ZIndexOverrides {
@@ -22,6 +22,7 @@ declare module "@mui/joy/SvgIcon" {
 }
 
 const rubik = Rubik({ subsets: ["latin"] });
+const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
 const theme = extendTheme({
   colorSchemes: {
     light: {
@@ -47,6 +48,7 @@ const theme = extendTheme({
   fontFamily: {
     body: rubik.style.fontFamily,
     display: rubik.style.fontFamily,
+    code: sourceCodePro.style.fontFamily,
   },
   fontSize: {
     xl7: "4.5rem",
