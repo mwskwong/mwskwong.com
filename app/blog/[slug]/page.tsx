@@ -10,6 +10,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import NextLink from "next/link";
 import { FC } from "react";
 
+import CodeBlock from "@/components/blog/code-blok";
 import ShareDropDown from "@/components/blog/share-dropdown";
 import Image from "@/components/image";
 import getBlogBySlug from "@/lib/get-blog";
@@ -98,21 +99,21 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               <Typography level="h4" mt={3} mb={1} {...props} />
             ),
             p: ({ color, ref, ...props }) => <Typography mb={2} {...props} />,
-            code: ({ color, ref, ...props }) => (
-              <Typography
-                component="code"
-                variant="soft"
-                fontFamily="code"
-                overflow="auto"
-                {...props}
-              />
-            ),
             a: ({ color, ref, ...props }) => (
               <Link underline="always" {...props} />
             ),
             li: ({ color, ref, ...props }) => (
               <Box component="li" my={1} {...props} />
             ),
+            code: ({ color, ref, ...props }) => (
+              <Typography
+                component="code"
+                variant="soft"
+                fontFamily="code"
+                {...props}
+              />
+            ),
+            pre: CodeBlock,
             /* eslint-enable */
           }}
         />
