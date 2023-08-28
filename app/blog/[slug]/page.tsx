@@ -170,7 +170,15 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 const Icon = languageIcons[language];
                 const { ref, children, ...rest } = props;
                 return (
-                  <Stack direction="row" spacing={1} px={2} py={1.5} {...rest}>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    px={2}
+                    py={1.5}
+                    borderBottom={1}
+                    borderColor="neutral.outlinedBorder"
+                    {...rest}
+                  >
                     {Icon && <Icon size="sm" />}
                     <Typography level="body-sm">{children}</Typography>
                   </Stack>
