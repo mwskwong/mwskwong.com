@@ -44,7 +44,8 @@ const CodeBlock: FC<
           {...props}
         >
           {tokens.map((line, index) => {
-            const lastEmptyLine = index === tokens.length - 1 && line[0].empty;
+            const lastEmptyLine =
+              index === tokens.length - 1 && line.every(({ empty }) => empty);
             if (lastEmptyLine) return null;
             return (
               <Box
