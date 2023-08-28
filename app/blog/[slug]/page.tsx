@@ -195,7 +195,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 overflow="auto"
                 my={0}
                 py={2}
-                bgcolor="background.level1"
+                bgcolor="background.surface"
                 sx={{
                   "& code": {
                     display: "grid",
