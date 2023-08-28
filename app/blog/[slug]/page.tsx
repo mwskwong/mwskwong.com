@@ -89,7 +89,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
         <MDXRemote
           source={blog.content}
           components={{
-            h2: ({ color, ref, ...props }) => (
+            h2: ({ color, ...props }) => (
+              // @ts-expect-error LegacyRef passed to RefObject
               <Typography
                 level="h2"
                 mt={6}
@@ -98,7 +99,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 {...props}
               />
             ),
-            h3: ({ color, ref, ...props }) => (
+            h3: ({ color, ...props }) => (
+              // @ts-expect-error LegacyRef passed to RefObject
               <Typography
                 level="h3"
                 mt={4}
@@ -107,7 +109,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 {...props}
               />
             ),
-            h4: ({ color, ref, ...props }) => (
+            h4: ({ color, ...props }) => (
+              // @ts-expect-error LegacyRef passed to RefObject
               <Typography
                 level="h4"
                 mt={3}
@@ -116,13 +119,16 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 {...props}
               />
             ),
-            p: ({ color, ref, ...props }) => (
+            p: ({ color, ...props }) => (
+              // @ts-expect-error LegacyRef passed to RefObject
               <Typography mb={2} textColor={color} {...props} />
             ),
-            a: ({ color, ref, ...props }) => (
+            a: ({ color, ...props }) => (
+              // @ts-expect-error LegacyRef passed to RefObject
               <Link underline="always" textColor={color} {...props} />
             ),
-            li: ({ ref, ...props }) => <Box component="li" my={1} {...props} />,
+            // @ts-expect-error LegacyRef passed to RefObject
+            li: (props) => <Box component="li" my={1} {...props} />,
             div: (props) => {
               const codeFragment =
                 // @ts-expect-error data attribute auto injected by rehype-pretty-code
@@ -136,15 +142,15 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 "";
 
               if (codeFragment) {
-                const { ref, ...rest } = props;
                 return (
+                  // @ts-expect-error LegacyRef passed to RefObject
                   <Box
                     borderRadius="md"
                     border={1}
                     borderColor="neutral.outlinedBorder"
                     my={2}
                     overflow="hidden"
-                    {...rest}
+                    {...props}
                   />
                 );
               }
@@ -155,8 +161,9 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 const Icon =
                   language in languageIcons &&
                   languageIcons[language as keyof typeof languageIcons];
-                const { ref, children, ...rest } = props;
+                const { children, ...rest } = props;
                 return (
+                  // @ts-expect-error LegacyRef passed to RefObject
                   <Stack
                     direction="row"
                     spacing={1}
@@ -174,40 +181,46 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
 
               return <div {...props} />;
             },
-            pre: ({ ref, style, ...props }) => (
-              <Box
-                data-joy-color-scheme="dark"
-                component="pre"
-                overflow="auto"
-                my={0}
-                py={2}
-                bgcolor="background.surface"
-                sx={{
-                  "& code": {
-                    display: "grid",
-                    counterReset: "line",
-                  },
-                  "& [data-line]": {
-                    px: 2,
-                  },
-                  "& [data-highlighted-line]": {
-                    bgcolor: "neutral.softBg",
-                  },
-                  "& [data-highlighted-chars]": {
-                    bgcolor: "neutral.softBg",
-                    borderRadius: "xs",
-                  },
-                }}
-                {...props}
-              />
-            ),
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            pre: ({ style: { backgroundColor, ...style } = {}, ...props }) => {
+              return (
+                // @ts-expect-error LegacyRef passed to RefObject
+                <Box
+                  data-joy-color-scheme="dark"
+                  component="pre"
+                  overflow="auto"
+                  my={0}
+                  py={2}
+                  bgcolor="background.surface"
+                  sx={{
+                    "& code": {
+                      display: "grid",
+                      counterReset: "line",
+                    },
+                    "& [data-line]": {
+                      px: 2,
+                    },
+                    "& [data-highlighted-line]": {
+                      bgcolor: "neutral.softBg",
+                    },
+                    "& [data-highlighted-chars]": {
+                      bgcolor: "neutral.softBg",
+                      borderRadius: "xs",
+                    },
+                  }}
+                  style={style}
+                  {...props}
+                />
+              );
+            },
             code: (props) => {
               // @ts-expect-error data attribute auto injected by rehype-pretty-code
               const inlineCode = !props["data-language"] as string | undefined;
 
               if (inlineCode) {
-                const { ref, color, ...rest } = props;
+                const { color, ...rest } = props;
                 return (
+                  // @ts-expect-error LegacyRef passed to RefObject
                   <Typography
                     component="code"
                     variant="soft"
