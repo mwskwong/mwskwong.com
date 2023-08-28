@@ -34,7 +34,6 @@ const CodeBlock: FC<
           component="pre"
           fontFamily="code"
           fontSize="sm"
-          whiteSpace="nowrap"
           overflow="auto"
           borderRadius="md"
           border={1}
@@ -45,11 +44,16 @@ const CodeBlock: FC<
           {...props}
         >
           {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line })}>
+            <Box
+              key={i}
+              component="div"
+              width="fit-content"
+              {...getLineProps({ line })}
+            >
               {line.map((token, key) => (
                 <span key={key} {...getTokenProps({ token })} />
               ))}
-            </div>
+            </Box>
           ))}
         </Box>
       )}
