@@ -4,12 +4,11 @@ import Chip from "@mui/joy/Chip";
 import Container from "@mui/joy/Container";
 import Link from "@mui/joy/Link";
 import Stack from "@mui/joy/Stack";
-import { SvgIconProps } from "@mui/joy/SvgIcon";
 import Typography from "@mui/joy/Typography";
 import { Metadata, ResolvingMetadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import NextLink from "next/link";
-import { FC, NamedExoticComponent } from "react";
+import { FC } from "react";
 import rehypePrettyCode from "rehype-pretty-code";
 
 import JavaScript from "@/components/icons/javascript";
@@ -30,10 +29,7 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   day: "numeric",
 });
 
-const languageIcons: Record<
-  string,
-  NamedExoticComponent<SvgIconProps> | undefined
-> = {
+const languageIcons = {
   js: JavaScript,
   jsx: JavaScript,
   ts: TypeScript,
@@ -156,7 +152,9 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               if (codeTitle) {
                 // @ts-expect-error data attribute auto injected by rehype-pretty-code
                 const language = props["data-language"] as string;
-                const Icon = languageIcons[language];
+                const Icon =
+                  language in languageIcons &&
+                  languageIcons[language as keyof typeof languageIcons];
                 const { ref, children, ...rest } = props;
                 return (
                   <Stack
