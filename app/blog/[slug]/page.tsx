@@ -4,14 +4,18 @@ import Chip from "@mui/joy/Chip";
 import Container from "@mui/joy/Container";
 import Link from "@mui/joy/Link";
 import Stack from "@mui/joy/Stack";
+import { SvgIconProps } from "@mui/joy/SvgIcon";
 import Typography from "@mui/joy/Typography";
 import { Metadata, ResolvingMetadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import NextLink from "next/link";
-import { FC } from "react";
+import { FC, NamedExoticComponent } from "react";
+import rehypePrettyCode from "rehype-pretty-code";
 
-import CodeBlock from "@/components/blog/code-blok";
 import ShareDropDown from "@/components/blog/share-dropdown";
+import JavaScript from "@/components/icons/javascript";
+import Json from "@/components/icons/json";
+import TypeScript from "@/components/icons/typescript";
 import Image from "@/components/image";
 import getBlogBySlug from "@/lib/get-blog";
 import getBlogs from "@/lib/get-blogs";
@@ -26,6 +30,17 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   month: "long",
   day: "numeric",
 });
+
+const languageIcons: Record<
+  string,
+  NamedExoticComponent<SvgIconProps> | undefined
+> = {
+  js: JavaScript,
+  jsx: JavaScript,
+  ts: TypeScript,
+  tsx: TypeScript,
+  json: Json,
+};
 
 const Blog: FC<Props> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
@@ -88,33 +103,143 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
         <MDXRemote
           source={blog.content}
           components={{
-            /* eslint-disable @typescript-eslint/no-unused-vars */
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             h2: ({ color, ref, ...props }) => (
-              <Typography level="h2" mt={6} mb={3} {...props} />
-            ),
-            h3: ({ color, ref, ...props }) => (
-              <Typography level="h3" mt={4} mb={1.5} {...props} />
-            ),
-            h4: ({ color, ref, ...props }) => (
-              <Typography level="h4" mt={3} mb={1} {...props} />
-            ),
-            p: ({ color, ref, ...props }) => <Typography mb={2} {...props} />,
-            a: ({ color, ref, ...props }) => (
-              <Link underline="always" {...props} />
-            ),
-            li: ({ color, ref, ...props }) => (
-              <Box component="li" my={1} {...props} />
-            ),
-            code: ({ color, ref, ...props }) => (
               <Typography
-                component="code"
-                variant="soft"
-                fontFamily="code"
+                level="h2"
+                mt={6}
+                mb={3}
+                textColor={color}
                 {...props}
               />
             ),
-            pre: CodeBlock,
-            /* eslint-enable */
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            h3: ({ color, ref, ...props }) => (
+              <Typography
+                level="h3"
+                mt={4}
+                mb={1.5}
+                textColor={color}
+                {...props}
+              />
+            ),
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            h4: ({ color, ref, ...props }) => (
+              <Typography
+                level="h4"
+                mt={3}
+                mb={1}
+                textColor={color}
+                {...props}
+              />
+            ),
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            p: ({ color, ref, ...props }) => (
+              <Typography mb={2} textColor={color} {...props} />
+            ),
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            a: ({ color, ref, ...props }) => (
+              <Link underline="always" textColor={color} {...props} />
+            ),
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            li: ({ ref, ...props }) => <Box component="li" my={1} {...props} />,
+            div: (props) => {
+              const codeFragment =
+                // @ts-expect-error data attribute auto injected by rehype-pretty-code
+                (props["data-rehype-pretty-code-fragment"] as
+                  | ""
+                  | undefined) === "";
+
+              const codeTitle =
+                // @ts-expect-error data attribute auto injected by rehype-pretty-code
+                (props["data-rehype-pretty-code-title"] as "" | undefined) ===
+                "";
+
+              if (codeFragment) {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const { ref, ...rest } = props;
+                return (
+                  <Box
+                    borderRadius="md"
+                    border={1}
+                    borderColor="neutral.outlinedBorder"
+                    my={2}
+                    overflow="hidden"
+                    {...rest}
+                  />
+                );
+              }
+
+              if (codeTitle) {
+                // @ts-expect-error data attribute auto injected by rehype-pretty-code
+                const language = props["data-language"] as string;
+                const Icon = languageIcons[language];
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const { ref, children, ...rest } = props;
+                return (
+                  <Stack direction="row" spacing={1} px={2} py={1.5} {...rest}>
+                    {Icon && <Icon size="sm" />}
+                    <Typography level="body-sm">{children}</Typography>
+                  </Stack>
+                );
+              }
+
+              return <div {...props} />;
+            },
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            pre: ({ ref, style, ...props }) => (
+              <Box
+                data-joy-color-scheme="dark"
+                component="pre"
+                overflow="auto"
+                my={0}
+                py={2}
+                bgcolor="background.level1"
+                sx={{
+                  "& code": {
+                    display: "grid",
+                    counterReset: "line",
+                  },
+                  "& [data-line]": {
+                    px: 2,
+                  },
+                  "& [data-highlighted-line]": {
+                    bgcolor: "neutral.softBg",
+                  },
+                  "& [data-highlighted-chars]": {
+                    bgcolor: "neutral.softBg",
+                    borderRadius: "xs",
+                  },
+                }}
+                {...props}
+              />
+            ),
+            code: (props) => {
+              // @ts-expect-error data attribute auto injected by rehype-pretty-code
+              const inlineCode = !props["data-language"] as string | undefined;
+
+              if (inlineCode) {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const { ref, color, ...rest } = props;
+                return (
+                  <Typography
+                    component="code"
+                    variant="soft"
+                    level="body-sm"
+                    fontFamily="code"
+                    textColor={color}
+                    {...rest}
+                  />
+                );
+              }
+
+              return <code {...props} />;
+            },
+          }}
+          options={{
+            mdxOptions: {
+              rehypePlugins: [[rehypePrettyCode, { theme: "dark-plus" }]],
+            },
           }}
         />
       )}

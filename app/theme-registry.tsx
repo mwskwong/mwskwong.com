@@ -26,31 +26,28 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
                 backgroundColor: theme.vars.palette.primary.solidBg,
                 color: theme.vars.palette.primary.solidColor,
               },
-              body: {
-                display: "flex",
-                flexDirection: "column",
-                minHeight: "100vh",
-              },
-              address: {
-                fontStyle: "unset",
-              },
+              address: { fontStyle: "unset" },
               blockquote: {
                 fontStyle: "italic",
                 "&::before": { content: "'“'" },
                 "&::after": { content: "'”'" },
               },
-              figure: {
-                margin: 0,
+              body: {
+                display: "flex",
+                flexDirection: "column",
+                minHeight: "100vh",
               },
+              code: {
+                ...theme.typography["body-sm"],
+                fontFamily: theme.vars.fontFamily.code,
+                color: "inherit",
+              },
+              figure: { margin: 0 },
               footer: {
                 paddingBlock: "var(--Footer-paddingY)",
               },
-              section: {
-                paddingBlock: "var(--Section-paddingY)",
-              },
-              svg: {
-                display: "block",
-              },
+              section: { paddingBlock: "var(--Section-paddingY)" },
+              svg: { display: "block" },
             })}
           />
           {children}
