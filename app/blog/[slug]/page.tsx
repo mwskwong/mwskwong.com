@@ -12,7 +12,6 @@ import NextLink from "next/link";
 import { FC, NamedExoticComponent } from "react";
 import rehypePrettyCode from "rehype-pretty-code";
 
-import ShareDropDown from "@/components/blog/share-dropdown";
 import JavaScript from "@/components/icons/javascript";
 import Json from "@/components/icons/json";
 import TypeScript from "@/components/icons/typescript";
@@ -44,7 +43,6 @@ const languageIcons: Record<
 
 const Blog: FC<Props> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
-  const url = `${process.env.NEXT_PUBLIC_URL}/blog/${slug}`;
 
   return (
     <Container component="article" maxWidth="md">
@@ -62,21 +60,12 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
       <Typography level="h1" mt={1} mb={3}>
         {blog.title}
       </Typography>
-      <Stack
-        direction="row"
-        spacing={4}
-        alignItems="center"
-        justifyContent="space-between"
-        mb={2}
-      >
-        <Stack direction="row" spacing={1}>
-          {blog.categories.map((category) => (
-            <Chip key={category} color="primary">
-              {category}
-            </Chip>
-          ))}
-        </Stack>
-        <ShareDropDown blog={{ url, ...blog }} />
+      <Stack direction="row" spacing={1} mb={4}>
+        {blog.categories.map((category) => (
+          <Chip key={category} color="primary">
+            {category}
+          </Chip>
+        ))}
       </Stack>
       {blog.coverPhoto && (
         <Image
@@ -224,8 +213,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                   <Typography
                     component="code"
                     variant="soft"
-                    level="body-sm"
                     fontFamily="code"
+                    fontSize="0.875em"
                     textColor={color}
                     {...rest}
                   />
