@@ -206,6 +206,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                     "& [data-highlighted-chars]": {
                       bgcolor: "neutral.softBg",
                       borderRadius: "xs",
+                      py: "min(0.1em, 4px)",
+                      px: "0.25em",
                     },
                   }}
                   style={style}
