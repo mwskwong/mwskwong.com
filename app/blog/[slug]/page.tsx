@@ -88,6 +88,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
           width={0}
           height={0}
           sizes="100vw"
+          priority
           sx={{
             width: "100%",
             height: "auto",
