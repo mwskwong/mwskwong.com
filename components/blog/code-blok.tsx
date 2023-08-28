@@ -43,18 +43,22 @@ const CodeBlock: FC<
           style={style}
           {...props}
         >
-          {tokens.map((line, i) => (
-            <Box
-              key={i}
-              component="div"
-              width="fit-content"
-              {...getLineProps({ line })}
-            >
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token })} />
-              ))}
-            </Box>
-          ))}
+          {tokens.map((line, index) => {
+            const lastEmptyLine = index === tokens.length - 1 && line[0].empty;
+            if (lastEmptyLine) return null;
+            return (
+              <Box
+                key={index}
+                component="div"
+                width="fit-content"
+                {...getLineProps({ line })}
+              >
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token })} />
+                ))}
+              </Box>
+            );
+          })}
         </Box>
       )}
     </Highlight>
