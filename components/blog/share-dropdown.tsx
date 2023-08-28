@@ -60,7 +60,14 @@ const ShareDropDown: FC<Props> = ({ blog, ...props }) => {
 
   return (
     <Dropdown {...props}>
-      <MenuButton slots={{ root: IconButton }}>
+      <MenuButton
+        slots={{ root: IconButton }}
+        slotProps={{
+          root: {
+            "aria-label": "Share this blog to social media or copy the link",
+          },
+        }}
+      >
         <ShareRounded />
       </MenuButton>
       <Menu>
