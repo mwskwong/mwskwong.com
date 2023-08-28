@@ -1,7 +1,7 @@
 "use client";
 
 import Box from "@mui/joy/Box";
-import { Highlight } from "prism-react-renderer";
+import { Highlight, Prism } from "prism-react-renderer";
 import {
   ComponentProps,
   DetailedHTMLProps,
@@ -9,6 +9,9 @@ import {
   HTMLAttributes,
   ReactElement,
 } from "react";
+
+(typeof global !== "undefined" ? global : window).Prism = Prism;
+require("prismjs/components/prism-json");
 
 const CodeBlock: FC<
   DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>
