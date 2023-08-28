@@ -104,7 +104,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
         <MDXRemote
           source={blog.content}
           components={{
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             h2: ({ color, ref, ...props }) => (
               <Typography
                 level="h2"
@@ -114,7 +113,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 {...props}
               />
             ),
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             h3: ({ color, ref, ...props }) => (
               <Typography
                 level="h3"
@@ -124,7 +122,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 {...props}
               />
             ),
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             h4: ({ color, ref, ...props }) => (
               <Typography
                 level="h4"
@@ -134,15 +131,12 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 {...props}
               />
             ),
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             p: ({ color, ref, ...props }) => (
               <Typography mb={2} textColor={color} {...props} />
             ),
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             a: ({ color, ref, ...props }) => (
               <Link underline="always" textColor={color} {...props} />
             ),
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             li: ({ ref, ...props }) => <Box component="li" my={1} {...props} />,
             div: (props) => {
               const codeFragment =
@@ -157,7 +151,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 "";
 
               if (codeFragment) {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const { ref, ...rest } = props;
                 return (
                   <Box
@@ -175,7 +168,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 // @ts-expect-error data attribute auto injected by rehype-pretty-code
                 const language = props["data-language"] as string;
                 const Icon = languageIcons[language];
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const { ref, children, ...rest } = props;
                 return (
                   <Stack direction="row" spacing={1} px={2} py={1.5} {...rest}>
@@ -187,7 +179,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
 
               return <div {...props} />;
             },
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             pre: ({ ref, style, ...props }) => (
               <Box
                 data-joy-color-scheme="dark"
@@ -220,7 +211,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               const inlineCode = !props["data-language"] as string | undefined;
 
               if (inlineCode) {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const { ref, color, ...rest } = props;
                 return (
                   <Typography

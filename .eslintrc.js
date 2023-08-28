@@ -22,6 +22,10 @@ module.exports = {
       "error",
       { checksVoidReturn: false },
     ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { ignoreRestSiblings: true },
+    ],
   },
   overrides: [
     {
