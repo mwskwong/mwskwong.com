@@ -21,6 +21,7 @@ const NavList: FC<Props> = forwardRef(
       <List
         orientation={orientation}
         sx={{
+          my: 0.5,
           "--List-radius": "var(--joy-radius-md)",
           "--List-padding": "0px",
           "--List-gap": (theme) =>

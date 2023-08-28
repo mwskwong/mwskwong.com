@@ -43,7 +43,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
       position="sticky"
       top={0}
       borderBottom={1}
-      borderColor="divider"
+      borderColor="neutral.outlinedBorder"
       bgcolor="background.surface"
       zIndex="header"
       {...props}
@@ -116,12 +116,23 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
               }
             }}
           >
-            <NavList
-              display={{ md: "none" }}
-              mx={-1.5}
-              my={0.5}
-              onNavItemClick={() => setDropdownOpen(false)}
-            />
+            <Container
+              sx={{
+                position: "fixed",
+                top: 56,
+                left: 0,
+                right: 0,
+                borderBottom: 1,
+                borderColor: "neutral.outlinedBorder",
+                bgcolor: "background.surface",
+                display: { md: "none" },
+              }}
+            >
+              <NavList
+                mx={-1.5}
+                onNavItemClick={() => setDropdownOpen(false)}
+              />
+            </Container>
           </ClickAwayListener>
         )}
       </Container>
