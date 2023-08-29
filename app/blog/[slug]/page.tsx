@@ -8,6 +8,7 @@ import Typography from "@mui/joy/Typography";
 import { Metadata, ResolvingMetadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import NextLink from "next/link";
+import { notFound } from "next/navigation";
 import { FC } from "react";
 import rehypePrettyCode from "rehype-pretty-code";
 
@@ -40,6 +41,7 @@ const languageIcons = {
 
 const Blog: FC<Props> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
+  if (!blog) notFound();
 
   return (
     <Container component="article" maxWidth="md">
@@ -238,7 +240,7 @@ export const generateMetadata = async (
   { params: { slug } }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const { title, description, coverPhoto } = await getBlogBySlug(slug);
+  const { title, description, coverPhoto } = (await getBlogBySlug(slug)) ?? {};
   const path = `/blog/${slug}`;
   const { openGraph } = await parent;
 
