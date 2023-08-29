@@ -124,6 +124,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 return (
                   // @ts-expect-error LegacyRef passed to RefObject
                   <Box
+                    data-joy-color-scheme="dark"
+                    bgcolor="background.body"
                     borderRadius="md"
                     border={1}
                     borderColor="neutral.outlinedBorder"
@@ -165,7 +167,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               return (
                 // @ts-expect-error LegacyRef passed to RefObject
                 <Box
-                  data-joy-color-scheme="dark"
                   component="pre"
                   overflow="auto"
                   my={0}
