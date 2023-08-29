@@ -130,7 +130,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             // @ts-expect-error LegacyRef passed to RefObject
             li: (props) => <Box component="li" my={1} {...props} />,
             div: (props) => {
-              const codeFragment =
+              const codeBlock =
                 // @ts-expect-error data attribute auto injected by rehype-pretty-code
                 (props["data-rehype-pretty-code-fragment"] as
                   | ""
@@ -141,7 +141,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 (props["data-rehype-pretty-code-title"] as "" | undefined) ===
                 "";
 
-              if (codeFragment) {
+              if (codeBlock) {
                 return (
                   // @ts-expect-error LegacyRef passed to RefObject
                   <Box
@@ -192,24 +192,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                   my={0}
                   py={2}
                   bgcolor="background.surface"
-                  sx={{
-                    "& code": {
-                      display: "grid",
-                      counterReset: "line",
-                    },
-                    "& [data-line]": {
-                      px: 2,
-                    },
-                    "& [data-highlighted-line]": {
-                      bgcolor: "neutral.softBg",
-                    },
-                    "& [data-highlighted-chars]": {
-                      bgcolor: "neutral.softBg",
-                      borderRadius: "xs",
-                      py: "min(0.1em, 4px)",
-                      px: "0.25em",
-                    },
-                  }}
                   style={style}
                   {...props}
                 />
@@ -217,7 +199,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             },
             code: (props) => {
               // @ts-expect-error data attribute auto injected by rehype-pretty-code
-              const inlineCode = !props["data-language"] as string | undefined;
+              const inlineCode = !props["data-language"];
 
               if (inlineCode) {
                 const { color, ...rest } = props;
@@ -234,7 +216,28 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 );
               }
 
-              return <code {...props} />;
+              return (
+                // @ts-expect-error LegacyRef passed to RefObject
+                <Box
+                  component="code"
+                  display="grid"
+                  sx={{
+                    "& > [data-line]": {
+                      px: 2,
+                    },
+                    "& > [data-highlighted-line]": {
+                      bgcolor: "neutral.softBg",
+                    },
+                    "& [data-highlighted-chars]": {
+                      bgcolor: "neutral.softBg",
+                      borderRadius: "xs",
+                      py: "min(0.1em, 4px)",
+                      px: "0.25em",
+                    },
+                  }}
+                  {...props}
+                />
+              );
             },
           }}
           options={{
