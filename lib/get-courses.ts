@@ -6,6 +6,7 @@ import { CourseSkeleton } from "./types";
 
 const getCourses = cache(async () => {
   const { items } = await client.getEntries<CourseSkeleton>({
+    select: ["fields"],
     content_type: "course",
     order: ["fields.name"],
   });

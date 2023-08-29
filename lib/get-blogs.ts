@@ -6,6 +6,14 @@ import { BlogSkeleton } from "./types";
 
 const getBlogs = cache(async () => {
   const { items } = await client.getEntries<BlogSkeleton>({
+    select: [
+      "sys.updatedAt",
+      "fields.categories",
+      "fields.coverPhoto",
+      "fields.description",
+      "fields.slug",
+      "fields.title",
+    ],
     content_type: "blog",
     order: ["-sys.updatedAt"],
   });

@@ -6,6 +6,7 @@ import { PlatformProfileSkeleton } from "./types";
 
 const getPlatformProfiles = cache(async () => {
   const { items } = await client.getEntries<PlatformProfileSkeleton>({
+    select: ["sys.id", "fields"],
     content_type: "platformProfile",
   });
 
