@@ -22,7 +22,11 @@ declare module "@mui/joy/SvgIcon" {
 }
 
 const rubik = Rubik({ subsets: ["latin"] });
-const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
+const sourceCodePro = Source_Code_Pro({
+  subsets: ["latin"],
+  adjustFontFallback: false,
+  fallback: ["monospace"],
+});
 const theme = extendTheme({
   colorSchemes: {
     light: {
