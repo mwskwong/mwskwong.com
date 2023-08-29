@@ -36,10 +36,10 @@ const Experience: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   );
 
   return (
-    <Box component="section" id={experience.id} {...props}>
+    <Box component="section" {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" textAlign="center">
+          <Typography level="h2" id={experience.id} textAlign="center">
             Experience
           </Typography>
           <Timeline>

@@ -22,10 +22,12 @@ const About: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   ]);
 
   return (
-    <Box component="section" id={about.id} {...props}>
+    <Box component="section" {...props}>
       <Container>
         <Stack spacing={6} alignItems="center" textAlign="center">
-          <Typography level="h2">About</Typography>
+          <Typography level="h2" id={about.id}>
+            About
+          </Typography>
           {personalPhoto && (
             <Image
               src={personalPhoto}

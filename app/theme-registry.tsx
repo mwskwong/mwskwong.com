@@ -43,16 +43,14 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
                 color: "inherit",
               },
               figure: { margin: 0 },
-              footer: {
-                paddingBlock: "var(--Footer-paddingY)",
-              },
-              section: {
-                paddingBlock: "var(--Section-paddingY)",
+              footer: { paddingBlock: "var(--Footer-paddingY)" },
+              "h2, h3, h4": {
                 [theme.breakpoints.up("md")]: {
-                  scrollMarginTop: 64,
+                  scrollMarginTop: "calc(64px + var(--Section-paddingY))",
                 },
-                scrollMarginTop: 56,
+                scrollMarginTop: "calc(56px + var(--Section-paddingY))",
               },
+              section: { paddingBlock: "var(--Section-paddingY)" },
               svg: { display: "block" },
             })}
           />

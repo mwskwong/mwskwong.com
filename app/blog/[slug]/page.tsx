@@ -12,6 +12,7 @@ import { FC } from "react";
 import rehypePrettyCode from "rehype-pretty-code";
 
 import CoverImage from "@/components/blog/cover-image";
+import Heading from "@/components/blog/heading";
 import JavaScript from "@/components/icons/javascript";
 import Json from "@/components/icons/json";
 import TypeScript from "@/components/icons/typescript";
@@ -70,17 +71,11 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
           components={{
             h2: ({ color, ...props }) => (
               // @ts-expect-error LegacyRef passed to RefObject
-              <Typography
-                level="h2"
-                mt={6}
-                mb={3}
-                textColor={color}
-                {...props}
-              />
+              <Heading level="h2" mt={6} mb={3} textColor={color} {...props} />
             ),
             h3: ({ color, ...props }) => (
               // @ts-expect-error LegacyRef passed to RefObject
-              <Typography
+              <Heading
                 level="h3"
                 mt={4}
                 mb={1.5}
@@ -90,13 +85,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             ),
             h4: ({ color, ...props }) => (
               // @ts-expect-error LegacyRef passed to RefObject
-              <Typography
-                level="h4"
-                mt={3}
-                mb={1}
-                textColor={color}
-                {...props}
-              />
+              <Heading level="h4" mt={3} mb={1} textColor={color} {...props} />
             ),
             p: ({ color, ...props }) => (
               // @ts-expect-error LegacyRef passed to RefObject
