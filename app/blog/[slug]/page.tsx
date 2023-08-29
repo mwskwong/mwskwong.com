@@ -11,10 +11,10 @@ import NextLink from "next/link";
 import { FC } from "react";
 import rehypePrettyCode from "rehype-pretty-code";
 
+import CoverImage from "@/components/blog/cover-image";
 import JavaScript from "@/components/icons/javascript";
 import Json from "@/components/icons/json";
 import TypeScript from "@/components/icons/typescript";
-import Image from "@/components/image";
 import getBlogBySlug from "@/lib/get-blog";
 import getBlogs from "@/lib/get-blogs";
 
@@ -63,28 +63,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
           </Chip>
         ))}
       </Stack>
-      {blog.coverPhoto && (
-        <Image
-          src={blog.coverPhoto}
-          role="presentation"
-          alt=""
-          // WORKAROUND: Next.js requires width and height to be specified for remote image
-          // while with sizes specified, they are meaningless in this case meaningless
-          width={0}
-          height={0}
-          sizes="100vw"
-          priority
-          sx={{
-            width: "100%",
-            height: "auto",
-            borderRadius: "md",
-            border: 1,
-            borderColor: "neutral.outlinedBorder",
-            objectFit: "cover",
-            aspectRatio: "1200/630",
-          }}
-        />
-      )}
+      {blog.coverPhoto && <CoverImage src={blog.coverPhoto} />}
       {blog.content && (
         <MDXRemote
           source={blog.content}
