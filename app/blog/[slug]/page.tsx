@@ -93,7 +93,12 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             ),
             a: ({ color, ...props }) => (
               // @ts-expect-error LegacyRef passed to RefObject
-              <Link underline="always" textColor={color} {...props} />
+              <Link
+                underline="always"
+                textColor={color}
+                target="_blank"
+                {...props}
+              />
             ),
             // @ts-expect-error LegacyRef passed to RefObject
             ul: (props) => <Box component="ul" pl={3} {...props} />,
