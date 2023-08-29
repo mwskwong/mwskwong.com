@@ -96,6 +96,10 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               <Link underline="always" textColor={color} {...props} />
             ),
             // @ts-expect-error LegacyRef passed to RefObject
+            ul: (props) => <Box component="ul" pl={3} {...props} />,
+            // @ts-expect-error LegacyRef passed to RefObject
+            ol: (props) => <Box component="ol" pl={3} {...props} />,
+            // @ts-expect-error LegacyRef passed to RefObject
             li: (props) => <Box component="li" my={1} {...props} />,
             div: (props) => {
               const codeBlock =
