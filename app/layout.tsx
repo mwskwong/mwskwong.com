@@ -13,6 +13,7 @@ import {
 } from "@/constants/content";
 import { linkedin } from "@/constants/contentful-ids";
 import getPlatformProfiles from "@/lib/get-platform-profiles";
+import baseUrl from "@/utils/base-url";
 
 import ThemeRegistry from "./theme-registry";
 
@@ -48,10 +49,8 @@ const path = "/";
 export const metadata: Metadata = {
   title,
   description: selfIntroduction,
-  authors: { name, url: process.env.NEXT_PUBLIC_URL },
-  metadataBase: process.env.NEXT_PUBLIC_URL
-    ? new URL(process.env.NEXT_PUBLIC_URL)
-    : undefined,
+  authors: { name, url: baseUrl },
+  metadataBase: new URL(baseUrl),
   openGraph: {
     title,
     description: selfIntroduction,
