@@ -188,6 +188,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                     variant="soft"
                     fontFamily="code"
                     fontSize="0.875em"
+                    display="inline"
+                    mx={0}
                     textColor={color}
                     {...rest}
                   />
