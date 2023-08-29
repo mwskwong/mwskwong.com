@@ -46,15 +46,21 @@ const BlogCard: FC<Props> = ({
     <CardContent>
       <Link
         component={NextLink}
+        href={href}
         color="neutral"
         textColor="text.primary"
         level="title-lg"
         overlay
-        href={href}
       >
         {title}
       </Link>
-      <Typography>{description}</Typography>
+      <Typography
+        overflow="hidden"
+        display="-webkit-box"
+        sx={{ WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}
+      >
+        {description}
+      </Typography>
     </CardContent>
     <Typography level="body-xs">{dateFormatter.format(updatedAt)}</Typography>
   </Card>
