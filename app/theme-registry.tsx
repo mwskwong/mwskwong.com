@@ -46,7 +46,13 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
               footer: {
                 paddingBlock: "var(--Footer-paddingY)",
               },
-              section: { paddingBlock: "var(--Section-paddingY)" },
+              section: {
+                paddingBlock: "var(--Section-paddingY)",
+                [theme.breakpoints.up("md")]: {
+                  scrollMarginTop: 64,
+                },
+                scrollMarginTop: 56,
+              },
               svg: { display: "block" },
             })}
           />
