@@ -20,6 +20,15 @@ import TypeScript from "@/components/icons/typescript";
 import getBlogBySlug from "@/lib/get-blog";
 import getBlogs from "@/lib/get-blogs";
 
+// data attribute auto injected by rehype-pretty-code
+declare module "react" {
+  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+    "data-language"?: string;
+    "data-rehype-pretty-code-fragment"?: "";
+    "data-rehype-pretty-code-title"?: "";
+  }
+}
+
 interface Props {
   params: { slug: string };
 }
@@ -110,15 +119,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             li: (props) => <Box component="li" my={1} {...props} />,
             div: (props) => {
               const codeBlock =
-                // @ts-expect-error data attribute auto injected by rehype-pretty-code
-                (props["data-rehype-pretty-code-fragment"] as
-                  | ""
-                  | undefined) === "";
-
-              const codeTitle =
-                // @ts-expect-error data attribute auto injected by rehype-pretty-code
-                (props["data-rehype-pretty-code-title"] as "" | undefined) ===
-                "";
+                props["data-rehype-pretty-code-fragment"] === "";
+              const codeTitle = props["data-rehype-pretty-code-title"] === "";
 
               if (codeBlock) {
                 return (
@@ -137,9 +139,9 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               }
 
               if (codeTitle) {
-                // @ts-expect-error data attribute auto injected by rehype-pretty-code
-                const language = props["data-language"] as string;
+                const language = props["data-language"];
                 const Icon =
+                  language &&
                   language in languageIcons &&
                   languageIcons[language as keyof typeof languageIcons];
                 const { children, ...rest } = props;
@@ -178,7 +180,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               );
             },
             code: (props) => {
-              // @ts-expect-error data attribute auto injected by rehype-pretty-code
               const inlineCode = !props["data-language"];
 
               if (inlineCode) {
