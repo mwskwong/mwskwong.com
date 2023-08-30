@@ -21,7 +21,7 @@ const Heading: FC<TypographyProps> = ({ sx, ...props }) => {
         <Link
           level="body-md"
           variant="outlined"
-          aria-labelledby="heading-demo"
+          aria-labelledby={hash}
           href={`#${hash}`}
           borderRadius="sm"
         >
