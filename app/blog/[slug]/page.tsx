@@ -91,7 +91,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
             ),
             p: ({ color, ...props }) => (
               // @ts-expect-error LegacyRef passed to RefObject
-              <Typography mb={2} textColor={color} {...props} />
+              <Typography my={2} textColor={color} {...props} />
             ),
             a: ({ color, ...props }) => (
               // @ts-expect-error LegacyRef passed to RefObject
@@ -103,9 +103,9 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               />
             ),
             // @ts-expect-error LegacyRef passed to RefObject
-            ul: (props) => <Box component="ul" pl={3} {...props} />,
+            ul: (props) => <Box component="ul" my={2} pl={3} {...props} />,
             // @ts-expect-error LegacyRef passed to RefObject
-            ol: (props) => <Box component="ol" pl={3} {...props} />,
+            ol: (props) => <Box component="ol" my={2} pl={3} {...props} />,
             // @ts-expect-error LegacyRef passed to RefObject
             li: (props) => <Box component="li" my={1} {...props} />,
             div: (props) => {
