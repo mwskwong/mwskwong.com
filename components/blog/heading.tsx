@@ -7,7 +7,7 @@ import Typography, {
   typographyClasses,
 } from "@mui/joy/Typography";
 import { kebabCase } from "lodash-es";
-import { mergeSx } from "merge-sx";
+import mergeSx from "merge-sx";
 import { FC } from "react";
 
 const Heading: FC<TypographyProps> = ({ sx, ...props }) => {

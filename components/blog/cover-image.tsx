@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@mui/joy/styles";
-import { mergeSx } from "merge-sx";
+import mergeSx from "merge-sx";
 import { ComponentProps, FC } from "react";
 import { SetOptional } from "type-fest";
 

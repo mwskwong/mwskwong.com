@@ -1,5 +1,5 @@
 import SvgIcon, { SvgIconProps } from "@mui/joy/SvgIcon";
-import { mergeSx } from "merge-sx";
+import mergeSx from "merge-sx";
 import { FC } from "react";
 
 const Formspree: FC<SvgIconProps> = ({ sx, ...props }) => (
