@@ -7,6 +7,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const blogSlugs = await getBlogs().then((blogs) =>
     blogs.map(({ slug }) => slug),
   );
+
   return [
     {
       url: baseUrl,
