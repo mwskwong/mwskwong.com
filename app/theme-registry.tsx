@@ -18,9 +18,13 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
           <GlobalStyles
             styles={(theme) => ({
               ":root": {
+                [theme.breakpoints.up("md")]: {
+                  "--Header-height": "65px",
+                },
                 "--Section-paddingY": theme.spacing(10),
                 "--Footer-paddingY": theme.spacing(6),
                 "--MaterialIcon-padding": `${(2 / 24).toFixed(5)}em`,
+                "--Header-height": "57px",
               },
               "::selection": {
                 backgroundColor: theme.vars.palette.primary.solidBg,
@@ -45,10 +49,8 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
               figure: { margin: 0 },
               footer: { paddingBlock: "var(--Footer-paddingY)" },
               "h2, h3, h4": {
-                [theme.breakpoints.up("md")]: {
-                  scrollMarginTop: "calc(64px + var(--Section-paddingY))",
-                },
-                scrollMarginTop: "calc(56px + var(--Section-paddingY))",
+                scrollMarginTop:
+                  "calc(var(--Header-height) + var(--Section-paddingY))",
               },
               section: { paddingBlock: "var(--Section-paddingY)" },
               svg: { display: "block" },
