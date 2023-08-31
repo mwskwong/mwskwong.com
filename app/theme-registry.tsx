@@ -6,7 +6,7 @@ import { CssVarsProvider, getInitColorSchemeScript } from "@mui/joy/styles";
 import { FC, PropsWithChildren } from "react";
 import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
 
-import theme from "@/theme";
+import theme, { globalStyles } from "@/theme";
 
 const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -15,47 +15,7 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
       <NextAppDirEmotionCacheProvider options={{ key: "joy" }}>
         <CssVarsProvider theme={theme}>
           <CssBaseline />
-          <GlobalStyles
-            styles={(theme) => ({
-              ":root": {
-                [theme.breakpoints.up("md")]: {
-                  "--Header-height": "65px",
-                },
-                "--Section-paddingY": theme.spacing(10),
-                "--Footer-paddingY": theme.spacing(6),
-                "--MaterialIcon-padding": `${(2 / 24).toFixed(5)}em`,
-                "--Header-height": "57px",
-              },
-              "::selection": {
-                backgroundColor: theme.vars.palette.primary.solidBg,
-                color: theme.vars.palette.primary.solidColor,
-              },
-              address: { fontStyle: "unset" },
-              blockquote: {
-                fontStyle: "italic",
-                "&::before": { content: "'“'" },
-                "&::after": { content: "'”'" },
-              },
-              body: {
-                display: "flex",
-                flexDirection: "column",
-                minHeight: "100vh",
-              },
-              code: {
-                ...theme.typography["body-sm"],
-                fontFamily: theme.vars.fontFamily.code,
-                color: "inherit",
-              },
-              figure: { margin: 0 },
-              footer: { paddingBlock: "var(--Footer-paddingY)" },
-              "h2, h3, h4": {
-                scrollMarginTop:
-                  "calc(var(--Header-height) + var(--Section-paddingY))",
-              },
-              section: { paddingBlock: "var(--Section-paddingY)" },
-              svg: { display: "block" },
-            })}
-          />
+          <GlobalStyles styles={globalStyles} />
           {children}
         </CssVarsProvider>
       </NextAppDirEmotionCacheProvider>

@@ -1,4 +1,5 @@
-import { extendTheme } from "@mui/joy/styles";
+import { Theme, extendTheme } from "@mui/joy/styles";
+import { Interpolation } from "@mui/styled-engine";
 import { Rubik, Source_Code_Pro } from "next/font/google";
 
 declare module "@mui/joy/styles/types/zIndex" {
@@ -27,6 +28,7 @@ const sourceCodePro = Source_Code_Pro({
   adjustFontFallback: false,
   fallback: ["monospace"],
 });
+
 const theme = extendTheme({
   colorSchemes: {
     light: {
@@ -79,5 +81,45 @@ const theme = extendTheme({
     },
   },
 });
+
+export const globalStyles = (theme: Theme) =>
+  ({
+    ":root": {
+      [theme.breakpoints.up("md")]: {
+        "--Header-height": "65px",
+      },
+      "--Section-paddingY": theme.spacing(10),
+      "--Footer-paddingY": theme.spacing(6),
+      "--MaterialIcon-padding": `${(2 / 24).toFixed(5)}em`,
+      "--Header-height": "57px",
+    },
+    "::selection": {
+      backgroundColor: theme.vars.palette.primary.solidBg,
+      color: theme.vars.palette.primary.solidColor,
+    },
+    address: { fontStyle: "unset" },
+    blockquote: {
+      fontStyle: "italic",
+      "&::before": { content: "'“'" },
+      "&::after": { content: "'”'" },
+    },
+    body: {
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "100vh",
+    },
+    code: {
+      ...theme.typography["body-sm"],
+      fontFamily: theme.vars.fontFamily.code,
+      color: "inherit",
+    },
+    figure: { margin: 0 },
+    footer: { paddingBlock: "var(--Footer-paddingY)" },
+    "h2, h3, h4": {
+      scrollMarginTop: "calc(var(--Header-height) + var(--Section-paddingY))",
+    },
+    section: { paddingBlock: "var(--Section-paddingY)" },
+    svg: { display: "block" },
+  }) satisfies Interpolation<Theme>;
 
 export default theme;
