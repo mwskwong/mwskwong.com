@@ -4,19 +4,24 @@ import { FC } from "react";
 
 const NotFound: FC = () => (
   <Container
+    component="main"
     sx={{
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
+      alignItems: "stretch",
       justifyContent: "center",
+      gap: 1.5,
       flex: 1,
+      textAlign: "center",
     }}
   >
-    <Typography level="h1" fontSize="xl7" color="primary">
-      404
+    <Typography level="body-sm" color="primary">
+      404 error
     </Typography>
-    <Typography level="h2">Not Found</Typography>
-    <Typography>The page you are looking for does not exist.</Typography>
+    <Typography level="h1">{"We can't find that page"}</Typography>
+    <Typography>
+      {"Sorry, the page you are looking for doesn't exist or has been moved."}
+    </Typography>
   </Container>
 );
 
