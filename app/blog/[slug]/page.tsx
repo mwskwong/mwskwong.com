@@ -108,6 +108,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 underline="always"
                 textColor={color}
                 target="_blank"
+                sx={{ "& > code": { color: "inherit" } }}
                 {...props}
               />
             ),
