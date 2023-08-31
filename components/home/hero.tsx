@@ -24,7 +24,7 @@ const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
       <Container>
         <Stack spacing={5} justifyContent="center">
           <Stack spacing={2} textAlign="center">
-            <Typography level="body-sm">HELLO</Typography>
+            <Typography level="body-sm">Hello</Typography>
             <Typography level="h1">
               {"I'm "}
               <Typography color="primary">{firstName}</Typography> {lastName}
