@@ -10,7 +10,7 @@ const NotFound: FC = () => (
       flexDirection: "column",
       alignItems: "stretch",
       justifyContent: "center",
-      gap: 1.5,
+      gap: 2,
       flex: 1,
       textAlign: "center",
     }}
