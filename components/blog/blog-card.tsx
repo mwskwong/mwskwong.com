@@ -6,7 +6,7 @@ import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import { StaticImageData } from "next/image";
 import NextLink from "next/link";
-import { FC } from "react";
+import { ComponentProps, FC } from "react";
 
 import BlogCardImage from "./blog-card-image";
 
@@ -23,6 +23,9 @@ interface Props extends Omit<CardProps, "children"> {
   description?: string;
   href?: string;
   updatedAt?: Date;
+  slotProps?: CardProps["slotProps"] & {
+    image?: Partial<ComponentProps<typeof BlogCardImage>>;
+  };
 }
 
 const BlogCard: FC<Props> = ({
@@ -32,10 +35,11 @@ const BlogCard: FC<Props> = ({
   description,
   href = "",
   updatedAt,
+  slotProps: { image: imageSlotProps, ...slotProps } = {},
   ...props
 }) => (
-  <Card component="article" variant="outlined" {...props}>
-    <BlogCardImage src={coverImgSrc} />
+  <Card component="article" variant="outlined" slotProps={slotProps} {...props}>
+    <BlogCardImage src={coverImgSrc} {...imageSlotProps} />
     <Stack direction="row" spacing={1}>
       {categories.map((category) => (
         <Chip key={category} color="primary" size="sm">

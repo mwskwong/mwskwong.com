@@ -18,14 +18,17 @@ const Blogs: FC = async () => {
         </Typography>
         <Grid container spacing={2}>
           {blogs.map(
-            ({
-              coverPhoto = "",
-              categories,
-              title,
-              slug,
-              description,
-              updatedAt,
-            }) => (
+            (
+              {
+                coverPhoto = "",
+                categories,
+                title,
+                slug,
+                description,
+                updatedAt,
+              },
+              index,
+            ) => (
               <Grid key={slug} xs={12} sm={6} md={4}>
                 <BlogCard
                   coverImgSrc={coverPhoto}
@@ -34,6 +37,7 @@ const Blogs: FC = async () => {
                   description={description}
                   href={`/blog/${slug}`}
                   updatedAt={updatedAt}
+                  slotProps={{ image: { priority: index < 2 } }}
                 />
               </Grid>
             ),
