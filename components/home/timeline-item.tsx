@@ -54,6 +54,8 @@ const TimelineItem: FC<Props> = forwardRef(
 
     return (
       <Grid
+        // WORKAROUND: nested grid doesn't work when the parent is an RSC, manually assigning the level
+        unstable_level={1}
         ref={ref}
         container
         rowSpacing={0}
@@ -61,7 +63,6 @@ const TimelineItem: FC<Props> = forwardRef(
         xs={12}
         {...props}
       >
-        {/* WORKAROUND: nested grid doesn't work when the parent is an RSC, manually assigning the level */}
         <Grid unstable_level={2} xs={12} sm={3}>
           <Typography level="body-xs" textTransform="uppercase" mt="2px" mb={1}>
             {duration}
