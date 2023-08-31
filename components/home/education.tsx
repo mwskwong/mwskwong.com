@@ -27,10 +27,10 @@ const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   ]);
 
   return (
-    <Box component="section" id={education.id} {...props}>
+    <Box component="section" {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" textAlign="center">
+          <Typography level="h2" id={education.id} textAlign="center">
             Education
           </Typography>
           <Timeline>

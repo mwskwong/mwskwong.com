@@ -1,5 +1,3 @@
-"use client";
-
 import Chip from "@mui/joy/Chip";
 import Grid, { GridProps } from "@mui/joy/Grid";
 import Link from "@mui/joy/Link";
@@ -11,8 +9,7 @@ import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import { FC, Fragment, forwardRef } from "react";
 
-import Image from "@/components/image";
-import { thumIoPdfLoader } from "@/utils/image-loaders";
+import SupportingDocumentImage from "./supporting-document-image";
 
 interface Props extends Omit<GridProps, "children"> {
   from?: Date;
@@ -64,12 +61,14 @@ const TimelineItem: FC<Props> = forwardRef(
         xs={12}
         {...props}
       >
-        <Grid xs={12} sm={3}>
+        {/* WORKAROUND: nested grid doesn't work when the parent is an RSC, manually assigning the level */}
+        <Grid unstable_level={2} xs={12} sm={3}>
           <Typography level="body-xs" textTransform="uppercase" mt="2px" mb={1}>
             {duration}
           </Typography>
         </Grid>
-        <Grid xs={12} sm>
+        {/* WORKAROUND: nested grid doesn't work when the parent is an RSC, manually assigning the level */}
+        <Grid unstable_level={2} xs={12} sm>
           <Typography level="title-md">{title}</Typography>
           <Stack spacing={1}>
             <Stack direction="row" spacing={1} flexWrap="wrap">
@@ -115,21 +114,7 @@ const TimelineItem: FC<Props> = forwardRef(
                       <ListItemDecorator
                         sx={{ ml: "calc(var(--ListItem-paddingX) * -1)" }}
                       >
-                        <Image
-                          loader={thumIoPdfLoader}
-                          src={url}
-                          alt=""
-                          width={80}
-                          height={56}
-                          sx={{
-                            objectFit: "cover",
-                            objectPosition: "top",
-                            flexShrink: 0,
-                            borderRadius: "var(--unstable_List-childRadius)",
-                            border: 1,
-                            borderColor: "neutral.outlinedBorder",
-                          }}
-                        />
+                        <SupportingDocumentImage src={url} />
                       </ListItemDecorator>
                       {title}
                     </ListItemButton>

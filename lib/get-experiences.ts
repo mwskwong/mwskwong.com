@@ -14,6 +14,16 @@ const getExperiences = cache(async () => {
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
   const { items } = await client.getEntries<ExperienceSkeleton>({
+    select: [
+      "fields.companies",
+      "fields.companiesRelationship",
+      "fields.from",
+      "fields.jobDuties",
+      "fields.jobTitle",
+      "fields.skills",
+      "fields.supportingDocuments",
+      "fields.to",
+    ],
     content_type: "experience",
     order: ["fields.to"],
   });

@@ -8,7 +8,6 @@ import { FC } from "react";
 import LinkedIn from "@/components/icons/linkedin";
 import { firstName, headline, lastName } from "@/constants/content";
 import { linkedin } from "@/constants/contentful-ids";
-import { home } from "@/constants/nav";
 import getCv from "@/lib/get-cv";
 import getPlatformProfiles from "@/lib/get-platform-profiles";
 
@@ -21,7 +20,7 @@ const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   ]);
 
   return (
-    <Box component="section" id={home.id} pt={{ sm: 16 }} {...props}>
+    <Box component="section" pt={{ sm: 16 }} {...props}>
       <Container>
         <Stack spacing={5} justifyContent="center">
           <Stack spacing={2} textAlign="center">

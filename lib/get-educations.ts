@@ -8,6 +8,7 @@ const getEducations = cache(async () => {
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
   const { items } = await client.getEntries<EducationSkeleton>({
+    select: ["fields"],
     content_type: "education",
     order: ["fields.to"],
   });

@@ -43,7 +43,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
       position="sticky"
       top={0}
       borderBottom={1}
-      borderColor="divider"
+      borderColor="neutral.outlinedBorder"
       bgcolor="background.surface"
       zIndex="header"
       {...props}
@@ -61,7 +61,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
             </Link>
             <NavList
               orientation="horizontal"
-              display={{ xs: "none", sm: "block" }}
+              display={{ xs: "none", md: "block" }}
             />
           </Stack>
           <Stack direction="row" spacing={1}>
@@ -98,7 +98,7 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
               ref={menuButtonRef}
               variant="outlined"
               size="sm"
-              sx={{ display: { sm: "none" } }}
+              sx={{ display: { md: "none" } }}
               onClick={() => setDropdownOpen((prev) => !prev)}
               aria-label="Toggle navigation dropdown"
             >
@@ -116,12 +116,23 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
               }
             }}
           >
-            <NavList
-              display={{ sm: "none" }}
-              mx={-1.5}
-              my={0.5}
-              onNavItemClick={() => setDropdownOpen(false)}
-            />
+            <Container
+              sx={{
+                position: "fixed",
+                top: 56,
+                left: 0,
+                right: 0,
+                borderBottom: 1,
+                borderColor: "neutral.outlinedBorder",
+                bgcolor: "background.surface",
+                display: { md: "none" },
+              }}
+            >
+              <NavList
+                mx={-1.5}
+                onNavItemClick={() => setDropdownOpen(false)}
+              />
+            </Container>
           </ClickAwayListener>
         )}
       </Container>

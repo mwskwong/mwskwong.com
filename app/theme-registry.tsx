@@ -6,7 +6,7 @@ import { CssVarsProvider, getInitColorSchemeScript } from "@mui/joy/styles";
 import { FC, PropsWithChildren } from "react";
 import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
 
-import theme from "@/theme";
+import theme, { globalStyles } from "@/theme";
 
 const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -15,42 +15,7 @@ const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => {
       <NextAppDirEmotionCacheProvider options={{ key: "joy" }}>
         <CssVarsProvider theme={theme}>
           <CssBaseline />
-          <GlobalStyles
-            styles={(theme) => ({
-              ":root": {
-                "--Section-paddingY": theme.spacing(10),
-                "--Footer-paddingY": theme.spacing(6),
-                "--MaterialIcon-padding": `${(2 / 24).toFixed(5)}em`,
-              },
-              "::selection": {
-                backgroundColor: theme.vars.palette.primary.solidBg,
-                color: theme.vars.palette.primary.solidColor,
-              },
-              address: {
-                fontStyle: "unset",
-              },
-              blockquote: {
-                fontStyle: "italic",
-                "&::before": { content: "'“'" },
-                "&::after": { content: "'”'" },
-              },
-              code: {
-                fontFamily: theme.vars.fontFamily.code,
-              },
-              figure: {
-                margin: 0,
-              },
-              footer: {
-                paddingBlock: "var(--Footer-paddingY)",
-              },
-              section: {
-                paddingBlock: "var(--Section-paddingY)",
-              },
-              svg: {
-                display: "block",
-              },
-            })}
-          />
+          <GlobalStyles styles={globalStyles} />
           {children}
         </CssVarsProvider>
       </NextAppDirEmotionCacheProvider>

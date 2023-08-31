@@ -55,10 +55,10 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
   );
 
   return (
-    <Box component="section" id={contact.id} {...props}>
+    <Box component="section" {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" textAlign="center">
+          <Typography level="h2" id={contact.id} textAlign="center">
             Contact
           </Typography>
           <Grid

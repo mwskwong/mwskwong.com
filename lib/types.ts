@@ -1,5 +1,26 @@
 import { EntryFieldTypes } from "contentful";
 
+export interface BlogCategorySkeleton {
+  contentTypeId: "blogCategory";
+  fields: {
+    name: EntryFieldTypes.Symbol;
+  };
+}
+
+export interface BlogSkeleton {
+  contentTypeId: "blog";
+  fields: {
+    coverPhoto: EntryFieldTypes.AssetLink;
+    categories?: EntryFieldTypes.Array<
+      EntryFieldTypes.EntryLink<BlogCategorySkeleton>
+    >;
+    title: EntryFieldTypes.Symbol;
+    slug: EntryFieldTypes.Symbol;
+    description: EntryFieldTypes.Text;
+    content?: EntryFieldTypes.Text;
+  };
+}
+
 export interface CourseCategorySkeleton {
   contentTypeId: "courseCategory";
   fields: {
@@ -13,7 +34,7 @@ export interface CourseSkeleton {
     name: EntryFieldTypes.Symbol;
     institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     certificate?: EntryFieldTypes.AssetLink;
-    categories: EntryFieldTypes.Array<
+    categories?: EntryFieldTypes.Array<
       EntryFieldTypes.EntryLink<CourseCategorySkeleton>
     >;
   };
