@@ -1,5 +1,3 @@
-"use client";
-
 import Grid, { GridProps } from "@mui/joy/Grid";
 import { Children, FC, cloneElement, isValidElement } from "react";
 
