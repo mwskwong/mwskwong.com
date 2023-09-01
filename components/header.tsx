@@ -14,6 +14,7 @@ import IconButton from "@mui/joy/IconButton";
 import Link from "@mui/joy/Link";
 import Stack from "@mui/joy/Stack";
 import { useColorScheme } from "@mui/joy/styles";
+import NextLink from "next/link";
 import { FC, useRef, useState } from "react";
 
 import Icon from "@/app/icon.svg";
@@ -56,7 +57,11 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
           py={1.5}
         >
           <Stack direction="row" spacing={2} alignItems="center">
-            <Link href={home.href} aria-label="Go to home page">
+            <Link
+              component={NextLink}
+              href={home.href}
+              aria-label="Go to home page"
+            >
               <Icon width={32} />
             </Link>
             <NavList
