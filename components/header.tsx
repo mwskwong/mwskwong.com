@@ -111,7 +111,8 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
             </IconButton>
           </Stack>
         </Stack>
-        {dropdownOpen && (
+      </Container>
+      {dropdownOpen && (
           <ClickAwayListener
             onClickAway={(event) => {
               if (
@@ -140,7 +141,6 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
             </Container>
           </ClickAwayListener>
         )}
-      </Container>
     </Box>
   );
 };
