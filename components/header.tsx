@@ -113,34 +113,29 @@ const Header: FC<Props> = ({ platformProfiles = [], ...props }) => {
         </Stack>
       </Container>
       {dropdownOpen && (
-          <ClickAwayListener
-            onClickAway={(event) => {
-              if (
-                !menuButtonRef.current?.contains(event.target as HTMLElement)
-              ) {
-                setDropdownOpen(false);
-              }
+        <ClickAwayListener
+          onClickAway={(event) => {
+            if (!menuButtonRef.current?.contains(event.target as HTMLElement)) {
+              setDropdownOpen(false);
+            }
+          }}
+        >
+          <Container
+            sx={{
+              position: "fixed",
+              top: 56,
+              left: 0,
+              right: 0,
+              borderBottom: 1,
+              borderColor: "neutral.outlinedBorder",
+              bgcolor: "background.surface",
+              display: { md: "none" },
             }}
           >
-            <Container
-              sx={{
-                position: "fixed",
-                top: 56,
-                left: 0,
-                right: 0,
-                borderBottom: 1,
-                borderColor: "neutral.outlinedBorder",
-                bgcolor: "background.surface",
-                display: { md: "none" },
-              }}
-            >
-              <NavList
-                mx={-1.5}
-                onNavItemClick={() => setDropdownOpen(false)}
-              />
-            </Container>
-          </ClickAwayListener>
-        )}
+            <NavList mx={-1.5} onNavItemClick={() => setDropdownOpen(false)} />
+          </Container>
+        </ClickAwayListener>
+      )}
     </Box>
   );
 };
