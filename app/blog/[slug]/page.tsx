@@ -204,7 +204,6 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 // @ts-expect-error LegacyRef passed to RefObject
                 <Box
                   component="code"
-                  display="grid"
                   sx={{
                     "& > [data-line]": {
                       px: 2,
