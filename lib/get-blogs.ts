@@ -4,7 +4,7 @@ import { cache } from "react";
 import client from "./client";
 import { BlogSkeleton } from "./types";
 
-const getBlogs = cache(async () => {
+const getBlogs = cache(async ({ page = 1, pageSize = 9 }) => {
   const { items } = await client.getEntries<BlogSkeleton>({
     select: [
       "sys.updatedAt",
@@ -16,6 +16,8 @@ const getBlogs = cache(async () => {
     ],
     content_type: "blog",
     order: ["-sys.updatedAt"],
+    skip: (page - 1) * 9,
+    limit: pageSize,
   });
 
   return items.map((item) => ({

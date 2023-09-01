@@ -9,7 +9,7 @@ import BlogCard from "@/components/blog/blog-card";
 import getBlogs from "@/lib/get-blogs";
 
 const Blogs: FC = async () => {
-  const blogs = await getBlogs();
+  const blogs = await getBlogs({ page: 1 });
   return (
     <Container>
       <Stack spacing={6}>
