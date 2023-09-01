@@ -72,18 +72,13 @@ const About: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
                     <Typography level="title-md" color="primary">
                       {name}
                     </Typography>
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      justifyContent="center"
-                      flexWrap="wrap"
-                    >
+                    <Grid container spacing={1} justifyContent="center">
                       {skills.map((skill) => (
-                        <Chip key={skill} variant="outlined">
-                          {skill}
-                        </Chip>
+                        <Grid key={skill} xs="auto">
+                          <Chip variant="outlined">{skill}</Chip>
+                        </Grid>
                       ))}
-                    </Stack>
+                    </Grid>
                   </Stack>
                 </Grid>
               );
