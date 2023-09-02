@@ -13,9 +13,12 @@ const Blogs: FC = async () => {
   return (
     <Container>
       <Stack spacing={6}>
-        <Typography level="h1" textAlign="center">
-          Blog
-        </Typography>
+        <Stack spacing={2} textAlign="center">
+          <Typography level="h1">Blog</Typography>
+          <Typography>
+            Personal perspectives on a broad range of topics
+          </Typography>
+        </Stack>
         <Grid container spacing={2}>
           {blogs.map(
             (
