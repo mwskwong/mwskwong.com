@@ -16,7 +16,7 @@ const Blogs: FC = async () => {
         <Stack spacing={2} textAlign="center">
           <Typography level="h1">Blog</Typography>
           <Typography>
-            Personal perspectives on a broad range of topics
+            Personal perspectives on a broad range of topics.
           </Typography>
         </Stack>
         <Grid container spacing={2}>
