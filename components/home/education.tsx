@@ -42,7 +42,7 @@ const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
             <Typography level="h3" textAlign="center">
               Self-learning
             </Typography>
-            <Box component="figure" maxWidth="60ch">
+            <Box component="figure" maxWidth="sm">
               <Typography component="blockquote">
                 Stay hungry. Stay foolish. Never let go of your appetite to go
                 after new ideas, new experiences, and new adventures.

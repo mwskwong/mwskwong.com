@@ -50,7 +50,7 @@ const About: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
               </Typography>
               .
             </Typography>
-            <Typography maxWidth="60ch">{selfIntroduction}</Typography>
+            <Typography maxWidth="sm">{selfIntroduction}</Typography>
           </Box>
           <Grid
             container
