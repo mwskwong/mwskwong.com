@@ -22,6 +22,7 @@ import Sheet from "@mui/joy/Sheet";
 import Stack from "@mui/joy/Stack";
 import Textarea from "@mui/joy/Textarea";
 import Typography from "@mui/joy/Typography";
+import { capitalize } from "lodash-es";
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -46,9 +47,18 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
     {
       onError: (error) => {
         const formErrors = error.getFormErrors();
+        const fieldErrors = error.getAllFieldErrors();
+
         if (formErrors.length) {
           const { code, message } = formErrors[0];
           setError("root", { type: code, message });
+        }
+
+        for (const [field, errors] of fieldErrors) {
+          setError(field, {
+            type: "validate",
+            message: `${capitalize(field)} ${errors[0].message}`,
+          });
         }
       },
     },
