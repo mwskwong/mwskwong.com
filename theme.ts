@@ -74,6 +74,17 @@ const theme = extendTheme({
         },
       },
     },
+    JoySheet: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          "& ::selection": {
+            backgroundColor:
+              ownerState.invertedColors && "var(--variant-solidBg)",
+            color: ownerState.invertedColors && "var(--variant-solidColor)",
+          },
+        }),
+      },
+    },
     JoyStack: {
       defaultProps: {
         useFlexGap: true,
@@ -90,6 +101,7 @@ export const globalStyles = (theme: Theme) =>
       },
       "--Section-paddingY": theme.spacing(10),
       "--Footer-paddingY": theme.spacing(6),
+      "--Footer-bg": theme.vars.palette.background.level1,
       "--MaterialIcon-padding": `${(2 / 24).toFixed(5)}em`,
       "--Header-height": "57px",
     },
@@ -114,7 +126,10 @@ export const globalStyles = (theme: Theme) =>
       color: "inherit",
     },
     figure: { margin: 0 },
-    footer: { paddingBlock: "var(--Footer-paddingY)" },
+    footer: {
+      paddingBlock: "var(--Footer-paddingY)",
+      backgroundColor: "var(--Footer-bg)",
+    },
     "h2, h3, h4": {
       scrollMarginTop: "calc(var(--Header-height) + var(--Section-paddingY))",
     },

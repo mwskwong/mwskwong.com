@@ -18,24 +18,30 @@ const bgcolors = {
 };
 
 const Home: FC = () => (
-  <main>
-    <Hero bgcolor={bgcolors.hero} />
-    <SectionDivider color={bgcolors.hero} bgcolor={bgcolors.about} />
+  <>
+    <main>
+      <Hero bgcolor={bgcolors.hero} />
+      <SectionDivider color={bgcolors.hero} bgcolor={bgcolors.about} />
 
-    <About bgcolor={bgcolors.about} />
-    <SectionDivider color={bgcolors.about} bgcolor={bgcolors.funFact} />
+      <About bgcolor={bgcolors.about} />
+      <SectionDivider color={bgcolors.about} bgcolor={bgcolors.funFact} />
 
-    <FunFact sx={{ bgcolor: bgcolors.funFact }} />
-    <SectionDivider color={bgcolors.funFact} bgcolor={bgcolors.experience} />
+      <FunFact sx={{ bgcolor: bgcolors.funFact }} />
+      <SectionDivider color={bgcolors.funFact} bgcolor={bgcolors.experience} />
 
-    <Experience color={bgcolors.experience} />
-    <SectionDivider color={bgcolors.experience} bgcolor={bgcolors.education} />
+      <Experience color={bgcolors.experience} />
+      <SectionDivider
+        color={bgcolors.experience}
+        bgcolor={bgcolors.education}
+      />
 
-    <Education bgcolor={bgcolors.education} />
-    <SectionDivider color={bgcolors.education} bgcolor={bgcolors.contact} />
+      <Education bgcolor={bgcolors.education} />
+      <SectionDivider color={bgcolors.education} bgcolor={bgcolors.contact} />
 
-    <Contact bgcolor={bgcolors.contact} />
-  </main>
+      <Contact bgcolor={bgcolors.contact} />
+    </main>
+    <SectionDivider bgcolor="var(--Footer-bg)" />
+  </>
 );
 
 export default Home;

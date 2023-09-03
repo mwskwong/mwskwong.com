@@ -4,7 +4,6 @@ import { FC, PropsWithChildren } from "react";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import SectionDivider from "@/components/section-divider";
 import {
   firstName,
   headline,
@@ -30,7 +29,6 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
             )}
           />
           {children}
-          <SectionDivider bgcolor="background.level1" />
           <Footer />
         </ThemeRegistry>
         <Analytics />

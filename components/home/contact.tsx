@@ -23,6 +23,7 @@ import Stack from "@mui/joy/Stack";
 import Textarea from "@mui/joy/Textarea";
 import Typography from "@mui/joy/Typography";
 import { capitalize } from "lodash-es";
+import NextLink from "next/link";
 import { FC } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -118,11 +119,11 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                   </Typography>
                   <Button
                     size="lg"
-                    endDecorator={<KeyboardArrowUpRounded />}
-                    component="a"
+                    startDecorator={<KeyboardArrowUpRounded />}
+                    component={NextLink}
                     href={home.href}
                   >
-                    Back To Top
+                    Back to Top
                   </Button>
                 </Stack>
               </Grid>

@@ -25,10 +25,6 @@ const FunFact: FC<Omit<SheetProps<"section">, "children">> = ({
         // TODO: contrast not enough. May be this will change in the future?
         "--joy-palette-text-secondary": "var(--joy-palette-primary-100)",
         "--joy-palette-text-tertiary": "var(--joy-palette-primary-200)",
-        "& ::selection": {
-          bgcolor: "var(--variant-solidBg)",
-          color: "var(--variant-solidColor)",
-        },
       },
       sx,
     )}
@@ -74,7 +70,7 @@ const FunFact: FC<Omit<SheetProps<"section">, "children">> = ({
           href="https://github.com/mwskwong/resume"
           target="_blank"
         >
-          See the source code
+          See The Source Code
         </Button>
       </Stack>
     </Container>
