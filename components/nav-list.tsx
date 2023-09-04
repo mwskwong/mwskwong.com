@@ -28,17 +28,19 @@ const NavList: FC<Props> = forwardRef(
             orientation === "horizontal" ? theme.spacing(1) : "0px",
         }}
       >
-        {nav.slice(1).map((section) => (
-          <ListItem key={section.href}>
-            <ListItemButton
-              component={Link}
-              href={section.href}
-              onClick={(event) => onNavItemClick?.(section, event)}
-            >
-              {section.name}
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {nav
+          .filter(({ id }) => id !== "home")
+          .map((section) => (
+            <ListItem key={section.href}>
+              <ListItemButton
+                component={Link}
+                href={section.href}
+                onClick={(event) => onNavItemClick?.(section, event)}
+              >
+                {section.name}
+              </ListItemButton>
+            </ListItem>
+          ))}
       </List>
     </Box>
   ),
