@@ -143,14 +143,12 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                     <Controller
                       name="name"
                       control={control}
+                      disabled={isSubmitting}
                       render={({
                         field: { disabled, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl
-                          error={Boolean(error)}
-                          disabled={disabled ?? isSubmitting}
-                        >
+                        <FormControl error={Boolean(error)} disabled={disabled}>
                           <FormLabel>Name</FormLabel>
                           <Input {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -162,14 +160,12 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                     <Controller
                       name="email"
                       control={control}
+                      disabled={isSubmitting}
                       render={({
                         field: { disabled, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl
-                          error={Boolean(error)}
-                          disabled={disabled ?? isSubmitting}
-                        >
+                        <FormControl error={Boolean(error)} disabled={disabled}>
                           <FormLabel>Email</FormLabel>
                           <Input {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -181,14 +177,12 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                     <Controller
                       name="subject"
                       control={control}
+                      disabled={isSubmitting}
                       render={({
                         field: { disabled, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl
-                          error={Boolean(error)}
-                          disabled={disabled ?? isSubmitting}
-                        >
+                        <FormControl error={Boolean(error)} disabled={disabled}>
                           <FormLabel>Subject</FormLabel>
                           <Input {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -200,14 +194,12 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                     <Controller
                       name="message"
                       control={control}
+                      disabled={isSubmitting}
                       render={({
                         field: { disabled, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl
-                          error={Boolean(error)}
-                          disabled={disabled ?? isSubmitting}
-                        >
+                        <FormControl error={Boolean(error)} disabled={disabled}>
                           <FormLabel>Message</FormLabel>
                           <Textarea minRows={5} maxRows={5} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
