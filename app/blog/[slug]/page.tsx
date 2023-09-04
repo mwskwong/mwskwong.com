@@ -24,7 +24,7 @@ import Json from "@/components/icons/json";
 import TypeScript from "@/components/icons/typescript";
 import SectionDivider from "@/components/section-divider";
 import { contact } from "@/constants/nav";
-import getBlogBySlug from "@/lib/get-blog";
+import getBlogBySlug from "@/lib/get-blog-by-slug";
 import getBlogs from "@/lib/get-blogs";
 
 // data attribute auto injected by rehype-pretty-code
