@@ -50,7 +50,7 @@ const Blogs: FC = async () => {
           </Grid>
         </Stack>
       </Container>
-      <SectionDivider bgcolor="var(--Footer-bg)" alignSelf="flex-end" />
+      <SectionDivider bgcolor="var(--Footer-bg)" />
     </>
   );
 };
