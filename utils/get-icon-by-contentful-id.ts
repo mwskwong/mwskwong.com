@@ -5,6 +5,7 @@ import {
   DevicesOtherRounded,
   TerminalRounded,
 } from "@mui/icons-material";
+import { LiteralUnion } from "type-fest";
 
 import Cms from "@/components/icons/cms";
 import Database from "@/components/icons/database";
@@ -44,10 +45,7 @@ const Icons = {
   [contentfulIds.qa]: BugReportRounded,
 };
 
-const getIconByContentfulId = (id: string) => {
-  if (id in Icons) {
-    return Icons[id as keyof typeof Icons];
-  }
-};
+const getIconByContentfulId = (id: LiteralUnion<keyof typeof Icons, string>) =>
+  id in Icons ? Icons[id as keyof typeof Icons] : undefined;
 
 export default getIconByContentfulId;

@@ -19,13 +19,11 @@ import rehypePrettyCode from "rehype-pretty-code";
 
 import CoverImage from "@/components/blog/cover-image";
 import Heading from "@/components/blog/heading";
-import JavaScript from "@/components/icons/javascript";
-import Json from "@/components/icons/json";
-import TypeScript from "@/components/icons/typescript";
 import SectionDivider from "@/components/section-divider";
 import { contact } from "@/constants/nav";
 import getBlogBySlug from "@/lib/get-blog-by-slug";
 import getBlogs from "@/lib/get-blogs";
+import getIconByProgrammingLanguage from "@/utils/get-icon-by-programming-language";
 
 // data attribute auto injected by rehype-pretty-code
 declare module "react" {
@@ -46,14 +44,6 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   month: "long",
   day: "numeric",
 });
-
-const languageIcons = {
-  js: JavaScript,
-  jsx: JavaScript,
-  ts: TypeScript,
-  tsx: TypeScript,
-  json: Json,
-};
 
 const Blog: FC<Props> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
@@ -168,9 +158,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                   if (codeTitle) {
                     const language = props["data-language"];
                     const Icon =
-                      language &&
-                      language in languageIcons &&
-                      languageIcons[language as keyof typeof languageIcons];
+                      language && getIconByProgrammingLanguage(language);
                     const { children, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
