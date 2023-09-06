@@ -15,6 +15,7 @@ module.exports = {
   settings: {
     'import/resolver': { typescript: { project } },
     'jsx-a11y': {
+      // MUI Joy convention
       polymorphicPropName: 'component',
       components: {
         Button: 'button',
@@ -40,7 +41,8 @@ module.exports = {
       'error',
       { checksVoidReturn: false },
     ],
-    'import/no-extraneous-dependencies': ['error', { includeTypes: true }], // such that @/* imports will not being considered as external dependencies
+    // such that @/* imports will not being considered as external dependencies
+    'import/no-extraneous-dependencies': ['error', { includeTypes: true }],
     'react/function-component-definition': [
       'warn',
       {
@@ -64,7 +66,8 @@ module.exports = {
         alphabetize: { order: 'asc' },
       },
     ],
-    'sort-imports': ['warn', { ignoreDeclarationSort: true }], // sort named imports
+    // sort named imports
+    'sort-imports': ['warn', { ignoreDeclarationSort: true }],
   },
   overrides: [
     {
