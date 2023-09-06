@@ -28,6 +28,8 @@ module.exports = {
         ListItem: 'li',
         ListItemButton: 'button',
         ListDivider: 'li',
+        NextImage: 'img',
+        NextLink: 'a',
         SvgIcon: 'svg',
         Textarea: 'textarea',
       },
