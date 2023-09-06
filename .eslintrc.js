@@ -18,6 +18,7 @@ module.exports = {
       polymorphicPropName: 'component',
       components: {
         Button: 'button',
+        Icon: 'svg',
         IconButton: 'button',
         Image: 'img',
         Input: 'input',
@@ -26,6 +27,7 @@ module.exports = {
         ListItem: 'li',
         ListItemButton: 'button',
         ListDivider: 'li',
+        SvgIcon: 'svg',
         Textarea: 'textarea',
       },
     },
