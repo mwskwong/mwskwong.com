@@ -47,13 +47,14 @@ export const BlogCard: FC<BlogCardProps> = ({
         </Chip>
       ))}
     </Stack>
-    <CardContent>
+    <CardContent sx={{ flex: 1 }}>
       <Link
         color="neutral"
         component={NextLink}
         href={href}
         level="title-lg"
         overlay
+        sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
         textColor="text.primary"
       >
         {title}

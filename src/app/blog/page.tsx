@@ -41,6 +41,7 @@ const Blogs: FC = async () => {
                     description={description}
                     href={`/blog/${slug}`}
                     slotProps={{ image: { priority: index < 2 } }}
+                    sx={{ height: '100%' }}
                     title={title}
                     updatedAt={updatedAt}
                   />
