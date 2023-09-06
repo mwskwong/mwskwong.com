@@ -4,7 +4,7 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Link from 'next/link';
 import { FC, MouseEvent, forwardRef } from 'react';
-import nav from '@/constants/nav';
+import { nav } from '@/constants/nav';
 
 export interface NavListProps extends Omit<BoxProps<'nav'>, 'children'> {
   orientation?: ListProps['orientation'];

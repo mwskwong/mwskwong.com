@@ -12,7 +12,7 @@ const nextConfig = {
   },
   images: {
     loader: 'custom',
-    loaderFile: './utils/image-loader.ts',
+    loaderFile: 'src/utils/image-loader.ts',
   },
   webpack: (config) => {
     /* eslint-disable @typescript-eslint/no-unsafe-call */

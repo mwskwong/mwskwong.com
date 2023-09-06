@@ -3,17 +3,16 @@ import {
   LocationOnRounded,
   SmartphoneRounded,
 } from '@mui/icons-material';
-
-import Contentful from '@/components/icons/contentful';
-import Formspree from '@/components/icons/formspree';
-import ImprovMx from '@/components/icons/improvmx';
-import Mui from '@/components/icons/mui';
-import NextJs from '@/components/icons/nextjs';
-import React from '@/components/icons/react';
-import ReactHookForm from '@/components/icons/react-hook-form';
-import TypeScript from '@/components/icons/typescript';
-import Vercel from '@/components/icons/vercel';
-import Zod from '@/components/icons/zod';
+import { Contentful } from '@/components/icons/contentful';
+import { Formspree } from '@/components/icons/formspree';
+import { ImprovMx } from '@/components/icons/improvmx';
+import { Mui } from '@/components/icons/mui';
+import { NextJs } from '@/components/icons/nextjs';
+import { React } from '@/components/icons/react';
+import { ReactHookForm } from '@/components/icons/react-hook-form';
+import { TypeScript } from '@/components/icons/typescript';
+import { Vercel } from '@/components/icons/vercel';
+import { Zod } from '@/components/icons/zod';
 
 export const phone = '+852 6095 4241';
 export const email = 'contact@mwskwong.com';

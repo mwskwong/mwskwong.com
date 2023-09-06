@@ -1,5 +1,6 @@
 import { Theme, extendTheme } from '@mui/joy/styles';
 import { Interpolation } from '@mui/styled-engine';
+// eslint-disable-next-line camelcase -- naming convention of Next Font
 import { Rubik, Source_Code_Pro } from 'next/font/google';
 
 declare module '@mui/joy/styles/types/zIndex' {
@@ -29,7 +30,7 @@ const sourceCodePro = Source_Code_Pro({
   fallback: ['monospace'],
 });
 
-const theme = extendTheme({
+export const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
@@ -137,5 +138,3 @@ export const globalStyles = (theme: Theme) =>
     section: { paddingBlock: 'var(--Section-paddingY)' },
     svg: { display: 'block' },
   }) satisfies Interpolation<Theme>;
-
-export default theme;

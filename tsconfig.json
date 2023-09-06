@@ -17,7 +17,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./src/*"],
       "@mui/material/*": ["./node_modules/@mui/joy/*"]
     }
   },
@@ -26,7 +26,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "**/*.js"
   ],
   "exclude": ["node_modules"]
 }

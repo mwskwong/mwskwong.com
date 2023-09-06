@@ -62,15 +62,13 @@ export const Contact: FC<ContactProps> = (props) => {
         const formErrors = error.getFormErrors();
         const fieldErrors = error.getAllFieldErrors();
 
-        if (formErrors.length) {
-          const { code, message } = formErrors[0];
-          setError('root', { type: code, message });
-        }
+        const { code, message } = formErrors[0] ?? {};
+        setError('root', { type: code, message });
 
         for (const [field, errors] of fieldErrors) {
           setError(field, {
             type: 'validate',
-            message: `${capitalize(field)} ${errors[0].message}`,
+            message: `${capitalize(field)} ${errors[0]?.message}`,
           });
         }
       },
