@@ -40,7 +40,7 @@ export const BlogCard: FC<BlogCardProps> = ({
 }) => (
   <Card component="article" slotProps={slotProps} {...props}>
     <BlogCardImage src={coverImgSrc} {...imageSlotProps} />
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" flexWrap="wrap" spacing={1}>
       {categories.map((category) => (
         <Chip color="primary" key={category} size="sm">
           {category}

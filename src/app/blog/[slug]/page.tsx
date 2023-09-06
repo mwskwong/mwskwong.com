@@ -71,7 +71,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           <Typography level="h1" mb={3} mt={1}>
             {blog.title}
           </Typography>
-          <Stack direction="row" mb={4} spacing={1}>
+          <Stack direction="row" flexWrap="wrap" mb={4} spacing={1}>
             {blog.categories.map((category) => (
               <Chip color="primary" key={category}>
                 {category}
