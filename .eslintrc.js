@@ -69,6 +69,7 @@ module.exports = {
     // sort named imports
     'sort-imports': ['warn', { ignoreDeclarationSort: true }],
   },
+  // Next.js file naming convention
   overrides: [
     {
       files: [
