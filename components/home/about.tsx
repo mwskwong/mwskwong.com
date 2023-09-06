@@ -30,7 +30,7 @@ export const About: FC<AboutProps> = async (props) => {
           </Typography>
           {personalPhoto ? (
             <Image
-              alt={`Picture of ${firstName} ${lastName}`}
+              alt={`${firstName} ${lastName}`}
               height={200}
               priority
               src={personalPhoto}

@@ -4,7 +4,7 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 import { experience } from '@/constants/nav';
-import getExperiences from '@/lib/get-experiences';
+import { getExperiences } from '@/lib/get-experiences';
 import { Timeline, TimelineItem } from './timeline';
 
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;

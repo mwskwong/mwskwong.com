@@ -117,6 +117,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 ),
                 a: ({ color, ...props }) => (
                   // @ts-expect-error LegacyRef passed to RefObject
+                  // eslint-disable-next-line jsx-a11y/anchor-has-content -- whether the anchor has content is depending on the MD itself
                   <Link
                     sx={{ '& > code': { color: 'inherit' } }}
                     target="_blank"

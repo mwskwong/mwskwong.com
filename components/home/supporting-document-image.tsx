@@ -3,7 +3,7 @@
 import mergeSx from 'merge-sx';
 import { ComponentProps, FC } from 'react';
 import { SetOptional } from 'type-fest';
-import Image from '@/components/image';
+import { Image } from '@/components/image';
 import { thumIoPdfLoader } from '@/utils/image-loader';
 
 type SupportingDocumentImageProps = SetOptional<

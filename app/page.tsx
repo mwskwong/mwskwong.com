@@ -5,7 +5,7 @@ import { Education } from '@/components/home/education';
 import { Experience } from '@/components/home/experience';
 import { FunFact } from '@/components/home/fun-fact';
 import { Hero } from '@/components/home/hero';
-import SectionDivider from '@/components/section-divider';
+import { SectionDivider } from '@/components/section-divider';
 
 const bgcolors = {
   hero: 'background.body',

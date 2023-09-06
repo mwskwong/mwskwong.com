@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve } = require('node:path');
 
 const project = resolve(__dirname, 'tsconfig.json');
 
@@ -12,11 +12,32 @@ module.exports = {
     require.resolve('@vercel/style-guide/eslint/typescript'),
   ],
   parserOptions: { project },
-  settings: { 'import/resolver': { typescript: { project } } },
+  settings: {
+    'import/resolver': { typescript: { project } },
+    'jsx-a11y': {
+      polymorphicPropName: 'component',
+      components: {
+        Button: 'button',
+        IconButton: 'button',
+        Image: 'img',
+        Input: 'input',
+        Link: 'a',
+        List: 'ul',
+        ListItem: 'li',
+        ListItemButton: 'button',
+        ListDivider: 'li',
+        Textarea: 'textarea',
+      },
+    },
+  },
   rules: {
     '@typescript-eslint/consistent-type-imports': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-shadow': 'off',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      { checksVoidReturn: false },
+    ],
     'import/no-extraneous-dependencies': ['error', { includeTypes: true }],
     'react/function-component-definition': [
       'warn',
@@ -24,10 +45,6 @@ module.exports = {
         namedComponents: 'arrow-function',
         unnamedComponents: 'arrow-function',
       },
-    ],
-    '@typescript-eslint/no-misused-promises': [
-      'error',
-      { checksVoidReturn: false },
     ],
   },
   overrides: [
