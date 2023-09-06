@@ -1,5 +1,4 @@
-import { siUdemy } from "simple-icons";
+import { siUdemy } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siUdemy, "Udemy");
+export const Udemy = createSimpleSvgIcon(siUdemy, 'Udemy');

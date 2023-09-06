@@ -1,39 +1,38 @@
-import { Entry } from "contentful";
-import { orderBy } from "lodash-es";
-import { cache } from "react";
-
-import client from "./client";
+import { Entry } from 'contentful';
+import { orderBy } from 'lodash-es';
+import { cache } from 'react';
+import { client } from './client';
 import {
   ExperienceSkeleton,
   OrganizationSkeleton,
   SkillSkeleton,
-} from "./types";
+} from './types';
 
-const getExperiences = cache(async () => {
+export const getExperiences = cache(async () => {
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
   const { items } = await client.getEntries<ExperienceSkeleton>({
     select: [
-      "fields.companies",
-      "fields.companiesRelationship",
-      "fields.from",
-      "fields.jobDuties",
-      "fields.jobTitle",
-      "fields.skills",
-      "fields.supportingDocuments",
-      "fields.to",
+      'fields.companies',
+      'fields.companiesRelationship',
+      'fields.from',
+      'fields.jobDuties',
+      'fields.jobTitle',
+      'fields.skills',
+      'fields.supportingDocuments',
+      'fields.to',
     ],
-    content_type: "experience",
-    order: ["fields.to"],
+    content_type: 'experience',
+    order: ['fields.to'],
   });
 
   items.reverse();
   for (const item of items) {
     item.fields.skills = orderBy(
       item.fields.skills,
-      ["fields.proficiency", "fields.name"],
-      ["desc", "asc"],
+      ['fields.proficiency', 'fields.name'],
+      ['desc', 'asc'],
     );
   }
 
@@ -43,7 +42,7 @@ const getExperiences = cache(async () => {
       .filter(
         (
           elem,
-        ): elem is Entry<OrganizationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> =>
+        ): elem is Entry<OrganizationSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> =>
           Boolean(elem),
       )
       .map((company) => ({
@@ -64,11 +63,9 @@ const getExperiences = cache(async () => {
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
     skills: item.fields.skills
       .filter(
-        (elem): elem is Entry<SkillSkeleton, "WITHOUT_UNRESOLVABLE_LINKS"> =>
+        (elem): elem is Entry<SkillSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> =>
           Boolean(elem),
       )
       .map((skill) => skill.fields.name),
   }));
 });
-
-export default getExperiences;

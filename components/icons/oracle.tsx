@@ -1,5 +1,4 @@
-import { siOracle } from "simple-icons";
+import { siOracle } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siOracle, "Oracle");
+export const Oracle = createSimpleSvgIcon(siOracle, 'Oracle');

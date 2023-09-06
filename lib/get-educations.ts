@@ -1,16 +1,15 @@
-import { cache } from "react";
+import { cache } from 'react';
+import { client } from './client';
+import { EducationSkeleton } from './types';
 
-import client from "./client";
-import { EducationSkeleton } from "./types";
-
-const getEducations = cache(async () => {
+export const getEducations = cache(async () => {
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
   const { items } = await client.getEntries<EducationSkeleton>({
-    select: ["fields"],
-    content_type: "education",
-    order: ["fields.to"],
+    select: ['fields'],
+    content_type: 'education',
+    order: ['fields.to'],
   });
 
   items.reverse();
@@ -35,5 +34,3 @@ const getEducations = cache(async () => {
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
   }));
 });
-
-export default getEducations;

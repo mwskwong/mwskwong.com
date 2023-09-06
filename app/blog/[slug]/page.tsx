@@ -1,51 +1,50 @@
 import {
   KeyboardArrowLeftRounded,
   KeyboardArrowRightRounded,
-} from "@mui/icons-material";
-import Box from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
-import Chip from "@mui/joy/Chip";
-import Container from "@mui/joy/Container";
-import Link from "@mui/joy/Link";
-import Sheet from "@mui/joy/Sheet";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
-import { Metadata, ResolvingMetadata } from "next";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import NextLink from "next/link";
-import { notFound } from "next/navigation";
-import { FC } from "react";
-import rehypePrettyCode from "rehype-pretty-code";
-
-import CoverImage from "@/components/blog/cover-image";
-import Heading from "@/components/blog/heading";
-import SectionDivider from "@/components/section-divider";
-import { contact } from "@/constants/nav";
-import getBlogBySlug from "@/lib/get-blog-by-slug";
-import getBlogs from "@/lib/get-blogs";
-import getIconByProgrammingLanguage from "@/utils/get-icon-by-programming-language";
+} from '@mui/icons-material';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Chip from '@mui/joy/Chip';
+import Container from '@mui/joy/Container';
+import Link from '@mui/joy/Link';
+import Sheet from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import { Metadata, ResolvingMetadata } from 'next';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import NextLink from 'next/link';
+import { notFound } from 'next/navigation';
+import { FC } from 'react';
+import rehypePrettyCode from 'rehype-pretty-code';
+import { CoverImage } from '@/components/blog/cover-image';
+import { Heading } from '@/components/blog/heading';
+import { SectionDivider } from '@/components/section-divider';
+import { contact } from '@/constants/nav';
+import { getBlogBySlug } from '@/lib/get-blog-by-slug';
+import { getBlogs } from '@/lib/get-blogs';
+import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
 
 // data attribute auto injected by rehype-pretty-code
-declare module "react" {
+declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    "data-language"?: string;
-    "data-rehype-pretty-code-fragment"?: "";
-    "data-rehype-pretty-code-title"?: "";
+    'data-language'?: string;
+    'data-rehype-pretty-code-fragment'?: '';
+    'data-rehype-pretty-code-title'?: '';
   }
 }
 
-interface Props {
+interface BlogProps {
   params: { slug: string };
 }
 
-const dateFormatter = new Intl.DateTimeFormat("en", {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric",
+const dateFormatter = new Intl.DateTimeFormat('en', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 
-const Blog: FC<Props> = async ({ params: { slug } }) => {
+const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
@@ -55,40 +54,39 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
         <Container
           component="article"
           maxWidth="md"
-          sx={{ py: "var(--Section-paddingY)" }}
+          sx={{ py: 'var(--Section-paddingY)' }}
         >
           <Link
             component={NextLink}
             href="/blog"
-            startDecorator={<KeyboardArrowLeftRounded />}
             mb={2}
+            startDecorator={<KeyboardArrowLeftRounded />}
           >
             Back to Blog
           </Link>
           <Typography level="body-xs">
             {dateFormatter.format(blog.updatedAt)}
           </Typography>
-          <Typography level="h1" mt={1} mb={3}>
+          <Typography level="h1" mb={3} mt={1}>
             {blog.title}
           </Typography>
-          <Stack direction="row" spacing={1} mb={4}>
+          <Stack direction="row" mb={4} spacing={1}>
             {blog.categories.map((category) => (
-              <Chip key={category} color="primary">
+              <Chip color="primary" key={category}>
                 {category}
               </Chip>
             ))}
           </Stack>
-          {blog.coverPhoto && <CoverImage src={blog.coverPhoto} />}
-          {blog.content && (
+          {blog.coverPhoto ? <CoverImage src={blog.coverPhoto} /> : null}
+          {blog.content ? (
             <MDXRemote
-              source={blog.content}
               components={{
                 h2: ({ color, ...props }) => (
                   // @ts-expect-error LegacyRef passed to RefObject
                   <Heading
                     level="h2"
-                    mt={6}
                     mb={3}
+                    mt={6}
                     textColor={color}
                     {...props}
                   />
@@ -97,8 +95,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                   // @ts-expect-error LegacyRef passed to RefObject
                   <Heading
                     level="h3"
-                    mt={4}
                     mb={1.5}
+                    mt={4}
                     textColor={color}
                     {...props}
                   />
@@ -107,8 +105,8 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                   // @ts-expect-error LegacyRef passed to RefObject
                   <Heading
                     level="h4"
-                    mt={3}
                     mb={1}
+                    mt={3}
                     textColor={color}
                     {...props}
                   />
@@ -120,10 +118,10 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 a: ({ color, ...props }) => (
                   // @ts-expect-error LegacyRef passed to RefObject
                   <Link
-                    underline="always"
-                    textColor={color}
+                    sx={{ '& > code': { color: 'inherit' } }}
                     target="_blank"
-                    sx={{ "& > code": { color: "inherit" } }}
+                    textColor={color}
+                    underline="always"
                     {...props}
                   />
                 ),
@@ -135,19 +133,19 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 li: (props) => <Box component="li" my={1} {...props} />,
                 div: (props) => {
                   const codeBlock =
-                    props["data-rehype-pretty-code-fragment"] === "";
+                    props['data-rehype-pretty-code-fragment'] === '';
                   const codeTitle =
-                    props["data-rehype-pretty-code-title"] === "";
+                    props['data-rehype-pretty-code-title'] === '';
 
                   if (codeBlock) {
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Box
-                        data-joy-color-scheme="dark"
                         bgcolor="background.body"
-                        borderRadius="md"
                         border={1}
                         borderColor="neutral.outlinedBorder"
+                        borderRadius="md"
+                        data-joy-color-scheme="dark"
                         my={2}
                         overflow="hidden"
                         {...props}
@@ -156,22 +154,22 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                   }
 
                   if (codeTitle) {
-                    const language = props["data-language"];
+                    const language = props['data-language'];
                     const Icon =
                       language && getIconByProgrammingLanguage(language);
                     const { children, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Stack
-                        direction="row"
-                        spacing={1}
-                        px={2}
-                        py={1.5}
                         borderBottom={1}
                         borderColor="neutral.outlinedBorder"
+                        direction="row"
+                        px={2}
+                        py={1.5}
+                        spacing={1}
                         {...rest}
                       >
-                        {Icon && <Icon size="sm" />}
+                        {Icon ? <Icon size="sm" /> : null}
                         <Typography level="body-sm">{children}</Typography>
                       </Stack>
                     );
@@ -181,25 +179,25 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                 },
 
                 pre: ({
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- avoid passing BG color in order to override it
                   style: { backgroundColor, ...style } = {},
                   ...props
                 }) => {
                   return (
                     // @ts-expect-error LegacyRef passed to RefObject
                     <Box
-                      component="pre"
-                      overflow="auto"
-                      my={0}
-                      py={2}
                       bgcolor="background.surface"
+                      component="pre"
+                      my={0}
+                      overflow="auto"
+                      py={2}
                       style={style}
                       {...props}
                     />
                   );
                 },
                 code: (props) => {
-                  const inlineCode = !props["data-language"];
+                  const inlineCode = !props['data-language'];
 
                   if (inlineCode) {
                     const { color, ...rest } = props;
@@ -207,12 +205,12 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         component="code"
-                        variant="soft"
+                        display="inline"
                         fontFamily="code"
                         fontSize="0.875em"
-                        display="inline"
                         mx={0}
                         textColor={color}
+                        variant="soft"
                         {...rest}
                       />
                     );
@@ -223,17 +221,17 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
                     <Box
                       component="code"
                       sx={{
-                        "& > [data-line]": {
+                        '& > [data-line]': {
                           px: 2,
                         },
-                        "& > [data-highlighted-line]": {
-                          bgcolor: "neutral.softBg",
+                        '& > [data-highlighted-line]': {
+                          bgcolor: 'neutral.softBg',
                         },
-                        "& [data-highlighted-chars]": {
-                          bgcolor: "neutral.softBg",
-                          borderRadius: "xs",
-                          py: "min(0.1em, 4px)",
-                          px: "0.25em",
+                        '& [data-highlighted-chars]': {
+                          bgcolor: 'neutral.softBg',
+                          borderRadius: 'xs',
+                          py: 'min(0.1em, 4px)',
+                          px: '0.25em',
                         },
                       }}
                       {...props}
@@ -243,27 +241,28 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
               }}
               options={{
                 mdxOptions: {
-                  rehypePlugins: [[rehypePrettyCode, { theme: "dark-plus" }]],
+                  rehypePlugins: [[rehypePrettyCode, { theme: 'dark-plus' }]],
                 },
               }}
+              source={blog.content}
             />
-          )}
+          ) : null}
         </Container>
         <SectionDivider bgcolor="primary.solidBg" />
         <Sheet
-          component="section"
-          variant="solid"
           color="primary"
+          component="section"
           invertedColors
+          variant="solid"
         >
           <Container>
-            <Stack spacing={6} alignItems={{ sm: "center" }} textAlign="center">
+            <Stack alignItems={{ sm: 'center' }} spacing={6} textAlign="center">
               <Typography level="h2">Any Questions or Comments?</Typography>
               <Button
-                size="lg"
-                endDecorator={<KeyboardArrowRightRounded />}
                 component={NextLink}
+                endDecorator={<KeyboardArrowRightRounded />}
                 href={contact.href}
+                size="lg"
               >
                 Contact Me
               </Button>
@@ -271,7 +270,7 @@ const Blog: FC<Props> = async ({ params: { slug } }) => {
           </Container>
         </Sheet>
       </main>
-      <SectionDivider color="primary.solidBg" bgcolor="var(--Footer-bg)" />
+      <SectionDivider bgcolor="var(--Footer-bg)" color="primary.solidBg" />
     </>
   );
 };
@@ -280,7 +279,7 @@ export const generateStaticParams = () =>
   getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
 
 export const generateMetadata = async (
-  { params: { slug } }: Props,
+  { params: { slug } }: BlogProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const { title, description, coverPhoto } = (await getBlogBySlug(slug)) ?? {};
@@ -292,7 +291,7 @@ export const generateMetadata = async (
     description,
     openGraph: {
       ...openGraph,
-      title: title,
+      title,
       description,
       url: path,
       images: coverPhoto,

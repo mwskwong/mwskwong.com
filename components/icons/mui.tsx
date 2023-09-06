@@ -1,5 +1,4 @@
-import { siMui } from "simple-icons";
+import { siMui } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siMui, "Mui");
+export const Mui = createSimpleSvgIcon(siMui, 'Mui');

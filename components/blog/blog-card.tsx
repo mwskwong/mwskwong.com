@@ -1,39 +1,38 @@
-import Card, { CardProps } from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import Chip from "@mui/joy/Chip";
-import Link from "@mui/joy/Link";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
-import { StaticImageData } from "next/image";
-import NextLink from "next/link";
-import { ComponentProps, FC } from "react";
+import Card, { CardProps } from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
+import Chip from '@mui/joy/Chip';
+import Link from '@mui/joy/Link';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import { StaticImageData } from 'next/image';
+import NextLink from 'next/link';
+import { ComponentProps, FC } from 'react';
+import { BlogCardImage } from './blog-card-image';
 
-import BlogCardImage from "./blog-card-image";
-
-const dateFormatter = new Intl.DateTimeFormat("en", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
+const dateFormatter = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
 });
 
-interface Props extends Omit<CardProps, "children"> {
+export interface BlogCardProps extends Omit<CardProps, 'children'> {
   coverImgSrc: string | StaticImageData;
   categories?: string[];
   title?: string;
   description?: string;
   href?: string;
   updatedAt?: Date;
-  slotProps?: CardProps["slotProps"] & {
+  slotProps?: CardProps['slotProps'] & {
     image?: Partial<ComponentProps<typeof BlogCardImage>>;
   };
 }
 
-const BlogCard: FC<Props> = ({
+export const BlogCard: FC<BlogCardProps> = ({
   coverImgSrc,
   categories = [],
   title,
   description,
-  href = "",
+  href = '',
   updatedAt,
   slotProps: { image: imageSlotProps, ...slotProps } = {},
   ...props
@@ -42,26 +41,26 @@ const BlogCard: FC<Props> = ({
     <BlogCardImage src={coverImgSrc} {...imageSlotProps} />
     <Stack direction="row" spacing={1}>
       {categories.map((category) => (
-        <Chip key={category} color="primary" size="sm">
+        <Chip color="primary" key={category} size="sm">
           {category}
         </Chip>
       ))}
     </Stack>
     <CardContent>
       <Link
+        color="neutral"
         component={NextLink}
         href={href}
-        color="neutral"
-        textColor="text.primary"
         level="title-lg"
         overlay
+        textColor="text.primary"
       >
         {title}
       </Link>
       <Typography
-        overflow="hidden"
         display="-webkit-box"
-        sx={{ WebkitLineClamp: 3, WebkitBoxOrient: "vertical" }}
+        overflow="hidden"
+        sx={{ WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}
       >
         {description}
       </Typography>
@@ -69,5 +68,3 @@ const BlogCard: FC<Props> = ({
     <Typography level="body-xs">{dateFormatter.format(updatedAt)}</Typography>
   </Card>
 );
-
-export default BlogCard;

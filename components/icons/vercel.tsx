@@ -1,5 +1,4 @@
-import { siVercel } from "simple-icons";
+import { siVercel } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siVercel, "Vercel");
+export const Vercel = createSimpleSvgIcon(siVercel, 'Vercel');

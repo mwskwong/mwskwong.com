@@ -1,19 +1,18 @@
-import Container from "@mui/joy/Container";
-import Grid from "@mui/joy/Grid";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
-import { Metadata, ResolvingMetadata } from "next";
-import { FC } from "react";
-
-import BlogCard from "@/components/blog/blog-card";
-import SectionDivider from "@/components/section-divider";
-import getBlogs from "@/lib/get-blogs";
+import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import { Metadata, ResolvingMetadata } from 'next';
+import { FC } from 'react';
+import { BlogCard } from '@/components/blog/blog-card';
+import SectionDivider from '@/components/section-divider';
+import getBlogs from '@/lib/get-blogs';
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
   return (
     <>
-      <Container component="main" sx={{ py: "var(--Section-paddingY)" }}>
+      <Container component="main" sx={{ py: 'var(--Section-paddingY)' }}>
         <Stack spacing={6}>
           <Stack spacing={2} textAlign="center">
             <Typography level="h1">Blog</Typography>
@@ -25,7 +24,7 @@ const Blogs: FC = async () => {
             {blogs.map(
               (
                 {
-                  coverPhoto = "",
+                  coverPhoto = '',
                   categories,
                   title,
                   slug,
@@ -34,15 +33,15 @@ const Blogs: FC = async () => {
                 },
                 index,
               ) => (
-                <Grid key={slug} xs={12} sm={6} md={4}>
+                <Grid key={slug} md={4} sm={6} xs={12}>
                   <BlogCard
-                    coverImgSrc={coverPhoto}
                     categories={categories}
-                    title={title}
+                    coverImgSrc={coverPhoto}
                     description={description}
                     href={`/blog/${slug}`}
-                    updatedAt={updatedAt}
                     slotProps={{ image: { priority: index < 2 } }}
+                    title={title}
+                    updatedAt={updatedAt}
                   />
                 </Grid>
               ),
@@ -59,8 +58,8 @@ export const generateMetadata = async (
   _: object,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const title = "Blog";
-  const path = "/blog";
+  const title = 'Blog';
+  const path = '/blog';
   const { openGraph } = await parent;
 
   return {

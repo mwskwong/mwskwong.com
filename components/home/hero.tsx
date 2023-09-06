@@ -1,17 +1,18 @@
-import Box, { BoxProps } from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
-import Container from "@mui/joy/Container";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
-import { FC } from "react";
+import Box, { BoxProps } from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Container from '@mui/joy/Container';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import { FC } from 'react';
+import { LinkedIn } from '@/components/icons/linkedin';
+import { firstName, headline, lastName } from '@/constants/content';
+import { linkedin } from '@/constants/contentful-ids';
+import { getCv } from '@/lib/get-cv';
+import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 
-import LinkedIn from "@/components/icons/linkedin";
-import { firstName, headline, lastName } from "@/constants/content";
-import { linkedin } from "@/constants/contentful-ids";
-import getCv from "@/lib/get-cv";
-import getPlatformProfiles from "@/lib/get-platform-profiles";
+export type HeroProps = Omit<BoxProps<'section'>, 'children'>;
 
-const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
+export const Hero: FC<HeroProps> = async (props) => {
   const [cv, linkedinProfile] = await Promise.all([
     getCv(),
     getPlatformProfiles().then((platformProfiles) =>
@@ -22,7 +23,7 @@ const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
   return (
     <Box component="section" pt={{ sm: 16 }} {...props}>
       <Container>
-        <Stack spacing={5} justifyContent="center">
+        <Stack justifyContent="center" spacing={5}>
           <Stack spacing={2} textAlign="center">
             <Typography level="body-sm">Hello</Typography>
             <Typography level="h1">
@@ -32,21 +33,21 @@ const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
             <Typography level="title-lg">{headline}</Typography>
           </Stack>
           <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={2}
+            direction={{ xs: 'column', sm: 'row' }}
             justifyContent="center"
+            spacing={2}
           >
-            <Button size="lg" component="a" href={cv} target="_blank">
+            <Button component="a" href={cv} size="lg" target="_blank">
               Download CV
             </Button>
             <Button
               color="neutral"
-              variant="outlined"
-              size="lg"
-              startDecorator={<LinkedIn />}
               component="a"
               href={linkedinProfile?.url}
+              size="lg"
+              startDecorator={<LinkedIn />}
               target="_blank"
+              variant="outlined"
             >
               {linkedinProfile?.platform?.name}
             </Button>
@@ -56,5 +57,3 @@ const Hero: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
     </Box>
   );
 };
-
-export default Hero;

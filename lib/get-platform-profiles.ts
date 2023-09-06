@@ -1,13 +1,12 @@
-import { orderBy } from "lodash-es";
-import { cache } from "react";
+import { orderBy } from 'lodash-es';
+import { cache } from 'react';
+import { client } from './client';
+import { PlatformProfileSkeleton } from './types';
 
-import client from "./client";
-import { PlatformProfileSkeleton } from "./types";
-
-const getPlatformProfiles = cache(async () => {
+export const getPlatformProfiles = cache(async () => {
   const { items } = await client.getEntries<PlatformProfileSkeleton>({
-    select: ["sys.id", "fields"],
-    content_type: "platformProfile",
+    select: ['sys.id', 'fields'],
+    content_type: 'platformProfile',
   });
 
   const platformProfiles = items.map((item) => ({
@@ -18,7 +17,5 @@ const getPlatformProfiles = cache(async () => {
     },
   }));
 
-  return orderBy(platformProfiles, "platform.name");
+  return orderBy(platformProfiles, 'platform.name');
 });
-
-export default getPlatformProfiles;

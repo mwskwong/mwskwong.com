@@ -1,41 +1,44 @@
-"use client";
+'use client';
 
-import { LinkRounded } from "@mui/icons-material";
-import Link from "@mui/joy/Link";
+import { LinkRounded } from '@mui/icons-material';
+import Link from '@mui/joy/Link';
 import Typography, {
   TypographyProps,
   typographyClasses,
-} from "@mui/joy/Typography";
-import { kebabCase } from "lodash-es";
-import mergeSx from "merge-sx";
-import { FC } from "react";
+} from '@mui/joy/Typography';
+import { kebabCase } from 'lodash-es';
+import mergeSx from 'merge-sx';
+import { FC } from 'react';
 
-const Heading: FC<TypographyProps> = ({ sx, ...props }) => {
+export type HeadingProps = TypographyProps;
+
+// FIXME: with zero runtime, we may be able to make this a server component
+export const Heading: FC<HeadingProps> = ({ sx, ...props }) => {
   const hash =
-    typeof props.children === "string" ? kebabCase(props.children) : undefined;
+    typeof props.children === 'string' ? kebabCase(props.children) : undefined;
 
   return (
     <Typography
-      id={hash}
       endDecorator={
         <Link
+          aria-labelledby={hash}
+          borderRadius="sm"
+          href={`#${hash}`}
           level="body-md"
           variant="outlined"
-          aria-labelledby={hash}
-          href={`#${hash}`}
-          borderRadius="sm"
         >
           <LinkRounded />
         </Link>
       }
+      id={hash}
       sx={mergeSx(
         {
           [`& .${typographyClasses.endDecorator}`]: {
-            visibility: "hidden",
+            visibility: 'hidden',
           },
-          "&:hover": {
+          '&:hover': {
             [`& .${typographyClasses.endDecorator}`]: {
-              visibility: "unset",
+              visibility: 'unset',
             },
           },
         },
@@ -45,5 +48,3 @@ const Heading: FC<TypographyProps> = ({ sx, ...props }) => {
     />
   );
 };
-
-export default Heading;

@@ -1,26 +1,26 @@
-import Container from "@mui/joy/Container";
-import Typography from "@mui/joy/Typography";
-import { FC } from "react";
+import Container from '@mui/joy/Container';
+import Typography from '@mui/joy/Typography';
+import { FC } from 'react';
 
 const NotFound: FC = () => (
   <Container
     component="main"
     sx={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "stretch",
-      justifyContent: "center",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      justifyContent: 'center',
       gap: 2,
       flex: 1,
-      textAlign: "center",
+      textAlign: 'center',
     }}
   >
-    <Typography level="body-sm" color="primary">
+    <Typography color="primary" level="body-sm">
       404 error
     </Typography>
-    <Typography level="h1">{"We can't find that page"}</Typography>
+    <Typography level="h1">We can&apos;t find that page</Typography>
     <Typography>
-      {"Sorry, the page you are looking for doesn't exist or has been moved."}
+      Sorry, the page you are looking for doesn&apos;t exist or has been moved.
     </Typography>
   </Container>
 );

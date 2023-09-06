@@ -1,14 +1,14 @@
-import { Theme, extendTheme } from "@mui/joy/styles";
-import { Interpolation } from "@mui/styled-engine";
-import { Rubik, Source_Code_Pro } from "next/font/google";
+import { Theme, extendTheme } from '@mui/joy/styles';
+import { Interpolation } from '@mui/styled-engine';
+import { Rubik, Source_Code_Pro } from 'next/font/google';
 
-declare module "@mui/joy/styles/types/zIndex" {
+declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
     header: true;
   }
 }
 
-declare module "@mui/joy/styles" {
+declare module '@mui/joy/styles' {
   interface FontSizeOverrides {
     xl7: true;
     xl6: true;
@@ -16,17 +16,17 @@ declare module "@mui/joy/styles" {
   }
 }
 
-declare module "@mui/joy/SvgIcon" {
+declare module '@mui/joy/SvgIcon' {
   interface SvgIconPropsColorOverrides {
     branding: true;
   }
 }
 
-const rubik = Rubik({ subsets: ["latin"] });
+const rubik = Rubik({ subsets: ['latin'] });
 const sourceCodePro = Source_Code_Pro({
-  subsets: ["latin"],
+  subsets: ['latin'],
   adjustFontFallback: false,
-  fallback: ["monospace"],
+  fallback: ['monospace'],
 });
 
 const theme = extendTheme({
@@ -34,19 +34,19 @@ const theme = extendTheme({
     light: {
       palette: {
         background: {
-          body: "var(--joy-palette-common-white)",
-          level1: "var(--joy-palette-neutral-50)",
-          level2: "var(--joy-palette-neutral-100)",
-          level3: "var(--joy-palette-neutral-200)",
+          body: 'var(--joy-palette-common-white)',
+          level1: 'var(--joy-palette-neutral-50)',
+          level2: 'var(--joy-palette-neutral-100)',
+          level3: 'var(--joy-palette-neutral-200)',
         },
       },
     },
     dark: {
       palette: {
         background: {
-          level1: "var(--joy-palette-neutral-900)",
-          level2: "var(--joy-palette-neutral-800)",
-          level3: "var(--joy-palette-neutral-700)",
+          level1: 'var(--joy-palette-neutral-900)',
+          level2: 'var(--joy-palette-neutral-800)',
+          level3: 'var(--joy-palette-neutral-700)',
         },
       },
     },
@@ -57,9 +57,9 @@ const theme = extendTheme({
     code: sourceCodePro.style.fontFamily,
   },
   fontSize: {
-    xl7: "4.5rem",
-    xl6: "3.75rem",
-    xl5: "3rem",
+    xl7: '4.5rem',
+    xl6: '3.75rem',
+    xl5: '3rem',
   },
   zIndex: {
     header: 1100,
@@ -68,19 +68,19 @@ const theme = extendTheme({
     JoyLink: {
       styleOverrides: {
         root: {
-          userSelect: "unset",
+          userSelect: 'unset',
           // WORKAROUND: to ensure the overlay is always on top of everything
-          "&::after": { zIndex: 1 },
+          '&::after': { zIndex: 1 },
         },
       },
     },
     JoySheet: {
       styleOverrides: {
         root: ({ ownerState }) => ({
-          "& ::selection": {
+          '& ::selection': {
             backgroundColor:
-              ownerState.invertedColors && "var(--variant-solidBg)",
-            color: ownerState.invertedColors && "var(--variant-solidColor)",
+              ownerState.invertedColors && 'var(--variant-solidBg)',
+            color: ownerState.invertedColors && 'var(--variant-solidColor)',
           },
         }),
       },
@@ -95,47 +95,47 @@ const theme = extendTheme({
 
 export const globalStyles = (theme: Theme) =>
   ({
-    ":root": {
-      [theme.breakpoints.up("md")]: {
-        "--Header-height": "65px",
+    ':root': {
+      [theme.breakpoints.up('md')]: {
+        '--Header-height': '65px',
       },
-      "--Section-paddingY": theme.spacing(10),
-      "--Footer-paddingY": theme.spacing(6),
-      "--Footer-bg": theme.vars.palette.background.level1,
-      "--MaterialIcon-padding": `${(2 / 24).toFixed(5)}em`,
-      "--Header-height": "57px",
+      '--Section-paddingY': theme.spacing(10),
+      '--Footer-paddingY': theme.spacing(6),
+      '--Footer-bg': theme.vars.palette.background.level1,
+      '--MaterialIcon-padding': `${(2 / 24).toFixed(5)}em`,
+      '--Header-height': '57px',
     },
-    "::selection": {
+    '::selection': {
       backgroundColor: theme.vars.palette.primary.solidBg,
       color: theme.vars.palette.primary.solidColor,
     },
-    address: { fontStyle: "unset" },
+    address: { fontStyle: 'unset' },
     blockquote: {
-      fontStyle: "italic",
-      "&::before": { content: "'“'" },
-      "&::after": { content: "'”'" },
+      fontStyle: 'italic',
+      '&::before': { content: "'“'" },
+      '&::after': { content: "'”'" },
     },
     body: {
-      display: "flex",
-      flexDirection: "column",
-      minHeight: "100vh",
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
     },
     code: {
-      ...theme.typography["body-sm"],
+      ...theme.typography['body-sm'],
       fontFamily: theme.vars.fontFamily.code,
-      color: "inherit",
+      color: 'inherit',
     },
     figure: { margin: 0 },
     footer: {
-      paddingBlock: "var(--Footer-paddingY)",
-      backgroundColor: "var(--Footer-bg)",
+      paddingBlock: 'var(--Footer-paddingY)',
+      backgroundColor: 'var(--Footer-bg)',
     },
-    "h2, h3, h4": {
-      scrollMarginTop: "calc(var(--Header-height) + var(--Section-paddingY))",
+    'h2, h3, h4': {
+      scrollMarginTop: 'calc(var(--Header-height) + var(--Section-paddingY))',
     },
     main: { flex: 1 },
-    section: { paddingBlock: "var(--Section-paddingY)" },
-    svg: { display: "block" },
+    section: { paddingBlock: 'var(--Section-paddingY)' },
+    svg: { display: 'block' },
   }) satisfies Interpolation<Theme>;
 
 export default theme;

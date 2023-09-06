@@ -1,14 +1,14 @@
-import { EntryFieldTypes } from "contentful";
+import { EntryFieldTypes } from 'contentful';
 
 export interface BlogCategorySkeleton {
-  contentTypeId: "blogCategory";
+  contentTypeId: 'blogCategory';
   fields: {
     name: EntryFieldTypes.Symbol;
   };
 }
 
 export interface BlogSkeleton {
-  contentTypeId: "blog";
+  contentTypeId: 'blog';
   fields: {
     coverPhoto: EntryFieldTypes.AssetLink;
     categories?: EntryFieldTypes.Array<
@@ -22,14 +22,14 @@ export interface BlogSkeleton {
 }
 
 export interface CourseCategorySkeleton {
-  contentTypeId: "courseCategory";
+  contentTypeId: 'courseCategory';
   fields: {
     name: EntryFieldTypes.Symbol;
   };
 }
 
 export interface CourseSkeleton {
-  contentTypeId: "course";
+  contentTypeId: 'course';
   fields: {
     name: EntryFieldTypes.Symbol;
     institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
@@ -41,7 +41,7 @@ export interface CourseSkeleton {
 }
 
 export interface EducationSkeleton {
-  contentTypeId: "education";
+  contentTypeId: 'education';
   fields: {
     from: EntryFieldTypes.Date;
     to?: EntryFieldTypes.Date;
@@ -53,7 +53,7 @@ export interface EducationSkeleton {
 }
 
 export interface ExperienceSkeleton {
-  contentTypeId: "experience";
+  contentTypeId: 'experience';
   fields: {
     from: EntryFieldTypes.Date;
     to?: EntryFieldTypes.Date;
@@ -70,7 +70,7 @@ export interface ExperienceSkeleton {
 }
 
 export interface OrganizationSkeleton {
-  contentTypeId: "organization";
+  contentTypeId: 'organization';
   fields: {
     name: EntryFieldTypes.Symbol;
     url?: EntryFieldTypes.Symbol;
@@ -79,7 +79,7 @@ export interface OrganizationSkeleton {
 }
 
 export interface PlatformProfileSkeleton {
-  contentTypeId: "platformProfile";
+  contentTypeId: 'platformProfile';
   fields: {
     platform: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     url: EntryFieldTypes.Symbol;
@@ -87,7 +87,7 @@ export interface PlatformProfileSkeleton {
 }
 
 export interface SkillSkeleton {
-  contentTypeId: "skill";
+  contentTypeId: 'skill';
   fields: {
     name: EntryFieldTypes.Symbol;
     category?: EntryFieldTypes.EntryLink<SkillCategorySkeleton>;
@@ -96,7 +96,7 @@ export interface SkillSkeleton {
 }
 
 export interface SkillCategorySkeleton {
-  contentTypeId: "skillCategory";
+  contentTypeId: 'skillCategory';
   fields: {
     name: EntryFieldTypes.Symbol;
     proficiency: EntryFieldTypes.Integer;

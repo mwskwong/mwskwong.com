@@ -1,20 +1,19 @@
-import { cache } from "react";
+import { cache } from 'react';
+import { client } from './client';
+import { SkillCategorySkeleton, SkillSkeleton } from './types';
 
-import client from "./client";
-import { SkillCategorySkeleton, SkillSkeleton } from "./types";
-
-const getSkillCategories = cache(async () => {
+export const getSkillCategories = cache(async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     client.getEntries<SkillSkeleton>({
-      select: ["fields"],
-      content_type: "skill",
-      "fields.category[exists]": true,
-      order: ["-fields.proficiency", "fields.name"],
+      select: ['fields'],
+      content_type: 'skill',
+      'fields.category[exists]': true,
+      order: ['-fields.proficiency', 'fields.name'],
     }),
     client.getEntries<SkillCategorySkeleton>({
-      select: ["sys.id", "fields.name"],
-      content_type: "skillCategory",
-      order: ["-fields.proficiency", "fields.name"],
+      select: ['sys.id', 'fields.name'],
+      content_type: 'skillCategory',
+      order: ['-fields.proficiency', 'fields.name'],
     }),
   ]);
 
@@ -26,5 +25,3 @@ const getSkillCategories = cache(async () => {
       .map((skill) => skill.fields.name),
   }));
 });
-
-export default getSkillCategories;

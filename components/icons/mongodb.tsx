@@ -1,5 +1,4 @@
-import { siMongodb } from "simple-icons";
+import { siMongodb } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siMongodb, "MongoDb");
+export const MongoDb = createSimpleSvgIcon(siMongodb, 'MongoDb');

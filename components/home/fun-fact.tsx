@@ -1,37 +1,35 @@
-import { KeyboardArrowRightRounded } from "@mui/icons-material";
-import Button from "@mui/joy/Button";
-import Container from "@mui/joy/Container";
-import Grid from "@mui/joy/Grid";
-import Link from "@mui/joy/Link";
-import Sheet, { SheetProps } from "@mui/joy/Sheet";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
-import mergeSx from "merge-sx";
-import { FC } from "react";
+import { KeyboardArrowRightRounded } from '@mui/icons-material';
+import Button from '@mui/joy/Button';
+import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
+import Link from '@mui/joy/Link';
+import Sheet, { SheetProps } from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import mergeSx from 'merge-sx';
+import { FC } from 'react';
+import { websiteTechStack } from '@/constants/content';
 
-import { websiteTechStack } from "@/constants/content";
+export type FunFactProps = Omit<SheetProps<'section'>, 'children'>;
 
-const FunFact: FC<Omit<SheetProps<"section">, "children">> = ({
-  sx,
-  ...props
-}) => (
+export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
   <Sheet
-    component="section"
-    variant="solid"
     color="primary"
+    component="section"
     invertedColors
     sx={mergeSx(
       {
         // TODO: contrast not enough. May be this will change in the future?
-        "--joy-palette-text-secondary": "var(--joy-palette-primary-100)",
-        "--joy-palette-text-tertiary": "var(--joy-palette-primary-200)",
+        '--joy-palette-text-secondary': 'var(--joy-palette-primary-100)',
+        '--joy-palette-text-tertiary': 'var(--joy-palette-primary-200)',
       },
       sx,
     )}
+    variant="solid"
     {...props}
   >
     <Container>
-      <Stack spacing={6} alignItems={{ sm: "center" }} textAlign="center">
+      <Stack alignItems={{ sm: 'center' }} spacing={6} textAlign="center">
         <Stack spacing={2}>
           <Typography level="h2">Fun Fact</Typography>
           <Typography>
@@ -41,20 +39,20 @@ const FunFact: FC<Omit<SheetProps<"section">, "children">> = ({
         </Stack>
         <Grid
           container
-          spacing={6}
-          justifyContent="center"
           disableEqualOverflow
+          justifyContent="center"
+          spacing={6}
         >
           {websiteTechStack.map(({ name, Icon, url }) => (
-            <Grid key={name} xs={6} sm={3}>
-              <Stack spacing={2} position="relative" alignItems="center">
+            <Grid key={name} sm={3} xs={6}>
+              <Stack alignItems="center" position="relative" spacing={2}>
                 <Icon fontSize="xl6" />
                 <Link
+                  href={url}
                   overlay
+                  target="_blank"
                   textColor="text.secondary"
                   underline="none"
-                  href={url}
-                  target="_blank"
                 >
                   {name}
                 </Link>
@@ -64,10 +62,10 @@ const FunFact: FC<Omit<SheetProps<"section">, "children">> = ({
         </Grid>
         <Typography>...and more</Typography>
         <Button
-          size="lg"
-          endDecorator={<KeyboardArrowRightRounded />}
           component="a"
+          endDecorator={<KeyboardArrowRightRounded />}
           href="https://github.com/mwskwong/resume"
+          size="lg"
           target="_blank"
         >
           See The Source Code
@@ -76,5 +74,3 @@ const FunFact: FC<Omit<SheetProps<"section">, "children">> = ({
     </Container>
   </Sheet>
 );
-
-export default FunFact;

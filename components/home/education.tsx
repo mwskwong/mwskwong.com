@@ -1,18 +1,17 @@
-import Box, { BoxProps } from "@mui/joy/Box";
-import Container from "@mui/joy/Container";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
-import { FC } from "react";
+import Box, { BoxProps } from '@mui/joy/Box';
+import Container from '@mui/joy/Container';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import { FC } from 'react';
+import { education } from '@/constants/nav';
+import getCourses from '@/lib/get-courses';
+import getEducations from '@/lib/get-educations';
+import { SelfLearning } from './self-learning';
+import { Timeline, TimelineItem } from './timeline';
 
-import { education } from "@/constants/nav";
-import getCourses from "@/lib/get-courses";
-import getEducations from "@/lib/get-educations";
+export type EducationProps = Omit<BoxProps<'section'>, 'children'>;
 
-import SelfLearning from "./self-learning";
-import Timeline from "./timeline";
-import TimelineItem from "./timeline-item";
-
-const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
+export const Education: FC<EducationProps> = async (props) => {
   const [educations, courses] = await Promise.all([
     getEducations().then((educations) =>
       educations.map(({ from, to, program, school, supportingDocuments }) => ({
@@ -30,7 +29,7 @@ const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" id={education.id} textAlign="center">
+          <Typography id={education.id} level="h2" textAlign="center">
             Education
           </Typography>
           <Timeline>
@@ -38,7 +37,7 @@ const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
               <TimelineItem key={education.title} {...education} />
             ))}
           </Timeline>
-          <Stack spacing={2} textAlign="center" alignItems="center">
+          <Stack alignItems="center" spacing={2} textAlign="center">
             <Typography level="h3" textAlign="center">
               Self-learning
             </Typography>
@@ -56,5 +55,3 @@ const Education: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
     </Box>
   );
 };
-
-export default Education;

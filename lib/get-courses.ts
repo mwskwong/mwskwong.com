@@ -1,14 +1,13 @@
-import { orderBy } from "lodash-es";
-import { cache } from "react";
+import { orderBy } from 'lodash-es';
+import { cache } from 'react';
+import { client } from './client';
+import { CourseSkeleton } from './types';
 
-import client from "./client";
-import { CourseSkeleton } from "./types";
-
-const getCourses = cache(async () => {
+export const getCourses = cache(async () => {
   const { items } = await client.getEntries<CourseSkeleton>({
-    select: ["fields"],
-    content_type: "course",
-    order: ["fields.name"],
+    select: ['fields'],
+    content_type: 'course',
+    order: ['fields.name'],
   });
 
   return items.map((item) => ({
@@ -27,5 +26,3 @@ const getCourses = cache(async () => {
     ),
   }));
 });
-
-export default getCourses;

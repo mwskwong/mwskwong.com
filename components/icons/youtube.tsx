@@ -1,5 +1,4 @@
-import { siYoutube } from "simple-icons";
+import { siYoutube } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siYoutube, "YouTube");
+export const YouTube = createSimpleSvgIcon(siYoutube, 'YouTube');

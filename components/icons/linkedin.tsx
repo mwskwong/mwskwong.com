@@ -1,5 +1,4 @@
-import { siLinkedin } from "simple-icons";
+import { siLinkedin } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siLinkedin, "LinkedIn");
+export const LinkedIn = createSimpleSvgIcon(siLinkedin, 'LinkedIn');

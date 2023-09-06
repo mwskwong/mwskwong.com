@@ -1,16 +1,15 @@
-import Box, { BoxProps } from "@mui/joy/Box";
-import Container from "@mui/joy/Container";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
-import { FC } from "react";
+import Box, { BoxProps } from '@mui/joy/Box';
+import Container from '@mui/joy/Container';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import { FC } from 'react';
+import { experience } from '@/constants/nav';
+import getExperiences from '@/lib/get-experiences';
+import { Timeline, TimelineItem } from './timeline';
 
-import { experience } from "@/constants/nav";
-import getExperiences from "@/lib/get-experiences";
+export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
 
-import Timeline from "./timeline";
-import TimelineItem from "./timeline-item";
-
-const Experience: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
+export const Experience: FC<ExperienceProps> = async (props) => {
   const experiences = await getExperiences().then((experiences) =>
     experiences.map(
       ({
@@ -39,7 +38,7 @@ const Experience: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" id={experience.id} textAlign="center">
+          <Typography id={experience.id} level="h2" textAlign="center">
             Experience
           </Typography>
           <Timeline>
@@ -52,5 +51,3 @@ const Experience: FC<Omit<BoxProps<"section">, "children">> = async (props) => {
     </Box>
   );
 };
-
-export default Experience;

@@ -1,23 +1,22 @@
-import { orderBy } from "lodash-es";
-import { cache } from "react";
+import { orderBy } from 'lodash-es';
+import { cache } from 'react';
+import { client } from './client';
+import { BlogSkeleton } from './types';
 
-import client from "./client";
-import { BlogSkeleton } from "./types";
-
-const getBlogs = cache(
+export const getBlogs = cache(
   async (pagination?: { page: number; pageSize?: number }) => {
     const { page = 1, pageSize = 9 } = pagination ?? {};
     const { items } = await client.getEntries<BlogSkeleton>({
       select: [
-        "sys.updatedAt",
-        "fields.categories",
-        "fields.coverPhoto",
-        "fields.description",
-        "fields.slug",
-        "fields.title",
+        'sys.updatedAt',
+        'fields.categories',
+        'fields.coverPhoto',
+        'fields.description',
+        'fields.slug',
+        'fields.title',
       ],
-      content_type: "blog",
-      order: ["-sys.updatedAt"],
+      content_type: 'blog',
+      order: ['-sys.updatedAt'],
       skip: pagination && (page - 1) * pageSize,
       limit: pagination && pageSize,
     });
@@ -38,5 +37,3 @@ const getBlogs = cache(
     }));
   },
 );
-
-export default getBlogs;

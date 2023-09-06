@@ -1,5 +1,4 @@
-import { siImprovmx } from "simple-icons";
+import { siImprovmx } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siImprovmx, "ImprovMx");
+export const ImprovMx = createSimpleSvgIcon(siImprovmx, 'ImprovMx');

@@ -1,21 +1,20 @@
-"use client";
+'use client';
 
-import { ClearRounded, SearchRounded } from "@mui/icons-material";
-import Box from "@mui/joy/Box";
-import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import Chip from "@mui/joy/Chip";
-import Grid from "@mui/joy/Grid";
-import IconButton from "@mui/joy/IconButton";
-import Input from "@mui/joy/Input";
-import Link from "@mui/joy/Link";
-import Stack, { StackProps } from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
-import { FC, useDeferredValue, useMemo, useState } from "react";
+import { ClearRounded, SearchRounded } from '@mui/icons-material';
+import Box from '@mui/joy/Box';
+import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
+import Chip from '@mui/joy/Chip';
+import Grid from '@mui/joy/Grid';
+import IconButton from '@mui/joy/IconButton';
+import Input from '@mui/joy/Input';
+import Link from '@mui/joy/Link';
+import Stack, { StackProps } from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
+import { FC, useDeferredValue, useMemo, useState } from 'react';
+import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
-import getIconByContentfulId from "@/utils/get-icon-by-contentful-id";
-
-interface Props extends Omit<StackProps, "children"> {
+export interface SelfLearningProps extends Omit<StackProps, 'children'> {
   courses?: {
     institution?: {
       id: string;
@@ -27,8 +26,11 @@ interface Props extends Omit<StackProps, "children"> {
   }[];
 }
 
-const SelfLearning: FC<Props> = ({ courses = [], ...props }) => {
-  const [search, setSearch] = useState("");
+export const SelfLearning: FC<SelfLearningProps> = ({
+  courses = [],
+  ...props
+}) => {
+  const [search, setSearch] = useState('');
   const deferredSearch = useDeferredValue(search);
   const filteredCourses = useMemo(
     () =>
@@ -48,20 +50,26 @@ const SelfLearning: FC<Props> = ({ courses = [], ...props }) => {
   return (
     <Stack spacing={2} {...props}>
       <Input
-        size="lg"
-        placeholder="Search courses..."
-        startDecorator={<SearchRounded />}
         endDecorator={
           search.length > 0 && (
-            <IconButton onClick={() => setSearch("")}>
+            <IconButton
+              onClick={() => {
+                setSearch('');
+              }}
+            >
               <ClearRounded />
             </IconButton>
           )
         }
         fullWidth
-        sx={{ maxWidth: 400, mx: "auto" }}
+        onChange={(event) => {
+          setSearch(event.target.value);
+        }}
+        placeholder="Search courses..."
+        size="lg"
+        startDecorator={<SearchRounded />}
+        sx={{ maxWidth: 400, mx: 'auto' }}
         value={search}
-        onChange={(event) => setSearch(event.target.value)}
       />
       <Grid container spacing={2}>
         {filteredCourses.map(
@@ -69,19 +77,19 @@ const SelfLearning: FC<Props> = ({ courses = [], ...props }) => {
             const Icon = institution && getIconByContentfulId(institution.id);
 
             return (
-              <Grid key={name} xs={12} md={6}>
+              <Grid key={name} md={6} xs={12}>
                 <Card orientation="horizontal">
-                  {Icon && <Icon color="branding" fontSize="xl2" />}
+                  {Icon ? <Icon color="branding" fontSize="xl2" /> : null}
                   <CardContent sx={{ gap: 1 }}>
-                    <Box minHeight={{ md: 68, lg: "unset" }}>
+                    <Box minHeight={{ md: 68, lg: 'unset' }}>
                       {certificate ? (
                         <Link
+                          color="neutral"
+                          href={certificate}
                           level="title-md"
                           overlay
-                          color="neutral"
-                          textColor="text.primary"
-                          href={certificate}
                           target="_blank"
+                          textColor="text.primary"
                         >
                           {name}
                         </Link>
@@ -109,5 +117,3 @@ const SelfLearning: FC<Props> = ({ courses = [], ...props }) => {
     </Stack>
   );
 };
-
-export default SelfLearning;

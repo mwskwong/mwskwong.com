@@ -1,14 +1,13 @@
-import { orderBy } from "lodash-es";
-import { cache } from "react";
+import { orderBy } from 'lodash-es';
+import { cache } from 'react';
+import { client } from './client';
+import { BlogSkeleton } from './types';
 
-import client from "./client";
-import { BlogSkeleton } from "./types";
-
-const getBlogBySlug = cache(async (slug: string) => {
+export const getBlogBySlug = cache(async (slug: string) => {
   const { items } = await client.getEntries<BlogSkeleton>({
-    select: ["sys.id", "sys.updatedAt", "fields"],
-    content_type: "blog",
-    "fields.slug[in]": [slug],
+    select: ['sys.id', 'sys.updatedAt', 'fields'],
+    content_type: 'blog',
+    'fields.slug[in]': [slug],
     limit: 1,
   });
 
@@ -32,5 +31,3 @@ const getBlogBySlug = cache(async (slug: string) => {
     }
   );
 });
-
-export default getBlogBySlug;

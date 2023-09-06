@@ -1,8 +1,7 @@
-import { LiteralUnion } from "type-fest";
-
-import JavaScript from "@/components/icons/javascript";
-import Json from "@/components/icons/json";
-import TypeScript from "@/components/icons/typescript";
+import { LiteralUnion } from 'type-fest';
+import { JavaScript } from '@/components/icons/javascript';
+import { Json } from '@/components/icons/json';
+import { TypeScript } from '@/components/icons/typescript';
 
 const Icons = {
   js: JavaScript,
@@ -12,8 +11,6 @@ const Icons = {
   json: Json,
 };
 
-const getIconByProgrammingLanguage = (
+export const getIconByProgrammingLanguage = (
   language: LiteralUnion<keyof typeof Icons, string>,
 ) => (language in Icons ? Icons[language as keyof typeof Icons] : undefined);
-
-export default getIconByProgrammingLanguage;

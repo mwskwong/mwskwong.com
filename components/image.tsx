@@ -1,6 +1,8 @@
-"use client";
+'use client';
 
-import { styled } from "@mui/joy/styles";
-import Image from "next/image";
+import { styled } from '@mui/joy/styles';
+import NextImage from 'next/image';
+import { ComponentProps } from 'react';
 
-export default styled(Image)``;
+export const Image = styled(NextImage)``;
+export type ImageProps = ComponentProps<typeof Image>;

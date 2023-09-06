@@ -1,5 +1,4 @@
-import { siJavascript } from "simple-icons";
+import { siJavascript } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siJavascript, "JavaScript");
+export const JavaScript = createSimpleSvgIcon(siJavascript, 'JavaScript');

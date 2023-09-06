@@ -1,38 +1,49 @@
-"use client";
+'use client';
 
-import { useSubmit } from "@formspree/react";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useSubmit } from '@formspree/react';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   KeyboardArrowUpRounded,
   ReportRounded,
   SendRounded,
   ThumbUpRounded,
-} from "@mui/icons-material";
-import Alert from "@mui/joy/Alert";
-import Box, { BoxProps } from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
-import Container from "@mui/joy/Container";
-import FormControl from "@mui/joy/FormControl";
-import FormHelperText from "@mui/joy/FormHelperText";
-import FormLabel from "@mui/joy/FormLabel";
-import Grid from "@mui/joy/Grid";
-import Input from "@mui/joy/Input";
-import Link from "@mui/joy/Link";
-import Sheet from "@mui/joy/Sheet";
-import Stack from "@mui/joy/Stack";
-import Textarea from "@mui/joy/Textarea";
-import Typography from "@mui/joy/Typography";
-import { capitalize } from "lodash-es";
-import NextLink from "next/link";
-import { FC } from "react";
-import { Controller, useForm } from "react-hook-form";
+} from '@mui/icons-material';
+import Alert from '@mui/joy/Alert';
+import Box, { BoxProps } from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Container from '@mui/joy/Container';
+import FormControl from '@mui/joy/FormControl';
+import FormHelperText from '@mui/joy/FormHelperText';
+import FormLabel from '@mui/joy/FormLabel';
+import Grid from '@mui/joy/Grid';
+import Input from '@mui/joy/Input';
+import Link from '@mui/joy/Link';
+import Sheet from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
+import Textarea from '@mui/joy/Textarea';
+import Typography from '@mui/joy/Typography';
+import { capitalize } from 'lodash-es';
+import NextLink from 'next/link';
+import { FC } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { contactInfo } from '@/constants/content';
+import { contact, home } from '@/constants/nav';
 
-import { contactInfo } from "@/constants/content";
-import { contact, home } from "@/constants/nav";
+const formSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z
+    .string()
+    .min(1, 'Email is required')
+    .email('Email should be an email'),
+  subject: z.string().min(1, 'Subject is required'),
+  message: z.string().min(1, 'Message is required'),
+});
+type FormSchema = z.infer<typeof formSchema>;
 
-import formSchema, { FormSchema } from "./form-schema";
+export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 
-const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
+export const Contact: FC<ContactProps> = (props) => {
   const {
     handleSubmit,
     control,
@@ -40,12 +51,12 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
     setError,
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    mode: "onTouched",
-    defaultValues: { name: "", email: "", subject: "", message: "" },
+    mode: 'onTouched',
+    defaultValues: { name: '', email: '', subject: '', message: '' },
   });
 
   const handleFormSubmit = useSubmit<FormSchema>(
-    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? "",
+    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? '',
     {
       onError: (error) => {
         const formErrors = error.getFormErrors();
@@ -53,12 +64,12 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
 
         if (formErrors.length) {
           const { code, message } = formErrors[0];
-          setError("root", { type: code, message });
+          setError('root', { type: code, message });
         }
 
         for (const [field, errors] of fieldErrors) {
           setError(field, {
-            type: "validate",
+            type: 'validate',
             message: `${capitalize(field)} ${errors[0].message}`,
           });
         }
@@ -70,25 +81,25 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={6}>
-          <Typography level="h2" id={contact.id} textAlign="center">
+          <Typography id={contact.id} level="h2" textAlign="center">
             Contact
           </Typography>
           <Grid
-            container
-            spacing={6}
-            disableEqualOverflow
             component="form"
+            container
+            disableEqualOverflow
             onSubmit={handleSubmit(handleFormSubmit)}
+            spacing={6}
           >
-            <Grid component="address" container xs={12} md={4} spacing={3}>
+            <Grid component="address" container md={4} spacing={3} xs={12}>
               {contactInfo.map(({ Icon, title, value, url }) => (
-                <Grid key={title} xs={12} sm={4} md={12}>
-                  <Stack spacing={1} alignItems="center">
+                <Grid key={title} md={12} sm={4} xs={12}>
+                  <Stack alignItems="center" spacing={1}>
                     <Icon fontSize="xl4" />
                     <Typography>{title}</Typography>
                     <Link
                       href={url}
-                      target={url.startsWith("http") ? "_blank" : undefined}
+                      target={url.startsWith('http') ? '_blank' : undefined}
                     >
                       {value}
                     </Link>
@@ -97,32 +108,33 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
               ))}
             </Grid>
             {isSubmitSuccessful ? (
-              <Grid xs={12} md={8}>
+              <Grid md={8} xs={12}>
                 <Stack
-                  spacing={2}
                   alignItems="center"
-                  justifyContent="center"
                   height="100%"
+                  justifyContent="center"
+                  spacing={2}
                   textAlign="center"
                 >
                   <Sheet
                     color="success"
+                    sx={{ display: 'flex', borderRadius: 'sm', p: 1.5 }}
                     variant="soft"
-                    sx={{ display: "flex", borderRadius: "sm", p: 1.5 }}
                   >
                     <ThumbUpRounded fontSize="xl4" />
                   </Sheet>
-                  <Typography level="h1" color="primary">
+                  <Typography color="primary" level="h1">
                     Thank You!
                   </Typography>
                   <Typography>
-                    {"I've received your message and we'll be in touch soon!"}
+                    I&apos;ve received your message and we&apos;ll be in touch
+                    soon!
                   </Typography>
                   <Button
-                    size="lg"
-                    startDecorator={<KeyboardArrowUpRounded />}
                     component={NextLink}
                     href={home.href}
+                    size="lg"
+                    startDecorator={<KeyboardArrowUpRounded />}
                   >
                     Back to Top
                   </Button>
@@ -132,23 +144,23 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
               <>
                 <Grid
                   // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
-                  unstable_level={1}
-                  container
-                  rowSpacing={1}
                   columnSpacing={2}
-                  xs={12}
+                  container
                   md={8}
+                  rowSpacing={1}
+                  unstable_level={1}
+                  xs={12}
                 >
-                  <Grid xs={12} sm={6}>
+                  <Grid sm={6} xs={12}>
                     <Controller
-                      name="name"
                       control={control}
                       disabled={isSubmitting}
+                      name="name"
                       render={({
                         field: { disabled, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl error={Boolean(error)} disabled={disabled}>
+                        <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Name</FormLabel>
                           <Input {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -156,16 +168,16 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                       )}
                     />
                   </Grid>
-                  <Grid xs={12} sm={6}>
+                  <Grid sm={6} xs={12}>
                     <Controller
-                      name="email"
                       control={control}
                       disabled={isSubmitting}
+                      name="email"
                       render={({
                         field: { disabled, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl error={Boolean(error)} disabled={disabled}>
+                        <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Email</FormLabel>
                           <Input {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -175,14 +187,14 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                   </Grid>
                   <Grid xs={12}>
                     <Controller
-                      name="subject"
                       control={control}
                       disabled={isSubmitting}
+                      name="subject"
                       render={({
                         field: { disabled, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl error={Boolean(error)} disabled={disabled}>
+                        <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Subject</FormLabel>
                           <Input {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -192,36 +204,36 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                   </Grid>
                   <Grid xs={12}>
                     <Controller
-                      name="message"
                       control={control}
                       disabled={isSubmitting}
+                      name="message"
                       render={({
                         field: { disabled, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl error={Boolean(error)} disabled={disabled}>
+                        <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Message</FormLabel>
-                          <Textarea minRows={5} maxRows={5} {...field} />
+                          <Textarea maxRows={5} minRows={5} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
                         </FormControl>
                       )}
                     />
                   </Grid>
                 </Grid>
-                {errors.root && (
-                  <Grid xs={12} md={8} mdOffset={4}>
+                {errors.root ? (
+                  <Grid md={8} mdOffset={4} xs={12}>
                     <Alert color="danger" startDecorator={<ReportRounded />}>
                       {errors.root.message}
                     </Alert>
                   </Grid>
-                )}
-                <Grid xs={12} sm="auto" smOffset="auto">
+                ) : null}
+                <Grid sm="auto" smOffset="auto" xs={12}>
                   <Button
-                    type="submit"
-                    size="lg"
-                    startDecorator={<SendRounded />}
                     fullWidth
                     loading={isSubmitting}
+                    size="lg"
+                    startDecorator={<SendRounded />}
+                    type="submit"
                   >
                     Send Message
                   </Button>
@@ -234,5 +246,3 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
     </Box>
   );
 };
-
-export default Contact;

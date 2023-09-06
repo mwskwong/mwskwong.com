@@ -1,5 +1,4 @@
-import { siJson } from "simple-icons";
+import { siJson } from 'simple-icons';
+import { createSimpleSvgIcon } from '@/utils/create-simple-svg-icon';
 
-import createSimpleSvgIcon from "@/utils/create-simple-svg-icon";
-
-export default createSimpleSvgIcon(siJson, "Json");
+export const Json = createSimpleSvgIcon(siJson, 'Json');
