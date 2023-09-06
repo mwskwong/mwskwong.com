@@ -1,28 +1,28 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
 });
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   compiler: {
     emotion: true,
-    removeConsole: process.env.NODE_ENV === "production" && {
-      exclude: ["error"],
+    removeConsole: process.env.NODE_ENV === 'production' && {
+      exclude: ['error'],
     },
   },
   images: {
-    loader: "custom",
-    loaderFile: "./utils/image-loaders.ts",
+    loader: 'custom',
+    loaderFile: 'src/utils/image-loader.ts',
   },
   webpack: (config) => {
     /* eslint-disable @typescript-eslint/no-unsafe-call */
     /* eslint-disable @typescript-eslint/no-unsafe-return */
     /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-    config.resolve.alias["@mui/material"] = "@mui/joy";
+    config.resolve.alias['@mui/material'] = '@mui/joy';
 
     const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg"),
+      rule.test?.test?.('.svg'),
     );
     config.module.rules.push(
       {
@@ -34,7 +34,7 @@ const nextConfig = {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
         resourceQuery: { not: /url/ }, // exclude if *.svg?url
-        use: ["@svgr/webpack"],
+        use: ['@svgr/webpack'],
       },
     );
     fileLoaderRule.exclude = /\.svg$/i;
@@ -44,31 +44,31 @@ const nextConfig = {
   },
   headers: () => [
     {
-      source: "/:path*",
+      source: '/:path*',
       headers: [
         {
-          key: "X-DNS-Prefetch-Control",
-          value: "on",
+          key: 'X-DNS-Prefetch-Control',
+          value: 'on',
         },
         {
-          key: "Strict-Transport-Security",
-          value: "max-age=63072000; includeSubDomains; preload",
+          key: 'Strict-Transport-Security',
+          value: 'max-age=63072000; includeSubDomains; preload',
         },
         {
-          key: "X-XSS-Protection",
-          value: "1; mode=block",
+          key: 'X-XSS-Protection',
+          value: '1; mode=block',
         },
         {
-          key: "X-Frame-Options",
-          value: "SAMEORIGIN",
+          key: 'X-Frame-Options',
+          value: 'SAMEORIGIN',
         },
         {
-          key: "X-Content-Type-Options",
-          value: "nosniff",
+          key: 'X-Content-Type-Options',
+          value: 'nosniff',
         },
         {
-          key: "Referrer-Policy",
-          value: "origin-when-cross-origin",
+          key: 'Referrer-Policy',
+          value: 'origin-when-cross-origin',
         },
       ],
     },
