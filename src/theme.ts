@@ -91,16 +91,6 @@ export const theme = extendTheme({
         useFlexGap: true,
       },
     },
-    JoyTypography: {
-      styleOverrides: {
-        root: ({ ownerState }) => ({
-          display:
-            ownerState.startDecorator || ownerState.endDecorator
-              ? 'block'
-              : undefined,
-        }),
-      },
-    },
   },
 });
 
