@@ -6,11 +6,13 @@ import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
+
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
 import { about } from '@/constants/nav';
 import { getPersonalPhoto } from '@/lib/get-personal-photo';
 import { getSkillCategories } from '@/lib/get-skill-categories';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
+
 import { Image } from '../image';
 
 export type AboutProps = Omit<BoxProps<'section'>, 'children'>;

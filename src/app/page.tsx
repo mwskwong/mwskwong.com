@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';
 import { Education } from '@/components/home/education';

@@ -16,9 +16,11 @@ import Stack from '@mui/joy/Stack';
 import { useColorScheme } from '@mui/joy/styles';
 import NextLink from 'next/link';
 import { FC, useRef, useState } from 'react';
+
 import Icon from '@/app/icon.svg';
 import { home } from '@/constants/nav';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
+
 import { NavList } from './nav-list';
 
 export interface HeaderProps extends Omit<BoxProps<'header'>, 'children'> {

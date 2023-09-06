@@ -4,6 +4,7 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
 import { FC } from 'react';
+
 import { BlogCard } from '@/components/blog/blog-card';
 import { SectionDivider } from '@/components/section-divider';
 import { getBlogs } from '@/lib/get-blogs';

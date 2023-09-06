@@ -3,6 +3,7 @@ import {
   LocationOnRounded,
   SmartphoneRounded,
 } from '@mui/icons-material';
+
 import { Contentful } from '@/components/icons/contentful';
 import { Formspree } from '@/components/icons/formspree';
 import { ImprovMx } from '@/components/icons/improvmx';

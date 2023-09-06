@@ -7,6 +7,7 @@ import Typography from '@mui/joy/Typography';
 import { StaticImageData } from 'next/image';
 import NextLink from 'next/link';
 import { ComponentProps, FC } from 'react';
+
 import { BlogCardImage } from './blog-card-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {

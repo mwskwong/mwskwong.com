@@ -12,6 +12,7 @@ import Link from '@mui/joy/Link';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { FC, useDeferredValue, useMemo, useState } from 'react';
+
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 export interface SelfLearningProps extends Omit<StackProps, 'children'> {

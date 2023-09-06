@@ -8,6 +8,7 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import mergeSx from 'merge-sx';
 import { FC } from 'react';
+
 import { websiteTechStack } from '@/constants/content';
 
 export type FunFactProps = Omit<SheetProps<'section'>, 'children'>;

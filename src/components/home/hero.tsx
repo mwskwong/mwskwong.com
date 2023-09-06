@@ -4,6 +4,7 @@ import Container from '@mui/joy/Container';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
+
 import { LinkedIn } from '@/components/icons/linkedin';
 import { firstName, headline, lastName } from '@/constants/content';
 import { linkedin } from '@/constants/contentful-ids';

@@ -40,7 +40,7 @@ module.exports = {
       'error',
       { checksVoidReturn: false },
     ],
-    'import/no-extraneous-dependencies': ['error', { includeTypes: true }],
+    'import/no-extraneous-dependencies': ['error', { includeTypes: true }], // such that @/* imports will not being considered as external dependencies
     'react/function-component-definition': [
       'warn',
       {
@@ -48,6 +48,23 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    // sort import statements
+    'import/order': [
+      'warn',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+        ],
+        'newlines-between': 'always',
+        alphabetize: { order: 'asc' },
+      },
+    ],
+    'sort-imports': ['warn', { ignoreDeclarationSort: true }], // sort named imports
   },
   overrides: [
     {

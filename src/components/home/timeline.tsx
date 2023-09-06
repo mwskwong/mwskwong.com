@@ -1,5 +1,5 @@
-import Grid, { GridProps } from '@mui/joy/Grid';
 import Chip from '@mui/joy/Chip';
+import Grid, { GridProps } from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -8,6 +8,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { FC, Fragment, forwardRef } from 'react';
+
 import { SupportingDocumentImage } from './supporting-document-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {

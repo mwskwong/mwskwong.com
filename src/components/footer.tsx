@@ -4,6 +4,7 @@ import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
+
 import { firstName, lastName, middleName } from '@/constants/content';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';

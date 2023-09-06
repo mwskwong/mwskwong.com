@@ -1,4 +1,5 @@
 import { cache } from 'react';
+
 import { client } from './client';
 
 export const getPersonalPhoto = cache(async () => {

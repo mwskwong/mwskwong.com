@@ -1,4 +1,5 @@
 import { LiteralUnion } from 'type-fest';
+
 import { JavaScript } from '@/components/icons/javascript';
 import { Json } from '@/components/icons/json';
 import { TypeScript } from '@/components/icons/typescript';

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+
 import { getBlogs } from '@/lib/get-blogs';
 import { baseUrl } from '@/utils/base-url';
 
