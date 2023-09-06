@@ -70,7 +70,7 @@ const SelfLearning: FC<Props> = ({ courses = [], ...props }) => {
 
             return (
               <Grid key={name} xs={12} md={6}>
-                <Card variant="outlined" orientation="horizontal">
+                <Card orientation="horizontal">
                   {Icon && <Icon color="branding" fontSize="xl2" />}
                   <CardContent sx={{ gap: 1 }}>
                     <Box minHeight={{ md: 68, lg: "unset" }}>

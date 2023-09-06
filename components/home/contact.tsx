@@ -210,11 +210,7 @@ const Contact: FC<Omit<BoxProps<"section">, "children">> = (props) => {
                 </Grid>
                 {errors.root && (
                   <Grid xs={12} md={8} mdOffset={4}>
-                    <Alert
-                      variant="soft"
-                      color="danger"
-                      startDecorator={<ReportRounded />}
-                    >
+                    <Alert color="danger" startDecorator={<ReportRounded />}>
                       {errors.root.message}
                     </Alert>
                   </Grid>

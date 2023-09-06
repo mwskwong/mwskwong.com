@@ -38,7 +38,7 @@ const BlogCard: FC<Props> = ({
   slotProps: { image: imageSlotProps, ...slotProps } = {},
   ...props
 }) => (
-  <Card component="article" variant="outlined" slotProps={slotProps} {...props}>
+  <Card component="article" slotProps={slotProps} {...props}>
     <BlogCardImage src={coverImgSrc} {...imageSlotProps} />
     <Stack direction="row" spacing={1}>
       {categories.map((category) => (
