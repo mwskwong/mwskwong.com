@@ -69,7 +69,7 @@ const nextConfig = {
     },
   ],
   experimental: {
-    optimizePackageImports: ['@mui/base', '@mui/joy'],
+    optimizePackageImports: ['@mui/joy'],
   },
 };
 
