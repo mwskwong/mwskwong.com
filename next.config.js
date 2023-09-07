@@ -15,10 +15,6 @@ const nextConfig = {
     loaderFile: 'src/utils/image-loader.ts',
   },
   webpack: (config) => {
-    /* eslint-disable @typescript-eslint/no-unsafe-call */
-    /* eslint-disable @typescript-eslint/no-unsafe-return */
-    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-    /* eslint-disable @typescript-eslint/no-unsafe-member-access */
     config.resolve.alias['@mui/material'] = '@mui/joy';
 
     const fileLoaderRule = config.module.rules.find((rule) =>
@@ -40,7 +36,6 @@ const nextConfig = {
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
-    /* eslint-enable */
   },
   headers: () => [
     {
