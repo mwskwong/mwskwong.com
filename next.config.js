@@ -68,6 +68,9 @@ const nextConfig = {
       ],
     },
   ],
+  experimental: {
+    optimizePackageImports: ['@mui/base', '@mui/joy'],
+  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
