@@ -2,7 +2,6 @@ import Box, { BoxProps } from '@mui/joy/Box';
 import { FC } from 'react';
 
 export type SectionDividerProps = Omit<BoxProps<'svg'>, 'children'>;
-
 export const SectionDivider: FC<SectionDividerProps> = (props) => (
   <Box
     color="background.body"

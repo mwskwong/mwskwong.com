@@ -1,4 +1,3 @@
-/* eslint-disable import/no-default-export -- SVGR Webpack module declaration */
 declare module '*.svg' {
   import { FC, SVGProps } from 'react';
 

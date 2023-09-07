@@ -71,15 +71,23 @@ module.exports = {
     // sort named imports
     'sort-imports': ['warn', { ignoreDeclarationSort: true }],
   },
-  // Next.js file naming convention
   overrides: [
+    // Next.js file naming convention
     {
       files: [
-        '**/page.tsx',
-        '**/layout.tsx',
-        '**/not-found.tsx',
-        '**/sitemap.ts',
+        'src/app/**/page.tsx',
+        'src/app/**/layout.tsx',
+        'src/app/**/not-found.tsx',
+        'src/app/**/sitemap.ts',
       ],
+      rules: {
+        'import/no-default-export': 'off',
+        'import/prefer-default-export': ['error', { target: 'any' }],
+      },
+    },
+    // module declaration
+    {
+      files: ['**/*.d.ts'],
       rules: { 'import/no-default-export': 'off' },
     },
   ],

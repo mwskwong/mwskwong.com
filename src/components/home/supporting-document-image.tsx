@@ -1,16 +1,13 @@
 'use client';
 
 import mergeSx from 'merge-sx';
-import { ComponentProps, FC } from 'react';
+import { FC } from 'react';
 import { SetOptional } from 'type-fest';
 
-import { Image } from '@/components/image';
+import { Image, ImageProps } from '@/components/image';
 import { thumIoPdfLoader } from '@/utils/image-loader';
 
-type SupportingDocumentImageProps = SetOptional<
-  ComponentProps<typeof Image>,
-  'alt'
->;
+type SupportingDocumentImageProps = SetOptional<ImageProps, 'alt'>;
 
 export const SupportingDocumentImage: FC<SupportingDocumentImageProps> = ({
   sx,

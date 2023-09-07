@@ -12,7 +12,6 @@ import { SelfLearning } from './self-learning';
 import { Timeline, TimelineItem } from './timeline';
 
 export type EducationProps = Omit<BoxProps<'section'>, 'children'>;
-
 export const Education: FC<EducationProps> = async (props) => {
   const [educations, courses] = await Promise.all([
     getEducations().then((educations) =>

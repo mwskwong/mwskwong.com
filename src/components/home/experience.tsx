@@ -10,7 +10,6 @@ import { getExperiences } from '@/lib/get-experiences';
 import { Timeline, TimelineItem } from './timeline';
 
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
-
 export const Experience: FC<ExperienceProps> = async (props) => {
   const experiences = await getExperiences().then((experiences) =>
     experiences.map(

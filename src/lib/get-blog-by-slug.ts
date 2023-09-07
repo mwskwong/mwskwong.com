@@ -12,7 +12,7 @@ export const getBlogBySlug = cache(async (slug: string) => {
     limit: 1,
   });
 
-  const item = items[0] as (typeof items)[number] | undefined;
+  const item = items[0];
   return (
     item && {
       id: item.sys.id,

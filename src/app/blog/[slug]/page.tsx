@@ -34,16 +34,16 @@ declare module 'react' {
   }
 }
 
-interface BlogProps {
-  params: { slug: string };
-}
-
 const dateFormatter = new Intl.DateTimeFormat('en', {
   weekday: 'long',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 });
+
+interface BlogProps {
+  params: { slug: string };
+}
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);

@@ -12,7 +12,6 @@ import { FC } from 'react';
 import { websiteTechStack } from '@/constants/content';
 
 export type FunFactProps = Omit<SheetProps<'section'>, 'children'>;
-
 export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
   <Sheet
     color="primary"

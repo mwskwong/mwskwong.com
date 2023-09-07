@@ -38,7 +38,7 @@ const Icons = {
   [contentfulIds.backend]: TerminalRounded,
   [contentfulIds.cms]: Cms,
   [contentfulIds.database]: Database,
-  [contentfulIds.dataOps]: AllInclusiveRounded,
+  [contentfulIds.devOps]: AllInclusiveRounded,
   [contentfulIds.frontend]: DashboardRounded,
   [contentfulIds.machineLearning]: MachineLearning,
   [contentfulIds.mobile]: DevicesOtherRounded,

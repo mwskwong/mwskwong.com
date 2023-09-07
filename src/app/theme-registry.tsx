@@ -8,7 +8,8 @@ import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir';
 
 import { globalStyles, theme } from '@/theme';
 
-export const ThemeRegistry: FC<PropsWithChildren> = ({ children }) => (
+export type ThemeRegistryProps = PropsWithChildren;
+export const ThemeRegistry: FC<ThemeRegistryProps> = ({ children }) => (
   <>
     {getInitColorSchemeScript()}
     <NextAppDirEmotionCacheProvider options={{ key: 'joy' }}>

@@ -6,9 +6,9 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { StaticImageData } from 'next/image';
 import NextLink from 'next/link';
-import { ComponentProps, FC } from 'react';
+import { FC } from 'react';
 
-import { BlogCardImage } from './blog-card-image';
+import { BlogCardImage, BlogCardImageProps } from './blog-card-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -24,7 +24,7 @@ export interface BlogCardProps extends Omit<CardProps, 'children'> {
   href?: string;
   updatedAt?: Date;
   slotProps?: CardProps['slotProps'] & {
-    image?: Partial<ComponentProps<typeof BlogCardImage>>;
+    image?: Partial<BlogCardImageProps>;
   };
 }
 

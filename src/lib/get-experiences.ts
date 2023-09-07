@@ -10,6 +10,9 @@ import {
 } from './types';
 
 export const getExperiences = cache(async () => {
+  // Goal: sort educations in DESC order by `to` date,
+  // while having records with `to = undefined` (denote "Present") sorted at the top
+
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top

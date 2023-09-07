@@ -12,7 +12,6 @@ import { getCv } from '@/lib/get-cv';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 
 export type HeroProps = Omit<BoxProps<'section'>, 'children'>;
-
 export const Hero: FC<HeroProps> = async (props) => {
   const [cv, linkedinProfile] = await Promise.all([
     getCv(),

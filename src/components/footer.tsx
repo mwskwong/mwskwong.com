@@ -9,9 +9,8 @@ import { firstName, lastName, middleName } from '@/constants/content';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
-export const Footer: FC<Omit<BoxProps<'footer'>, 'children'>> = async (
-  props,
-) => {
+export type FooterProps = Omit<BoxProps<'footer'>, 'children'>;
+export const Footer: FC<FooterProps> = async (props) => {
   const platformProfiles = await getPlatformProfiles();
   const currYear = new Date().getFullYear();
 

@@ -43,7 +43,6 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
-
 export const Contact: FC<ContactProps> = (props) => {
   const {
     handleSubmit,
@@ -142,11 +141,11 @@ export const Contact: FC<ContactProps> = (props) => {
             ) : (
               <>
                 <Grid
-                  // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
                   columnSpacing={2}
                   container
                   md={8}
                   rowSpacing={1}
+                  // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
                   unstable_level={1}
                   xs={12}
                 >

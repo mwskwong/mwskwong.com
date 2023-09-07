@@ -3,12 +3,12 @@
 import AspectRatio from '@mui/joy/AspectRatio';
 import { useTheme } from '@mui/joy/styles';
 import mergeSx from 'merge-sx';
-import { ComponentProps, FC } from 'react';
+import { FC } from 'react';
 import { SetOptional } from 'type-fest';
 
-import { Image } from '../image';
+import { Image, ImageProps } from '../image';
 
-export type CoverImageProps = SetOptional<ComponentProps<typeof Image>, 'alt'>;
+export type CoverImageProps = SetOptional<ImageProps, 'alt'>;
 
 // FIXME: with zero runtime, we may be able to add this back to `blog/[slug]/page`
 export const CoverImage: FC<CoverImageProps> = ({ sx, ...props }) => {
