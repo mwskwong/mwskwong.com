@@ -4,9 +4,7 @@ import { getBlogs } from '@/lib/get-blogs';
 import { baseUrl } from '@/utils/base-url';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const blogSlugs = await getBlogs().then((blogs) =>
-    blogs.map(({ slug }) => slug),
-  );
+  const blogs = await getBlogs();
 
   return [
     {
@@ -20,9 +18,9 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       lastModified: new Date(),
       changeFrequency: 'daily',
     },
-    ...blogSlugs.map((slug) => ({
+    ...blogs.map(({ slug, updatedAt }) => ({
       url: `${baseUrl}/blog/${slug}`,
-      lastModified: new Date(),
+      lastModified: updatedAt,
       changeFrequency: 'daily' as const,
     })),
   ];

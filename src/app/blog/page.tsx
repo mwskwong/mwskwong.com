@@ -22,32 +22,17 @@ const Blogs: FC = async () => {
             </Typography>
           </Stack>
           <Grid container spacing={2}>
-            {blogs.map(
-              (
-                {
-                  coverPhoto = '',
-                  categories,
-                  title,
-                  slug,
-                  description,
-                  createdAt,
-                },
-                index,
-              ) => (
-                <Grid key={slug} md={4} sm={6} xs={12}>
-                  <BlogCard
-                    categories={categories}
-                    coverImgSrc={coverPhoto}
-                    description={description}
-                    href={`/blog/${slug}`}
-                    slotProps={{ image: { priority: index < 2 } }}
-                    sx={{ height: { sm: '100%' } }}
-                    title={title}
-                    createdAt={createdAt}
-                  />
-                </Grid>
-              ),
-            )}
+            {blogs.map(({ coverPhoto = '', slug, ...blog }, index) => (
+              <Grid key={slug} md={4} sm={6} xs={12}>
+                <BlogCard
+                  coverImgSrc={coverPhoto}
+                  href={`/blog/${slug}`}
+                  slotProps={{ image: { priority: index < 2 } }}
+                  sx={{ height: { sm: '100%' } }}
+                  {...blog}
+                />
+              </Grid>
+            ))}
           </Grid>
         </Stack>
       </Container>

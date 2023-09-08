@@ -10,6 +10,7 @@ export const getBlogs = cache(
     const { items } = await client.getEntries<BlogSkeleton>({
       select: [
         'sys.createdAt',
+        'sys.updatedAt',
         'fields.categories',
         'fields.coverPhoto',
         'fields.description',
@@ -24,6 +25,7 @@ export const getBlogs = cache(
 
     return items.map((item) => ({
       createdAt: new Date(item.sys.createdAt),
+      updatedAt: new Date(item.sys.updatedAt),
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,
