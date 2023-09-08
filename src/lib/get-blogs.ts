@@ -9,7 +9,7 @@ export const getBlogs = cache(
     const { page = 1, pageSize = 9 } = pagination ?? {};
     const { items } = await client.getEntries<BlogSkeleton>({
       select: [
-        'sys.updatedAt',
+        'sys.createdAt',
         'fields.categories',
         'fields.coverPhoto',
         'fields.description',
@@ -17,13 +17,13 @@ export const getBlogs = cache(
         'fields.title',
       ],
       content_type: 'blog',
-      order: ['-sys.updatedAt'],
+      order: ['-sys.createdAt'],
       skip: pagination && (page - 1) * pageSize,
       limit: pagination && pageSize,
     });
 
     return items.map((item) => ({
-      updatedAt: new Date(item.sys.updatedAt),
+      createdAt: new Date(item.sys.createdAt),
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,

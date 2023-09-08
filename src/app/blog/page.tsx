@@ -30,7 +30,7 @@ const Blogs: FC = async () => {
                   title,
                   slug,
                   description,
-                  updatedAt,
+                  createdAt,
                 },
                 index,
               ) => (
@@ -43,7 +43,7 @@ const Blogs: FC = async () => {
                     slotProps={{ image: { priority: index < 2 } }}
                     sx={{ height: { sm: '100%' } }}
                     title={title}
-                    updatedAt={updatedAt}
+                    createdAt={createdAt}
                   />
                 </Grid>
               ),

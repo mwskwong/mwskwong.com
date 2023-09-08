@@ -66,7 +66,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             Back to Blog
           </Link>
           <Typography level="body-xs">
-            {dateFormatter.format(blog.updatedAt)}
+            {dateFormatter.format(blog.createdAt)}
           </Typography>
           <Typography level="h1" mb={3} mt={1}>
             {blog.title}
