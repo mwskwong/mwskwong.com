@@ -199,7 +199,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   );
                 },
                 code: (props) => {
-                  const inlineCode = !props['data-language'];
+                  const inlineCode = props['data-language'] === undefined;
 
                   if (inlineCode) {
                     const { color, ...rest } = props;
