@@ -1,7 +1,11 @@
-import Box, { BoxProps } from '@mui/joy/Box';
-import List, { ListProps } from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
+import {
+  Box,
+  BoxProps,
+  List,
+  ListItem,
+  ListItemButton,
+  ListProps,
+} from '@mui/joy';
 import Link from 'next/link';
 import { FC, MouseEvent, forwardRef } from 'react';
 

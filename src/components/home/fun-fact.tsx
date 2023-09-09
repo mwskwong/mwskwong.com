@@ -1,3 +1,5 @@
+// FIXME: use named import for MUI
+
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import Button from '@mui/joy/Button';
 import Container from '@mui/joy/Container';

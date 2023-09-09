@@ -1,3 +1,5 @@
+// FIXME: use named import for MUI
+
 import Chip from '@mui/joy/Chip';
 import Grid, { GridProps } from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';

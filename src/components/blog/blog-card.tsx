@@ -1,3 +1,5 @@
+// FIXME: use named import for MUI
+
 import Card, { CardProps } from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Chip from '@mui/joy/Chip';
