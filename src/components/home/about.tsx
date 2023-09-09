@@ -1,13 +1,10 @@
-import {
-  Box,
-  BoxProps,
-  Chip,
-  Container,
-  Grid,
-  Sheet,
-  Stack,
-  Typography,
-} from '@mui/joy';
+import Box, { BoxProps } from '@mui/joy/Box';
+import Chip from '@mui/joy/Chip';
+import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
+import Sheet from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';

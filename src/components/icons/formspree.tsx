@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from '@mui/joy';
+import SvgIcon, { SvgIconProps } from '@mui/joy/SvgIcon';
 import mergeSx from 'merge-sx';
 import { FC } from 'react';
 

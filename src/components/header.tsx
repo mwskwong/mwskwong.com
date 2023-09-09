@@ -1,21 +1,19 @@
 'use client';
 
-import { ClickAwayListener, NoSsr } from '@mui/base';
+import { ClickAwayListener } from '@mui/base/ClickAwayListener';
+import { NoSsr } from '@mui/base/NoSsr';
 import {
   CloseRounded,
   DarkModeRounded,
   LightModeRounded,
   MenuRounded,
 } from '@mui/icons-material';
-import {
-  Box,
-  BoxProps,
-  Container,
-  IconButton,
-  Link,
-  Stack,
-  useColorScheme,
-} from '@mui/joy';
+import Box, { BoxProps } from '@mui/joy/Box';
+import Container from '@mui/joy/Container';
+import IconButton from '@mui/joy/IconButton';
+import Link from '@mui/joy/Link';
+import Stack from '@mui/joy/Stack';
+import { useColorScheme } from '@mui/joy/styles';
 import NextLink from 'next/link';
 import { FC, useRef, useState } from 'react';
 

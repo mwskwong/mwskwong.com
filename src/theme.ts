@@ -1,4 +1,4 @@
-import { Theme, extendTheme } from '@mui/joy';
+import { Theme, extendTheme } from '@mui/joy/styles';
 import { Interpolation } from '@mui/styled-engine';
 // eslint-disable-next-line camelcase -- naming convention of Next Font
 import { Rubik, Source_Code_Pro } from 'next/font/google';

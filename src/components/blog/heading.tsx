@@ -1,7 +1,11 @@
 'use client';
 
 import { LinkRounded } from '@mui/icons-material';
-import { Link, Typography, TypographyProps, typographyClasses } from '@mui/joy';
+import Link from '@mui/joy/Link';
+import Typography, {
+  TypographyProps,
+  typographyClasses,
+} from '@mui/joy/Typography';
 import { kebabCase } from 'lodash-es';
 import mergeSx from 'merge-sx';
 import { FC } from 'react';

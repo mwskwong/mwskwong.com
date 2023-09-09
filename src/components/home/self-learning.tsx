@@ -1,19 +1,16 @@
 'use client';
 
 import { ClearRounded, SearchRounded } from '@mui/icons-material';
-import {
-  Box,
-  Card,
-  CardContent,
-  Chip,
-  Grid,
-  IconButton,
-  Input,
-  Link,
-  Stack,
-  StackProps,
-  Typography,
-} from '@mui/joy';
+import Box from '@mui/joy/Box';
+import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
+import Chip from '@mui/joy/Chip';
+import Grid from '@mui/joy/Grid';
+import IconButton from '@mui/joy/IconButton';
+import Input from '@mui/joy/Input';
+import Link from '@mui/joy/Link';
+import Stack, { StackProps } from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { FC, useDeferredValue, useMemo, useState } from 'react';
 
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';

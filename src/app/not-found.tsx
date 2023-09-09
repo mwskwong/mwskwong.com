@@ -1,4 +1,5 @@
-import { Container, Typography } from '@mui/joy';
+import Container from '@mui/joy/Container';
+import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
 const NotFound: FC = () => (

@@ -1,5 +1,3 @@
-// FIXME: use named import for MUI
-
 import SvgIcon, { SvgIconProps } from '@mui/joy/SvgIcon';
 import mergeSx from 'merge-sx';
 import { FC, forwardRef, memo } from 'react';

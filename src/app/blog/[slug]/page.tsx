@@ -2,16 +2,14 @@ import {
   KeyboardArrowLeftRounded,
   KeyboardArrowRightRounded,
 } from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  Chip,
-  Container,
-  Link,
-  Sheet,
-  Stack,
-  Typography,
-} from '@mui/joy';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Chip from '@mui/joy/Chip';
+import Container from '@mui/joy/Container';
+import Link from '@mui/joy/Link';
+import Sheet from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';

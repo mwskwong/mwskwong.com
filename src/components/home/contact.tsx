@@ -8,23 +8,20 @@ import {
   SendRounded,
   ThumbUpRounded,
 } from '@mui/icons-material';
-import {
-  Alert,
-  Box,
-  BoxProps,
-  Button,
-  Container,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Grid,
-  Input,
-  Link,
-  Sheet,
-  Stack,
-  Textarea,
-  Typography,
-} from '@mui/joy';
+import Alert from '@mui/joy/Alert';
+import Box, { BoxProps } from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Container from '@mui/joy/Container';
+import FormControl from '@mui/joy/FormControl';
+import FormHelperText from '@mui/joy/FormHelperText';
+import FormLabel from '@mui/joy/FormLabel';
+import Grid from '@mui/joy/Grid';
+import Input from '@mui/joy/Input';
+import Link from '@mui/joy/Link';
+import Sheet from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
+import Textarea from '@mui/joy/Textarea';
+import Typography from '@mui/joy/Typography';
 import { capitalize } from 'lodash-es';
 import NextLink from 'next/link';
 import { FC } from 'react';
