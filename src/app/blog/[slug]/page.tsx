@@ -1,7 +1,4 @@
-import {
-  KeyboardArrowLeftRounded,
-  KeyboardArrowRightRounded,
-} from '@mui/icons-material';
+import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
@@ -62,14 +59,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           maxWidth="md"
           sx={{ py: 'var(--Section-paddingY)' }}
         >
-          <Link
-            component={NextLink}
-            href="/blog"
-            mb={2}
-            startDecorator={<KeyboardArrowLeftRounded />}
-          >
-            Back to Blog
-          </Link>
           <Typography level="body-xs">
             {dateFormatter.format(new Date(blog.createdAt))}
           </Typography>
