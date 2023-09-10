@@ -22,7 +22,7 @@ export interface BlogCardProps extends Omit<CardProps, 'children'> {
   title?: string;
   description?: string;
   href?: string;
-  createdAt?: Date;
+  date?: Date;
   slotProps?: CardProps['slotProps'] & {
     image?: Partial<BlogCardImageProps>;
   };
@@ -34,7 +34,7 @@ export const BlogCard: FC<BlogCardProps> = ({
   title,
   description,
   href = '',
-  createdAt,
+  date,
   slotProps: { image: imageSlotProps, ...slotProps } = {},
   ...props
 }) => (
@@ -69,6 +69,6 @@ export const BlogCard: FC<BlogCardProps> = ({
         {description}
       </Typography>
     </CardContent>
-    <Typography level="body-xs">{dateFormatter.format(createdAt)}</Typography>
+    <Typography level="body-xs">{dateFormatter.format(date)}</Typography>
   </Card>
 );

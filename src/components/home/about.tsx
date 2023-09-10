@@ -5,10 +5,13 @@ import Grid from '@mui/joy/Grid';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
+// eslint-disable-next-line camelcase -- Next.js naming convention
+import { unstable_cache } from 'next/cache';
 import { FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
 import { about } from '@/constants/nav';
+import { personalPhotoTags, skillCategoryTags } from '@/lib/cache-tags';
 import { getPersonalPhoto } from '@/lib/get-personal-photo';
 import { getSkillCategories } from '@/lib/get-skill-categories';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
@@ -18,8 +21,10 @@ import { Image } from '../image';
 export type AboutProps = Omit<BoxProps<'section'>, 'children'>;
 export const About: FC<AboutProps> = async (props) => {
   const [personalPhoto, skillCategories] = await Promise.all([
-    getPersonalPhoto(),
-    getSkillCategories(),
+    unstable_cache(getPersonalPhoto, [], { tags: personalPhotoTags.all })(),
+    unstable_cache(getSkillCategories, [], {
+      tags: skillCategoryTags.lists(),
+    })(),
   ]);
 
   return (

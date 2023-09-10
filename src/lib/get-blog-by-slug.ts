@@ -1,10 +1,9 @@
 import { orderBy } from 'lodash-es';
-import { cache } from 'react';
 
 import { client } from './client';
 import { BlogSkeleton } from './types';
 
-export const getBlogBySlug = cache(async (slug: string) => {
+export const getBlogBySlug = async (slug: string) => {
   const { items } = await client.getEntries<BlogSkeleton>({
     select: ['sys.id', 'sys.createdAt', 'fields'],
     content_type: 'blog',
@@ -16,7 +15,7 @@ export const getBlogBySlug = cache(async (slug: string) => {
   return (
     item && {
       id: item.sys.id,
-      createdAt: new Date(item.sys.createdAt),
+      createdAt: item.sys.createdAt,
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,
@@ -31,4 +30,4 @@ export const getBlogBySlug = cache(async (slug: string) => {
       content: item.fields.content,
     }
   );
-});
+};

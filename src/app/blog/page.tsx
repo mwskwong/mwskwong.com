@@ -3,14 +3,20 @@ import Grid from '@mui/joy/Grid';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
+// eslint-disable-next-line camelcase -- Next.js naming convention
+import { unstable_cache } from 'next/cache';
 import { FC } from 'react';
 
 import { BlogCard } from '@/components/blog/blog-card';
 import { SectionDivider } from '@/components/section-divider';
+import { blogTags } from '@/lib/cache-tags';
 import { getBlogs } from '@/lib/get-blogs';
 
 const Blogs: FC = async () => {
-  const blogs = await getBlogs({ page: 1 });
+  const blogs = await unstable_cache(getBlogs, [], {
+    tags: blogTags.list({ page: 1 }),
+  })({ page: 1 });
+
   return (
     <>
       <Container component="main" sx={{ py: 'var(--Section-paddingY)' }}>
@@ -22,17 +28,20 @@ const Blogs: FC = async () => {
             </Typography>
           </Stack>
           <Grid container spacing={2}>
-            {blogs.map(({ coverPhoto = '', slug, ...blog }, index) => (
-              <Grid key={slug} md={4} sm={6} xs={12}>
-                <BlogCard
-                  coverImgSrc={coverPhoto}
-                  href={`/blog/${slug}`}
-                  slotProps={{ image: { priority: index < 2 } }}
-                  sx={{ height: { sm: '100%' } }}
-                  {...blog}
-                />
-              </Grid>
-            ))}
+            {blogs.map(
+              ({ coverPhoto = '', slug, createdAt, ...blog }, index) => (
+                <Grid key={slug} md={4} sm={6} xs={12}>
+                  <BlogCard
+                    coverImgSrc={coverPhoto}
+                    date={new Date(createdAt)}
+                    href={`/blog/${slug}`}
+                    slotProps={{ image: { priority: index < 2 } }}
+                    sx={{ height: { sm: '100%' } }}
+                    {...blog}
+                  />
+                </Grid>
+              ),
+            )}
           </Grid>
         </Stack>
       </Container>

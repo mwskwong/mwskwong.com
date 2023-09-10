@@ -3,15 +3,20 @@ import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
+// eslint-disable-next-line camelcase -- Next.js naming convention
+import { unstable_cache } from 'next/cache';
 import { FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
+import { platformProfileTags } from '@/lib/cache-tags';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 export type FooterProps = Omit<BoxProps<'footer'>, 'children'>;
 export const Footer: FC<FooterProps> = async (props) => {
-  const platformProfiles = await getPlatformProfiles();
+  const platformProfiles = await unstable_cache(getPlatformProfiles, [], {
+    tags: platformProfileTags.lists(),
+  })();
   const currYear = new Date().getFullYear();
 
   return (

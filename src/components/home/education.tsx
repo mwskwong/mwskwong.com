@@ -2,9 +2,12 @@ import Box, { BoxProps } from '@mui/joy/Box';
 import Container from '@mui/joy/Container';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
+// eslint-disable-next-line camelcase -- Next.js naming convention
+import { unstable_cache } from 'next/cache';
 import { FC } from 'react';
 
 import { education } from '@/constants/nav';
+import { courseTags, educationTags } from '@/lib/cache-tags';
 import { getCourses } from '@/lib/get-courses';
 import { getEducations } from '@/lib/get-educations';
 
@@ -14,16 +17,19 @@ import { Timeline, TimelineItem } from './timeline';
 export type EducationProps = Omit<BoxProps<'section'>, 'children'>;
 export const Education: FC<EducationProps> = async (props) => {
   const [educations, courses] = await Promise.all([
-    getEducations().then((educations) =>
-      educations.map(({ from, to, program, school, supportingDocuments }) => ({
-        from: new Date(from),
-        to: to && new Date(to),
-        title: program,
-        organizations: school && [school],
-        supportingDocuments,
-      })),
+    unstable_cache(getEducations, [], { tags: educationTags.lists() })().then(
+      (educations) =>
+        educations.map(
+          ({ from, to, program, school, supportingDocuments }) => ({
+            from: new Date(from),
+            to: to && new Date(to),
+            title: program,
+            organizations: school && [school],
+            supportingDocuments,
+          }),
+        ),
     ),
-    getCourses(),
+    unstable_cache(getCourses, [], { tags: courseTags.lists() })(),
   ]);
 
   return (

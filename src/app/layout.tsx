@@ -1,5 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import { Metadata } from 'next';
+// eslint-disable-next-line camelcase -- Next.js naming convention
+import { unstable_cache } from 'next/cache';
 import { FC, PropsWithChildren } from 'react';
 
 import { Footer } from '@/components/footer';
@@ -11,13 +13,16 @@ import {
   selfIntroduction,
 } from '@/constants/content';
 import { linkedin } from '@/constants/contentful-ids';
+import { platformProfileTags } from '@/lib/cache-tags';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 import { baseUrl } from '@/utils/base-url';
 
 import { ThemeRegistry } from './theme-registry';
 
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
-  const platformProfiles = await getPlatformProfiles();
+  const platformProfiles = await unstable_cache(getPlatformProfiles, [], {
+    tags: platformProfileTags.lists(),
+  })();
 
   return (
     <html lang="en">
