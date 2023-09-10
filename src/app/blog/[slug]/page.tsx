@@ -281,9 +281,9 @@ export const generateMetadata = async (
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const { title, description, coverPhoto } =
-    (await unstable_cache(getBlogBySlug, [], {
-      tags: blogTags.detail(slug),
-    })(slug)) ?? {};
+    (await unstable_cache(getBlogBySlug, [], { tags: blogTags.detail(slug) })(
+      slug,
+    )) ?? {};
   const path = `/blog/${slug}`;
   const { openGraph } = await parent;
 
