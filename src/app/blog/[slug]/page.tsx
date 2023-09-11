@@ -250,7 +250,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               }}
               options={{
                 mdxOptions: {
-                  rehypePlugins: [[rehypePrettyCode, { theme: 'dark-plus' }]],
+                  rehypePlugins: [rehypePrettyCode],
                 },
               }}
               source={blog.content}
