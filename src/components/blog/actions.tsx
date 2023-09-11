@@ -4,15 +4,21 @@ import {
   ContentCopyRounded,
   DoneRounded,
   FavoriteBorderRounded,
+  FavoriteRounded,
   ShareRounded,
   VisibilityRounded,
 } from '@mui/icons-material';
 import IconButton from '@mui/joy/IconButton';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { FC, useEffect, useState } from 'react';
+import {
+  FC,
+  useEffect,
+  experimental_useOptimistic as useOptimistic,
+  useState,
+} from 'react';
 
-import { incrBlogView } from '@/app/actions';
+import { incrBlogView, likeBlog, unlikeBlog } from '@/app/actions';
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
@@ -29,6 +35,11 @@ export const Actions: FC<ActionsProps> = ({
   ...props
 }) => {
   const [copied, setCopied] = useState(false);
+  const [optimisticLike, setOptimisticLike] = useOptimistic<{
+    count: number;
+    liked: boolean;
+  }>({ count: like, liked: false });
+
   useEffect(() => void incrBlogView(id), [id]);
 
   return (
@@ -43,11 +54,32 @@ export const Actions: FC<ActionsProps> = ({
         <VisibilityRounded />
         <Typography>{numberFormatter.format(view)}</Typography>
       </Stack>
-      <Stack alignItems="center" direction="row" spacing={0.5}>
-        <IconButton>
-          <FavoriteBorderRounded />
+      <Stack
+        action={async () => {
+          const action = optimisticLike.liked ? unlikeBlog : likeBlog;
+          setOptimisticLike(({ count, liked }) => ({
+            count: count + (liked ? -1 : 1),
+            liked: !liked,
+          }));
+          await action(id);
+        }}
+        alignItems="center"
+        component="form"
+        direction="row"
+        spacing={0.5}
+      >
+        <IconButton
+          aria-label={optimisticLike.liked ? 'unlike blog' : 'like blog'}
+          color={optimisticLike.liked ? 'danger' : undefined}
+          type="submit"
+        >
+          {optimisticLike.liked ? (
+            <FavoriteRounded />
+          ) : (
+            <FavoriteBorderRounded />
+          )}
         </IconButton>
-        <Typography>{numberFormatter.format(like)}</Typography>
+        <Typography>{numberFormatter.format(optimisticLike.count)}</Typography>
       </Stack>
       <IconButton
         aria-label="copy blog url"

@@ -8,3 +8,17 @@ export const incrBlogView = (id: string) =>
     update: { view: { increment: 1 } },
     create: { id },
   });
+
+export const likeBlog = (id: string) =>
+  prisma.blogMetadata.upsert({
+    where: { id },
+    update: { like: { increment: 1 } },
+    create: { id },
+  });
+
+export const unlikeBlog = (id: string) =>
+  prisma.blogMetadata.upsert({
+    where: { id },
+    update: { like: { decrement: 1 } },
+    create: { id },
+  });
