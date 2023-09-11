@@ -11,12 +11,7 @@ import {
 import IconButton from '@mui/joy/IconButton';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import {
-  FC,
-  useEffect,
-  experimental_useOptimistic as useOptimistic,
-  useState,
-} from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { incrBlogView, likeBlog, unlikeBlog } from '@/app/actions';
 
@@ -35,10 +30,8 @@ export const Actions: FC<ActionsProps> = ({
   ...props
 }) => {
   const [copied, setCopied] = useState(false);
-  const [optimisticLike, setOptimisticLike] = useOptimistic<{
-    count: number;
-    liked: boolean;
-  }>({ count: like, liked: false });
+  const [optimisticLike, setOptimisticLike] = useState(like);
+  const [optimisticLiked, setOptimisticLiked] = useState(false);
 
   useEffect(() => void incrBlogView(id), [id]);
 
@@ -54,32 +47,26 @@ export const Actions: FC<ActionsProps> = ({
         <VisibilityRounded />
         <Typography>{numberFormatter.format(view)}</Typography>
       </Stack>
-      <Stack
-        action={async () => {
-          const action = optimisticLike.liked ? unlikeBlog : likeBlog;
-          setOptimisticLike(({ count, liked }) => ({
-            count: count + (liked ? -1 : 1),
-            liked: !liked,
-          }));
-          await action(id);
-        }}
-        alignItems="center"
-        component="form"
-        direction="row"
-        spacing={0.5}
-      >
+      <Stack alignItems="center" component="form" direction="row">
         <IconButton
-          aria-label={optimisticLike.liked ? 'unlike blog' : 'like blog'}
-          color={optimisticLike.liked ? 'danger' : undefined}
-          type="submit"
+          aria-label={optimisticLiked ? 'unlike blog' : 'like blog'}
+          color={optimisticLiked ? 'danger' : undefined}
+          onClick={async () => {
+            const prevLiked = optimisticLiked;
+            // FIXME: make use of useOptimistic when official doc is available
+            try {
+              setOptimisticLike((prev) => prev + (prevLiked ? -1 : 1));
+              setOptimisticLiked((prev) => !prev);
+              await (prevLiked ? unlikeBlog(id) : likeBlog(id));
+            } catch (error) {
+              setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
+              setOptimisticLiked(prevLiked);
+            }
+          }}
         >
-          {optimisticLike.liked ? (
-            <FavoriteRounded />
-          ) : (
-            <FavoriteBorderRounded />
-          )}
+          {optimisticLiked ? <FavoriteRounded /> : <FavoriteBorderRounded />}
         </IconButton>
-        <Typography>{numberFormatter.format(optimisticLike.count)}</Typography>
+        <Typography>{numberFormatter.format(optimisticLike)}</Typography>
       </Stack>
       <IconButton
         aria-label="copy blog url"
