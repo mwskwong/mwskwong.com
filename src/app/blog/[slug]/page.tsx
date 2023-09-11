@@ -16,7 +16,6 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
-import { setCDN } from 'shiki';
 
 import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -27,6 +26,7 @@ import { blogTags } from '@/lib/cache-tags';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
+import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -57,8 +57,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const metadata = await prisma.blogMetadata.findUnique({
     where: { id: blog.id },
   });
-
-  setCDN('https://unpkg.com/shiki/');
 
   return (
     <>
@@ -255,6 +253,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       {
                         theme: 'dark-plus',
                         keepBackground: false,
+                        getHighlighter: getSsrRehypeCodeHighlighter,
                       } satisfies Options,
                     ],
                   ],
