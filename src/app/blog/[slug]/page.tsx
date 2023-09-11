@@ -9,8 +9,6 @@ import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
-// eslint-disable-next-line camelcase -- Next.js naming convention
-import { unstable_cache } from 'next/cache';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -22,7 +20,6 @@ import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
 import { contact } from '@/constants/nav';
-import { blogTags } from '@/lib/cache-tags';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
@@ -49,9 +46,7 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const blog = await unstable_cache(getBlogBySlug, [], {
-    tags: blogTags.detail(slug),
-  })(slug);
+  const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
   const metadata = await prisma.blogMetadata.findUnique({
@@ -294,10 +289,7 @@ export const generateMetadata = async (
   { params: { slug } }: BlogProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const { title, description, coverPhoto } =
-    (await unstable_cache(getBlogBySlug, [], { tags: blogTags.detail(slug) })(
-      slug,
-    )) ?? {};
+  const { title, description, coverPhoto } = (await getBlogBySlug(slug)) ?? {};
   const path = `/blog/${slug}`;
   const { openGraph } = await parent;
 

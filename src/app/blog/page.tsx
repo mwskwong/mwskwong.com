@@ -3,19 +3,14 @@ import Grid from '@mui/joy/Grid';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
-// eslint-disable-next-line camelcase -- Next.js naming convention
-import { unstable_cache } from 'next/cache';
 import { FC } from 'react';
 
 import { BlogCard } from '@/components/blog/blog-card';
 import { SectionDivider } from '@/components/section-divider';
-import { blogTags } from '@/lib/cache-tags';
 import { getBlogs } from '@/lib/get-blogs';
 
 const Blogs: FC = async () => {
-  const blogs = await unstable_cache(getBlogs, [], {
-    tags: blogTags.list({ page: 1 }),
-  })({ page: 1 });
+  const blogs = await getBlogs({ page: 1 });
 
   return (
     <>
