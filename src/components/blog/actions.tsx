@@ -141,7 +141,7 @@ export const Actions: FC<ActionsProps> = ({
         >
           <ShareRounded />
         </MenuButton>
-        <Menu>
+        <Menu placement="bottom-end">
           {socialMediaOptions.map(({ Icon, name, url }) => (
             <MenuItem component="a" href={url} key={name} target="_blank">
               <ListItemDecorator>
