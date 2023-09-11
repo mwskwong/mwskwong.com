@@ -14,17 +14,21 @@ import Typography from '@mui/joy/Typography';
 import { FC, useEffect, useState } from 'react';
 
 import { incrBlogView, likeBlog, unlikeBlog } from '@/app/actions';
+import { firstName, lastName } from '@/constants/content';
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 export interface ActionsProps extends StackProps {
-  id: string;
+  blog: {
+    id: string;
+    title: string;
+  };
   view?: number;
   like?: number;
 }
 
 export const Actions: FC<ActionsProps> = ({
-  id,
+  blog,
   view = 0,
   like = 0,
   ...props
@@ -33,7 +37,7 @@ export const Actions: FC<ActionsProps> = ({
   const [optimisticLike, setOptimisticLike] = useState(like);
   const [optimisticLiked, setOptimisticLiked] = useState(false);
 
-  useEffect(() => void incrBlogView(id), [id]);
+  useEffect(() => void incrBlogView(blog.id), [blog.id]);
 
   return (
     <Stack
@@ -57,7 +61,7 @@ export const Actions: FC<ActionsProps> = ({
             try {
               setOptimisticLike((prev) => prev + (prevLiked ? -1 : 1));
               setOptimisticLiked((prev) => !prev);
-              await (prevLiked ? unlikeBlog(id) : likeBlog(id));
+              await (prevLiked ? unlikeBlog(blog.id) : likeBlog(blog.id));
             } catch (error) {
               setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
               setOptimisticLiked(prevLiked);
@@ -70,6 +74,7 @@ export const Actions: FC<ActionsProps> = ({
       </Stack>
       <IconButton
         aria-label="copy blog url"
+        color={copied ? 'success' : undefined}
         onClick={async () => {
           await navigator.clipboard.writeText(window.location.href);
           setCopied(true);
@@ -78,7 +83,16 @@ export const Actions: FC<ActionsProps> = ({
       >
         {copied ? <DoneRounded /> : <ContentCopyRounded />}
       </IconButton>
-      <IconButton sx={{ ml: -0.5 }}>
+      <IconButton
+        onClick={() =>
+          navigator.share({
+            url: window.location.href,
+            text: `${blog.title} by ${firstName} ${lastName}`,
+            title: blog.title,
+          })
+        }
+        sx={{ ml: -0.5 }}
+      >
         <ShareRounded />
       </IconButton>
     </Stack>

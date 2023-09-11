@@ -78,7 +78,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
             </Grid>
             <Grid sm="auto" xs={12}>
-              <Actions id={blog.id} {...metadata} />
+              <Actions blog={blog} {...metadata} />
             </Grid>
           </Grid>
           {blog.coverPhoto ? <CoverImage src={blog.coverPhoto} /> : null}
