@@ -56,16 +56,16 @@ export const Actions: FC<ActionsProps> = ({
   const [optimisticLike, setOptimisticLike] = useState(like);
   const [optimisticLiked, setOptimisticLiked] = useState(false);
   const pathname = usePathname();
+
   const url = `${baseUrl}${pathname}`;
+  const text = `"${blog.title}" by ${firstName} ${lastName}`;
 
   const socialMediaOptions = useMemo(
     () => [
       {
         Icon: X,
         name: 'X',
-        url: `https://twitter.com/intent/tweet?text=${
-          blog.title
-        } by ${firstName} ${lastName}&url=${url}&hashtags=${blog.categories.join(
+        url: `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${blog.categories.join(
           ',',
         )}`,
       },
@@ -85,7 +85,7 @@ export const Actions: FC<ActionsProps> = ({
         url: `http://www.reddit.com/submit/?title=${blog.title}&url=${url}`,
       },
     ],
-    [blog.categories, blog.title, url],
+    [blog.categories, blog.title, text, url],
   );
 
   useEffect(() => void incrBlogView(blog.id), [blog.id]);
@@ -139,7 +139,7 @@ export const Actions: FC<ActionsProps> = ({
         onClick={() =>
           navigator.share({
             url,
-            text: `${blog.title} by ${firstName} ${lastName}`,
+            text,
             title: blog.title,
           })
         }
@@ -169,7 +169,7 @@ export const Actions: FC<ActionsProps> = ({
             onClick={() =>
               navigator.share({
                 url,
-                text: `${blog.title} by ${firstName} ${lastName}`,
+                text,
                 title: blog.title,
               })
             }
