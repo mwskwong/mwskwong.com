@@ -2,6 +2,7 @@
 
 import {
   ContentCopyRounded,
+  DoneRounded,
   FavoriteBorderRounded,
   ShareRounded,
   VisibilityRounded,
@@ -9,7 +10,7 @@ import {
 import IconButton from '@mui/joy/IconButton';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { incrBlogView } from '@/app/actions';
 
@@ -27,6 +28,7 @@ export const Actions: FC<ActionsProps> = ({
   like = 0,
   ...props
 }) => {
+  const [copied, setCopied] = useState(false);
   useEffect(() => void incrBlogView(id), [id]);
 
   return (
@@ -47,8 +49,15 @@ export const Actions: FC<ActionsProps> = ({
         </IconButton>
         <Typography>{numberFormatter.format(like)}</Typography>
       </Stack>
-      <IconButton>
-        <ContentCopyRounded />
+      <IconButton
+        aria-label="copy blog url"
+        onClick={async () => {
+          await navigator.clipboard.writeText(window.location.href);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1000);
+        }}
+      >
+        {copied ? <DoneRounded /> : <ContentCopyRounded />}
       </IconButton>
       <IconButton sx={{ ml: -0.5 }}>
         <ShareRounded />

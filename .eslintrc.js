@@ -38,6 +38,10 @@ module.exports = {
   rules: {
     '@typescript-eslint/consistent-type-imports': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-confusing-void-expression': [
+      'error',
+      { ignoreArrowShorthand: true },
+    ],
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
