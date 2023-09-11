@@ -1,5 +1,6 @@
 import { Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
+import { cache } from 'react';
 
 import { client } from './client';
 import {
@@ -8,7 +9,7 @@ import {
   SkillSkeleton,
 } from './types';
 
-export const getExperiences = async () => {
+export const getExperiences = cache(async () => {
   // Goal: sort educations in DESC order by `to` date,
   // while having records with `to = undefined` (denote "Present") sorted at the top
 
@@ -71,4 +72,4 @@ export const getExperiences = async () => {
       )
       .map((skill) => skill.fields.name),
   }));
-};
+});
