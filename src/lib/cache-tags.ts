@@ -10,6 +10,11 @@ export const blogTags = {
     ...blogTags.details(),
     `${blogTags.details()[1]}:${slug}`,
   ],
+  allMetadata: () => [...blogTags.all, `${blogTags.all[0]}:metadata`],
+  metadata: (id: string) => [
+    ...blogTags.allMetadata(),
+    `${blogTags.allMetadata()[1]}:${id}`,
+  ],
 };
 
 export const courseTags = {

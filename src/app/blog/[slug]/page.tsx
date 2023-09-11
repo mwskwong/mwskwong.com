@@ -3,6 +3,7 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
 import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
@@ -16,13 +17,14 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
 import rehypePrettyCode from 'rehype-pretty-code';
 
+import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
 import { contact } from '@/constants/nav';
 import { blogTags } from '@/lib/cache-tags';
+import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
-import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
 
 // data attribute auto injected by rehype-pretty-code
@@ -51,6 +53,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   })(slug);
   if (!blog) notFound();
 
+  const metadata = await prisma.blogMetadata.findUnique({
+    where: { id: blog.id },
+  });
+
   return (
     <>
       <main>
@@ -65,13 +71,20 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           <Typography level="h1" mb={3} mt={1}>
             {blog.title}
           </Typography>
-          <Stack direction="row" flexWrap="wrap" mb={4} spacing={1}>
-            {blog.categories.map((category) => (
-              <Chip color="primary" key={category}>
-                {category}
-              </Chip>
-            ))}
-          </Stack>
+          <Grid alignItems="center" container mb={2} spacing={2}>
+            <Grid sm xs={12}>
+              <Stack direction="row" flexWrap="wrap" spacing={1}>
+                {blog.categories.map((category) => (
+                  <Chip color="primary" key={category}>
+                    {category}
+                  </Chip>
+                ))}
+              </Stack>
+            </Grid>
+            <Grid sm="auto" xs={12}>
+              <Actions id={blog.id} {...metadata} />
+            </Grid>
+          </Grid>
           {blog.coverPhoto ? <CoverImage src={blog.coverPhoto} /> : null}
           {blog.content ? (
             <MDXRemote
@@ -270,11 +283,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     </>
   );
 };
-
-export const generateStaticParams = () =>
-  unstable_cache(getBlogs, [], { tags: blogTags.lists() })().then((blogs) =>
-    blogs.map(({ slug }) => ({ slug })),
-  );
 
 export const generateMetadata = async (
   { params: { slug } }: BlogProps,
