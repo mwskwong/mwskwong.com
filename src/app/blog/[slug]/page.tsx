@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -187,11 +189,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   return <div {...props} />;
                 },
 
-                pre: ({
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- avoid passing BG color in order to override it
-                  style: { backgroundColor, ...style } = {},
-                  ...props
-                }) => {
+                pre: ({ style, ...props }) => {
                   return (
                     // @ts-expect-error LegacyRef passed to RefObject
                     <Box
@@ -250,7 +248,23 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               }}
               options={{
                 mdxOptions: {
-                  rehypePlugins: [rehypePrettyCode],
+                  rehypePlugins: [
+                    [
+                      rehypePrettyCode,
+                      {
+                        theme: JSON.parse(
+                          readFileSync(
+                            new URL(
+                              'shiki/themes/dark-plus.json',
+                              import.meta.url,
+                            ),
+                            'utf-8',
+                          ),
+                        ) as object,
+                        keepBackground: false,
+                      },
+                    ],
+                  ],
                 },
               }}
               source={blog.content}
