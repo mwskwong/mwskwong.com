@@ -1,5 +1,3 @@
-import { readFileSync } from 'node:fs';
-
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -17,7 +15,8 @@ import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
-import rehypePrettyCode from 'rehype-pretty-code';
+import rehypePrettyCode, { Options } from 'rehype-pretty-code';
+import { setCDN } from 'shiki';
 
 import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -58,6 +57,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const metadata = await prisma.blogMetadata.findUnique({
     where: { id: blog.id },
   });
+
+  setCDN('https://unpkg.com/shiki/');
 
   return (
     <>
@@ -252,17 +253,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     [
                       rehypePrettyCode,
                       {
-                        theme: JSON.parse(
-                          readFileSync(
-                            new URL(
-                              'shiki/themes/dark-plus.json',
-                              import.meta.url,
-                            ),
-                            'utf-8',
-                          ),
-                        ) as object,
+                        theme: 'dark-plus',
                         keepBackground: false,
-                      },
+                      } satisfies Options,
                     ],
                   ],
                 },
