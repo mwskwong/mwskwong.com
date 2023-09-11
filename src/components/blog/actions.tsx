@@ -30,9 +30,17 @@ export const Actions: FC<ActionsProps> = ({
   useEffect(() => void incrBlogView(id), [id]);
 
   return (
-    <Stack alignItems="center" direction="row" spacing={1} {...props}>
-      <VisibilityRounded />
-      <Typography>{numberFormatter.format(view)}</Typography>
+    <Stack
+      alignItems="center"
+      direction="row"
+      justifyContent="space-around"
+      spacing={1}
+      {...props}
+    >
+      <Stack alignItems="center" direction="row" spacing={1}>
+        <VisibilityRounded />
+        <Typography>{numberFormatter.format(view)}</Typography>
+      </Stack>
       <Stack alignItems="center" direction="row" spacing={0.5}>
         <IconButton>
           <FavoriteBorderRounded />
@@ -42,7 +50,7 @@ export const Actions: FC<ActionsProps> = ({
       <IconButton>
         <ContentCopyRounded />
       </IconButton>
-      <IconButton>
+      <IconButton sx={{ ml: -0.5 }}>
         <ShareRounded />
       </IconButton>
     </Stack>
