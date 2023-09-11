@@ -134,24 +134,10 @@ export const Actions: FC<ActionsProps> = ({
       >
         {copied ? <DoneRounded /> : <ContentCopyRounded />}
       </IconButton>
-      <IconButton
-        aria-label="Share this blog to social media"
-        onClick={() =>
-          navigator.share({
-            url,
-            text,
-            title: blog.title,
-          })
-        }
-        sx={{ display: { sm: 'none' }, ml: -0.5 }}
-      >
-        <ShareRounded />
-      </IconButton>
       <Dropdown>
         <MenuButton
           aria-label="Share this blog to social media"
           slots={{ root: IconButton }}
-          sx={{ display: { xs: 'none', sm: 'block' } }}
         >
           <ShareRounded />
         </MenuButton>
