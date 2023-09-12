@@ -62,7 +62,7 @@ export const theme = extendTheme({
     xl5: '3rem',
   },
   zIndex: {
-    header: 1100,
+    header: 1030,
   },
   components: {
     JoyLink: {
@@ -108,6 +108,14 @@ export const globalStyles = (theme: Theme) =>
     '::selection': {
       backgroundColor: theme.vars.palette.primary.solidBg,
       color: theme.vars.palette.primary.solidColor,
+    },
+    '#nprogress': {
+      '& .bar': {
+        borderRadius: theme.vars.radius.xs,
+        '& .peg': {
+          borderRadius: theme.vars.radius.xs,
+        },
+      },
     },
     address: { fontStyle: 'unset' },
     blockquote: {

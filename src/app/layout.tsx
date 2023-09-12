@@ -14,7 +14,7 @@ import { linkedin } from '@/constants/contentful-ids';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 import { baseUrl } from '@/utils/base-url';
 
-import { ThemeRegistry } from './theme-registry';
+import { Providers } from './providers';
 
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
   const platformProfiles = await getPlatformProfiles();
@@ -22,7 +22,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>
+        <Providers>
           <Header
             platformProfiles={platformProfiles.filter(
               ({ platform }) => platform?.id !== linkedin,
@@ -30,7 +30,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
           />
           {children}
           <Footer />
-        </ThemeRegistry>
+        </Providers>
         <Analytics />
       </body>
     </html>
