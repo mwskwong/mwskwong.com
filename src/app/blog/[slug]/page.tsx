@@ -13,7 +13,7 @@ import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
-// import rehypePrettyCode, { Options } from 'rehype-pretty-code';
+import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 
 import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -23,7 +23,7 @@ import { contact } from '@/constants/nav';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
-// import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
+import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -240,20 +240,20 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   );
                 },
               }}
-              // options={{
-              //   mdxOptions: {
-              //     rehypePlugins: [
-              //       [
-              //         rehypePrettyCode,
-              //         {
-              //           theme: 'dark-plus',
-              //           keepBackground: false,
-              //           getHighlighter: getSsrRehypeCodeHighlighter,
-              //         } satisfies Options,
-              //       ],
-              //     ],
-              //   },
-              // }}
+              options={{
+                mdxOptions: {
+                  rehypePlugins: [
+                    [
+                      rehypePrettyCode,
+                      {
+                        theme: 'dark-plus',
+                        keepBackground: false,
+                        getHighlighter: getSsrRehypeCodeHighlighter,
+                      } satisfies Options,
+                    ],
+                  ],
+                },
+              }}
               source={blog.content}
             />
           ) : null}
