@@ -24,7 +24,6 @@ import { contact } from '@/constants/nav';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
-import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -249,7 +248,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       {
                         theme: 'dark-plus',
                         keepBackground: false,
-                        getHighlighter: getSsrRehypeCodeHighlighter,
+                        // getHighlighter: getSsrRehypeCodeHighlighter,
                       } satisfies Options,
                     ],
                   ],

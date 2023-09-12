@@ -71,6 +71,9 @@ const nextConfig = {
   experimental: {
     serverActions: true,
     optimizePackageImports: ['@mui/base', '@mui/joy'],
+    outputFileTracingIncludes: {
+      '/blog/[slug]': ['node_modules/shiki/**/*'],
+    },
   },
 };
 
