@@ -1,4 +1,3 @@
-/* eslint-disable no-console -- debug */
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -48,15 +47,12 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  console.error(new Date().toISOString());
   const blog = await unstable_cache(getBlogBySlug)(slug);
   if (!blog) notFound();
 
   const metadata = await prisma.blogMetadata.findUnique({
     where: { id: blog.id },
   });
-
-  console.error(new Date().toISOString());
 
   return (
     <>
