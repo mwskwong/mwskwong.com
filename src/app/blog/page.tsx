@@ -3,7 +3,6 @@ import Grid from '@mui/joy/Grid';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
-import { unstable_cache } from 'next/cache';
 import { FC } from 'react';
 
 import { BlogCard } from '@/components/blog/blog-card';
@@ -11,7 +10,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { getBlogs } from '@/lib/get-blogs';
 
 const Blogs: FC = async () => {
-  const blogs = await unstable_cache(getBlogs)({ page: 1 });
+  const blogs = await getBlogs({ page: 1 });
 
   return (
     <>
