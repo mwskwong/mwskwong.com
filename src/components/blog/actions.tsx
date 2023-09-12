@@ -22,7 +22,6 @@ import Typography from '@mui/joy/Typography';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useMemo, useState } from 'react';
 
-import { incrBlogView, likeBlog, unlikeBlog } from '@/app/actions';
 import { firstName, lastName } from '@/constants/content';
 import { baseUrl } from '@/utils/base-url';
 
@@ -88,7 +87,10 @@ export const Actions: FC<ActionsProps> = ({
     [blog.categories, blog.title, text, url],
   );
 
-  useEffect(() => void incrBlogView(blog.id), [blog.id]);
+  useEffect(
+    () => void fetch(`/api/blog/${blog.id}/view`, { method: 'POST' }),
+    [blog.id],
+  );
 
   return (
     <Stack
@@ -112,7 +114,10 @@ export const Actions: FC<ActionsProps> = ({
             try {
               setOptimisticLike((prev) => prev + (prevLiked ? -1 : 1));
               setOptimisticLiked((prev) => !prev);
-              await (prevLiked ? unlikeBlog(blog.id) : likeBlog(blog.id));
+              await fetch(
+                `/api/blog/${blog.id}/${prevLiked ? 'unlike' : 'like'}`,
+                { method: 'POST' },
+              );
             } catch (error) {
               setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
               setOptimisticLiked(prevLiked);
