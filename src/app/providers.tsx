@@ -19,6 +19,7 @@ export const Providers: FC<ProvidersProps> = ({ children }) => (
         <GlobalStyles styles={globalStyles} />
         <ProgressBar
           color="var(--joy-palette-primary-plainColor)"
+          delay={200}
           options={{ showSpinner: false }}
           shallowRouting
         />
