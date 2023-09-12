@@ -1,6 +1,4 @@
-import { readdir } from 'node:fs/promises';
-import { resolve } from 'node:path';
-
+/* eslint-disable no-console -- debug */
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -27,10 +25,7 @@ import { contact } from '@/constants/nav';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
-// import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
-
-const shikiPath = resolve('node_modules/shiki');
-void readdir(shikiPath);
+import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -53,12 +48,15 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
+  console.error(new Date().toISOString());
   const blog = await unstable_cache(getBlogBySlug)(slug);
   if (!blog) notFound();
 
   const metadata = await prisma.blogMetadata.findUnique({
     where: { id: blog.id },
   });
+
+  console.error(new Date().toISOString());
 
   return (
     <>
@@ -255,7 +253,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       {
                         theme: 'dark-plus',
                         keepBackground: false,
-                        // getHighlighter: getSsrRehypeCodeHighlighter,
+                        getHighlighter: getSsrRehypeCodeHighlighter,
                       } satisfies Options,
                     ],
                   ],

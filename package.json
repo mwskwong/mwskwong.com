@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "format": "prettier --write .",
-    "postinstall": "npm run prisma:generate",
+    "postinstall": "node ./copy-shiki.js && npm run prisma:generate",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:push": "dotenv -e .env.local -- prisma db push",
