@@ -102,7 +102,7 @@ export const Actions: FC<ActionsProps> = ({
         <VisibilityRounded />
         <Typography>{numberFormatter.format(view)}</Typography>
       </Stack>
-      <Stack alignItems="center" component="form" direction="row">
+      <Stack alignItems="center" direction="row">
         <IconButton
           aria-label={optimisticLiked ? 'unlike blog' : 'like blog'}
           color={optimisticLiked ? 'danger' : undefined}
@@ -138,6 +138,7 @@ export const Actions: FC<ActionsProps> = ({
         <MenuButton
           aria-label="Share this blog to social media"
           slots={{ root: IconButton }}
+          sx={{ ml: -0.5 }}
         >
           <ShareRounded />
         </MenuButton>
