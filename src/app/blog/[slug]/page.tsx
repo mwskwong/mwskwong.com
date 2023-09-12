@@ -1,3 +1,4 @@
+/* eslint-disable no-console -- debug */
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -9,6 +10,7 @@ import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
+import { unstable_cache } from 'next/cache';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -46,12 +48,15 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const blog = await getBlogBySlug(slug);
+  console.error(new Date().toISOString());
+  const blog = await unstable_cache(getBlogBySlug)(slug);
   if (!blog) notFound();
 
   const metadata = await prisma.blogMetadata.findUnique({
     where: { id: blog.id },
   });
+
+  console.error(new Date().toISOString());
 
   return (
     <>
@@ -289,7 +294,8 @@ export const generateMetadata = async (
   { params: { slug } }: BlogProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
-  const { title, description, coverPhoto } = (await getBlogBySlug(slug)) ?? {};
+  const { title, description, coverPhoto } =
+    (await unstable_cache(getBlogBySlug)(slug)) ?? {};
   const path = `/blog/${slug}`;
   const { openGraph } = await parent;
 
