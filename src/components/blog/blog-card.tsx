@@ -1,8 +1,6 @@
-import { FavoriteRounded, VisibilityRounded } from '@mui/icons-material';
 import Card, { CardProps } from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Chip from '@mui/joy/Chip';
-import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
@@ -11,8 +9,6 @@ import NextLink from 'next/link';
 import { FC } from 'react';
 
 import { BlogCardImage, BlogCardImageProps } from './blog-card-image';
-
-const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -30,8 +26,6 @@ export interface BlogCardProps extends Omit<CardProps, 'children'> {
   slotProps?: CardProps['slotProps'] & {
     image?: Partial<BlogCardImageProps>;
   };
-  view?: number;
-  like?: number;
 }
 
 export const BlogCard: FC<BlogCardProps> = ({
@@ -41,8 +35,6 @@ export const BlogCard: FC<BlogCardProps> = ({
   description,
   href = '',
   date,
-  view = 0,
-  like = 0,
   slotProps: { image: imageSlotProps, ...slotProps } = {},
   ...props
 }) => (
@@ -77,18 +69,6 @@ export const BlogCard: FC<BlogCardProps> = ({
         {description}
       </Typography>
     </CardContent>
-    <CardContent orientation="horizontal" sx={{ flex: 0 }}>
-      <Typography level="body-xs">{dateFormatter.format(date)}</Typography>
-      <Divider orientation="vertical" />
-      <Stack direction="row" spacing={0.5}>
-        <VisibilityRounded fontSize="lg" />
-        <Typography level="body-xs">{numberFormatter.format(view)}</Typography>
-      </Stack>
-      <Divider orientation="vertical" />
-      <Stack direction="row" spacing={0.5}>
-        <FavoriteRounded fontSize="lg" />
-        <Typography level="body-xs">{numberFormatter.format(like)}</Typography>
-      </Stack>
-    </CardContent>
+    <Typography level="body-xs">{dateFormatter.format(date)}</Typography>
   </Card>
 );
