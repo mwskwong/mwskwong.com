@@ -92,6 +92,12 @@ export const Actions: FC<ActionsProps> = ({
     [blog.id],
   );
 
+  useEffect(() => {
+    setOptimisticLiked(
+      localStorage.getItem(`blogs:${blog.id}:liked`) === 'true',
+    );
+  }, [blog.id]);
+
   return (
     <Stack
       alignItems="center"
@@ -117,6 +123,10 @@ export const Actions: FC<ActionsProps> = ({
               await fetch(
                 `/api/blog/${blog.id}/${prevLiked ? 'unlike' : 'like'}`,
                 { method: 'POST' },
+              );
+              localStorage.setItem(
+                `blogs:${blog.id}:liked`,
+                prevLiked ? 'false' : 'true',
               );
             } catch (error) {
               setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
