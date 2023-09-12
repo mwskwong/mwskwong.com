@@ -1,9 +1,10 @@
 import { orderBy } from 'lodash-es';
+import { cache } from 'react';
 
 import { client } from './client';
 import { CourseSkeleton } from './types';
 
-export const getCourses = async () => {
+export const getCourses = cache(async () => {
   const { items } = await client.getEntries<CourseSkeleton>({
     select: ['fields'],
     content_type: 'course',
@@ -25,4 +26,4 @@ export const getCourses = async () => {
         .filter((category): category is string => Boolean(category)),
     ),
   }));
-};
+});

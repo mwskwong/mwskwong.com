@@ -1,15 +1,10 @@
 import { MetadataRoute } from 'next';
-// eslint-disable-next-line camelcase -- Next.js naming convention
-import { unstable_cache } from 'next/cache';
 
-import { blogTags } from '@/lib/cache-tags';
 import { getBlogs } from '@/lib/get-blogs';
 import { baseUrl } from '@/utils/base-url';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const blogs = await unstable_cache(getBlogs, [], {
-    tags: blogTags.lists(),
-  })();
+  const blogs = await getBlogs();
 
   return [
     {

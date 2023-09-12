@@ -3,27 +3,28 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
 import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
-// eslint-disable-next-line camelcase -- Next.js naming convention
 import { unstable_cache } from 'next/cache';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
-import rehypePrettyCode from 'rehype-pretty-code';
+import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 
+import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
 import { contact } from '@/constants/nav';
-import { blogTags } from '@/lib/cache-tags';
+import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
-import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
+import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -46,10 +47,12 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const blog = await unstable_cache(getBlogBySlug, [], {
-    tags: blogTags.detail(slug),
-  })(slug);
+  const blog = await unstable_cache(getBlogBySlug)(slug);
   if (!blog) notFound();
+
+  const metadata = await prisma.blogMetadata.findUnique({
+    where: { id: blog.id },
+  });
 
   return (
     <>
@@ -65,13 +68,20 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           <Typography level="h1" mb={3} mt={1}>
             {blog.title}
           </Typography>
-          <Stack direction="row" flexWrap="wrap" mb={4} spacing={1}>
-            {blog.categories.map((category) => (
-              <Chip color="primary" key={category}>
-                {category}
-              </Chip>
-            ))}
-          </Stack>
+          <Grid alignItems="center" container mb={2} spacing={2}>
+            <Grid sm xs={12}>
+              <Stack direction="row" flexWrap="wrap" spacing={1}>
+                {blog.categories.map((category) => (
+                  <Chip color="primary" key={category}>
+                    {category}
+                  </Chip>
+                ))}
+              </Stack>
+            </Grid>
+            <Grid sm="auto" xs={12}>
+              <Actions blog={blog} {...metadata} />
+            </Grid>
+          </Grid>
           {blog.coverPhoto ? <CoverImage src={blog.coverPhoto} /> : null}
           {blog.content ? (
             <MDXRemote
@@ -174,11 +184,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   return <div {...props} />;
                 },
 
-                pre: ({
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- avoid passing BG color in order to override it
-                  style: { backgroundColor, ...style } = {},
-                  ...props
-                }) => {
+                pre: ({ style, ...props }) => {
                   return (
                     // @ts-expect-error LegacyRef passed to RefObject
                     <Box
@@ -237,7 +243,16 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               }}
               options={{
                 mdxOptions: {
-                  rehypePlugins: [[rehypePrettyCode, { theme: 'dark-plus' }]],
+                  rehypePlugins: [
+                    [
+                      rehypePrettyCode,
+                      {
+                        theme: 'dark-plus',
+                        keepBackground: false,
+                        getHighlighter: getSsrRehypeCodeHighlighter,
+                      } satisfies Options,
+                    ],
+                  ],
                 },
               }}
               source={blog.content}
@@ -271,19 +286,12 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   );
 };
 
-export const generateStaticParams = () =>
-  unstable_cache(getBlogs, [], { tags: blogTags.lists() })().then((blogs) =>
-    blogs.map(({ slug }) => ({ slug })),
-  );
-
 export const generateMetadata = async (
   { params: { slug } }: BlogProps,
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const { title, description, coverPhoto } =
-    (await unstable_cache(getBlogBySlug, [], { tags: blogTags.detail(slug) })(
-      slug,
-    )) ?? {};
+    (await unstable_cache(getBlogBySlug)(slug)) ?? {};
   const path = `/blog/${slug}`;
   const { openGraph } = await parent;
 

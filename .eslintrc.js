@@ -38,11 +38,16 @@ module.exports = {
   rules: {
     '@typescript-eslint/consistent-type-imports': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-confusing-void-expression': [
+      'error',
+      { ignoreArrowShorthand: true },
+    ],
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
       { checksVoidReturn: false },
     ],
+    camelcase: ['error', { ignoreImports: true, properties: 'never' }],
     // such that @/* imports will not being considered as external dependencies
     'import/no-extraneous-dependencies': ['error', { includeTypes: true }],
     'react/function-component-definition': [

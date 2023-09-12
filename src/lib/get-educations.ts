@@ -1,7 +1,9 @@
+import { cache } from 'react';
+
 import { client } from './client';
 import { EducationSkeleton } from './types';
 
-export const getEducations = async () => {
+export const getEducations = cache(async () => {
   // Goal: sort educations in DESC order by `to` date,
   // while having records with `to = undefined` (denote "Present") sorted at the top
 
@@ -35,4 +37,4 @@ export const getEducations = async () => {
       )
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
   }));
-};
+});

@@ -1,7 +1,9 @@
+import { cache } from 'react';
+
 import { client } from './client';
 import { SkillCategorySkeleton, SkillSkeleton } from './types';
 
-export const getSkillCategories = async () => {
+export const getSkillCategories = cache(async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     client.getEntries<SkillSkeleton>({
       select: ['fields'],
@@ -23,4 +25,4 @@ export const getSkillCategories = async () => {
       .filter((skill) => skill.fields.category?.sys.id === skillCategory.sys.id)
       .map((skill) => skill.fields.name),
   }));
-};
+});
