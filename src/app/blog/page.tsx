@@ -3,14 +3,23 @@ import Grid from '@mui/joy/Grid';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { Metadata, ResolvingMetadata } from 'next';
+import { unstable_cache } from 'next/cache';
 import { FC } from 'react';
 
 import { BlogCard } from '@/components/blog/blog-card';
 import { SectionDivider } from '@/components/section-divider';
+import { prisma } from '@/lib/db';
 import { getBlogs } from '@/lib/get-blogs';
 
 const Blogs: FC = async () => {
-  const blogs = await getBlogs({ page: 1 });
+  const blogs = await unstable_cache(getBlogs)({ page: 1 });
+  const blogIds = blogs.map(({ id }) => id);
+  const metadata = await unstable_cache(
+    (ids: string[]) =>
+      prisma.blogMetadata.findMany({ where: { id: { in: ids } } }),
+    [],
+    { tags: blogIds.map((id) => `blogs:metadata:${id}`) },
+  )(blogIds);
 
   return (
     <>
@@ -33,6 +42,7 @@ const Blogs: FC = async () => {
                     slotProps={{ image: { priority: index < 2 } }}
                     sx={{ height: { sm: '100%' } }}
                     {...blog}
+                    {...metadata.find(({ id }) => id === blog.id)}
                   />
                 </Grid>
               ),
