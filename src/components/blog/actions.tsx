@@ -143,7 +143,7 @@ export const Actions: FC<ActionsProps> = ({
         <MenuButton
           aria-label="Share this blog to social media"
           slots={{ root: IconButton }}
-          sx={{ ml: -0.5 }}
+          sx={{ ml: -1 }}
         >
           <ShareRounded />
         </MenuButton>
