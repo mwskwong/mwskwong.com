@@ -104,6 +104,7 @@ export const globalStyles = (theme: Theme) =>
       '--Footer-bg': theme.vars.palette.background.level1,
       '--MaterialIcon-padding': `${(2 / 24).toFixed(5)}em`,
       '--Header-height': '57px',
+      '--NProgress-height': '4px',
     },
     '::selection': {
       backgroundColor: theme.vars.palette.primary.solidBg,
@@ -111,7 +112,7 @@ export const globalStyles = (theme: Theme) =>
     },
     '#nprogress': {
       '& .bar': {
-        borderRadius: '4px',
+        borderRadius: 'var(--NProgress-height)',
         '& .peg': { display: 'none' },
       },
     },
