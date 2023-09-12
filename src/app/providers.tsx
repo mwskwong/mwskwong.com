@@ -1,5 +1,6 @@
 'use client';
 
+import { NoSsr } from '@mui/base/NoSsr';
 import CssBaseline from '@mui/joy/CssBaseline';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import { CssVarsProvider, getInitColorSchemeScript } from '@mui/joy/styles';
@@ -17,13 +18,15 @@ export const Providers: FC<ProvidersProps> = ({ children }) => (
       <CssVarsProvider theme={theme}>
         <CssBaseline />
         <GlobalStyles styles={globalStyles} />
-        <NProgressBar
-          color="var(--joy-palette-primary-plainColor)"
-          delay={200}
-          height="var(--NProgress-height)"
-          options={{ showSpinner: false }}
-          shallowRouting
-        />
+        <NoSsr defer>
+          <NProgressBar
+            color="var(--joy-palette-primary-plainColor)"
+            delay={200}
+            height="var(--NProgress-height)"
+            options={{ showSpinner: false }}
+            shallowRouting
+          />
+        </NoSsr>
         {children}
       </CssVarsProvider>
     </NextAppDirEmotionCacheProvider>

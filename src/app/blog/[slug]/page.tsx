@@ -23,6 +23,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { contact } from '@/constants/nav';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
+import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
 import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
@@ -50,9 +51,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await unstable_cache(getBlogBySlug)(slug);
   if (!blog) notFound();
 
-  const metadata = await prisma.blogMetadata.findUnique({
-    where: { id: blog.id },
-  });
+  const metadata = await unstable_cache(
+    (id: string) =>
+      prisma.blogMetadata.findUnique({
+        where: { id },
+      }),
+    [],
+    { revalidate: 21600, tags: [`blogs:metadata:${blog.id}`] },
+  )(blog.id);
 
   return (
     <>
@@ -285,6 +291,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     </>
   );
 };
+
+export const generateStaticParams = () =>
+  getBlogs().then((blogs) =>
+    blogs.map(({ slug }) => ({ slug })),
+  ) satisfies Promise<BlogProps['params'][]>;
 
 export const generateMetadata = async (
   { params: { slug } }: BlogProps,
