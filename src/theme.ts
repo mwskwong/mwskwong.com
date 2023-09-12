@@ -111,10 +111,8 @@ export const globalStyles = (theme: Theme) =>
     },
     '#nprogress': {
       '& .bar': {
-        borderRadius: theme.vars.radius.xs,
-        '& .peg': {
-          borderRadius: theme.vars.radius.xs,
-        },
+        borderRadius: '4px',
+        '& .peg': { display: 'none' },
       },
     },
     address: { fontStyle: 'unset' },
