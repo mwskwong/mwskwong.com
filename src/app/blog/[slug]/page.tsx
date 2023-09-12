@@ -13,17 +13,17 @@ import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
-import rehypePrettyCode, { Options } from 'rehype-pretty-code';
+// import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 
 import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
 import { contact } from '@/constants/nav';
-// import { prisma } from '@/lib/db';
+import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
-import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
+// import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -49,11 +49,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
-  const metadata = { id: blog.id, like: 0, view: 0 };
-
-  // const metadata = await prisma.blogMetadata.findUnique({
-  //   where: { id: blog.id },
-  // });
+  const metadata = await prisma.blogMetadata.findUnique({
+    where: { id: blog.id },
+  });
 
   return (
     <>
@@ -242,20 +240,20 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   );
                 },
               }}
-              options={{
-                mdxOptions: {
-                  rehypePlugins: [
-                    [
-                      rehypePrettyCode,
-                      {
-                        theme: 'dark-plus',
-                        keepBackground: false,
-                        getHighlighter: getSsrRehypeCodeHighlighter,
-                      } satisfies Options,
-                    ],
-                  ],
-                },
-              }}
+              // options={{
+              //   mdxOptions: {
+              //     rehypePlugins: [
+              //       [
+              //         rehypePrettyCode,
+              //         {
+              //           theme: 'dark-plus',
+              //           keepBackground: false,
+              //           getHighlighter: getSsrRehypeCodeHighlighter,
+              //         } satisfies Options,
+              //       ],
+              //     ],
+              //   },
+              // }}
               source={blog.content}
             />
           ) : null}
