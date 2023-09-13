@@ -3,6 +3,7 @@ import Button from '@mui/joy/Button';
 import Container from '@mui/joy/Container';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
+import { unstable_cache } from 'next/cache';
 import { FC } from 'react';
 
 import { LinkedIn } from '@/components/icons/linkedin';
@@ -15,7 +16,7 @@ export type HeroProps = Omit<BoxProps<'section'>, 'children'>;
 export const Hero: FC<HeroProps> = async (props) => {
   const [cv, linkedinProfile] = await Promise.all([
     getCv(),
-    getPlatformProfiles().then((platformProfiles) =>
+    unstable_cache(getPlatformProfiles)().then((platformProfiles) =>
       platformProfiles.find(({ platform }) => platform?.id === linkedin),
     ),
   ]);

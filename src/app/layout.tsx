@@ -1,5 +1,6 @@
 import { Analytics } from '@vercel/analytics/react';
 import { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
 import { FC, PropsWithChildren } from 'react';
 
 import { Footer } from '@/components/footer';
@@ -17,7 +18,7 @@ import { baseUrl } from '@/utils/base-url';
 import { Providers } from './providers';
 
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
-  const platformProfiles = await getPlatformProfiles();
+  const platformProfiles = await unstable_cache(getPlatformProfiles)();
 
   return (
     <html lang="en">
