@@ -5,8 +5,6 @@ import { client } from './client';
 import { PlatformProfileSkeleton } from './types';
 
 export const getPlatformProfiles = cache(async () => {
-  // eslint-disable-next-line no-console -- debug
-  console.error('called');
   const { items } = await client.getEntries<PlatformProfileSkeleton>({
     select: ['sys.id', 'fields'],
     content_type: 'platformProfile',
