@@ -20,7 +20,7 @@ import MenuItem from '@mui/joy/MenuItem';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { usePathname, useRouter } from 'next/navigation';
-import { FC, startTransition, useEffect, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import { firstName, lastName } from '@/constants/content';
 import { baseUrl } from '@/utils/base-url';
@@ -129,7 +129,7 @@ export const Actions: FC<ActionsProps> = ({
                 `blogs:${blog.id}:liked`,
                 prevLiked ? 'false' : 'true',
               );
-              startTransition(() => router.refresh());
+              router.refresh();
             } catch (error) {
               setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
               setOptimisticLiked(prevLiked);
