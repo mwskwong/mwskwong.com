@@ -57,7 +57,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
         where: { id },
       }),
     [],
-    { revalidate: 21600, tags: [`blogs:metadata:${blog.id}`] },
+    { revalidate: 3600, tags: [`blogs:metadata:${blog.id}`] },
   )(blog.id);
 
   return (
