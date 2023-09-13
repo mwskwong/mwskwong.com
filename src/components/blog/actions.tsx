@@ -19,8 +19,8 @@ import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { usePathname , useRouter } from 'next/navigation';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { FC, startTransition, useEffect, useMemo, useState } from 'react';
 
 import { firstName, lastName } from '@/constants/content';
 import { baseUrl } from '@/utils/base-url';
@@ -55,7 +55,7 @@ export const Actions: FC<ActionsProps> = ({
   const [optimisticLike, setOptimisticLike] = useState(like);
   const [optimisticLiked, setOptimisticLiked] = useState(false);
   const pathname = usePathname();
-  const router = useRouter()
+  const router = useRouter();
 
   const url = `${baseUrl}${pathname}`;
   const text = `"${blog.title}" by ${firstName} ${lastName}`;
@@ -129,7 +129,7 @@ export const Actions: FC<ActionsProps> = ({
                 `blogs:${blog.id}:liked`,
                 prevLiked ? 'false' : 'true',
               );
-              router.refresh();
+              startTransition(() => router.refresh());
             } catch (error) {
               setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
               setOptimisticLiked(prevLiked);
