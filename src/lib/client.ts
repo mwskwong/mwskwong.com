@@ -1,7 +1,7 @@
 import { createClient } from 'contentful';
 import 'server-only';
 
-export const client = createClient({
+export const contentful = createClient({
   space: process.env.CF_SPACE_ID ?? '',
   accessToken:
     (process.env.NODE_ENV === 'development'

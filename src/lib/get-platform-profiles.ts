@@ -1,11 +1,11 @@
 import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
-import { client } from './client';
+import { contentful } from './client';
 import { PlatformProfileSkeleton } from './types';
 
 export const getPlatformProfiles = cache(async () => {
-  const { items } = await client.getEntries<PlatformProfileSkeleton>({
+  const { items } = await contentful.getEntries<PlatformProfileSkeleton>({
     select: ['sys.id', 'fields'],
     content_type: 'platformProfile',
   });

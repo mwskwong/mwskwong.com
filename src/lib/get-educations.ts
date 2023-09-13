@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-import { client } from './client';
+import { contentful } from './client';
 import { EducationSkeleton } from './types';
 
 export const getEducations = cache(async () => {
@@ -10,7 +10,7 @@ export const getEducations = cache(async () => {
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
-  const { items } = await client.getEntries<EducationSkeleton>({
+  const { items } = await contentful.getEntries<EducationSkeleton>({
     select: ['fields'],
     content_type: 'education',
     order: ['fields.to'],

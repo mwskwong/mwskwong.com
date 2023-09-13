@@ -1,13 +1,13 @@
 import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
-import { client } from './client';
+import { contentful } from './client';
 import { BlogSkeleton } from './types';
 
 export const getBlogs = cache(
   async (pagination?: { page: number; pageSize?: number }) => {
     const { page = 1, pageSize = 9 } = pagination ?? {};
-    const { items } = await client.getEntries<BlogSkeleton>({
+    const { items } = await contentful.getEntries<BlogSkeleton>({
       select: [
         'sys.createdAt',
         'sys.updatedAt',

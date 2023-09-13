@@ -1,11 +1,11 @@
 import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
-import { client } from './client';
+import { contentful } from './client';
 import { BlogSkeleton } from './types';
 
 export const getBlogBySlug = cache(async (slug: string) => {
-  const { items } = await client.getEntries<BlogSkeleton>({
+  const { items } = await contentful.getEntries<BlogSkeleton>({
     select: ['sys.id', 'sys.createdAt', 'fields'],
     content_type: 'blog',
     'fields.slug[in]': [slug],

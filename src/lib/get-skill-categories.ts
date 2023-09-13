@@ -1,17 +1,17 @@
 import { cache } from 'react';
 
-import { client } from './client';
+import { contentful } from './client';
 import { SkillCategorySkeleton, SkillSkeleton } from './types';
 
 export const getSkillCategories = cache(async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
-    client.getEntries<SkillSkeleton>({
+    contentful.getEntries<SkillSkeleton>({
       select: ['fields'],
       content_type: 'skill',
       'fields.category[exists]': true,
       order: ['-fields.proficiency', 'fields.name'],
     }),
-    client.getEntries<SkillCategorySkeleton>({
+    contentful.getEntries<SkillCategorySkeleton>({
       select: ['sys.id', 'fields.name'],
       content_type: 'skillCategory',
       order: ['-fields.proficiency', 'fields.name'],

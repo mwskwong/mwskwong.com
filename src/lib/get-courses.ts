@@ -1,11 +1,11 @@
 import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
-import { client } from './client';
+import { contentful } from './client';
 import { CourseSkeleton } from './types';
 
 export const getCourses = cache(async () => {
-  const { items } = await client.getEntries<CourseSkeleton>({
+  const { items } = await contentful.getEntries<CourseSkeleton>({
     select: ['fields'],
     content_type: 'course',
     order: ['fields.name'],
