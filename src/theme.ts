@@ -30,22 +30,6 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        background: {
-          level1: 'var(--joy-palette-neutral-50)',
-        },
-      },
-    },
-    dark: {
-      palette: {
-        background: {
-          level1: 'var(--joy-palette-neutral-900)',
-        },
-      },
-    },
-  },
   fontFamily: {
     body: rubik.style.fontFamily,
     display: rubik.style.fontFamily,
@@ -96,7 +80,7 @@ export const globalStyles = (theme: Theme) =>
       },
       '--Section-paddingY': theme.spacing(10),
       '--Footer-paddingY': theme.spacing(6),
-      '--Footer-bg': theme.vars.palette.background.level1,
+      '--Footer-bg': theme.vars.palette.background.surface,
       '--MaterialIcon-padding': `${(2 / 24).toFixed(5)}em`,
       '--Header-height': '60px',
       '--NProgress-height': '4px',

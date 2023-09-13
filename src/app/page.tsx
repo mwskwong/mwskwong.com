@@ -10,10 +10,10 @@ import { SectionDivider } from '@/components/section-divider';
 
 const bgcolors = {
   hero: 'background.body',
-  about: 'background.level1',
+  about: 'background.surface',
   funFact: 'primary.solidBg',
   experience: 'background.body',
-  education: 'background.level1',
+  education: 'background.surface',
   contact: 'background.body',
 };
 
