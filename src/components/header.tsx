@@ -130,7 +130,7 @@ export const Header: FC<HeaderProps> = ({
           <Container
             sx={{
               position: 'fixed',
-              top: 56,
+              top: 'calc(var(--Header-height) - 1)',
               left: 0,
               right: 0,
               borderBottom: 1,

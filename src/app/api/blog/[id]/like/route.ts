@@ -1,7 +1,9 @@
-import { revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { contentful } from '@/lib/client';
 import { prisma } from '@/lib/db';
+import { BlogSkeleton } from '@/lib/types';
 
 export const POST = async (
   _: NextRequest,
@@ -13,7 +15,8 @@ export const POST = async (
     create: { id },
   });
 
-  revalidateTag(`blogs:metadata:${id}`);
+  const { fields } = await contentful.getEntry<BlogSkeleton>(id);
+  revalidatePath(`/blog/${fields.slug}`);
 
   return NextResponse.json(metadata);
 };
