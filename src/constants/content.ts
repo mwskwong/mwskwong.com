@@ -71,7 +71,7 @@ export const websiteTechStack = [
   {
     name: 'Supabase',
     Icon: Supabase,
-    url: 'https://zod.dev/',
+    url: 'https://supabase.com/',
   },
   {
     name: 'Vercel',
