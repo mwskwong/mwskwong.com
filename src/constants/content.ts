@@ -9,8 +9,10 @@ import { Formspree } from '@/components/icons/formspree';
 import { ImprovMx } from '@/components/icons/improvmx';
 import { Mui } from '@/components/icons/mui';
 import { NextJs } from '@/components/icons/nextjs';
+import { Prisma } from '@/components/icons/prisma';
 import { React } from '@/components/icons/react';
 import { ReactHookForm } from '@/components/icons/react-hook-form';
+import { Supabase } from '@/components/icons/supabase';
 import { TypeScript } from '@/components/icons/typescript';
 import { Vercel } from '@/components/icons/vercel';
 import { Zod } from '@/components/icons/zod';
@@ -59,6 +61,16 @@ export const websiteTechStack = [
   {
     name: 'Zod',
     Icon: Zod,
+    url: 'https://zod.dev/',
+  },
+  {
+    name: 'Prisma',
+    Icon: Prisma,
+    url: 'https://www.prisma.io/',
+  },
+  {
+    name: 'Supabase',
+    Icon: Supabase,
     url: 'https://zod.dev/',
   },
   {
