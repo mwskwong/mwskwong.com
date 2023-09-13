@@ -6,25 +6,16 @@ import Link from '@mui/joy/Link';
 import Sheet, { SheetProps } from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import mergeSx from 'merge-sx';
 import { FC } from 'react';
 
 import { websiteTechStack } from '@/constants/content';
 
 export type FunFactProps = Omit<SheetProps<'section'>, 'children'>;
-export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
+export const FunFact: FC<FunFactProps> = (props) => (
   <Sheet
     color="primary"
     component="section"
     invertedColors
-    sx={mergeSx(
-      {
-        // TODO: contrast not enough. May be this will change in the future?
-        '--joy-palette-text-secondary': 'var(--joy-palette-primary-100)',
-        '--joy-palette-text-tertiary': 'var(--joy-palette-primary-200)',
-      },
-      sx,
-    )}
     variant="solid"
     {...props}
   >

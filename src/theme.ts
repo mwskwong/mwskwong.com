@@ -30,27 +30,6 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        background: {
-          body: 'var(--joy-palette-common-white)',
-          level1: 'var(--joy-palette-neutral-50)',
-          level2: 'var(--joy-palette-neutral-100)',
-          level3: 'var(--joy-palette-neutral-200)',
-        },
-      },
-    },
-    dark: {
-      palette: {
-        background: {
-          level1: 'var(--joy-palette-neutral-900)',
-          level2: 'var(--joy-palette-neutral-800)',
-          level3: 'var(--joy-palette-neutral-700)',
-        },
-      },
-    },
-  },
   fontFamily: {
     body: rubik.style.fontFamily,
     display: rubik.style.fontFamily,
@@ -97,7 +76,7 @@ export const globalStyles = (theme: Theme) =>
   ({
     ':root': {
       [theme.breakpoints.up('md')]: {
-        '--Header-height': '65px',
+        '--Header-height': '69px',
       },
       '--Section-paddingY': theme.spacing(10),
       '--Footer-paddingY': theme.spacing(6),
