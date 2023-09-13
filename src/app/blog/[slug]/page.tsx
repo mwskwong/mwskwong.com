@@ -292,6 +292,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   );
 };
 
+// FIXME: do we need this to force the page to revalidate every 1hr?
+export const revalidate = 3600;
+
 export const generateStaticParams = () =>
   getBlogs().then((blogs) =>
     blogs.map(({ slug }) => ({ slug })),
