@@ -1,5 +1,4 @@
-import Container from '@mui/joy/Container';
-import Typography from '@mui/joy/Typography';
+import { Container, Typography } from '@mui/joy';
 import { Metadata } from 'next';
 import { FC } from 'react';
 

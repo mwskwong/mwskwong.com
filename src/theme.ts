@@ -1,4 +1,4 @@
-import { Theme, extendTheme } from '@mui/joy/styles';
+import { Theme, extendTheme } from '@mui/joy';
 import { Interpolation } from '@mui/styled-engine';
 import { Rubik, Source_Code_Pro } from 'next/font/google';
 
