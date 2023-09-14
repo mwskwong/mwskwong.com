@@ -94,10 +94,10 @@ export const Actions: FC<ActionsProps> = ({
   );
 
   useEffect(() => {
-    setOptimisticLiked(
-      localStorage.getItem(`blogs:${blog.id}:liked`) === 'true',
-    );
-  }, [blog.id]);
+    const key = `blogs:${blog.id}:liked`;
+    if (like > 0) localStorage.setItem(key, 'false');
+    setOptimisticLiked(localStorage.getItem(key) === 'true');
+  }, [blog.id, like]);
 
   return (
     <Stack
