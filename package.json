@@ -12,7 +12,6 @@
     "prisma:push": "dotenv -e .env.local -- prisma db push",
     "start": "next start"
   },
-  "prettier": "@vercel/style-guide/prettier",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -52,6 +51,7 @@
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.49.0",
     "prettier": "^3.0.3",
+    "prettier-plugin-prisma": "^5.0.0",
     "server-only": "^0.0.1",
     "type-fest": "^4.3.1",
     "typescript": "^5.2.2"

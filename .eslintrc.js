@@ -47,7 +47,6 @@ module.exports = {
       'error',
       { checksVoidReturn: false },
     ],
-    camelcase: ['error', { ignoreImports: true, properties: 'never' }],
     // such that @/* imports will not being considered as external dependencies
     'import/no-extraneous-dependencies': ['error', { includeTypes: true }],
     'react/function-component-definition': [
