@@ -1,5 +1,6 @@
 import Container from '@mui/joy/Container';
 import Typography from '@mui/joy/Typography';
+import { Metadata } from 'next';
 import { FC } from 'react';
 
 import { SectionDivider } from '@/components/section-divider';
@@ -30,5 +31,7 @@ const NotFound: FC = () => (
     <SectionDivider bgcolor="var(--Footer-bg)" />
   </>
 );
+
+export const metadata: Metadata = { title: 'Not Found' };
 
 export default NotFound;
