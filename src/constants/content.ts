@@ -71,7 +71,7 @@ export const websiteTechStack = [
   {
     name: 'PlanetScale',
     Icon: PlanetScale,
-    url: 'https://supabase.com/',
+    url: 'https://planetscale.com/',
   },
   {
     name: 'Vercel',
