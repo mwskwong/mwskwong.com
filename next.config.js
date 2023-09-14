@@ -5,7 +5,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compiler: {
-    emotion: true,
+    // TODO: Enable in 13.4.20
+    // emotion: true,
     removeConsole: process.env.NODE_ENV === 'production' && {
       exclude: ['error'],
     },
@@ -69,7 +70,10 @@ const nextConfig = {
     },
   ],
   experimental: {
-    optimizePackageImports: ['@mui/base', '@mui/joy'],
+    // TODO: consider enabling and use named import when importing MUI Joy in 13.4.20
+    // optimizePackageImports: ['@mui/base', '@mui/joy'],
+    // TODO: Remove in 13.4.20
+    serverMinification: true,
   },
 };
 
