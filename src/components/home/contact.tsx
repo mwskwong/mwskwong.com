@@ -211,7 +211,7 @@ export const Contact: FC<ContactProps> = (props) => {
                       }) => (
                         <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Message</FormLabel>
-                          <Textarea maxRows={5} minRows={5} {...field} />
+                          <Textarea maxRows={6} minRows={6} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
                         </FormControl>
                       )}
