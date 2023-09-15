@@ -4,6 +4,7 @@ import { MenuRounded } from '@mui/icons-material';
 import Divider from '@mui/joy/Divider';
 import Drawer from '@mui/joy/Drawer';
 import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -12,9 +13,8 @@ import Stack from '@mui/joy/Stack';
 import NextLink from 'next/link';
 import { FC, useState } from 'react';
 
-import { nav } from '@/constants/nav';
-
-import { NavBrand } from './nav-brand';
+import Icon from '@/app/icon.svg';
+import { home, nav } from '@/constants/nav';
 
 export interface NavDrawerProps {
   slotProps?: {
@@ -44,7 +44,13 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
             px={2}
             spacing={1}
           >
-            <NavBrand />
+            <Link
+              aria-label="Go to home page"
+              component={NextLink}
+              href={home.href}
+            >
+              <Icon width={32} />
+            </Link>
             <ModalClose sx={{ position: 'unset' }} />
           </Stack>
           <Divider />

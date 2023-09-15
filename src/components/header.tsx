@@ -1,6 +1,7 @@
 import Box, { BoxProps } from '@mui/joy/Box';
 import Container from '@mui/joy/Container';
 import IconButton from '@mui/joy/IconButton';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -8,17 +9,16 @@ import Stack from '@mui/joy/Stack';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
+import Icon from '@/app/icon.svg';
 import { linkedin } from '@/constants/contentful-ids';
-import { nav } from '@/constants/nav';
+import { home, nav } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 import { ModeToggleButton } from './mode-toggle-button';
-import { NavBrand } from './nav-brand';
 import { NavDrawer } from './nav-drawer';
 
 export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
-
 export const Header: FC<HeaderProps> = async (props) => {
   const platformProfiles = (await getPlatformProfiles()).filter(
     ({ platform }) => platform?.id !== linkedin,
@@ -44,7 +44,13 @@ export const Header: FC<HeaderProps> = async (props) => {
           py={1.5}
         >
           <Stack alignItems="center" direction="row" spacing={2}>
-            <NavBrand />
+            <Link
+              aria-label="Go to home page"
+              component={NextLink}
+              href={home.href}
+            >
+              <Icon width={32} />
+            </Link>
             <List
               orientation="horizontal"
               sx={{
