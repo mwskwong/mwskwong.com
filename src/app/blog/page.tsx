@@ -34,7 +34,7 @@ const Blogs: FC = async () => {
                     coverImgSrc={coverPhoto}
                     date={new Date(createdAt)}
                     href={`/blog/${slug}`}
-                    slotProps={{ image: { priority: index < 2 } }}
+                    slotProps={{ image: { priority: index === 0 } }}
                     sx={{ height: { sm: '100%' } }}
                     {...blog}
                   />
