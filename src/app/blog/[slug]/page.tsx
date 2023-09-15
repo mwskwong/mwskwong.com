@@ -168,7 +168,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Stack
                         borderBottom={1}
-                        borderColor="neutral.outlinedBorder"
+                        borderColor="divider"
                         direction="row"
                         px={2}
                         py={1.5}

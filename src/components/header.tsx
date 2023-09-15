@@ -1,51 +1,34 @@
-'use client';
-
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import { NoSsr } from '@mui/base/NoSsr';
-import {
-  CloseRounded,
-  DarkModeRounded,
-  LightModeRounded,
-  MenuRounded,
-} from '@mui/icons-material';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Container from '@mui/joy/Container';
 import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemButton from '@mui/joy/ListItemButton';
 import Stack from '@mui/joy/Stack';
-import { useColorScheme } from '@mui/joy/styles';
 import NextLink from 'next/link';
-import { FC, useRef, useState } from 'react';
+import { FC } from 'react';
 
-import Icon from '@/app/icon.svg';
-import { home } from '@/constants/nav';
+import { linkedin } from '@/constants/contentful-ids';
+import { nav } from '@/constants/nav';
+import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
-import { NavList } from './nav-list';
+import { ModeToggleButton } from './mode-toggle-button';
+import { NavBrand } from './nav-brand';
+import { NavDrawer } from './nav-drawer';
 
-export interface HeaderProps extends Omit<BoxProps<'header'>, 'children'> {
-  platformProfiles?: {
-    platform?: {
-      id: string;
-      name?: string;
-    };
-    url?: string;
-  }[];
-}
+export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
 
-export const Header: FC<HeaderProps> = ({
-  platformProfiles = [],
-  ...props
-}) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { mode, setMode } = useColorScheme();
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
+export const Header: FC<HeaderProps> = async (props) => {
+  const platformProfiles = (await getPlatformProfiles()).filter(
+    ({ platform }) => platform?.id !== linkedin,
+  );
 
   return (
     <Box
       bgcolor="background.surface"
       borderBottom={1}
-      borderColor="neutral.outlinedBorder"
+      borderColor="divider"
       component="header"
       position="sticky"
       top={0}
@@ -55,22 +38,32 @@ export const Header: FC<HeaderProps> = ({
       <Container>
         <Stack
           alignItems="center"
+          component="nav"
           direction="row"
           justifyContent="space-between"
           py={1.5}
         >
           <Stack alignItems="center" direction="row" spacing={2}>
-            <Link
-              aria-label="Go to home page"
-              component={NextLink}
-              href={home.href}
-            >
-              <Icon width={32} />
-            </Link>
-            <NavList
-              display={{ xs: 'none', md: 'block' }}
+            <NavBrand />
+            <List
               orientation="horizontal"
-            />
+              sx={{
+                '--List-radius': 'var(--joy-radius-md)',
+                '--List-padding': '0px',
+                '--List-gap': '8px',
+                display: { xs: 'none', md: 'flex' },
+              }}
+            >
+              {nav
+                .filter(({ id }) => id !== 'home')
+                .map((section) => (
+                  <ListItem key={section.href}>
+                    <ListItemButton component={NextLink} href={section.href}>
+                      {section.name}
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+            </List>
           </Stack>
           <Stack direction="row" spacing={1}>
             {platformProfiles.map(({ platform, url }) => {
@@ -92,62 +85,13 @@ export const Header: FC<HeaderProps> = ({
                 </IconButton>
               );
             })}
-            <IconButton
-              aria-label="Toggle color scheme"
-              onClick={() => {
-                setMode(mode === 'dark' ? 'light' : 'dark');
-              }}
-              size="sm"
-              variant="outlined"
-            >
-              <NoSsr>
-                {mode === 'dark' ? <LightModeRounded /> : <DarkModeRounded />}
-              </NoSsr>
-            </IconButton>
-            <IconButton
-              aria-label="Toggle navigation dropdown"
-              onClick={() => {
-                setDropdownOpen((prev) => !prev);
-              }}
-              ref={menuButtonRef}
-              size="sm"
-              sx={{ display: { md: 'none' } }}
-              variant="outlined"
-            >
-              {dropdownOpen ? <CloseRounded /> : <MenuRounded />}
-            </IconButton>
+            <ModeToggleButton />
+            <NavDrawer
+              slotProps={{ drawerButton: { sx: { display: { md: 'none' } } } }}
+            />
           </Stack>
         </Stack>
       </Container>
-      {dropdownOpen ? (
-        <ClickAwayListener
-          onClickAway={(event) => {
-            if (!menuButtonRef.current?.contains(event.target as HTMLElement)) {
-              setDropdownOpen(false);
-            }
-          }}
-        >
-          <Container
-            sx={{
-              position: 'fixed',
-              top: 'calc(var(--Header-height) - 1)',
-              left: 0,
-              right: 0,
-              borderBottom: 1,
-              borderColor: 'neutral.outlinedBorder',
-              bgcolor: 'background.surface',
-              display: { md: 'none' },
-            }}
-          >
-            <NavList
-              mx={-1.5}
-              onNavItemClick={() => {
-                setDropdownOpen(false);
-              }}
-            />
-          </Container>
-        </ClickAwayListener>
-      ) : null}
     </Box>
   );
 };

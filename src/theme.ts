@@ -6,6 +6,7 @@ import { Rubik, Source_Code_Pro } from 'next/font/google';
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
     header: true;
+    nprogress: true;
   }
 }
 
@@ -42,7 +43,8 @@ export const theme = extendTheme({
     xl5: '3rem',
   },
   zIndex: {
-    header: 1030,
+    header: 1100,
+    nprogress: 2000,
   },
   components: {
     JoyLink: {
@@ -77,7 +79,7 @@ export const globalStyles = (theme: Theme) =>
   ({
     ':root': {
       [theme.breakpoints.up('md')]: {
-        '--Header-height': '69px',
+        '--Header-height': '61px',
       },
       '--Section-paddingY': theme.spacing(10),
       '--Footer-paddingY': theme.spacing(6),
@@ -92,6 +94,7 @@ export const globalStyles = (theme: Theme) =>
     },
     '#nprogress': {
       '& .bar': {
+        zIndex: `var(--joy-zIndex-nprogress) !important`,
         borderRadius: 'var(--NProgress-height)',
         '& .peg': { display: 'none' },
       },

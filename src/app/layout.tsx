@@ -10,32 +10,22 @@ import {
   lastName,
   selfIntroduction,
 } from '@/constants/content';
-import { linkedin } from '@/constants/contentful-ids';
-import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 import { baseUrl } from '@/utils/base-url';
 
 import { Providers } from './providers';
 
-const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
-  const platformProfiles = await getPlatformProfiles();
-
-  return (
-    <html lang="en">
-      <body>
-        <Providers>
-          <Header
-            platformProfiles={platformProfiles.filter(
-              ({ platform }) => platform?.id !== linkedin,
-            )}
-          />
-          {children}
-          <Footer />
-        </Providers>
-        <Analytics />
-      </body>
-    </html>
-  );
-};
+const RootLayout: FC<PropsWithChildren> = ({ children }) => (
+  <html lang="en">
+    <body>
+      <Providers>
+        <Header />
+        {children}
+        <Footer />
+      </Providers>
+      <Analytics />
+    </body>
+  </html>
+);
 
 const name = `${firstName} ${lastName}`;
 const title: Metadata['title'] = {
