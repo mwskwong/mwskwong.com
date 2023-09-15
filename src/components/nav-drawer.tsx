@@ -34,13 +34,14 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
       </IconButton>
       <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
         <ModalClose />
-        <Box component="nav" pb={1} pt={10} px={6}>
+        <Box component="nav" pb={1} pt={10} px={1}>
           <List
             size="lg"
             sx={{
               '--List-gap': '8px',
               '--List-padding': '0px',
               '--List-radius': 'var(--joy-radius-md)',
+              '--ListItem-paddingX': '64px',
             }}
           >
             {nav.map((section) => (
