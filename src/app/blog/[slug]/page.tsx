@@ -167,6 +167,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Stack
+                        bgcolor="background.level1"
                         borderBottom={1}
                         borderColor="divider"
                         direction="row"
