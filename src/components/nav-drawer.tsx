@@ -40,7 +40,7 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
             sx={{
               '--List-gap': '8px',
               '--List-padding': '0px',
-              '--List-radius': 'var(--joy-radius-md)',
+              '--List-radius': 'var(--joy-radius-sm)',
               '--ListItem-paddingX': '64px',
             }}
           >

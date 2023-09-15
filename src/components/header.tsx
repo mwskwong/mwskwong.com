@@ -54,7 +54,7 @@ export const Header: FC<HeaderProps> = async (props) => {
             <List
               orientation="horizontal"
               sx={{
-                '--List-radius': 'var(--joy-radius-md)',
+                '--List-radius': 'var(--joy-radius-sm)',
                 '--List-padding': '0px',
                 '--List-gap': '8px',
                 display: { xs: 'none', md: 'flex' },
