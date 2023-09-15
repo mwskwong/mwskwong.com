@@ -1,7 +1,6 @@
 'use client';
 
 import { MenuRounded } from '@mui/icons-material';
-import Divider from '@mui/joy/Divider';
 import Drawer from '@mui/joy/Drawer';
 import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
@@ -36,12 +35,15 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
         <MenuRounded />
       </IconButton>
       <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
-        <Stack component="nav" py={1.5} spacing={1.5}>
+        <nav>
           <Stack
             alignItems="center"
+            borderBottom={1}
+            borderColor="divider"
             direction="row"
             justifyContent="space-between"
             px={2}
+            py={1.5}
             spacing={1}
           >
             <Link
@@ -53,8 +55,7 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
             </Link>
             <ModalClose sx={{ position: 'unset' }} />
           </Stack>
-          <Divider />
-          <List size="lg" sx={{ '--List-padding': '0px' }}>
+          <List size="lg">
             {nav
               .filter(({ id }) => id !== 'home')
               .map((section) => (
@@ -69,7 +70,7 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
                 </ListItem>
               ))}
           </List>
-        </Stack>
+        </nav>
       </Drawer>
     </>
   );
