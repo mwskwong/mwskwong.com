@@ -14,7 +14,7 @@ export const getSsrRehypeCodeHighlighter: Options['getHighlighter'] = (
   options,
 ) => {
   if (!shikiTouched) {
-    void readdir('shiki');
+    void readdir('./shiki');
     shikiTouched = true;
   }
 
@@ -22,8 +22,8 @@ export const getSsrRehypeCodeHighlighter: Options['getHighlighter'] = (
   return getHighlighter({
     ...options,
     paths: {
-      languages: 'shiki/languages/',
-      themes: 'shiki/themes/',
+      languages: './shiki/languages/',
+      themes: './shiki/themes/',
     },
   });
 };
