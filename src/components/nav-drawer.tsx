@@ -7,7 +7,6 @@ import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
-import ModalClose from '@mui/joy/ModalClose';
 import NextLink from 'next/link';
 import { FC, useState } from 'react';
 
@@ -33,7 +32,6 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
         <MenuRounded />
       </IconButton>
       <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
-        <ModalClose />
         <Box component="nav" pb={1} pt={10} px={1}>
           <List
             size="lg"
