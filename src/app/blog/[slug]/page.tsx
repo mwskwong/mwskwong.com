@@ -62,15 +62,20 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           maxWidth="md"
           sx={{ py: 'var(--Section-paddingY)' }}
         >
-          <Typography level="body-xs">
+          <Typography level="body-xs" textAlign="center">
             {dateFormatter.format(new Date(blog.createdAt))}
           </Typography>
-          <Typography level="h1" mb={3} mt={1}>
+          <Typography level="h1" mb={3} mt={1} textAlign="center">
             {blog.title}
           </Typography>
           <Grid alignItems="center" container mb={2} spacing={2}>
             <Grid sm xs={12}>
-              <Stack direction="row" flexWrap="wrap" spacing={1}>
+              <Stack
+                direction="row"
+                flexWrap="wrap"
+                justifyContent="center"
+                spacing={1}
+              >
                 {blog.categories.map((category) => (
                   <Chip color="primary" key={category}>
                     {category}
