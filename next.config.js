@@ -74,7 +74,6 @@ const nextConfig = {
   experimental: {
     // TODO: consider enabling and use named import when importing MUI Joy in 13.4.20 stable
     // optimizePackageImports: ['@mui/base', '@mui/joy'],
-    serverComponentsExternalPackages: ['shiki', 'vscode-oniguruma'],
   },
 };
 
