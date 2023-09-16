@@ -4,7 +4,6 @@
  */
 
 import { readdir } from 'node:fs/promises';
-import { resolve } from 'node:path';
 
 import { Options } from 'rehype-pretty-code';
 import { getHighlighter } from 'shiki';
@@ -14,10 +13,8 @@ let shikiTouched = false;
 export const getSsrRehypeCodeHighlighter: Options['getHighlighter'] = (
   options,
 ) => {
-  const shikiPath = resolve('src/lib/shiki');
-
   if (!shikiTouched) {
-    void readdir(shikiPath);
+    void readdir('shiki');
     shikiTouched = true;
   }
 
@@ -25,8 +22,8 @@ export const getSsrRehypeCodeHighlighter: Options['getHighlighter'] = (
   return getHighlighter({
     ...options,
     paths: {
-      languages: `${shikiPath}/languages/`,
-      themes: `${shikiPath}/themes/`,
+      languages: 'shiki/languages/',
+      themes: 'shiki/themes/',
     },
   });
 };
