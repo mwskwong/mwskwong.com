@@ -20,7 +20,7 @@ import MenuItem from '@mui/joy/MenuItem';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { usePathname, useRouter } from 'next/navigation';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, startTransition, useEffect, useMemo, useState } from 'react';
 
 import { firstName, lastName } from '@/constants/content';
 import { baseUrl } from '@/utils/base-url';
@@ -129,7 +129,7 @@ export const Actions: FC<ActionsProps> = ({
                 `blogs:${blog.id}:liked`,
                 prevLiked ? 'false' : 'true',
               );
-              router.refresh();
+              startTransition(() => router.refresh());
             } catch (error) {
               setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
               setOptimisticLiked(prevLiked);
@@ -170,13 +170,7 @@ export const Actions: FC<ActionsProps> = ({
           ))}
           <ListDivider />
           <MenuItem
-            onClick={() =>
-              navigator.share({
-                url,
-                text,
-                title: blog.title,
-              })
-            }
+            onClick={() => navigator.share({ url, text, title: blog.title })}
           >
             <ListItemDecorator />
             Share via ...
