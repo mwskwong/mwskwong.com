@@ -51,8 +51,6 @@ export const theme = extendTheme({
       styleOverrides: {
         root: {
           userSelect: 'unset',
-          // WORKAROUND: to ensure the overlay is always on top of everything
-          '&::after': { zIndex: 1 },
         },
       },
     },

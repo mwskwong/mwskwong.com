@@ -103,7 +103,11 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                     </Box>
                     <Stack direction="row" spacing={1}>
                       {categories?.map((category) => (
-                        <Chip key={category} size="sm">
+                        <Chip
+                          key={category}
+                          size="sm"
+                          sx={{ pointerEvents: 'none' }}
+                        >
                           {category}
                         </Chip>
                       ))}
