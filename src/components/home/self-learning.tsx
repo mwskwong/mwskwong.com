@@ -79,17 +79,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
 
             return (
               <Grid key={name} md={6} xs={12}>
-                <Card
-                  orientation="horizontal"
-                  sx={{
-                    ...(certificate && {
-                      '&:hover': {
-                        boxShadow: 'md',
-                        borderColor: 'neutral.outlinedHoverBorder',
-                      },
-                    }),
-                  }}
-                >
+                <Card orientation="horizontal">
                   {Icon ? <Icon color="branding" fontSize="xl2" /> : null}
                   <CardContent sx={{ gap: 1 }}>
                     <Box minHeight={{ md: 68, lg: 'unset' }}>
@@ -101,7 +91,6 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                           overlay
                           target="_blank"
                           textColor="text.primary"
-                          underline="none"
                         >
                           {name}
                         </Link>

@@ -4,7 +4,6 @@ import Chip from '@mui/joy/Chip';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import mergeSx from 'merge-sx';
 import { StaticImageData } from 'next/image';
 import NextLink from 'next/link';
 import { FC } from 'react';
@@ -37,23 +36,9 @@ export const BlogCard: FC<BlogCardProps> = ({
   href = '',
   date,
   slotProps: { image: imageSlotProps, ...slotProps } = {},
-  sx,
   ...props
 }) => (
-  <Card
-    component="article"
-    slotProps={slotProps}
-    sx={mergeSx(
-      {
-        '&:hover': {
-          boxShadow: 'md',
-          borderColor: 'neutral.outlinedHoverBorder',
-        },
-      },
-      sx,
-    )}
-    {...props}
-  >
+  <Card component="article" slotProps={slotProps} {...props}>
     <BlogCardImage src={coverImgSrc} {...imageSlotProps} />
     <Stack direction="row" flexWrap="wrap" spacing={1}>
       {categories.map((category) => (
@@ -73,7 +58,6 @@ export const BlogCard: FC<BlogCardProps> = ({
         overlay
         sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
         textColor="text.primary"
-        underline="none"
       >
         {title}
       </Link>
