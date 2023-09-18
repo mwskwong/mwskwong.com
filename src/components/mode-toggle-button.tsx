@@ -2,8 +2,7 @@
 
 import { NoSsr } from '@mui/base/NoSsr';
 import { DarkModeRounded, LightModeRounded } from '@mui/icons-material';
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
-import { useColorScheme } from '@mui/joy/styles';
+import { IconButton, IconButtonProps, useColorScheme } from '@mui/joy';
 import { FC } from 'react';
 
 export type ModeToggleButtonProps = Omit<IconButtonProps, 'children'>;
