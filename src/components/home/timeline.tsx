@@ -1,4 +1,4 @@
-import Chip from '@mui/joy/Chip';
+import { Chip } from '@mui/joy';
 import Grid, { GridProps } from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
