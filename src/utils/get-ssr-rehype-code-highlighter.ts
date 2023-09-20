@@ -10,7 +10,7 @@ import { Options } from 'rehype-pretty-code';
 import { getHighlighter } from 'shiki';
 
 let shikiTouched = false;
-const shikiPath = resolve('shiki');
+const shikiPath = resolve('.shiki');
 
 export const getSsrRehypeCodeHighlighter: Options['getHighlighter'] = (
   options,
