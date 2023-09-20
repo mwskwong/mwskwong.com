@@ -38,7 +38,7 @@
     "rehype-slug": "^6.0.0",
     "shiki": "npm:shikiji-compat@0.6.8",
     "simple-icons": "^9.15.0",
-    "tss-react": "^4.9.1",
+    "tss-react": "^4.9.2",
     "zod": "^3.22.2"
   },
   "devDependencies": {
