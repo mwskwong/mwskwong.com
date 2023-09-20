@@ -14,8 +14,6 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
-import darkPlus from 'shiki/themes/dark-plus.json';
 
 import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -24,7 +22,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { contact } from '@/constants/nav';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
-// import { getBlogs } from '@/lib/get-blogs';
+import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
 
 // data attribute auto injected by rehype-pretty-code
@@ -191,6 +189,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     // @ts-expect-error LegacyRef passed to RefObject
                     <Box
                       bgcolor="background.surface"
+                      color="#D4D4D4" // WORKAROUND: apply default color according to the theme
                       component="pre"
                       my={0}
                       overflow="auto"
@@ -249,12 +248,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     [
                       rehypePrettyCode,
                       {
-                        // @ts-expect-error this is a valid Shiki theme
-                        theme: darkPlus,
+                        theme: 'dark-plus',
                         keepBackground: false,
                       } satisfies Options,
                     ],
-                    rehypeSlug,
                   ],
                 },
               }}
@@ -291,10 +288,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
 export const revalidate = 3600;
 
-// export const generateStaticParams = () =>
-//   getBlogs().then((blogs) =>
-//     blogs.map(({ slug }) => ({ slug })),
-//   ) satisfies Promise<BlogProps['params'][]>;
+export const generateStaticParams = () =>
+  getBlogs().then((blogs) =>
+    blogs.map(({ slug }) => ({ slug })),
+  ) satisfies Promise<BlogProps['params'][]>;
 
 export const generateMetadata = async (
   { params: { slug } }: BlogProps,
