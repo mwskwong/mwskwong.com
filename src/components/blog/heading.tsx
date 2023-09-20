@@ -6,45 +6,39 @@ import Typography, {
   TypographyProps,
   typographyClasses,
 } from '@mui/joy/Typography';
-import { kebabCase } from 'lodash-es';
 import mergeSx from 'merge-sx';
 import { FC } from 'react';
 
 export type HeadingProps = TypographyProps;
 
 // FIXME: with zero runtime, we may be able to make this a server component
-export const Heading: FC<HeadingProps> = ({ sx, ...props }) => {
-  const hash =
-    typeof props.children === 'string' ? kebabCase(props.children) : undefined;
-
-  return (
-    <Typography
-      endDecorator={
-        <Link
-          aria-labelledby={hash}
-          borderRadius="sm"
-          href={`#${hash}`}
-          level="body-md"
-          variant="outlined"
-        >
-          <LinkRounded />
-        </Link>
-      }
-      id={hash}
-      sx={mergeSx(
-        {
+export const Heading: FC<HeadingProps> = ({ id, sx, ...props }) => (
+  <Typography
+    endDecorator={
+      <Link
+        aria-labelledby={id}
+        borderRadius="sm"
+        href={`#${id}`}
+        level="body-md"
+        variant="outlined"
+      >
+        <LinkRounded />
+      </Link>
+    }
+    id={id}
+    sx={mergeSx(
+      {
+        [`& .${typographyClasses.endDecorator}`]: {
+          visibility: 'hidden',
+        },
+        '&:hover': {
           [`& .${typographyClasses.endDecorator}`]: {
-            visibility: 'hidden',
-          },
-          '&:hover': {
-            [`& .${typographyClasses.endDecorator}`]: {
-              visibility: 'unset',
-            },
+            visibility: 'unset',
           },
         },
-        sx,
-      )}
-      {...props}
-    />
-  );
-};
+      },
+      sx,
+    )}
+    {...props}
+  />
+);
