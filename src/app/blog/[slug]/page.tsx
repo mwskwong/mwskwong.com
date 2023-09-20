@@ -24,7 +24,6 @@ import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
-import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -190,6 +189,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     // @ts-expect-error LegacyRef passed to RefObject
                     <Box
                       bgcolor="background.surface"
+                      color="rgb(212, 212, 212)" // WORKAROUND: apply default color according to the theme
                       component="pre"
                       my={0}
                       overflow="auto"
@@ -250,7 +250,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       {
                         theme: 'dark-plus',
                         keepBackground: false,
-                        getHighlighter: getSsrRehypeCodeHighlighter,
                       } satisfies Options,
                     ],
                   ],
