@@ -26,7 +26,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { contact } from '@/constants/nav';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
-// import { getBlogs } from '@/lib/get-blogs';
+import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
 
 // data attribute auto injected by rehype-pretty-code
@@ -45,7 +45,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   day: 'numeric',
 });
 
-const shikiPath = resolve('node_modules/shiki');
+const shikiPath = resolve('.shiki');
 
 interface BlogProps {
   params: { slug: string };
@@ -304,10 +304,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
 export const revalidate = 3600;
 
-// export const generateStaticParams = () =>
-//   getBlogs().then((blogs) =>
-//     blogs.map(({ slug }) => ({ slug })),
-//   ) satisfies Promise<BlogProps['params'][]>;
+export const generateStaticParams = () =>
+  getBlogs().then((blogs) =>
+    blogs.map(({ slug }) => ({ slug })),
+  ) satisfies Promise<BlogProps['params'][]>;
 
 export const generateMetadata = async (
   { params: { slug } }: BlogProps,
