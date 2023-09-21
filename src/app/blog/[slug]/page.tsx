@@ -1,3 +1,5 @@
+import { resolve } from 'node:path';
+
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -14,6 +16,8 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import { IThemeRegistration, getHighlighter } from 'shiki';
 
 import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -22,7 +26,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { contact } from '@/constants/nav';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
-import { getBlogs } from '@/lib/get-blogs';
+// import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
 
 // data attribute auto injected by rehype-pretty-code
@@ -40,6 +44,8 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'long',
   day: 'numeric',
 });
+
+const shikiPath = resolve('.shiki');
 
 interface BlogProps {
   params: { slug: string };
@@ -250,8 +256,19 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       {
                         theme: 'dark-plus',
                         keepBackground: false,
+                        getHighlighter: (options: {
+                          theme: IThemeRegistration;
+                        }) =>
+                          getHighlighter({
+                            ...options,
+                            paths: {
+                              languages: `${shikiPath}/languages`,
+                              themes: `${shikiPath}/themes`,
+                            },
+                          }),
                       } satisfies Options,
                     ],
+                    rehypeSlug,
                   ],
                 },
               }}
@@ -288,10 +305,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
 export const revalidate = 3600;
 
-export const generateStaticParams = () =>
-  getBlogs().then((blogs) =>
-    blogs.map(({ slug }) => ({ slug })),
-  ) satisfies Promise<BlogProps['params'][]>;
+// export const generateStaticParams = () =>
+//   getBlogs().then((blogs) =>
+//     blogs.map(({ slug }) => ({ slug })),
+//   ) satisfies Promise<BlogProps['params'][]>;
 
 export const generateMetadata = async (
   { params: { slug } }: BlogProps,
