@@ -71,6 +71,11 @@ const nextConfig = {
       ],
     },
   ],
+  experimental: {
+    outputFileTracingIncludes: {
+      '/blog/*': ['./node_modules/shiki/**/*'],
+    },
+  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
