@@ -195,7 +195,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     // @ts-expect-error LegacyRef passed to RefObject
                     <Box
                       bgcolor="background.surface"
-                      color="#D4D4D4" // WORKAROUND: apply default color according to the theme
                       component="pre"
                       my={0}
                       overflow="auto"
