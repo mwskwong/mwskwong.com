@@ -1,3 +1,5 @@
+import { resolve } from 'node:path';
+
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import {
   Box,
@@ -16,6 +18,8 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import { IThemeRegistration, getHighlighter } from 'shiki';
 
 import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -26,7 +30,6 @@ import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
-import { getSsrRehypeCodeHighlighter } from '@/utils/get-ssr-rehype-code-highlighter';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -43,6 +46,8 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'long',
   day: 'numeric',
 });
+
+const shikiPath = resolve('.shiki');
 
 interface BlogProps {
   params: { slug: string };
@@ -252,9 +257,19 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       {
                         theme: 'dark-plus',
                         keepBackground: false,
-                        getHighlighter: getSsrRehypeCodeHighlighter,
+                        getHighlighter: (options: {
+                          theme: IThemeRegistration;
+                        }) =>
+                          getHighlighter({
+                            ...options,
+                            paths: {
+                              languages: `${shikiPath}/languages`,
+                              themes: `${shikiPath}/themes`,
+                            },
+                          }),
                       } satisfies Options,
                     ],
+                    rehypeSlug,
                   ],
                 },
               }}
