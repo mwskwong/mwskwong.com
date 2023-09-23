@@ -19,9 +19,10 @@ import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
 import Stack, { StackProps } from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { usePathname, useRouter } from 'next/navigation';
-import { FC, startTransition, useEffect, useMemo, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { FC, useEffect, useMemo, useState } from 'react';
 
+import { likeBlogById, unlikeBlogById, viewBlogById } from '@/app/actions';
 import { firstName, lastName } from '@/constants/content';
 import { baseUrl } from '@/utils/base-url';
 
@@ -55,7 +56,6 @@ export const Actions: FC<ActionsProps> = ({
   const [optimisticLike, setOptimisticLike] = useState(like);
   const [optimisticLiked, setOptimisticLiked] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   const url = `${baseUrl}${pathname}`;
   const text = `"${blog.title}" by ${firstName} ${lastName}`;
@@ -88,10 +88,7 @@ export const Actions: FC<ActionsProps> = ({
     [blog.categories, blog.title, text, url],
   );
 
-  useEffect(
-    () => void fetch(`/api/blog/${blog.id}/view`, { method: 'POST' }),
-    [blog.id],
-  );
+  useEffect(() => void viewBlogById(blog.id), [blog.id]);
 
   useEffect(() => {
     const key = `blogs:${blog.id}:liked`;
@@ -121,15 +118,13 @@ export const Actions: FC<ActionsProps> = ({
             try {
               setOptimisticLike((prev) => prev + (prevLiked ? -1 : 1));
               setOptimisticLiked((prev) => !prev);
-              await fetch(
-                `/api/blog/${blog.id}/${prevLiked ? 'unlike' : 'like'}`,
-                { method: 'POST' },
-              );
+              await (prevLiked
+                ? unlikeBlogById(blog.id)
+                : likeBlogById(blog.id));
               localStorage.setItem(
                 `blogs:${blog.id}:liked`,
                 prevLiked ? 'false' : 'true',
               );
-              startTransition(() => router.refresh());
             } catch (error) {
               setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
               setOptimisticLiked(prevLiked);
