@@ -58,11 +58,10 @@ export const BlogCard: FC<BlogCardProps> = ({
         component={NextLink}
         display="-webkit-box"
         href={href}
-        level="title-lg"
         overflow="hidden"
         overlay
         sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
-        textColor="text.primary"
+        typography="title-lg"
       >
         {title}
       </Link>
