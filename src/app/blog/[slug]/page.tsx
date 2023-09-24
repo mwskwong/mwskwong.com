@@ -70,7 +70,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           sx={{ py: 'var(--Section-paddingY)' }}
         >
           <Typography level="body-xs">
-            {dateFormatter.format(new Date(blog.createdAt))}
+            {dateFormatter.format(new Date(blog.updatedAt))}
           </Typography>
           <Typography level="h1" mb={3} mt={1}>
             {blog.title}
@@ -173,19 +173,18 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     const { children, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
-                      <Stack
+                      <Typography
                         bgcolor="background.level1"
                         borderBottom={1}
                         borderColor="divider"
-                        direction="row"
+                        level="body-sm"
                         px={2}
                         py={1.5}
-                        spacing={1}
+                        startDecorator={Icon ? <Icon /> : null}
                         {...rest}
                       >
-                        {Icon ? <Icon size="sm" /> : null}
-                        <Typography level="body-sm">{children}</Typography>
-                      </Stack>
+                        {children}
+                      </Typography>
                     );
                   }
 

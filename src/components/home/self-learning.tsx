@@ -84,10 +84,9 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                         <Link
                           color="neutral"
                           href={certificate}
-                          level="title-md"
                           overlay
                           target="_blank"
-                          textColor="text.primary"
+                          typography="title-md"
                         >
                           {name}
                         </Link>

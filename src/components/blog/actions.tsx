@@ -3,8 +3,6 @@
 import {
   ContentCopyRounded,
   DoneRounded,
-  FavoriteBorderRounded,
-  FavoriteRounded,
   ShareRounded,
   VisibilityRounded,
 } from '@mui/icons-material';
@@ -20,9 +18,10 @@ import {
   StackProps,
   Typography,
 } from '@mui/joy';
-import { usePathname, useRouter } from 'next/navigation';
-import { FC, startTransition, useEffect, useMemo, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { FC, useEffect, useMemo, useState } from 'react';
 
+import { viewBlogById } from '@/app/actions';
 import { firstName, lastName } from '@/constants/content';
 import { baseUrl } from '@/utils/base-url';
 
@@ -36,7 +35,7 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 export interface ActionsProps extends StackProps {
   blog: {
     id: string;
-    createdAt: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
+    updatedAt: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
     coverPhoto?: string;
     categories: string[];
     title: string;
@@ -45,20 +44,11 @@ export interface ActionsProps extends StackProps {
     content?: string;
   };
   view?: number;
-  like?: number;
 }
 
-export const Actions: FC<ActionsProps> = ({
-  blog,
-  view = 0,
-  like = 0,
-  ...props
-}) => {
+export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
   const [copied, setCopied] = useState(false);
-  const [optimisticLike, setOptimisticLike] = useState(like);
-  const [optimisticLiked, setOptimisticLiked] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   const url = `${baseUrl}${pathname}`;
   const text = `"${blog.title}" by ${firstName} ${lastName}`;
@@ -68,9 +58,9 @@ export const Actions: FC<ActionsProps> = ({
       {
         Icon: X,
         name: 'X',
-        url: `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${blog.categories.join(
-          ',',
-        )}`,
+        url: `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${blog.categories
+          .map((category) => category.replace(' ', ''))
+          .join(',')}`,
       },
       {
         Icon: Facebook,
@@ -85,22 +75,13 @@ export const Actions: FC<ActionsProps> = ({
       {
         Icon: Reddit,
         name: 'Reddit',
-        url: `http://www.reddit.com/submit/?title=${blog.title}&url=${url}`,
+        url: `http://www.reddit.com/submit/?url=${url}&title=${blog.title}`,
       },
     ],
     [blog.categories, blog.title, text, url],
   );
 
-  useEffect(
-    () => void fetch(`/api/blog/${blog.id}/view`, { method: 'POST' }),
-    [blog.id],
-  );
-
-  useEffect(() => {
-    const key = `blogs:${blog.id}:liked`;
-    if (like === 0) localStorage.setItem(key, 'false');
-    setOptimisticLiked(localStorage.getItem(key) === 'true');
-  }, [blog.id, like]);
+  useEffect(() => void viewBlogById(blog.id), [blog.id]);
 
   return (
     <Stack
@@ -110,39 +91,9 @@ export const Actions: FC<ActionsProps> = ({
       spacing={1}
       {...props}
     >
-      <Stack alignItems="center" direction="row" spacing={1}>
-        <VisibilityRounded />
-        <Typography>{numberFormatter.format(view)}</Typography>
-      </Stack>
-      <Stack alignItems="center" direction="row">
-        <IconButton
-          aria-label={optimisticLiked ? 'unlike blog' : 'like blog'}
-          color={optimisticLiked ? 'danger' : undefined}
-          onClick={async () => {
-            const prevLiked = optimisticLiked;
-            // FIXME: make use of useOptimistic when official doc is available
-            try {
-              setOptimisticLike((prev) => prev + (prevLiked ? -1 : 1));
-              setOptimisticLiked((prev) => !prev);
-              await fetch(
-                `/api/blog/${blog.id}/${prevLiked ? 'unlike' : 'like'}`,
-                { method: 'POST' },
-              );
-              localStorage.setItem(
-                `blogs:${blog.id}:liked`,
-                prevLiked ? 'false' : 'true',
-              );
-              startTransition(() => router.refresh());
-            } catch (error) {
-              setOptimisticLike((prev) => prev + (prevLiked ? 1 : -1));
-              setOptimisticLiked(prevLiked);
-            }
-          }}
-        >
-          {optimisticLiked ? <FavoriteRounded /> : <FavoriteBorderRounded />}
-        </IconButton>
-        <Typography>{numberFormatter.format(optimisticLike)}</Typography>
-      </Stack>
+      <Typography mr={1} startDecorator={<VisibilityRounded />}>
+        {numberFormatter.format(view)}
+      </Typography>
       <IconButton
         aria-label="copy blog url"
         color={copied ? 'success' : undefined}
@@ -158,11 +109,10 @@ export const Actions: FC<ActionsProps> = ({
         <MenuButton
           aria-label="Share this blog to social media"
           slots={{ root: IconButton }}
-          sx={{ ml: -1 }}
         >
           <ShareRounded />
         </MenuButton>
-        <Menu placement="bottom-end">
+        <Menu>
           {socialMediaOptions.map(({ Icon, name, url }) => (
             <MenuItem component="a" href={url} key={name} target="_blank">
               <ListItemDecorator>

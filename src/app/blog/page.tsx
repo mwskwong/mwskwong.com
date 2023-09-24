@@ -4,10 +4,14 @@ import { FC } from 'react';
 
 import { BlogCard } from '@/components/blog/blog-card';
 import { SectionDivider } from '@/components/section-divider';
+import { prisma } from '@/lib/db';
 import { getBlogs } from '@/lib/get-blogs';
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
+  const blogsMetadata = await prisma.blogMetadata.findMany({
+    where: { id: { in: blogs.map(({ id }) => id) } },
+  });
 
   return (
     <>
@@ -21,18 +25,19 @@ const Blogs: FC = async () => {
           </Stack>
           <Grid container spacing={2}>
             {blogs.map(
-              (
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars -- omit updatedAt
-                { updatedAt, coverPhoto = '', slug, createdAt, ...blog },
-                index,
-              ) => (
+              ({ id, updatedAt, coverPhoto = '', slug, ...blog }, index) => (
                 <Grid key={slug} md={4} sm={6} xs={12}>
                   <BlogCard
                     coverImgSrc={coverPhoto}
-                    date={new Date(createdAt)}
+                    date={new Date(updatedAt)}
                     href={`/blog/${slug}`}
                     slotProps={{ image: { priority: index === 0 } }}
                     sx={{ height: { sm: '100%' } }}
+                    view={
+                      blogsMetadata.find(
+                        ({ id: blogMetadataId }) => blogMetadataId === id,
+                      )?.view
+                    }
                     {...blog}
                   />
                 </Grid>
@@ -45,6 +50,8 @@ const Blogs: FC = async () => {
     </>
   );
 };
+
+export const revalidate = 3600;
 
 export const generateMetadata = async (
   _: object,
