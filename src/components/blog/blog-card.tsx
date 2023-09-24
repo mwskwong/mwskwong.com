@@ -1,6 +1,8 @@
+import { VisibilityRounded } from '@mui/icons-material';
 import Card, { CardProps } from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Chip from '@mui/joy/Chip';
+import Divider from '@mui/joy/Divider';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
@@ -12,9 +14,10 @@ import { BlogCardImage, BlogCardImageProps } from './blog-card-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
-  month: 'long',
+  month: 'short',
   day: 'numeric',
 });
+const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 export interface BlogCardProps extends Omit<CardProps, 'children'> {
   coverImgSrc: string | StaticImageData;
@@ -23,6 +26,7 @@ export interface BlogCardProps extends Omit<CardProps, 'children'> {
   description?: string;
   href?: string;
   date?: Date;
+  view?: number;
   slotProps?: CardProps['slotProps'] & {
     image?: Partial<BlogCardImageProps>;
   };
@@ -35,6 +39,7 @@ export const BlogCard: FC<BlogCardProps> = ({
   description,
   href = '',
   date,
+  view = 0,
   slotProps: { image: imageSlotProps, ...slotProps } = {},
   ...props
 }) => (
@@ -69,6 +74,12 @@ export const BlogCard: FC<BlogCardProps> = ({
         {description}
       </Typography>
     </CardContent>
-    <Typography level="body-xs">{dateFormatter.format(date)}</Typography>
+    <CardContent orientation="horizontal" sx={{ flex: 0 }}>
+      <Typography level="body-xs">{dateFormatter.format(date)}</Typography>
+      <Divider orientation="vertical" />
+      <Typography level="body-xs" startDecorator={<VisibilityRounded />}>
+        {numberFormatter.format(view)}
+      </Typography>
+    </CardContent>
   </Card>
 );

@@ -9,7 +9,6 @@ export const getBlogs = cache(
     const { page = 1, pageSize = 9 } = pagination ?? {};
     const { items } = await contentful.getEntries<BlogSkeleton>({
       select: [
-        'sys.createdAt',
         'sys.updatedAt',
         'sys.id',
         'fields.categories',
@@ -19,14 +18,13 @@ export const getBlogs = cache(
         'fields.title',
       ],
       content_type: 'blog',
-      order: ['-sys.createdAt'],
+      order: ['-sys.updatedAt'],
       skip: pagination && (page - 1) * pageSize,
       limit: pagination && pageSize,
     });
 
     return items.map((item) => ({
       id: item.sys.id,
-      createdAt: item.sys.createdAt,
       updatedAt: item.sys.updatedAt,
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
