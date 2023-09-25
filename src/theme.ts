@@ -18,12 +18,6 @@ declare module '@mui/joy/styles' {
   }
 }
 
-declare module '@mui/joy/SvgIcon' {
-  interface SvgIconPropsColorOverrides {
-    branding: true;
-  }
-}
-
 const rubik = Rubik({ subsets: ['latin'] });
 const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],

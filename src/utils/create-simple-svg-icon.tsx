@@ -3,22 +3,21 @@ import mergeSx from 'merge-sx';
 import { FC, forwardRef, memo } from 'react';
 import { SimpleIcon } from 'simple-icons';
 
+export interface SimpleSvgIconProps extends Omit<SvgIconProps, 'color'> {
+  color: 'branding' | SvgIconProps['color'];
+}
+
 export const createSimpleSvgIcon = (
   simpleIcon: SimpleIcon,
   displayName: string,
 ) => {
-  const SimpleSvgIcon: FC<SvgIconProps> = forwardRef(
-    ({ sx, ...props }, ref) => (
+  const SimpleSvgIcon: FC<SimpleSvgIconProps> = forwardRef(
+    ({ color, sx, ...props }, ref) => (
       <SvgIcon
+        color={color === 'branding' ? undefined : color}
+        htmlColor={color === 'branding' ? `#${simpleIcon.hex}` : undefined}
         ref={ref}
-        sx={mergeSx(
-          {
-            p: 'var(--MaterialIcon-padding)',
-            color:
-              props.color === 'branding' ? `#${simpleIcon.hex}` : undefined,
-          },
-          sx,
-        )}
+        sx={mergeSx({ p: 'var(--MaterialIcon-padding)' }, sx)}
         {...props}
       >
         <path d={simpleIcon.path} />
