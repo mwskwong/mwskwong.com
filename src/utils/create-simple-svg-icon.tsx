@@ -4,7 +4,7 @@ import { FC, forwardRef, memo } from 'react';
 import { SimpleIcon } from 'simple-icons';
 
 export interface SimpleSvgIconProps extends Omit<SvgIconProps, 'color'> {
-  color: 'branding' | SvgIconProps['color'];
+  color?: 'branding' | SvgIconProps['color'];
 }
 
 export const createSimpleSvgIcon = (
