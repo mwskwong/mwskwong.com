@@ -126,7 +126,7 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
             onClick={() => navigator.share({ url, text, title: blog.title })}
           >
             <ListItemDecorator />
-            Share via ...
+            Share via...
           </MenuItem>
         </Menu>
       </Dropdown>
