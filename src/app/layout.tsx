@@ -22,7 +22,11 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
         {children}
         <Footer />
       </Providers>
-      <Analytics />
+      <Analytics
+        mode={
+          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
+        }
+      />
     </body>
   </html>
 );
