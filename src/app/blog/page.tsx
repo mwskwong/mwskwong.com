@@ -1,7 +1,4 @@
-import Container from '@mui/joy/Container';
-import Grid from '@mui/joy/Grid';
-import Stack from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
+import { Container, Grid, Stack, Typography } from '@mui/joy';
 import { Metadata, ResolvingMetadata } from 'next';
 import { FC } from 'react';
 

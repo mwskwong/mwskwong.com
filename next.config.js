@@ -73,6 +73,7 @@ const nextConfig = {
   ],
   experimental: {
     serverActions: true,
+    optimizePackageImports: ['@mui/base', '@mui/joy'],
   },
 };
 

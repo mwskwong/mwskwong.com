@@ -3,20 +3,21 @@
 import {
   ContentCopyRounded,
   DoneRounded,
-  Facebook,
-  Reddit,
   ShareRounded,
   VisibilityRounded,
 } from '@mui/icons-material';
-import Dropdown from '@mui/joy/Dropdown';
-import IconButton from '@mui/joy/IconButton';
-import ListDivider from '@mui/joy/ListDivider';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import Menu from '@mui/joy/Menu';
-import MenuButton from '@mui/joy/MenuButton';
-import MenuItem from '@mui/joy/MenuItem';
-import Stack, { StackProps } from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
+import {
+  Dropdown,
+  IconButton,
+  ListDivider,
+  ListItemDecorator,
+  Menu,
+  MenuButton,
+  MenuItem,
+  Stack,
+  StackProps,
+  Typography,
+} from '@mui/joy';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useMemo, useState } from 'react';
 
@@ -24,7 +25,9 @@ import { viewBlogById } from '@/app/actions';
 import { firstName, lastName } from '@/constants/content';
 import { baseUrl } from '@/utils/base-url';
 
+import { Facebook } from '../icons/facebook';
 import { LinkedIn } from '../icons/linkedin';
+import { Reddit } from '../icons/reddit';
 import { X } from '../icons/x';
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });

@@ -1,11 +1,14 @@
 import { VisibilityRounded } from '@mui/icons-material';
-import Card, { CardProps } from '@mui/joy/Card';
-import CardContent from '@mui/joy/CardContent';
-import Chip from '@mui/joy/Chip';
-import Divider from '@mui/joy/Divider';
-import Link from '@mui/joy/Link';
-import Stack from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
+import {
+  Card,
+  CardContent,
+  CardProps,
+  Chip,
+  Divider,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/joy';
 import { StaticImageData } from 'next/image';
 import NextLink from 'next/link';
 import { FC } from 'react';
