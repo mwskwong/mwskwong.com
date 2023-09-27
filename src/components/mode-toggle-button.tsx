@@ -1,6 +1,6 @@
 'use client';
 
-import { NoSsr } from '@mui/base/NoSsr';
+import { NoSsr } from '@mui/base';
 import { DarkModeRounded, LightModeRounded } from '@mui/icons-material';
 import { IconButton, IconButtonProps, useColorScheme } from '@mui/joy';
 import { FC } from 'react';
