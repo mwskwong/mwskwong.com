@@ -8,6 +8,7 @@ import {
 import { LiteralUnion } from 'type-fest';
 
 import { Cms } from '@/components/icons/cms';
+import { Database } from '@/components/icons/database';
 import { DataCamp } from '@/components/icons/datacamp';
 import { EnterpriseDb } from '@/components/icons/enterprisedb';
 import { GitHub } from '@/components/icons/github';
@@ -36,6 +37,7 @@ const Icons = {
   [contentfulIds.youtube]: YouTube,
   [contentfulIds.backend]: TerminalRounded,
   [contentfulIds.cms]: Cms,
+  [contentfulIds.database]: Database,
   [contentfulIds.devOps]: AllInclusiveRounded,
   [contentfulIds.frontend]: DashboardRounded,
   [contentfulIds.machineLearning]: MachineLearning,

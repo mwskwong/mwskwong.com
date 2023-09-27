@@ -11,6 +11,7 @@ export const udemy = '1HehJlTFU3uyHsvibs0jGk';
 export const youtube = '2tWpm6AFYaWAIBo6JoVufQ';
 export const backend = '2FtEFXEYpFad3n0eE4CNyF';
 export const cms = '6RuL6dXWQqCMYjaLuA14A4';
+export const database = '1lgdoqAo3anMd8oMWkvou2';
 export const devOps = '9zrJS3ggkoVadUxZTvwyc';
 export const frontend = '3sdnCkE0j79D4kRSGuUjhp';
 export const machineLearning = '4nOEnXVl1fCJGetHGVnsZ8';
