@@ -35,13 +35,13 @@ import { contactInfo } from '@/constants/content';
 import { contact, home } from '@/constants/nav';
 
 const formSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
+  name: z.string().nonempty('Name is required'),
   email: z
     .string()
-    .min(1, 'Email is required')
+    .nonempty('Email is required')
     .email('Email should be an email'),
-  subject: z.string().min(1, 'Subject is required'),
-  message: z.string().min(1, 'Message is required'),
+  subject: z.string().nonempty('Subject is required'),
+  message: z.string().nonempty('Message is required'),
 });
 type FormSchema = z.infer<typeof formSchema>;
 
