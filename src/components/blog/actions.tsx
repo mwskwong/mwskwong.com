@@ -91,7 +91,7 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
       spacing={1}
       {...props}
     >
-      <Typography mx={1} startDecorator={<VisibilityRounded />}>
+      <Typography mr={1} startDecorator={<VisibilityRounded />}>
         {numberFormatter.format(view)} views
       </Typography>
       <IconButton
