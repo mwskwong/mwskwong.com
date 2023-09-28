@@ -80,7 +80,7 @@ export const BlogCard: FC<BlogCardProps> = ({
       <Typography level="body-xs">{dateFormatter.format(date)}</Typography>
       <Divider orientation="vertical" />
       <Typography level="body-xs" startDecorator={<VisibilityRounded />}>
-        {numberFormatter.format(view)}
+        {numberFormatter.format(view)} views
       </Typography>
     </CardContent>
   </Card>

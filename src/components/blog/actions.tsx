@@ -92,7 +92,7 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
       {...props}
     >
       <Typography mr={1} startDecorator={<VisibilityRounded />}>
-        {numberFormatter.format(view)}
+        {numberFormatter.format(view)} views
       </Typography>
       <IconButton
         aria-label="copy blog url"
