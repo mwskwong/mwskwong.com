@@ -45,7 +45,7 @@ export const FunFact: FC<FunFactProps> = (props) => (
                   href={url}
                   overlay
                   target="_blank"
-                  textColor="text.secondary"
+                  typography="title-md"
                   underline="none"
                 >
                   {name}
