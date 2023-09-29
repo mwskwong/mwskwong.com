@@ -2,13 +2,14 @@ import { LiteralUnion } from 'type-fest';
 
 import { JavaScript } from '@/components/icons/javascript';
 import { Json } from '@/components/icons/json';
+import { React } from '@/components/icons/react';
 import { TypeScript } from '@/components/icons/typescript';
 
 const Icons = {
   js: JavaScript,
-  jsx: JavaScript,
+  jsx: React,
   ts: TypeScript,
-  tsx: TypeScript,
+  tsx: React,
   json: Json,
 };
 
