@@ -51,6 +51,8 @@ export const websiteTechStack = [
   {
     name: 'MUI Joy UI',
     Icon: Mui,
+    // TODO: change this to https://mui.com/joy-ui once the markeing page is done
+    // Issue: https://github.com/mui/material-ui/pull/36829
     url: 'https://mui.com/',
   },
   {
