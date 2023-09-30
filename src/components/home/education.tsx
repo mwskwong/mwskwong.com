@@ -41,8 +41,8 @@ export const Education: FC<EducationProps> = async (props) => {
             </Typography>
             <Box component="figure" maxWidth="sm">
               <Typography component="blockquote">
-                Stay hungry. Stay foolish. Never let go of your appetite to go
-                after new ideas, new experiences, and new adventures.
+                “Stay hungry. Stay foolish. Never let go of your appetite to go
+                after new ideas, new experiences, and new adventures.”
               </Typography>
               <Typography component="figcaption">― Steve Jobs</Typography>
             </Box>

@@ -98,11 +98,6 @@ export const globalStyles = (theme: Theme) =>
       },
     },
     address: { fontStyle: 'unset' },
-    blockquote: {
-      fontStyle: 'italic',
-      '&::before': { content: "'“'" },
-      '&::after': { content: "'”'" },
-    },
     body: {
       display: 'flex',
       flexDirection: 'column',
