@@ -12,7 +12,7 @@ const nextConfig = {
   },
   images: {
     loader: 'custom',
-    loaderFile: 'src/utils/image-loader.ts',
+    loaderFile: 'src/utils/image-loaders.ts',
   },
   webpack: (config) => {
     config.resolve.alias['@mui/material'] = '@mui/joy';

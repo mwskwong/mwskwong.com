@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { SetOptional } from 'type-fest';
 
 import { Image, ImageProps } from '@/components/image';
-import { thumIoPdfLoader } from '@/utils/image-loader';
+import { thumIoPdfLoader } from '@/utils/image-loaders';
 
 type SupportingDocumentImageProps = SetOptional<ImageProps, 'alt'>;
 
