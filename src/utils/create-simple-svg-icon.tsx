@@ -10,15 +10,11 @@ export const createSimpleSvgIcon = (
   const SimpleSvgIcon: FC<SvgIconProps> = forwardRef(
     ({ sx, ...props }, ref) => (
       <SvgIcon
+        htmlColor={
+          props.color === 'branding' ? `#${simpleIcon.hex}` : undefined
+        }
         ref={ref}
-        sx={mergeSx(
-          {
-            p: 'var(--MaterialIcon-padding)',
-            color:
-              props.color === 'branding' ? `#${simpleIcon.hex}` : undefined,
-          },
-          sx,
-        )}
+        sx={mergeSx({ p: 'var(--MaterialIcon-padding)' }, sx)}
         {...props}
       >
         <path d={simpleIcon.path} />
