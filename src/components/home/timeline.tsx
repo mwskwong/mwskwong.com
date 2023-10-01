@@ -72,7 +72,12 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
         <Grid sm xs={12}>
           <Typography level="title-md">{title}</Typography>
           <Stack spacing={1}>
-            <Stack direction="row" flexWrap="wrap" spacing={1}>
+            <Stack
+              alignItems="center"
+              direction="row"
+              flexWrap="wrap"
+              spacing={1}
+            >
               <Typography>
                 {organizations.map(({ name, url }, index) => (
                   <Fragment key={name}>
