@@ -68,14 +68,20 @@ export const About: FC<AboutProps> = async (props) => {
                 <Grid key={id} lg={4} sm={6} xs={12}>
                   <Stack alignItems="center" spacing={2}>
                     <Sheet
-                      sx={{ display: 'flex', borderRadius: 'sm', p: 1.5 }}
+                      color="primary"
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 'sm',
+                        width: 'var(--Avatar-size)',
+                        height: 'var(--Avatar-size)',
+                      }}
                       variant="outlined"
                     >
-                      {Icon ? <Icon fontSize="xl4" /> : null}
+                      {Icon ? <Icon /> : null}
                     </Sheet>
-                    <Typography color="primary" level="title-md">
-                      {name}
-                    </Typography>
+                    <Typography level="title-md">{name}</Typography>
                     <Stack
                       direction="row"
                       flexWrap="wrap"

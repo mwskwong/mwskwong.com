@@ -94,17 +94,39 @@ export const Contact: FC<ContactProps> = (props) => {
           >
             <Grid component="address" container md={4} spacing={3} xs={12}>
               {contactInfo.map(({ Icon, title, value, url }) => (
-                <Grid key={title} md={12} sm={4} xs={12}>
-                  <Stack alignItems="center" spacing={1}>
-                    <Icon fontSize="xl4" />
-                    <Typography>{title}</Typography>
-                    <Link
-                      href={url}
-                      target={url.startsWith('http') ? '_blank' : undefined}
-                    >
-                      {value}
-                    </Link>
-                  </Stack>
+                <Grid
+                  alignItems="center"
+                  display="flex"
+                  flexDirection="column"
+                  key={title}
+                  md={12}
+                  sm={4}
+                  xs={12}
+                >
+                  <Sheet
+                    color="primary"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 'sm',
+                      width: 'var(--Avatar-size)',
+                      height: 'var(--Avatar-size)',
+                      mb: 2,
+                    }}
+                    variant="outlined"
+                  >
+                    <Icon />
+                  </Sheet>
+                  <Typography level="title-md">{title}</Typography>
+                  <Link
+                    color="neutral"
+                    href={url}
+                    target={url.startsWith('http') ? '_blank' : undefined}
+                    typography="body-md"
+                  >
+                    {value}
+                  </Link>
                 </Grid>
               ))}
             </Grid>

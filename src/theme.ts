@@ -10,14 +10,6 @@ declare module '@mui/joy/styles/types/zIndex' {
   }
 }
 
-declare module '@mui/joy/styles' {
-  interface FontSizeOverrides {
-    xl7: true;
-    xl6: true;
-    xl5: true;
-  }
-}
-
 declare module '@mui/joy/SvgIcon' {
   interface SvgIconPropsColorOverrides {
     branding: true;
@@ -36,11 +28,6 @@ export const theme = extendTheme({
     body: rubik.style.fontFamily,
     display: rubik.style.fontFamily,
     code: sourceCodePro.style.fontFamily,
-  },
-  fontSize: {
-    xl7: '4.5rem',
-    xl6: '3.75rem',
-    xl5: '3rem',
   },
   zIndex: {
     header: 1100,
@@ -85,6 +72,7 @@ export const globalStyles = (theme: Theme) =>
       '--MaterialIcon-padding': `${(2 / 24).toFixed(5)}em`,
       '--Header-height': '60px',
       '--NProgress-height': '4px',
+      '--Avatar-size': '40px',
     },
     '::selection': {
       backgroundColor: theme.vars.palette.primary.solidBg,
