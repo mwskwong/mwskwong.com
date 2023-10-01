@@ -137,6 +137,7 @@ export const Contact: FC<ContactProps> = (props) => {
                   alignItems="center"
                   height="100%"
                   justifyContent="center"
+                  py={6}
                   spacing={2}
                   textAlign="center"
                 >
