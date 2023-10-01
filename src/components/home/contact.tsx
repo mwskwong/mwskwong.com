@@ -142,18 +142,26 @@ export const Contact: FC<ContactProps> = (props) => {
                 >
                   <Sheet
                     color="success"
-                    sx={{ display: 'flex', borderRadius: 'sm', p: 1.5 }}
-                    variant="soft"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 'sm',
+                      fontSize: 'xl5',
+                      width: '1em',
+                      height: '1em',
+                    }}
+                    variant="outlined"
                   >
-                    <ThumbUpRounded fontSize="xl4" />
+                    <ThumbUpRounded />
                   </Sheet>
-                  <Typography color="primary" level="h1">
-                    Thank You!
-                  </Typography>
-                  <Typography>
-                    I&apos;ve received your message and we&apos;ll be in touch
-                    soon!
-                  </Typography>
+                  <Box>
+                    <Typography level="title-md">Thank You!</Typography>
+                    <Typography>
+                      I&apos;ve received your message and we&apos;ll be in touch
+                      soon!
+                    </Typography>
+                  </Box>
                   <Button
                     component={NextLink}
                     href={home.href}
