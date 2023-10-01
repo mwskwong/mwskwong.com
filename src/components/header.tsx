@@ -52,7 +52,7 @@ export const Header: FC<HeaderProps> = async (props) => {
               component={NextLink}
               href={home.href}
             >
-              <Icon width={32} />
+              <Icon fontSize="var(--joy-fontSize-xl3)" width="1em" />
             </Link>
             <List
               orientation="horizontal"
