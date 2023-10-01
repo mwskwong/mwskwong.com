@@ -102,7 +102,6 @@ export const globalStyles = (theme: Theme) =>
     code: {
       ...theme.typography['body-sm'],
       fontFamily: theme.vars.fontFamily.code,
-      color: 'inherit',
     },
     figure: { margin: 0 },
     footer: {
