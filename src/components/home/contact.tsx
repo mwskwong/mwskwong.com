@@ -110,8 +110,9 @@ export const Contact: FC<ContactProps> = (props) => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderRadius: 'sm',
-                      width: 'var(--Avatar-size)',
-                      height: 'var(--Avatar-size)',
+                      fontSize: 'xl5',
+                      width: '1em',
+                      height: '1em',
                       mb: 2,
                     }}
                     variant="outlined"
@@ -236,7 +237,7 @@ export const Contact: FC<ContactProps> = (props) => {
                       }) => (
                         <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Message</FormLabel>
-                          <Textarea maxRows={6} minRows={6} {...field} />
+                          <Textarea maxRows={7} minRows={7} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
                         </FormControl>
                       )}

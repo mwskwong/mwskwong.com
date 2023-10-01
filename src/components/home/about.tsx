@@ -74,8 +74,9 @@ export const About: FC<AboutProps> = async (props) => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         borderRadius: 'sm',
-                        width: 'var(--Avatar-size)',
-                        height: 'var(--Avatar-size)',
+                        fontSize: 'xl5',
+                        width: '1em',
+                        height: '1em',
                       }}
                       variant="outlined"
                     >

@@ -40,7 +40,7 @@ export const FunFact: FC<FunFactProps> = (props) => (
           {websiteTechStack.map(({ name, Icon, url }) => (
             <Grid key={name} sm={3} xs={6}>
               <Stack alignItems="center" position="relative" spacing={2}>
-                <Icon sx={{ fontSize: 'var(--Avatar-size)' }} />
+                <Icon fontSize="xl5" />
                 <Link
                   href={url}
                   overlay
