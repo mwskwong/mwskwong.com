@@ -90,9 +90,7 @@ export const About: FC<AboutProps> = async (props) => {
                       spacing={1}
                     >
                       {skills.map((skill) => (
-                        <Chip key={skill} variant="outlined">
-                          {skill}
-                        </Chip>
+                        <Chip key={skill}>{skill}</Chip>
                       ))}
                     </Stack>
                   </Stack>
