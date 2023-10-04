@@ -1,28 +1,43 @@
+'use client';
+
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import {
+  Box,
+  BoxProps,
   Button,
   Container,
   Grid,
   Link,
-  Sheet,
-  SheetProps,
   Stack,
   Typography,
 } from '@mui/joy';
+import { applySolidInversion } from '@mui/joy/colorInversion';
+import mergeSx from 'merge-sx';
 import { FC } from 'react';
 
 import { websiteTechStack } from '@/constants/content';
 
-export type FunFactProps = Omit<SheetProps<'section'>, 'children'>;
-export const FunFact: FC<FunFactProps> = (props) => (
-  <Sheet
-    color="primary"
+export type FunFactProps = Omit<BoxProps<'section'>, 'children'>;
+export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
+  <Box
     component="section"
-    invertedColors
-    variant="solid"
+    sx={mergeSx(
+      { bgcolor: 'primary.solidBg' },
+      applySolidInversion('primary'),
+      // @ts-expect-error new API applySolidInversion, this is working as intended
+      sx,
+    )}
     {...props}
   >
-    <Container>
+    <Container
+      sx={{
+        color: 'var(--variant-plainColor)',
+        '& ::selection': {
+          bgcolor: 'var(--variant-solidBg)',
+          color: 'var(--variant-solidColor)',
+        },
+      }}
+    >
       <Stack alignItems={{ sm: 'center' }} spacing={6} textAlign="center">
         <Stack spacing={2}>
           <Typography level="h2">Fun Fact</Typography>
@@ -41,13 +56,7 @@ export const FunFact: FC<FunFactProps> = (props) => (
             <Grid key={name} sm={3} xs={6}>
               <Stack alignItems="center" position="relative" spacing={2}>
                 <Icon fontSize="xl5" />
-                <Link
-                  href={url}
-                  overlay
-                  target="_blank"
-                  typography="title-md"
-                  underline="none"
-                >
+                <Link href={url} overlay target="_blank" typography="title-md">
                   {name}
                 </Link>
               </Stack>
@@ -66,5 +75,5 @@ export const FunFact: FC<FunFactProps> = (props) => (
         </Button>
       </Stack>
     </Container>
-  </Sheet>
+  </Box>
 );

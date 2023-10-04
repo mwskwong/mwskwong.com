@@ -50,17 +50,6 @@ export const theme = extendTheme({
         },
       },
     },
-    JoySheet: {
-      styleOverrides: {
-        root: ({ ownerState }) => ({
-          '& ::selection': {
-            backgroundColor:
-              ownerState.invertedColors && 'var(--variant-solidBg)',
-            color: ownerState.invertedColors && 'var(--variant-solidColor)',
-          },
-        }),
-      },
-    },
     JoyStack: {
       defaultProps: {
         useFlexGap: true,

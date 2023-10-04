@@ -1,19 +1,7 @@
 import { resolve } from 'node:path';
 
-import { KeyboardArrowRightRounded } from '@mui/icons-material';
-import {
-  Box,
-  Button,
-  Chip,
-  Container,
-  Grid,
-  Link,
-  Sheet,
-  Stack,
-  Typography,
-} from '@mui/joy';
+import { Box, Chip, Container, Grid, Link, Stack, Typography } from '@mui/joy';
 import { Metadata, ResolvingMetadata } from 'next';
-import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
@@ -22,10 +10,10 @@ import rehypeSlug from 'rehype-slug';
 import { IThemeRegistration, getHighlighter } from 'shiki';
 
 import { Actions } from '@/components/blog/actions';
+import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
-import { contact } from '@/constants/nav';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
@@ -277,26 +265,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           ) : null}
         </Container>
         <SectionDivider bgcolor="primary.solidBg" />
-        <Sheet
-          color="primary"
-          component="section"
-          invertedColors
-          variant="solid"
-        >
-          <Container>
-            <Stack alignItems={{ sm: 'center' }} spacing={6} textAlign="center">
-              <Typography level="h2">Any Questions or Comments?</Typography>
-              <Button
-                component={NextLink}
-                endDecorator={<KeyboardArrowRightRounded />}
-                href={contact.href}
-                size="lg"
-              >
-                Contact Me
-              </Button>
-            </Stack>
-          </Container>
-        </Sheet>
+        <ContactMe />
       </main>
       <SectionDivider bgcolor="var(--Footer-bg)" color="primary.solidBg" />
     </>
