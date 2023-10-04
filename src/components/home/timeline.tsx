@@ -89,7 +89,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                 ))}
               </Typography>
               {organizationsRelationship ? (
-                <Chip color="warning" size="sm">
+                <Chip color="warning" size="sm" variant="outlined">
                   {organizationsRelationship}
                 </Chip>
               ) : null}
