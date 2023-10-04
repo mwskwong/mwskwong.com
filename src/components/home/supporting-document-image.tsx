@@ -7,8 +7,7 @@ import { SetOptional } from 'type-fest';
 import { Image, ImageProps } from '@/components/image';
 import { thumIoPdfLoader } from '@/utils/image-loaders';
 
-type SupportingDocumentImageProps = SetOptional<ImageProps, 'alt'>;
-
+export type SupportingDocumentImageProps = SetOptional<ImageProps, 'alt'>;
 export const SupportingDocumentImage: FC<SupportingDocumentImageProps> = ({
   sx,
   ...props

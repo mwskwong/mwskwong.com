@@ -6,7 +6,6 @@ import mergeSx from 'merge-sx';
 import { FC } from 'react';
 
 export type HeadingProps = TypographyProps;
-
 // FIXME: with zero runtime, we may be able to make this a server component
 export const Heading: FC<HeadingProps> = ({ id, sx, ...props }) => (
   <Typography
