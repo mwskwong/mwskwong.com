@@ -8,7 +8,6 @@ import { SetOptional } from 'type-fest';
 import { Image, ImageProps } from '../image';
 
 export type CoverImageProps = SetOptional<ImageProps, 'alt'>;
-// FIXME: with zero runtime, we may be able to add this back to `blog/[slug]/page`
 export const CoverImage: FC<CoverImageProps> = ({ sx, ...props }) => {
   const theme = useTheme();
 

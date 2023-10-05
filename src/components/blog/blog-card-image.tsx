@@ -8,7 +8,6 @@ import { SetOptional } from 'type-fest';
 import { Image, ImageProps } from '../image';
 
 export type BlogCardImageProps = SetOptional<ImageProps, 'alt'>;
-// FIXME: with zero runtime, we may be able to add this back to `blog-card`
 export const BlogCardImage: FC<BlogCardImageProps> = ({ sx, ...props }) => {
   const theme = useTheme();
 
