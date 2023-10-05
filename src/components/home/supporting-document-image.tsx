@@ -14,7 +14,6 @@ export const SupportingDocumentImage: FC<SupportingDocumentImageProps> = ({
 }) => (
   <Image
     alt=""
-    height={56}
     loader={thumIoPdfLoader}
     sx={mergeSx(
       {
@@ -27,7 +26,6 @@ export const SupportingDocumentImage: FC<SupportingDocumentImageProps> = ({
       },
       sx,
     )}
-    width={80}
     {...props}
   />
 );

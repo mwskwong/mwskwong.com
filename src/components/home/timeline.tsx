@@ -19,6 +19,8 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
 });
 
+const supportingDocumentImageSize = { width: 80, height: 56 };
+
 export interface TimelineItemProps extends Omit<GridProps, 'children'> {
   from?: Date;
   to?: Date;
@@ -110,8 +112,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                 sx={{
                   '--List-radius': 'var(--joy-radius-sm)',
                   '--List-padding': '0px',
-                  '--ListItemDecorator-size':
-                    'calc(80px + var(--ListItem-paddingX))',
+                  '--ListItemDecorator-size': `calc(${supportingDocumentImageSize.width}px + var(--ListItem-paddingX))`,
                 }}
               >
                 {supportingDocuments.map(({ title, url }) => (
@@ -120,7 +121,10 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                       <ListItemDecorator
                         sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
                       >
-                        <SupportingDocumentImage src={url} />
+                        <SupportingDocumentImage
+                          src={url}
+                          {...supportingDocumentImageSize}
+                        />
                       </ListItemDecorator>
                       {title}
                     </ListItemButton>

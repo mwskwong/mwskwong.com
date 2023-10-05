@@ -39,10 +39,10 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
           <List
             size="lg"
             sx={{
-              '--List-gap': '8px',
+              '--List-gap': (theme) => theme.spacing(1),
               '--List-padding': '0px',
-              '--List-radius': 'var(--joy-radius-sm)',
-              '--ListItem-paddingX': '64px',
+              '--List-radius': (theme) => theme.vars.radius.sm,
+              '--ListItem-paddingX': (theme) => theme.spacing(8),
             }}
           >
             {nav.map((section) => (
