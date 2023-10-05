@@ -1,21 +1,17 @@
 import { Container, Grid, Stack, Typography } from '@mui/joy';
 import { Metadata, ResolvingMetadata } from 'next';
-import { FC, cache } from 'react';
+import { FC } from 'react';
 
 import { BlogCard } from '@/components/blog/blog-card';
 import { SectionDivider } from '@/components/section-divider';
 import { prisma } from '@/lib/db';
 import { getBlogs } from '@/lib/get-blogs';
 
-const getBlogMetadataByIds = cache((ids: string[]) =>
-  prisma.blogMetadata.findMany({
-    where: { id: { in: ids } },
-  }),
-);
-
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
-  const metadata = await getBlogMetadataByIds(blogs.map(({ id }) => id));
+  const blogsMetadata = await prisma.blogMetadata.findMany({
+    where: { id: { in: blogs.map(({ id }) => id) } },
+  });
 
   return (
     <>
@@ -38,7 +34,7 @@ const Blogs: FC = async () => {
                     slotProps={{ image: { priority: index === 0 } }}
                     sx={{ height: { sm: '100%' } }}
                     view={
-                      metadata.find(
+                      blogsMetadata.find(
                         ({ id: blogMetadataId }) => blogMetadataId === id,
                       )?.view
                     }
