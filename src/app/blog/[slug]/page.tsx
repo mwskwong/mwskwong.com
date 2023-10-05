@@ -4,7 +4,7 @@ import { Box, Chip, Container, Grid, Link, Stack, Typography } from '@mui/joy';
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { FC } from 'react';
+import { FC, cache } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { IThemeRegistration, getHighlighter } from 'shiki';
@@ -41,13 +41,17 @@ interface BlogProps {
   params: { slug: string };
 }
 
+const getBlogMetadataById = cache((id: string) =>
+  prisma.blogMetadata.findMany({
+    where: { id },
+  }),
+);
+
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
-  const metadata = await prisma.blogMetadata.findUnique({
-    where: { id: blog.id },
-  });
+  const metadata = await getBlogMetadataById(blog.id);
 
   return (
     <>
