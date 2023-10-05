@@ -51,6 +51,7 @@ const Blogs: FC = async () => {
   );
 };
 
+export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export const generateMetadata = async (

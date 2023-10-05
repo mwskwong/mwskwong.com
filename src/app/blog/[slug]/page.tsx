@@ -272,6 +272,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   );
 };
 
+export const dynamic = 'force-static';
 export const revalidate = 3600;
 
 export const generateStaticParams = () =>
