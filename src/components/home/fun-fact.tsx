@@ -9,6 +9,7 @@ import {
   Grid,
   Link,
   Stack,
+  Theme,
   Typography,
 } from '@mui/joy';
 import { applySolidInversion } from '@mui/joy/colorInversion';
@@ -20,13 +21,9 @@ import { websiteTechStack } from '@/constants/content';
 export type FunFactProps = Omit<BoxProps<'section'>, 'children'>;
 export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
   <Box
+    bgcolor="primary.solidBg"
     component="section"
-    sx={mergeSx(
-      { bgcolor: 'primary.solidBg' },
-      applySolidInversion('primary'),
-      // @ts-expect-error new API applySolidInversion, this is working as intended
-      sx,
-    )}
+    sx={mergeSx<Theme>(applySolidInversion('primary'), sx)}
     {...props}
   >
     <Container

@@ -1,7 +1,15 @@
 'use client';
 
 import { KeyboardArrowRightRounded } from '@mui/icons-material';
-import { Box, BoxProps, Button, Container, Stack, Typography } from '@mui/joy';
+import {
+  Box,
+  BoxProps,
+  Button,
+  Container,
+  Stack,
+  Theme,
+  Typography,
+} from '@mui/joy';
 import { applySolidInversion } from '@mui/joy/colorInversion';
 import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
@@ -12,13 +20,9 @@ import { contact } from '@/constants/nav';
 export type ContactMeProps = Omit<BoxProps, 'children'>;
 export const ContactMe: FC<ContactMeProps> = ({ sx, ...props }) => (
   <Box
+    bgcolor="primary.solidBg"
     component="section"
-    sx={mergeSx(
-      { bgcolor: 'primary.solidBg' },
-      applySolidInversion('primary'),
-      // @ts-expect-error new API applySolidInversion, this is working as intended
-      sx,
-    )}
+    sx={mergeSx<Theme>(applySolidInversion('primary'), sx)}
     {...props}
   >
     <Container

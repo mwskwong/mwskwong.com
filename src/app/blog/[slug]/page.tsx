@@ -34,8 +34,8 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'long',
   day: 'numeric',
 });
-
 const shikiPath = resolve('.shiki');
+const contactMeBgColor = 'primary.solidBg';
 
 interface BlogProps {
   params: { slug: string };
@@ -264,10 +264,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             />
           ) : null}
         </Container>
-        <SectionDivider bgcolor="primary.solidBg" />
-        <ContactMe />
+        <SectionDivider bgcolor={contactMeBgColor} />
+        <ContactMe bgcolor={contactMeBgColor} />
       </main>
-      <SectionDivider bgcolor="var(--Footer-bg)" color="primary.solidBg" />
+      <SectionDivider bgcolor="var(--Footer-bg)" color={contactMeBgColor} />
     </>
   );
 };
