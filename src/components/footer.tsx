@@ -18,7 +18,7 @@ export const Footer: FC<FooterProps> = async (props) => {
             {`Copyright © ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
           </Typography>
           <Typography level="body-sm">
-            {'Branding logo designed by '}
+            Branding logo designed by{' '}
             <Link
               href="https://www.upwork.com/freelancers/manojk4"
               target="_blank"

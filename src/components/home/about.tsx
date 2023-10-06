@@ -48,7 +48,7 @@ export const About: FC<AboutProps> = async (props) => {
           ) : null}
           <Box>
             <Typography level="title-lg">
-              {'Hello again! '}
+              Hello again!{' '}
               <Typography color="primary">
                 {`I'm ${firstName} ${lastName}`}
               </Typography>
