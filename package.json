@@ -22,6 +22,8 @@
     "@mui/icons-material": "^5.14.12",
     "@mui/joy": "5.0.0-beta.9",
     "@mui/styled-engine": "^5.14.12",
+    "@planetscale/database": "^1.11.0",
+    "@prisma/adapter-planetscale": "^5.4.0",
     "@prisma/client": "^5.4.1",
     "@vercel/analytics": "^1.0.2",
     "contentful": "^10.6.1",
