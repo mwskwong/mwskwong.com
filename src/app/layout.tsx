@@ -49,7 +49,6 @@ export const metadata: Metadata = {
     url: path,
     type: 'website',
   },
-  alternates: { canonical: path },
   archives: ['https://v2.mwskwong.com'],
 };
 

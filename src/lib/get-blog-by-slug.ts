@@ -6,7 +6,7 @@ import { BlogSkeleton } from './types';
 
 export const getBlogBySlug = cache(async (slug: string) => {
   const { items } = await contentful.getEntries<BlogSkeleton>({
-    select: ['sys.id', 'sys.updatedAt', 'fields'],
+    select: ['sys.id', 'sys.createdAt', 'sys.updatedAt', 'fields'],
     content_type: 'blog',
     'fields.slug[in]': [slug],
     limit: 1,
@@ -16,6 +16,7 @@ export const getBlogBySlug = cache(async (slug: string) => {
   return (
     item && {
       id: item.sys.id,
+      createdAt: item.sys.createdAt,
       updatedAt: item.sys.updatedAt,
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&

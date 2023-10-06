@@ -1,7 +1,7 @@
 import { resolve } from 'node:path';
 
 import { Box, Chip, Container, Grid, Link, Stack, Typography } from '@mui/joy';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
@@ -274,30 +274,30 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
 export const revalidate = 3600;
 
-export const generateStaticParams = () =>
-  getBlogs().then((blogs) =>
-    blogs.map(({ slug }) => ({ slug })),
-  ) satisfies Promise<BlogProps['params'][]>;
+export const generateStaticParams = (): Promise<BlogProps['params'][]> =>
+  getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
 
-export const generateMetadata = async (
-  { params: { slug } }: BlogProps,
-  parent: ResolvingMetadata,
-): Promise<Metadata> => {
-  const { title, description, coverPhoto } = (await getBlogBySlug(slug)) ?? {};
+export const generateMetadata = async ({
+  params: { slug },
+}: BlogProps): Promise<Metadata | undefined> => {
+  const blog = await getBlogBySlug(slug);
+  if (!blog) return;
+
+  const { title, description, coverPhoto, createdAt, updatedAt } = blog;
   const path = `/blog/${slug}`;
-  const { openGraph } = await parent;
 
   return {
     title,
     description,
     openGraph: {
-      ...openGraph,
       title,
       description,
+      type: 'article',
+      publishedTime: createdAt,
+      modifiedTime: updatedAt,
       url: path,
       images: coverPhoto,
     },
-    alternates: { canonical: path },
   };
 };
 

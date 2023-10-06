@@ -64,7 +64,6 @@ export const generateMetadata = async (
   return {
     title,
     openGraph: { ...openGraph, title, url: path },
-    alternates: { canonical: path },
   };
 };
 
