@@ -14,6 +14,7 @@ import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
+import { firstName, lastName } from '@/constants/content';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
@@ -283,7 +284,8 @@ export const generateMetadata = async ({
   const blog = await getBlogBySlug(slug);
   if (!blog) return;
 
-  const { title, description, coverPhoto, createdAt, updatedAt } = blog;
+  const { title, description, coverPhoto, createdAt, updatedAt, categories } =
+    blog;
   const path = `/blog/${slug}`;
 
   return {
@@ -293,8 +295,10 @@ export const generateMetadata = async ({
       title,
       description,
       type: 'article',
+      authors: `${firstName} ${lastName}`,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
+      tags: categories,
       url: path,
       images: coverPhoto,
     },
