@@ -8,6 +8,7 @@ import {
 import { LiteralUnion } from 'type-fest';
 
 import { Cms } from '@/components/icons/cms';
+import { CommunicationSkill } from '@/components/icons/communication-skill';
 import { Database } from '@/components/icons/database';
 import { DataCamp } from '@/components/icons/datacamp';
 import { EnterpriseDb } from '@/components/icons/enterprisedb';
@@ -43,6 +44,7 @@ const Icons = {
   [contentfulIds.machineLearning]: MachineLearning,
   [contentfulIds.mobile]: DevicesOtherRounded,
   [contentfulIds.qa]: BugReportRounded,
+  [contentfulIds.softSkills]: CommunicationSkill,
 };
 
 export const getIconByContentfulId = (

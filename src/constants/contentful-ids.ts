@@ -17,3 +17,4 @@ export const frontend = '3sdnCkE0j79D4kRSGuUjhp';
 export const machineLearning = '4nOEnXVl1fCJGetHGVnsZ8';
 export const mobile = '3biweEjbkRyZaII8ZgkQhI';
 export const qa = '119H1LBXMmT8xLTdnAq1PS';
+export const softSkills = '2nWs8UZa44z64sXuyJRCJC';
