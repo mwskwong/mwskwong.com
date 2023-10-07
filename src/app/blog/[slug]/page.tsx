@@ -1,6 +1,15 @@
 import { resolve } from 'node:path';
 
-import { Box, Chip, Container, Grid, Link, Stack, Typography } from '@mui/joy';
+import {
+  Box,
+  Chip,
+  Container,
+  Grid,
+  Link,
+  Sheet,
+  Stack,
+  Typography,
+} from '@mui/joy';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -142,14 +151,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   if (codeBlock) {
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
-                      <Box
-                        bgcolor="background.body"
-                        border={1}
-                        borderColor="neutral.outlinedBorder"
-                        borderRadius="md"
+                      <Sheet
                         data-joy-color-scheme="dark"
-                        my={2}
-                        overflow="hidden"
+                        sx={{ borderRadius: 'md', my: 2, overflow: 'hidden' }}
+                        variant="outlined"
                         {...props}
                       />
                     );
@@ -179,21 +184,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
                   return <div {...props} />;
                 },
-
-                pre: ({ style, ...props }) => {
-                  return (
-                    // @ts-expect-error LegacyRef passed to RefObject
-                    <Box
-                      bgcolor="background.surface"
-                      component="pre"
-                      my={0}
-                      overflow="auto"
-                      py={2}
-                      style={style}
-                      {...props}
-                    />
-                  );
-                },
+                pre: (props) => (
+                  // @ts-expect-error LegacyRef passed to RefObject
+                  <Box component="pre" m={0} overflow="auto" p={2} {...props} />
+                ),
                 code: (props) => {
                   const inlineCode = props['data-language'] === undefined;
 
@@ -203,10 +197,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         component="code"
-                        display="inline"
                         fontFamily="code"
                         fontSize="0.875em"
-                        mx={0}
                         textColor={color}
                         variant="soft"
                         {...rest}
@@ -219,11 +211,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     <Box
                       component="code"
                       sx={{
-                        '& > [data-line]': {
-                          px: 2,
-                        },
                         '& > [data-highlighted-line]': {
                           bgcolor: 'neutral.softBg',
+                          mx: -2,
+                          px: 2,
                         },
                         '& [data-highlighted-chars]': {
                           bgcolor: 'neutral.softBg',
