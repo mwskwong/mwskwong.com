@@ -136,12 +136,30 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     {...props}
                   />
                 ),
-                // @ts-expect-error LegacyRef passed to RefObject
-                ul: (props) => <Box component="ul" my={2} pl={3} {...props} />,
-                // @ts-expect-error LegacyRef passed to RefObject
-                ol: (props) => <Box component="ol" my={2} pl={3} {...props} />,
-                // @ts-expect-error LegacyRef passed to RefObject
-                li: (props) => <Box component="li" my={1} {...props} />,
+                ul: (props) => (
+                  // @ts-expect-error LegacyRef passed to RefObject
+                  <Box
+                    component="ul"
+                    my={2}
+                    pl={3}
+                    sx={{ '& > li': { my: 1 } }}
+                    {...props}
+                  />
+                ),
+                ol: (props) => (
+                  // @ts-expect-error LegacyRef passed to RefObject
+                  <Box
+                    component="ol"
+                    my={2}
+                    pl={3}
+                    sx={{ '& > li': { my: 1 } }}
+                    {...props}
+                  />
+                ),
+                li: (props) => (
+                  // @ts-expect-error LegacyRef passed to RefObject
+                  <Typography component="li" display="list-item" {...props} />
+                ),
                 div: (props) => {
                   const codeBlock =
                     props['data-rehype-pretty-code-fragment'] === '';
