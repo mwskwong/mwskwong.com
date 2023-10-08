@@ -1,11 +1,30 @@
-import { Container, Grid, Stack, Typography } from '@mui/joy';
+import { VisibilityRounded } from '@mui/icons-material';
+import {
+  Card,
+  CardContent,
+  Chip,
+  Container,
+  Divider,
+  Grid,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/joy';
 import { Metadata, ResolvingMetadata } from 'next';
+import NextLink from 'next/link';
 import { FC } from 'react';
 
-import { BlogCard } from '@/components/blog/blog-card';
+import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { SectionDivider } from '@/components/section-divider';
 import { prisma } from '@/lib/db';
 import { getBlogs } from '@/lib/get-blogs';
+
+const dateFormatter = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
@@ -25,21 +44,67 @@ const Blogs: FC = async () => {
           </Stack>
           <Grid container spacing={2}>
             {blogs.map(
-              ({ id, updatedAt, coverPhoto = '', slug, ...blog }, index) => (
-                <Grid key={slug} md={4} sm={6} xs={12}>
-                  <BlogCard
-                    coverImgSrc={coverPhoto}
-                    date={new Date(updatedAt)}
-                    href={`/blog/${slug}`}
-                    slotProps={{ image: { priority: index === 0 } }}
-                    sx={{ height: { sm: '100%' } }}
-                    view={
-                      blogsMetadata.find(
-                        ({ id: blogMetadataId }) => blogMetadataId === id,
-                      )?.view
-                    }
-                    {...blog}
-                  />
+              (
+                {
+                  id,
+                  updatedAt,
+                  coverPhoto = '',
+                  slug,
+                  title,
+                  description,
+                  categories,
+                },
+                index,
+              ) => (
+                <Grid key={id} md={4} sm={6} xs={12}>
+                  <Card component="article" sx={{ height: { sm: '100%' } }}>
+                    <BlogCardImage priority={index === 0} src={coverPhoto} />
+                    <Stack direction="row" flexWrap="wrap" spacing={1}>
+                      {categories.map((category) => (
+                        <Chip color="primary" key={category} size="sm">
+                          {category}
+                        </Chip>
+                      ))}
+                    </Stack>
+                    <CardContent>
+                      <Link
+                        color="neutral"
+                        component={NextLink}
+                        display="-webkit-box"
+                        href={`/blog/${slug}`}
+                        overflow="hidden"
+                        overlay
+                        sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
+                        typography="title-lg"
+                      >
+                        {title}
+                      </Link>
+                      <Typography
+                        display="-webkit-box"
+                        overflow="hidden"
+                        sx={{ WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}
+                      >
+                        {description}
+                      </Typography>
+                    </CardContent>
+                    <CardContent orientation="horizontal" sx={{ flex: 0 }}>
+                      <Typography level="body-xs">
+                        {dateFormatter.format(new Date(updatedAt))}
+                      </Typography>
+                      <Divider orientation="vertical" />
+                      <Typography
+                        level="body-xs"
+                        startDecorator={<VisibilityRounded />}
+                      >
+                        {numberFormatter.format(
+                          blogsMetadata.find(
+                            ({ id: blogMetadataId }) => blogMetadataId === id,
+                          )?.view ?? 0,
+                        )}{' '}
+                        views
+                      </Typography>
+                    </CardContent>
+                  </Card>
                 </Grid>
               ),
             )}
