@@ -20,7 +20,7 @@ export const SupportingDocumentImage: FC<SupportingDocumentImageProps> = ({
         objectFit: 'cover',
         objectPosition: 'top',
         flexShrink: 0,
-        borderRadius: 'var(--unstable_List-childRadius)',
+        borderRadius: 'var(--ListItem-radius)',
         border: 1,
         borderColor: 'neutral.outlinedBorder',
       },
