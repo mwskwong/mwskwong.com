@@ -39,7 +39,7 @@
     "rehype-pretty-code": "^0.10.1",
     "rehype-slug": "^6.0.0",
     "shiki": "^0.14.4",
-    "simple-icons": "^9.16.1",
+    "simple-icons": "^9.17.0",
     "tss-react": "^4.9.2",
     "zod": "^3.22.4"
   },
