@@ -39,8 +39,7 @@ export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
         <Stack spacing={2}>
           <Typography level="h2">Fun Fact</Typography>
           <Typography>
-            This website is built on top of the following technologies and
-            platforms.
+            This website is powered by the following packages and platforms.
           </Typography>
         </Stack>
         <Grid
