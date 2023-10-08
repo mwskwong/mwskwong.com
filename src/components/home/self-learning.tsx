@@ -2,7 +2,6 @@
 
 import { ClearRounded, SearchRounded } from '@mui/icons-material';
 import {
-  Box,
   Card,
   CardContent,
   Chip,
@@ -76,10 +75,10 @@ export const SelfLearning: FC<SelfLearningProps> = ({
 
             return (
               <Grid key={name} md={6} xs={12}>
-                <Card orientation="horizontal">
+                <Card orientation="horizontal" sx={{ height: { sm: '100%' } }}>
                   {Icon ? <Icon color="branding" fontSize="xl2" /> : null}
-                  <CardContent sx={{ gap: 1 }}>
-                    <Box minHeight={{ md: 68, lg: 'unset' }}>
+                  <Stack spacing="inherit">
+                    <CardContent>
                       {certificate ? (
                         <Link
                           color="neutral"
@@ -96,7 +95,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                       <Typography level="body-sm">
                         {institution?.name}
                       </Typography>
-                    </Box>
+                    </CardContent>
                     <Stack direction="row" spacing={1}>
                       {categories?.map((category) => (
                         <Chip
@@ -108,7 +107,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                         </Chip>
                       ))}
                     </Stack>
-                  </CardContent>
+                  </Stack>
                 </Card>
               </Grid>
             );
