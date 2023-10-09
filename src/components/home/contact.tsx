@@ -190,12 +190,12 @@ export const Contact: FC<ContactProps> = (props) => {
                       disabled={isSubmitting}
                       name="name"
                       render={({
-                        field: { disabled, ...field },
+                        field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
                         <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Name</FormLabel>
-                          <Input {...field} />
+                          <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
                         </FormControl>
                       )}
@@ -207,12 +207,12 @@ export const Contact: FC<ContactProps> = (props) => {
                       disabled={isSubmitting}
                       name="email"
                       render={({
-                        field: { disabled, ...field },
+                        field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
                         <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Email</FormLabel>
-                          <Input {...field} />
+                          <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
                         </FormControl>
                       )}
@@ -224,12 +224,12 @@ export const Contact: FC<ContactProps> = (props) => {
                       disabled={isSubmitting}
                       name="subject"
                       render={({
-                        field: { disabled, ...field },
+                        field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
                         <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Subject</FormLabel>
-                          <Input {...field} />
+                          <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
                         </FormControl>
                       )}
@@ -241,12 +241,17 @@ export const Contact: FC<ContactProps> = (props) => {
                       disabled={isSubmitting}
                       name="message"
                       render={({
-                        field: { disabled, ...field },
+                        field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
                         <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Message</FormLabel>
-                          <Textarea maxRows={7} minRows={7} {...field} />
+                          <Textarea
+                            maxRows={7}
+                            minRows={7}
+                            slotProps={{ textarea: { ref } }}
+                            {...field}
+                          />
                           <FormHelperText>{error?.message}</FormHelperText>
                         </FormControl>
                       )}
