@@ -67,7 +67,6 @@ export const globalStyles = (theme: Theme) =>
       '--Section-paddingY': theme.spacing(10),
       '--Footer-paddingY': theme.spacing(6),
       '--Footer-bg': theme.vars.palette.background.surface,
-      '--MaterialIcon-padding': `${(2 / 24).toFixed(5)}em`,
       '--Header-height': '57px',
       '--NProgress-height': '4px',
     },
