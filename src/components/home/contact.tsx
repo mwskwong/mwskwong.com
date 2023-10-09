@@ -34,14 +34,27 @@ import { z } from 'zod';
 import { contactInfo } from '@/constants/content';
 import { contact, home } from '@/constants/nav';
 
+const requiredErrors = {
+  name: 'Name is required',
+  email: 'Email is required',
+  subject: 'Subject is required',
+  message: 'Message is required',
+};
+
 const formSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
+  name: z
+    .string({ required_error: requiredErrors.name })
+    .min(1, requiredErrors.name),
   email: z
-    .string()
-    .min(1, 'Email is required')
+    .string({ required_error: requiredErrors.email })
+    .min(1, requiredErrors.email)
     .email('Email should be an email'),
-  subject: z.string().min(1, 'Subject is required'),
-  message: z.string().min(1, 'Message is required'),
+  subject: z
+    .string({ required_error: requiredErrors.subject })
+    .min(1, requiredErrors.subject),
+  message: z
+    .string({ required_error: requiredErrors.message })
+    .min(1, requiredErrors.message),
 });
 type FormSchema = z.infer<typeof formSchema>;
 
