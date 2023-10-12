@@ -5,6 +5,11 @@ export const Formspree: FC<SvgIconProps> = forwardRef((props, ref) => (
   <SvgIcon
     htmlColor={props.color === 'branding' ? '#E5122E' : undefined}
     ref={ref}
+    /**
+     * Material Icons add 2dp padding surrounds the living area, while this icon doesn't have that.
+     * Modify the view box to align with that standard
+     * @see {@link https://m3.material.io/styles/icons/designing-icons#089c3a26-5991-4241-8bbe-8a5ff2014247}
+     */
     viewBox="-2 -2 28 28"
     {...props}
   >
