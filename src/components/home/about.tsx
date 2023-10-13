@@ -32,21 +32,23 @@ export const About: FC<AboutProps> = async (props) => {
           <Typography id={about.id} level="h2">
             About
           </Typography>
-          {personalPhoto ? (
-            <Image
-              alt={`${firstName} ${lastName}`}
-              height={200}
-              priority
-              src={personalPhoto}
-              sx={{
-                borderRadius: 'md',
-                border: 1,
-                borderColor: 'neutral.outlinedBorder',
-              }}
-              width={200}
-            />
-          ) : null}
-          <Typography maxWidth="sm">{selfIntroduction}</Typography>
+          <Stack spacing={2}>
+            {personalPhoto ? (
+              <Image
+                alt={`${firstName} ${lastName}`}
+                height={200}
+                priority
+                src={personalPhoto}
+                sx={{
+                  borderRadius: 'md',
+                  border: 1,
+                  borderColor: 'neutral.outlinedBorder',
+                }}
+                width={200}
+              />
+            ) : null}
+            <Typography maxWidth="sm">{selfIntroduction}</Typography>
+          </Stack>
           <Grid
             container
             disableEqualOverflow
