@@ -67,12 +67,12 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
         {...props}
       >
         <Grid sm={3} xs={12}>
-          <Typography level="body-xs" mb={1} mt="2px" textTransform="uppercase">
+          <Typography level="body-sm" mb={1} mt="2px" textTransform="uppercase">
             {duration}
           </Typography>
         </Grid>
         <Grid sm xs={12}>
-          <Typography level="title-md">{title}</Typography>
+          <Typography level="title-lg">{title}</Typography>
           <Stack spacing={1}>
             <Stack
               alignItems="center"
@@ -98,7 +98,6 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
             </Stack>
             {descriptions.length > 0 && (
               <List
-                size="sm"
                 sx={{ '--List-padding': '0px', '--ListItem-paddingX': '0px' }}
               >
                 {descriptions.map((description) => (
@@ -108,7 +107,6 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
             )}
             {supportingDocuments.length > 0 && (
               <List
-                size="sm"
                 sx={{
                   '--List-radius': 'var(--joy-radius-sm)',
                   '--List-padding': '0px',
