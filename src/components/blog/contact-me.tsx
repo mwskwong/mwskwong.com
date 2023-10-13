@@ -33,7 +33,7 @@ export const ContactMe: FC<ContactMeProps> = ({ sx, ...props }) => (
         },
       }}
     >
-      <Stack alignItems={{ sm: 'center' }} spacing={6} textAlign="center">
+      <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
         <Typography level="h2">Any Questions or Comments?</Typography>
         <Button
           component={NextLink}
