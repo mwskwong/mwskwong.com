@@ -67,7 +67,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
         {...props}
       >
         <Grid sm={3} xs={12}>
-          <Typography level="body-sm" mb={1} mt="2px" textTransform="uppercase">
+          <Typography level="body-sm" mb={1} mt="2px">
             {duration}
           </Typography>
         </Grid>
