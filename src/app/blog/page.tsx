@@ -75,7 +75,7 @@ const Blogs: FC = async () => {
                         overflow="hidden"
                         overlay
                         sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
-                        typography="title-lg"
+                        typography="title-md"
                       >
                         {title}
                       </Link>
