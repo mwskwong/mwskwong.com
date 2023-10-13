@@ -94,7 +94,7 @@ export const Contact: FC<ContactProps> = (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack spacing={6}>
+        <Stack spacing={8}>
           <Typography id={contact.id} level="h2" textAlign="center">
             Contact
           </Typography>

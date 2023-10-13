@@ -35,7 +35,7 @@ export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
         },
       }}
     >
-      <Stack alignItems={{ sm: 'center' }} spacing={6} textAlign="center">
+      <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
         <Stack spacing={2}>
           <Typography level="h2">Fun Fact</Typography>
           <Typography>

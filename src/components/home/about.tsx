@@ -28,7 +28,7 @@ export const About: FC<AboutProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack alignItems="center" spacing={6} textAlign="center">
+        <Stack alignItems="center" spacing={8} textAlign="center">
           <Typography id={about.id} level="h2">
             About
           </Typography>
@@ -46,16 +46,7 @@ export const About: FC<AboutProps> = async (props) => {
               width={200}
             />
           ) : null}
-          <Box>
-            <Typography level="title-lg">
-              Hello again!{' '}
-              <Typography color="primary">
-                {`I'm ${firstName} ${lastName}`}
-              </Typography>
-              .
-            </Typography>
-            <Typography maxWidth="sm">{selfIntroduction}</Typography>
-          </Box>
+          <Typography maxWidth="sm">{selfIntroduction}</Typography>
           <Grid
             container
             disableEqualOverflow

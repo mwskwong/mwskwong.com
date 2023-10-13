@@ -26,7 +26,7 @@ export const Education: FC<EducationProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack spacing={6}>
+        <Stack spacing={8}>
           <Typography id={education.id} level="h2" textAlign="center">
             Education
           </Typography>
@@ -35,18 +35,6 @@ export const Education: FC<EducationProps> = async (props) => {
               <TimelineItem key={education.title} {...education} />
             ))}
           </Timeline>
-          <Stack alignItems="center" spacing={2} textAlign="center">
-            <Typography level="h3" textAlign="center">
-              Self-learning
-            </Typography>
-            <Box component="figure" maxWidth="sm">
-              <Typography component="blockquote">
-                “Stay hungry. Stay foolish. Never let go of your appetite to go
-                after new ideas, new experiences, and new adventures.”
-              </Typography>
-              <Typography component="figcaption">― Steve Jobs</Typography>
-            </Box>
-          </Stack>
           <SelfLearning courses={courses} />
         </Stack>
       </Container>
