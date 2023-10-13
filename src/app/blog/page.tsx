@@ -35,7 +35,7 @@ const Blogs: FC = async () => {
   return (
     <>
       <Container component="main" sx={{ py: 'var(--Section-paddingY)' }}>
-        <Stack spacing={6}>
+        <Stack spacing={8}>
           <Stack spacing={2} textAlign="center">
             <Typography level="h1">Blog</Typography>
             <Typography>

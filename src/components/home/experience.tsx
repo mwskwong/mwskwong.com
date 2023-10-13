@@ -35,7 +35,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack spacing={6}>
+        <Stack spacing={8}>
           <Typography id={experience.id} level="h2" textAlign="center">
             Experience
           </Typography>

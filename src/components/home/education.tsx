@@ -26,7 +26,7 @@ export const Education: FC<EducationProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack spacing={6}>
+        <Stack spacing={8}>
           <Typography id={education.id} level="h2" textAlign="center">
             Education
           </Typography>

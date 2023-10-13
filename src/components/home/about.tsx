@@ -28,7 +28,7 @@ export const About: FC<AboutProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack alignItems="center" spacing={6} textAlign="center">
+        <Stack alignItems="center" spacing={8} textAlign="center">
           <Typography id={about.id} level="h2">
             About
           </Typography>
