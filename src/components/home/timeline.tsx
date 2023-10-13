@@ -72,7 +72,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
           </Typography>
         </Grid>
         <Grid sm xs={12}>
-          <Typography level="title-md">{title}</Typography>
+          <Typography level="title-lg">{title}</Typography>
           <Stack spacing={1}>
             <Stack
               alignItems="center"
