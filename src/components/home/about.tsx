@@ -46,16 +46,7 @@ export const About: FC<AboutProps> = async (props) => {
               width={200}
             />
           ) : null}
-          <Box>
-            <Typography level="title-lg">
-              Hello again!{' '}
-              <Typography color="primary">
-                {`I'm ${firstName} ${lastName}`}
-              </Typography>
-              .
-            </Typography>
-            <Typography maxWidth="sm">{selfIntroduction}</Typography>
-          </Box>
+          <Typography maxWidth="sm">{selfIntroduction}</Typography>
           <Grid
             container
             disableEqualOverflow
