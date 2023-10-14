@@ -23,7 +23,7 @@
     "@mui/joy": "5.0.0-beta.10",
     "@mui/styled-engine": "^5.14.13",
     "@planetscale/database": "^1.11.0",
-    "@prisma/adapter-planetscale": "^5.4.2",
+    "@prisma/adapter-planetscale": "^5.4.3",
     "@prisma/client": "^5.4.2",
     "@vercel/analytics": "^1.1.1",
     "contentful": "^10.6.2",
