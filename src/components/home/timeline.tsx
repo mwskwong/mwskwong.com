@@ -133,7 +133,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
             {tags.length > 0 && (
               <Stack direction="row" flexWrap="wrap" spacing={1}>
                 {tags.map((tag) => (
-                  <Chip color="primary" key={tag} size="sm">
+                  <Chip color="primary" key={tag}>
                     {tag}
                   </Chip>
                 ))}
