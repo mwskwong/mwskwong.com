@@ -17,7 +17,7 @@ export const getBlogs = cache(
         'fields.title',
       ],
       content_type: 'blog',
-      order: ['-sys.updatedAt', '-sys.id'],
+      order: ['-sys.updatedAt'],
       skip: pagination && (page - 1) * pageSize,
       limit: pagination && pageSize,
     });
