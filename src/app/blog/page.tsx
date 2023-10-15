@@ -60,7 +60,7 @@ const Blogs: FC = async () => {
                   <Card component="article" sx={{ height: { sm: '100%' } }}>
                     <BlogCardImage priority={index === 0} src={coverPhoto} />
                     <Stack direction="row" flexWrap="wrap" spacing={1}>
-                      {categories.map((category) => (
+                      {categories?.map((category) => (
                         <Chip color="primary" key={category}>
                           {category}
                         </Chip>

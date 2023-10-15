@@ -76,7 +76,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           <Grid alignItems="center" container mb={2} spacing={2}>
             <Grid sm xs={12}>
               <Stack direction="row" flexWrap="wrap" spacing={1}>
-                {blog.categories.map((category) => (
+                {blog.categories?.map((category) => (
                   <Chip color="primary" key={category}>
                     {category}
                   </Chip>

@@ -37,7 +37,7 @@ export interface ActionsProps extends StackProps {
     id: string;
     updatedAt: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
     coverPhoto?: string;
-    categories: string[];
+    categories?: string[];
     title: string;
     slug: string;
     description: string;
@@ -59,7 +59,7 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
         Icon: X,
         name: 'X',
         url: `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${blog.categories
-          .map((category) => category.replace(' ', ''))
+          ?.map((category) => category.replace(' ', ''))
           .join(',')}`,
       },
       {
