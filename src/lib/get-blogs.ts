@@ -1,4 +1,3 @@
-import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
 import { contentful } from './client';
@@ -29,11 +28,10 @@ export const getBlogs = cache(
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,
-      categories: orderBy(
-        item.fields.categories
-          ?.map((category) => category?.fields.name)
-          .filter((category): category is string => Boolean(category)),
-      ),
+      categories: item.fields.categories
+        ?.map((category) => category?.fields.name)
+        .filter((category): category is string => Boolean(category))
+        .sort(),
       title: item.fields.title,
       slug: item.fields.slug,
       description: item.fields.description,

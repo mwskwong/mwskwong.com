@@ -1,4 +1,3 @@
-import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
 import { contentful } from './client';
@@ -20,10 +19,9 @@ export const getCourses = cache(async () => {
     certificate:
       item.fields.certificate?.fields.file &&
       `https:${item.fields.certificate.fields.file.url}`,
-    categories: orderBy(
-      item.fields.categories
-        ?.map((category) => category?.fields.name)
-        .filter((category): category is string => Boolean(category)),
-    ),
+    categories: item.fields.categories
+      ?.map((category) => category?.fields.name)
+      .filter((category): category is string => Boolean(category))
+      .sort(),
   }));
 });
