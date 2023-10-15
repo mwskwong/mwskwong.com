@@ -63,15 +63,13 @@ export const Header: FC<HeaderProps> = async (props) => {
                 display: { xs: 'none', md: 'flex' },
               }}
             >
-              {nav
-                .filter(({ id }) => id !== 'home')
-                .map((section) => (
-                  <ListItem key={section.href}>
-                    <ListItemButton component={NextLink} href={section.href}>
-                      {section.name}
-                    </ListItemButton>
-                  </ListItem>
-                ))}
+              {nav.map((section) => (
+                <ListItem key={section.href}>
+                  <ListItemButton component={NextLink} href={section.href}>
+                    {section.name}
+                  </ListItemButton>
+                </ListItem>
+              ))}
             </List>
           </Stack>
           <Stack direction="row" spacing={1}>

@@ -13,4 +13,4 @@ export const education = {
 export const contact = { id: 'contact', name: 'Contact', href: '/#contact' };
 export const blog = { id: undefined, name: 'Blog', href: '/blog' };
 
-export const nav = [home, about, experience, education, contact, blog];
+export const nav = [about, experience, education, contact, blog];
