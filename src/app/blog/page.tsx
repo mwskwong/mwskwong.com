@@ -88,12 +88,12 @@ const Blogs: FC = async () => {
                       </Typography>
                     </CardContent>
                     <CardContent orientation="horizontal" sx={{ flex: 0 }}>
-                      <Typography level="body-xs">
+                      <Typography level="body-sm">
                         {dateFormatter.format(new Date(updatedAt))}
                       </Typography>
                       <Divider orientation="vertical" />
                       <Typography
-                        level="body-xs"
+                        level="body-sm"
                         startDecorator={<VisibilityRounded />}
                       >
                         {numberFormatter.format(
