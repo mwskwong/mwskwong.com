@@ -24,7 +24,7 @@ export const Providers: FC<ProvidersProps> = ({ children }) => (
         <NoSsr defer>
           <NProgressBar
             color="var(--joy-palette-primary-plainColor)"
-            delay={200}
+            delay={100}
             height="var(--NProgress-height)"
             options={{ showSpinner: false }}
             shallowRouting
