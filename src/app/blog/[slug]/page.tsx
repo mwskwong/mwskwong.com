@@ -6,6 +6,8 @@ import {
   Container,
   Grid,
   Link,
+  List,
+  ListItem,
   Sheet,
   Stack,
   Typography,
@@ -136,29 +138,27 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     {...props}
                   />
                 ),
-                ul: (props) => (
+                ul: ({ color, ...props }) => (
                   // @ts-expect-error LegacyRef passed to RefObject
-                  <Box
+                  <List
                     component="ul"
-                    my={2}
-                    pl={3}
-                    sx={{ '& > li': { my: 1 } }}
+                    marker="disc"
+                    sx={{ color, my: 2, '--List-padding': '0px' }}
                     {...props}
                   />
                 ),
-                ol: (props) => (
+                ol: ({ color, ...props }) => (
                   // @ts-expect-error LegacyRef passed to RefObject
-                  <Box
+                  <List
                     component="ol"
-                    my={2}
-                    pl={3}
-                    sx={{ '& > li': { my: 1 } }}
+                    marker="decimal"
+                    sx={{ color, my: 2, '--List-padding': '0px' }}
                     {...props}
                   />
                 ),
-                li: (props) => (
+                li: ({ color, ...props }) => (
                   // @ts-expect-error LegacyRef passed to RefObject
-                  <Typography component="li" display="list-item" {...props} />
+                  <ListItem sx={{ color }} {...props} />
                 ),
                 div: (props) => {
                   const codeBlock =
