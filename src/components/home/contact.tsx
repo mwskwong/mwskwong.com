@@ -34,27 +34,14 @@ import { z } from 'zod';
 import { contactInfo } from '@/constants/content';
 import { contact, home } from '@/constants/nav';
 
-const requiredErrors = {
-  name: 'Name is required',
-  email: 'Email is required',
-  subject: 'Subject is required',
-  message: 'Message is required',
-};
-
 const formSchema = z.object({
-  name: z
-    .string({ required_error: requiredErrors.name })
-    .min(1, requiredErrors.name),
+  name: z.string().min(1, 'Name is required'),
   email: z
-    .string({ required_error: requiredErrors.email })
-    .min(1, requiredErrors.email)
+    .string()
+    .min(1, 'Email is required')
     .email('Email should be an email'),
-  subject: z
-    .string({ required_error: requiredErrors.subject })
-    .min(1, requiredErrors.subject),
-  message: z
-    .string({ required_error: requiredErrors.message })
-    .min(1, requiredErrors.message),
+  subject: z.string().min(1, 'Subject is required'),
+  message: z.string().min(1, 'Message is required'),
 });
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -206,7 +193,7 @@ export const Contact: FC<ContactProps> = (props) => {
                         fieldState: { error },
                       }) => (
                         <FormControl
-                          disabled={Boolean(isSubmitting || disabled)}
+                          disabled={isSubmitting || disabled}
                           error={Boolean(error)}
                         >
                           <FormLabel>Name</FormLabel>
@@ -225,7 +212,7 @@ export const Contact: FC<ContactProps> = (props) => {
                         fieldState: { error },
                       }) => (
                         <FormControl
-                          disabled={Boolean(isSubmitting || disabled)}
+                          disabled={isSubmitting || disabled}
                           error={Boolean(error)}
                         >
                           <FormLabel>Email</FormLabel>
@@ -244,7 +231,7 @@ export const Contact: FC<ContactProps> = (props) => {
                         fieldState: { error },
                       }) => (
                         <FormControl
-                          disabled={Boolean(isSubmitting || disabled)}
+                          disabled={isSubmitting || disabled}
                           error={Boolean(error)}
                         >
                           <FormLabel>Subject</FormLabel>
@@ -263,7 +250,7 @@ export const Contact: FC<ContactProps> = (props) => {
                         fieldState: { error },
                       }) => (
                         <FormControl
-                          disabled={Boolean(isSubmitting || disabled)}
+                          disabled={isSubmitting || disabled}
                           error={Boolean(error)}
                         >
                           <FormLabel>Message</FormLabel>
