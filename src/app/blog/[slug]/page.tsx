@@ -167,13 +167,19 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     props['data-rehype-pretty-code-title'] === '';
 
                   if (codeBlock) {
+                    const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Sheet
                         data-joy-color-scheme="dark"
-                        sx={{ borderRadius: 'md', my: 2, overflow: 'hidden' }}
+                        sx={{
+                          color,
+                          borderRadius: 'md',
+                          my: 2,
+                          overflow: 'hidden',
+                        }}
                         variant="outlined"
-                        {...props}
+                        {...rest}
                       />
                     );
                   }
@@ -182,7 +188,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     const language = props['data-language'];
                     const Icon =
                       language && getIconByProgrammingLanguage(language);
-                    const { children, ...rest } = props;
+                    const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
@@ -193,10 +199,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                         px={2}
                         py={1.5}
                         startDecorator={Icon ? <Icon /> : null}
+                        textColor={color}
                         {...rest}
-                      >
-                        {children}
-                      </Typography>
+                      />
                     );
                   }
 
