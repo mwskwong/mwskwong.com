@@ -188,6 +188,9 @@ export const Contact: FC<ContactProps> = (props) => {
                     <Controller
                       control={control}
                       name="name"
+                      // Don't use Controller.disabled prop to disable inputs when the form is submitting.
+                      // Setting it to true will set the corresponding field value to undefined which is not what we want.
+                      // Instead, make use of FOrmControl.disabled directly
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
