@@ -158,7 +158,15 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 ),
                 li: ({ color, ...props }) => (
                   // @ts-expect-error LegacyRef passed to RefObject
-                  <ListItem sx={{ color }} {...props} />
+                  <ListItem
+                    sx={{
+                      color,
+                      // handle <p>, which has margin by default, nested in <li>
+                      '& :first-child': { mt: 0 },
+                      '& :last-child': { mb: 0 },
+                    }}
+                    {...props}
+                  />
                 ),
                 div: (props) => {
                   const codeBlock =
@@ -220,6 +228,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         component="code"
+                        // explicitly stated since it can be used within other components like ListItem
+                        display="inline"
                         fontFamily="code"
                         fontSize="0.875em"
                         textColor={color}
