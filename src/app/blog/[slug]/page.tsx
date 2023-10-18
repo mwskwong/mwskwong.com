@@ -217,7 +217,13 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 },
                 pre: (props) => (
                   // @ts-expect-error LegacyRef passed to RefObject
-                  <Box component="pre" m={0} overflow="auto" p={2} {...props} />
+                  <Box
+                    component="pre"
+                    m={0}
+                    overflow="auto"
+                    py={2}
+                    {...props}
+                  />
                 ),
                 code: (props) => {
                   const inlineCode = props['data-language'] === undefined;
@@ -244,10 +250,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     <Box
                       component="code"
                       sx={{
+                        '& > [data-line]': { px: 2 },
                         '& > [data-highlighted-line]': {
                           bgcolor: 'neutral.softBg',
-                          mx: -2,
-                          px: 2,
                         },
                         '& [data-highlighted-chars]': {
                           bgcolor: 'neutral.softBg',
