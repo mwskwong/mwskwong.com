@@ -1,7 +1,6 @@
 'use client';
 
 import { Button, Container, Link, Stack, Typography } from '@mui/joy';
-import { Metadata } from 'next';
 import { FC } from 'react';
 
 import { email } from '@/constants/content';
