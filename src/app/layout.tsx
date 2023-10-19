@@ -2,8 +2,6 @@ import { Analytics } from '@vercel/analytics/react';
 import { Metadata } from 'next';
 import { FC, PropsWithChildren } from 'react';
 
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
 import {
   firstName,
   headline,
@@ -17,11 +15,7 @@ import { Providers } from './providers';
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en">
     <body>
-      <Providers>
-        <Header />
-        {children}
-        <Footer />
-      </Providers>
+      <Providers>{children}</Providers>
       <Analytics
         mode={
           process.env.VERCEL_ENV === 'production' ? 'production' : 'development'

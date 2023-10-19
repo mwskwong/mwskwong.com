@@ -82,6 +82,7 @@ module.exports = {
         'src/app/**/page.tsx',
         'src/app/**/layout.tsx',
         'src/app/**/not-found.tsx',
+        'src/app/**/*error.tsx',
         'src/app/**/sitemap.ts',
       ],
       rules: {
