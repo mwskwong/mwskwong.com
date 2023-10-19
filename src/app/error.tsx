@@ -15,7 +15,7 @@ const Error: FC<{
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      height: '1000vh',
+      height: '100%',
       textAlign: 'center',
     }}
   >
