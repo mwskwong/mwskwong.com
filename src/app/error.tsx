@@ -1,5 +1,6 @@
 'use client';
 
+import { RefreshRounded } from '@mui/icons-material';
 import { Button, Container, Link, Stack, Typography } from '@mui/joy';
 import { FC } from 'react';
 
@@ -27,7 +28,7 @@ const Error: FC<{
       <Typography>
         {error.message}. Please{' '}
         <Link href={`mailto:${email}`} underline="always">
-          email me
+          contact me
         </Link>
         {error.digest ? (
           <>
@@ -39,7 +40,7 @@ const Error: FC<{
         ) : null}{' '}
         to report the issue.
       </Typography>
-      <Button onClick={reset} size="lg">
+      <Button onClick={reset} size="lg" startDecorator={<RefreshRounded />}>
         Try Again
       </Button>
     </Stack>
