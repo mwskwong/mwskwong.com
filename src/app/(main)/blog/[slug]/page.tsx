@@ -13,7 +13,6 @@ import {
   Typography,
 } from '@mui/joy';
 import { Metadata } from 'next';
-import { unstable_cache as cache } from 'next/cache';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
@@ -55,7 +54,7 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const blog = await cache(getBlogBySlug)(slug);
+  const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
   const metadata = await prisma.blogMetadata.findUnique({
@@ -305,7 +304,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 export const revalidate = 3600;
 
 export const generateStaticParams = (): Promise<BlogProps['params'][]> =>
-  cache(getBlogs)().then((blogs) => blogs.map(({ slug }) => ({ slug })));
+  getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
 
 export const generateMetadata = async ({
   params: { slug },

@@ -1,5 +1,4 @@
 import { Box, BoxProps, IconButton, Link, Stack, Typography } from '@mui/joy';
-import { unstable_cache as cache } from 'next/cache';
 import { FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
@@ -8,7 +7,7 @@ import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 export type FooterProps = Omit<BoxProps<'footer'>, 'children'>;
 export const Footer: FC<FooterProps> = async (props) => {
-  const platformProfiles = await cache(getPlatformProfiles)();
+  const platformProfiles = await getPlatformProfiles();
   const currYear = new Date().getFullYear();
 
   return (

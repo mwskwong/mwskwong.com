@@ -1,11 +1,10 @@
 import { MetadataRoute } from 'next';
-import { unstable_cache as cache } from 'next/cache';
 
 import { getBlogs } from '@/lib/get-blogs';
 import { baseUrl } from '@/utils/base-url';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  const blogs = await cache(getBlogs)();
+  const blogs = await getBlogs();
 
   return [
     {
