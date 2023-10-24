@@ -4,7 +4,6 @@ import {
   ContentCopyRounded,
   DoneRounded,
   ShareRounded,
-  VisibilityRounded,
 } from '@mui/icons-material';
 import {
   Dropdown,
@@ -14,9 +13,6 @@ import {
   Menu,
   MenuButton,
   MenuItem,
-  Stack,
-  StackProps,
-  Typography,
 } from '@mui/joy';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useMemo, useState } from 'react';
@@ -30,23 +26,15 @@ import { LinkedIn } from '../icons/linkedin';
 import { Reddit } from '../icons/reddit';
 import { X } from '../icons/x';
 
-const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
-
-export interface ActionsProps extends StackProps {
+export interface ActionsProps {
   blog: {
     id: string;
-    updatedAt: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
-    coverPhoto?: string;
     categories?: string[];
     title: string;
-    slug: string;
-    description: string;
-    content?: string;
   };
-  view?: number;
 }
 
-export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
+export const Actions: FC<ActionsProps> = ({ blog }) => {
   const [copied, setCopied] = useState(false);
   const pathname = usePathname();
 
@@ -84,16 +72,7 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
   useEffect(() => void viewBlogById(blog.id), [blog.id]);
 
   return (
-    <Stack
-      alignItems="center"
-      direction="row"
-      justifyContent="space-around"
-      spacing={1}
-      {...props}
-    >
-      <Typography mr={1} startDecorator={<VisibilityRounded />}>
-        {numberFormatter.format(view)} views
-      </Typography>
+    <>
       <IconButton
         aria-label="copy blog url"
         color={copied ? 'success' : undefined}
@@ -130,6 +109,6 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
           </MenuItem>
         </Menu>
       </Dropdown>
-    </Stack>
+    </>
   );
 };

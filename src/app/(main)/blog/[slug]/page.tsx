@@ -20,6 +20,7 @@ import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { IThemeRegistration, getHighlighter } from 'shiki';
 
+import { Actions } from '@/components/blog/actions';
 import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
@@ -56,9 +57,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
-  // eslint-disable-next-line no-console -- debug
-  console.error('blog page called');
-
   return (
     <>
       <main>
@@ -93,6 +91,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 <Suspense>
                   <ViewCount blogId={blog.id} />
                 </Suspense>
+                <Actions blog={blog} />
               </Stack>
             </Grid>
           </Grid>
