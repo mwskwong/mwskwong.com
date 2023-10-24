@@ -1,4 +1,3 @@
-import { VisibilityRounded } from '@mui/icons-material';
 import {
   Card,
   CardContent,
@@ -12,11 +11,11 @@ import {
 } from '@mui/joy';
 import { Metadata, ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
+import { ViewCount } from '@/components/blog/view-count';
 import { SectionDivider } from '@/components/section-divider';
-import { prisma } from '@/lib/db';
 import { getBlogs } from '@/lib/get-blogs';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
@@ -24,13 +23,9 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',
   day: 'numeric',
 });
-const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
-  const blogsMetadata = await prisma.blogMetadata.findMany({
-    where: { id: { in: blogs.map(({ id }) => id) } },
-  });
 
   return (
     <>
@@ -92,17 +87,9 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(updatedAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <Typography
-                        level="body-sm"
-                        startDecorator={<VisibilityRounded />}
-                      >
-                        {numberFormatter.format(
-                          blogsMetadata.find(
-                            ({ id: blogMetadataId }) => blogMetadataId === id,
-                          )?.view ?? 0,
-                        )}{' '}
-                        views
-                      </Typography>
+                      <Suspense>
+                        <ViewCount blogId={id} level="body-sm" />
+                      </Suspense>
                     </CardContent>
                   </Card>
                 </Grid>
@@ -115,8 +102,6 @@ const Blogs: FC = async () => {
     </>
   );
 };
-
-export const revalidate = 3600;
 
 export const generateMetadata = async (
   _: object,
