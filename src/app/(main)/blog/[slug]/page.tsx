@@ -15,7 +15,7 @@ import {
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { IThemeRegistration, getHighlighter } from 'shiki';
@@ -88,7 +88,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 justifyContent="space-around"
                 spacing={1}
               >
-                <ViewCount blogId={blog.id} mr={1} />
+                <Suspense>
+                  <ViewCount blogId={blog.id} mr={1} />
+                </Suspense>
                 <Actions blog={blog} />
               </Stack>
             </Grid>
