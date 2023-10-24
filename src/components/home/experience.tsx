@@ -1,4 +1,5 @@
 import { Box, BoxProps, Container, Stack, Typography } from '@mui/joy';
+import { unstable_cache as cache } from 'next/cache';
 import { FC } from 'react';
 
 import { experience } from '@/constants/nav';
@@ -8,7 +9,7 @@ import { Timeline, TimelineItem } from './timeline';
 
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
 export const Experience: FC<ExperienceProps> = async (props) => {
-  const experiences = await getExperiences().then((experiences) =>
+  const experiences = await cache(getExperiences)().then((experiences) =>
     experiences.map(
       ({
         from,

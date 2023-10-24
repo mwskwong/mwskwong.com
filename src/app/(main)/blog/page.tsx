@@ -11,6 +11,7 @@ import {
   Typography,
 } from '@mui/joy';
 import { Metadata, ResolvingMetadata } from 'next';
+import { unstable_cache as cache } from 'next/cache';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -27,7 +28,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 const Blogs: FC = async () => {
-  const blogs = await getBlogs({ page: 1 });
+  const blogs = await cache(getBlogs)({ page: 1 });
   const blogsMetadata = await prisma.blogMetadata.findMany({
     where: { id: { in: blogs.map(({ id }) => id) } },
   });

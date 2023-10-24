@@ -1,4 +1,5 @@
 import { Box, BoxProps, Container, Stack, Typography } from '@mui/joy';
+import { unstable_cache as cache } from 'next/cache';
 import { FC } from 'react';
 
 import { education } from '@/constants/nav';
@@ -11,7 +12,7 @@ import { Timeline, TimelineItem } from './timeline';
 export type EducationProps = Omit<BoxProps<'section'>, 'children'>;
 export const Education: FC<EducationProps> = async (props) => {
   const [educations, courses] = await Promise.all([
-    getEducations().then((educations) =>
+    cache(getEducations)().then((educations) =>
       educations.map(({ from, to, program, school, supportingDocuments }) => ({
         from: new Date(from),
         to: to && new Date(to),
@@ -20,7 +21,7 @@ export const Education: FC<EducationProps> = async (props) => {
         supportingDocuments,
       })),
     ),
-    getCourses(),
+    cache(getCourses)(),
   ]);
 
   return (

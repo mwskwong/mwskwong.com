@@ -9,6 +9,7 @@ import {
   ListItemButton,
   Stack,
 } from '@mui/joy';
+import { unstable_cache as cache } from 'next/cache';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -23,7 +24,7 @@ import { NavDrawer } from './nav-drawer';
 
 export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
 export const Header: FC<HeaderProps> = async (props) => {
-  const platformProfiles = (await getPlatformProfiles()).filter(
+  const platformProfiles = (await cache(getPlatformProfiles)()).filter(
     ({ platform }) => platform?.id !== linkedin,
   );
 

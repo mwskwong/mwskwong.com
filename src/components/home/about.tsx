@@ -8,6 +8,7 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
+import { unstable_cache as cache } from 'next/cache';
 import { FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
@@ -21,8 +22,8 @@ import { Image } from '../image';
 export type AboutProps = Omit<BoxProps<'section'>, 'children'>;
 export const About: FC<AboutProps> = async (props) => {
   const [personalPhoto, skillCategories] = await Promise.all([
-    getPersonalPhoto(),
-    getSkillCategories(),
+    cache(getPersonalPhoto)(),
+    cache(getSkillCategories)(),
   ]);
 
   return (
