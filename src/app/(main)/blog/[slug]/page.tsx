@@ -89,7 +89,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 spacing={1}
               >
                 <Suspense>
-                  <ViewCount blogId={blog.id} />
+                  <ViewCount blogId={blog.id} mr={1} />
                 </Suspense>
                 <Actions blog={blog} />
               </Stack>
