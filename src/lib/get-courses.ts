@@ -1,4 +1,4 @@
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 import { contentful } from './client';
 import { CourseSkeleton } from './types';
@@ -24,4 +24,4 @@ export const getCourses = cache(async () => {
       .filter((category): category is string => Boolean(category))
       .sort(),
   }));
-});
+}, ['courses', 'list']);

@@ -1,4 +1,4 @@
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 import { contentful } from './client';
 import { EducationSkeleton } from './types';
@@ -37,4 +37,4 @@ export const getEducations = cache(async () => {
       )
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
   }));
-});
+}, ['education', 'list']);

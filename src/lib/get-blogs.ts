@@ -1,4 +1,4 @@
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 import { contentful } from './client';
 import { BlogSkeleton } from './types';
@@ -37,4 +37,5 @@ export const getBlogs = cache(
       description: item.fields.description,
     }));
   },
+  ['blogs', 'list'],
 );
