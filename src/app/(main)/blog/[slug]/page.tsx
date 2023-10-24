@@ -15,18 +15,17 @@ import {
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { IThemeRegistration, getHighlighter } from 'shiki';
 
-import { Actions } from '@/components/blog/actions';
 import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
+import { ViewCount } from '@/components/blog/view-count';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
-import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
@@ -57,9 +56,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
-  const metadata = await prisma.blogMetadata.findUnique({
-    where: { id: blog.id },
-  });
+  // eslint-disable-next-line no-console -- debug
+  console.error('blog page called');
 
   return (
     <>
@@ -86,7 +84,16 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
             </Grid>
             <Grid sm="auto" xs={12}>
-              <Actions blog={blog} {...metadata} />
+              <Stack
+                alignItems="center"
+                direction="row"
+                justifyContent="space-around"
+                spacing={1}
+              >
+                <Suspense>
+                  <ViewCount blogId={blog.id} />
+                </Suspense>
+              </Stack>
             </Grid>
           </Grid>
           {blog.coverPhoto ? <CoverImage src={blog.coverPhoto} /> : null}
@@ -300,8 +307,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     </>
   );
 };
-
-export const revalidate = 3600;
 
 export const generateStaticParams = (): Promise<BlogProps['params'][]> =>
   getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
