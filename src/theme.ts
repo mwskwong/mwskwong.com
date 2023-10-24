@@ -43,13 +43,6 @@ export const theme = extendTheme({
     nprogress: 2000,
   },
   components: {
-    JoyLink: {
-      styleOverrides: {
-        root: {
-          userSelect: 'unset',
-        },
-      },
-    },
     JoyStack: {
       defaultProps: {
         useFlexGap: true,
