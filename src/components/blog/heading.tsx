@@ -2,7 +2,7 @@
 
 import { LinkRounded } from '@mui/icons-material';
 import { Link, Typography, TypographyProps, typographyClasses } from '@mui/joy';
-import mergeSx from 'merge-sx';
+import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 
 export type HeadingProps = TypographyProps;

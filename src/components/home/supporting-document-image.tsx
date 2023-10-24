@@ -1,6 +1,6 @@
 'use client';
 
-import mergeSx from 'merge-sx';
+import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 import { SetOptional } from 'type-fest';
 

@@ -13,7 +13,7 @@ import {
   Typography,
 } from '@mui/joy';
 import { applySolidInversion } from '@mui/joy/colorInversion';
-import mergeSx from 'merge-sx';
+import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 
 import { websiteTechStack } from '@/constants/content';
