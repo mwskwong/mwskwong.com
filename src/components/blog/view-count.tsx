@@ -10,6 +10,7 @@ export interface ViewCountProps extends Omit<TypographyProps, 'children'> {
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
+// TODO: this can be a problem in `/blog` page, since it queries the DB more than it needs
 export const ViewCount: FC<ViewCountProps> = async ({ blogId, ...props }) => {
   noStore();
   const metadata = await prisma.blogMetadata.findUnique({
