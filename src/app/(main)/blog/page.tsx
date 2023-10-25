@@ -11,7 +11,7 @@ import {
 } from '@mui/joy';
 import { Metadata, ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { ViewCount } from '@/components/blog/view-count';
@@ -87,7 +87,9 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(updatedAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <ViewCount blogId={id} level="body-sm" />
+                      <Suspense>
+                        <ViewCount blogId={id} level="body-sm" />
+                      </Suspense>
                     </CardContent>
                   </Card>
                 </Grid>

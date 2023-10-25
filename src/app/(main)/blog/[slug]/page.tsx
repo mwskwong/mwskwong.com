@@ -1,5 +1,3 @@
-import { resolve } from 'node:path';
-
 import {
   Box,
   Chip,
@@ -18,7 +16,6 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC, Suspense } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
-import { IThemeRegistration, getHighlighter } from 'shiki';
 
 import { Actions } from '@/components/blog/actions';
 import { ContactMe } from '@/components/blog/contact-me';
@@ -46,7 +43,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'long',
   day: 'numeric',
 });
-const shikiPath = resolve('.shiki');
+
 const contactMeBgColor = 'primary.solidBg';
 
 interface BlogProps {
@@ -279,16 +276,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       {
                         theme: 'dark-plus',
                         keepBackground: false,
-                        getHighlighter: (options: {
-                          theme: IThemeRegistration;
-                        }) =>
-                          getHighlighter({
-                            ...options,
-                            paths: {
-                              languages: `${shikiPath}/languages`,
-                              themes: `${shikiPath}/themes`,
-                            },
-                          }),
                       } satisfies Options,
                     ],
                     rehypeSlug,
