@@ -1,7 +1,6 @@
 import { Theme, extendTheme } from '@mui/joy';
 import { Interpolation } from '@mui/styled-engine';
-// eslint-disable-next-line camelcase -- Next.js naming convention
-import { Rubik, Source_Code_Pro } from 'next/font/google';
+import { Rubik, Source_Code_Pro as SourceCodePro } from 'next/font/google';
 
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
@@ -23,7 +22,7 @@ declare module '@mui/joy/SvgIcon' {
 }
 
 const rubik = Rubik({ subsets: ['latin'] });
-const sourceCodePro = Source_Code_Pro({
+const sourceCodePro = SourceCodePro({
   subsets: ['latin'],
   adjustFontFallback: false,
   fallback: ['monospace'],
