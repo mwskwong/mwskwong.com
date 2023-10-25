@@ -1,5 +1,5 @@
 import { orderBy } from 'lodash-es';
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 import { contentful } from './client';
 import { PlatformProfileSkeleton } from './types';
@@ -19,4 +19,4 @@ export const getPlatformProfiles = cache(async () => {
   }));
 
   return orderBy(platformProfiles, 'platform.name');
-});
+}, ['platformProfiles', 'list']);

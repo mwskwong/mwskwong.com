@@ -1,6 +1,6 @@
 import { Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
-import { cache } from 'react';
+import { unstable_cache as cache } from 'next/cache';
 
 import { contentful } from './client';
 import {
@@ -72,4 +72,4 @@ export const getExperiences = cache(async () => {
       )
       .map((skill) => skill.fields.name),
   }));
-});
+}, ['experiences', 'list']);
