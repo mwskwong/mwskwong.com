@@ -125,10 +125,13 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
             )}
             {(projects.length > 0 || supportingDocuments.length > 0) && (
               <List
+                orientation="horizontal"
                 sx={{
                   '--List-radius': 'var(--joy-radius-sm)',
                   '--List-padding': '0px',
                   '--ListItemDecorator-size': `calc(${listItemImageSize.width}px + var(--ListItem-paddingX))`,
+                  flexWrap: 'wrap',
+                  '& > li': { maxWidth: 'sm' },
                 }}
               >
                 {projects.map(({ name, thumbnail = '', url }) => (
