@@ -72,4 +72,4 @@ export const getExperiences = cache(async () => {
       )
       .map((skill) => skill.fields.name),
   }));
-}, ['experiences', 'list']);
+});

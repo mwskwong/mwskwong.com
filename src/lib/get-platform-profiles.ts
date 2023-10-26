@@ -19,4 +19,4 @@ export const getPlatformProfiles = cache(async () => {
   }));
 
   return orderBy(platformProfiles, 'platform.name');
-}, ['platformProfiles', 'list']);
+});

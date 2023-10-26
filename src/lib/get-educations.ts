@@ -37,4 +37,4 @@ export const getEducations = cache(async () => {
       )
       .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
   }));
-}, ['educations', 'list']);
+});

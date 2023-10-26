@@ -16,8 +16,8 @@ import { FC } from 'react';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { SectionDivider } from '@/components/section-divider';
-import { prisma } from '@/lib/db';
 import { getBlogs } from '@/lib/get-blogs';
+import { getBlogsMetadata } from '@/lib/get-blogs-metadata';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -28,7 +28,7 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
-  const blogsMetadata = await prisma.blogMetadata.findMany({
+  const blogsMetadata = await getBlogsMetadata({
     where: { id: { in: blogs.map(({ id }) => id) } },
   });
 
@@ -115,8 +115,6 @@ const Blogs: FC = async () => {
     </>
   );
 };
-
-export const revalidate = 3600;
 
 export const generateMetadata = async (
   _: object,
