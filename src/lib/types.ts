@@ -64,6 +64,9 @@ export interface ExperienceSkeleton {
     companiesRelationship?: EntryFieldTypes.Symbol;
     employmentType: EntryFieldTypes.Symbol;
     jobDuties?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    projects?: EntryFieldTypes.Array<
+      EntryFieldTypes.EntryLink<ProjectSkeleton>
+    >;
     supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
     skills: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<SkillSkeleton>>;
   };
@@ -83,6 +86,15 @@ export interface PlatformProfileSkeleton {
   fields: {
     platform: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     url: EntryFieldTypes.Symbol;
+  };
+}
+
+export interface ProjectSkeleton {
+  contentTypeId: 'project';
+  fields: {
+    name: EntryFieldTypes.Symbol;
+    url: EntryFieldTypes.Symbol;
+    thumbnail: EntryFieldTypes.AssetLink;
   };
 }
 
