@@ -37,5 +37,4 @@ export const getBlogs = cache(
       description: item.fields.description,
     }));
   },
-  ['blogs', 'list'],
 );

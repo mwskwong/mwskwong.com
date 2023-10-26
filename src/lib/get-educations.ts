@@ -26,15 +26,11 @@ export const getEducations = cache(async () => {
         item.fields.school.fields.logo?.fields.file &&
         `https:${item.fields.school.fields.logo.fields.file.url}`,
     },
-    supportingDocuments: item.fields.supportingDocuments
-      ?.map(
-        (supportingDocument) =>
-          supportingDocument?.fields.title &&
-          supportingDocument.fields.file && {
-            title: supportingDocument.fields.title,
-            url: `https:${supportingDocument.fields.file.url}`,
-          },
-      )
-      .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
+    supportingDocuments: item.fields.supportingDocuments?.map(
+      (supportingDocument) => ({
+        title: supportingDocument?.fields.title,
+        url: `https:${supportingDocument?.fields.file?.url}`,
+      }),
+    ),
   }));
-}, ['educations', 'list']);
+});

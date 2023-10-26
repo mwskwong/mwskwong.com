@@ -24,4 +24,4 @@ export const getCourses = cache(async () => {
       .filter((category): category is string => Boolean(category))
       .sort(),
   }));
-}, ['courses', 'list']);
+});

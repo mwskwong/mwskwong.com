@@ -24,6 +24,7 @@ export const getExperiences = cache(async () => {
       'fields.jobDuties',
       'fields.jobTitle',
       'fields.skills',
+      'fields.projects',
       'fields.supportingDocuments',
       'fields.to',
     ],
@@ -55,16 +56,16 @@ export const getExperiences = cache(async () => {
           company.fields.logo?.fields.file &&
           `https:${company.fields.logo.fields.file.url}`,
       })),
-    supportingDocuments: item.fields.supportingDocuments
-      ?.map(
-        (supportingDocument) =>
-          supportingDocument?.fields.title &&
-          supportingDocument.fields.file && {
-            title: supportingDocument.fields.title,
-            url: `https:${supportingDocument.fields.file.url}`,
-          },
-      )
-      .filter((elem): elem is { title: string; url: string } => Boolean(elem)),
+    projects: item.fields.projects?.map((project) => ({
+      ...project?.fields,
+      thumbnail: `https:${project?.fields.thumbnail?.fields.file?.url}`,
+    })),
+    supportingDocuments: item.fields.supportingDocuments?.map(
+      (supportingDocument) => ({
+        title: supportingDocument?.fields.title,
+        url: `https:${supportingDocument?.fields.file?.url}`,
+      }),
+    ),
     skills: item.fields.skills
       .filter(
         (elem): elem is Entry<SkillSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> =>
@@ -72,4 +73,4 @@ export const getExperiences = cache(async () => {
       )
       .map((skill) => skill.fields.name),
   }));
-}, ['experiences', 'list']);
+});

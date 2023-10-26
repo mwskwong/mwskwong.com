@@ -10,16 +10,28 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
+import { SxProps } from '@mui/joy/styles/types';
+import { StaticImageData } from 'next/image';
 import { FC, Fragment, forwardRef } from 'react';
 
-import { SupportingDocumentImage } from './supporting-document-image';
+import { Image } from '../image';
+
+import { PdfImage } from './pdf-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',
   year: 'numeric',
 });
 
-const supportingDocumentImageSize = { width: 80, height: 56 };
+const listItemImageSize = { width: 80, height: 56 };
+const listItemImageSx = {
+  objectFit: 'cover',
+  objectPosition: 'top',
+  flexShrink: 0,
+  borderRadius: 'var(--ListItem-radius)',
+  border: 1,
+  borderColor: 'neutral.outlinedBorder',
+} satisfies SxProps;
 
 export interface TimelineItemProps extends Omit<GridProps, 'children'> {
   from?: Date;
@@ -31,9 +43,14 @@ export interface TimelineItemProps extends Omit<GridProps, 'children'> {
   }[];
   organizationsRelationship?: string;
   descriptions?: string[];
+  projects?: {
+    name?: string;
+    url?: string;
+    thumbnail?: string | StaticImageData;
+  }[];
   supportingDocuments?: {
-    title: string;
-    url: string;
+    title?: string;
+    url?: string;
   }[];
   tags?: string[];
 }
@@ -47,6 +64,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
       organizations = [],
       organizationsRelationship,
       descriptions = [],
+      projects = [],
       supportingDocuments = [],
       tags = [],
       ...props
@@ -105,23 +123,49 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                 ))}
               </List>
             )}
-            {supportingDocuments.length > 0 && (
+            {(projects.length > 0 || supportingDocuments.length > 0) && (
               <List
+                orientation="horizontal"
                 sx={{
                   '--List-radius': 'var(--joy-radius-sm)',
                   '--List-padding': '0px',
-                  '--ListItemDecorator-size': `calc(${supportingDocumentImageSize.width}px + var(--ListItem-paddingX))`,
+                  '--ListItemDecorator-size': `calc(${listItemImageSize.width}px + var(--ListItem-paddingX))`,
+                  flexWrap: 'wrap',
+                  '& > li': {
+                    minWidth: { sm: 250 },
+                    width: { xs: '100%', sm: 'auto' },
+                    maxWidth: { sm: 400 },
+                  },
                 }}
               >
-                {supportingDocuments.map(({ title, url }) => (
+                {projects.map(({ name, thumbnail = '', url }) => (
                   <ListItem key={title}>
                     <ListItemButton component="a" href={url} target="_blank">
                       <ListItemDecorator
                         sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
                       >
-                        <SupportingDocumentImage
+                        <Image
+                          alt=""
+                          src={thumbnail}
+                          {...listItemImageSize}
+                          sx={listItemImageSx}
+                        />
+                      </ListItemDecorator>
+                      {name}
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+                {supportingDocuments.map(({ title, url = '' }) => (
+                  <ListItem key={title}>
+                    <ListItemButton component="a" href={url} target="_blank">
+                      <ListItemDecorator
+                        sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
+                      >
+                        <PdfImage
+                          alt=""
                           src={url}
-                          {...supportingDocumentImageSize}
+                          {...listItemImageSize}
+                          sx={listItemImageSx}
                         />
                       </ListItemDecorator>
                       {title}
