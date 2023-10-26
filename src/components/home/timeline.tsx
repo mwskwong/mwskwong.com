@@ -132,7 +132,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                   '--ListItemDecorator-size': `calc(${listItemImageSize.width}px + var(--ListItem-paddingX))`,
                   flexWrap: 'wrap',
                   '& > li': {
-                    minWidth: { sm: 200 },
+                    minWidth: { sm: 300 },
                     width: { xs: '100%', sm: 'auto' },
                     maxWidth: { sm: 400 },
                   },
