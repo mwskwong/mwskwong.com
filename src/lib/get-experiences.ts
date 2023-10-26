@@ -58,7 +58,7 @@ export const getExperiences = cache(async () => {
       })),
     projects: item.fields.projects?.map((project) => ({
       ...project?.fields,
-      thumbnail: project?.fields.thumbnail?.fields.file?.url,
+      thumbnail: `https:${project?.fields.thumbnail?.fields.file?.url}`,
     })),
     supportingDocuments: item.fields.supportingDocuments?.map(
       (supportingDocument) => ({
