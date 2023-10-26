@@ -131,7 +131,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                   '--List-padding': '0px',
                   '--ListItemDecorator-size': `calc(${listItemImageSize.width}px + var(--ListItem-paddingX))`,
                   flexWrap: 'wrap',
-                  '& > li': { maxWidth: 'sm' },
+                  '& > li': { maxWidth: { sm: 400 } },
                 }}
               >
                 {projects.map(({ name, thumbnail = '', url }) => (
