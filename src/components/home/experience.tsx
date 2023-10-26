@@ -18,7 +18,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
         companiesRelationship,
         jobDuties,
         skills,
-        supportingDocuments,
+        ...rest
       }) => ({
         from: new Date(from),
         to: to && new Date(to),
@@ -27,7 +27,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
         organizationsRelationship: companiesRelationship,
         descriptions: jobDuties,
         tags: skills,
-        supportingDocuments,
+        ...rest,
       }),
     ),
   );
