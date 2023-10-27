@@ -12,6 +12,9 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
+// importing this in client component will result in an error, so we cannot do that in theme.ts
+// import mono font here since only `/blog/:slug` need to use monospace font
+import { GeistMono } from 'geist/font';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -61,7 +64,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
   return (
     <>
-      <main>
+      <main className={GeistMono.variable}>
         <Container
           component="article"
           maxWidth="md"

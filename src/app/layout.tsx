@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/react';
 // importing this in client component will result in an error, so we cannot do that in theme.ts
-import { GeistMono, GeistSans } from 'geist/font';
+import { GeistSans } from 'geist/font';
 import { Metadata } from 'next';
 import { FC, PropsWithChildren } from 'react';
 
@@ -15,7 +15,7 @@ import { baseUrl } from '@/utils/base-url';
 import { Providers } from './providers';
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-  <html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en">
+  <html className={GeistSans.variable} lang="en">
     <body>
       <Providers>{children}</Providers>
       <Analytics
