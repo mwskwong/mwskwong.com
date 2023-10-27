@@ -37,4 +37,5 @@ export const getBlogs = cache(
       description: item.fields.description,
     }));
   },
+  [process.env.VERCEL_GIT_COMMIT_REF ?? ''],
 );
