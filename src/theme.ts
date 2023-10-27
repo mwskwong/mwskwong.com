@@ -21,7 +21,7 @@ declare module '@mui/joy/SvgIcon' {
 }
 
 export const theme = extendTheme({
-  // fonts loaded in app/layout.tsx and app/(main)/blog/[slug]/page.tsx
+  // fonts loaded in app/layout.tsx
   fontFamily: {
     body: 'var(--font-geist-sans)',
     display: 'var(--font-geist-sans)',
