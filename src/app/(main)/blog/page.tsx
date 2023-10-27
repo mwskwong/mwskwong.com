@@ -17,7 +17,7 @@ import { FC } from 'react';
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { SectionDivider } from '@/components/section-divider';
 import { getBlogs } from '@/lib/get-blogs';
-import { getBlogsMetadata } from '@/lib/get-blogs-metadata';
+import { getBlogsMetadataByIds } from '@/lib/get-blogs-metadata-by-ids';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -28,9 +28,7 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
-  const blogsMetadata = await getBlogsMetadata({
-    where: { id: { in: blogs.map(({ id }) => id) } },
-  });
+  const blogsMetadata = await getBlogsMetadataByIds(blogs.map(({ id }) => id));
 
   return (
     <>
