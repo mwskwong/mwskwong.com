@@ -4,6 +4,6 @@ import { prisma } from './db';
 
 export const getBlogMetadataById = cache(
   (id: string) => prisma.blogMetadata.findUnique({ where: { id } }),
-  undefined,
+  [process.env.VERCEL_GIT_COMMIT_REF ?? ''],
   { revalidate: 3600 },
 );

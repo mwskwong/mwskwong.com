@@ -73,4 +73,4 @@ export const getExperiences = cache(async () => {
       )
       .map((skill) => skill.fields.name),
   }));
-});
+}, [process.env.VERCEL_GIT_COMMIT_REF ?? '']);

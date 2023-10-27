@@ -33,4 +33,4 @@ export const getEducations = cache(async () => {
       }),
     ),
   }));
-});
+}, [process.env.VERCEL_GIT_COMMIT_REF ?? '']);
