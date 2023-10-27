@@ -1,13 +1,13 @@
 import { Box, BoxProps, Container, Stack, Typography } from '@mui/joy';
 import { FC } from 'react';
 
-import { experience } from '@/constants/nav';
+import { experiences as experiencesSection } from '@/constants/nav';
 import { getExperiences } from '@/lib/get-experiences';
 
 import { Timeline, TimelineItem } from './timeline';
 
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
-export const Experience: FC<ExperienceProps> = async (props) => {
+export const Experiences: FC<ExperienceProps> = async (props) => {
   const experiences = await getExperiences().then((experiences) =>
     experiences.map(
       ({
@@ -36,12 +36,12 @@ export const Experience: FC<ExperienceProps> = async (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={8}>
-          <Typography id={experience.id} level="h2" textAlign="center">
-            Experience
+          <Typography id={experiencesSection.id} level="h2" textAlign="center">
+            Experiences
           </Typography>
           <Timeline>
-            {experiences.map((experience) => (
-              <TimelineItem key={experience.title} {...experience} />
+            {experiences.map((experiences) => (
+              <TimelineItem key={experiences.title} {...experiences} />
             ))}
           </Timeline>
         </Stack>

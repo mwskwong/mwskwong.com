@@ -1,7 +1,7 @@
 import { Box, BoxProps, Container, Stack, Typography } from '@mui/joy';
 import { FC } from 'react';
 
-import { education } from '@/constants/nav';
+import { educations as educationsSection } from '@/constants/nav';
 import { getCourses } from '@/lib/get-courses';
 import { getEducations } from '@/lib/get-educations';
 
@@ -9,7 +9,7 @@ import { SelfLearning } from './self-learning';
 import { Timeline, TimelineItem } from './timeline';
 
 export type EducationProps = Omit<BoxProps<'section'>, 'children'>;
-export const Education: FC<EducationProps> = async (props) => {
+export const Educations: FC<EducationProps> = async (props) => {
   const [educations, courses] = await Promise.all([
     getEducations().then((educations) =>
       educations.map(({ from, to, program, school, supportingDocuments }) => ({
@@ -27,12 +27,12 @@ export const Education: FC<EducationProps> = async (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={8}>
-          <Typography id={education.id} level="h2" textAlign="center">
-            Education
+          <Typography id={educationsSection.id} level="h2" textAlign="center">
+            Educations
           </Typography>
           <Timeline>
-            {educations.map((education) => (
-              <TimelineItem key={education.title} {...education} />
+            {educations.map((educations) => (
+              <TimelineItem key={educations.title} {...educations} />
             ))}
           </Timeline>
           <SelfLearning courses={courses} />

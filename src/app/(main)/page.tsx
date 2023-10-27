@@ -2,18 +2,19 @@ import { FC } from 'react';
 
 import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';
-import { Education } from '@/components/home/education';
-import { Experience } from '@/components/home/experience';
 import { FunFact } from '@/components/home/fun-fact';
 import { Hero } from '@/components/home/hero';
 import { SectionDivider } from '@/components/section-divider';
+
+import { Educations } from '@/components/home/educations';
+import { Experiences } from '@/components/home/experiences';
 
 const bgcolors = {
   hero: 'background.body',
   about: 'background.surface',
   funFact: 'primary.solidBg',
-  experience: 'background.body',
-  education: 'background.surface',
+  experiences: 'background.body',
+  educations: 'background.surface',
   contact: 'background.body',
 };
 
@@ -27,16 +28,16 @@ const Home: FC = () => (
       <SectionDivider bgcolor={bgcolors.funFact} color={bgcolors.about} />
 
       <FunFact sx={{ bgcolor: bgcolors.funFact }} />
-      <SectionDivider bgcolor={bgcolors.experience} color={bgcolors.funFact} />
+      <SectionDivider bgcolor={bgcolors.experiences} color={bgcolors.funFact} />
 
-      <Experience color={bgcolors.experience} />
+      <Experiences color={bgcolors.experiences} />
       <SectionDivider
-        bgcolor={bgcolors.education}
-        color={bgcolors.experience}
+        bgcolor={bgcolors.educations}
+        color={bgcolors.experiences}
       />
 
-      <Education bgcolor={bgcolors.education} />
-      <SectionDivider bgcolor={bgcolors.contact} color={bgcolors.education} />
+      <Educations bgcolor={bgcolors.educations} />
+      <SectionDivider bgcolor={bgcolors.contact} color={bgcolors.educations} />
 
       <Contact bgcolor={bgcolors.contact} />
     </main>
