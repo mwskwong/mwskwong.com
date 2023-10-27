@@ -1,6 +1,7 @@
+const vercelPrettierOptions = require('@vercel/style-guide/prettier');
+
+/** @type {import('prettier').Options} */
 module.exports = {
-  plugins: ["@trivago/prettier-plugin-sort-imports"],
-  importOrder: ["^@/(.*)$", "^[./]"],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
+  ...vercelPrettierOptions,
+  plugins: ['prettier-plugin-prisma'],
 };
