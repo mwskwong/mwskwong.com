@@ -26,7 +26,8 @@ const Error: FC<{
     <Stack alignItems={{ sm: 'center' }} spacing={2}>
       <Typography level="h2">Something went wrong</Typography>
       <Typography>
-        {error.message}. Please{' '}
+        {error.message}
+        {error.message.endsWith('.') ? '' : '.'} Please{' '}
         <Link href={`mailto:${email}`} underline="always">
           contact me
         </Link>

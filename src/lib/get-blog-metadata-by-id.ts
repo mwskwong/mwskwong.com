@@ -2,8 +2,8 @@ import { unstable_cache as cache } from 'next/cache';
 
 import { prisma } from './db';
 
-export const getBlogMetadata = cache(
-  prisma.blogMetadata.findUnique,
+export const getBlogMetadataById = cache(
+  (id: string) => prisma.blogMetadata.findUnique({ where: { id } }),
   undefined,
   { revalidate: 3600 },
 );
