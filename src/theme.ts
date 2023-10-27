@@ -1,6 +1,6 @@
 import { Theme, extendTheme } from '@mui/joy';
 import { Interpolation } from '@mui/styled-engine';
-import { Rubik, Source_Code_Pro as SourceCodePro } from 'next/font/google';
+import { GeistMono, GeistSans } from 'geist/font';
 
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
@@ -21,18 +21,11 @@ declare module '@mui/joy/SvgIcon' {
   }
 }
 
-const rubik = Rubik({ subsets: ['latin'] });
-const sourceCodePro = SourceCodePro({
-  subsets: ['latin'],
-  adjustFontFallback: false,
-  fallback: ['monospace'],
-});
-
 export const theme = extendTheme({
   fontFamily: {
-    body: rubik.style.fontFamily,
-    display: rubik.style.fontFamily,
-    code: sourceCodePro.style.fontFamily,
+    body: GeistSans.style.fontFamily,
+    display: GeistSans.style.fontFamily,
+    code: GeistMono.style.fontFamily,
   },
   fontSize: {
     xl5: '3rem',
