@@ -1,6 +1,5 @@
 import { Theme, extendTheme } from '@mui/joy';
 import { Interpolation } from '@mui/styled-engine';
-import { GeistMono, GeistSans } from 'geist/font';
 
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
@@ -23,9 +22,9 @@ declare module '@mui/joy/SvgIcon' {
 
 export const theme = extendTheme({
   fontFamily: {
-    body: GeistSans.style.fontFamily,
-    display: GeistSans.style.fontFamily,
-    code: GeistMono.style.fontFamily,
+    body: 'var(--font-geist-sans)',
+    display: 'var(--font-geist-sans)',
+    code: 'var(--font-geist-mono)',
   },
   fontSize: {
     xl5: '3rem',
