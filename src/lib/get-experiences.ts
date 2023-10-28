@@ -1,6 +1,6 @@
 import { Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
-import { unstable_cache as cache } from 'next/cache';
+import { cache } from 'react';
 
 import { contentful } from './client';
 import {
@@ -73,4 +73,4 @@ export const getExperiences = cache(async () => {
       )
       .map((skill) => skill.fields.name),
   }));
-}, [process.env.VERCEL_GIT_COMMIT_REF ?? '']);
+});

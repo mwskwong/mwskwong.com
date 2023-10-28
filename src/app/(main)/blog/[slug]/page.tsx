@@ -26,8 +26,8 @@ import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
+import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
-import { getBlogMetadataById } from '@/lib/get-blog-metadata-by-id';
 import { getBlogs } from '@/lib/get-blogs';
 import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
 
@@ -57,7 +57,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
-  const metadata = await getBlogMetadataById(blog.id);
+  const metadata = await prisma.blogMetadata.findUnique({
+    where: { id: blog.id },
+  });
 
   return (
     <>
@@ -298,6 +300,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     </>
   );
 };
+
+export const revalidate = 3600;
 
 export const generateStaticParams = (): Promise<BlogProps['params'][]> =>
   getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
