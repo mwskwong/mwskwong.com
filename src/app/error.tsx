@@ -20,20 +20,19 @@ const Error: FC<{
       textAlign: 'center',
     }}
   >
-    <Typography color="primary" fontSize="8rem" fontWeight="md" level="h1">
-      500
+    <Typography color="primary" fontSize="8rem" level="h1">
+      Oops
     </Typography>
     <Stack alignItems={{ sm: 'center' }} spacing={2}>
       <Typography level="h2">Something went wrong</Typography>
       <Typography>
-        {error.message}
-        {error.message.endsWith('.') ? '' : '.'} Please{' '}
+        {error.message} Please{' '}
         <Link href={`mailto:${email}`} underline="always">
           contact me
         </Link>
         {error.digest ? (
           <>
-            {' with the this error digest: '}
+            {' with this error digest: '}
             <Typography fontFamily="code" fontSize="0.875em" variant="soft">
               {error.digest}
             </Typography>
