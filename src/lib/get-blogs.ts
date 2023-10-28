@@ -1,4 +1,4 @@
-import { unstable_cache as cache } from 'next/cache';
+import { cache } from 'react';
 
 import { contentful } from './client';
 import { BlogSkeleton } from './types';
@@ -37,5 +37,4 @@ export const getBlogs = cache(
       description: item.fields.description,
     }));
   },
-  [process.env.VERCEL_GIT_COMMIT_REF ?? ''],
 );

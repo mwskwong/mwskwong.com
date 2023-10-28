@@ -1,4 +1,4 @@
-import { unstable_cache as cache } from 'next/cache';
+import { cache } from 'react';
 
 import { contentful } from './client';
 import { SkillCategorySkeleton, SkillSkeleton } from './types';
@@ -25,4 +25,4 @@ export const getSkillCategories = cache(async () => {
       .filter((skill) => skill.fields.category?.sys.id === skillCategory.sys.id)
       .map((skill) => skill.fields.name),
   }));
-}, [process.env.VERCEL_GIT_COMMIT_REF ?? '']);
+});

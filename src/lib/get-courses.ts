@@ -1,4 +1,4 @@
-import { unstable_cache as cache } from 'next/cache';
+import { cache } from 'react';
 
 import { contentful } from './client';
 import { CourseSkeleton } from './types';
@@ -24,4 +24,4 @@ export const getCourses = cache(async () => {
       .filter((category): category is string => Boolean(category))
       .sort(),
   }));
-}, [process.env.VERCEL_GIT_COMMIT_REF ?? '']);
+});
