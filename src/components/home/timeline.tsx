@@ -25,8 +25,6 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
 
 const listItemImageSize = { width: 80, height: 56 };
 const listItemImageSx = {
-  objectFit: 'cover',
-  objectPosition: 'top',
   flexShrink: 0,
   borderRadius: 'var(--ListItem-radius)',
   border: 1,
