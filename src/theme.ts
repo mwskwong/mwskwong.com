@@ -84,6 +84,7 @@ export const globalStyles = (theme: Theme) =>
     'h2, h3, h4': {
       scrollMarginTop: 'calc(var(--Header-height) + var(--Section-paddingY))',
     },
+    img: { objectFit: 'cover' },
     main: { flex: 1 },
     section: { paddingBlock: 'var(--Section-paddingY)' },
     svg: { display: 'block' },
