@@ -84,6 +84,7 @@ module.exports = {
         'src/app/**/not-found.tsx',
         'src/app/**/*error.tsx',
         'src/app/**/sitemap.ts',
+        'src/app/**/robots.ts',
       ],
       rules: {
         'import/no-default-export': 'off',
