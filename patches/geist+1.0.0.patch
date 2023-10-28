@@ -10,4 +10,3 @@ index c1d4da3..ad07bdd 100644
 +  adjustFontFallback: false,
 +  fallback: ['monospace'],
  });
-
