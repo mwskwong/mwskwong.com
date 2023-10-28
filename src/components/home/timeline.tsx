@@ -163,7 +163,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                           alt=""
                           src={url}
                           {...listItemImageSize}
-                          sx={listItemImageSx}
+                          sx={[listItemImageSx, { objectPosition: 'top' }]}
                         />
                       </ListItemDecorator>
                       {title}
