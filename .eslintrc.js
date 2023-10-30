@@ -14,8 +14,9 @@ module.exports = {
   parserOptions: { project },
   settings: {
     'import/resolver': { typescript: { project } },
+    // enable MUI Joy components to be checked
+    // see https://github.com/jsx-eslint/eslint-plugin-jsx-a11y?tab=readme-ov-file#configurations
     'jsx-a11y': {
-      // MUI Joy convention
       polymorphicPropName: 'component',
       components: {
         Button: 'button',
@@ -47,7 +48,8 @@ module.exports = {
       'error',
       { checksVoidReturn: false },
     ],
-    // such that @/* imports will not being considered as external dependencies
+    // such that @/* imports will not be considered as external dependencies
+    // FIXME: remove in @vercel/style-guide@5.0.2+
     'import/no-extraneous-dependencies': ['error', { includeTypes: true }],
     'react/function-component-definition': [
       'warn',
@@ -72,11 +74,12 @@ module.exports = {
         alphabetize: { order: 'asc' },
       },
     ],
-    // sort named imports
+    // sort named imports within an import statement
     'sort-imports': ['warn', { ignoreDeclarationSort: true }],
   },
   overrides: [
-    // Next.js file naming convention
+    // Next.js App Router file convention
+    // Must use default export
     {
       files: [
         'src/app/**/page.tsx',
@@ -84,14 +87,14 @@ module.exports = {
         'src/app/**/not-found.tsx',
         'src/app/**/*error.tsx',
         'src/app/**/sitemap.ts',
-        'src/app/**/robots.ts',
+        'src/app/robots.ts',
       ],
       rules: {
         'import/no-default-export': 'off',
         'import/prefer-default-export': ['error', { target: 'any' }],
       },
     },
-    // module declaration
+    // module declarations
     {
       files: ['**/*.d.ts'],
       rules: { 'import/no-default-export': 'off' },
