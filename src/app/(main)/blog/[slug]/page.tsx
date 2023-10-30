@@ -29,7 +29,7 @@ import { firstName, lastName } from '@/constants/content';
 import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
-import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
+import { getFileIcon } from '@/utils/get-file-icon';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -196,7 +196,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   if (codeTitle) {
                     const language = props['data-language'];
                     const Icon =
-                      language && getIconByProgrammingLanguage(language);
+                      typeof props.children === 'string' &&
+                      getFileIcon(language, props.children.split('/').at(-1));
                     const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
