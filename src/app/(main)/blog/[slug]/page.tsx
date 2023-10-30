@@ -24,7 +24,6 @@ import { Heading } from '@/components/blog/heading';
 import { ViewCount } from '@/components/blog/view-count';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
-import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
 import { getFileIcon } from '@/utils/get-file-icon';
