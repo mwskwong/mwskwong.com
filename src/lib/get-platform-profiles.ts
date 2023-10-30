@@ -1,5 +1,5 @@
 import { orderBy } from 'lodash-es';
-import { unstable_cache as cache } from 'next/cache';
+import { cache } from 'react';
 
 import { contentful } from './client';
 import { PlatformProfileSkeleton } from './types';

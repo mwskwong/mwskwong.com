@@ -1,6 +1,5 @@
 import { Theme, extendTheme } from '@mui/joy';
 import { Interpolation } from '@mui/styled-engine';
-import { Rubik, Source_Code_Pro as SourceCodePro } from 'next/font/google';
 
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
@@ -21,18 +20,12 @@ declare module '@mui/joy/SvgIcon' {
   }
 }
 
-const rubik = Rubik({ subsets: ['latin'] });
-const sourceCodePro = SourceCodePro({
-  subsets: ['latin'],
-  adjustFontFallback: false,
-  fallback: ['monospace'],
-});
-
 export const theme = extendTheme({
+  // fonts loaded in app/layout.tsx
   fontFamily: {
-    body: rubik.style.fontFamily,
-    display: rubik.style.fontFamily,
-    code: sourceCodePro.style.fontFamily,
+    body: 'var(--font-geist-sans)',
+    display: 'var(--font-geist-sans)',
+    code: 'var(--font-geist-mono)',
   },
   fontSize: {
     xl5: '3rem',
@@ -91,6 +84,7 @@ export const globalStyles = (theme: Theme) =>
     'h2, h3, h4': {
       scrollMarginTop: 'calc(var(--Header-height) + var(--Section-paddingY))',
     },
+    img: { objectFit: 'cover' },
     main: { flex: 1 },
     section: { paddingBlock: 'var(--Section-paddingY)' },
     svg: { display: 'block' },

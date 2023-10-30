@@ -73,6 +73,7 @@ const nextConfig = {
   ],
   experimental: {
     ppr: true,
+    webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
   },
 };

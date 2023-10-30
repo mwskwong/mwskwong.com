@@ -1,4 +1,4 @@
-import { unstable_cache as cache } from 'next/cache';
+import { cache } from 'react';
 
 import { contentful } from './client';
 import { EducationSkeleton } from './types';

@@ -103,6 +103,8 @@ const Blogs: FC = async () => {
   );
 };
 
+export const revalidate = 3600;
+
 export const generateMetadata = async (
   _: object,
   parent: ResolvingMetadata,

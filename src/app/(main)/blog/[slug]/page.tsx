@@ -24,9 +24,10 @@ import { Heading } from '@/components/blog/heading';
 import { ViewCount } from '@/components/blog/view-count';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
+import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
-import { getIconByProgrammingLanguage } from '@/utils/get-icon-by-programming-language';
+import { getFileIcon } from '@/utils/get-file-icon';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -62,7 +63,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           maxWidth="md"
           sx={{ py: 'var(--Section-paddingY)' }}
         >
-          <Typography level="body-xs">
+          <Typography level="body-sm">
             {dateFormatter.format(new Date(blog.updatedAt))}
           </Typography>
           <Typography level="h1" mb={3} mt={1}>
@@ -197,9 +198,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   }
 
                   if (codeTitle) {
-                    const language = props['data-language'];
                     const Icon =
-                      language && getIconByProgrammingLanguage(language);
+                      typeof props.children === 'string' &&
+                      getFileIcon(props.children.split('/').at(-1));
                     const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
@@ -293,6 +294,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     </>
   );
 };
+
+export const revalidate = 3600;
 
 export const generateStaticParams = (): Promise<BlogProps['params'][]> =>
   getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
