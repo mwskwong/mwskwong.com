@@ -7,7 +7,7 @@ import { Prettier } from '@/components/icons/prettier';
 import { React } from '@/components/icons/react';
 import { TypeScript } from '@/components/icons/typescript';
 
-const ProgrammingLangIcons = {
+const FileExtIcons = {
   js: JavaScript,
   jsx: React,
   ts: TypeScript,
@@ -21,14 +21,14 @@ const SpecialFileIcons = {
 };
 
 export const getFileIcon = (
-  language?: LiteralUnion<keyof typeof ProgrammingLangIcons, string>,
-  filename?: string,
+  filename?: LiteralUnion<keyof typeof SpecialFileIcons, string>,
 ) => {
   if (filename && filename in SpecialFileIcons) {
     return SpecialFileIcons[filename as keyof typeof SpecialFileIcons];
   }
 
-  if (language && language in ProgrammingLangIcons) {
-    return ProgrammingLangIcons[language as keyof typeof ProgrammingLangIcons];
+  const fileExt = filename?.split('.').at(-1);
+  if (fileExt && fileExt in FileExtIcons) {
+    return FileExtIcons[fileExt as keyof typeof FileExtIcons];
   }
 };

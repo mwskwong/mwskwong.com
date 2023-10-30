@@ -194,10 +194,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   }
 
                   if (codeTitle) {
-                    const language = props['data-language'];
                     const Icon =
                       typeof props.children === 'string' &&
-                      getFileIcon(language, props.children.split('/').at(-1));
+                      getFileIcon(props.children.split('/').at(-1));
                     const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
