@@ -66,13 +66,6 @@ export const globalStyles = (theme: Theme) =>
         '& .peg': { display: 'none' },
       },
     },
-    '& .lucide': {
-      color: 'var(--Icon-color)',
-      margin: 'var(--Icon-margin)',
-      fontSize: 'var(--Icon-fontSize, 20px)',
-      width: '1em',
-      height: '1em',
-    },
     address: { fontStyle: 'unset' },
     body: {
       display: 'flex',
@@ -94,5 +87,17 @@ export const globalStyles = (theme: Theme) =>
     img: { objectFit: 'cover' },
     main: { flex: 1 },
     section: { paddingBlock: 'var(--Section-paddingY)' },
-    svg: { display: 'block' },
+    svg: {
+      display: 'block',
+      // match icons
+      '&[viewBox="0 0 24 24"]': {
+        color: 'var(--Icon-color)',
+        margin: 'var(--Icon-margin)',
+        fontSize: 'var(--Icon-fontSize, 24px)',
+        width: '1em',
+        height: '1em',
+        // lucide icons already effectively have padding surrounding the path
+        '&:not(.lucide)': { padding: `${(2 / 24).toFixed(5)}em` },
+      },
+    },
   }) satisfies Interpolation<Theme>;
