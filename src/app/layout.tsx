@@ -4,13 +4,13 @@ import { GeistMono, GeistSans } from 'geist/font';
 import { Metadata } from 'next';
 import { FC, PropsWithChildren } from 'react';
 
+import { baseUrl } from '@/constants/base-url';
 import {
   firstName,
   headline,
   lastName,
   selfIntroduction,
 } from '@/constants/content';
-import { baseUrl } from '@/constants/base-url';
 
 import { Providers } from './providers';
 
