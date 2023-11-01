@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
+import { baseUrl } from '@/constants/base-url';
 import { getBlogs } from '@/lib/get-blogs';
-import { baseUrl } from '@/utils/base-url';
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const blogs = await getBlogs();

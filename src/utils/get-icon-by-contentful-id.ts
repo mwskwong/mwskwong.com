@@ -1,50 +1,52 @@
 import {
-  AllInclusiveRounded,
-  BugReportRounded,
-  DashboardRounded,
-  DevicesOtherRounded,
-  TerminalRounded,
-} from '@mui/icons-material';
+  SiDatacamp,
+  SiEnterprisedb,
+  SiGithub,
+  SiGoogle,
+  SiLinkedin,
+  SiMicrosoft,
+  SiMongodb,
+  SiOracle,
+  SiStackoverflow,
+  SiUdemy,
+  SiYoutube,
+} from '@icons-pack/react-simple-icons';
+import {
+  BrainCircuit,
+  Bug,
+  Database,
+  Infinity,
+  LayoutDashboard,
+  MessagesSquare,
+  MonitorDot,
+  TabletSmartphone,
+  Terminal,
+} from 'lucide-react';
 import { LiteralUnion } from 'type-fest';
 
-import { Cms } from '@/components/icons/cms';
-import { CommunicationSkill } from '@/components/icons/communication-skill';
-import { Database } from '@/components/icons/database';
-import { DataCamp } from '@/components/icons/datacamp';
-import { EnterpriseDb } from '@/components/icons/enterprisedb';
-import { GitHub } from '@/components/icons/github';
-import { Google } from '@/components/icons/google';
-import { LinkedIn } from '@/components/icons/linkedin';
-import { MachineLearning } from '@/components/icons/machine-learning';
-import { Microsoft } from '@/components/icons/microsoft';
-import { MongoDb } from '@/components/icons/mongodb';
-import { Oracle } from '@/components/icons/oracle';
-import { StackOverflow } from '@/components/icons/stackoverflow';
-import { Udemy } from '@/components/icons/udemy';
-import { YouTube } from '@/components/icons/youtube';
 import * as contentfulIds from '@/constants/contentful-ids';
 
 const Icons = {
-  [contentfulIds.dataCamp]: DataCamp,
-  [contentfulIds.enterpriseDb]: EnterpriseDb,
-  [contentfulIds.github]: GitHub,
-  [contentfulIds.google]: Google,
-  [contentfulIds.linkedin]: LinkedIn,
-  [contentfulIds.microsoft]: Microsoft,
-  [contentfulIds.mongodb]: MongoDb,
-  [contentfulIds.oracle]: Oracle,
-  [contentfulIds.stackOverflow]: StackOverflow,
-  [contentfulIds.udemy]: Udemy,
-  [contentfulIds.youtube]: YouTube,
-  [contentfulIds.backend]: TerminalRounded,
-  [contentfulIds.cms]: Cms,
+  [contentfulIds.dataCamp]: SiDatacamp,
+  [contentfulIds.enterpriseDb]: SiEnterprisedb,
+  [contentfulIds.github]: SiGithub,
+  [contentfulIds.google]: SiGoogle,
+  [contentfulIds.linkedin]: SiLinkedin,
+  [contentfulIds.microsoft]: SiMicrosoft,
+  [contentfulIds.mongodb]: SiMongodb,
+  [contentfulIds.oracle]: SiOracle,
+  [contentfulIds.stackOverflow]: SiStackoverflow,
+  [contentfulIds.udemy]: SiUdemy,
+  [contentfulIds.youtube]: SiYoutube,
+  [contentfulIds.backend]: Terminal,
+  [contentfulIds.cms]: MonitorDot,
   [contentfulIds.database]: Database,
-  [contentfulIds.devOps]: AllInclusiveRounded,
-  [contentfulIds.frontend]: DashboardRounded,
-  [contentfulIds.machineLearning]: MachineLearning,
-  [contentfulIds.mobile]: DevicesOtherRounded,
-  [contentfulIds.qa]: BugReportRounded,
-  [contentfulIds.softSkills]: CommunicationSkill,
+  [contentfulIds.devOps]: Infinity,
+  [contentfulIds.frontend]: LayoutDashboard,
+  [contentfulIds.machineLearning]: BrainCircuit,
+  [contentfulIds.mobile]: TabletSmartphone,
+  [contentfulIds.qa]: Bug,
+  [contentfulIds.softSkills]: MessagesSquare,
 };
 
 export const getIconByContentfulId = (

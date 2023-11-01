@@ -1,7 +1,7 @@
 'use client';
 
-import { LinkRounded } from '@mui/icons-material';
 import { Link, Typography, TypographyProps, typographyClasses } from '@mui/joy';
+import { LinkIcon } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 
@@ -16,7 +16,7 @@ export const Heading: FC<HeadingProps> = ({ id, sx, ...props }) => (
         level="body-md"
         variant="outlined"
       >
-        <LinkRounded />
+        <LinkIcon />
       </Link>
     }
     id={id}
