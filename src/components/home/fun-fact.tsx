@@ -12,7 +12,6 @@ import {
   Typography,
 } from '@mui/joy';
 import { applySolidInversion } from '@mui/joy/colorInversion';
-import { ChevronRight } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 
