@@ -1,6 +1,11 @@
 'use client';
 
-import { Link, Typography, TypographyProps, typographyClasses } from '@mui/joy';
+import {
+  IconButton,
+  Typography,
+  TypographyProps,
+  typographyClasses,
+} from '@mui/joy';
 import { LinkIcon } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
@@ -9,15 +14,15 @@ export type HeadingProps = TypographyProps;
 export const Heading: FC<HeadingProps> = ({ id, sx, ...props }) => (
   <Typography
     endDecorator={
-      <Link
+      <IconButton
         aria-labelledby={id}
-        borderRadius="sm"
+        color="primary"
+        component="a"
         href={`#${id}`}
-        level="body-md"
-        variant="outlined"
+        size="sm"
       >
         <LinkIcon />
-      </Link>
+      </IconButton>
     }
     id={id}
     sx={mergeSx(
