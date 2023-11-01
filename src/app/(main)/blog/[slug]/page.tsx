@@ -251,10 +251,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       sx={{
                         '& > [data-line]': { px: 2 },
                         '& > [data-highlighted-line]': {
-                          bgcolor: 'background.level2',
+                          bgcolor: 'primary.softBg',
                         },
                         '& [data-highlighted-chars]': {
-                          bgcolor: 'background.level2',
+                          bgcolor: 'primary.softBg',
+                          // styles taken from <Typography variant="soft" />
                           borderRadius: 'xs',
                           py: 'min(0.1em, 4px)',
                           px: '0.25em',
