@@ -1,12 +1,59 @@
 diff --git a/node_modules/geist/dist/font.js b/node_modules/geist/dist/font.js
-index c1d4da3..ad07bdd 100644
+index c1d4da3..f2ca216 100644
 --- a/node_modules/geist/dist/font.js
 +++ b/node_modules/geist/dist/font.js
-@@ -100,4 +100,7 @@ export const GeistMono = localFont({
+@@ -1,4 +1,4 @@
+-import localFont from "@next/font/local";
++import localFont from "next/font/local";
+ 
+ export const GeistSans = localFont({
+   src: [
+@@ -49,6 +49,20 @@ export const GeistSans = localFont({
+     },
+   ],
+   variable: "--font-geist-sans",
++  fallback: [
++    "ui-sans-serif",
++    "system-ui",
++    "-apple-system",
++    "BlinkMacSystemFont",
++    "Inter",
++    "Segoe UI",
++    "Roboto",
++    "sans-serif",
++    "Apple Color Emoji",
++    "Segoe UI Emoji",
++    "Segoe UI Symbol",
++    "Noto Color Emoji",
++  ],
+ });
+ 
+ export const GeistMono = localFont({
+@@ -100,4 +114,17 @@ export const GeistMono = localFont({
      },
    ],
    variable: "--font-geist-mono",
 +  preload: false,
 +  adjustFontFallback: false,
-+  fallback: ['monospace'],
++  fallback: [
++    "ui-monospace",
++    "SFMono-Regular",
++    "Roboto Mono",
++    "Menlo",
++    "Monaco",
++    "Liberation Mono",
++    "DejaVu Sans Mono",
++    "Courier New",
++    "monospace",
++  ],
  });
+diff --git a/node_modules/geist/font.d.ts b/node_modules/geist/font.d.ts
+index 05c7ff2..2c00b12 100644
+--- a/node_modules/geist/font.d.ts
++++ b/node_modules/geist/font.d.ts
+@@ -1,4 +1,4 @@
+-import { NextFontWithVariable } from "@next/font";
++import { NextFontWithVariable } from "next/dist/compiled/@next/font";
+ 
+ declare module "geist/font" {
+   /**
