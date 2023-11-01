@@ -11,7 +11,7 @@ import {
   SiVercel,
   SiZod,
 } from '@icons-pack/react-simple-icons';
-import { Mail, MapPin, Smartphone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
 import { SiFormspree } from '@/components/icons/si-formspree';
 
@@ -97,7 +97,7 @@ export const websiteTechStack = [
 
 export const contactInfo = [
   {
-    Icon: Smartphone,
+    Icon: Phone,
     title: 'Call Me At',
     value: phone,
     url: `tel:${phone.replaceAll(' ', '')}`,
