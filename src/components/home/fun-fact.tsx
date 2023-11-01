@@ -67,7 +67,6 @@ export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
         <Typography>...and more</Typography>
         <Button
           component="a"
-          endDecorator={<ChevronRight />}
           href="https://github.com/mwskwong/resume"
           size="lg"
           target="_blank"
