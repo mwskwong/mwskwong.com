@@ -91,7 +91,7 @@ export const globalStyles = (theme: Theme) =>
       display: 'block',
       // match icons
       '&[viewBox="0 0 24 24"]': {
-        color: 'var(--Icon-color)',
+        color: 'var(--Icon-color, var(--joy-palette-text-icon))',
         margin: 'var(--Icon-margin)',
         fontSize: 'var(--Icon-fontSize, 24px)',
         width: '1em',
