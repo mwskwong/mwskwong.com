@@ -93,7 +93,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                     orientation="horizontal"
                     sx={{ height: { sm: '100%' } }}
                   >
-                    {Icon ? <Icon color="branding" fontSize="xl2" /> : null}
+                    {Icon ? <Icon color="branding" /> : null}
                     <Stack spacing="inherit">
                       <CardContent>
                         {certificate ? (
