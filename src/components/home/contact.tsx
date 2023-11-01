@@ -3,12 +3,6 @@
 import { useSubmit } from '@formspree/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  KeyboardArrowUpRounded,
-  ReportRounded,
-  SendRounded,
-  ThumbUpRounded,
-} from '@mui/icons-material';
-import {
   Alert,
   Box,
   BoxProps,
@@ -26,6 +20,7 @@ import {
   Typography,
 } from '@mui/joy';
 import { capitalize } from 'lodash-es';
+import { AlertTriangle, ChevronUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -154,7 +149,7 @@ export const Contact: FC<ContactProps> = (props) => {
                     }}
                     variant="outlined"
                   >
-                    <ThumbUpRounded />
+                    <ThumbsUp />
                   </Sheet>
                   <Box>
                     <Typography level="title-md">Thank You!</Typography>
@@ -167,7 +162,7 @@ export const Contact: FC<ContactProps> = (props) => {
                     component={NextLink}
                     href={home.href}
                     size="lg"
-                    startDecorator={<KeyboardArrowUpRounded />}
+                    startDecorator={<ChevronUp />}
                   >
                     Back to Top
                   </Button>
@@ -271,7 +266,7 @@ export const Contact: FC<ContactProps> = (props) => {
                 </Grid>
                 {errors.root ? (
                   <Grid md={8} mdOffset={4} xs={12}>
-                    <Alert color="danger" startDecorator={<ReportRounded />}>
+                    <Alert color="danger" startDecorator={<AlertTriangle />}>
                       {errors.root.message}
                     </Alert>
                   </Grid>
@@ -281,7 +276,7 @@ export const Contact: FC<ContactProps> = (props) => {
                     fullWidth
                     loading={isSubmitting}
                     size="lg"
-                    startDecorator={<SendRounded />}
+                    startDecorator={<Send />}
                     type="submit"
                   >
                     Send Message

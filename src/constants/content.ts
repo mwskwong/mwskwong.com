@@ -1,21 +1,19 @@
 import {
-  EmailRounded,
-  LocationOnRounded,
-  SmartphoneRounded,
-} from '@mui/icons-material';
+  SiContentful,
+  SiImprovmx,
+  SiMui,
+  SiNextdotjs,
+  SiPlanetscale,
+  SiPrisma,
+  SiReact,
+  SiReacthookform,
+  SiTypescript,
+  SiVercel,
+  SiZod,
+} from '@icons-pack/react-simple-icons';
+import { Mail, MapPin, Smartphone } from 'lucide-react';
 
-import { Contentful } from '@/components/icons/contentful';
-import { Formspree } from '@/components/icons/formspree';
-import { ImprovMx } from '@/components/icons/improvmx';
-import { Mui } from '@/components/icons/mui';
-import { NextJs } from '@/components/icons/nextjs';
-import { PlanetScale } from '@/components/icons/planetscale';
-import { Prisma } from '@/components/icons/prisma';
-import { React } from '@/components/icons/react';
-import { ReactHookForm } from '@/components/icons/react-hook-form';
-import { TypeScript } from '@/components/icons/typescript';
-import { Vercel } from '@/components/icons/vercel';
-import { Zod } from '@/components/icons/zod';
+import { SiFormspree } from '@/components/icons/si-formspree';
 
 export const phone = '+852 6095 4241';
 export const email = 'contact@mwskwong.com';
@@ -35,83 +33,83 @@ export const selfIntroduction =
 export const websiteTechStack = [
   {
     name: 'React',
-    Icon: React,
+    Icon: SiReact,
     url: 'https://react.dev/',
   },
   {
     name: 'Next.js App Router',
-    Icon: NextJs,
+    Icon: SiNextdotjs,
     url: 'https://nextjs.org/',
   },
   {
     name: 'TypeScript',
-    Icon: TypeScript,
+    Icon: SiTypescript,
     url: 'https://www.typescriptlang.org/',
   },
   {
     name: 'MUI Joy UI',
-    Icon: Mui,
+    Icon: SiMui,
     // TODO: change this to https://mui.com/joy-ui once the marking page is done
     // Issue: https://github.com/mui/material-ui/pull/36829
     url: 'https://mui.com/',
   },
   {
     name: 'React Hook Form',
-    Icon: ReactHookForm,
+    Icon: SiReacthookform,
     url: 'https://react-hook-form.com/',
   },
   {
     name: 'Zod',
-    Icon: Zod,
+    Icon: SiZod,
     url: 'https://zod.dev/',
   },
   {
     name: 'Prisma',
-    Icon: Prisma,
+    Icon: SiPrisma,
     url: 'https://www.prisma.io/',
   },
   {
     name: 'PlanetScale',
-    Icon: PlanetScale,
+    Icon: SiPlanetscale,
     url: 'https://planetscale.com/',
   },
   {
     name: 'Vercel',
-    Icon: Vercel,
+    Icon: SiVercel,
     url: 'https://vercel.com/',
   },
   {
     name: 'Contentful',
-    Icon: Contentful,
+    Icon: SiContentful,
     url: 'https://www.contentful.com/',
   },
   {
     name: 'Formspree',
-    Icon: Formspree,
+    Icon: SiFormspree,
     url: 'https://formspree.io/',
   },
   {
     name: 'ImprovMX',
-    Icon: ImprovMx,
+    Icon: SiImprovmx,
     url: 'https://improvmx.com/',
   },
 ];
 
 export const contactInfo = [
   {
-    Icon: SmartphoneRounded,
+    Icon: Smartphone,
     title: 'Call Me At',
     value: phone,
     url: `tel:${phone.replaceAll(' ', '')}`,
   },
   {
-    Icon: EmailRounded,
+    Icon: Mail,
     title: 'Email Me At',
     value: email,
     url: `mailto:${email}`,
   },
   {
-    Icon: LocationOnRounded,
+    Icon: MapPin,
     title: 'Find Me At',
     value: address,
     url: 'https://www.google.com/maps/place/Hong+Kong',

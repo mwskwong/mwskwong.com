@@ -1,7 +1,7 @@
+import { SiLinkedin } from '@icons-pack/react-simple-icons';
 import { Box, BoxProps, Button, Container, Stack, Typography } from '@mui/joy';
 import { FC } from 'react';
 
-import { LinkedIn } from '@/components/icons/linkedin';
 import { firstName, headline, lastName } from '@/constants/content';
 import { linkedin } from '@/constants/contentful-ids';
 import { getCv } from '@/lib/get-cv';
@@ -41,7 +41,7 @@ export const Hero: FC<HeroProps> = async (props) => {
               component="a"
               href={linkedinProfile?.url}
               size="lg"
-              startDecorator={<LinkedIn />}
+              startDecorator={<SiLinkedin />}
               target="_blank"
               variant="outlined"
             >

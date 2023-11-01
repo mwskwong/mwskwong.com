@@ -1,11 +1,11 @@
 'use client';
 
 import {
-  ContentCopyRounded,
-  DoneRounded,
-  ShareRounded,
-  VisibilityRounded,
-} from '@mui/icons-material';
+  SiFacebook,
+  SiLinkedin,
+  SiReddit,
+  SiX,
+} from '@icons-pack/react-simple-icons';
 import {
   Dropdown,
   IconButton,
@@ -18,17 +18,13 @@ import {
   StackProps,
   Typography,
 } from '@mui/joy';
+import { Check, Copy, Eye, Share } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useMemo, useState } from 'react';
 
 import { viewBlogById } from '@/app/actions';
+import { baseUrl } from '@/constants/base-url';
 import { firstName, lastName } from '@/constants/content';
-import { baseUrl } from '@/utils/base-url';
-
-import { Facebook } from '../icons/facebook';
-import { LinkedIn } from '../icons/linkedin';
-import { Reddit } from '../icons/reddit';
-import { X } from '../icons/x';
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
@@ -56,24 +52,24 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
   const socialMediaOptions = useMemo(
     () => [
       {
-        Icon: X,
+        Icon: SiX,
         name: 'X',
         url: `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${blog.categories
           ?.map((category) => category.replace(' ', ''))
           .join(',')}`,
       },
       {
-        Icon: Facebook,
+        Icon: SiFacebook,
         name: 'Facebook',
         url: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
       },
       {
-        Icon: LinkedIn,
+        Icon: SiLinkedin,
         name: 'LinkedIn',
         url: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
       },
       {
-        Icon: Reddit,
+        Icon: SiReddit,
         name: 'Reddit',
         url: `http://www.reddit.com/submit/?url=${url}&title=${blog.title}`,
       },
@@ -91,7 +87,7 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
       spacing={1}
       {...props}
     >
-      <Typography mr={1} startDecorator={<VisibilityRounded />}>
+      <Typography mr={1} startDecorator={<Eye />}>
         {numberFormatter.format(view)} views
       </Typography>
       <IconButton
@@ -103,14 +99,14 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
           setTimeout(() => setCopied(false), 1000);
         }}
       >
-        {copied ? <DoneRounded /> : <ContentCopyRounded />}
+        {copied ? <Check /> : <Copy />}
       </IconButton>
       <Dropdown>
         <MenuButton
           aria-label="Share this blog to social media"
           slots={{ root: IconButton }}
         >
-          <ShareRounded />
+          <Share />
         </MenuButton>
         <Menu>
           {socialMediaOptions.map(({ Icon, name, url }) => (
