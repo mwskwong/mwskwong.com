@@ -1,23 +1,24 @@
+import {
+  SiEslint,
+  SiJavascript,
+  SiJson,
+  SiPrettier,
+  SiReact,
+  SiTypescript,
+} from '@icons-pack/react-simple-icons';
 import { LiteralUnion } from 'type-fest';
 
-import { EsLint } from '@/components/icons/eslint';
-import { JavaScript } from '@/components/icons/javascript';
-import { Json } from '@/components/icons/json';
-import { Prettier } from '@/components/icons/prettier';
-import { React } from '@/components/icons/react';
-import { TypeScript } from '@/components/icons/typescript';
-
 const FileExtIcons = {
-  js: JavaScript,
-  jsx: React,
-  ts: TypeScript,
-  tsx: React,
-  json: Json,
+  js: SiJavascript,
+  jsx: SiReact,
+  ts: SiTypescript,
+  tsx: SiReact,
+  json: SiJson,
 };
 
 const SpecialFileIcons = {
-  '.eslintrc.js': EsLint,
-  '.prettierrc.js': Prettier,
+  '.eslintrc.js': SiEslint,
+  '.prettierrc.js': SiPrettier,
 };
 
 export const getFileIcon = (

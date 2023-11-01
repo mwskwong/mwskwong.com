@@ -1,6 +1,5 @@
 'use client';
 
-import { ClearRounded, SearchRounded } from '@mui/icons-material';
 import {
   Box,
   Card,
@@ -14,6 +13,7 @@ import {
   StackProps,
   Typography,
 } from '@mui/joy';
+import { Search, X } from 'lucide-react';
 import { FC, useDeferredValue, useMemo, useState } from 'react';
 
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
@@ -70,7 +70,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
           endDecorator={
             search.length > 0 && (
               <IconButton onClick={() => setSearch('')}>
-                <ClearRounded />
+                <X />
               </IconButton>
             )
           }
@@ -78,7 +78,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Search courses..."
           size="lg"
-          startDecorator={<SearchRounded />}
+          startDecorator={<Search />}
           sx={{ maxWidth: 400, mx: 'auto' }}
           value={search}
         />
@@ -93,7 +93,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                     orientation="horizontal"
                     sx={{ height: { sm: '100%' } }}
                   >
-                    {Icon ? <Icon color="branding" fontSize="xl2" /> : null}
+                    {Icon ? <Icon color="default" /> : null}
                     <Stack spacing="inherit">
                       <CardContent>
                         {certificate ? (

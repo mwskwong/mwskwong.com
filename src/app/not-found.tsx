@@ -1,5 +1,5 @@
-import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import { Button, Container, Stack, Typography } from '@mui/joy';
+import { ChevronRight } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -26,7 +26,7 @@ const NotFound: FC = () => (
       </Typography>
       <Button
         component={Link}
-        endDecorator={<KeyboardArrowRightRounded />}
+        endDecorator={<ChevronRight />}
         href="/"
         size="lg"
       >

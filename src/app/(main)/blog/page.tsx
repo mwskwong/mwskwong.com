@@ -1,4 +1,3 @@
-import { VisibilityRounded } from '@mui/icons-material';
 import {
   Card,
   CardContent,
@@ -10,6 +9,7 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
+import { Eye } from 'lucide-react';
 import { Metadata, ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
 import { FC } from 'react';
@@ -92,10 +92,7 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(updatedAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <Typography
-                        level="body-sm"
-                        startDecorator={<VisibilityRounded />}
-                      >
+                      <Typography level="body-sm" startDecorator={<Eye />}>
                         {numberFormatter.format(
                           blogsMetadata.find(
                             ({ id: blogMetadataId }) => blogMetadataId === id,

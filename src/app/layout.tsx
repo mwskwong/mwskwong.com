@@ -10,7 +10,7 @@ import {
   lastName,
   selfIntroduction,
 } from '@/constants/content';
-import { baseUrl } from '@/utils/base-url';
+import { baseUrl } from '@/constants/base-url';
 
 import { Providers } from './providers';
 
