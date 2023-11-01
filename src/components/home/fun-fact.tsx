@@ -12,7 +12,6 @@ import {
   Typography,
 } from '@mui/joy';
 import { applySolidInversion } from '@mui/joy/colorInversion';
-import { ChevronRight } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 
@@ -67,7 +66,6 @@ export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
         <Typography>...and more</Typography>
         <Button
           component="a"
-          endDecorator={<ChevronRight />}
           href="https://github.com/mwskwong/resume"
           size="lg"
           target="_blank"
