@@ -15,12 +15,12 @@ import {
   BrainCircuit,
   Bug,
   Database,
-  InfinityIcon,
   LayoutDashboard,
   MessagesSquare,
   MonitorDot,
   TabletSmartphone,
   Terminal,
+  Workflow,
 } from 'lucide-react';
 import { LiteralUnion } from 'type-fest';
 
@@ -41,7 +41,7 @@ const Icons = {
   [contentfulIds.backend]: Terminal,
   [contentfulIds.cms]: MonitorDot,
   [contentfulIds.database]: Database,
-  [contentfulIds.devOps]: InfinityIcon,
+  [contentfulIds.devOps]: Workflow,
   [contentfulIds.frontend]: LayoutDashboard,
   [contentfulIds.machineLearning]: BrainCircuit,
   [contentfulIds.mobile]: TabletSmartphone,
