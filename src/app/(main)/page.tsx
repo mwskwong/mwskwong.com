@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Article, BreadcrumbList, Organization, WithContext } from 'schema-dts';
 
 import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';
@@ -7,6 +8,8 @@ import { Experience } from '@/components/home/experience';
 import { FunFact } from '@/components/home/fun-fact';
 import { Hero } from '@/components/home/hero';
 import { SectionDivider } from '@/components/section-divider';
+import { baseUrl } from '@/constants/base-url';
+import { firstName, headline, lastName } from '@/constants/content';
 
 const bgcolors = {
   hero: 'background.body',
@@ -41,6 +44,46 @@ const Home: FC = () => (
       <Contact bgcolor={bgcolors.contact} />
     </main>
     <SectionDivider bgcolor="var(--Footer-bg)" />
+    <script
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify([
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline,
+            image: [`${baseUrl}/opengraph-image.png`],
+            datePublished: new Date(2019, 9, 23, 0, 0, 0).toISOString(),
+            dateModified: new Date().toISOString(),
+            author: {
+              '@type': 'Person',
+              name: `${firstName} ${lastName}`,
+              url: baseUrl,
+            },
+          } satisfies WithContext<Article>,
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                name: 'Home',
+                item: baseUrl,
+                position: 1,
+              },
+            ],
+            name: 'Breadcrumbs',
+          } satisfies WithContext<BreadcrumbList>,
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: `${firstName} ${lastName}`,
+            url: baseUrl,
+            logo: `${baseUrl}/icon.svg`,
+          } satisfies WithContext<Organization>,
+        ]),
+      }}
+      type="application/ld+json"
+    />
   </>
 );
 
