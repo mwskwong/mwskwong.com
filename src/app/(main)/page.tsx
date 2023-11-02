@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Article, BreadcrumbList, Organization, WithContext } from 'schema-dts';
+import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
 import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';
@@ -9,8 +9,9 @@ import { FunFact } from '@/components/home/fun-fact';
 import { Hero } from '@/components/home/hero';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { firstName, headline, lastName } from '@/constants/content';
-import { getPlatformProfiles } from '@/lib/get-platform-profiles';
+import { headline } from '@/constants/content';
+
+import { getOrganization } from '../json-ld';
 
 const bgcolors = {
   hero: 'background.body',
@@ -22,7 +23,7 @@ const bgcolors = {
 };
 
 const Home: FC = async () => {
-  const platformProfiles = await getPlatformProfiles();
+  const organization = await getOrganization();
 
   return (
     <>
@@ -53,39 +54,32 @@ const Home: FC = async () => {
       <SectionDivider bgcolor="var(--Footer-bg)" />
       <script
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
-            {
-              '@context': 'https://schema.org',
-              '@type': 'Article',
-              headline,
-              image: [`${baseUrl}/opengraph-image.png`],
-              datePublished: new Date(2019, 9, 23, 0, 0, 0).toISOString(),
-              dateModified: new Date().toISOString(),
-              author: { '@id': baseUrl },
-            } satisfies WithContext<Article>,
-            {
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                {
-                  '@type': 'ListItem',
-                  name: 'Home',
-                  item: baseUrl,
-                  position: 1,
-                },
-              ],
-              name: 'Breadcrumbs',
-            } satisfies WithContext<BreadcrumbList>,
-            {
-              '@id': baseUrl,
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: `${firstName} ${lastName}`,
-              url: baseUrl,
-              logo: `${baseUrl}/icon.svg`,
-              sameAs: platformProfiles.map(({ url }) => url),
-            } satisfies WithContext<Organization>,
-          ]),
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'Article',
+                headline,
+                image: `${baseUrl}/opengraph-image.png`,
+                datePublished: new Date(2019, 9, 23, 0, 0, 0).toISOString(),
+                dateModified: new Date().toISOString(),
+                author: { '@id': organization['@id'] },
+              } satisfies Article,
+              {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  {
+                    '@type': 'ListItem',
+                    name: 'Home',
+                    item: baseUrl,
+                    position: 1,
+                  },
+                ],
+                name: 'Breadcrumbs',
+              } satisfies BreadcrumbList,
+              organization,
+            ],
+          } satisfies Graph),
         }}
         type="application/ld+json"
       />
