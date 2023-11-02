@@ -11,7 +11,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { headline } from '@/constants/content';
 
-import { getOrganization } from '../json-ld';
+import { getPerson } from '../json-ld';
 
 const bgcolors = {
   hero: 'background.body',
@@ -23,7 +23,7 @@ const bgcolors = {
 };
 
 const Home: FC = async () => {
-  const organization = await getOrganization();
+  const person = await getPerson();
 
   return (
     <>
@@ -63,7 +63,7 @@ const Home: FC = async () => {
                 image: `${baseUrl}/opengraph-image.png`,
                 datePublished: new Date(2019, 9, 23, 0, 0, 0).toISOString(),
                 dateModified: new Date().toISOString(),
-                author: { '@id': organization['@id'] },
+                author: { '@id': person['@id'] },
               } satisfies Article,
               {
                 '@type': 'BreadcrumbList',
@@ -77,7 +77,7 @@ const Home: FC = async () => {
                 ],
                 name: 'Breadcrumbs',
               } satisfies BreadcrumbList,
-              organization,
+              person,
             ],
           } satisfies Graph),
         }}
