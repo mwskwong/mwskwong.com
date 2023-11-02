@@ -18,7 +18,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
-import { Article, BreadcrumbList, Graph } from 'schema-dts';
+import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 import { IThemeRegistration, getHighlighter } from 'shiki';
 
 import { getPerson } from '@/app/json-ld';
@@ -308,14 +308,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             '@context': 'https://schema.org',
             '@graph': [
               {
-                '@type': 'Article',
+                '@type': 'BlogPosting',
                 headline: blog.title,
                 description: blog.description,
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
                 author: { '@id': person['@id'] },
-              } satisfies Article,
+              } satisfies BlogPosting,
               {
                 '@type': 'BreadcrumbList',
                 itemListElement: [
