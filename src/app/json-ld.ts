@@ -8,10 +8,12 @@ import {
   lastName,
   phone,
 } from '@/constants/content';
+import { getExperiences } from '@/lib/get-experiences';
 import { getPersonalPhoto } from '@/lib/get-personal-photo';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 
 export const getPerson = async () => {
+  const jobTitle = (await getExperiences())[0]?.jobTitle;
   const personalPhoto = await getPersonalPhoto();
   const platformProfiles = await getPlatformProfiles();
 
@@ -20,6 +22,7 @@ export const getPerson = async () => {
     '@type': 'Person',
     name: `${firstName} ${lastName}`,
     telephone: phone,
+    jobTitle,
     email,
     address,
     url: baseUrl,
