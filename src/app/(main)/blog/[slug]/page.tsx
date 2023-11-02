@@ -21,7 +21,7 @@ import rehypeSlug from 'rehype-slug';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
 import { IThemeRegistration, getHighlighter } from 'shiki';
 
-import { getOrganization } from '@/app/json-ld';
+import { getPerson } from '@/app/json-ld';
 import { Actions } from '@/components/blog/actions';
 import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -63,7 +63,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const metadata = await prisma.blogMetadata.findUnique({
     where: { id: blog.id },
   });
-  const organization = await getOrganization();
+  const person = await getPerson();
 
   return (
     <>
@@ -314,7 +314,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
-                author: { '@id': organization['@id'] },
+                author: { '@id': person['@id'] },
               } satisfies Article,
               {
                 '@type': 'BreadcrumbList',
@@ -340,7 +340,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 ],
                 name: 'Breadcrumbs',
               } satisfies BreadcrumbList,
-              organization,
+              person,
             ],
           } satisfies Graph),
         }}
