@@ -10,6 +10,7 @@ import { Hero } from '@/components/home/hero';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { firstName, headline, lastName } from '@/constants/content';
+import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 
 const bgcolors = {
   hero: 'background.body',
@@ -20,71 +21,76 @@ const bgcolors = {
   contact: 'background.body',
 };
 
-const Home: FC = () => (
-  <>
-    <main>
-      <Hero bgcolor={bgcolors.hero} />
-      <SectionDivider bgcolor={bgcolors.about} color={bgcolors.hero} />
+const Home: FC = async () => {
+  const platformProfiles = await getPlatformProfiles();
 
-      <About bgcolor={bgcolors.about} />
-      <SectionDivider bgcolor={bgcolors.funFact} color={bgcolors.about} />
+  return (
+    <>
+      <main>
+        <Hero bgcolor={bgcolors.hero} />
+        <SectionDivider bgcolor={bgcolors.about} color={bgcolors.hero} />
 
-      <FunFact sx={{ bgcolor: bgcolors.funFact }} />
-      <SectionDivider bgcolor={bgcolors.experience} color={bgcolors.funFact} />
+        <About bgcolor={bgcolors.about} />
+        <SectionDivider bgcolor={bgcolors.funFact} color={bgcolors.about} />
 
-      <Experience color={bgcolors.experience} />
-      <SectionDivider
-        bgcolor={bgcolors.education}
-        color={bgcolors.experience}
-      />
+        <FunFact sx={{ bgcolor: bgcolors.funFact }} />
+        <SectionDivider
+          bgcolor={bgcolors.experience}
+          color={bgcolors.funFact}
+        />
 
-      <Education bgcolor={bgcolors.education} />
-      <SectionDivider bgcolor={bgcolors.contact} color={bgcolors.education} />
+        <Experience color={bgcolors.experience} />
+        <SectionDivider
+          bgcolor={bgcolors.education}
+          color={bgcolors.experience}
+        />
 
-      <Contact bgcolor={bgcolors.contact} />
-    </main>
-    <SectionDivider bgcolor="var(--Footer-bg)" />
-    <script
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify([
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline,
-            image: [`${baseUrl}/opengraph-image.png`],
-            datePublished: new Date(2019, 9, 23, 0, 0, 0).toISOString(),
-            dateModified: new Date().toISOString(),
-            author: {
-              '@type': 'Person',
+        <Education bgcolor={bgcolors.education} />
+        <SectionDivider bgcolor={bgcolors.contact} color={bgcolors.education} />
+
+        <Contact bgcolor={bgcolors.contact} />
+      </main>
+      <SectionDivider bgcolor="var(--Footer-bg)" />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Article',
+              headline,
+              image: [`${baseUrl}/opengraph-image.png`],
+              datePublished: new Date(2019, 9, 23, 0, 0, 0).toISOString(),
+              dateModified: new Date().toISOString(),
+              author: { '@id': baseUrl },
+            } satisfies WithContext<Article>,
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  name: 'Home',
+                  item: baseUrl,
+                  position: 1,
+                },
+              ],
+              name: 'Breadcrumbs',
+            } satisfies WithContext<BreadcrumbList>,
+            {
+              '@id': baseUrl,
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
               name: `${firstName} ${lastName}`,
               url: baseUrl,
-            },
-          } satisfies WithContext<Article>,
-          {
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                name: 'Home',
-                item: baseUrl,
-                position: 1,
-              },
-            ],
-            name: 'Breadcrumbs',
-          } satisfies WithContext<BreadcrumbList>,
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: `${firstName} ${lastName}`,
-            url: baseUrl,
-            logo: `${baseUrl}/icon.svg`,
-          } satisfies WithContext<Organization>,
-        ]),
-      }}
-      type="application/ld+json"
-    />
-  </>
-);
+              logo: `${baseUrl}/icon.svg`,
+              sameAs: platformProfiles.map(({ url }) => url),
+            } satisfies WithContext<Organization>,
+          ]),
+        }}
+        type="application/ld+json"
+      />
+    </>
+  );
+};
 
 export default Home;
