@@ -1,7 +1,7 @@
 'use client';
 
-import { RefreshRounded } from '@mui/icons-material';
 import { Button, Container, Link, Stack, Typography } from '@mui/joy';
+import { RefreshCw } from 'lucide-react';
 import { FC } from 'react';
 
 import { email } from '@/constants/content';
@@ -40,7 +40,7 @@ const Error: FC<{
         ) : null}{' '}
         to report the issue.
       </Typography>
-      <Button onClick={reset} size="lg" startDecorator={<RefreshRounded />}>
+      <Button onClick={reset} size="lg" startDecorator={<RefreshCw />}>
         Try Again
       </Button>
     </Stack>

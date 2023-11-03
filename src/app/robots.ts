@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-import { baseUrl } from '@/utils/base-url';
+import { baseUrl } from '@/constants/base-url';
 
 const robots = (): MetadataRoute.Robots => ({
   rules: {

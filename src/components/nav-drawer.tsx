@@ -1,6 +1,5 @@
 'use client';
 
-import { MenuRounded } from '@mui/icons-material';
 import {
   Box,
   Drawer,
@@ -10,6 +9,7 @@ import {
   ListItem,
   ListItemButton,
 } from '@mui/joy';
+import { Menu } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC, useState } from 'react';
 
@@ -32,7 +32,7 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
         variant="outlined"
         {...slotProps?.drawerButton}
       >
-        <MenuRounded />
+        <Menu />
       </IconButton>
       <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
         <Box component="nav" pb={1} pt={10} px={1}>

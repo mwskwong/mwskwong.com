@@ -87,5 +87,18 @@ export const globalStyles = (theme: Theme) =>
     img: { objectFit: 'cover' },
     main: { flex: 1 },
     section: { paddingBlock: 'var(--Section-paddingY)' },
-    svg: { display: 'block' },
+    svg: {
+      display: 'block',
+      // match icons
+      '&[viewBox="0 0 24 24"]': {
+        color: 'var(--Icon-color, var(--joy-palette-text-icon))',
+        margin: 'var(--Icon-margin)',
+        fontSize: 'var(--Icon-fontSize, 1.5rem)',
+        width: '1em',
+        height: '1em',
+        flexShrink: 0,
+        // lucide icons already effectively have padding surrounding the path
+        '&:not(.lucide)': { padding: `${(2 / 24).toFixed(5)}em` },
+      },
+    },
   }) satisfies Interpolation<Theme>;

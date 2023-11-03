@@ -16,13 +16,16 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC, Suspense } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
+import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 
+import { getPerson } from '@/app/json-ld';
 import { Actions } from '@/components/blog/actions';
 import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { ViewCount } from '@/components/blog/view-count';
 import { SectionDivider } from '@/components/section-divider';
+import { baseUrl } from '@/constants/base-url';
 import { firstName, lastName } from '@/constants/content';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
@@ -53,6 +56,8 @@ interface BlogProps {
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
+
+  const person = await getPerson();
 
   return (
     <>
@@ -291,6 +296,50 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
         <ContactMe bgcolor={contactMeBgColor} />
       </main>
       <SectionDivider bgcolor="var(--Footer-bg)" color={contactMeBgColor} />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'BlogPosting',
+                headline: blog.title,
+                description: blog.description,
+                image: blog.coverPhoto,
+                datePublished: blog.createdAt,
+                dateModified: blog.updatedAt,
+                author: { '@id': person['@id'] },
+              } satisfies BlogPosting,
+              {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  {
+                    '@type': 'ListItem',
+                    name: 'Home',
+                    item: baseUrl,
+                    position: 1,
+                  },
+                  {
+                    '@type': 'ListItem',
+                    name: 'Blog',
+                    item: `${baseUrl}/blog`,
+                    position: 2,
+                  },
+                  {
+                    '@type': 'ListItem',
+                    name: blog.title,
+                    item: `${baseUrl}/blog/${blog.slug}`,
+                    position: 3,
+                  },
+                ],
+                name: 'Breadcrumbs',
+              } satisfies BreadcrumbList,
+              person,
+            ],
+          } satisfies Graph),
+        }}
+        type="application/ld+json"
+      />
     </>
   );
 };

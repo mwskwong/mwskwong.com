@@ -1,6 +1,5 @@
 'use client';
 
-import { KeyboardArrowRightRounded } from '@mui/icons-material';
 import {
   Box,
   BoxProps,
@@ -50,8 +49,13 @@ export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
         >
           {websiteTechStack.map(({ name, Icon, url }) => (
             <Grid key={name} sm={3} xs={6}>
-              <Stack alignItems="center" position="relative" spacing={2}>
-                <Icon fontSize="xl5" />
+              <Stack
+                alignItems="center"
+                position="relative"
+                spacing={2}
+                sx={{ '--Icon-fontSize': (theme) => theme.vars.fontSize.xl5 }}
+              >
+                <Icon />
                 <Link href={url} overlay target="_blank" typography="title-md">
                   {name}
                 </Link>
@@ -62,7 +66,6 @@ export const FunFact: FC<FunFactProps> = ({ sx, ...props }) => (
         <Typography>...and more</Typography>
         <Button
           component="a"
-          endDecorator={<KeyboardArrowRightRounded />}
           href="https://github.com/mwskwong/resume"
           size="lg"
           target="_blank"

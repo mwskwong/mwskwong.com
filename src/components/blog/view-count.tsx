@@ -1,5 +1,5 @@
-import { VisibilityRounded } from '@mui/icons-material';
 import { Typography, TypographyProps } from '@mui/joy';
+import { Eye } from 'lucide-react';
 import { unstable_noStore as noStore } from 'next/cache';
 import { FC } from 'react';
 
@@ -19,7 +19,7 @@ export const ViewCount: FC<ViewCountProps> = async ({ blogId, ...props }) => {
   });
 
   return (
-    <Typography startDecorator={<VisibilityRounded />} {...props}>
+    <Typography startDecorator={<Eye />} {...props}>
       {numberFormatter.format(metadata?.view ?? 0)} views
     </Typography>
   );
