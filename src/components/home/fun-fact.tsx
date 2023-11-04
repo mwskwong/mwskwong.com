@@ -25,7 +25,8 @@ export const FunFact: FC<FunFactProps> = async (props) => {
           <Stack spacing={2}>
             <Typography level="h2">Fun Fact</Typography>
             <Typography maxWidth="sm">
-              This website is powered by the following packages and platforms.
+              This website&apos;s functionality is enabled by these specific
+              software packages and platforms.
             </Typography>
           </Stack>
           <Grid
