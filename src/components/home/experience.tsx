@@ -67,8 +67,8 @@ export const Experience: FC<ExperienceProps> = async (props) => {
                 Contribution To Open Source Projects
               </Typography>
               <Typography maxWidth="sm">
-                From time to time, I contribute to open source projects. Here
-                are the projects I have contributed thus far.
+                Periodically, I engage in open-source contributions. Below are
+                the projects I&apos;ve contributed to thus far.
               </Typography>
             </Stack>
             <Grid
