@@ -1,15 +1,26 @@
 import {
+  SiContentful,
   SiDatacamp,
   SiEnterprisedb,
   SiGithub,
   SiGoogle,
+  SiImprovmx,
   SiLinkedin,
   SiMicrosoft,
   SiMongodb,
+  SiMui,
+  SiNextdotjs,
   SiOracle,
+  SiPlanetscale,
+  SiPrisma,
+  SiReact,
+  SiReacthookform,
   SiStackoverflow,
+  SiTypescript,
   SiUdemy,
+  SiVercel,
   SiYoutube,
+  SiZod,
 } from '@icons-pack/react-simple-icons';
 import {
   BrainCircuit,
@@ -24,6 +35,7 @@ import {
 } from 'lucide-react';
 import { LiteralUnion } from 'type-fest';
 
+import { SiFormspree } from '@/components/icons/si-formspree';
 import * as contentfulIds from '@/constants/contentful-ids';
 
 const Icons = {
@@ -47,6 +59,18 @@ const Icons = {
   [contentfulIds.mobile]: TabletSmartphone,
   [contentfulIds.qa]: Bug,
   [contentfulIds.softSkills]: MessagesSquare,
+  [contentfulIds.react]: SiReact,
+  [contentfulIds.nextJs]: SiNextdotjs,
+  [contentfulIds.typescript]: SiTypescript,
+  [contentfulIds.joyUi]: SiMui,
+  [contentfulIds.reactHookForm]: SiReacthookform,
+  [contentfulIds.zod]: SiZod,
+  [contentfulIds.prisma]: SiPrisma,
+  [contentfulIds.planetScale]: SiPlanetscale,
+  [contentfulIds.vercel]: SiVercel,
+  [contentfulIds.contentful]: SiContentful,
+  [contentfulIds.formspree]: SiFormspree,
+  [contentfulIds.improvMx]: SiImprovmx,
 };
 
 export const getIconByContentfulId = (
