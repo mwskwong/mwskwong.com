@@ -94,7 +94,7 @@ export interface ProjectSkeleton {
   fields: {
     name: EntryFieldTypes.Symbol;
     url: EntryFieldTypes.Symbol;
-    thumbnail: EntryFieldTypes.AssetLink;
+    thumbnail?: EntryFieldTypes.AssetLink;
   };
 }
 
