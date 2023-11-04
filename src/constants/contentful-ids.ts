@@ -30,3 +30,6 @@ export const planetScale = '5dxah2jj8IfnVoSO4ghtn6';
 export const prisma = '6nLGbLCselNANTZ4uefEW9';
 export const improvMx = '6KNBgaC1lEjoeS40gxXwf2';
 export const formspree = '71Q3FBkgjWDj787P4beReC';
+export const prismaReadReplicasExtension = '6myzHQnxgEBbUt9RMvHx5g';
+export const muiCore = '34jdGzLYPeSdsX8ufmmtnX';
+export const vercelStyleGuide = '6scCFCr3pGATuvQEFnpkC7';

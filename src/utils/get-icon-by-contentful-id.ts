@@ -71,6 +71,9 @@ const Icons = {
   [contentfulIds.contentful]: SiContentful,
   [contentfulIds.formspree]: SiFormspree,
   [contentfulIds.improvMx]: SiImprovmx,
+  [contentfulIds.prismaReadReplicasExtension]: SiPrisma,
+  [contentfulIds.muiCore]: SiMui,
+  [contentfulIds.vercelStyleGuide]: SiVercel,
 };
 
 export const getIconByContentfulId = (

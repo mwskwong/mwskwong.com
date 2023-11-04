@@ -24,7 +24,7 @@ export const FunFact: FC<FunFactProps> = async (props) => {
         <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
           <Stack spacing={2}>
             <Typography level="h2">Fun Fact</Typography>
-            <Typography>
+            <Typography maxWidth="sm">
               This website is powered by the following packages and platforms.
             </Typography>
           </Stack>
@@ -47,6 +47,7 @@ export const FunFact: FC<FunFactProps> = async (props) => {
                     {Icon ? <Icon /> : null}
                     <Link
                       href={url}
+                      maxWidth="20ch"
                       overlay
                       target="_blank"
                       typography="title-md"
