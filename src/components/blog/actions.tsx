@@ -18,7 +18,7 @@ import {
   StackProps,
   Typography,
 } from '@mui/joy';
-import { Check, Copy, Eye, Share } from 'lucide-react';
+import { Check, Copy, Eye, Share2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useMemo, useState } from 'react';
 
@@ -106,7 +106,7 @@ export const Actions: FC<ActionsProps> = ({ blog, view = 0, ...props }) => {
           aria-label="Share this blog to social media"
           slots={{ root: IconButton }}
         >
-          <Share />
+          <Share2 />
         </MenuButton>
         <Menu>
           {socialMediaOptions.map(({ Icon, name, url }) => (
