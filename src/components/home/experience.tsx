@@ -95,7 +95,6 @@ export const Experience: FC<ExperienceProps> = async (props) => {
                         '--Icon-fontSize': 'var(--joy-fontSize-xl5)',
                         // make use of light color for Vercel and Prisma icon when in dark mode
                         // because both of them are having a dark color by default
-                        //
                         '[data-joy-color-scheme="dark"] &': {
                           '& > svg': {
                             fill:
