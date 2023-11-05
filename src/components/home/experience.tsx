@@ -14,11 +14,17 @@ import {
   vercelStyleGuide,
 } from '@/constants/contentful-ids';
 import { experience } from '@/constants/nav';
+import { SiPrismaHexDark, SiVercelHexDark } from '@/constants/simple-icons';
 import { getContributedProjects } from '@/lib/get-contributed-projects';
 import { getExperiences } from '@/lib/get-experiences';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 import { Timeline, TimelineItem } from './timeline';
+
+const darkModeIconColors = {
+  [prismaReadReplicasExtension]: SiPrismaHexDark,
+  [vercelStyleGuide]: SiVercelHexDark,
+};
 
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
 export const Experience: FC<ExperienceProps> = async (props) => {
@@ -87,14 +93,15 @@ export const Experience: FC<ExperienceProps> = async (props) => {
                       spacing={2}
                       sx={{
                         '--Icon-fontSize': 'var(--joy-fontSize-xl5)',
-                        // make the Vercel and Prisma icon white when in dark mode
+                        // make use of light color for Vercel and Prisma icon when in dark mode
                         // because both of them are having a dark color by default
                         '[data-joy-color-scheme="dark"] &': {
                           '& > svg': {
                             fill:
-                              id === prismaReadReplicasExtension ||
-                              id === vercelStyleGuide
-                                ? 'var(--joy-palette-common-white)'
+                              id in darkModeIconColors
+                                ? darkModeIconColors[
+                                    id as keyof typeof darkModeIconColors
+                                  ]
                                 : undefined,
                           },
                         },
