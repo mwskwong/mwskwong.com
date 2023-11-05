@@ -14,12 +14,17 @@ import {
   vercelStyleGuide,
 } from '@/constants/contentful-ids';
 import { experience } from '@/constants/nav';
+import { SiPrismaHexDark, SiVercelHexDark } from '@/constants/simple-icons';
 import { getContributedProjects } from '@/lib/get-contributed-projects';
 import { getExperiences } from '@/lib/get-experiences';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 import { Timeline, TimelineItem } from './timeline';
-import { SiPrismaHexDark, SiVercelHexDark } from '@/constants/simple-icons';
+
+const darkModeIconColors = {
+  [prismaReadReplicasExtension]: SiPrismaHexDark,
+  [vercelStyleGuide]: SiVercelHexDark,
+};
 
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
 export const Experience: FC<ExperienceProps> = async (props) => {
@@ -94,10 +99,10 @@ export const Experience: FC<ExperienceProps> = async (props) => {
                         '[data-joy-color-scheme="dark"] &': {
                           '& > svg': {
                             fill:
-                              id === prismaReadReplicasExtension
-                                ? SiPrismaHexDark
-                                : id === vercelStyleGuide
-                                ? SiVercelHexDark
+                              id in darkModeIconColors
+                                ? darkModeIconColors[
+                                    id as keyof typeof darkModeIconColors
+                                  ]
                                 : undefined,
                           },
                         },

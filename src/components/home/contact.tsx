@@ -182,8 +182,8 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid sm={6} xs={12}>
                     <Controller
                       control={control}
-                      name="name"
                       disabled={isSubmitting}
+                      name="name"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
@@ -199,8 +199,8 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid sm={6} xs={12}>
                     <Controller
                       control={control}
-                      name="email"
                       disabled={isSubmitting}
+                      name="email"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
@@ -216,8 +216,8 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid xs={12}>
                     <Controller
                       control={control}
-                      name="subject"
                       disabled={isSubmitting}
+                      name="subject"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
@@ -233,8 +233,8 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid xs={12}>
                     <Controller
                       control={control}
-                      name="message"
                       disabled={isSubmitting}
+                      name="message"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
