@@ -70,7 +70,7 @@ export const globalStyles = (theme: Theme) =>
     body: {
       display: 'flex',
       flexDirection: 'column',
-      minHeight: '100vh',
+      minHeight: '100dvh',
     },
     code: {
       ...theme.typography['body-sm'],
