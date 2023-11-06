@@ -16,7 +16,7 @@ import { getPerson } from '../json-ld';
 const bgcolors = {
   hero: 'background.body',
   about: 'background.surface',
-  funFact: 'primary.600',
+  funFact: 'primary.solidBg',
   experience: 'background.body',
   education: 'background.surface',
   contact: 'background.body',
