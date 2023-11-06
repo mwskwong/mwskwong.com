@@ -1,4 +1,5 @@
 'use client';
+
 import { Box, BoxProps, Theme } from '@mui/joy';
 import { applySolidInversion } from '@mui/joy/colorInversion';
 import { mergeSx } from 'merge-sx';
