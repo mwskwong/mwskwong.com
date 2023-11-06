@@ -182,18 +182,13 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid sm={6} xs={12}>
                     <Controller
                       control={control}
+                      disabled={isSubmitting}
                       name="name"
-                      // Don't use Controller.disabled prop to disable inputs when the form is submitting.
-                      // Setting it to true will set the corresponding field value to undefined which is not what we want.
-                      // Instead, make use of FOrmControl.disabled directly
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl
-                          disabled={isSubmitting || disabled}
-                          error={Boolean(error)}
-                        >
+                        <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Name</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -204,15 +199,13 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid sm={6} xs={12}>
                     <Controller
                       control={control}
+                      disabled={isSubmitting}
                       name="email"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl
-                          disabled={isSubmitting || disabled}
-                          error={Boolean(error)}
-                        >
+                        <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Email</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -223,15 +216,13 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid xs={12}>
                     <Controller
                       control={control}
+                      disabled={isSubmitting}
                       name="subject"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl
-                          disabled={isSubmitting || disabled}
-                          error={Boolean(error)}
-                        >
+                        <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Subject</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -242,15 +233,13 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid xs={12}>
                     <Controller
                       control={control}
+                      disabled={isSubmitting}
                       name="message"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl
-                          disabled={isSubmitting || disabled}
-                          error={Boolean(error)}
-                        >
+                        <FormControl disabled={disabled} error={Boolean(error)}>
                           <FormLabel>Message</FormLabel>
                           <Textarea
                             maxRows={7}

@@ -52,7 +52,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
   );
 
   return (
-    <Stack spacing={6}>
+    <Stack spacing={6} {...props}>
       <Stack alignItems="center" spacing={2} textAlign="center">
         <Typography level="h3" textAlign="center">
           Self-learning
@@ -65,7 +65,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
           <Typography component="figcaption">― Steve Jobs</Typography>
         </Box>
       </Stack>
-      <Stack spacing={2} {...props}>
+      <Stack spacing={2}>
         <Input
           endDecorator={
             search.length > 0 && (
