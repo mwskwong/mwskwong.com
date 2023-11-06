@@ -16,7 +16,7 @@ import { getPerson } from '../json-ld';
 const bgcolors = {
   hero: 'background.body',
   about: 'background.surface',
-  funFact: 'primary.solidBg',
+  funFact: 'primary.600',
   experience: 'background.body',
   education: 'background.surface',
   contact: 'background.body',
@@ -34,7 +34,7 @@ const Home: FC = async () => {
         <About bgcolor={bgcolors.about} />
         <SectionDivider bgcolor={bgcolors.funFact} color={bgcolors.about} />
 
-        <FunFact sx={{ bgcolor: bgcolors.funFact }} />
+        <FunFact bgcolor={bgcolors.funFact} />
         <SectionDivider
           bgcolor={bgcolors.experience}
           color={bgcolors.funFact}

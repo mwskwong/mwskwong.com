@@ -50,7 +50,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   day: 'numeric',
 });
 const shikiPath = resolve('.shiki');
-const contactMeBgColor = 'primary.solidBg';
+const contactMeBgColor = 'primary.600';
 
 interface BlogProps {
   params: { slug: string };

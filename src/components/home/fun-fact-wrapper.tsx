@@ -11,6 +11,7 @@ import { FC } from 'react';
 export type FunFactWrapperProps = BoxProps<'section'>;
 export const FunFactWrapper: FC<FunFactWrapperProps> = ({ sx, ...props }) => (
   <Box
+    bgcolor="primary.600"
     component="section"
     sx={mergeSx<Theme>(applySolidInversion('primary'), sx)}
     {...props}
