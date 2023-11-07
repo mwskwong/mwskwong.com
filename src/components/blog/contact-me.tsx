@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/joy';
 import { applySolidInversion } from '@mui/joy/colorInversion';
-import { ArrowRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { FC } from 'react';
@@ -37,7 +37,7 @@ export const ContactMe: FC<ContactMeProps> = ({ sx, ...props }) => (
         <Typography level="h2">Any Questions or Comments?</Typography>
         <Button
           component={NextLink}
-          endDecorator={<ArrowRight />}
+          endDecorator={<ChevronRight />}
           href={contact.href}
           size="lg"
         >

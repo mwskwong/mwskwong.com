@@ -20,7 +20,7 @@ import {
   Typography,
 } from '@mui/joy';
 import { capitalize } from 'lodash-es';
-import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
+import { AlertTriangle, ChevronUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -162,7 +162,7 @@ export const Contact: FC<ContactProps> = (props) => {
                     component={NextLink}
                     href={home.href}
                     size="lg"
-                    startDecorator={<ArrowUp />}
+                    startDecorator={<ChevronUp />}
                   >
                     Back to Top
                   </Button>
