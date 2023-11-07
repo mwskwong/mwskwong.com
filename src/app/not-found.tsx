@@ -1,5 +1,5 @@
 import { Button, Container, Stack, Typography } from '@mui/joy';
-import { ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -24,12 +24,7 @@ const NotFound: FC = () => (
         Sorry, the page you are looking for doesn&apos;t exist or has been
         moved.
       </Typography>
-      <Button
-        component={Link}
-        endDecorator={<ChevronRight />}
-        href="/"
-        size="lg"
-      >
+      <Button component={Link} endDecorator={<ArrowRight />} href="/" size="lg">
         Back To Home
       </Button>
     </Stack>
