@@ -28,20 +28,17 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
 );
 
 const name = `${firstName} ${lastName}`;
-const title: Metadata['title'] = {
-  default: `${name} - ${headline}`,
-  template: `%s | ${name}`,
-};
 const path = '/';
 
 export const metadata: Metadata = {
-  title,
+  title: {
+    default: `${name} - ${headline}`,
+    template: `%s | ${name}`,
+  },
   description: selfIntroduction,
   authors: { name, url: baseUrl },
   metadataBase: new URL(baseUrl),
   openGraph: {
-    title,
-    description: selfIntroduction,
     url: path,
     type: 'website',
   },

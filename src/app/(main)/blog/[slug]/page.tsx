@@ -363,8 +363,6 @@ export const generateMetadata = async ({
     title,
     description,
     openGraph: {
-      title,
-      description,
       type: 'article',
       authors: `${firstName} ${lastName}`,
       publishedTime: createdAt,
