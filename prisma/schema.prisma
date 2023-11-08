@@ -5,6 +5,8 @@ generator client {
 datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
+  // FIXME: can be removed when foreign key is supported in PlanetScale in Dec 2023, 
+  // see https://planetscale.com/blog/announcing-vitess-18
   relationMode = "prisma"
 }
 
