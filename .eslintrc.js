@@ -49,8 +49,6 @@ module.exports = {
       { checksVoidReturn: false },
     ],
     // such that @/* imports will not be considered as external dependencies
-    // FIXME: remove in @vercel/style-guide@5.0.2+
-    'import/no-extraneous-dependencies': ['error', { includeTypes: true }],
     'react/function-component-definition': [
       'warn',
       {
