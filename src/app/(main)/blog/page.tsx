@@ -141,7 +141,7 @@ export const generateMetadata = async (
 
   return {
     title,
-    openGraph: { ...openGraph, url: path },
+    openGraph: { ...openGraph, title, url: path },
   };
 };
 
