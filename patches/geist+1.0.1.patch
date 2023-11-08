@@ -1,0 +1,10 @@
+diff --git a/node_modules/geist/dist/font.js b/node_modules/geist/dist/font.js
+index a8ebe5f..34e5aa5 100644
+--- a/node_modules/geist/dist/font.js
++++ b/node_modules/geist/dist/font.js
+@@ -126,4 +126,5 @@ export const GeistMono = localFont({
+     "Courier New",
+     "monospace",
+   ],
++  preload: false,
+ });
