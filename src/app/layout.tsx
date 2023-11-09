@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
-// importing this in client component will result in an error, so we cannot do that in theme.ts
-import { GeistMono, GeistSans } from 'geist/font';
+// importing these in client component will result in an error, so we cannot do that in theme.ts
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
 import { Metadata } from 'next';
 import { FC, PropsWithChildren } from 'react';
 
