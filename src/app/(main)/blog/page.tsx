@@ -144,15 +144,16 @@ export const revalidate = 3600;
 export const generateMetadata = async (
   _: object,
   parent: ResolvingMetadata,
-): Promise<Metadata> => {
+) => {
   const title = 'Blog';
   const path = '/blog';
   const { openGraph } = await parent;
 
   return {
     title,
-    openGraph: { ...openGraph, title, url: path },
-  };
+    description: 'Personal perspectives on a broad range of topics.',
+    openGraph: { ...openGraph, url: path },
+  } satisfies Metadata;
 };
 
 export default Blogs;
