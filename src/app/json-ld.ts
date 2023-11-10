@@ -13,7 +13,7 @@ import { getPersonalPhoto } from '@/lib/get-personal-photo';
 import { getPlatformProfiles } from '@/lib/get-platform-profiles';
 
 export const getPerson = async () => {
-  const jobTitle = (await getExperiences())[0]?.jobTitle;
+  const latestJobTitle = (await getExperiences())[0]?.jobTitle;
   const personalPhoto = await getPersonalPhoto();
   const platformProfiles = await getPlatformProfiles();
 
@@ -22,7 +22,7 @@ export const getPerson = async () => {
     '@type': 'Person',
     name: `${firstName} ${lastName}`,
     telephone: phone,
-    jobTitle,
+    jobTitle: latestJobTitle,
     email,
     address,
     url: baseUrl,
