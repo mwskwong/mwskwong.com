@@ -29,7 +29,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
 );
 
 const name = `${firstName} ${lastName}`;
-export const metadata: Metadata = {
+export const metadata = {
   title: {
     default: `${name} - ${headline}`,
     template: `%s | ${name}`,
@@ -39,6 +39,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   openGraph: { url: '/', type: 'website' },
   archives: ['https://v2.mwskwong.com'],
-};
+} satisfies Metadata;
 
 export default RootLayout;

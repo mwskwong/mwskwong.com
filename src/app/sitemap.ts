@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 import { baseUrl } from '@/constants/base-url';
 import { getBlogs } from '@/lib/get-blogs';
 
-const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
+const sitemap = async () => {
   const blogs = await getBlogs();
 
   return [
@@ -15,7 +15,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
       url: `${baseUrl}/blog/${slug}`,
       lastModified: updatedAt,
     })),
-  ];
+  ] satisfies MetadataRoute.Sitemap;
 };
 
 export default sitemap;
