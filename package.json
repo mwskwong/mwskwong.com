@@ -51,7 +51,7 @@
     "@types/node": "^18.18.9",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "@vercel/style-guide": "canary",
+    "@vercel/style-guide": "^5.1.0",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.53.0",
     "patch-package": "^8.0.0",
