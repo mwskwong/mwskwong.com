@@ -26,7 +26,6 @@ import { Heading } from '@/components/blog/heading';
 import { ViewCount } from '@/components/blog/view-count';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { firstName, lastName } from '@/constants/content';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
 import { getFileIcon } from '@/utils/get-file-icon';
@@ -349,31 +348,26 @@ export const revalidate = 3600;
 export const generateStaticParams = (): Promise<BlogProps['params'][]> =>
   getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
 
-export const generateMetadata = async ({
-  params: { slug },
-}: BlogProps): Promise<Metadata | undefined> => {
+export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) return;
 
   const { title, description, coverPhoto, createdAt, updatedAt, categories } =
     blog;
-  const path = `/blog/${slug}`;
 
   return {
     title,
     description,
     openGraph: {
-      title,
-      description,
       type: 'article',
-      authors: `${firstName} ${lastName}`,
+      authors: baseUrl,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       tags: categories,
-      url: path,
+      url: `/blog/${slug}`,
       images: coverPhoto,
     },
-  };
+  } satisfies Metadata;
 };
 
 export default Blog;
