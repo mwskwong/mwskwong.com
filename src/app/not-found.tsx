@@ -36,6 +36,6 @@ const NotFound: FC = () => (
   </Container>
 );
 
-export const metadata: Metadata = { title: 'Not Found' };
+export const metadata = { title: 'Not Found' } satisfies Metadata;
 
 export default NotFound;
