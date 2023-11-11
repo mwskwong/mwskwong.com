@@ -26,6 +26,10 @@ import { Heading } from '@/components/blog/heading';
 import { ViewCount } from '@/components/blog/view-count';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
+<<<<<<< HEAD
+=======
+import { prisma } from '@/lib/db';
+>>>>>>> origin/develop
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
 import { getFileIcon } from '@/utils/get-file-icon';
