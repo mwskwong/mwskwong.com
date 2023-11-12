@@ -1,5 +1,6 @@
 import { Theme, extendTheme } from '@mui/joy';
 import { Interpolation } from '@mui/styled-engine';
+import localFont from 'next/font/local';
 
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
@@ -14,18 +15,32 @@ declare module '@mui/joy/styles' {
   }
 }
 
-declare module '@mui/joy/SvgIcon' {
-  interface SvgIconPropsColorOverrides {
-    branding: true;
-  }
-}
+const geistSans = localFont({
+  src: '../node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2',
+});
+
+const geistMono = localFont({
+  src: '../node_modules/geist/dist/fonts/geist-mono/GeistMono-Variable.woff2',
+  adjustFontFallback: false,
+  fallback: [
+    'ui-monospace',
+    'SFMono-Regular',
+    'Roboto Mono',
+    'Menlo',
+    'Monaco',
+    'Liberation Mono',
+    'DejaVu Sans Mono',
+    'Courier New',
+    'monospace',
+  ],
+  preload: false,
+});
 
 export const theme = extendTheme({
-  // fonts loaded in app/layout.tsx
   fontFamily: {
-    body: 'var(--font-geist-sans)',
-    display: 'var(--font-geist-sans)',
-    code: 'var(--font-geist-mono)',
+    body: geistSans.style.fontFamily,
+    display: geistSans.style.fontFamily,
+    code: geistMono.style.fontFamily,
   },
   fontSize: {
     xl5: '3rem',
