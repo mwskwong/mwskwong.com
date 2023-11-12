@@ -1,4 +1,9 @@
-import { Button, Container, Grid, Link, Stack, Typography } from '@mui/joy';
+import Button from '@mui/joy/Button';
+import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
+import Link from '@mui/joy/Link';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
 import { getTechStack } from '@/lib/get-tech-stack';

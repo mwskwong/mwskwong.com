@@ -1,15 +1,12 @@
 'use client';
 
-import {
-  Box,
-  BoxProps,
-  Button,
-  Container,
-  Stack,
-  Theme,
-  Typography,
-} from '@mui/joy';
+import Box, { BoxProps } from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Container from '@mui/joy/Container';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { applySolidInversion } from '@mui/joy/colorInversion';
+import { Theme } from '@mui/joy/styles';
 import { ChevronRight } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';

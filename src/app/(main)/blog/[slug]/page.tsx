@@ -1,17 +1,15 @@
 import { resolve } from 'node:path';
 
-import {
-  Box,
-  Chip,
-  Container,
-  Grid,
-  Link,
-  List,
-  ListItem,
-  Sheet,
-  Stack,
-  Typography,
-} from '@mui/joy';
+import Box from '@mui/joy/Box';
+import Chip from '@mui/joy/Chip';
+import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
+import Link from '@mui/joy/Link';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import Sheet from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
