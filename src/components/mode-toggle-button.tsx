@@ -1,7 +1,8 @@
 'use client';
 
-import { NoSsr } from '@mui/base';
-import { IconButton, IconButtonProps, useColorScheme } from '@mui/joy';
+import { NoSsr } from '@mui/base/NoSsr';
+import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
+import { useColorScheme } from '@mui/joy/styles';
 import { Moon, Sun } from 'lucide-react';
 import { FC } from 'react';
 

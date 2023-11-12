@@ -1,6 +1,6 @@
 'use client';
 
-import { styled } from '@mui/joy';
+import { styled } from '@mui/joy/styles';
 import NextImage from 'next/image';
 import { ComponentProps } from 'react';
 
