@@ -1,14 +1,11 @@
 'use client';
 
-import {
-  Box,
-  Drawer,
-  IconButton,
-  IconButtonProps,
-  List,
-  ListItem,
-  ListItemButton,
-} from '@mui/joy';
+import Box from '@mui/joy/Box';
+import Drawer from '@mui/joy/Drawer';
+import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemButton from '@mui/joy/ListItemButton';
 import { Menu } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC, useState } from 'react';

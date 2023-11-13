@@ -1,12 +1,9 @@
 'use client';
 
-import { NoSsr } from '@mui/base';
-import {
-  CssBaseline,
-  CssVarsProvider,
-  GlobalStyles,
-  getInitColorSchemeScript,
-} from '@mui/joy';
+import { NoSsr } from '@mui/base/NoSsr';
+import CssBaseline from '@mui/joy/CssBaseline';
+import GlobalStyles from '@mui/joy/GlobalStyles';
+import { CssVarsProvider, getInitColorSchemeScript } from '@mui/joy/styles';
 import { AppProgressBar as NProgressBar } from 'next-nprogress-bar';
 import { FC, PropsWithChildren } from 'react';
 import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir';

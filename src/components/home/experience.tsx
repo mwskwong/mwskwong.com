@@ -1,12 +1,9 @@
-import {
-  Box,
-  BoxProps,
-  Container,
-  Grid,
-  Link,
-  Stack,
-  Typography,
-} from '@mui/joy';
+import Box, { BoxProps } from '@mui/joy/Box';
+import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
+import Link from '@mui/joy/Link';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
 import {

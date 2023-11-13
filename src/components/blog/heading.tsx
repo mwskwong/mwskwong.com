@@ -1,11 +1,10 @@
 'use client';
 
-import {
-  IconButton,
-  Typography,
+import IconButton from '@mui/joy/IconButton';
+import Typography, {
   TypographyProps,
   typographyClasses,
-} from '@mui/joy';
+} from '@mui/joy/Typography';
 import { LinkIcon } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';

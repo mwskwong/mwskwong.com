@@ -1,4 +1,4 @@
-import { Typography, TypographyProps } from '@mui/joy';
+import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { unstable_noStore as noStore } from 'next/cache';
 import { FC } from 'react';

@@ -1,6 +1,7 @@
 'use client';
 
-import { AspectRatio, useTheme } from '@mui/joy';
+import AspectRatio from '@mui/joy/AspectRatio';
+import { useTheme } from '@mui/joy/styles';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 import { SetOptional } from 'type-fest';

@@ -6,15 +6,13 @@ import {
   SiReddit,
   SiX,
 } from '@icons-pack/react-simple-icons';
-import {
-  Dropdown,
-  IconButton,
-  ListDivider,
-  ListItemDecorator,
-  Menu,
-  MenuButton,
-  MenuItem,
-} from '@mui/joy';
+import Dropdown from '@mui/joy/Dropdown';
+import IconButton from '@mui/joy/IconButton';
+import ListDivider from '@mui/joy/ListDivider';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
 import { Check, Copy, Share2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useMemo, useState } from 'react';
