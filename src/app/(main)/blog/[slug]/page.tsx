@@ -19,7 +19,6 @@ import rehypeSlug from 'rehype-slug';
 import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 import { IThemeRegistration, getHighlighter } from 'shiki';
 
-import { getPerson } from '@/app/json-ld';
 import { Actions } from '@/components/blog/actions';
 import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -30,6 +29,7 @@ import { prisma } from '@/lib/db';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
 import { getFileIcon } from '@/utils/get-file-icon';
+import { getPerson } from '@/utils/json-ld';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
