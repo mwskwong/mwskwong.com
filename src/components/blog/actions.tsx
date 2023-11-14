@@ -17,9 +17,9 @@ import { Check, Copy, Share2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useMemo, useState } from 'react';
 
-import { viewBlogById } from '@/app/actions';
 import { baseUrl } from '@/constants/base-url';
 import { firstName, lastName } from '@/constants/content';
+import { viewBlogById } from '@/lib/actions';
 
 export interface ActionsProps {
   blog: {
