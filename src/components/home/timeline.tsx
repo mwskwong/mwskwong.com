@@ -12,8 +12,7 @@ import { StaticImageData } from 'next/image';
 import { FC, Fragment, forwardRef } from 'react';
 
 import { Image } from '../image';
-
-import { PdfImage } from './pdf-image';
+import { PdfImage } from '../pdf-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',
