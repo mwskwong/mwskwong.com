@@ -10,8 +10,7 @@ import { Hero } from '@/components/home/hero';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { headline } from '@/constants/content';
-
-import { getPerson } from '../json-ld';
+import { getPerson } from '@/utils/json-ld';
 
 const bgcolors = {
   hero: 'background.body',
