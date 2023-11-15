@@ -26,6 +26,7 @@ export const Footer: FC<FooterProps> = async (props) => {
             <Link
               href="https://www.upwork.com/freelancers/manojk4"
               target="_blank"
+              underline="always"
             >
               Manoj Kumar
             </Link>
