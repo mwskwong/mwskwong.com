@@ -30,6 +30,6 @@ export const ViewCountSkeleton: FC<Omit<TypographyProps, 'children'>> = (
   props,
 ) => (
   <Typography startDecorator={<Eye />} {...props}>
-    <Skeleton>000 views</Skeleton>
+    <Skeleton sx={{ mr: 0.5 }} variant="text" width="3ch" /> views
   </Typography>
 );
