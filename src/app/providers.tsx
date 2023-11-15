@@ -6,7 +6,6 @@ import GlobalStyles from '@mui/joy/GlobalStyles';
 import { CssVarsProvider, getInitColorSchemeScript } from '@mui/joy/styles';
 import { AppProgressBar as NProgressBar } from 'next-nprogress-bar';
 import { FC, PropsWithChildren } from 'react';
-// import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir';
 
 import { globalStyles, theme } from '@/theme';
 
