@@ -40,7 +40,6 @@
     "rehype-pretty-code": "^0.10.2",
     "rehype-slug": "^6.0.0",
     "shiki": "^0.14.5",
-    "tss-react": "^4.9.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
