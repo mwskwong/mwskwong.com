@@ -1,3 +1,4 @@
+import Skeleton from '@mui/joy/Skeleton';
 import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { unstable_noStore as noStore } from 'next/cache';
@@ -24,3 +25,11 @@ export const ViewCount: FC<ViewCountProps> = async ({ blogId, ...props }) => {
     </Typography>
   );
 };
+
+export const ViewCountSkeleton: FC<Omit<TypographyProps, 'children'>> = (
+  props,
+) => (
+  <Typography startDecorator={<Eye />} {...props}>
+    <Skeleton>000 views</Skeleton>
+  </Typography>
+);

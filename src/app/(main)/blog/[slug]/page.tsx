@@ -23,7 +23,7 @@ import { Actions } from '@/components/blog/actions';
 import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
-import { ViewCount } from '@/components/blog/view-count';
+import { ViewCount, ViewCountSkeleton } from '@/components/blog/view-count';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
@@ -91,7 +91,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 justifyContent="space-around"
                 spacing={1}
               >
-                <Suspense>
+                <Suspense fallback={<ViewCountSkeleton />}>
                   <ViewCount blogId={blog.id} mr={1} />
                 </Suspense>
                 <Actions blog={blog} />
