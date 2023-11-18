@@ -66,7 +66,6 @@ export const globalStyles = (theme: Theme) =>
       '--Footer-paddingY': theme.spacing(6),
       '--Footer-bg': theme.vars.palette.background.surface,
       '--Header-height': '57px',
-      '--NProgress-height': '4px',
     },
     '::selection': {
       backgroundColor: theme.vars.palette.primary.solidBg,
