@@ -84,7 +84,14 @@ export const Contact: FC<ContactProps> = (props) => {
             onSubmit={handleSubmit(handleFormSubmit)}
             spacing={6}
           >
-            <Grid component="address" container md={4} spacing={3} xs={12}>
+            <Grid
+              component="address"
+              container
+              fontStyle="initial"
+              md={4}
+              spacing={3}
+              xs={12}
+            >
               {contactInfo.map(({ Icon, title, value, url }) => (
                 <Grid
                   alignItems="center"
