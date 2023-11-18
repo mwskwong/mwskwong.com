@@ -87,7 +87,9 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(updatedAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <Suspense fallback={<ViewCountSkeleton />}>
+                      <Suspense
+                        fallback={<ViewCountSkeleton level="body-sm" />}
+                      >
                         <ViewCount blogId={id} level="body-sm" />
                       </Suspense>
                     </CardContent>
