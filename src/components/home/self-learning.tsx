@@ -54,8 +54,8 @@ export const SelfLearning: FC<SelfLearningProps> = ({
         <Typography level="h3" textAlign="center">
           Self-learning
         </Typography>
-        <Box component="figure" maxWidth="sm">
-          <Typography component="blockquote">
+        <Box component="figure" m={0} maxWidth="sm">
+          <Typography component="blockquote" fontStyle="italic">
             “Stay hungry. Stay foolish. Never let go of your appetite to go
             after new ideas, new experiences, and new adventures.”
           </Typography>
