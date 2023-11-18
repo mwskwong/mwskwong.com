@@ -71,7 +71,6 @@ export const globalStyles = (theme: Theme) =>
       backgroundColor: theme.vars.palette.primary.solidBg,
       color: theme.vars.palette.primary.solidColor,
     },
-    address: { fontStyle: 'unset' },
     body: {
       display: 'flex',
       flexDirection: 'column',
