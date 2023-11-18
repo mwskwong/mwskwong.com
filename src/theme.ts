@@ -5,7 +5,6 @@ import localFont from 'next/font/local';
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
     header: true;
-    nprogress: true;
   }
 }
 
@@ -47,7 +46,6 @@ export const theme = extendTheme({
   },
   zIndex: {
     header: 1100,
-    nprogress: 2000,
   },
   components: {
     JoyStack: {
@@ -73,13 +71,6 @@ export const globalStyles = (theme: Theme) =>
     '::selection': {
       backgroundColor: theme.vars.palette.primary.solidBg,
       color: theme.vars.palette.primary.solidColor,
-    },
-    '#nprogress': {
-      '& .bar': {
-        zIndex: `var(--joy-zIndex-nprogress) !important`,
-        borderRadius: 'var(--NProgress-height)',
-        '& .peg': { display: 'none' },
-      },
     },
     address: { fontStyle: 'unset' },
     body: {
