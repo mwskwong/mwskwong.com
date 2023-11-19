@@ -349,8 +349,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
 export const revalidate = 3600;
 
-export const generateStaticParams = (): Promise<BlogProps['params'][]> =>
-  getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
+export const generateStaticParams = () =>
+  getBlogs().then((blogs) =>
+    blogs.map(({ slug }) => ({ slug })),
+  ) satisfies Promise<BlogProps['params'][]>;
 
 export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
   const blog = await getBlogBySlug(slug);
