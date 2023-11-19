@@ -66,13 +66,11 @@ export const globalStyles = (theme: Theme) =>
       '--Footer-paddingY': theme.spacing(6),
       '--Footer-bg': theme.vars.palette.background.surface,
       '--Header-height': '57px',
-      '--NProgress-height': '4px',
     },
     '::selection': {
       backgroundColor: theme.vars.palette.primary.solidBg,
       color: theme.vars.palette.primary.solidColor,
     },
-    address: { fontStyle: 'unset' },
     body: {
       display: 'flex',
       flexDirection: 'column',
@@ -82,7 +80,6 @@ export const globalStyles = (theme: Theme) =>
       ...theme.typography['body-sm'],
       fontFamily: theme.vars.fontFamily.code,
     },
-    figure: { margin: 0 },
     footer: {
       paddingBlock: 'var(--Footer-paddingY)',
       backgroundColor: 'var(--Footer-bg)',
