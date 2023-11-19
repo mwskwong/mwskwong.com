@@ -100,6 +100,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     level="h2"
                     mb={3}
                     mt={6}
+                    sx={{
+                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 6)',
+                    }}
                     textColor={color}
                     {...props}
                   />
@@ -110,6 +113,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     level="h3"
                     mb={1.5}
                     mt={4}
+                    sx={{
+                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 4)',
+                    }}
                     textColor={color}
                     {...props}
                   />
@@ -120,6 +126,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     level="h4"
                     mb={1}
                     mt={3}
+                    sx={{
+                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 3)',
+                    }}
                     textColor={color}
                     {...props}
                   />
