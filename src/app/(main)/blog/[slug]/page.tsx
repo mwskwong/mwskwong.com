@@ -100,6 +100,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     level="h2"
                     mb={3}
                     mt={6}
+                    sx={{
+                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 6)',
+                    }}
                     textColor={color}
                     {...props}
                   />
@@ -110,6 +113,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     level="h3"
                     mb={1.5}
                     mt={4}
+                    sx={{
+                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 4)',
+                    }}
                     textColor={color}
                     {...props}
                   />
@@ -120,6 +126,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     level="h4"
                     mb={1}
                     mt={3}
+                    sx={{
+                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 3)',
+                    }}
                     textColor={color}
                     {...props}
                   />
@@ -349,8 +358,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
 export const revalidate = 3600;
 
-export const generateStaticParams = (): Promise<BlogProps['params'][]> =>
-  getBlogs().then((blogs) => blogs.map(({ slug }) => ({ slug })));
+export const generateStaticParams = () =>
+  getBlogs().then((blogs) =>
+    blogs.map(({ slug }) => ({ slug })),
+  ) satisfies Promise<BlogProps['params'][]>;
 
 export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
   const blog = await getBlogBySlug(slug);

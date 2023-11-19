@@ -1,3 +1,4 @@
+import Box from '@mui/joy/Box';
 import { FC } from 'react';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
@@ -26,7 +27,15 @@ const Home: FC = async () => {
 
   return (
     <>
-      <main>
+      <Box
+        component="main"
+        sx={{
+          '& h2, h3, h4': {
+            scrollMarginTop:
+              'calc(var(--Header-offset) + var(--Section-paddingY))',
+          },
+        }}
+      >
         <Hero bgcolor={bgcolors.hero} />
         <SectionDivider bgcolor={bgcolors.about} color={bgcolors.hero} />
 
@@ -49,7 +58,7 @@ const Home: FC = async () => {
         <SectionDivider bgcolor={bgcolors.contact} color={bgcolors.education} />
 
         <Contact bgcolor={bgcolors.contact} />
-      </main>
+      </Box>
       <SectionDivider bgcolor="var(--Footer-bg)" />
       <script
         dangerouslySetInnerHTML={{
