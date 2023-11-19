@@ -62,6 +62,7 @@ export const globalStyles = (theme: Theme) =>
       '--Section-paddingY': theme.spacing(10),
       '--Footer-paddingY': theme.spacing(6),
       '--Footer-bg': theme.vars.palette.background.surface,
+      '--Header-offset': '56px',
     },
     '::selection': {
       backgroundColor: theme.vars.palette.primary.solidBg,
@@ -79,10 +80,6 @@ export const globalStyles = (theme: Theme) =>
     footer: {
       paddingBlock: 'var(--Footer-paddingY)',
       backgroundColor: 'var(--Footer-bg)',
-    },
-    'h2, h3, h4': {
-      // 56px is the offset for the fixed header
-      scrollMarginTop: 'calc(56px + var(--Section-paddingY))',
     },
     img: { objectFit: 'cover' },
     main: { flex: 1 },
