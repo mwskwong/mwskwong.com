@@ -71,6 +71,7 @@ const nextConfig = {
       ],
     },
   ],
+  transpilePackages: ['geist'],
   experimental: {
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
