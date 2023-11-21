@@ -1,10 +1,92 @@
 diff --git a/node_modules/geist/dist/mono.js b/node_modules/geist/dist/mono.js
-index a3baf2e..c938090 100644
+index a3baf2e..802ba9f 100644
 --- a/node_modules/geist/dist/mono.js
 +++ b/node_modules/geist/dist/mono.js
-@@ -15,4 +15,5 @@ export const GeistMono = localFont({
-     "Courier New",
-     "monospace",
-   ],
-+  preload: false,
- });
+@@ -1,18 +1,20 @@
+ import localFont from "next/font/local";
+ 
+-export const GeistMono = localFont({
+-  src: "./fonts/geist-mono/GeistMono-Variable.woff2",
+-  variable: "--font-geist-mono",
+-  adjustFontFallback: false,
+-  fallback: [
+-    "ui-monospace",
+-    "SFMono-Regular",
+-    "Roboto Mono",
+-    "Menlo",
+-    "Monaco",
+-    "Liberation Mono",
+-    "DejaVu Sans Mono",
+-    "Courier New",
+-    "monospace",
+-  ],
+-});
++export const GeistMono = (options) =>
++  localFont({
++    src: './fonts/geist-mono/GeistMono-Variable.woff2',
++    variable: '--font-geist-mono',
++    adjustFontFallback: false,
++    fallback: [
++      'ui-monospace',
++      'SFMono-Regular',
++      'Roboto Mono',
++      'Menlo',
++      'Monaco',
++      'Liberation Mono',
++      'DejaVu Sans Mono',
++      'Courier New',
++      'monospace',
++    ],
++    ...options,
++  });
+diff --git a/node_modules/geist/dist/sans.js b/node_modules/geist/dist/sans.js
+index 9a3bd61..ff07dfd 100644
+--- a/node_modules/geist/dist/sans.js
++++ b/node_modules/geist/dist/sans.js
+@@ -1,6 +1,8 @@
+ import localFont from "next/font/local";
+ 
+-export const GeistSans = localFont({
+-  src: "./fonts/geist-sans/Geist-Variable.woff2",
+-  variable: "--font-geist-sans",
+-});
++export const GeistSans = (options) =>
++  localFont({
++    src: './fonts/geist-sans/Geist-Variable.woff2',
++    variable: '--font-geist-sans',
++    ...options,
++  });
+diff --git a/node_modules/geist/font.d.ts b/node_modules/geist/font.d.ts
+index 993676e..512e3d3 100644
+--- a/node_modules/geist/font.d.ts
++++ b/node_modules/geist/font.d.ts
+@@ -1,6 +1,11 @@
+ import { NextFontWithVariable } from "next/dist/compiled/@next/font";
++import localFont from "next/dist/compiled/@next/font/local";
++
++// since LocalFont is not exported from next/font/local
++type LocalFont = Parameters<typeof localFont>[0];
+ 
+ declare module "geist/font" {
++
+   /**
+    * @deprecated - Import from `geist/font/sans` instead.
+    *
+@@ -105,7 +110,7 @@ declare module "geist/font/mono" {
+    *
+    * * {@link https://github.com/vercel/geist-font/releases Download Font Files}
+    */
+-  export const GeistMono: NextFontWithVariable;
++  export const GeistMono: (options?: Omit<LocalFont, 'src'>) => NextFontWithVariable;
+ }
+ 
+ declare module "geist/font/mono-non-variable" {
+@@ -147,7 +152,7 @@ declare module "geist/font/sans" {
+    *
+    * * {@link https://github.com/vercel/geist-font/releases Download Font Files}
+    */
+-  export const GeistSans: NextFontWithVariable;
++  export const GeistSans: (options?: Omit<LocalFont, 'src'>) => NextFontWithVariable;
+ }
+ 
+ declare module "geist/font/sans-non-variable" {
