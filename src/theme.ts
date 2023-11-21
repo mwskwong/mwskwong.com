@@ -15,11 +15,14 @@ declare module '@mui/joy/styles' {
   }
 }
 
+const geistSans = GeistSans();
+const geistMono = GeistMono({ preload: false });
+
 export const theme = extendTheme({
   fontFamily: {
-    body: GeistSans.style.fontFamily,
-    display: GeistSans.style.fontFamily,
-    code: GeistMono.style.fontFamily,
+    body: geistSans.style.fontFamily,
+    display: geistSans.style.fontFamily,
+    code: geistMono.style.fontFamily,
   },
   fontSize: {
     xl5: '3rem',
