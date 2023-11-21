@@ -71,6 +71,7 @@ const nextConfig = {
       ],
     },
   ],
+  transpilePackages: ['geist'],
   experimental: {
     ppr: true,
     webpackBuildWorker: true,
