@@ -74,7 +74,9 @@ export const globalStyles = (theme: Theme) =>
         width: '1em',
         height: '1em',
         flexShrink: 0,
+        // attempting to match simple icons
         // lucide icons already effectively have padding surrounding the path
+        // according to the current design of the icons
         '&:not(.lucide)': { padding: `${(2 / 24).toFixed(5)}em` },
       },
     },
