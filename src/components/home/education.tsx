@@ -15,13 +15,16 @@ export type EducationProps = Omit<BoxProps<'section'>, 'children'>;
 export const Education: FC<EducationProps> = async (props) => {
   const [educations, courses] = await Promise.all([
     getEducations().then((educations) =>
-      educations.map(({ from, to, program, school, supportingDocuments }) => ({
-        from: new Date(from),
-        to: to && new Date(to),
-        title: program,
-        organizations: school && [school],
-        supportingDocuments,
-      })),
+      educations.map(
+        ({ from, to, program, school, grade, supportingDocuments }) => ({
+          from: new Date(from),
+          to: to && new Date(to),
+          title: program,
+          organizations: school && [school],
+          descriptions: grade ? [grade] : undefined,
+          supportingDocuments,
+        }),
+      ),
     ),
     getCourses(),
   ]);
