@@ -47,7 +47,7 @@ export interface EducationSkeleton {
     to?: EntryFieldTypes.Date;
     program: EntryFieldTypes.Symbol;
     school: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
-    mode: EntryFieldTypes.Symbol;
+    grade?: EntryFieldTypes.Symbol;
     supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
   };
 }
@@ -62,7 +62,6 @@ export interface ExperienceSkeleton {
       EntryFieldTypes.EntryLink<OrganizationSkeleton>
     >;
     companiesRelationship?: EntryFieldTypes.Symbol;
-    employmentType: EntryFieldTypes.Symbol;
     jobDuties?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     projects?: EntryFieldTypes.Array<
       EntryFieldTypes.EntryLink<ProjectSkeleton>

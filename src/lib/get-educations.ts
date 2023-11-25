@@ -26,6 +26,7 @@ export const getEducations = cache(async () => {
         item.fields.school.fields.logo?.fields.file &&
         `https:${item.fields.school.fields.logo.fields.file.url}`,
     },
+    grade: item.fields.grade,
     supportingDocuments: item.fields.supportingDocuments?.map(
       (supportingDocument) => ({
         title: supportingDocument?.fields.title,
