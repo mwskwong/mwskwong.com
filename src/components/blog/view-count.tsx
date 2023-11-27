@@ -1,4 +1,4 @@
-import Skeleton from '@mui/joy/Skeleton';
+import Box from '@mui/joy/Box';
 import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { unstable_noStore as noStore } from 'next/cache';
@@ -30,6 +30,6 @@ export const ViewCountSkeleton: FC<Omit<TypographyProps, 'children'>> = (
   props,
 ) => (
   <Typography startDecorator={<Eye />} {...props}>
-    <Skeleton sx={{ mr: 0.5 }} variant="text" width="3ch" /> views
+    <Box component="span" mr={0.5} width="3ch" /> views
   </Typography>
 );
