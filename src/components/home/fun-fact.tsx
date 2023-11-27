@@ -6,7 +6,7 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
-import { getTechStack } from '@/lib/get-tech-stack';
+import { getTechStack } from '@/lib/queries';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 import { FunFactWrapper, FunFactWrapperProps } from './fun-fact-wrapper';

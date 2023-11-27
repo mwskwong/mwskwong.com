@@ -26,8 +26,7 @@ import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { prisma } from '@/lib/clients';
-import { getBlogBySlug } from '@/lib/get-blog-by-slug';
-import { getBlogs } from '@/lib/get-blogs';
+import { getBlogBySlug, getBlogs } from '@/lib/queries';
 import { getFileIcon } from '@/utils/get-file-icon';
 import { getPerson } from '@/utils/json-ld';
 
@@ -355,8 +354,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     </>
   );
 };
-
-export const revalidate = 3600;
 
 export const generateStaticParams = () =>
   getBlogs().then((blogs) =>

@@ -8,9 +8,11 @@ import {
   lastName,
   phone,
 } from '@/constants/content';
-import { getExperiences } from '@/lib/get-experiences';
-import { getPersonalPhoto } from '@/lib/get-personal-photo';
-import { getPlatformProfiles } from '@/lib/get-platform-profiles';
+import {
+  getExperiences,
+  getPersonalPhoto,
+  getPlatformProfiles,
+} from '@/lib/queries';
 
 export const getPerson = async () => {
   const latestJobTitle = (await getExperiences())[0]?.jobTitle;

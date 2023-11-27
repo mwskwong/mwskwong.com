@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 import { baseUrl } from '@/constants/base-url';
-import { getBlogs } from '@/lib/get-blogs';
+import { getBlogs } from '@/lib/queries';
 
 const sitemap = async () => {
   const blogs = await getBlogs();

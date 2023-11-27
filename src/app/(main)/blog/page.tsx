@@ -17,7 +17,7 @@ import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { prisma } from '@/lib/clients';
-import { getBlogs } from '@/lib/get-blogs';
+import { getBlogs } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -136,8 +136,6 @@ const Blogs: FC = async () => {
     </>
   );
 };
-
-export const revalidate = 3600;
 
 export const generateMetadata = async (
   _: object,

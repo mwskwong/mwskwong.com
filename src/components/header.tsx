@@ -12,7 +12,7 @@ import { FC } from 'react';
 import Icon from '@/app/icon.svg';
 import { linkedin } from '@/constants/contentful-ids';
 import { home, nav } from '@/constants/nav';
-import { getPlatformProfiles } from '@/lib/get-platform-profiles';
+import { getPlatformProfiles } from '@/lib/queries';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 import { ModeToggleButton } from './mode-toggle-button';
