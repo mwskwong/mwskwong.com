@@ -363,6 +363,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   );
 };
 
+export const revalidate = 3600;
+
 export const generateStaticParams = () =>
   getBlogs().then((blogs) =>
     blogs.map(({ slug }) => ({ slug })),
