@@ -1,5 +1,8 @@
-import { createClient } from 'contentful';
 import 'server-only';
+
+import { PrismaClient } from '@prisma/client';
+import { readReplicas } from '@prisma/extension-read-replicas';
+import { createClient } from 'contentful';
 
 export const contentful = createClient({
   space: process.env.CONTENTFUL_SPACE_ID ?? '',
@@ -13,3 +16,7 @@ export const contentful = createClient({
       : undefined,
   environment: process.env.VERCEL_ENV === 'production' ? 'master' : 'develop',
 }).withoutUnresolvableLinks;
+
+export const prisma = new PrismaClient().$extends(
+  readReplicas({ url: process.env.DATABASE_REPLICA_URL ?? '' }),
+);
