@@ -16,8 +16,7 @@ import { BreadcrumbList, WithContext } from 'schema-dts';
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { prisma } from '@/lib/clients';
-import { getBlogs } from '@/lib/queries';
+import { getBlogs, getBlogsMetadataByIds } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -28,9 +27,7 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
-  const blogsMetadata = await prisma.blogMetadata.findMany({
-    where: { id: { in: blogs.map(({ id }) => id) } },
-  });
+  const blogsMetadata = await getBlogsMetadataByIds(blogs.map(({ id }) => id));
 
   return (
     <>
