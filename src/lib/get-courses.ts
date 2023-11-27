@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-import { contentful } from './client';
+import { contentful } from './clients';
 import { CourseSkeleton } from './types';
 
 export const getCourses = cache(async () => {

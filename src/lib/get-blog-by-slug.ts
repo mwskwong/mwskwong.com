@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-import { contentful } from './client';
+import { contentful } from './clients';
 import { BlogSkeleton } from './types';
 
 export const getBlogBySlug = cache(async (slug: string) => {

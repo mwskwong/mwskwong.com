@@ -25,7 +25,7 @@ import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { prisma } from '@/lib/db';
+import { prisma } from '@/lib/clients';
 import { getBlogBySlug } from '@/lib/get-blog-by-slug';
 import { getBlogs } from '@/lib/get-blogs';
 import { getFileIcon } from '@/utils/get-file-icon';

@@ -2,7 +2,7 @@ import { Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
-import { contentful } from './client';
+import { contentful } from './clients';
 import {
   ExperienceSkeleton,
   OrganizationSkeleton,
