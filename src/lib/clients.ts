@@ -1,5 +1,3 @@
-import 'server-only';
-
 import { PrismaClient } from '@prisma/client';
 import { readReplicas } from '@prisma/extension-read-replicas';
 import { createClient } from 'contentful';
