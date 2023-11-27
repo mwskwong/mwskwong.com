@@ -25,9 +25,7 @@ import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { prisma } from '@/lib/clients';
-import { getBlogBySlug } from '@/lib/get-blog-by-slug';
-import { getBlogs } from '@/lib/get-blogs';
+import { getBlogBySlug, getBlogMetadataById, getBlogs } from '@/lib/queries';
 import { getFileIcon } from '@/utils/get-file-icon';
 import { getPerson } from '@/utils/json-ld';
 
@@ -57,9 +55,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
-  const metadata = await prisma.blogMetadata.findUnique({
-    where: { id: blog.id },
-  });
+  const metadata = await getBlogMetadataById(blog.id);
   const person = await getPerson();
 
   return (

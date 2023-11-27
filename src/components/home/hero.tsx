@@ -8,8 +8,7 @@ import { FC } from 'react';
 
 import { firstName, headline, lastName } from '@/constants/content';
 import { linkedin } from '@/constants/contentful-ids';
-import { getCv } from '@/lib/get-cv';
-import { getPlatformProfiles } from '@/lib/get-platform-profiles';
+import { getCv, getPlatformProfiles } from '@/lib/queries';
 
 export type HeroProps = Omit<BoxProps<'section'>, 'children'>;
 export const Hero: FC<HeroProps> = async (props) => {

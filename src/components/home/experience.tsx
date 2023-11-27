@@ -12,8 +12,7 @@ import {
 } from '@/constants/contentful-ids';
 import { experience } from '@/constants/nav';
 import { SiPrismaHexDark, SiVercelHexDark } from '@/constants/simple-icons';
-import { getContributedProjects } from '@/lib/get-contributed-projects';
-import { getExperiences } from '@/lib/get-experiences';
+import { getContributedProjects, getExperiences } from '@/lib/queries';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 import { Timeline, TimelineItem } from './timeline';
