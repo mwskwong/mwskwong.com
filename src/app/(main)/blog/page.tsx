@@ -16,7 +16,7 @@ import { BreadcrumbList, WithContext } from 'schema-dts';
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { prisma } from '@/lib/db';
+import { prisma } from '@/lib/clients';
 import { getBlogs } from '@/lib/get-blogs';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {

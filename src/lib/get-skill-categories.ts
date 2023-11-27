@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-import { contentful } from './client';
+import { contentful } from './clients';
 import { SkillCategorySkeleton, SkillSkeleton } from './types';
 
 export const getSkillCategories = cache(async () => {

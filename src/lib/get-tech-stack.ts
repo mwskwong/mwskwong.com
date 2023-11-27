@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
-import { contentful } from './client';
+import { contentful } from './clients';
 import { ProjectSkeleton } from './types';
 
 const priorities = { priorityHigh: 1, priorityMedium: 2, priorityLow: 3 };

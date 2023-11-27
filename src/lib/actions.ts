@@ -1,6 +1,6 @@
 'use server';
 
-import { prisma } from '@/lib/db';
+import { prisma } from '@/lib/clients';
 
 export const viewBlogById = async (id: string) =>
   prisma.blogMetadata.upsert({

@@ -1,6 +1,6 @@
 import { cache } from 'react';
 
-import { contentful } from './client';
+import { contentful } from './clients';
 import { ProjectSkeleton } from './types';
 
 export const getContributedProjects = cache(async () => {

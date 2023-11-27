@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash-es';
 import { cache } from 'react';
 
-import { contentful } from './client';
+import { contentful } from './clients';
 import { PlatformProfileSkeleton } from './types';
 
 export const getPlatformProfiles = cache(async () => {
