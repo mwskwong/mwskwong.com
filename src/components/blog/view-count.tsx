@@ -4,7 +4,7 @@ import { Eye } from 'lucide-react';
 import { unstable_noStore as noStore } from 'next/cache';
 import { FC } from 'react';
 
-import { prisma } from '@/lib/db';
+import { prisma } from '@/lib/clients';
 
 export interface ViewCountProps extends Omit<TypographyProps, 'children'> {
   blogId: string;
