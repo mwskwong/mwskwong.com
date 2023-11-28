@@ -3,7 +3,7 @@ import Container from '@mui/joy/Container';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { ChevronLeft } from 'lucide-react';
-import { Metadata } from 'next';
+import { Metadata, ServerRuntime } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -40,5 +40,6 @@ const NotFound: FC = () => (
 );
 
 export const metadata = { title: 'Not Found' } satisfies Metadata;
+export const runtime = 'edge' satisfies ServerRuntime;
 
 export default NotFound;
