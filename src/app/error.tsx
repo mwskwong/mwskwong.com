@@ -6,6 +6,7 @@ import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { RefreshCw } from 'lucide-react';
+import { ServerRuntime } from 'next';
 import { FC } from 'react';
 
 import { email } from '@/constants/content';
@@ -50,5 +51,7 @@ const Error: FC<{
     </Stack>
   </Container>
 );
+
+export const runtime = 'edge' satisfies ServerRuntime;
 
 export default Error;
