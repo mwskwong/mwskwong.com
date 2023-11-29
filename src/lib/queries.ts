@@ -2,7 +2,10 @@
 
 import { Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
-import { unstable_cache as cache } from 'next/cache';
+import {
+  unstable_cache as cache,
+  unstable_noStore as noStore,
+} from 'next/cache';
 
 import { contentful, prisma } from './clients';
 import {
@@ -292,15 +295,7 @@ export const getTechStack = cache(async () => {
   }));
 });
 
-export const getBlogMetadataById = cache(
-  (id: string) => prisma.blogMetadata.findUnique({ where: { id } }),
-  undefined,
-  { revalidate: 3600 },
-);
-
-export const getBlogsMetadataByIds = cache(
-  (ids: string[]) =>
-    prisma.blogMetadata.findMany({ where: { id: { in: ids } } }),
-  undefined,
-  { revalidate: 3600 },
-);
+export const getBlogMetadataById = (id: string) => {
+  noStore();
+  return prisma.blogMetadata.findUnique({ where: { id } });
+};
