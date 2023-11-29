@@ -25,7 +25,7 @@ export const Hero: FC<HeroProps> = async (props) => {
         <Stack justifyContent="center" spacing={5}>
           <Stack spacing={2} textAlign="center">
             <Typography level="body-sm">Hello</Typography>
-            <Typography fontSize="xl5" level="h1">
+            <Typography level="h1">
               {"I'm "}
               <Typography color="primary">{firstName}</Typography> {lastName}
             </Typography>
