@@ -1,13 +1,14 @@
 import { IconType } from '@icons-pack/react-simple-icons';
 import { forwardRef } from 'react';
 
+export const SiFormspreeHex = '#E5122E';
 export const SiFormspree: IconType = forwardRef(
   (
     { title = 'Formspree', color = 'currentColor', size = 24, ...props },
     ref,
   ) => (
     <svg
-      fill={color === 'default' ? '#E5122E' : color}
+      fill={color === 'default' ? SiFormspreeHex : color}
       height={size}
       ref={ref}
       viewBox="0 0 24 24"
