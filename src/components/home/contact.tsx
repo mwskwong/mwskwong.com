@@ -17,7 +17,7 @@ import Stack from '@mui/joy/Stack';
 import Textarea from '@mui/joy/Textarea';
 import Typography from '@mui/joy/Typography';
 import { capitalize } from 'lodash-es';
-import { AlertTriangle, ChevronUp, Send, ThumbsUp } from 'lucide-react';
+import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -166,7 +166,7 @@ export const Contact: FC<ContactProps> = (props) => {
                     component={NextLink}
                     href={home.href}
                     size="lg"
-                    startDecorator={<ChevronUp />}
+                    startDecorator={<ArrowUp />}
                   >
                     Back to Top
                   </Button>
