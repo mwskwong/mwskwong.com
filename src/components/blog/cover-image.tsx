@@ -1,4 +1,4 @@
-'use client';
+'use client'; // FIXME: for the sake of accessing theme.breakpoints, may not be needed once zero CSS runtime is in place
 
 import AspectRatio from '@mui/joy/AspectRatio';
 import { useTheme } from '@mui/joy/styles';
