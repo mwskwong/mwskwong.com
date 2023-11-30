@@ -15,7 +15,7 @@ export interface ColorInversionBoxProps extends BoxProps {
 }
 
 // this wrapper is created because applySolidInversion and applySoftInversion are a client function that can't be used directly in RSC
-// FIXME: In the future, when Joy UI moves to zero runtime CSS library, I may be able to merge it back
+// FIXME: In the future, when Joy UI moves to zero runtime CSS library, we may no longer need this wrapper
 export const ColorInversionBox: FC<ColorInversionBoxProps> = ({
   variant,
   color,
