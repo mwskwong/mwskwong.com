@@ -1,4 +1,4 @@
-'use client';
+'use client'; // FIXME: for the sake of using styled() to add sx props to Image, may not be needed once zero CSS runtime is in place
 
 import { styled } from '@mui/joy/styles';
 import NextImage from 'next/image';

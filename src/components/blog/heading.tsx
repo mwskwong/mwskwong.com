@@ -1,4 +1,4 @@
-'use client';
+'use client'; // FIXME: for the sake of accessing typographyClasses, may not be needed once zero CSS runtime is in place
 
 import IconButton from '@mui/joy/IconButton';
 import Typography, {

@@ -1,3 +1,4 @@
+import { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Container from '@mui/joy/Container';
 import Grid from '@mui/joy/Grid';
@@ -9,14 +10,19 @@ import { FC } from 'react';
 import { getTechStack } from '@/lib/queries';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
-import { FunFactWrapper, FunFactWrapperProps } from './fun-fact-wrapper';
+import { ColorInversionBox } from '../color-inversion-box';
 
-export type FunFactProps = Omit<FunFactWrapperProps, 'children'>;
+export type FunFactProps = Omit<BoxProps<'section'>, 'children' | 'color'>;
 export const FunFact: FC<FunFactProps> = async (props) => {
   const techStack = await getTechStack();
 
   return (
-    <FunFactWrapper {...props}>
+    <ColorInversionBox
+      color="primary"
+      component="section"
+      variant="solid"
+      {...props}
+    >
       <Container
         sx={{
           color: 'var(--variant-plainColor)',
@@ -76,6 +82,6 @@ export const FunFact: FC<FunFactProps> = async (props) => {
           </Button>
         </Stack>
       </Container>
-    </FunFactWrapper>
+    </ColorInversionBox>
   );
 };

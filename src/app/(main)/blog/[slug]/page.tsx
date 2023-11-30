@@ -1,6 +1,7 @@
 import { resolve } from 'node:path';
 
 import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
 import Container from '@mui/joy/Container';
 import Grid from '@mui/joy/Grid';
@@ -10,7 +11,9 @@ import ListItem from '@mui/joy/ListItem';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
+import { ChevronRight } from 'lucide-react';
 import { Metadata } from 'next';
+import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { FC, Suspense } from 'react';
@@ -20,15 +23,16 @@ import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 import { IThemeRegistration, getHighlighter } from 'shiki';
 
 import { Actions } from '@/components/blog/actions';
-import { ContactMe } from '@/components/blog/contact-me';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
-import { ViewCount, ViewCountSkeleton } from '@/components/blog/view-count';
+import { ColorInversionBox } from '@/components/color-inversion-box';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
+import { contact } from '@/constants/nav';
 import { getBlogBySlug, getBlogs } from '@/lib/queries';
 import { getFileIcon } from '@/utils/get-file-icon';
 import { getPerson } from '@/utils/json-ld';
+import { ViewCount, ViewCountSkeleton } from '@/components/blog/view-count';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -312,7 +316,33 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           ) : null}
         </Container>
         <SectionDivider bgcolor={contactMeBgColor} />
-        <ContactMe bgcolor={contactMeBgColor} />
+        <ColorInversionBox
+          bgcolor={contactMeBgColor}
+          color="primary"
+          component="section"
+          variant="solid"
+        >
+          <Container
+            sx={{
+              '& ::selection': {
+                bgcolor: 'var(--variant-solidBg)',
+                color: 'var(--variant-solidColor)',
+              },
+            }}
+          >
+            <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
+              <Typography level="h2">Any Questions or Comments?</Typography>
+              <Button
+                component={NextLink}
+                endDecorator={<ChevronRight />}
+                href={contact.href}
+                size="lg"
+              >
+                Contact Me
+              </Button>
+            </Stack>
+          </Container>
+        </ColorInversionBox>
       </main>
       <SectionDivider bgcolor="var(--Footer-bg)" color={contactMeBgColor} />
       <script
