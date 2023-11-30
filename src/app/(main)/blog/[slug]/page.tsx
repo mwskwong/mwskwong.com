@@ -11,7 +11,7 @@ import ListItem from '@mui/joy/ListItem';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
@@ -323,7 +323,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               <Typography level="h2">Any Questions or Comments?</Typography>
               <Button
                 component={NextLink}
-                endDecorator={<ChevronRight />}
+                endDecorator={<ArrowRight />}
                 href={contact.href}
                 size="lg"
               >
