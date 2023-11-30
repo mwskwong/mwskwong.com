@@ -7,9 +7,8 @@ import { prisma } from '@/lib/clients';
 export const viewBlogById = (id: string) => {
   noStore();
 
-  return prisma.blogMetadata.upsert({
+  return prisma.blogMetadata.update({
     where: { id },
-    update: { view: { increment: 1 } },
-    create: { id },
+    data: { view: { increment: 1 } },
   });
 };
