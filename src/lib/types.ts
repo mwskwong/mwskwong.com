@@ -1,30 +1,14 @@
 import { EntryFieldTypes } from 'contentful';
 
-export interface BlogCategorySkeleton {
-  contentTypeId: 'blogCategory';
-  fields: {
-    name: EntryFieldTypes.Symbol;
-  };
-}
-
 export interface BlogSkeleton {
   contentTypeId: 'blog';
   fields: {
     coverPhoto: EntryFieldTypes.AssetLink;
-    categories?: EntryFieldTypes.Array<
-      EntryFieldTypes.EntryLink<BlogCategorySkeleton>
-    >;
+    categories?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     title: EntryFieldTypes.Symbol;
     slug: EntryFieldTypes.Symbol;
     description: EntryFieldTypes.Text;
     content?: EntryFieldTypes.Text;
-  };
-}
-
-export interface CourseCategorySkeleton {
-  contentTypeId: 'courseCategory';
-  fields: {
-    name: EntryFieldTypes.Symbol;
   };
 }
 
@@ -35,7 +19,16 @@ export interface CourseSkeleton {
     institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     certificate?: EntryFieldTypes.AssetLink;
     categories?: EntryFieldTypes.Array<
-      EntryFieldTypes.EntryLink<CourseCategorySkeleton>
+      EntryFieldTypes.Symbol<
+        | 'Database'
+        | 'Desktop Virtualization'
+        | 'Development'
+        | 'DevOps'
+        | 'Marketing'
+        | 'Operating System'
+        | 'Project Management'
+        | 'Security'
+      >
     >;
   };
 }
@@ -92,6 +85,7 @@ export interface ProjectSkeleton {
   contentTypeId: 'project';
   fields: {
     name: EntryFieldTypes.Symbol;
+    type: EntryFieldTypes.Symbol<'Library' | 'Platform' | 'Website'>;
     url: EntryFieldTypes.Symbol;
     thumbnail?: EntryFieldTypes.AssetLink;
   };
