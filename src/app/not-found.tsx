@@ -2,7 +2,7 @@ import Button from '@mui/joy/Button';
 import Container from '@mui/joy/Container';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { ChevronLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -31,7 +31,7 @@ const NotFound: FC = () => (
         component={Link}
         href="/"
         size="lg"
-        startDecorator={<ChevronLeft />}
+        startDecorator={<ArrowLeft />}
       >
         Back To Home
       </Button>
