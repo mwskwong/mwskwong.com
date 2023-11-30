@@ -34,10 +34,7 @@ export const getBlogBySlug = cache(async (slug: string) => {
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,
-      categories: item.fields.categories
-        ?.map((category) => category?.fields.name)
-        .filter((category): category is string => Boolean(category))
-        .sort(),
+      categories: item.fields.categories,
       title: item.fields.title,
       slug: item.fields.slug,
       description: item.fields.description,
@@ -71,10 +68,7 @@ export const getBlogs = cache(
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,
-      categories: item.fields.categories
-        ?.map((category) => category?.fields.name)
-        .filter((category): category is string => Boolean(category))
-        .sort(),
+      categories: item.fields.categories,
       title: item.fields.title,
       slug: item.fields.slug,
       description: item.fields.description,
@@ -113,10 +107,7 @@ export const getCourses = cache(async () => {
     certificate:
       item.fields.certificate?.fields.file &&
       `https:${item.fields.certificate.fields.file.url}`,
-    categories: item.fields.categories
-      ?.map((category) => category?.fields.name)
-      .filter((category): category is string => Boolean(category))
-      .sort(),
+    categories: item.fields.categories,
   }));
 });
 
@@ -270,22 +261,15 @@ export const getSkillCategories = cache(async () => {
   }));
 });
 
-const priorities = { priorityHigh: 1, priorityMedium: 2, priorityLow: 3 };
 export const getTechStack = cache(async () => {
   const { items } = await contentful.getEntries<ProjectSkeleton>({
     select: ['fields.name', 'fields.url', 'metadata.tags'],
     content_type: 'project',
     'metadata.tags.sys.id[in]': ['techStack'],
-    order: ['fields.name'],
+    order: ['fields.type', 'fields.name'],
   });
 
-  return orderBy(items, (item) => {
-    const priority = item.metadata.tags.find((tag) =>
-      tag.sys.id.startsWith('priority'),
-    );
-
-    return priority && priorities[priority.sys.id as keyof typeof priorities];
-  }).map((item) => ({
+  return items.map((item) => ({
     id: item.sys.id,
     name: item.fields.name,
     url: item.fields.url,
