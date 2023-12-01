@@ -211,13 +211,12 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
-                        bgcolor="background.level1"
-                        borderBottom={1}
-                        borderColor="divider"
+                        justifyContent="center"
                         level="body-sm"
                         px={2}
                         py={1.5}
                         startDecorator={Icon ? <Icon /> : null}
+                        textAlign="center"
                         textColor={color}
                         {...rest}
                       />
