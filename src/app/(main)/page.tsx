@@ -10,7 +10,7 @@ import { FunFact } from '@/components/home/fun-fact';
 import { Hero } from '@/components/home/hero';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { firstName, headline, lastName } from '@/constants/content';
+import { headline } from '@/constants/content';
 import { getPerson } from '@/utils/json-ld';
 
 const bgcolors = {
@@ -67,7 +67,7 @@ const Home: FC = async () => {
             '@graph': [
               {
                 '@type': 'Article',
-                headline: `${firstName} ${lastName} - ${headline}`,
+                headline,
                 image: `${baseUrl}/opengraph-image.png`,
                 datePublished: new Date(2019, 9, 23, 0, 0, 0).toISOString(),
                 dateModified: new Date().toISOString(),
