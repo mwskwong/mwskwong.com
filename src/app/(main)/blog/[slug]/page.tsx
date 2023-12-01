@@ -30,7 +30,6 @@ import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contact } from '@/constants/nav';
 import { getBlogBySlug, getBlogMetadataById, getBlogs } from '@/lib/queries';
-import { getFileIcon } from '@/utils/get-file-icon';
 import { getPerson } from '@/utils/json-ld';
 
 // data attribute auto injected by rehype-pretty-code
@@ -204,20 +203,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   }
 
                   if (codeTitle) {
-                    const Icon =
-                      typeof props.children === 'string' &&
-                      getFileIcon(props.children.split('/').at(-1));
                     const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
-                        bgcolor="background.level1"
-                        borderBottom={1}
-                        borderColor="divider"
                         level="body-sm"
                         px={2}
                         py={1.5}
-                        startDecorator={Icon ? <Icon /> : null}
+                        textAlign="center"
                         textColor={color}
                         {...rest}
                       />
