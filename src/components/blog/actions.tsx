@@ -28,13 +28,8 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 export interface ActionsProps extends StackProps {
   blog: {
     id: string;
-    updatedAt: `${number}-${number}-${number}T${number}:${number}:${number}Z`;
-    coverPhoto?: string;
     categories?: string[];
     title: string;
-    slug: string;
-    description: string;
-    content?: string;
   };
   view?: number;
 }
