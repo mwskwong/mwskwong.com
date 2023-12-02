@@ -208,8 +208,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         level="body-sm"
-                        px={2}
-                        py={1.5}
+                        pt={2}
                         textAlign="center"
                         textColor={color}
                         {...rest}
