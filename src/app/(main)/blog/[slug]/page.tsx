@@ -194,6 +194,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                           color,
                           borderRadius: 'md',
                           my: 2,
+                          pt: 2,
                           overflow: 'hidden',
                         }}
                         variant="outlined"
@@ -208,8 +209,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         level="body-sm"
-                        px={2}
-                        py={1.5}
                         textAlign="center"
                         textColor={color}
                         {...rest}
@@ -221,13 +220,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 },
                 pre: (props) => (
                   // @ts-expect-error LegacyRef passed to RefObject
-                  <Box
-                    component="pre"
-                    m={0}
-                    overflow="auto"
-                    py={2}
-                    {...props}
-                  />
+                  <Box component="pre" overflow="auto" {...props} />
                 ),
                 code: (props) => {
                   const inlineCode = props['data-language'] === undefined;
