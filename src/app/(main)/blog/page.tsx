@@ -43,7 +43,7 @@ const Blogs: FC = async () => {
               (
                 {
                   id,
-                  updatedAt,
+                  createdAt,
                   coverPhoto = '',
                   slug,
                   title,
@@ -85,7 +85,7 @@ const Blogs: FC = async () => {
                     </CardContent>
                     <CardContent orientation="horizontal" sx={{ flex: 0 }}>
                       <Typography level="body-sm">
-                        {dateFormatter.format(new Date(updatedAt))}
+                        {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
                       <Typography level="body-sm" startDecorator={<Eye />}>

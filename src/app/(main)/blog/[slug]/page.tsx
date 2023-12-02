@@ -70,7 +70,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           sx={{ py: 'var(--Section-paddingY)' }}
         >
           <Typography level="body-sm">
-            {dateFormatter.format(new Date(blog.updatedAt))}
+            {dateFormatter.format(new Date(blog.createdAt))}
           </Typography>
           <Typography level="h1" mb={3} mt={1}>
             {blog.title}
