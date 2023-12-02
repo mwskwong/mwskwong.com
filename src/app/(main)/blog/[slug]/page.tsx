@@ -220,7 +220,13 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 },
                 pre: (props) => (
                   // @ts-expect-error LegacyRef passed to RefObject
-                  <Box component="pre" overflow="auto" {...props} />
+                  <Box
+                    component="pre"
+                    m={0}
+                    overflow="auto"
+                    py={2}
+                    {...props}
+                  />
                 ),
                 code: (props) => {
                   const inlineCode = props['data-language'] === undefined;
