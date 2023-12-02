@@ -194,7 +194,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                           color,
                           borderRadius: 'md',
                           my: 2,
-                          pt: 2,
                           overflow: 'hidden',
                         }}
                         variant="outlined"
@@ -209,6 +208,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         level="body-sm"
+                        pt={2}
                         textAlign="center"
                         textColor={color}
                         {...rest}
