@@ -55,6 +55,7 @@ export const getBlogs = cache(
     return items.map((item) => ({
       id: item.sys.id,
       createdAt: item.sys.createdAt,
+      updatedAt: item.sys.updatedAt,
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,
