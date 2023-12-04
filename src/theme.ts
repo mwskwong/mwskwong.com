@@ -57,6 +57,7 @@ export const globalStyles = (theme: Theme) =>
       ...theme.typography['body-sm'],
       fontFamily: theme.vars.fontFamily.code,
     },
+    figure: { margin: 0 },
     footer: {
       paddingBlock: 'var(--Footer-paddingY)',
       backgroundColor: 'var(--Footer-bg)',

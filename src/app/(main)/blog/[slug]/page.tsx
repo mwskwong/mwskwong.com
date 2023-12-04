@@ -38,6 +38,7 @@ declare module 'react' {
     'data-language'?: string;
     'data-rehype-pretty-code-fragment'?: '';
     'data-rehype-pretty-code-title'?: '';
+    'data-highlighted-chars'?: '';
   }
 }
 
@@ -179,16 +180,17 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   />
                 ),
                 div: (props) => {
-                  const codeBlock =
+                  const codeFigure =
                     props['data-rehype-pretty-code-fragment'] === '';
                   const codeTitle =
                     props['data-rehype-pretty-code-title'] === '';
 
-                  if (codeBlock) {
+                  if (codeFigure) {
                     const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Sheet
+                        component="figure"
                         data-joy-color-scheme="dark"
                         sx={{
                           color,
@@ -207,6 +209,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
+                        component="figcaption"
                         level="body-sm"
                         pt={2}
                         textAlign="center"
@@ -246,21 +249,33 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     );
                   }
 
+                  return <code {...props} />;
+                },
+                span: (props) => {
+                  const codeHighlightedChar =
+                    props['data-highlighted-chars'] === '';
+
+                  if (codeHighlightedChar) {
+                    const { color, ...rest } = props;
+                    return (
+                      // @ts-expect-error LegacyRef passed to RefObject
+                      <Typography
+                        component="mark"
+                        textColor={color}
+                        variant="soft"
+                        {...rest}
+                      />
+                    );
+                  }
+
                   return (
                     // @ts-expect-error LegacyRef passed to RefObject
                     <Box
-                      component="code"
+                      component="span"
                       sx={{
-                        '& > [data-line]': { px: 2 },
-                        '& > [data-highlighted-line]': {
+                        '&[data-line]': { px: 2 },
+                        '&[data-highlighted-line]': {
                           bgcolor: 'primary.softBg',
-                        },
-                        '& [data-highlighted-chars]': {
-                          bgcolor: 'primary.softBg',
-                          // styles taken from <Typography variant="soft" />
-                          borderRadius: 'xs',
-                          py: 'min(0.1em, 4px)',
-                          px: '0.25em',
                         },
                       }}
                       {...props}
