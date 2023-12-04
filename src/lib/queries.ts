@@ -22,7 +22,6 @@ import {
 
 export const getBlogBySlug = cache(async (slug: string) => {
   const { items } = await contentful.getEntries<BlogSkeleton>({
-    select: ['sys.id', 'sys.createdAt', 'sys.updatedAt', 'fields'],
     content_type: 'blog',
     'fields.slug[in]': [slug],
     limit: 1,
@@ -50,23 +49,15 @@ export const getBlogs = cache(
   async (pagination?: { page: number; pageSize?: number }) => {
     const { page = 1, pageSize = 9 } = pagination ?? {};
     const { items } = await contentful.getEntries<BlogSkeleton>({
-      select: [
-        'sys.updatedAt',
-        'sys.id',
-        'fields.categories',
-        'fields.coverPhoto',
-        'fields.description',
-        'fields.slug',
-        'fields.title',
-      ],
       content_type: 'blog',
-      order: ['-sys.updatedAt'],
+      order: ['-sys.createdAt'],
       skip: pagination && (page - 1) * pageSize,
       limit: pagination && pageSize,
     });
 
     return items.map((item) => ({
       id: item.sys.id,
+      createdAt: item.sys.createdAt,
       updatedAt: item.sys.updatedAt,
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
@@ -81,7 +72,6 @@ export const getBlogs = cache(
 
 export const getContributedProjects = cache(async () => {
   const { items } = await contentful.getEntries<ProjectSkeleton>({
-    select: ['sys.id', 'fields.name', 'fields.url'],
     content_type: 'project',
     'metadata.tags.sys.id[in]': ['contributed'],
     order: ['fields.name'],
@@ -96,7 +86,6 @@ export const getContributedProjects = cache(async () => {
 
 export const getCourses = cache(async () => {
   const { items } = await contentful.getEntries<CourseSkeleton>({
-    select: ['fields'],
     content_type: 'course',
     order: ['fields.name'],
   });
@@ -127,7 +116,6 @@ export const getEducations = cache(async () => {
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
   const { items } = await contentful.getEntries<EducationSkeleton>({
-    select: ['fields'],
     content_type: 'education',
     order: ['fields.to'],
   });
@@ -160,17 +148,6 @@ export const getExperiences = cache(async () => {
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
   const { items } = await contentful.getEntries<ExperienceSkeleton>({
-    select: [
-      'fields.companies',
-      'fields.companiesRelationship',
-      'fields.from',
-      'fields.jobDuties',
-      'fields.jobTitle',
-      'fields.skills',
-      'fields.projects',
-      'fields.supportingDocuments',
-      'fields.to',
-    ],
     content_type: 'experience',
     order: ['fields.to'],
   });
@@ -225,7 +202,6 @@ export const getPersonalPhoto = cache(async () => {
 
 export const getPlatformProfiles = cache(async () => {
   const { items } = await contentful.getEntries<PlatformProfileSkeleton>({
-    select: ['sys.id', 'fields'],
     content_type: 'platformProfile',
   });
 
@@ -243,13 +219,11 @@ export const getPlatformProfiles = cache(async () => {
 export const getSkillCategories = cache(async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     contentful.getEntries<SkillSkeleton>({
-      select: ['fields'],
       content_type: 'skill',
       'fields.category[exists]': true,
       order: ['-fields.proficiency', 'fields.name'],
     }),
     contentful.getEntries<SkillCategorySkeleton>({
-      select: ['sys.id', 'fields.name'],
       content_type: 'skillCategory',
       order: ['-fields.proficiency', 'fields.name'],
     }),
@@ -266,7 +240,6 @@ export const getSkillCategories = cache(async () => {
 
 export const getTechStack = cache(async () => {
   const { items } = await contentful.getEntries<ProjectSkeleton>({
-    select: ['fields.name', 'fields.url', 'metadata.tags'],
     content_type: 'project',
     'metadata.tags.sys.id[in]': ['techStack'],
     order: ['fields.type', 'fields.name'],

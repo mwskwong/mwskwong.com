@@ -24,6 +24,8 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   day: 'numeric',
 });
 
+const description = 'Personal perspectives on a broad range of topics.';
+
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
 
@@ -33,16 +35,14 @@ const Blogs: FC = async () => {
         <Stack spacing={8}>
           <Stack spacing={2} textAlign="center">
             <Typography level="h1">Blog</Typography>
-            <Typography>
-              Personal perspectives on a broad range of topics.
-            </Typography>
+            <Typography>{description}</Typography>
           </Stack>
           <Grid container spacing={2}>
             {blogs.map(
               (
                 {
                   id,
-                  updatedAt,
+                  createdAt,
                   coverPhoto = '',
                   slug,
                   title,
@@ -84,7 +84,7 @@ const Blogs: FC = async () => {
                     </CardContent>
                     <CardContent orientation="horizontal" sx={{ flex: 0 }}>
                       <Typography level="body-sm">
-                        {dateFormatter.format(new Date(updatedAt))}
+                        {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
                       <Suspense
@@ -139,7 +139,7 @@ export const generateMetadata = async (
 
   return {
     title,
-    description: 'Personal perspectives on a broad range of topics.',
+    description,
     openGraph: { ...openGraph, url: path },
   } satisfies Metadata;
 };
