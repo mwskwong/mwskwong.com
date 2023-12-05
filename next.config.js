@@ -11,8 +11,18 @@ const nextConfig = {
     },
   },
   images: {
-    loader: 'custom',
-    loaderFile: 'src/utils/image-loaders.ts',
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'image.thum.io',
+        pathname: '/get/pdfSource/width/**',
+      },
+    ],
   },
   webpack: (config) => {
     config.resolve.alias['@mui/material'] = '@mui/joy';

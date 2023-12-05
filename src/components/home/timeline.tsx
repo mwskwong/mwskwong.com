@@ -12,7 +12,6 @@ import { StaticImageData } from 'next/image';
 import { FC, Fragment, forwardRef } from 'react';
 
 import { Image } from '../image';
-import { PdfImage } from '../pdf-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',
@@ -155,9 +154,11 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                       <ListItemDecorator
                         sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
                       >
-                        <PdfImage
+                        <Image
                           alt=""
-                          src={url}
+                          src={`https://image.thum.io/get/pdfSource/width/${
+                            listItemImageSize.width * 8
+                          }/${url}`}
                           {...listItemImageSize}
                           sx={[listItemImageSx, { objectPosition: 'top' }]}
                         />
