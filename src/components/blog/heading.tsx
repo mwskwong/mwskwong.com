@@ -1,10 +1,6 @@
 'use client'; // FIXME: for the sake of accessing typographyClasses, may not be needed once zero CSS runtime is in place
 
-import Link from '@mui/joy/Link';
-import Typography, {
-  TypographyProps,
-  typographyClasses,
-} from '@mui/joy/Typography';
+import { Link, Typography, TypographyProps, typographyClasses } from '@mui/joy';
 import { LinkIcon } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';

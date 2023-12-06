@@ -1,8 +1,4 @@
-import Box, { BoxProps } from '@mui/joy/Box';
-import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
-import Stack from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
+import { Box, BoxProps, IconButton, Link, Stack, Typography } from '@mui/joy';
 import { FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';

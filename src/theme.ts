@@ -1,4 +1,4 @@
-import { Theme, extendTheme } from '@mui/joy/styles';
+import { Theme, extendTheme } from '@mui/joy';
 import { Interpolation } from '@mui/styled-engine';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';

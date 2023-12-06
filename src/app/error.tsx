@@ -1,10 +1,6 @@
 'use client';
 
-import Button from '@mui/joy/Button';
-import Container from '@mui/joy/Container';
-import Link from '@mui/joy/Link';
-import Stack from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
+import { Button, Container, Link, Stack, Typography } from '@mui/joy';
 import { RefreshCw } from 'lucide-react';
 import { FC } from 'react';
 

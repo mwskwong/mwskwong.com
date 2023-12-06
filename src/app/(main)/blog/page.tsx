@@ -1,12 +1,14 @@
-import Card from '@mui/joy/Card';
-import CardContent from '@mui/joy/CardContent';
-import Chip from '@mui/joy/Chip';
-import Container from '@mui/joy/Container';
-import Divider from '@mui/joy/Divider';
-import Grid from '@mui/joy/Grid';
-import Link from '@mui/joy/Link';
-import Stack from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
+import {
+  Card,
+  CardContent,
+  Chip,
+  Container,
+  Divider,
+  Grid,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/joy';
 import { Eye } from 'lucide-react';
 import { Metadata, ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
