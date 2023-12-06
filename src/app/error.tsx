@@ -16,6 +16,7 @@ const Error: FC<{
 }> = ({ error, reset }) => (
   <Container
     component="main"
+    maxWidth="md"
     sx={{
       display: 'flex',
       flexDirection: 'column',
