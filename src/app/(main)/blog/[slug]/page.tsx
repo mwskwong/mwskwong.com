@@ -1,5 +1,3 @@
-import { resolve } from 'node:path';
-
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
@@ -20,7 +18,6 @@ import { FC } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
-import { IThemeRegistration, getHighlighter } from 'shiki';
 
 import { Actions } from '@/components/blog/actions';
 import { CoverImage } from '@/components/blog/cover-image';
@@ -48,7 +45,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'long',
   day: 'numeric',
 });
-const shikiPath = resolve('.shiki');
+
 const contactMeBgColor = 'primary.solidBg';
 
 interface BlogProps {
@@ -291,16 +288,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       {
                         theme: 'dark-plus',
                         keepBackground: false,
-                        getHighlighter: (options: {
-                          theme: IThemeRegistration;
-                        }) =>
-                          getHighlighter({
-                            ...options,
-                            paths: {
-                              languages: `${shikiPath}/languages`,
-                              themes: `${shikiPath}/themes`,
-                            },
-                          }),
                       } satisfies Options,
                     ],
                     rehypeSlug,
