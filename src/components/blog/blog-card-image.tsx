@@ -1,6 +1,7 @@
 'use client'; // FIXME: for the sake of accessing theme.breakpoints, may not be needed once zero CSS runtime is in place
 
-import { AspectRatio, useTheme } from '@mui/joy';
+import AspectRatio from '@mui/joy/AspectRatio';
+import { useTheme } from '@mui/joy/styles';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 import { SetOptional } from 'type-fest';

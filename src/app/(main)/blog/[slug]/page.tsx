@@ -1,16 +1,14 @@
-import {
-  Box,
-  Button,
-  Chip,
-  Container,
-  Grid,
-  Link,
-  List,
-  ListItem,
-  Sheet,
-  Stack,
-  Typography,
-} from '@mui/joy';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Chip from '@mui/joy/Chip';
+import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
+import Link from '@mui/joy/Link';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import Sheet from '@mui/joy/Sheet';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import NextLink from 'next/link';

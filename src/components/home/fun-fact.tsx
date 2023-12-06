@@ -1,18 +1,18 @@
-import { Button, Container, Grid, Link, Stack, Typography } from '@mui/joy';
+import { BoxProps } from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Container from '@mui/joy/Container';
+import Grid from '@mui/joy/Grid';
+import Link from '@mui/joy/Link';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';
 import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
-import {
-  ColorInversionBox,
-  ColorInversionBoxProps,
-} from '../color-inversion-box';
+import { ColorInversionBox } from '../color-inversion-box';
 
-export type FunFactProps = Omit<
-  ColorInversionBoxProps,
-  'children' | 'color' | 'variant'
->;
+export type FunFactProps = Omit<BoxProps<'section'>, 'children' | 'color'>;
 export const FunFact: FC<FunFactProps> = async (props) => {
   const techStack = await getTechStack();
 
