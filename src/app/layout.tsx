@@ -17,11 +17,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en">
     <body>
       <Providers>{children}</Providers>
-      <Analytics
-        mode={
-          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
-        }
-      />
+      <Analytics />
       <SpeedInsights />
     </body>
   </html>
