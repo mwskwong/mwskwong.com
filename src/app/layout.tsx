@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Metadata } from 'next';
 import { FC, PropsWithChildren } from 'react';
 
@@ -16,11 +17,8 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en">
     <body>
       <Providers>{children}</Providers>
-      <Analytics
-        mode={
-          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
-        }
-      />
+      <Analytics />
+      <SpeedInsights />
     </body>
   </html>
 );

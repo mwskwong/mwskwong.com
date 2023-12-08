@@ -10,6 +10,7 @@ import { FC } from 'react';
 const NotFound: FC = () => (
   <Container
     component="main"
+    maxWidth="md"
     sx={{
       display: 'flex',
       flexDirection: 'column',
