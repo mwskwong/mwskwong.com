@@ -63,6 +63,14 @@ export const globalStyles = (theme: Theme) =>
       backgroundColor: 'var(--Footer-bg)',
     },
     img: { objectFit: 'cover' },
+    input: {
+      '&[type="search"]': {
+        '&::-webkit-search-decoration, ::-webkit-search-cancel-button, ::-webkit-search-results-button, ::-webkit-search-results-decoration':
+          {
+            WebkitAppearance: 'none',
+          },
+      },
+    },
     main: { flex: 1 },
     section: { paddingBlock: 'var(--Section-paddingY)' },
     svg: {

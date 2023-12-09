@@ -62,7 +62,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
           <Typography component="figcaption">― Steve Jobs</Typography>
         </Box>
       </Stack>
-      <Stack spacing={2}>
+      <Stack component="search" spacing={2}>
         <Input
           endDecorator={
             search.length > 0 && (
@@ -77,6 +77,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
           size="lg"
           startDecorator={<Search />}
           sx={{ maxWidth: 400, mx: 'auto' }}
+          type="search"
           value={search}
         />
         <Grid container spacing={2}>
