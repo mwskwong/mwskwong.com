@@ -48,6 +48,7 @@ export const Contact: FC<ContactProps> = (props) => {
     resolver: zodResolver(formSchema),
     mode: 'onTouched',
     defaultValues: { name: '', email: '', subject: '', message: '' },
+    progressive: true,
   });
 
   const handleFormSubmit = useSubmit<FormSchema>(
