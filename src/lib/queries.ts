@@ -252,7 +252,7 @@ export const getTechStack = cache(async () => {
   }));
 });
 
-export const getBlogMetadataById = (id: string) => {
+export const getBlogMetadata = () => {
   noStore();
-  return prisma.blogMetadata.findUnique({ where: { id } });
+  return prisma.blogMetadata.findMany();
 };
