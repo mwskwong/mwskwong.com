@@ -48,6 +48,7 @@ export const Contact: FC<ContactProps> = (props) => {
     resolver: zodResolver(formSchema),
     mode: 'onTouched',
     defaultValues: { name: '', email: '', subject: '', message: '' },
+    progressive: true,
   });
 
   const handleFormSubmit = useSubmit<FormSchema>(
@@ -186,13 +187,15 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid sm={6} xs={12}>
                     <Controller
                       control={control}
-                      disabled={isSubmitting}
                       name="name"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl disabled={disabled} error={Boolean(error)}>
+                        <FormControl
+                          disabled={isSubmitting || disabled}
+                          error={Boolean(error)}
+                        >
                           <FormLabel>Name</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -203,13 +206,15 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid sm={6} xs={12}>
                     <Controller
                       control={control}
-                      disabled={isSubmitting}
                       name="email"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl disabled={disabled} error={Boolean(error)}>
+                        <FormControl
+                          disabled={isSubmitting || disabled}
+                          error={Boolean(error)}
+                        >
                           <FormLabel>Email</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -220,13 +225,15 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid xs={12}>
                     <Controller
                       control={control}
-                      disabled={isSubmitting}
                       name="subject"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl disabled={disabled} error={Boolean(error)}>
+                        <FormControl
+                          disabled={isSubmitting || disabled}
+                          error={Boolean(error)}
+                        >
                           <FormLabel>Subject</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
                           <FormHelperText>{error?.message}</FormHelperText>
@@ -237,13 +244,15 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid xs={12}>
                     <Controller
                       control={control}
-                      disabled={isSubmitting}
                       name="message"
                       render={({
                         field: { disabled, ref, ...field },
                         fieldState: { error },
                       }) => (
-                        <FormControl disabled={disabled} error={Boolean(error)}>
+                        <FormControl
+                          disabled={isSubmitting || disabled}
+                          error={Boolean(error)}
+                        >
                           <FormLabel>Message</FormLabel>
                           <Textarea
                             maxRows={7}
