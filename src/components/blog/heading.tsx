@@ -19,7 +19,7 @@ export const Heading: FC<HeadingProps> = ({ id, sx, children, ...props }) => (
         [`& .${typographyClasses.endDecorator}`]: {
           display: { xs: 'none', md: 'unset' },
           visibility: 'hidden',
-          '--Icon-fontSize': (theme) => theme.vars.fontSize.xl2,
+          '--Icon-fontSize': (theme) => theme.vars.fontSize.xl,
         },
         '&:hover': {
           [`& .${typographyClasses.endDecorator}`]: {
