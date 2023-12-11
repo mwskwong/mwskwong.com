@@ -90,7 +90,11 @@ const Blogs: FC = async () => {
                       <Suspense
                         fallback={<ViewCountSkeleton level="body-sm" />}
                       >
-                        <ViewCount blogId={id} level="body-sm" />
+                        <ViewCount
+                          blogId={id}
+                          blogIds={blogs.map(({ id }) => id)}
+                          level="body-sm"
+                        />
                       </Suspense>
                     </CardContent>
                   </Card>

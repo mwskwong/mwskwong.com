@@ -1,28 +1,32 @@
 import Box from '@mui/joy/Box';
 import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
-import { FC, cache } from 'react';
+import { FC } from 'react';
 
-import { getBlogMetadata } from '@/lib/queries';
+import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
 export interface ViewCountProps extends Omit<TypographyProps, 'children'> {
+  /**
+   * Expected to be used when there are multiple ViewCounts mounted in the same page.
+   * When blogIds is specified, ViewCount will fetch multiple blog metadata by IDs at once,
+   * cache the response, and do arr.find() on the cached response
+   * The cache will only be valid with in the current server request.
+   * This allows me to avoid running multiple DB queries in the listing page
+   */
+  blogIds?: string[];
   blogId: string;
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
-// Use React.cache here, because we want to achieve the following
-//    1. getBlogMetadata is only called once in the blog listing page
-//    2. The result of getBlogMetadata is NOT cached in server wide,
-//       i.e. when the user refreshes the page, it should see the metadata updated
-// It works, because React will invalidate the cache for all memoized functions for each server request.
-// See https://react.dev/reference/react/cache#caveats
-const cachedGetBlogMetadata = cache(getBlogMetadata);
-
-export const ViewCount: FC<ViewCountProps> = async ({ blogId, ...props }) => {
-  const metadata = (await cachedGetBlogMetadata()).find(
-    ({ id }) => id === blogId,
-  );
+export const ViewCount: FC<ViewCountProps> = async ({
+  blogIds,
+  blogId,
+  ...props
+}) => {
+  const metadata = blogIds
+    ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
+    : await getBlogMetadataById(blogId);
 
   return (
     <Typography startDecorator={<Eye />} {...props}>

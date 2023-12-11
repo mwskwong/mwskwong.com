@@ -6,6 +6,7 @@ import {
   unstable_cache as cache,
   unstable_noStore as noStore,
 } from 'next/cache';
+import { cache as reactCache } from 'react';
 
 import { contentful, prisma } from './clients';
 import {
@@ -252,7 +253,19 @@ export const getTechStack = cache(async () => {
   }));
 });
 
-export const getBlogMetadata = () => {
+// Use React.cache here, because we want to achieve the following
+//   1. DB is queried only once in the blog listing page
+//   2. The result of getBlogsMetadataByIds is NOT cached in other server requests
+//      i.e. when the user refreshes the page or other users visit the same page,
+//      it should see the metadata updated
+// It works, because React will invalidate the cache for all memoized functions for each server request.
+// See https://react.dev/reference/react/cache#caveats
+export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
   noStore();
-  return prisma.blogMetadata.findMany();
+  return prisma.blogMetadata.findMany({ where: { id: { in: ids } } });
+});
+
+export const getBlogMetadataById = (id: string) => {
+  noStore();
+  return prisma.blogMetadata.findUnique({ where: { id } });
 };
