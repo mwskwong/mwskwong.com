@@ -35,6 +35,7 @@ export const ViewCountSkeleton: FC<Omit<TypographyProps, 'children'>> = (
   props,
 ) => (
   <Typography startDecorator={<Eye />} {...props}>
-    <Box component="span" mr={0.5} width="3ch" /> views
+    <Box component="span" width="3ch" />
+    &nbsp;views
   </Typography>
 );
