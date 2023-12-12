@@ -19,7 +19,7 @@ import { FC, useEffect, useMemo, useState } from 'react';
 
 import { baseUrl } from '@/constants/base-url';
 import { firstName, lastName } from '@/constants/content';
-import { viewBlogById } from '@/lib/actions';
+import { incrBlogViewById } from '@/lib/actions';
 
 export interface ActionsProps {
   blog: {
@@ -64,7 +64,7 @@ export const Actions: FC<ActionsProps> = ({ blog }) => {
     [blog.categories, blog.title, text, url],
   );
 
-  useEffect(() => void viewBlogById(blog.id), [blog.id]);
+  useEffect(() => void incrBlogViewById(blog.id), [blog.id]);
 
   return (
     <>
