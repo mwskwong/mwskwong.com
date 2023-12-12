@@ -11,12 +11,13 @@ import { Eye } from 'lucide-react';
 import { Metadata, ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
 import { FC } from 'react';
-import { BreadcrumbList, WithContext } from 'schema-dts';
+import { BreadcrumbList, Graph } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { getBlogs, getBlogsMetadataByIds } from '@/lib/queries';
+import { getPerson } from '@/utils/json-ld';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -27,7 +28,10 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 const description = 'Personal perspectives on a broad range of topics.';
 
 const Blogs: FC = async () => {
-  const blogs = await getBlogs({ page: 1 });
+  const [blogs, person] = await Promise.all([
+    getBlogs({ page: 1 }),
+    getPerson(),
+  ]);
   const blogsMetadata = await getBlogsMetadataByIds(blogs.map(({ id }) => id));
 
   return (
@@ -109,23 +113,28 @@ const Blogs: FC = async () => {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
+            '@graph': [
               {
-                '@type': 'ListItem',
-                name: 'Home',
-                item: baseUrl,
-                position: 1,
-              },
-              {
-                '@type': 'ListItem',
-                name: 'Blog',
-                item: `${baseUrl}/blog`,
-                position: 2,
-              },
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  {
+                    '@type': 'ListItem',
+                    name: 'Home',
+                    item: baseUrl,
+                    position: 1,
+                  },
+                  {
+                    '@type': 'ListItem',
+                    name: 'Blog',
+                    item: `${baseUrl}/blog`,
+                    position: 2,
+                  },
+                ],
+                name: 'Breadcrumbs',
+              } satisfies BreadcrumbList,
+              person,
             ],
-            name: 'Breadcrumbs',
-          } satisfies WithContext<BreadcrumbList>),
+          } satisfies Graph),
         }}
         type="application/ld+json"
       />
