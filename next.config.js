@@ -52,11 +52,7 @@ const nextConfig = {
                 plugins: [
                   {
                     name: 'preset-default',
-                    params: {
-                      overrides: {
-                        inlineStyles: false,
-                      },
-                    },
+                    params: { overrides: { inlineStyles: false } },
                   },
                 ],
               },
