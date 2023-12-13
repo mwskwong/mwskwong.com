@@ -33,6 +33,7 @@ const nextConfig = {
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.('.svg'),
     );
+
     config.module.rules.push(
       {
         ...fileLoaderRule,
@@ -43,9 +44,28 @@ const nextConfig = {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] },
-        use: ['@svgr/webpack'],
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        inlineStyles: false,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
       },
     );
+
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
