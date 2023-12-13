@@ -50,7 +50,7 @@
     "@svgr/webpack": "^8.1.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.10.4",
-    "@types/react": "^18.2.44",
+    "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",
     "@vercel/style-guide": "^5.1.0",
     "dotenv-cli": "^7.3.0",
