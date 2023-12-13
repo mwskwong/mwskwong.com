@@ -34,7 +34,7 @@ import { getPerson } from '@/utils/json-ld';
 declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
     'data-language'?: string;
-    'data-rehype-pretty-code-fragment'?: '';
+    'data-rehype-pretty-code-figure'?: '';
     'data-rehype-pretty-code-title'?: '';
     'data-highlighted-chars'?: '';
   }
@@ -186,13 +186,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     {...props}
                   />
                 ),
-                div: (props) => {
-                  const codeFigure =
-                    props['data-rehype-pretty-code-fragment'] === '';
-                  const codeTitle =
-                    props['data-rehype-pretty-code-title'] === '';
-
-                  if (codeFigure) {
+                figure: (props) => {
+                  if (props['data-rehype-pretty-code-figure'] === '') {
                     const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
@@ -210,8 +205,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       />
                     );
                   }
-
-                  if (codeTitle) {
+                  return <figure {...props} />;
+                },
+                figcaption: (props) => {
+                  if (props['data-rehype-pretty-code-title'] === '') {
                     const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
@@ -225,8 +222,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       />
                     );
                   }
-
-                  return <div {...props} />;
+                  return <figcaption {...props} />;
                 },
                 pre: (props) => (
                   // @ts-expect-error LegacyRef passed to RefObject
@@ -239,7 +235,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   />
                 ),
                 code: (props) => {
-                  const inlineCode = props['data-language'] === undefined;
+                  const inlineCode = props.style === undefined;
 
                   if (inlineCode) {
                     const { color, ...rest } = props;
@@ -258,11 +254,21 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
                   return <code {...props} />;
                 },
-                span: (props) => {
-                  const codeHighlightedChar =
-                    props['data-highlighted-chars'] === '';
-
-                  if (codeHighlightedChar) {
+                span: (props) => (
+                  // @ts-expect-error LegacyRef passed to RefObject
+                  <Box
+                    component="span"
+                    sx={{
+                      '&[data-line]': { px: 2 },
+                      '&[data-highlighted-line]': {
+                        bgcolor: 'primary.softBg',
+                      },
+                    }}
+                    {...props}
+                  />
+                ),
+                mark: (props) => {
+                  if (props['data-highlighted-chars'] === '') {
                     const { color, ...rest } = props;
                     return (
                       // @ts-expect-error LegacyRef passed to RefObject
@@ -275,25 +281,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     );
                   }
 
-                  return (
-                    // @ts-expect-error LegacyRef passed to RefObject
-                    <Box
-                      component="span"
-                      sx={{
-                        '&[data-line]': { px: 2 },
-                        '&[data-highlighted-line]': {
-                          bgcolor: 'primary.softBg',
-                        },
-                      }}
-                      {...props}
-                    />
-                  );
+                  return <mark {...props} />;
                 },
               }}
               options={{
                 mdxOptions: {
                   rehypePlugins: [
                     [
+                      // @ts-expect-error this plugin is depending on unified v11 while next-mdx-remote is depending on mdx v2 --> unified v10
                       rehypePrettyCode,
                       {
                         theme: 'dark-plus',

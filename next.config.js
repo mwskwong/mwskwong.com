@@ -102,12 +102,6 @@ const nextConfig = {
     ppr: true,
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
-    outputFileTracingIncludes: {
-      '/blog/[slug]': [
-        './node_modules/shiki/languages/*',
-        './node_modules/shiki/theme/*',
-      ],
-    },
   },
 };
 
