@@ -50,7 +50,6 @@ module.exports = {
       'error',
       { checksVoidReturn: false },
     ],
-    // such that @/* imports will not be considered as external dependencies
     'react/function-component-definition': [
       'warn',
       {
