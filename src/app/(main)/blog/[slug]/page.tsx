@@ -349,6 +349,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
+                url: `${baseUrl}/blog/${slug}`,
                 author: { '@id': person['@id'] },
               } satisfies BlogPosting,
               {
