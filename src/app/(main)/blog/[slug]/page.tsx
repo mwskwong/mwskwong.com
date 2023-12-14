@@ -242,8 +242,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         component="code"
+                        display="inline"
                         fontFamily="code"
                         fontSize="0.875em"
+                        mx={0}
                         textColor={color}
                         variant="soft"
                         {...rest}
@@ -258,6 +260,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   <Box
                     component="span"
                     sx={{
+                      // match code block
                       'code[style] &': {
                         '&[data-line]': { px: 2 },
                         '&[data-highlighted-line]': {
