@@ -96,7 +96,7 @@ export const globalStyles = (theme: Theme) =>
     },
   }) satisfies Interpolation<Theme>;
 
-const generateCodeStyle = (mode: 'light' | 'dark' = 'light') =>
+const generateCodeStyle = (mode: 'light' | 'dark') =>
   ({
     color: `var(--shiki-${mode})`,
     fontStyle: `var(--shiki-${mode}-font-style)`,
