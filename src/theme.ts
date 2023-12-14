@@ -1,5 +1,5 @@
 import { Theme, extendTheme } from '@mui/joy/styles';
-import { Interpolation } from '@mui/styled-engine';
+import { CSSObject, Interpolation } from '@mui/styled-engine';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 
@@ -57,6 +57,12 @@ export const globalStyles = (theme: Theme) =>
       ...theme.typography['body-sm'],
       fontFamily: theme.vars.fontFamily.code,
       color: 'inherit',
+      '&[data-theme*=" "], &[data-theme*=" "] span': {
+        ...generateCodeStyle('light'),
+        [`${theme.getColorSchemeSelector('dark')}`]: {
+          ...generateCodeStyle('dark'),
+        },
+      },
     },
     figure: { margin: 0 },
     footer: {
@@ -91,3 +97,11 @@ export const globalStyles = (theme: Theme) =>
       },
     },
   }) satisfies Interpolation<Theme>;
+
+const generateCodeStyle = (mode: 'light' | 'dark' = 'light') =>
+  ({
+    color: `var(--shiki-${mode})`,
+    fontStyle: `var(--shiki-${mode}-font-style)`,
+    fontWeight: `var(--shiki-${mode}-font-weight)`,
+    textDecoration: `var(--shiki-${mode}-text-decoration)`,
+  }) satisfies CSSObject;

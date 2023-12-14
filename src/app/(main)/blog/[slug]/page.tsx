@@ -183,7 +183,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error LegacyRef passed to RefObject
                       <Sheet
                         component="figure"
-                        data-joy-color-scheme="dark"
                         sx={{
                           color,
                           borderRadius: 'md',
@@ -249,9 +248,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   <Box
                     component="span"
                     sx={{
-                      '&[data-line]': { px: 2 },
-                      '&[data-highlighted-line]': {
-                        bgcolor: 'primary.softBg',
+                      'code[style] &': {
+                        '&[data-line]': { px: 2 },
+                        '&[data-highlighted-line]': {
+                          bgcolor: 'primary.softBg',
+                        },
                       },
                     }}
                     {...props}
@@ -281,7 +282,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       // @ts-expect-error this plugin is depending on unified v11 while next-mdx-remote is depending on mdx v2 --> unified v10
                       rehypePrettyCode,
                       {
-                        theme: 'dark-plus',
+                        theme: {
+                          dark: 'dark-plus',
+                          light: 'light-plus',
+                        },
                         keepBackground: false,
                         defaultLang: { block: 'ansi' },
                       } satisfies Options,
