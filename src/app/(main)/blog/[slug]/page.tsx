@@ -270,7 +270,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       'code[style] &': {
                         '&[data-line]': { px: 2 },
                         '&[data-highlighted-line]': {
-                          bgcolor: 'primary.softBg',
+                          bgcolor: 'neutral.softBg',
                         },
                       },
                     }}
