@@ -234,7 +234,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     const { ref, color, ...rest } = props;
                     return (
                       <Typography
-                        bgcolor="background.surface"
+                        color="warning"
                         component="code"
                         display="inline"
                         fontFamily="code"
@@ -243,7 +243,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                         noWrap
                         ref={ref as RefObject<HTMLElement> | undefined}
                         textColor={color}
-                        variant="outlined"
+                        variant="plain"
                         {...rest}
                       />
                     );
