@@ -14,7 +14,7 @@ import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { FC } from 'react';
+import { FC, RefObject } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
@@ -33,7 +33,7 @@ import { getPerson } from '@/utils/json-ld';
 declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
     'data-language'?: string;
-    'data-rehype-pretty-code-fragment'?: '';
+    'data-rehype-pretty-code-figure'?: '';
     'data-rehype-pretty-code-title'?: '';
     'data-highlighted-chars'?: '';
   }
@@ -91,12 +91,12 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           {blog.content ? (
             <MDXRemote
               components={{
-                h2: ({ color, ...props }) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
+                h2: ({ ref, color, ...props }) => (
                   <Heading
                     level="h2"
                     mb={3}
                     mt={6}
+                    ref={ref as RefObject<HTMLHeadElement> | undefined}
                     sx={{
                       scrollMarginTop: 'calc(var(--Header-offset) + 8px * 6)',
                     }}
@@ -104,12 +104,12 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     {...props}
                   />
                 ),
-                h3: ({ color, ...props }) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
+                h3: ({ ref, color, ...props }) => (
                   <Heading
                     level="h3"
                     mb={1.5}
                     mt={4}
+                    ref={ref as RefObject<HTMLHeadElement> | undefined}
                     sx={{
                       scrollMarginTop: 'calc(var(--Header-offset) + 8px * 4)',
                     }}
@@ -117,12 +117,12 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     {...props}
                   />
                 ),
-                h4: ({ color, ...props }) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
+                h4: ({ ref, color, ...props }) => (
                   <Heading
                     level="h4"
                     mb={1}
                     mt={3}
+                    ref={ref as RefObject<HTMLHeadElement> | undefined}
                     sx={{
                       scrollMarginTop: 'calc(var(--Header-offset) + 8px * 3)',
                     }}
@@ -130,65 +130,63 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     {...props}
                   />
                 ),
-                p: ({ color, ...props }) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
-                  <Typography my={2} textColor={color} {...props} />
+                p: ({ ref, color, ...props }) => (
+                  <Typography
+                    my={2}
+                    ref={ref as RefObject<HTMLParagraphElement> | undefined}
+                    textColor={color}
+                    {...props}
+                  />
                 ),
-                a: ({ color, ...props }) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
-                  // eslint-disable-next-line jsx-a11y/anchor-has-content -- whether the anchor has content is depending on the MD itself
+                a: ({ ref, color, children, ...props }) => (
                   <Link
+                    ref={ref as RefObject<HTMLAnchorElement> | undefined}
                     sx={{ '& > code': { color: 'inherit' } }}
                     target="_blank"
                     textColor={color}
                     underline="always"
                     {...props}
-                  />
+                  >
+                    {children}
+                  </Link>
                 ),
-                ul: ({ color, ...props }) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
+                ul: ({ ref, color, ...props }) => (
                   <List
                     component="ul"
                     marker="disc"
+                    ref={ref as RefObject<HTMLUListElement> | undefined}
                     sx={{ color, my: 2, '--List-padding': '0px' }}
                     {...props}
                   />
                 ),
-                ol: ({ color, ...props }) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
+                ol: ({ ref, color, ...props }) => (
                   <List
                     component="ol"
                     marker="decimal"
+                    ref={ref as RefObject<HTMLOListElement> | undefined}
                     sx={{ color, my: 2, '--List-padding': '0px' }}
                     {...props}
                   />
                 ),
-                li: ({ color, ...props }) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
+                li: ({ ref, color, ...props }) => (
                   <ListItem
+                    ref={ref as RefObject<HTMLLIElement> | undefined}
                     sx={{
                       color,
                       // handle <p>, which has margin by default, nested in <li>
                       '& :first-child': { mt: 0 },
                       '& :last-child': { mb: 0 },
-                      '& > code': { display: 'inline', mx: 0 },
                     }}
                     {...props}
                   />
                 ),
-                div: (props) => {
-                  const codeFigure =
-                    props['data-rehype-pretty-code-fragment'] === '';
-                  const codeTitle =
-                    props['data-rehype-pretty-code-title'] === '';
-
-                  if (codeFigure) {
-                    const { color, ...rest } = props;
+                figure: (props) => {
+                  if (props['data-rehype-pretty-code-figure'] === '') {
+                    const { ref, color, ...rest } = props;
                     return (
-                      // @ts-expect-error LegacyRef passed to RefObject
                       <Sheet
                         component="figure"
-                        data-joy-color-scheme="dark"
+                        ref={ref as RefObject<HTMLElement> | undefined}
                         sx={{
                           color,
                           borderRadius: 'md',
@@ -200,47 +198,52 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       />
                     );
                   }
-
-                  if (codeTitle) {
-                    const { color, ...rest } = props;
+                  return <figure {...props} />;
+                },
+                figcaption: (props) => {
+                  if (props['data-rehype-pretty-code-title'] === '') {
+                    const { ref, color, ...rest } = props;
                     return (
-                      // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         component="figcaption"
                         level="body-sm"
                         pt={2}
+                        ref={ref as RefObject<HTMLElement> | undefined}
                         textAlign="center"
                         textColor={color}
                         {...rest}
                       />
                     );
                   }
-
-                  return <div {...props} />;
+                  return <figcaption {...props} />;
                 },
-                pre: (props) => (
-                  // @ts-expect-error LegacyRef passed to RefObject
+                pre: ({ ref, ...props }) => (
                   <Box
                     component="pre"
                     m={0}
                     overflow="auto"
                     py={2}
+                    ref={ref as RefObject<HTMLPreElement> | undefined}
                     {...props}
                   />
                 ),
                 code: (props) => {
-                  const inlineCode = props['data-language'] === undefined;
+                  const inlineCode = props.style === undefined;
 
                   if (inlineCode) {
-                    const { color, ...rest } = props;
+                    const { ref, color, ...rest } = props;
                     return (
-                      // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
+                        bgcolor="background.surface"
                         component="code"
+                        display="inline"
                         fontFamily="code"
                         fontSize="0.875em"
+                        mx={0}
+                        noWrap
+                        ref={ref as RefObject<HTMLElement> | undefined}
                         textColor={color}
-                        variant="soft"
+                        variant="outlined"
                         {...rest}
                       />
                     );
@@ -248,16 +251,29 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
                   return <code {...props} />;
                 },
-                span: (props) => {
-                  const codeHighlightedChar =
-                    props['data-highlighted-chars'] === '';
-
-                  if (codeHighlightedChar) {
-                    const { color, ...rest } = props;
+                span: ({ ref, ...props }) => (
+                  <Box
+                    component="span"
+                    ref={ref as RefObject<HTMLSpanElement> | undefined}
+                    sx={{
+                      // match code block
+                      'code[style] &': {
+                        '&[data-line]': { px: 2 },
+                        '&[data-highlighted-line]': {
+                          bgcolor: 'neutral.softBg',
+                        },
+                      },
+                    }}
+                    {...props}
+                  />
+                ),
+                mark: (props) => {
+                  if (props['data-highlighted-chars'] === '') {
+                    const { ref, color, ...rest } = props;
                     return (
-                      // @ts-expect-error LegacyRef passed to RefObject
                       <Typography
                         component="mark"
+                        ref={ref as RefObject<HTMLElement> | undefined}
                         textColor={color}
                         variant="soft"
                         {...rest}
@@ -265,28 +281,20 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     );
                   }
 
-                  return (
-                    // @ts-expect-error LegacyRef passed to RefObject
-                    <Box
-                      component="span"
-                      sx={{
-                        '&[data-line]': { px: 2 },
-                        '&[data-highlighted-line]': {
-                          bgcolor: 'primary.softBg',
-                        },
-                      }}
-                      {...props}
-                    />
-                  );
+                  return <mark {...props} />;
                 },
               }}
               options={{
                 mdxOptions: {
                   rehypePlugins: [
                     [
+                      // @ts-expect-error this plugin is depending on unified v11 while next-mdx-remote is depending on mdx v2 --> unified v10
                       rehypePrettyCode,
                       {
-                        theme: 'dark-plus',
+                        theme: {
+                          dark: 'dark-plus',
+                          light: 'light-plus',
+                        },
                         keepBackground: false,
                         defaultLang: { block: 'ansi' },
                       } satisfies Options,
@@ -341,6 +349,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
+                url: `${baseUrl}/blog/${slug}`,
                 author: { '@id': person['@id'] },
               } satisfies BlogPosting,
               {
