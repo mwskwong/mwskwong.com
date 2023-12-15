@@ -52,6 +52,8 @@ export const globalStyles = (theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100dvh',
+      // FIXME: https://github.com/vercel/geist-font/issues/65
+      fontSynthesisWeight: 'none',
     },
     code: {
       ...theme.typography['body-sm'],
