@@ -1,5 +1,6 @@
 import Box from '@mui/joy/Box';
 import Typography, { TypographyProps } from '@mui/joy/Typography';
+import { SxProps } from '@mui/joy/styles/types';
 import { Heart } from 'lucide-react';
 import { FC } from 'react';
 
@@ -7,7 +8,7 @@ import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
 import { LikeButton } from './like-button';
 
-export interface LikesProps extends Omit<TypographyProps, 'children'> {
+export interface LikesProps {
   /**
    * Expected to be used when there are multiple Likes mounted in the same page.
    * When blogIds is specified, ViewCount will fetch multiple blog metadata by IDs at once,
@@ -18,6 +19,7 @@ export interface LikesProps extends Omit<TypographyProps, 'children'> {
   blogIds?: string[];
   blogId: string;
   readOnly?: boolean;
+  sx?: SxProps;
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
@@ -39,8 +41,7 @@ export const Likes: FC<LikesProps> = async ({
       </Typography>
     );
   }
-
-  return <LikeButton blogId={blogId} like={metadata?.like} />;
+  return <LikeButton blogId={blogId} like={metadata?.like} {...props} />;
 };
 
 export const LikesSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (

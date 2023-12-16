@@ -92,11 +92,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 justifyContent="space-around"
                 spacing={1}
               >
-                <Suspense fallback={<ViewsSkeleton mr={1} />}>
-                  <Views blogId={blog.id} mr={1} />
+                <Suspense fallback={<ViewsSkeleton mr={0.75} />}>
+                  <Views blogId={blog.id} mr={0.75} />
                 </Suspense>
-                <Suspense fallback={<LikesSkeleton mr={1} />}>
-                  <Likes blogId={blog.id} />
+                <Suspense fallback={<LikesSkeleton sx={{ mr: 0.75 }} />}>
+                  <Likes blogId={blog.id} sx={{ mr: 0.75 }} />
                 </Suspense>
                 <CopyUrlButton />
                 <ShareDropdown blog={blog} />
