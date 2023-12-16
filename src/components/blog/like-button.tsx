@@ -52,6 +52,7 @@ export const LikeButton: FC<LikeButtonProps> = ({
         await likeBlog(visitorId, blogId);
       }
     },
+    // optimistic update like and liked
     onMutate: async ({ visitorId, blogId }) => {
       await queryClient.cancelQueries({ queryKey: ['blogMetadata'] });
 
