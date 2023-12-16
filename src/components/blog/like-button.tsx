@@ -20,7 +20,7 @@ export const LikeButton: FC<LikeButtonProps> = ({ blogId, like, ...props }) => {
       <IconButton>
         <Heart />
       </IconButton>
-      <Typography>{numberFormatter.format(like ?? 0)} likes</Typography>
+      <Typography>{numberFormatter.format(like ?? 0)}</Typography>
     </Stack>
   );
 };
