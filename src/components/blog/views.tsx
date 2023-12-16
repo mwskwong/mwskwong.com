@@ -3,9 +3,10 @@ import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { FC } from 'react';
 
+import { incrBlogViewById } from '@/lib/actions';
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
-export interface ViewCountProps extends Omit<TypographyProps, 'children'> {
+export interface ViewsProps extends Omit<TypographyProps, 'children'> {
   /**
    * Expected to be used when there are multiple ViewCounts mounted in the same page.
    * When blogIds is specified, ViewCount will fetch multiple blog metadata by IDs at once,
@@ -15,18 +16,22 @@ export interface ViewCountProps extends Omit<TypographyProps, 'children'> {
    */
   blogIds?: string[];
   blogId: string;
+  readOnly?: boolean;
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
-export const ViewCount: FC<ViewCountProps> = async ({
+export const Views: FC<ViewsProps> = async ({
   blogIds,
   blogId,
+  readOnly,
   ...props
 }) => {
   const metadata = blogIds
     ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
+
+  if (!readOnly) void incrBlogViewById(blogId);
 
   return (
     <Typography startDecorator={<Eye />} {...props}>
@@ -35,9 +40,7 @@ export const ViewCount: FC<ViewCountProps> = async ({
   );
 };
 
-export const ViewCountSkeleton: FC<Omit<TypographyProps, 'children'>> = (
-  props,
-) => (
+export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
   <Typography startDecorator={<Eye />} {...props}>
     <Box component="span" width="3ch" />
     &nbsp;views

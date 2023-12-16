@@ -260,12 +260,32 @@ export const getTechStack = cache(async () => {
 //      it should see the metadata updated
 // It works, because React will invalidate the cache for all memoized functions for each server request.
 // See https://react.dev/reference/react/cache#caveats
-export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
+
+export const getBlogsMetadataByIds = reactCache(async (ids: string[]) => {
   noStore();
-  return prisma.blogMetadata.findMany({ where: { id: { in: ids } } });
+  const blogsMetadata = await prisma.blogMetadata.findMany({
+    where: { id: { in: ids } },
+    include: { _count: { select: { likes: true } } },
+  });
+
+  return blogsMetadata.map(({ _count, ...rest }) => ({
+    ...rest,
+    like: _count.likes,
+  }));
 });
 
-export const getBlogMetadataById = (id: string) => {
+export const getBlogMetadataById = reactCache(async (id: string) => {
   noStore();
-  return prisma.blogMetadata.findUnique({ where: { id } });
-};
+  const blogMetadata = await prisma.blogMetadata.findUnique({
+    where: { id },
+    include: { _count: { select: { likes: true } } },
+  });
+
+  if (!blogMetadata) return blogMetadata;
+
+  const { _count, ...rest } = blogMetadata;
+  return {
+    ...rest,
+    like: _count.likes,
+  };
+});

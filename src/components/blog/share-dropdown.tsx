@@ -6,22 +6,21 @@ import {
   SiReddit,
   SiX,
 } from '@icons-pack/react-simple-icons';
-import Dropdown from '@mui/joy/Dropdown';
+import Dropdown, { DropdownProps } from '@mui/joy/Dropdown';
 import IconButton from '@mui/joy/IconButton';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
-import { Check, Copy, Share2 } from 'lucide-react';
+import { Share2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 
 import { baseUrl } from '@/constants/base-url';
 import { firstName, lastName } from '@/constants/content';
-import { incrBlogViewById } from '@/lib/actions';
 
-export interface ActionsProps {
+export interface ShareDropdownProps extends Omit<DropdownProps, 'children'> {
   blog: {
     id: string;
     categories?: string[];
@@ -29,8 +28,7 @@ export interface ActionsProps {
   };
 }
 
-export const Actions: FC<ActionsProps> = ({ blog }) => {
-  const [copied, setCopied] = useState(false);
+export const ShareDropdown: FC<ShareDropdownProps> = ({ blog, ...props }) => {
   const pathname = usePathname();
 
   const url = `${baseUrl}${pathname}`;
@@ -64,46 +62,31 @@ export const Actions: FC<ActionsProps> = ({ blog }) => {
     [blog.categories, blog.title, text, url],
   );
 
-  useEffect(() => void incrBlogViewById(blog.id), [blog.id]);
-
   return (
-    <>
-      <IconButton
-        aria-label="copy blog url"
-        color={copied ? 'success' : undefined}
-        onClick={async () => {
-          await navigator.clipboard.writeText(url);
-          setCopied(true);
-          setTimeout(() => setCopied(false), 1000);
-        }}
+    <Dropdown {...props}>
+      <MenuButton
+        aria-label="Share this blog to social media"
+        slots={{ root: IconButton }}
       >
-        {copied ? <Check /> : <Copy />}
-      </IconButton>
-      <Dropdown>
-        <MenuButton
-          aria-label="Share this blog to social media"
-          slots={{ root: IconButton }}
-        >
-          <Share2 />
-        </MenuButton>
-        <Menu>
-          {socialMediaOptions.map(({ Icon, name, url }) => (
-            <MenuItem component="a" href={url} key={name} target="_blank">
-              <ListItemDecorator>
-                <Icon />
-              </ListItemDecorator>
-              Share on {name}
-            </MenuItem>
-          ))}
-          <ListDivider />
-          <MenuItem
-            onClick={() => navigator.share({ url, text, title: blog.title })}
-          >
-            <ListItemDecorator />
-            Share via...
+        <Share2 />
+      </MenuButton>
+      <Menu>
+        {socialMediaOptions.map(({ Icon, name, url }) => (
+          <MenuItem component="a" href={url} key={name} target="_blank">
+            <ListItemDecorator>
+              <Icon />
+            </ListItemDecorator>
+            Share on {name}
           </MenuItem>
-        </Menu>
-      </Dropdown>
-    </>
+        ))}
+        <ListDivider />
+        <MenuItem
+          onClick={() => navigator.share({ url, text, title: blog.title })}
+        >
+          <ListItemDecorator />
+          Share via...
+        </MenuItem>
+      </Menu>
+    </Dropdown>
   );
 };

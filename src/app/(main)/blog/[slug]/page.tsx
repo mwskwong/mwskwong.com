@@ -19,15 +19,16 @@ import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 
-import { Actions } from '@/components/blog/actions';
+import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
-import { ViewCount, ViewCountSkeleton } from '@/components/blog/view-count';
+import { ShareDropdown } from '@/components/blog/share-dropdown';
+import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { ColorInversionBox } from '@/components/color-inversion-box';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contact } from '@/constants/nav';
-import { getBlogBySlug, getBlogs } from '@/lib/queries';
+import { getBlogBySlug } from '@/lib/queries';
 import { getPerson } from '@/utils/json-ld';
 
 // data attribute auto injected by rehype-pretty-code
@@ -90,10 +91,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 justifyContent="space-around"
                 spacing={1}
               >
-                <Suspense fallback={<ViewCountSkeleton mr={1} />}>
-                  <ViewCount blogId={blog.id} mr={1} />
+                <Suspense fallback={<ViewsSkeleton mr={1} />}>
+                  <Views blogId={blog.id} mr={1} />
                 </Suspense>
-                <Actions blog={blog} />
+                <CopyUrlButton />
+                <ShareDropdown blog={blog} />
               </Stack>
             </Grid>
           </Grid>
@@ -395,11 +397,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     </>
   );
 };
-
-export const generateStaticParams = () =>
-  getBlogs().then((blogs) =>
-    blogs.map(({ slug }) => ({ slug })),
-  ) satisfies Promise<BlogProps['params'][]>;
 
 export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
   const blog = await getBlogBySlug(slug);

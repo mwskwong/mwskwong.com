@@ -13,7 +13,7 @@ import { FC, Suspense } from 'react';
 import { BreadcrumbList, Graph } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
-import { ViewCount, ViewCountSkeleton } from '@/components/blog/view-count';
+import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { getBlogs } from '@/lib/queries';
@@ -91,13 +91,12 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <Suspense
-                        fallback={<ViewCountSkeleton level="body-sm" />}
-                      >
-                        <ViewCount
+                      <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
+                        <Views
                           blogId={id}
                           blogIds={blogs.map(({ id }) => id)}
                           level="body-sm"
+                          readOnly
                         />
                       </Suspense>
                     </CardContent>
