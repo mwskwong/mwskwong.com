@@ -1,6 +1,6 @@
 import Box from '@mui/joy/Box';
 import Typography, { TypographyProps } from '@mui/joy/Typography';
-import { Eye, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { FC } from 'react';
 
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
@@ -31,10 +31,11 @@ export const Likes: FC<LikesProps> = async ({
   const metadata = blogIds
     ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
+
   if (readOnly) {
     return (
       <Typography startDecorator={<Heart />} {...props}>
-        {numberFormatter.format(metadata?.like ?? 0)} likes
+        {numberFormatter.format(metadata?.like ?? 0)}
       </Typography>
     );
   }
@@ -43,8 +44,7 @@ export const Likes: FC<LikesProps> = async ({
 };
 
 export const LikesSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
-  <Typography startDecorator={<Eye />} {...props}>
-    <Box component="span" width="3ch" />
-    &nbsp;likes
+  <Typography startDecorator={<Heart />} {...props}>
+    <Box component="span" width="2ch" />
   </Typography>
 );

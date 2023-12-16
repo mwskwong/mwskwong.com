@@ -35,7 +35,7 @@ export const Views: FC<ViewsProps> = async ({
 
   return (
     <Typography startDecorator={<Eye />} {...props}>
-      {numberFormatter.format(metadata?.view ?? 0)} views
+      {numberFormatter.format(metadata?.view ?? 0)}
     </Typography>
   );
 };
@@ -43,6 +43,5 @@ export const Views: FC<ViewsProps> = async ({
 export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
   <Typography startDecorator={<Eye />} {...props}>
     <Box component="span" width="3ch" />
-    &nbsp;views
   </Typography>
 );
