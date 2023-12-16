@@ -13,6 +13,7 @@ import { FC, Suspense } from 'react';
 import { BreadcrumbList, Graph } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
+import { Likes, LikesSkeleton } from '@/components/blog/likes';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
@@ -93,6 +94,15 @@ const Blogs: FC = async () => {
                       <Divider orientation="vertical" />
                       <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
                         <Views
+                          blogId={id}
+                          blogIds={blogs.map(({ id }) => id)}
+                          level="body-sm"
+                          readOnly
+                        />
+                      </Suspense>
+                      <Divider orientation="vertical" />
+                      <Suspense fallback={<LikesSkeleton level="body-sm" />}>
+                        <Likes
                           blogId={id}
                           blogIds={blogs.map(({ id }) => id)}
                           level="body-sm"

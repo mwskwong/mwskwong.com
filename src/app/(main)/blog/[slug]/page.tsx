@@ -22,6 +22,7 @@ import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
+import { Likes, LikesSkeleton } from '@/components/blog/likes';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { ColorInversionBox } from '@/components/color-inversion-box';
@@ -93,6 +94,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               >
                 <Suspense fallback={<ViewsSkeleton mr={1} />}>
                   <Views blogId={blog.id} mr={1} />
+                </Suspense>
+                <Suspense fallback={<LikesSkeleton mr={1} />}>
+                  <Likes blogId={blog.id} />
                 </Suspense>
                 <CopyUrlButton />
                 <ShareDropdown blog={blog} />

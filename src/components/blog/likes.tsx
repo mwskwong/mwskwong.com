@@ -1,14 +1,15 @@
 import Box from '@mui/joy/Box';
 import Typography, { TypographyProps } from '@mui/joy/Typography';
-import { Eye } from 'lucide-react';
+import { Eye, Heart } from 'lucide-react';
 import { FC } from 'react';
 
-import { incrBlogViewById } from '@/lib/actions';
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
-export interface ViewsProps extends Omit<TypographyProps, 'children'> {
+import { LikeButton } from './like-button';
+
+export interface LikesProps extends Omit<TypographyProps, 'children'> {
   /**
-   * Expected to be used when there are multiple Views mounted in the same page.
+   * Expected to be used when there are multiple Likes mounted in the same page.
    * When blogIds is specified, ViewCount will fetch multiple blog metadata by IDs at once,
    * cache the response, and do arr.find() on the cached response
    * The cache will only be valid with in the current server request.
@@ -21,7 +22,7 @@ export interface ViewsProps extends Omit<TypographyProps, 'children'> {
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
-export const Views: FC<ViewsProps> = async ({
+export const Likes: FC<LikesProps> = async ({
   blogIds,
   blogId,
   readOnly,
@@ -30,19 +31,20 @@ export const Views: FC<ViewsProps> = async ({
   const metadata = blogIds
     ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
+  if (readOnly) {
+    return (
+      <Typography startDecorator={<Heart />} {...props}>
+        {numberFormatter.format(metadata?.like ?? 0)} likes
+      </Typography>
+    );
+  }
 
-  if (!readOnly) void incrBlogViewById(blogId);
-
-  return (
-    <Typography startDecorator={<Eye />} {...props}>
-      {numberFormatter.format(metadata?.view ?? 0)} views
-    </Typography>
-  );
+  return <LikeButton blogId={blogId} like={metadata?.like} />;
 };
 
-export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
+export const LikesSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
   <Typography startDecorator={<Eye />} {...props}>
     <Box component="span" width="3ch" />
-    &nbsp;views
+    &nbsp;likes
   </Typography>
 );
