@@ -289,3 +289,14 @@ export const getBlogMetadataById = reactCache(async (id: string) => {
     like: _count.likes,
   };
 });
+
+export const hasVisitorLikedBlog = reactCache(
+  async (visitorId: string, blogId: string) => {
+    noStore();
+    const like = await prisma.like.findUnique({
+      where: { visitorId_blogId: { visitorId, blogId } },
+    });
+
+    return Boolean(like);
+  },
+);
