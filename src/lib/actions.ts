@@ -7,9 +7,10 @@ import { prisma } from '@/lib/clients';
 
 export const incrBlogViewById = cache(async (id: string) => {
   noStore();
-  await prisma.blogMetadata.update({
+  await prisma.blogMetadata.upsert({
     where: { id },
-    data: { view: { increment: 1 } },
+    update: { view: { increment: 1 } },
+    create: { id },
   });
 });
 
