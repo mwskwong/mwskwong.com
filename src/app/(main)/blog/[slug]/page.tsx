@@ -95,8 +95,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 <Suspense fallback={<ViewsSkeleton mr={0.75} />}>
                   <Views blogId={blog.id} mr={0.75} />
                 </Suspense>
-                <Suspense fallback={<LikesSkeleton sx={{ mr: 0.75 }} />}>
-                  <Likes blogId={blog.id} sx={{ mr: 0.75 }} />
+                <Suspense fallback={<LikesSkeleton mr={0.75} />}>
+                  <Likes blogId={blog.id} mr={0.75} />
                 </Suspense>
                 <CopyUrlButton />
                 <ShareDropdown blog={blog} />

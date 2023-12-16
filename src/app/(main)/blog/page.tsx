@@ -105,8 +105,8 @@ const Blogs: FC = async () => {
                         <Likes
                           blogId={id}
                           blogIds={blogs.map(({ id }) => id)}
-                          level="body-sm"
                           readOnly
+                          typography="body-sm"
                         />
                       </Suspense>
                     </CardContent>
