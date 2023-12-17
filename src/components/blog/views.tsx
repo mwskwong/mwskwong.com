@@ -34,14 +34,14 @@ export const Views: FC<ViewsProps> = async ({
   if (!readOnly) void incrBlogViewById(blogId);
 
   return (
-    <Typography startDecorator={<Eye />} {...props}>
+    <Typography aria-label="Blog views" startDecorator={<Eye />} {...props}>
       {numberFormatter.format(metadata?.view ?? 0)}
     </Typography>
   );
 };
 
 export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
-  <Typography startDecorator={<Eye />} {...props}>
+  <Typography aria-label="Blog views" startDecorator={<Eye />} {...props}>
     <Box component="span" width="3ch" />
   </Typography>
 );

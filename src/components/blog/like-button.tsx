@@ -87,6 +87,7 @@ export const LikeButton: FC<LikeButtonProps> = ({
   return (
     <Stack alignItems="center" direction="row" {...props}>
       <IconButton
+        aria-label={liked ? 'Unlike this blog' : 'Like this blog'}
         color={liked ? 'danger' : undefined}
         onClick={() =>
           mutate({ visitorId: fingerprint?.visitorId ?? '', blogId })

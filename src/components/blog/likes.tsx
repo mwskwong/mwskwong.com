@@ -36,7 +36,7 @@ export const Likes: FC<LikesProps> = async ({
 
   if (readOnly) {
     return (
-      <Typography startDecorator={<Heart />} {...props}>
+      <Typography aria-label="Blog likes" startDecorator={<Heart />} {...props}>
         {numberFormatter.format(metadata?.like ?? 0)}
       </Typography>
     );
@@ -45,7 +45,7 @@ export const Likes: FC<LikesProps> = async ({
 };
 
 export const LikesSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
-  <Typography startDecorator={<Heart />} {...props}>
+  <Typography aria-label="Blog likes" startDecorator={<Heart />} {...props}>
     <Box component="span" width="2ch" />
   </Typography>
 );
