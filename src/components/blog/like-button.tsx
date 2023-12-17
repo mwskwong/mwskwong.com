@@ -90,7 +90,7 @@ export const LikeButton: FC<LikeButtonProps> = ({
         aria-label={liked ? 'Unlike this blog' : 'Like this blog'}
         color={liked ? 'danger' : undefined}
         onClick={() => {
-          if (fingerprint?.visitorId) {
+          if (fingerprint) {
             mutate({ visitorId: fingerprint.visitorId, blogId });
           }
         }}
