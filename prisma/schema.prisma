@@ -8,14 +8,15 @@ datasource db {
 }
 
 model BlogMetadata {
-  id   String @id
-  view Int    @default(0)
+  id    String @id
+  view  Int    @default(0)
   likes Like[]
 }
 
 model Like {
-  visitorId String
-  blogId String
-  blogMetadata BlogMetadata  @relation(fields: [blogId], references: [id], onDelete: Cascade, onUpdate: Cascade) 
+  visitorId    String
+  blogId       String
+  blogMetadata BlogMetadata @relation(fields: [blogId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
   @@id([visitorId, blogId])
 }
