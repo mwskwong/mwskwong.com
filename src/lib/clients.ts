@@ -16,5 +16,8 @@ export const contentful = createClient({
 }).withoutUnresolvableLinks;
 
 export const prisma = new PrismaClient({
-  log: ['query', 'info', 'warn', 'error'],
+  log:
+    process.env.NODE_ENV === 'development'
+      ? ['query', 'info', 'warn', 'error']
+      : undefined,
 }).$extends(readReplicas({ url: process.env.DATABASE_REPLICA_URL ?? '' }));
