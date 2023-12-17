@@ -4,6 +4,7 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import { CssVarsProvider, getInitColorSchemeScript } from '@mui/joy/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { FC, PropsWithChildren } from 'react';
 
 import { globalStyles, theme } from '@/theme';
@@ -23,7 +24,10 @@ export const Providers: FC<ProvidersProps> = ({ children }) => (
     <CssVarsProvider theme={theme}>
       <CssBaseline />
       <GlobalStyles styles={globalStyles} />
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        {children}
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </CssVarsProvider>
   </>
 );
