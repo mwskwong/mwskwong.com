@@ -64,9 +64,9 @@ export const LikeButton: FC<LikeButtonProps> = ({
 
       queryClient.setQueryData<number>(
         likeKey,
-        (old) => (old ?? 0) + (prevLiked ? -1 : 1),
+        (like) => (like ?? 0) + (prevLiked ? -1 : 1),
       );
-      queryClient.setQueryData<boolean>(likedKey, (old) => !old);
+      queryClient.setQueryData<boolean>(likedKey, (liked) => !liked);
 
       return { prevLike, prevLiked };
     },
