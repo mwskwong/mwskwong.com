@@ -6,7 +6,7 @@ export const useFingerprint = () => {
 
   useEffect(() => {
     void (async () => {
-      const fp = await load();
+      const fp = await load({ debug: process.env.NODE_ENV === 'development' });
       const fingerprint = await fp.get();
 
       setFingerprint(fingerprint);
