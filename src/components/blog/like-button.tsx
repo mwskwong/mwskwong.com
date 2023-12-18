@@ -35,7 +35,7 @@ export const LikeButton: FC<LikeButtonProps> = ({
   const { data: liked } = useQuery({
     queryKey: ['blogMetadata', 'liked', fingerprint?.visitorId, blogId],
     queryFn: () => hasVisitorLikedBlog(fingerprint?.visitorId ?? '', blogId),
-    enabled: Boolean(fingerprint?.visitorId),
+    enabled: Boolean(fingerprint),
   });
 
   const { mutate } = useMutation({
