@@ -61,7 +61,7 @@ export const globalStyles = (theme: Theme) =>
       color: 'inherit',
       '&[data-theme*=" "], &[data-theme*=" "] span': {
         ...generateCodeStyle('light'),
-        [`${theme.getColorSchemeSelector('dark')}`]: generateCodeStyle('dark'),
+        [theme.getColorSchemeSelector('dark')]: generateCodeStyle('dark'),
       },
     },
     figure: { margin: 0 },
