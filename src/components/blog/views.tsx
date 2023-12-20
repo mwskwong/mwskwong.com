@@ -3,7 +3,7 @@ import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { FC } from 'react';
 
-import { incrBlogViewById } from '@/lib/actions';
+// import { incrBlogViewById } from '@/lib/actions';
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
 export interface ViewsProps extends Omit<TypographyProps, 'children'> {
@@ -24,6 +24,7 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 export const Views: FC<ViewsProps> = async ({
   blogIds,
   blogId,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- debug
   readOnly,
   ...props
 }) => {
@@ -31,7 +32,7 @@ export const Views: FC<ViewsProps> = async ({
     ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
 
-  if (!readOnly) void incrBlogViewById(blogId);
+  // if (!readOnly) void incrBlogViewById(blogId);
 
   return (
     <Typography aria-label="Blog views" startDecorator={<Eye />} {...props}>
