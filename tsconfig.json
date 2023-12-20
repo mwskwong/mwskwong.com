@@ -1,7 +1,7 @@
 {
   "extends": "@vercel/style-guide/typescript",
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2022", // TODO: check if esnext can be used
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "noEmit": true,
