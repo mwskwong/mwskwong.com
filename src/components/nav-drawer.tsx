@@ -25,8 +25,6 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
       <IconButton
         aria-label="Toggle navigation drawer"
         onClick={() => setOpen(true)}
-        size="sm"
-        variant="outlined"
         {...slotProps?.drawerButton}
       >
         <Menu />

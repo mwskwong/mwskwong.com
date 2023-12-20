@@ -34,7 +34,6 @@ module.exports = {
         ListDivider: 'li',
         NextImage: 'img',
         NextLink: 'a',
-        SvgIcon: 'svg',
         Textarea: 'textarea',
       },
     },
