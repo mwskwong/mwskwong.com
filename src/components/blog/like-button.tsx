@@ -6,10 +6,10 @@ import Typography from '@mui/joy/Typography';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Heart } from 'lucide-react';
 import { FC } from 'react';
+import { useLocalStorage } from 'react-use';
 
 import { likeBlog, unlikeBlog } from '@/lib/actions';
 import { getBlogMetadataById, hasVisitorLikedBlog } from '@/lib/queries';
-import { useFingerprint } from '@/utils/use-fingerprint';
 
 export interface LikeButtonProps extends Omit<StackProps, 'children'> {
   blogId: string;
@@ -23,20 +23,19 @@ export const LikeButton: FC<LikeButtonProps> = ({
   like: initialLike,
   ...props
 }) => {
-  const fingerprint = useFingerprint();
+  const [visitorId = ''] = useLocalStorage('visitorId', crypto.randomUUID());
   const queryClient = useQueryClient();
 
   const { data: like } = useQuery({
     queryKey: ['blogMetadata', 'like', blogId],
-    queryFn: () => getBlogMetadataById(blogId),
-    select: (blogMetadata) => blogMetadata?.like,
+    queryFn: async () => (await getBlogMetadataById(blogId))?.like,
     initialData: initialLike,
   });
 
   const { data: liked } = useQuery({
-    queryKey: ['blogMetadata', 'liked', fingerprint?.visitorId, blogId],
-    queryFn: () => hasVisitorLikedBlog(fingerprint?.visitorId ?? '', blogId),
-    enabled: Boolean(fingerprint),
+    queryKey: ['blogMetadata', 'liked', visitorId, blogId],
+    queryFn: () => hasVisitorLikedBlog(visitorId, blogId),
+    enabled: Boolean(visitorId),
   });
 
   const { mutate } = useMutation({
@@ -91,8 +90,8 @@ export const LikeButton: FC<LikeButtonProps> = ({
         aria-label={liked ? 'Unlike this blog' : 'Like this blog'}
         color={liked ? 'danger' : undefined}
         onClick={() => {
-          if (fingerprint) {
-            mutate({ visitorId: fingerprint.visitorId, blogId });
+          if (visitorId) {
+            mutate({ visitorId, blogId });
           }
         }}
       >
