@@ -28,7 +28,8 @@ export const LikeButton: FC<LikeButtonProps> = ({
 
   const { data: like } = useQuery({
     queryKey: ['blogMetadata', 'like', blogId],
-    queryFn: async () => (await getBlogMetadataById(blogId))?.like,
+    queryFn: () => getBlogMetadataById(blogId),
+    select: (blogMetadata) => blogMetadata?.like,
     initialData: initialLike,
   });
 
