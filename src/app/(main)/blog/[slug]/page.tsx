@@ -312,7 +312,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                           light: 'light-plus',
                         },
                         keepBackground: false,
-                        defaultLang: { block: 'ansi' },
                       } satisfies Options,
                     ],
                     rehypeSlug,
