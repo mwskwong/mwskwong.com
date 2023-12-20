@@ -14,8 +14,6 @@ export const ModeToggleButton: FC<ModeToggleButtonProps> = (props) => {
     <IconButton
       aria-label="Toggle mode"
       onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
-      size="sm"
-      variant="outlined"
       {...props}
     >
       <NoSsr>{mode === 'dark' ? <Sun /> : <Moon />}</NoSsr>
