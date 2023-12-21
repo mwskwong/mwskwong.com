@@ -89,9 +89,15 @@ export const Header: FC<HeaderProps> = async (props) => {
                 </IconButton>
               );
             })}
-            <ModeToggleButton />
+            <ModeToggleButton size="sm" variant="outlined" />
             <NavDrawer
-              slotProps={{ drawerButton: { sx: { display: { md: 'none' } } } }}
+              slotProps={{
+                drawerButton: {
+                  size: 'sm',
+                  variant: 'outlined',
+                  sx: { display: { md: 'none' } },
+                },
+              }}
             />
           </Stack>
         </Stack>
