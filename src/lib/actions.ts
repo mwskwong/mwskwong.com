@@ -14,12 +14,12 @@ export const incrBlogViewById = cache(async (id: string) => {
   });
 });
 
-export const likeBlog = async (visitorId: string, blogId: string) => {
+export const likeBlog = async (blogId: string, visitorId: string) => {
   noStore();
   await prisma.like.create({ data: { visitorId, blogId } });
 };
 
-export const unlikeBlog = async (visitorId: string, blogId: string) => {
+export const unlikeBlog = async (blogId: string, visitorId: string) => {
   noStore();
   await prisma.like.delete({
     where: { visitorId_blogId: { visitorId, blogId } },

@@ -17,6 +17,13 @@ export interface LikeButtonProps extends Omit<StackProps, 'children'> {
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
+const blogMetadataKeys = {
+  all: ['blogMetadata'] as const,
+  byId: (blogId: string) => [...blogMetadataKeys.all, blogId] as const,
+  like: (blogId: string) => [...blogMetadataKeys.byId(blogId), 'like'] as const,
+  liked: (blogId: string, visitorId: string) =>
+    [...blogMetadataKeys.byId(blogId), visitorId, 'liked'] as const,
+};
 
 export const LikeButton: FC<LikeButtonProps> = ({
   blogId,
@@ -27,14 +34,14 @@ export const LikeButton: FC<LikeButtonProps> = ({
   const queryClient = useQueryClient();
 
   const { data: like } = useQuery({
-    queryKey: ['blogMetadata', 'like', blogId],
+    queryKey: blogMetadataKeys.like(blogId),
     queryFn: async () => (await getBlogMetadataById(blogId))?.like,
     initialData: initialLike,
   });
 
   const { data: liked } = useQuery({
-    queryKey: ['blogMetadata', 'liked', visitorId, blogId],
-    queryFn: () => hasVisitorLikedBlog(visitorId, blogId),
+    queryKey: blogMetadataKeys.liked(blogId, visitorId),
+    queryFn: () => hasVisitorLikedBlog(blogId, visitorId),
     enabled: Boolean(visitorId),
   });
 
@@ -47,41 +54,48 @@ export const LikeButton: FC<LikeButtonProps> = ({
       blogId: string;
     }) => {
       if (liked) {
-        await unlikeBlog(visitorId, blogId);
+        await unlikeBlog(blogId, visitorId);
       } else {
-        await likeBlog(visitorId, blogId);
+        await likeBlog(blogId, visitorId);
       }
     },
-    // optimistic update like and liked
+    // optimistic update like/unlike blog
     onMutate: async ({ visitorId, blogId }) => {
       await queryClient.cancelQueries({ queryKey: ['blogMetadata'] });
 
-      const likeKey = ['blogMetadata', 'like', blogId];
-      const likedKey = ['blogMetadata', 'liked', visitorId, blogId];
-
-      const prevLike = queryClient.getQueryData<number>(likeKey);
-      const prevLiked = queryClient.getQueryData<boolean>(likedKey);
+      const prevLike = queryClient.getQueryData<number>(
+        blogMetadataKeys.like(blogId),
+      );
+      const prevLiked = queryClient.getQueryData<boolean>(
+        blogMetadataKeys.liked(blogId, visitorId),
+      );
 
       queryClient.setQueryData<number>(
-        likeKey,
+        blogMetadataKeys.like(blogId),
         (like) => (like ?? 0) + (prevLiked ? -1 : 1),
       );
-      queryClient.setQueryData<boolean>(likedKey, (liked) => !liked);
+      queryClient.setQueryData<boolean>(
+        blogMetadataKeys.liked(blogId, visitorId),
+        (liked) => !liked,
+      );
 
       return { prevLike, prevLiked };
     },
+    // rollback if mutation failed
     onError: (_, { visitorId, blogId }, context) => {
       queryClient.setQueryData(
-        ['blogMetadata', 'like', blogId],
+        blogMetadataKeys.like(blogId),
         context?.prevLike,
       );
       queryClient.setQueryData(
-        ['blogMetadata', 'liked', visitorId, blogId],
+        blogMetadataKeys.liked(blogId, visitorId),
         context?.prevLiked,
       );
     },
     onSettled: () =>
-      queryClient.invalidateQueries({ queryKey: ['blogMetadata'] }),
+      queryClient.invalidateQueries({
+        queryKey: blogMetadataKeys.byId(blogId),
+      }),
   });
 
   return (

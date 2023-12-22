@@ -291,7 +291,7 @@ export const getBlogMetadataById = reactCache(async (id: string) => {
 });
 
 export const hasVisitorLikedBlog = reactCache(
-  async (visitorId: string, blogId: string) => {
+  async (blogId: string, visitorId: string) => {
     noStore();
     const like = await prisma.$primary().like.findUnique({
       where: { visitorId_blogId: { visitorId, blogId } },
