@@ -29,7 +29,7 @@ import { ColorInversionBox } from '@/components/color-inversion-box';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contact } from '@/constants/nav';
-import { getBlogBySlug } from '@/lib/queries';
+import { getBlogBySlug, getBlogs } from '@/lib/queries';
 import { getPerson } from '@/utils/json-ld';
 
 // data attribute auto injected by rehype-pretty-code
@@ -401,6 +401,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     </>
   );
 };
+
+export const generateStaticParams = () =>
+  getBlogs().then((blogs) =>
+    blogs.map(({ slug }) => ({ slug })),
+  ) satisfies Promise<BlogProps['params'][]>;
 
 export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
   const blog = await getBlogBySlug(slug);
