@@ -12,7 +12,7 @@ import { globalStyles, theme } from '@/theme';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5000,
+      staleTime: 5 * 1000,
     },
   },
 });
