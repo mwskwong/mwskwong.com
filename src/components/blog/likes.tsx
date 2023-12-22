@@ -1,6 +1,6 @@
 import Box from '@mui/joy/Box';
+import { StackProps } from '@mui/joy/Stack';
 import Typography, { TypographyProps } from '@mui/joy/Typography';
-import { SxProps, SystemProps } from '@mui/joy/styles/types';
 import { Heart } from 'lucide-react';
 import { FC } from 'react';
 
@@ -8,7 +8,14 @@ import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
 import { LikeButton } from './like-button';
 
-export interface LikesProps extends Omit<SystemProps, 'color'> {
+export interface LikesProps
+  extends Omit<
+    Pick<
+      TypographyProps & StackProps,
+      Extract<keyof TypographyProps, keyof StackProps>
+    >,
+    'children'
+  > {
   /**
    * Expected to be used when there are multiple Likes mounted in the same page.
    * When blogIds is specified, ViewCount will fetch multiple blog metadata by IDs at once,
@@ -19,7 +26,6 @@ export interface LikesProps extends Omit<SystemProps, 'color'> {
   blogIds?: string[];
   blogId: string;
   readOnly?: boolean;
-  sx?: SxProps;
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
