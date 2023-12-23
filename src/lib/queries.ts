@@ -2,7 +2,11 @@
 
 import { Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
-import { unstable_cache as cache } from 'next/cache';
+import {
+  unstable_cache as cache,
+  unstable_noStore as noStore,
+} from 'next/cache';
+import { cache as reactCache } from 'react';
 
 import { contentful, prisma } from './clients';
 import {
@@ -249,15 +253,50 @@ export const getTechStack = cache(async () => {
   }));
 });
 
-export const getBlogMetadataById = cache(
-  (id: string) => prisma.blogMetadata.findUnique({ where: { id } }),
-  undefined,
-  { revalidate: 3600 },
-);
+// Use React.cache here, because we want to achieve the following
+//   1. DB is queried only once in the blog listing page
+//   2. The result of getBlogsMetadataByIds is NOT cached in other server requests
+//      i.e. when the user refreshes the page or other users visit the same page,
+//      it should see the metadata updated
+// It works, because React will invalidate the cache for all memoized functions for each server request.
+// See https://react.dev/reference/react/cache#caveats
 
-export const getBlogsMetadataByIds = cache(
-  (ids: string[]) =>
-    prisma.blogMetadata.findMany({ where: { id: { in: ids } } }),
-  undefined,
-  { revalidate: 3600 },
+export const getBlogsMetadataByIds = reactCache(async (ids: string[]) => {
+  noStore();
+  const blogsMetadata = await prisma.blogMetadata.findMany({
+    where: { id: { in: ids } },
+    include: { _count: { select: { likes: true } } },
+  });
+
+  return blogsMetadata.map(({ _count, ...rest }) => ({
+    ...rest,
+    like: _count.likes,
+  }));
+});
+
+export const getBlogMetadataById = reactCache(async (id: string) => {
+  noStore();
+  const blogMetadata = await prisma.$primary().blogMetadata.findUnique({
+    where: { id },
+    include: { _count: { select: { likes: true } } },
+  });
+
+  if (!blogMetadata) return blogMetadata;
+
+  const { _count, ...rest } = blogMetadata;
+  return {
+    ...rest,
+    like: _count.likes,
+  };
+});
+
+export const hasVisitorLikedBlog = reactCache(
+  async (blogId: string, visitorId: string) => {
+    noStore();
+    const like = await prisma.$primary().like.findUnique({
+      where: { visitorId_blogId: { visitorId, blogId } },
+    });
+
+    return Boolean(like);
+  },
 );

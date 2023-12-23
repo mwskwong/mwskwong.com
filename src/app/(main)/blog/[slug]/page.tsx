@@ -14,19 +14,22 @@ import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { FC, RefObject } from 'react';
+import { FC, RefObject, Suspense } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 
-import { Actions } from '@/components/blog/actions';
+import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
+import { Likes, LikesSkeleton } from '@/components/blog/likes';
+import { ShareDropdown } from '@/components/blog/share-dropdown';
+import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { ColorInversionBox } from '@/components/color-inversion-box';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contact } from '@/constants/nav';
-import { getBlogBySlug, getBlogMetadataById, getBlogs } from '@/lib/queries';
+import { getBlogBySlug, getBlogs } from '@/lib/queries';
 import { getPerson } from '@/utils/json-ld';
 
 // data attribute auto injected by rehype-pretty-code
@@ -56,7 +59,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
 
-  const metadata = await getBlogMetadataById(blog.id);
   const person = await getPerson();
 
   return (
@@ -84,7 +86,21 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
             </Grid>
             <Grid sm="auto" xs={12}>
-              <Actions blog={blog} {...metadata} />
+              <Stack
+                alignItems="center"
+                direction="row"
+                justifyContent="space-around"
+                spacing={1}
+              >
+                <Suspense fallback={<ViewsSkeleton mr={0.75} />}>
+                  <Views blogId={blog.id} mr={0.75} />
+                </Suspense>
+                <Suspense fallback={<LikesSkeleton mr={0.75} />}>
+                  <Likes blogId={blog.id} mr={0.75} />
+                </Suspense>
+                <CopyUrlButton />
+                <ShareDropdown blog={blog} />
+              </Stack>
             </Grid>
           </Grid>
           {blog.coverPhoto ? <CoverImage src={blog.coverPhoto} /> : null}

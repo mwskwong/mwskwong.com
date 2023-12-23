@@ -15,6 +15,9 @@ export const contentful = createClient({
   environment: process.env.VERCEL_ENV === 'production' ? 'master' : 'develop',
 }).withoutUnresolvableLinks;
 
-export const prisma = new PrismaClient().$extends(
-  readReplicas({ url: process.env.DATABASE_REPLICA_URL ?? '' }),
-);
+export const prisma = new PrismaClient({
+  log:
+    process.env.NODE_ENV === 'development'
+      ? ['query', 'info', 'warn', 'error']
+      : undefined,
+}).$extends(readReplicas({ url: process.env.DATABASE_REPLICA_URL ?? '' }));

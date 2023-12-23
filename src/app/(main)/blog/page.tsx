@@ -7,16 +7,17 @@ import Grid from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { Eye } from 'lucide-react';
 import { Metadata, ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import { BreadcrumbList, Graph } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
+import { Likes, LikesSkeleton } from '@/components/blog/likes';
+import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { getBlogs, getBlogsMetadataByIds } from '@/lib/queries';
+import { getBlogs } from '@/lib/queries';
 import { getPerson } from '@/utils/json-ld';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
@@ -24,7 +25,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',
   day: 'numeric',
 });
-const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
+
 const description = 'Personal perspectives on a broad range of topics.';
 
 const Blogs: FC = async () => {
@@ -32,7 +33,6 @@ const Blogs: FC = async () => {
     getBlogs({ page: 1 }),
     getPerson(),
   ]);
-  const blogsMetadata = await getBlogsMetadataByIds(blogs.map(({ id }) => id));
 
   return (
     <>
@@ -92,14 +92,23 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <Typography level="body-sm" startDecorator={<Eye />}>
-                        {numberFormatter.format(
-                          blogsMetadata.find(
-                            ({ id: blogMetadataId }) => blogMetadataId === id,
-                          )?.view ?? 0,
-                        )}{' '}
-                        views
-                      </Typography>
+                      <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
+                        <Views
+                          blogId={id}
+                          blogIds={blogs.map(({ id }) => id)}
+                          level="body-sm"
+                          readOnly
+                        />
+                      </Suspense>
+                      <Divider orientation="vertical" />
+                      <Suspense fallback={<LikesSkeleton level="body-sm" />}>
+                        <Likes
+                          blogId={id}
+                          blogIds={blogs.map(({ id }) => id)}
+                          readOnly
+                          typography="body-sm"
+                        />
+                      </Suspense>
                     </CardContent>
                   </Card>
                 </Grid>
