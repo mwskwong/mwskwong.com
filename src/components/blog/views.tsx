@@ -3,8 +3,9 @@ import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { FC } from 'react';
 
-import { incrBlogViewById } from '@/lib/actions';
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
+
+import { IncrBlogView } from './incr-blog-view';
 
 export interface ViewsProps extends Omit<TypographyProps, 'children'> {
   /**
@@ -31,12 +32,13 @@ export const Views: FC<ViewsProps> = async ({
     ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
 
-  if (!readOnly) void incrBlogViewById(blogId);
-
   return (
-    <Typography aria-label="Blog views" startDecorator={<Eye />} {...props}>
-      {numberFormatter.format(metadata?.view ?? 0)}
-    </Typography>
+    <>
+      {readOnly ? null : <IncrBlogView blogId={blogId} />}
+      <Typography aria-label="Blog views" startDecorator={<Eye />} {...props}>
+        {numberFormatter.format(metadata?.view ?? 0)}
+      </Typography>
+    </>
   );
 };
 
