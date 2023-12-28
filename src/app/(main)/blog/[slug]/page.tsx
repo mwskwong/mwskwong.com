@@ -56,10 +56,8 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const blog = await getBlogBySlug(slug);
+  const [blog, person] = await Promise.all([getBlogBySlug(slug), getPerson()]);
   if (!blog) notFound();
-
-  const person = await getPerson();
 
   return (
     <>

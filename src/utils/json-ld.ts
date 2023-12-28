@@ -15,9 +15,11 @@ import {
 } from '@/lib/queries';
 
 export const getPerson = async () => {
-  const latestJobTitle = (await getExperiences())[0]?.jobTitle;
-  const personalPhoto = await getPersonalPhoto();
-  const platformProfiles = await getPlatformProfiles();
+  const [latestJobTitle, personalPhoto, platformProfiles] = await Promise.all([
+    getExperiences().then((experience) => experience[0]?.jobTitle),
+    getPersonalPhoto(),
+    getPlatformProfiles(),
+  ]);
 
   return {
     '@id': baseUrl,
