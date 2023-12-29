@@ -13,8 +13,8 @@ import Icon from '@/app/icon.svg';
 import { linkedin } from '@/constants/contentful-ids';
 import { home, nav } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/queries';
-import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
+import { ContentfulIcon } from './contentful-icon';
 import { ModeToggleButton } from './mode-toggle-button';
 import { NavDrawer } from './nav-drawer';
 
@@ -70,25 +70,22 @@ export const Header: FC<HeaderProps> = async (props) => {
             </List>
           </Stack>
           <Stack direction="row" spacing={1}>
-            {platformProfiles.map(({ platform, url }) => {
-              const Icon = platform?.id
-                ? getIconByContentfulId(platform.id)
-                : undefined;
-
-              return (
-                <IconButton
-                  aria-label={`Go to my ${platform?.name ?? ''} profile`}
-                  component="a"
-                  href={url}
-                  key={platform?.id}
-                  size="sm"
-                  target="_blank"
-                  variant="outlined"
-                >
-                  {Icon ? <Icon /> : null}
-                </IconButton>
-              );
-            })}
+            {platformProfiles.map(
+              ({ platform, url }) =>
+                platform && (
+                  <IconButton
+                    aria-label={`Go to my ${platform.name} profile`}
+                    component="a"
+                    href={url}
+                    key={platform.id}
+                    size="sm"
+                    target="_blank"
+                    variant="outlined"
+                  >
+                    <ContentfulIcon contentfulId={platform.id} />
+                  </IconButton>
+                ),
+            )}
             <ModeToggleButton size="sm" variant="outlined" />
             <NavDrawer
               slotProps={{

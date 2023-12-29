@@ -10,8 +10,8 @@ import { FC } from 'react';
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
 import { about } from '@/constants/nav';
 import { getPersonalPhoto, getSkillCategories } from '@/lib/queries';
-import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
+import { ContentfulIcon } from '../contentful-icon';
 import { Image } from '../image';
 
 export type AboutProps = Omit<BoxProps<'section'>, 'children'>;
@@ -51,41 +51,38 @@ export const About: FC<AboutProps> = async (props) => {
             justifyContent="center"
             spacing={6}
           >
-            {skillCategories.map(({ id, name, skills }) => {
-              const Icon = getIconByContentfulId(id);
-              return (
-                <Grid key={id} lg={4} sm={6} xs={12}>
-                  <Stack alignItems="center" spacing={2}>
-                    <Sheet
-                      color="primary"
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: 'sm',
-                        fontSize: 'xl5',
-                        width: '1em',
-                        height: '1em',
-                      }}
-                      variant="outlined"
-                    >
-                      {Icon ? <Icon /> : null}
-                    </Sheet>
-                    <Typography level="title-md">{name}</Typography>
-                    <Stack
-                      direction="row"
-                      flexWrap="wrap"
-                      justifyContent="center"
-                      spacing={1}
-                    >
-                      {skills.map((skill) => (
-                        <Chip key={skill}>{skill}</Chip>
-                      ))}
-                    </Stack>
+            {skillCategories.map(({ id, name, skills }) => (
+              <Grid key={id} lg={4} sm={6} xs={12}>
+                <Stack alignItems="center" spacing={2}>
+                  <Sheet
+                    color="primary"
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 'sm',
+                      fontSize: 'xl5',
+                      width: '1em',
+                      height: '1em',
+                    }}
+                    variant="outlined"
+                  >
+                    <ContentfulIcon contentfulId={id} />
+                  </Sheet>
+                  <Typography level="title-md">{name}</Typography>
+                  <Stack
+                    direction="row"
+                    flexWrap="wrap"
+                    justifyContent="center"
+                    spacing={1}
+                  >
+                    {skills.map((skill) => (
+                      <Chip key={skill}>{skill}</Chip>
+                    ))}
                   </Stack>
-                </Grid>
-              );
-            })}
+                </Stack>
+              </Grid>
+            ))}
           </Grid>
         </Stack>
       </Container>

@@ -13,7 +13,8 @@ import {
 import { experience } from '@/constants/nav';
 import { SiPrismaHexDark, SiVercelHexDark } from '@/constants/simple-icons';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
-import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
+
+import { ContentfulIcon } from '../contentful-icon';
 
 import { Timeline, TimelineItem } from './timeline';
 
@@ -79,45 +80,42 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               justifyContent="center"
               spacing={6}
             >
-              {contributedProjects.map(({ id, name, url }) => {
-                const Icon = getIconByContentfulId(id);
-                return (
-                  <Grid key={name} sm={3} xs={6}>
-                    <Stack
-                      alignItems="center"
-                      position="relative"
-                      spacing={2}
-                      sx={{
-                        '--Icon-fontSize': 'var(--joy-fontSize-xl5)',
-                        // make use of light color for Vercel and Prisma icon when in dark mode
-                        // because both of them are having a dark color by default
-                        '[data-joy-color-scheme="dark"] &': {
-                          '& > svg': {
-                            fill:
-                              id in darkModeIconColors
-                                ? darkModeIconColors[
-                                    id as keyof typeof darkModeIconColors
-                                  ]
-                                : undefined,
-                          },
+              {contributedProjects.map(({ id, name, url }) => (
+                <Grid key={id} sm={3} xs={6}>
+                  <Stack
+                    alignItems="center"
+                    position="relative"
+                    spacing={2}
+                    sx={{
+                      '--Icon-fontSize': 'var(--joy-fontSize-xl5)',
+                      // make use of light color for Vercel and Prisma icon when in dark mode
+                      // because both of them are having a dark color by default
+                      '[data-joy-color-scheme="dark"] &': {
+                        '& > svg': {
+                          fill:
+                            id in darkModeIconColors
+                              ? darkModeIconColors[
+                                  id as keyof typeof darkModeIconColors
+                                ]
+                              : undefined,
                         },
-                      }}
+                      },
+                    }}
+                  >
+                    <ContentfulIcon color="default" contentfulId={id} />
+                    <Link
+                      color="neutral"
+                      href={url}
+                      maxWidth="20ch"
+                      overlay
+                      target="_blank"
+                      typography="title-md"
                     >
-                      {Icon ? <Icon color="default" /> : null}
-                      <Link
-                        color="neutral"
-                        href={url}
-                        maxWidth="20ch"
-                        overlay
-                        target="_blank"
-                        typography="title-md"
-                      >
-                        {name}
-                      </Link>
-                    </Stack>
-                  </Grid>
-                );
-              })}
+                      {name}
+                    </Link>
+                  </Stack>
+                </Grid>
+              ))}
             </Grid>
             <Typography>...and more to come</Typography>
           </Stack>

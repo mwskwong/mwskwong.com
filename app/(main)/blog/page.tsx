@@ -18,7 +18,7 @@ import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { getBlogs } from '@/lib/queries';
-import { getPerson } from '@/utils/json-ld';
+import { getJsonLdPerson } from '@/lib/utils';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -31,7 +31,7 @@ const description = 'Personal perspectives on a broad range of topics.';
 const Blogs: FC = async () => {
   const [blogs, person] = await Promise.all([
     getBlogs({ page: 1 }),
-    getPerson(),
+    getJsonLdPerson(),
   ]);
 
   return (

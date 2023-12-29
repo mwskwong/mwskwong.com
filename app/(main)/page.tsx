@@ -11,7 +11,7 @@ import { Hero } from '@/components/home/hero';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { headline } from '@/constants/content';
-import { getPerson } from '@/utils/json-ld';
+import { getJsonLdPerson } from '@/lib/utils';
 
 const bgcolors = {
   hero: 'background.body',
@@ -23,7 +23,7 @@ const bgcolors = {
 };
 
 const Home: FC = async () => {
-  const person = await getPerson();
+  const person = await getJsonLdPerson();
 
   return (
     <>

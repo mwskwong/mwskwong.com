@@ -13,7 +13,7 @@ import Typography from '@mui/joy/Typography';
 import { Search, X } from 'lucide-react';
 import { FC, useDeferredValue, useMemo, useState } from 'react';
 
-import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
+import { ContentfulIcon } from '../contentful-icon';
 
 export interface SelfLearningProps extends Omit<StackProps, 'children'> {
   courses?: {
@@ -82,51 +82,49 @@ export const SelfLearning: FC<SelfLearningProps> = ({
         />
         <Grid container spacing={2}>
           {filteredCourses.map(
-            ({ name, institution, certificate, categories }) => {
-              const Icon = institution && getIconByContentfulId(institution.id);
-
-              return (
-                <Grid key={name} md={6} xs={12}>
-                  <Card
-                    orientation="horizontal"
-                    sx={{ height: { sm: '100%' } }}
-                  >
-                    {Icon ? <Icon color="default" /> : null}
-                    <Stack spacing="inherit">
-                      <CardContent>
-                        {certificate ? (
-                          <Link
-                            color="neutral"
-                            href={certificate}
-                            overlay
-                            target="_blank"
-                            typography="title-md"
-                          >
-                            {name}
-                          </Link>
-                        ) : (
-                          <Typography level="title-md">{name}</Typography>
-                        )}
-                        <Typography level="body-sm">
-                          {institution?.name}
-                        </Typography>
-                      </CardContent>
-                      <Stack direction="row" spacing={1}>
-                        {categories?.map((category) => (
-                          <Chip
-                            key={category}
-                            size="sm"
-                            sx={{ pointerEvents: 'none' }}
-                          >
-                            {category}
-                          </Chip>
-                        ))}
-                      </Stack>
+            ({ name, institution, certificate, categories }) => (
+              <Grid key={name} md={6} xs={12}>
+                <Card orientation="horizontal" sx={{ height: { sm: '100%' } }}>
+                  {institution ? (
+                    <ContentfulIcon
+                      color="default"
+                      contentfulId={institution.id}
+                    />
+                  ) : null}
+                  <Stack spacing="inherit">
+                    <CardContent>
+                      {certificate ? (
+                        <Link
+                          color="neutral"
+                          href={certificate}
+                          overlay
+                          target="_blank"
+                          typography="title-md"
+                        >
+                          {name}
+                        </Link>
+                      ) : (
+                        <Typography level="title-md">{name}</Typography>
+                      )}
+                      <Typography level="body-sm">
+                        {institution?.name}
+                      </Typography>
+                    </CardContent>
+                    <Stack direction="row" spacing={1}>
+                      {categories?.map((category) => (
+                        <Chip
+                          key={category}
+                          size="sm"
+                          sx={{ pointerEvents: 'none' }}
+                        >
+                          {category}
+                        </Chip>
+                      ))}
                     </Stack>
-                  </Card>
-                </Grid>
-              );
-            },
+                  </Stack>
+                </Card>
+              </Grid>
+            ),
           )}
         </Grid>
       </Stack>

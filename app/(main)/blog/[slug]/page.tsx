@@ -30,7 +30,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contact } from '@/constants/nav';
 import { getBlogBySlug, getBlogs } from '@/lib/queries';
-import { getPerson } from '@/utils/json-ld';
+import { getJsonLdPerson } from '@/lib/utils';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -56,7 +56,10 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const [blog, person] = await Promise.all([getBlogBySlug(slug), getPerson()]);
+  const [blog, person] = await Promise.all([
+    getBlogBySlug(slug),
+    getJsonLdPerson(),
+  ]);
   if (!blog) notFound();
 
   return (

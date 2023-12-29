@@ -8,9 +8,9 @@ import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';
-import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
 
 import { ColorInversionBox } from '../color-inversion-box';
+import { ContentfulIcon } from '../contentful-icon';
 
 export type FunFactProps = Omit<BoxProps<'section'>, 'children' | 'color'>;
 export const FunFact: FC<FunFactProps> = async (props) => {
@@ -46,30 +46,27 @@ export const FunFact: FC<FunFactProps> = async (props) => {
             justifyContent="center"
             spacing={6}
           >
-            {techStack.map(({ id, name, url }) => {
-              const Icon = getIconByContentfulId(id);
-              return (
-                <Grid key={name} sm={3} xs={6}>
-                  <Stack
-                    alignItems="center"
-                    position="relative"
-                    spacing={2}
-                    sx={{ '--Icon-fontSize': 'var(--joy-fontSize-xl5)' }}
+            {techStack.map(({ id, name, url }) => (
+              <Grid key={name} sm={3} xs={6}>
+                <Stack
+                  alignItems="center"
+                  position="relative"
+                  spacing={2}
+                  sx={{ '--Icon-fontSize': 'var(--joy-fontSize-xl5)' }}
+                >
+                  <ContentfulIcon contentfulId={id} />
+                  <Link
+                    href={url}
+                    maxWidth="20ch"
+                    overlay
+                    target="_blank"
+                    typography="title-md"
                   >
-                    {Icon ? <Icon /> : null}
-                    <Link
-                      href={url}
-                      maxWidth="20ch"
-                      overlay
-                      target="_blank"
-                      typography="title-md"
-                    >
-                      {name}
-                    </Link>
-                  </Stack>
-                </Grid>
-              );
-            })}
+                    {name}
+                  </Link>
+                </Stack>
+              </Grid>
+            ))}
           </Grid>
           <Typography>...and more</Typography>
           <Button

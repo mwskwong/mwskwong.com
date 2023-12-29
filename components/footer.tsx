@@ -7,7 +7,8 @@ import { FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
 import { getPlatformProfiles } from '@/lib/queries';
-import { getIconByContentfulId } from '@/utils/get-icon-by-contentful-id';
+
+import { ContentfulIcon } from './contentful-icon';
 
 export type FooterProps = Omit<BoxProps<'footer'>, 'children'>;
 export const Footer: FC<FooterProps> = async (props) => {
@@ -33,24 +34,21 @@ export const Footer: FC<FooterProps> = async (props) => {
           </Typography>
         </Box>
         <Stack direction="row" spacing={1}>
-          {platformProfiles.map(({ platform, url }) => {
-            const Icon = platform?.id
-              ? getIconByContentfulId(platform.id)
-              : undefined;
-
-            return (
-              <IconButton
-                aria-label={`Go to my ${platform?.name ?? ''} profile`}
-                component="a"
-                href={url}
-                key={platform?.id}
-                size="sm"
-                target="_blank"
-              >
-                {Icon ? <Icon /> : null}
-              </IconButton>
-            );
-          })}
+          {platformProfiles.map(
+            ({ platform, url }) =>
+              platform && (
+                <IconButton
+                  aria-label={`Go to my ${platform.name} profile`}
+                  component="a"
+                  href={url}
+                  key={platform.id}
+                  size="sm"
+                  target="_blank"
+                >
+                  <ContentfulIcon contentfulId={platform.id} />
+                </IconButton>
+              ),
+          )}
         </Stack>
       </Stack>
     </Box>
