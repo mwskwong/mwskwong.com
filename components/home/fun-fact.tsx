@@ -27,8 +27,7 @@ export const FunFact: FC<FunFactProps> = async (props) => {
         sx={{
           color: 'var(--variant-plainColor)',
           '& ::selection': {
-            bgcolor: 'var(--variant-solidBg)',
-            color: 'var(--variant-solidColor)',
+            bgcolor: 'var(--variant-softBg)',
           },
         }}
       >

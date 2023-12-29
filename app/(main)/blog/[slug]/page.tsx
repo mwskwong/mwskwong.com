@@ -334,8 +334,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           <Container
             sx={{
               '& ::selection': {
-                bgcolor: 'var(--variant-solidBg)',
-                color: 'var(--variant-solidColor)',
+                bgcolor: 'var(--variant-softBg)',
               },
             }}
           >

@@ -45,8 +45,7 @@ export const globalStyles = (theme: Theme) =>
       '--Header-offset': '56px',
     },
     '::selection': {
-      backgroundColor: theme.vars.palette.primary.solidBg,
-      color: theme.vars.palette.primary.solidColor,
+      backgroundColor: theme.vars.palette.primary.softBg,
     },
     body: {
       display: 'flex',
