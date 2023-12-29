@@ -81,13 +81,12 @@ module.exports = {
     // Must use default export
     {
       files: [
-        'src/middleware.ts',
-        'src/app/**/page.tsx',
-        'src/app/**/layout.tsx',
-        'src/app/**/not-found.tsx',
-        'src/app/**/*error.tsx',
-        'src/app/sitemap.ts',
-        'src/app/robots.ts',
+        'app/**/page.tsx',
+        'app/**/layout.tsx',
+        'app/**/not-found.tsx',
+        'app/**/*error.tsx',
+        'app/sitemap.ts',
+        'app/robots.ts',
       ],
       rules: {
         'import/no-default-export': 'off',
