@@ -1,16 +1,20 @@
-export const home = { id: 'home', name: 'Home', href: '/#' };
-export const about = { id: 'about', name: 'About', href: '/#about' };
+export const home = { id: 'home', name: 'Home', href: '/#' } as const;
+export const about = { id: 'about', name: 'About', href: '/#about' } as const;
 export const experience = {
   id: 'experience',
   name: 'Experience',
   href: '/#experience',
-};
+} as const;
 export const education = {
   id: 'education',
   name: 'Education',
   href: '/#education',
-};
-export const contact = { id: 'contact', name: 'Contact', href: '/#contact' };
-export const blog = { id: undefined, name: 'Blog', href: '/blog' };
+} as const;
+export const contact = {
+  id: 'contact',
+  name: 'Contact',
+  href: '/#contact',
+} as const;
+export const blog = { id: undefined, name: 'Blog', href: '/blog' } as const;
 
 export const nav = [about, experience, education, contact, blog];
