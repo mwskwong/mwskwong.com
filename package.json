@@ -25,7 +25,7 @@
     "@mui/styled-engine": "^5.15.2",
     "@prisma/client": "^5.7.1",
     "@prisma/extension-read-replicas": "^0.3.0",
-    "@tanstack/react-query": "^5.15.5",
+    "@tanstack/react-query": "^5.17.0",
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
     "contentful": "^10.6.15",
