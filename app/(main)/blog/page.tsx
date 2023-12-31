@@ -33,6 +33,7 @@ const Blogs: FC = async () => {
     getBlogs({ page: 1 }),
     getJsonLdPerson(),
   ]);
+  const blogIds = blogs.map(({ id }) => id);
 
   return (
     <>
@@ -95,7 +96,7 @@ const Blogs: FC = async () => {
                       <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
                         <Views
                           blogId={id}
-                          blogIds={blogs.map(({ id }) => id)}
+                          blogIds={blogIds}
                           level="body-sm"
                           readOnly
                         />
@@ -104,7 +105,7 @@ const Blogs: FC = async () => {
                       <Suspense fallback={<LikesSkeleton level="body-sm" />}>
                         <Likes
                           blogId={id}
-                          blogIds={blogs.map(({ id }) => id)}
+                          blogIds={blogIds}
                           readOnly
                           typography="body-sm"
                         />
