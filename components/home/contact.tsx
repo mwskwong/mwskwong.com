@@ -278,7 +278,6 @@ export const Contact: FC<ContactProps> = (props) => {
                     fullWidth
                     loading={isSubmitting}
                     loadingPosition="start"
-                    size="lg"
                     startDecorator={<Send />}
                     type="submit"
                   >
