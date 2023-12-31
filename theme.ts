@@ -16,6 +16,14 @@ declare module '@mui/joy/styles' {
 }
 
 export const theme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: { common: { black: '#09090B' } },
+    },
+    dark: {
+      palette: { common: { black: '#09090B' } },
+    },
+  },
   fontFamily: {
     body: GeistSans.style.fontFamily,
     display: GeistSans.style.fontFamily,
