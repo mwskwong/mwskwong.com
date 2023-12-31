@@ -17,7 +17,9 @@ export const HeaderContainer: FC<HeaderContainerProps> = ({
       alignItems="center"
       bgcolor="background.body"
       boxShadow={(theme) =>
-        trigger ? `0 1px ${theme.vars.palette.divider}` : undefined
+        trigger
+          ? `0 1px ${theme.vars.palette.neutral.outlinedBorder}`
+          : undefined
       }
       component="header"
       display="flex"
