@@ -50,7 +50,7 @@ export const globalStyles = (theme: Theme) =>
       '--Section-paddingY': theme.spacing(10),
       '--Footer-paddingY': theme.spacing(6),
       '--Footer-bg': theme.vars.palette.background.surface,
-      '--Header-offset': '56px',
+      '--Header-height': '64px',
     },
     '::selection': {
       backgroundColor: theme.vars.palette.primary.softBg,

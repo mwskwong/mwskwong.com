@@ -23,8 +23,6 @@ const config = {
     ],
   },
   webpack: (config) => {
-    config.resolve.alias['@mui/material'] = '@mui/joy';
-
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.('.svg'),
     );

@@ -115,7 +115,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     mt={6}
                     ref={ref as RefObject<HTMLHeadElement> | undefined}
                     sx={{
-                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 6)',
+                      scrollMarginTop: 'calc(var(--Header-height) + 8px * 6)',
                     }}
                     textColor={color}
                     {...props}
@@ -128,7 +128,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     mt={4}
                     ref={ref as RefObject<HTMLHeadElement> | undefined}
                     sx={{
-                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 4)',
+                      scrollMarginTop: 'calc(var(--Header-height) + 8px * 4)',
                     }}
                     textColor={color}
                     {...props}
@@ -141,7 +141,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     mt={3}
                     ref={ref as RefObject<HTMLHeadElement> | undefined}
                     sx={{
-                      scrollMarginTop: 'calc(var(--Header-offset) + 8px * 3)',
+                      scrollMarginTop: 'calc(var(--Header-height) + 8px * 3)',
                     }}
                     textColor={color}
                     {...props}

@@ -46,6 +46,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@mui/material": "^5.15.2",
     "@next/bundle-analyzer": "canary",
     "@next/eslint-plugin-next": "canary",
     "@svgr/webpack": "^8.1.0",

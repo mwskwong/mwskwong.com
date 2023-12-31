@@ -32,7 +32,7 @@ const Home: FC = async () => {
         sx={{
           '& h2, h3, h4': {
             scrollMarginTop:
-              'calc(var(--Header-offset) + var(--Section-paddingY))',
+              'calc(var(--Header-height) + var(--Section-paddingY))',
           },
         }}
       >
