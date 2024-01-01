@@ -22,7 +22,6 @@
     "@icons-pack/react-simple-icons": "^9.2.0",
     "@mui/base": "5.0.0-beta.29",
     "@mui/joy": "5.0.0-beta.20",
-    "@mui/material": "^5.15.2",
     "@mui/styled-engine": "^5.15.2",
     "@prisma/client": "^5.7.1",
     "@prisma/extension-read-replicas": "^0.3.0",
