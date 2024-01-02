@@ -62,9 +62,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   ]);
   if (!blog) notFound();
 
-  // eslint-disable-next-line no-console -- debug
-  console.log(`called ${slug}`);
-
   return (
     <>
       <main>
