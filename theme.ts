@@ -1,7 +1,9 @@
 import { Theme, extendTheme } from '@mui/joy/styles';
+import { PaletteOptions } from '@mui/joy/styles/types';
 import { CSSObject, Interpolation } from '@mui/styled-engine';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
+import { PartialDeep } from 'type-fest';
 
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
@@ -15,14 +17,14 @@ declare module '@mui/joy/styles' {
   }
 }
 
+const palette = {
+  common: { black: '#09090B' },
+} satisfies PartialDeep<PaletteOptions>;
+
 export const theme = extendTheme({
   colorSchemes: {
-    light: {
-      palette: { common: { black: '#09090B' } },
-    },
-    dark: {
-      palette: { common: { black: '#09090B' } },
-    },
+    light: { palette },
+    dark: { palette },
   },
   fontFamily: {
     body: GeistSans.style.fontFamily,
