@@ -75,10 +75,7 @@ export const Header: FC<HeaderProps> = async (props) => {
             {platformProfiles.map(
               ({ platform, url }) =>
                 platform && (
-                  <Tooltip
-                    key={platform.id}
-                    title={`Go to my ${platform.name} profile`}
-                  >
+                  <Tooltip key={platform.id} title={`${platform.name} profile`}>
                     <IconButton
                       component="a"
                       href={url}

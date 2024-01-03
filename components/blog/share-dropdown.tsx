@@ -65,7 +65,7 @@ export const ShareDropdown: FC<ShareDropdownProps> = ({ blog, ...props }) => {
 
   return (
     <Dropdown {...props}>
-      <Tooltip title="Share this blog to social media">
+      <Tooltip title="Share this blog">
         <MenuButton slots={{ root: IconButton }}>
           <Share2 />
         </MenuButton>
