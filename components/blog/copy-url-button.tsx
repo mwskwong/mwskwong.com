@@ -35,8 +35,12 @@ export const CopyUrlButton: FC<Omit<IconButtonProps, 'children'>> = (props) => {
           timeout.current = setTimeout(() => setCopied(false), 1000);
         }}
         sx={{
-          '&[aria-pressed="true"]': {
+          '&[aria-pressed="true"]:not(:active)': {
             bgcolor: 'transparent',
+            '&:hover': {
+              bgcolor: (theme) =>
+                theme.vars.palette[copied ? 'success' : 'neutral'].plainHoverBg,
+            },
           },
         }}
         {...props}

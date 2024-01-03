@@ -113,8 +113,12 @@ export const LikeButton: FC<LikeButtonProps> = ({
             }
           }}
           sx={{
-            '&[aria-pressed="true"]': {
+            '&[aria-pressed="true"]:not(:active)': {
               bgcolor: 'transparent',
+              '&:hover': {
+                bgcolor: (theme) =>
+                  theme.vars.palette[liked ? 'danger' : 'neutral'].plainHoverBg,
+              },
             },
           }}
         >
