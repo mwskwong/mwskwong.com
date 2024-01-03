@@ -112,6 +112,11 @@ export const LikeButton: FC<LikeButtonProps> = ({
               mutate({ visitorId, blogId });
             }
           }}
+          sx={{
+            '&[aria-pressed="true"]': {
+              bgcolor: 'transparent',
+            },
+          }}
         >
           <Heart />
         </IconButton>
