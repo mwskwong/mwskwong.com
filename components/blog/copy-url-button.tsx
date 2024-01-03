@@ -1,9 +1,10 @@
 'use client';
 
 import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
+import Tooltip from '@mui/joy/Tooltip';
 import { Check, Copy } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 import { baseUrl } from '@/constants/base-url';
 
@@ -19,19 +20,24 @@ export const CopyUrlButton: FC<Omit<IconButtonProps, 'children'>> = (props) => {
   const [copied, setCopied] = useState(false);
   const pathname = usePathname();
   const url = `${baseUrl}${pathname}`;
+  const timeout = useRef<NodeJS.Timeout>();
+
+  useEffect(() => () => clearTimeout(timeout.current), []);
 
   return (
-    <IconButton
-      aria-label="copy blog url"
-      color={copied ? 'success' : undefined}
-      onClick={async () => {
-        await navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1000);
-      }}
-      {...props}
-    >
-      {copied ? <Check /> : <Copy />}
-    </IconButton>
+    <Tooltip title="Copy blog url">
+      <IconButton
+        aria-pressed={copied}
+        color={copied ? 'success' : undefined}
+        onClick={async () => {
+          await navigator.clipboard.writeText(url);
+          setCopied(true);
+          timeout.current = setTimeout(() => setCopied(false), 1000);
+        }}
+        {...props}
+      >
+        {copied ? <Check /> : <Copy />}
+      </IconButton>
+    </Tooltip>
   );
 };

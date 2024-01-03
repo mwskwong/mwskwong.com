@@ -6,6 +6,7 @@ import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
+import Tooltip from '@mui/joy/Tooltip';
 import { Menu } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC, useState } from 'react';
@@ -22,13 +23,11 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <IconButton
-        aria-label="Toggle navigation drawer"
-        onClick={() => setOpen(true)}
-        {...slotProps?.drawerButton}
-      >
-        <Menu />
-      </IconButton>
+      <Tooltip title="Toggle navigation drawer">
+        <IconButton onClick={() => setOpen(true)} {...slotProps?.drawerButton}>
+          <Menu />
+        </IconButton>
+      </Tooltip>
       <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
         <Box component="nav" pb={1} pt={10} px={1}>
           <List

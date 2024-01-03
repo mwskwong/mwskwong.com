@@ -2,6 +2,7 @@ import Box, { BoxProps } from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
+import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
@@ -37,16 +38,19 @@ export const Footer: FC<FooterProps> = async (props) => {
           {platformProfiles.map(
             ({ platform, url }) =>
               platform && (
-                <IconButton
-                  aria-label={`Go to my ${platform.name} profile`}
-                  component="a"
-                  href={url}
+                <Tooltip
                   key={platform.id}
-                  size="sm"
-                  target="_blank"
+                  title={`Go to my ${platform.name} profile`}
                 >
-                  <ContentfulIcon contentfulId={platform.id} />
-                </IconButton>
+                  <IconButton
+                    component="a"
+                    href={url}
+                    size="sm"
+                    target="_blank"
+                  >
+                    <ContentfulIcon contentfulId={platform.id} />
+                  </IconButton>
+                </Tooltip>
               ),
           )}
         </Stack>

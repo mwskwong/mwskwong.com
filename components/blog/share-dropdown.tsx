@@ -13,6 +13,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
+import Tooltip from '@mui/joy/Tooltip';
 import { Share2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useMemo } from 'react';
@@ -64,12 +65,11 @@ export const ShareDropdown: FC<ShareDropdownProps> = ({ blog, ...props }) => {
 
   return (
     <Dropdown {...props}>
-      <MenuButton
-        aria-label="Share this blog to social media"
-        slots={{ root: IconButton }}
-      >
-        <Share2 />
-      </MenuButton>
+      <Tooltip title="Share this blog to social media">
+        <MenuButton slots={{ root: IconButton }}>
+          <Share2 />
+        </MenuButton>
+      </Tooltip>
       <Menu>
         {socialMediaOptions.map(({ Icon, name, url }) => (
           <MenuItem component="a" href={url} key={name} target="_blank">

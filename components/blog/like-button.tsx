@@ -2,6 +2,7 @@
 
 import IconButton from '@mui/joy/IconButton';
 import Stack, { StackProps } from '@mui/joy/Stack';
+import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Heart } from 'lucide-react';
@@ -102,17 +103,19 @@ export const LikeButton: FC<LikeButtonProps> = ({
 
   return (
     <Stack alignItems="center" direction="row" {...props}>
-      <IconButton
-        aria-label={liked ? 'Unlike this blog' : 'Like this blog'}
-        color={liked ? 'danger' : undefined}
-        onClick={() => {
-          if (visitorId) {
-            mutate({ visitorId, blogId });
-          }
-        }}
-      >
-        <Heart />
-      </IconButton>
+      <Tooltip title={liked ? 'Unlike this blog' : 'Like this blog'}>
+        <IconButton
+          aria-pressed={liked}
+          color={liked ? 'danger' : undefined}
+          onClick={() => {
+            if (visitorId) {
+              mutate({ visitorId, blogId });
+            }
+          }}
+        >
+          <Heart />
+        </IconButton>
+      </Tooltip>
       <Typography>{numberFormatter.format(like ?? 0)}</Typography>
     </Stack>
   );

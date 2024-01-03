@@ -39,9 +39,7 @@ export const theme = extendTheme({
   },
   components: {
     JoyStack: {
-      defaultProps: {
-        useFlexGap: true,
-      },
+      defaultProps: { useFlexGap: true },
     },
   },
 });

@@ -35,7 +35,7 @@ export const Views: FC<ViewsProps> = async ({
   return (
     <>
       {readOnly ? null : <IncrBlogView blogId={blogId} />}
-      <Typography aria-label="Blog views" startDecorator={<Eye />} {...props}>
+      <Typography aria-label="Views" startDecorator={<Eye />} {...props}>
         {numberFormatter.format(metadata?.view ?? 0)}
       </Typography>
     </>
@@ -43,7 +43,7 @@ export const Views: FC<ViewsProps> = async ({
 };
 
 export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
-  <Typography aria-label="Blog views" startDecorator={<Eye />} {...props}>
+  <Typography aria-label="Views" startDecorator={<Eye />} {...props}>
     <Box component="span" width="3ch" />
   </Typography>
 );

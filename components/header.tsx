@@ -6,6 +6,7 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Stack from '@mui/joy/Stack';
+import Tooltip from '@mui/joy/Tooltip';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -74,17 +75,20 @@ export const Header: FC<HeaderProps> = async (props) => {
             {platformProfiles.map(
               ({ platform, url }) =>
                 platform && (
-                  <IconButton
-                    aria-label={`Go to my ${platform.name} profile`}
-                    component="a"
-                    href={url}
+                  <Tooltip
                     key={platform.id}
-                    size="sm"
-                    target="_blank"
-                    variant="outlined"
+                    title={`Go to my ${platform.name} profile`}
                   >
-                    <ContentfulIcon contentfulId={platform.id} />
-                  </IconButton>
+                    <IconButton
+                      component="a"
+                      href={url}
+                      size="sm"
+                      target="_blank"
+                      variant="outlined"
+                    >
+                      <ContentfulIcon contentfulId={platform.id} />
+                    </IconButton>
+                  </Tooltip>
                 ),
             )}
             <ModeToggleButton size="sm" variant="outlined" />
