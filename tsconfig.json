@@ -1,5 +1,5 @@
 {
-  "extends": "@vercel/style-guide/typescript",
+  "extends": "@vercel/style-guide/typescript/node20",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -12,10 +12,10 @@
     "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],
-    "paths": { "@/*": ["./src/*"] }
+    "paths": { "@/*": ["./*"] }
   },
   "include": [
-    "src/types/*.d.ts",
+    "image.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
