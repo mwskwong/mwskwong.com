@@ -1,8 +1,8 @@
 import { Theme, extendTheme } from '@mui/joy/styles';
 import { PaletteOptions } from '@mui/joy/styles/types';
 import { CSSObject, Interpolation } from '@mui/styled-engine';
-import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
+// eslint-disable-next-line camelcase -- next/font naming convention
+import { Inter, Source_Code_Pro } from 'next/font/google';
 import { PartialDeep } from 'type-fest';
 
 declare module '@mui/joy/styles/types/zIndex' {
@@ -17,6 +17,24 @@ declare module '@mui/joy/styles' {
   }
 }
 
+const inter = Inter({ subsets: ['latin'] });
+const sourceCodePro = Source_Code_Pro({
+  subsets: ['latin'],
+  preload: false,
+  adjustFontFallback: false,
+  fallback: [
+    'ui-monospace',
+    'SFMono-Regular',
+    'Roboto Mono',
+    'Menlo',
+    'Monaco',
+    'Liberation Mono',
+    'DejaVu Sans Mono',
+    'Courier New',
+    'monospace',
+  ],
+});
+
 const palette = {
   common: { black: '#09090B' },
 } satisfies PartialDeep<PaletteOptions>;
@@ -27,9 +45,9 @@ export const theme = extendTheme({
     dark: { palette },
   },
   fontFamily: {
-    body: GeistSans.style.fontFamily,
-    display: GeistSans.style.fontFamily,
-    code: GeistMono.style.fontFamily,
+    body: inter.style.fontFamily,
+    display: inter.style.fontFamily,
+    code: sourceCodePro.style.fontFamily,
   },
   fontSize: {
     xl5: '3rem',

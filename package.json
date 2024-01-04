@@ -29,7 +29,6 @@
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
     "contentful": "^10.6.15",
-    "geist": "^1.2.0",
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.303.0",
     "merge-sx": "^2.0.0",
