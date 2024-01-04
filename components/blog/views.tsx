@@ -3,6 +3,7 @@ import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { FC } from 'react';
 
+import { incrBlogViewById } from '@/lib/actions';
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
 import { IncrBlogView } from './incr-blog-view';
@@ -32,18 +33,23 @@ export const Views: FC<ViewsProps> = async ({
     ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
 
+  if (!readOnly) {
+    void incrBlogViewById(blogId);
+  }
+
   return (
     <>
       {readOnly ? null : <IncrBlogView blogId={blogId} />}
-      <Typography aria-label="Views" startDecorator={<Eye />} {...props}>
-        {numberFormatter.format(metadata?.view ?? 0)}
+      <Typography startDecorator={<Eye />} {...props}>
+        {numberFormatter.format(metadata?.view ?? 0)} views
       </Typography>
     </>
   );
 };
 
 export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
-  <Typography aria-label="Views" startDecorator={<Eye />} {...props}>
+  <Typography startDecorator={<Eye />} {...props}>
     <Box component="span" width="3ch" />
+    &nbsp;views
   </Typography>
 );
