@@ -261,42 +261,12 @@ export const getTechStack = cache(async () => {
 // It works, because React will invalidate the cache for all memoized functions for each server request.
 // See https://react.dev/reference/react/cache#caveats
 
-export const getBlogsMetadataByIds = reactCache(async (ids: string[]) => {
+export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
   noStore();
-  const blogsMetadata = await prisma.blogMetadata.findMany({
-    where: { id: { in: ids } },
-    include: { _count: { select: { likes: true } } },
-  });
-
-  return blogsMetadata.map(({ _count, ...rest }) => ({
-    ...rest,
-    like: _count.likes,
-  }));
+  return prisma.blogMetadata.findMany({ where: { id: { in: ids } } });
 });
 
-export const getBlogMetadataById = reactCache(async (id: string) => {
+export const getBlogMetadataById = reactCache((id: string) => {
   noStore();
-  const blogMetadata = await prisma.$primary().blogMetadata.findUnique({
-    where: { id },
-    include: { _count: { select: { likes: true } } },
-  });
-
-  if (!blogMetadata) return blogMetadata;
-
-  const { _count, ...rest } = blogMetadata;
-  return {
-    ...rest,
-    like: _count.likes,
-  };
+  return prisma.blogMetadata.findUnique({ where: { id } });
 });
-
-export const hasVisitorLikedBlog = reactCache(
-  async (blogId: string, visitorId: string) => {
-    noStore();
-    const like = await prisma.$primary().like.findUnique({
-      where: { visitorId_blogId: { visitorId, blogId } },
-    });
-
-    return Boolean(like);
-  },
-);

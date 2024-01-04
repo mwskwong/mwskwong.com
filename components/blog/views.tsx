@@ -3,7 +3,6 @@ import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { FC } from 'react';
 
-import { incrBlogViewById } from '@/lib/actions';
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
 import { IncrBlogView } from './incr-blog-view';
@@ -32,10 +31,6 @@ export const Views: FC<ViewsProps> = async ({
   const metadata = blogIds
     ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
-
-  if (!readOnly) {
-    void incrBlogViewById(blogId);
-  }
 
   return (
     <>

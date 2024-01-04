@@ -11,7 +11,6 @@ module.exports = {
     require.resolve('@vercel/style-guide/eslint/next'),
     require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/typescript'),
-    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   parserOptions: { project },
   settings: {

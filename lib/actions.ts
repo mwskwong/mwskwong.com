@@ -5,9 +5,9 @@ import { cache } from 'react';
 
 import { prisma } from '@/lib/clients';
 
-export const incrBlogViewById = cache(async (id: string) => {
+export const incrBlogViewById = cache((id: string) => {
   noStore();
-  await prisma.blogMetadata.upsert({
+  return prisma.blogMetadata.upsert({
     where: { id },
     update: { view: { increment: 1 } },
     create: { id },

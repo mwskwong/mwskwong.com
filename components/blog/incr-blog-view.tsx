@@ -1,10 +1,10 @@
 'use client';
 
-import { FC, memo, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
 import { incrBlogViewById } from '@/lib/actions';
 
-export const IncrBlogView: FC<{ blogId: string }> = memo(({ blogId }) => {
+export const IncrBlogView: FC<{ blogId: string }> = ({ blogId }) => {
   useEffect(() => void incrBlogViewById(blogId), [blogId]);
   return null;
-});
+};
