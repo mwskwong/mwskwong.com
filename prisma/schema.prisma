@@ -8,6 +8,6 @@ datasource db {
 }
 
 model BlogMetadata {
-  id    String @id
-  view  Int    @default(0)
+  id   String @id
+  view Int    @default(0)
 }
