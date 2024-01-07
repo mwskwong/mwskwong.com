@@ -18,21 +18,29 @@ import Textarea from '@mui/joy/Textarea';
 import Typography from '@mui/joy/Typography';
 import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
-import { contact, home } from '@/constants/nav';
+import { contact, guestbook, home } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
 import { contactFormSchema } from '@/lib/utils';
 
-export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
-export const Contact: FC<ContactProps> = (props) => {
+export interface ContactProps extends Omit<BoxProps<'section'>, 'children'> {
+  defaultShowInGuestbook?: boolean;
+}
+
+export const Contact: FC<ContactProps> = ({
+  defaultShowInGuestbook = false,
+  ...props
+}) => {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, isSubmitSuccessful, errors },
+    formState: { isSubmitting, isSubmitSuccessful, isValid, errors },
     setError,
+    trigger,
+    watch,
   } = useForm({
     resolver: zodResolver(contactFormSchema),
     mode: 'onTouched',
@@ -41,10 +49,18 @@ export const Contact: FC<ContactProps> = (props) => {
       email: '',
       subject: '',
       message: '',
-      showInGuestbook: false,
+      showInGuestbook: defaultShowInGuestbook,
     },
     progressive: true,
   });
+
+  const showInGuestbook = watch('showInGuestbook');
+
+  useEffect(() => {
+    if (showInGuestbook && !isValid) {
+      void trigger(['email', 'subject']);
+    }
+  }, [isValid, showInGuestbook, trigger]);
 
   return (
     <Box component="section" {...props}>
@@ -54,6 +70,7 @@ export const Contact: FC<ContactProps> = (props) => {
             Contact
           </Typography>
           <Grid
+            alignItems="center"
             component="form"
             container
             disableEqualOverflow
@@ -93,9 +110,8 @@ export const Contact: FC<ContactProps> = (props) => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderRadius: 'sm',
-                      fontSize: 'xl5',
-                      width: '1em',
-                      height: '1em',
+                      width: 48,
+                      height: 48,
                       mb: 2,
                     }}
                     variant="outlined"
@@ -131,9 +147,8 @@ export const Contact: FC<ContactProps> = (props) => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderRadius: 'sm',
-                      fontSize: 'xl5',
-                      width: '1em',
-                      height: '1em',
+                      width: 48,
+                      height: 48,
                     }}
                     variant="outlined"
                   >
@@ -142,8 +157,17 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Box>
                     <Typography level="title-md">Thank You!</Typography>
                     <Typography>
-                      I&apos;ve received your message and we&apos;ll be in touch
-                      soon!
+                      Thank you for contacting me! I have received your message
+                      and will get back to you shortly. In the meantime, feel
+                      free to check out my{' '}
+                      <Link
+                        component={NextLink}
+                        href={guestbook.href}
+                        underline="always"
+                      >
+                        Guestbook
+                      </Link>{' '}
+                      to see what others have to say. Thank you!
                     </Typography>
                   </Box>
                   <Button
@@ -200,7 +224,9 @@ export const Contact: FC<ContactProps> = (props) => {
                         >
                           <FormLabel>Email</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
-                          <FormHelperText>{error?.message}</FormHelperText>
+                          <FormHelperText>
+                            {error?.message ?? (showInGuestbook && 'Optional')}
+                          </FormHelperText>
                         </FormControl>
                       )}
                     />
@@ -219,7 +245,9 @@ export const Contact: FC<ContactProps> = (props) => {
                         >
                           <FormLabel>Subject</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
-                          <FormHelperText>{error?.message}</FormHelperText>
+                          <FormHelperText>
+                            {error?.message ?? (showInGuestbook && 'Optional')}
+                          </FormHelperText>
                         </FormControl>
                       )}
                     />
@@ -262,7 +290,7 @@ export const Contact: FC<ContactProps> = (props) => {
                         >
                           <Checkbox
                             checked={value}
-                            label="Show my message in guestbook."
+                            label="Show my message in the guestbook."
                             slotProps={{ input: { ref } }}
                             {...field}
                           />
@@ -282,7 +310,7 @@ export const Contact: FC<ContactProps> = (props) => {
                                 will appear in the{' '}
                                 <Link
                                   component={NextLink}
-                                  href="/guestbook"
+                                  href={guestbook.href}
                                   underline="always"
                                 >
                                   Guestbook

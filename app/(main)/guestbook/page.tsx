@@ -35,9 +35,9 @@ const Guestbook: FC = async () => {
           </Stack>
           <Button
             component={Link}
-            href={contact.href}
+            href={contact.href.replace('/#', '/?showInGuestbook#')}
             size="lg"
-            sx={{ alignSelf: { md: 'center' } }}
+            sx={{ alignSelf: { sm: 'center' } }}
           >
             Leave A Message
           </Button>
