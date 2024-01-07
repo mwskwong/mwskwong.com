@@ -339,7 +339,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               <Button
                 component={NextLink}
                 endDecorator={<ArrowRight />}
-                href={contact.href}
+                href={{ pathname: contact.pathname, hash: contact.id }}
                 size="lg"
               >
                 Contact Me

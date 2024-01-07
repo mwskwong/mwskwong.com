@@ -79,7 +79,7 @@ export const Contact: FC<ContactProps> = ({
                 await submitContactForm(data);
               } catch (error) {
                 setError('root', {
-                  message: 'Unexpected error. Please try again later',
+                  message: 'Unexpected error. Please try again later.',
                 });
               }
             })}
@@ -162,7 +162,7 @@ export const Contact: FC<ContactProps> = ({
                       free to check out my{' '}
                       <Link
                         component={NextLink}
-                        href={guestbook.href}
+                        href={guestbook.pathname}
                         underline="always"
                       >
                         Guestbook
@@ -172,7 +172,7 @@ export const Contact: FC<ContactProps> = ({
                   </div>
                   <Button
                     component={NextLink}
-                    href={home.href}
+                    href={{ pathname: home.pathname, hash: home.id }}
                     size="lg"
                     startDecorator={<ArrowUp />}
                   >
@@ -310,7 +310,7 @@ export const Contact: FC<ContactProps> = ({
                                 will appear in the{' '}
                                 <Link
                                   component={NextLink}
-                                  href={guestbook.href}
+                                  href={guestbook.pathname}
                                   underline="always"
                                 >
                                   Guestbook
