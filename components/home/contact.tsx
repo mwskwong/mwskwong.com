@@ -18,7 +18,7 @@ import Textarea from '@mui/joy/Textarea';
 import Typography from '@mui/joy/Typography';
 import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
@@ -55,12 +55,6 @@ export const Contact: FC<ContactProps> = ({
   });
 
   const showInGuestbook = watch('showInGuestbook');
-
-  useEffect(() => {
-    if (showInGuestbook && !isValid) {
-      void trigger(['email', 'subject']);
-    }
-  }, [isValid, showInGuestbook, trigger]);
 
   return (
     <Box component="section" {...props}>
@@ -281,7 +275,7 @@ export const Contact: FC<ContactProps> = ({
                       control={control}
                       name="showInGuestbook"
                       render={({
-                        field: { disabled, ref, value, ...field },
+                        field: { disabled, ref, value, onChange, ...field },
                         fieldState: { error },
                       }) => (
                         <FormControl
@@ -291,6 +285,13 @@ export const Contact: FC<ContactProps> = ({
                           <Checkbox
                             checked={value}
                             label="Show my message in the guestbook."
+                            onChange={(event) => {
+                              onChange(event);
+
+                              if (event.target.checked && !isValid) {
+                                void trigger(['email', 'subject']);
+                              }
+                            }}
                             slotProps={{ input: { ref } }}
                             {...field}
                           />
