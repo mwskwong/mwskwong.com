@@ -5,7 +5,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 
 import { prisma } from '@/lib/clients';
 
-import { ContactFormSchema, contactFormSchema } from './utils';
+import { ContactFormSchema, contactFormSchema } from './schemas';
 
 export const incrBlogViewById = (id: string) => {
   noStore();

@@ -24,7 +24,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { contactInfo } from '@/constants/content';
 import { contact, guestbook, home } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
-import { contactFormSchema } from '@/lib/utils';
+import { contactFormSchema } from '@/lib/schemas';
 
 export interface ContactProps extends Omit<BoxProps<'section'>, 'children'> {
   defaultShowInGuestbook?: boolean;
