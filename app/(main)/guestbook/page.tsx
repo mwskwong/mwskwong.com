@@ -21,6 +21,10 @@ const description =
 
 const Guestbook: FC = async () => {
   const person = await getJsonLdPerson();
+
+  const contactUrl = new URL(contact.href);
+  contactUrl.searchParams.set('showInGuestbook', '');
+
   return (
     <>
       <Container
@@ -35,7 +39,7 @@ const Guestbook: FC = async () => {
           </Stack>
           <Button
             component={Link}
-            href={contact.href.replace('/#', '/?showInGuestbook#')}
+            href={contactUrl}
             size="lg"
             sx={{ alignSelf: { sm: 'center' } }}
           >
