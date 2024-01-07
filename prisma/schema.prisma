@@ -19,5 +19,5 @@ model ContactFormSubmission {
   subject         String?
   message         String   @db.LongText
   showInGuestBook Boolean  @default(false)
-  createdAt       DateTime @default(now())
+  submittedAt     DateTime @default(now())
 }
