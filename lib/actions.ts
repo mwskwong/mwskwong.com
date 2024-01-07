@@ -7,9 +7,9 @@ import { prisma } from '@/lib/clients';
 
 import { ContactFormSchema, contactFormSchema } from './schemas';
 
-export const incrBlogViewById = (id: string) => {
+export const incrBlogViewById = async (id: string) => {
   noStore();
-  return prisma.blogMetadata.upsert({
+  await prisma.blogMetadata.upsert({
     where: { id },
     update: { view: { increment: 1 } },
     create: { id },
