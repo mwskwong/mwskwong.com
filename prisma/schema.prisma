@@ -11,3 +11,13 @@ model BlogMetadata {
   id   String @id
   view Int    @default(0)
 }
+
+model ContactFormSubmission {
+  id              Int      @id @default(autoincrement())
+  name            String
+  email           String?
+  subject         String?
+  message         String   @db.LongText
+  showInGuestBook Boolean  @default(false)
+  createdAt       DateTime @default(now())
+}

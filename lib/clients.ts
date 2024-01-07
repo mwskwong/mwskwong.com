@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { readReplicas } from '@prisma/extension-read-replicas';
-import { createClient } from 'contentful';
+import { createClient as createContentfulClient } from 'contentful';
 
-export const contentful = createClient({
+export const contentful = createContentfulClient({
   space: process.env.CONTENTFUL_SPACE_ID ?? '',
   accessToken:
     (process.env.NODE_ENV === 'development'

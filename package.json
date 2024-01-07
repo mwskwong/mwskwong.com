@@ -15,9 +15,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emailjs/nodejs": "^2.2.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@formspree/react": "^2.5.1",
     "@hookform/resolvers": "^3.3.4",
     "@icons-pack/react-simple-icons": "^9.2.0",
     "@mui/base": "5.0.0-beta.30",

@@ -1,4 +1,5 @@
 import { Person } from 'schema-dts';
+import { z } from 'zod';
 
 import { baseUrl } from '@/constants/base-url';
 import {
@@ -35,3 +36,24 @@ export const getJsonLdPerson = async () => {
     sameAs: platformProfiles.map(({ url }) => url),
   } satisfies Person;
 };
+
+export const contactFormSchema = z.discriminatedUnion('showInGuestBook', [
+  z.object({
+    name: z.string().min(1, 'Name is required'),
+    email: z
+      .string()
+      .min(1, 'Email is required')
+      .email('Email should be an email'),
+    subject: z.string().min(1, 'Subject is required'),
+    message: z.string().min(1, 'Message is required'),
+    showInGuestBook: z.literal(false),
+  }),
+  z.object({
+    name: z.string().min(1, 'Name is required'),
+    email: z.string().email('Email should be an email').optional(),
+    subject: z.string().optional(),
+    message: z.string().min(1, 'Message is required'),
+    showInGuestBook: z.literal(true),
+  }),
+]);
+export type ContactFormSchema = z.infer<typeof contactFormSchema>;

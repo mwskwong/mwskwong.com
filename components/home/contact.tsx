@@ -1,6 +1,5 @@
 'use client';
 
-import { useSubmit } from '@formspree/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Alert from '@mui/joy/Alert';
 import Box, { BoxProps } from '@mui/joy/Box';
@@ -16,26 +15,15 @@ import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Textarea from '@mui/joy/Textarea';
 import Typography from '@mui/joy/Typography';
-import { capitalize } from 'lodash-es';
 import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { contactInfo } from '@/constants/content';
 import { contact, home } from '@/constants/nav';
-
-const formSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z
-    .string()
-    .min(1, 'Email is required')
-    .email('Email should be an email'),
-  subject: z.string().min(1, 'Subject is required'),
-  message: z.string().min(1, 'Message is required'),
-});
-type FormSchema = z.infer<typeof formSchema>;
+import { submitContactForm } from '@/lib/actions';
+import { contactFormSchema } from '@/lib/utils';
 
 export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 export const Contact: FC<ContactProps> = (props) => {
@@ -44,32 +32,18 @@ export const Contact: FC<ContactProps> = (props) => {
     control,
     formState: { isSubmitting, isSubmitSuccessful, errors },
     setError,
-  } = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+  } = useForm({
+    resolver: zodResolver(contactFormSchema),
     mode: 'onTouched',
-    defaultValues: { name: '', email: '', subject: '', message: '' },
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      showInGuestBook: false,
+    },
     progressive: true,
   });
-
-  const handleFormSubmit = useSubmit<FormSchema>(
-    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? '',
-    {
-      onError: (error) => {
-        const formErrors = error.getFormErrors();
-        const fieldErrors = error.getAllFieldErrors();
-
-        const { code, message } = formErrors[0] ?? {};
-        setError('root', { type: code, message });
-
-        for (const [field, errors] of fieldErrors) {
-          setError(field, {
-            type: 'validate',
-            message: `${capitalize(field)} ${errors[0]?.message}`,
-          });
-        }
-      },
-    },
-  );
 
   return (
     <Box component="section" {...props}>
@@ -82,7 +56,15 @@ export const Contact: FC<ContactProps> = (props) => {
             component="form"
             container
             disableEqualOverflow
-            onSubmit={handleSubmit(handleFormSubmit)}
+            onSubmit={handleSubmit(async (data) => {
+              try {
+                await submitContactForm(data);
+              } catch (error) {
+                setError('root', {
+                  message: 'Unexpected error. Please try again later',
+                });
+              }
+            })}
             spacing={6}
           >
             <Grid
