@@ -22,7 +22,7 @@ export const submitContactForm = async (data: ContactFormSchema) => {
   await prisma.contactFormSubmission.create({ data });
   await send(
     process.env.EMAILJS_SERVICE_ID ?? '',
-    process.env.EMAILJS_TEMPLATE_ID ?? '',
+    process.env.EMAILJS_CONTACT_FORM_TEMPLATE_ID ?? '',
     data,
     {
       publicKey: process.env.EMAILJS_PUBLIC_KEY ?? '',
