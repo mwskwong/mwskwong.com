@@ -20,4 +20,6 @@ model ContactFormSubmission {
   message         String   @db.LongText
   showInGuestBook Boolean  @default(false)
   submittedAt     DateTime @default(now())
+
+  @@index(fields: [showInGuestBook, submittedAt(sort: Desc)])
 }

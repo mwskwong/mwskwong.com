@@ -50,7 +50,11 @@ export const contactFormSchema = z.discriminatedUnion('showInGuestBook', [
   }),
   z.object({
     name: z.string().min(1, 'Name is required'),
-    email: z.string().email('Email should be an email').optional(),
+    email: z
+      .string()
+      .email('Email should be an email')
+      .optional()
+      .or(z.literal('')),
     subject: z.string().optional(),
     message: z.string().min(1, 'Message is required'),
     showInGuestBook: z.literal(true),

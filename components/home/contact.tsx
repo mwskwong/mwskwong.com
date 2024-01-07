@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Alert from '@mui/joy/Alert';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Checkbox from '@mui/joy/Checkbox';
 import Container from '@mui/joy/Container';
 import FormControl from '@mui/joy/FormControl';
 import FormHelperText from '@mui/joy/FormHelperText';
@@ -243,6 +244,40 @@ export const Contact: FC<ContactProps> = (props) => {
                             {...field}
                           />
                           <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
+                    />
+                  </Grid>
+                  <Grid xs={12}>
+                    <Controller
+                      control={control}
+                      name="showInGuestBook"
+                      render={({
+                        field: { disabled, ref, value, ...field },
+                        fieldState: { error },
+                      }) => (
+                        <FormControl
+                          disabled={isSubmitting || disabled}
+                          error={Boolean(error)}
+                        >
+                          <Checkbox
+                            checked={value}
+                            label="Display my message in guestbook."
+                            slotProps={{ input: { ref } }}
+                            {...field}
+                          />
+                          <FormHelperText>
+                            {error?.message ?? (
+                              <Typography level="body-sm">
+                                Your{' '}
+                                <Typography fontWeight="md">name</Typography>{' '}
+                                and{' '}
+                                <Typography fontWeight="md">message</Typography>{' '}
+                                will appear in the{' '}
+                                <Link href="/guestbook">Guestbook</Link>.
+                              </Typography>
+                            )}
+                          </FormHelperText>
                         </FormControl>
                       )}
                     />
