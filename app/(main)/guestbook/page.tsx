@@ -7,10 +7,7 @@ import Link from 'next/link';
 import { FC, Suspense } from 'react';
 import { BreadcrumbList, Graph } from 'schema-dts';
 
-import {
-  SubmissionList,
-  SubmissionListFallback,
-} from '@/components/guestbook/submission-list';
+import { SubmissionList } from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contact } from '@/constants/nav';
@@ -46,7 +43,7 @@ const Guestbook: FC = async () => {
           >
             Leave A Message
           </Button>
-          <Suspense fallback={<SubmissionListFallback />}>
+          <Suspense>
             <SubmissionList />
           </Suspense>
         </Stack>

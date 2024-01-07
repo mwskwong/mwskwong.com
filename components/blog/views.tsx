@@ -1,4 +1,4 @@
-import Skeleton from '@mui/joy/Skeleton';
+import Box from '@mui/joy/Box';
 import Typography, { TypographyProps } from '@mui/joy/Typography';
 import { Eye } from 'lucide-react';
 import { FC } from 'react';
@@ -44,7 +44,7 @@ export const Views: FC<ViewsProps> = async ({
 
 export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
   <Typography startDecorator={<Eye />} {...props}>
-    <Skeleton level={props.level} variant="text" width="3ch" />
+    <Box component="span" width="3ch" />
     &nbsp;views
   </Typography>
 );
