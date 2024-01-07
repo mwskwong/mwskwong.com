@@ -1,4 +1,4 @@
-export const home = { id: 'home', label: 'Home', pathname: '/' } as const;
+export const home = { id: '', label: 'Home', pathname: '/' } as const;
 export const about = { id: 'about', label: 'About', pathname: '/' } as const;
 export const experience = {
   id: 'experience',
