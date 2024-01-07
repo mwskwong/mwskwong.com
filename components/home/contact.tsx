@@ -41,7 +41,7 @@ export const Contact: FC<ContactProps> = (props) => {
       email: '',
       subject: '',
       message: '',
-      showInGuestBook: false,
+      showInGuestbook: false,
     },
     progressive: true,
   });
@@ -251,7 +251,7 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Grid xs={12}>
                     <Controller
                       control={control}
-                      name="showInGuestBook"
+                      name="showInGuestbook"
                       render={({
                         field: { disabled, ref, value, ...field },
                         fieldState: { error },
@@ -262,7 +262,7 @@ export const Contact: FC<ContactProps> = (props) => {
                         >
                           <Checkbox
                             checked={value}
-                            label="Display my message in guestbook."
+                            label="Show my message in guestbook."
                             slotProps={{ input: { ref } }}
                             {...field}
                           />
@@ -270,11 +270,24 @@ export const Contact: FC<ContactProps> = (props) => {
                             {error?.message ?? (
                               <Typography level="body-sm">
                                 Your{' '}
-                                <Typography fontWeight="md">name</Typography>{' '}
+                                <Typography fontWeight="md">name</Typography>
+                                {', '}
+                                <Typography fontWeight="md">
+                                  message
+                                </Typography>{' '}
                                 and{' '}
-                                <Typography fontWeight="md">message</Typography>{' '}
+                                <Typography fontWeight="md">
+                                  submission date
+                                </Typography>{' '}
                                 will appear in the{' '}
-                                <Link href="/guestbook">Guestbook</Link>.
+                                <Link
+                                  component={NextLink}
+                                  href="/guestbook"
+                                  underline="always"
+                                >
+                                  Guestbook
+                                </Link>
+                                .
                               </Typography>
                             )}
                           </FormHelperText>

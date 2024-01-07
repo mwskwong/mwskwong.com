@@ -16,5 +16,10 @@ export const contact = {
   href: '/#contact',
 } as const;
 export const blog = { id: undefined, name: 'Blog', href: '/blog' } as const;
+export const guestbook = {
+  id: undefined,
+  name: 'Guestbook',
+  href: '/guestbook',
+} as const;
 
-export const nav = [about, experience, education, contact, blog];
+export const nav = [about, experience, education, contact, blog, guestbook];

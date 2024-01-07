@@ -37,7 +37,7 @@ export const getJsonLdPerson = async () => {
   } satisfies Person;
 };
 
-export const contactFormSchema = z.discriminatedUnion('showInGuestBook', [
+export const contactFormSchema = z.discriminatedUnion('showInGuestbook', [
   z.object({
     name: z.string().min(1, 'Name is required'),
     email: z
@@ -46,7 +46,7 @@ export const contactFormSchema = z.discriminatedUnion('showInGuestBook', [
       .email('Email should be an email'),
     subject: z.string().min(1, 'Subject is required'),
     message: z.string().min(1, 'Message is required'),
-    showInGuestBook: z.literal(false),
+    showInGuestbook: z.literal(false),
   }),
   z.object({
     name: z.string().min(1, 'Name is required'),
@@ -57,7 +57,7 @@ export const contactFormSchema = z.discriminatedUnion('showInGuestBook', [
       .or(z.literal('')),
     subject: z.string().optional(),
     message: z.string().min(1, 'Message is required'),
-    showInGuestBook: z.literal(true),
+    showInGuestbook: z.literal(true),
   }),
 ]);
 export type ContactFormSchema = z.infer<typeof contactFormSchema>;

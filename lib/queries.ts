@@ -270,3 +270,11 @@ export const getBlogMetadataById = reactCache((id: string) => {
   noStore();
   return prisma.blogMetadata.findUnique({ where: { id } });
 });
+
+export const getGuestbookSubmissions = reactCache(() => {
+  noStore();
+  return prisma.contactFormSubmission.findMany({
+    where: { showInGuestbook: true },
+    orderBy: { submittedAt: 'desc' },
+  });
+});
