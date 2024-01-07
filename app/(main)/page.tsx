@@ -22,9 +22,9 @@ const bgcolors = {
   contact: 'background.body',
 };
 
-const Home: FC<{ searchParams: { showInGuestbook?: '' } }> = async ({
-  searchParams,
-}) => {
+const Home: FC<{
+  searchParams: { showInGuestbook?: 'true' | 'false' };
+}> = async ({ searchParams }) => {
   const person = await getJsonLdPerson();
 
   return (
@@ -61,7 +61,7 @@ const Home: FC<{ searchParams: { showInGuestbook?: '' } }> = async ({
 
         <Contact
           bgcolor={bgcolors.contact}
-          defaultShowInGuestbook={searchParams.showInGuestbook === ''}
+          defaultShowInGuestbook={searchParams.showInGuestbook === 'true'}
         />
       </Box>
       <SectionDivider bgcolor="var(--Footer-bg)" />
