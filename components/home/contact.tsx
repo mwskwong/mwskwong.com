@@ -183,7 +183,7 @@ export const Contact: FC<ContactProps> = ({
                   md={8}
                   rowSpacing={1}
                   sx={{
-                    scrollMarginTop: 'calc(var(--Header-height) + 8px * 2)',
+                    scrollMarginTop: 'calc(var(--Header-height) - 8px * 6)',
                   }}
                   // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
                   unstable_level={1}
