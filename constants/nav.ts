@@ -15,6 +15,11 @@ export const contact = {
   label: 'Contact',
   pathname: '/',
 } as const;
+export const contactForm = {
+  id: 'contactForm',
+  label: undefined,
+  pathname: '/',
+} as const;
 export const blog = {
   id: undefined,
   label: 'Blog',

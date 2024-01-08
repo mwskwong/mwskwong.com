@@ -22,7 +22,7 @@ import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
-import { contact, guestbook, home } from '@/constants/nav';
+import { contact, contactForm, guestbook, home } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
 import { contactFormSchema } from '@/lib/schemas';
 
@@ -151,9 +151,9 @@ export const Contact: FC<ContactProps> = ({
                   <div>
                     <Typography level="title-md">Thank You!</Typography>
                     <Typography maxWidth="sm">
-                      Thank you for contacting me! I have received your message
-                      and will get back to you shortly. In the meantime, feel
-                      free to check out my{' '}
+                      Thank you for reaching out! I have received your message
+                      and will respond promptly, should you have provided your
+                      email address. Meanwhile, feel free to check out my{' '}
                       <Link
                         component={NextLink}
                         href={guestbook.pathname}
@@ -179,8 +179,12 @@ export const Contact: FC<ContactProps> = ({
                 <Grid
                   columnSpacing={2}
                   container
+                  id={contactForm.id}
                   md={8}
                   rowSpacing={1}
+                  sx={{
+                    scrollMarginTop: 'calc(var(--Header-height) + 8px * 2)',
+                  }}
                   // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
                   unstable_level={1}
                   xs={12}

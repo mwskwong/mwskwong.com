@@ -47,6 +47,7 @@ const config = {
                     name: 'preset-default',
                     params: { overrides: { inlineStyles: false } },
                   },
+                  'removeStyleElement',
                 ],
               },
             },

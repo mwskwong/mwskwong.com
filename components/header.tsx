@@ -10,7 +10,7 @@ import Tooltip from '@mui/joy/Tooltip';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
-import Icon from '@/app/icon.svg';
+import BrandingIcon from '@/app/icon.svg';
 import { linkedin } from '@/constants/contentful-ids';
 import { home, nav } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/queries';
@@ -51,7 +51,7 @@ export const Header: FC<HeaderProps> = async (props) => {
               component={NextLink}
               href={{ pathname: home.pathname, hash: home.id }}
             >
-              <Icon fontSize="var(--joy-fontSize-xl3)" width="1em" />
+              <BrandingIcon width={30} />
             </Link>
             <List
               orientation="horizontal"
