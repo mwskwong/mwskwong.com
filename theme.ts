@@ -1,8 +1,7 @@
 import { Theme, extendTheme } from '@mui/joy/styles';
 import { PaletteOptions } from '@mui/joy/styles/types';
 import { CSSObject, Interpolation } from '@mui/styled-engine';
-// eslint-disable-next-line camelcase -- next/font naming convention
-import { Inter, Source_Code_Pro } from 'next/font/google';
+import localFont from 'next/font/local';
 import { PartialDeep } from 'type-fest';
 
 declare module '@mui/joy/styles/types/zIndex' {
@@ -17,10 +16,17 @@ declare module '@mui/joy/styles' {
   }
 }
 
-const inter = Inter({ subsets: ['latin'] });
-const sourceCodePro = Source_Code_Pro({
-  subsets: ['latin'],
-  preload: false,
+const inter = localFont({
+  src: [
+    { path: './inter-variable.woff2' },
+    { path: './inter-variable-italic.woff2', style: 'italic' },
+  ],
+});
+const sourceCodePro = localFont({
+  src: [
+    { path: './source-code-pro-variable.woff2' },
+    { path: './source-code-pro-variable-Italic.woff2', style: 'italic' },
+  ],
   adjustFontFallback: false,
   fallback: [
     'ui-monospace',

@@ -85,7 +85,6 @@ const config = {
       ],
     },
   ],
-  transpilePackages: ['geist'],
   experimental: {
     ppr: true,
     webpackBuildWorker: true,
