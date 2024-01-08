@@ -42,12 +42,7 @@ const config = {
             loader: '@svgr/webpack',
             options: {
               svgoConfig: {
-                plugins: [
-                  {
-                    name: 'preset-default',
-                    params: { overrides: { inlineStyles: false } },
-                  },
-                ],
+                plugins: ['preset-default', 'removeStyleElement'],
               },
             },
           },
