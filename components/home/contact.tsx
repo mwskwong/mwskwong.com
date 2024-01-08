@@ -157,9 +157,9 @@ export const Contact: FC<ContactProps> = ({
                   <div>
                     <Typography level="title-md">Thank You!</Typography>
                     <Typography maxWidth="sm">
-                      Thank you for contacting me! I have received your message
-                      and will get back to you shortly, if you left your email.
-                      In the meantime, feel free to check out my{' '}
+                      Thank you for reaching out! I have received your message
+                      and will respond promptly, should you have provided your
+                      email address. Meanwhile, feel free to check out my{' '}
                       <Link
                         component={NextLink}
                         href={guestbook.pathname}
