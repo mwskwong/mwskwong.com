@@ -74,7 +74,6 @@ export const Contact: FC<ContactProps> = ({
             component="form"
             container
             disableEqualOverflow
-            id={contactForm.id}
             onSubmit={handleSubmit(async (data) => {
               try {
                 await submitContactForm(data);
@@ -186,6 +185,7 @@ export const Contact: FC<ContactProps> = ({
                 <Grid
                   columnSpacing={2}
                   container
+                  id={contactForm.id}
                   md={8}
                   rowSpacing={1}
                   // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
