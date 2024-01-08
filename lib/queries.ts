@@ -266,15 +266,15 @@ export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
   return prisma.blogMetadata.findMany({ where: { id: { in: ids } } });
 });
 
-export const getBlogMetadataById = reactCache((id: string) => {
+export const getBlogMetadataById = (id: string) => {
   noStore();
   return prisma.blogMetadata.findUnique({ where: { id } });
-});
+};
 
-export const getGuestbookSubmissions = reactCache(() => {
+export const getGuestbookSubmissions = () => {
   noStore();
   return prisma.contactFormSubmission.findMany({
     where: { showInGuestbook: true },
     orderBy: { submittedAt: 'desc' },
   });
-});
+};
