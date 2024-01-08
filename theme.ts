@@ -18,14 +18,14 @@ declare module '@mui/joy/styles' {
 
 const inter = localFont({
   src: [
-    { path: './inter-variable.woff2' },
-    { path: './inter-variable-italic.woff2', style: 'italic' },
+    { path: 'fonts/inter-variable.woff2' },
+    { path: 'fonts/inter-variable-italic.woff2', style: 'italic' },
   ],
 });
 const sourceCodePro = localFont({
   src: [
-    { path: './source-code-pro-variable.woff2' },
-    { path: './source-code-pro-variable-Italic.woff2', style: 'italic' },
+    { path: 'fonts/source-code-pro-variable.woff2' },
+    { path: 'fonts/source-code-pro-variable-Italic.woff2', style: 'italic' },
   ],
   adjustFontFallback: false,
   fallback: [
