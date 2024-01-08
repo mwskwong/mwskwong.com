@@ -39,14 +39,14 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
               '--ListItem-paddingX': (theme) => theme.spacing(8),
             }}
           >
-            {nav.map((section) => (
-              <ListItem key={section.href}>
+            {nav.map(({ id, label, pathname }) => (
+              <ListItem key={`${pathname}-${id}`}>
                 <ListItemButton
                   component={NextLink}
-                  href={section.href}
+                  href={{ pathname, hash: id }}
                   onClick={() => setOpen(false)}
                 >
-                  {section.name}
+                  {label}
                 </ListItemButton>
               </ListItem>
             ))}

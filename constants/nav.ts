@@ -1,20 +1,34 @@
-export const home = { id: 'home', name: 'Home', href: '/#' } as const;
-export const about = { id: 'about', name: 'About', href: '/#about' } as const;
+export const home = { id: '', label: 'Home', pathname: '/' } as const;
+export const about = { id: 'about', label: 'About', pathname: '/' } as const;
 export const experience = {
   id: 'experience',
-  name: 'Experience',
-  href: '/#experience',
+  label: 'Experience',
+  pathname: '/',
 } as const;
 export const education = {
   id: 'education',
-  name: 'Education',
-  href: '/#education',
+  label: 'Education',
+  pathname: '/',
 } as const;
 export const contact = {
   id: 'contact',
-  name: 'Contact',
-  href: '/#contact',
+  label: 'Contact',
+  pathname: '/',
 } as const;
-export const blog = { id: undefined, name: 'Blog', href: '/blog' } as const;
+export const contactForm = {
+  id: 'contactForm',
+  label: undefined,
+  pathname: '/',
+} as const;
+export const blog = {
+  id: undefined,
+  label: 'Blog',
+  pathname: '/blog',
+} as const;
+export const guestbook = {
+  id: undefined,
+  label: 'Guestbook',
+  pathname: '/guestbook',
+} as const;
 
-export const nav = [about, experience, education, contact, blog];
+export const nav = [about, experience, education, contact, blog, guestbook];

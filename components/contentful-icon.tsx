@@ -40,7 +40,7 @@ import { LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
 
-import { SiFormspree } from './icons/si-formspree';
+import { SiEmailjs } from './icons/si-emailjs';
 
 const Icons = {
   [contentfulIds.dataCamp]: SiDatacamp,
@@ -73,7 +73,7 @@ const Icons = {
   [contentfulIds.planetScale]: SiPlanetscale,
   [contentfulIds.vercel]: SiVercel,
   [contentfulIds.contentful]: SiContentful,
-  [contentfulIds.formspree]: SiFormspree,
+  [contentfulIds.emailjs]: SiEmailjs,
   [contentfulIds.improvMx]: SiImprovmx,
   [contentfulIds.prismaReadReplicasExtension]: SiPrisma,
   [contentfulIds.muiCore]: SiMui,

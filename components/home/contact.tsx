@@ -1,10 +1,10 @@
 'use client';
 
-import { useSubmit } from '@formspree/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Alert from '@mui/joy/Alert';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Checkbox from '@mui/joy/Checkbox';
 import Container from '@mui/joy/Container';
 import FormControl from '@mui/joy/FormControl';
 import FormHelperText from '@mui/joy/FormHelperText';
@@ -16,60 +16,45 @@ import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Textarea from '@mui/joy/Textarea';
 import Typography from '@mui/joy/Typography';
-import { capitalize } from 'lodash-es';
 import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 import { contactInfo } from '@/constants/content';
-import { contact, home } from '@/constants/nav';
+import { contact, contactForm, guestbook, home } from '@/constants/nav';
+import { submitContactForm } from '@/lib/actions';
+import { contactFormSchema } from '@/lib/schemas';
 
-const formSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z
-    .string()
-    .min(1, 'Email is required')
-    .email('Email should be an email'),
-  subject: z.string().min(1, 'Subject is required'),
-  message: z.string().min(1, 'Message is required'),
-});
-type FormSchema = z.infer<typeof formSchema>;
+export interface ContactProps extends Omit<BoxProps<'section'>, 'children'> {
+  defaultShowInGuestbook?: boolean;
+}
 
-export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
-export const Contact: FC<ContactProps> = (props) => {
+export const Contact: FC<ContactProps> = ({
+  defaultShowInGuestbook = false,
+  ...props
+}) => {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, isSubmitSuccessful, errors },
+    formState: { isSubmitting, isSubmitSuccessful, isValid, errors },
     setError,
-  } = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+    trigger,
+    watch,
+  } = useForm({
+    resolver: zodResolver(contactFormSchema),
     mode: 'onTouched',
-    defaultValues: { name: '', email: '', subject: '', message: '' },
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      showInGuestbook: defaultShowInGuestbook,
+    },
     progressive: true,
   });
 
-  const handleFormSubmit = useSubmit<FormSchema>(
-    process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID ?? '',
-    {
-      onError: (error) => {
-        const formErrors = error.getFormErrors();
-        const fieldErrors = error.getAllFieldErrors();
-
-        const { code, message } = formErrors[0] ?? {};
-        setError('root', { type: code, message });
-
-        for (const [field, errors] of fieldErrors) {
-          setError(field, {
-            type: 'validate',
-            message: `${capitalize(field)} ${errors[0]?.message}`,
-          });
-        }
-      },
-    },
-  );
+  const showInGuestbook = watch('showInGuestbook');
 
   return (
     <Box component="section" {...props}>
@@ -79,10 +64,19 @@ export const Contact: FC<ContactProps> = (props) => {
             Contact
           </Typography>
           <Grid
+            alignItems="center"
             component="form"
             container
             disableEqualOverflow
-            onSubmit={handleSubmit(handleFormSubmit)}
+            onSubmit={handleSubmit(async (data) => {
+              try {
+                await submitContactForm(data);
+              } catch (error) {
+                setError('root', {
+                  message: 'Unexpected error. Please try again later.',
+                });
+              }
+            })}
             spacing={6}
           >
             <Grid
@@ -110,9 +104,8 @@ export const Contact: FC<ContactProps> = (props) => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderRadius: 'sm',
-                      fontSize: 'xl5',
-                      width: '1em',
-                      height: '1em',
+                      width: 48,
+                      height: 48,
                       mb: 2,
                     }}
                     variant="outlined"
@@ -148,24 +141,32 @@ export const Contact: FC<ContactProps> = (props) => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderRadius: 'sm',
-                      fontSize: 'xl5',
-                      width: '1em',
-                      height: '1em',
+                      width: 48,
+                      height: 48,
                     }}
                     variant="outlined"
                   >
                     <ThumbsUp />
                   </Sheet>
-                  <Box>
+                  <div>
                     <Typography level="title-md">Thank You!</Typography>
-                    <Typography>
-                      I&apos;ve received your message and we&apos;ll be in touch
-                      soon!
+                    <Typography maxWidth="sm">
+                      Thank you for reaching out! I have received your message
+                      and will respond promptly, should you have provided your
+                      email address. Meanwhile, feel free to check out my{' '}
+                      <Link
+                        component={NextLink}
+                        href={guestbook.pathname}
+                        underline="always"
+                      >
+                        Guestbook
+                      </Link>{' '}
+                      to see what others have to say. Thank you!
                     </Typography>
-                  </Box>
+                  </div>
                   <Button
                     component={NextLink}
-                    href={home.href}
+                    href={{ pathname: home.pathname, hash: home.id }}
                     size="lg"
                     startDecorator={<ArrowUp />}
                   >
@@ -178,8 +179,12 @@ export const Contact: FC<ContactProps> = (props) => {
                 <Grid
                   columnSpacing={2}
                   container
+                  id={contactForm.id}
                   md={8}
                   rowSpacing={1}
+                  sx={{
+                    scrollMarginTop: 'calc(var(--Header-height) - 8px * 6)',
+                  }}
                   // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
                   unstable_level={1}
                   xs={12}
@@ -217,7 +222,9 @@ export const Contact: FC<ContactProps> = (props) => {
                         >
                           <FormLabel>Email</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
-                          <FormHelperText>{error?.message}</FormHelperText>
+                          <FormHelperText>
+                            {error?.message ?? (showInGuestbook && 'Optional')}
+                          </FormHelperText>
                         </FormControl>
                       )}
                     />
@@ -236,7 +243,9 @@ export const Contact: FC<ContactProps> = (props) => {
                         >
                           <FormLabel>Subject</FormLabel>
                           <Input slotProps={{ input: { ref } }} {...field} />
-                          <FormHelperText>{error?.message}</FormHelperText>
+                          <FormHelperText>
+                            {error?.message ?? (showInGuestbook && 'Optional')}
+                          </FormHelperText>
                         </FormControl>
                       )}
                     />
@@ -261,6 +270,60 @@ export const Contact: FC<ContactProps> = (props) => {
                             {...field}
                           />
                           <FormHelperText>{error?.message}</FormHelperText>
+                        </FormControl>
+                      )}
+                    />
+                  </Grid>
+                  <Grid xs={12}>
+                    <Controller
+                      control={control}
+                      name="showInGuestbook"
+                      render={({
+                        field: { disabled, ref, value, onChange, ...field },
+                        fieldState: { error },
+                      }) => (
+                        <FormControl
+                          disabled={isSubmitting || disabled}
+                          error={Boolean(error)}
+                        >
+                          <Checkbox
+                            checked={value}
+                            label="Show my message in the guestbook."
+                            onChange={(event) => {
+                              onChange(event);
+
+                              if (event.target.checked && !isValid) {
+                                void trigger(['email', 'subject']);
+                              }
+                            }}
+                            slotProps={{ input: { ref } }}
+                            {...field}
+                          />
+                          <FormHelperText>
+                            {error?.message ?? (
+                              <Typography level="body-sm">
+                                Your{' '}
+                                <Typography fontWeight="md">name</Typography>
+                                {', '}
+                                <Typography fontWeight="md">
+                                  message
+                                </Typography>{' '}
+                                and{' '}
+                                <Typography fontWeight="md">
+                                  submission date
+                                </Typography>{' '}
+                                will appear in the{' '}
+                                <Link
+                                  component={NextLink}
+                                  href={guestbook.pathname}
+                                  underline="always"
+                                >
+                                  Guestbook
+                                </Link>
+                                .
+                              </Typography>
+                            )}
+                          </FormHelperText>
                         </FormControl>
                       )}
                     />

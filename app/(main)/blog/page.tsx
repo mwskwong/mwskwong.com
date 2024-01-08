@@ -16,6 +16,7 @@ import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
+import { blog } from '@/constants/nav';
 import { getBlogs } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
@@ -71,7 +72,7 @@ const Blogs: FC = async () => {
                         color="neutral"
                         component={NextLink}
                         display="-webkit-box"
-                        href={`/blog/${slug}`}
+                        href={`${blog.pathname}/${slug}`}
                         overflow="hidden"
                         overlay
                         sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
