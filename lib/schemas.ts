@@ -10,14 +10,14 @@ export const contactFormSchema = z.discriminatedUnion('showInGuestbook', [
     email: z
       .string()
       .min(1, 'Email is required')
-      .email('Email should be an email'),
+      .email('The email address entered is invalid'),
     subject: z.string().min(1, 'Subject is required'),
     showInGuestbook: z.literal(false),
   }),
   baseContactFormSchema.extend({
     email: z
       .string()
-      .email('Email should be an email')
+      .email('The email address entered is invalid')
       .optional()
       .or(z.literal('')),
     subject: z.string().optional(),
