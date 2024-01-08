@@ -15,13 +15,15 @@ export const contact = {
   label: 'Contact',
   pathname: '/',
 } as const;
+export const contactForm = {
+  id: 'contactForm',
+  pathname: '/',
+} as const;
 export const blog = {
-  id: undefined,
   label: 'Blog',
   pathname: '/blog',
 } as const;
 export const guestbook = {
-  id: undefined,
   label: 'Guestbook',
   pathname: '/guestbook',
 } as const;

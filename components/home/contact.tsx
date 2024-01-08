@@ -22,7 +22,7 @@ import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
-import { contact, guestbook, home } from '@/constants/nav';
+import { contact, contactForm, guestbook, home } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
 import { contactFormSchema } from '@/lib/schemas';
 
@@ -74,6 +74,7 @@ export const Contact: FC<ContactProps> = ({
             component="form"
             container
             disableEqualOverflow
+            id={contactForm.id}
             onSubmit={handleSubmit(async (data) => {
               try {
                 await submitContactForm(data);

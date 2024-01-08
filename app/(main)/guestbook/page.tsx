@@ -10,7 +10,7 @@ import { BreadcrumbList, Graph } from 'schema-dts';
 import { SubmissionList } from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { contact } from '@/constants/nav';
+import { contactForm } from '@/constants/nav';
 import { getJsonLdPerson } from '@/lib/utils';
 
 const description =
@@ -34,8 +34,8 @@ const Guestbook: FC = async () => {
           <Button
             component={Link}
             href={{
-              pathname: contact.pathname,
-              hash: contact.id,
+              pathname: contactForm.pathname,
+              hash: contactForm.id,
               query: { showInGuestbook: true },
             }}
             size="lg"
