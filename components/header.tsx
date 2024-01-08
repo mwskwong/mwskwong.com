@@ -49,9 +49,9 @@ export const Header: FC<HeaderProps> = async (props) => {
             <Link
               aria-label="Go to home page"
               component={NextLink}
-              href={home.href}
+              href={{ pathname: home.pathname, hash: home.id }}
             >
-              <Icon fontSize="var(--joy-fontSize-xl3)" width="1em" />
+              <Icon width={30} />
             </Link>
             <List
               orientation="horizontal"
@@ -62,10 +62,13 @@ export const Header: FC<HeaderProps> = async (props) => {
                 display: { xs: 'none', md: 'flex' },
               }}
             >
-              {nav.map((section) => (
-                <ListItem key={section.href}>
-                  <ListItemButton component={NextLink} href={section.href}>
-                    {section.name}
+              {nav.map(({ label, id, pathname }) => (
+                <ListItem key={`${pathname}-${id}`}>
+                  <ListItemButton
+                    component={NextLink}
+                    href={{ pathname, hash: id }}
+                  >
+                    {label}
                   </ListItemButton>
                 </ListItem>
               ))}

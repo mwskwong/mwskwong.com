@@ -22,7 +22,6 @@ import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
-import { Likes, LikesSkeleton } from '@/components/blog/likes';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { ColorInversionBox } from '@/components/color-inversion-box';
@@ -95,9 +94,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               >
                 <Suspense fallback={<ViewsSkeleton mr={0.75} />}>
                   <Views blogId={blog.id} mr={0.75} />
-                </Suspense>
-                <Suspense fallback={<LikesSkeleton mr={0.75} />}>
-                  <Likes blogId={blog.id} mr={0.75} />
                 </Suspense>
                 <CopyUrlButton />
                 <ShareDropdown blog={blog} />
@@ -343,7 +339,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               <Button
                 component={NextLink}
                 endDecorator={<ArrowRight />}
-                href={contact.href}
+                href={{ pathname: contact.pathname, hash: contact.id }}
                 size="lg"
               >
                 Contact Me

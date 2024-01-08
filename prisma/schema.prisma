@@ -8,15 +8,18 @@ datasource db {
 }
 
 model BlogMetadata {
-  id    String @id
-  view  Int    @default(0)
-  likes Like[]
+  id   String @id
+  view Int    @default(0)
 }
 
-model Like {
-  visitorId    String
-  blogId       String
-  blogMetadata BlogMetadata @relation(fields: [blogId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+model ContactFormSubmission {
+  id              Int      @id @default(autoincrement())
+  name            String
+  email           String?
+  subject         String?
+  message         String   @db.LongText
+  showInGuestbook Boolean  @default(false)
+  submittedAt     DateTime @default(now())
 
-  @@id([visitorId, blogId])
+  @@index(fields: [showInGuestbook, submittedAt(sort: Desc)])
 }
