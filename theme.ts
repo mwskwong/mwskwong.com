@@ -22,11 +22,13 @@ const inter = localFont({
     { path: 'fonts/inter-variable-italic.woff2', style: 'italic' },
   ],
 });
+
 const sourceCodePro = localFont({
   src: [
     { path: 'fonts/source-code-pro-variable.woff2' },
     { path: 'fonts/source-code-pro-variable-Italic.woff2', style: 'italic' },
   ],
+  preload: false,
   adjustFontFallback: false,
   fallback: [
     'ui-monospace',
