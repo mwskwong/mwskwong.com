@@ -14,11 +14,13 @@ const config = {
       {
         protocol: 'https',
         hostname: 'images.ctfassets.net',
+        port: '',
       },
       {
         protocol: 'https',
         hostname: 'image.thum.io',
         pathname: '/get/pdfSource/width/**',
+        port: '',
       },
     ],
   },
