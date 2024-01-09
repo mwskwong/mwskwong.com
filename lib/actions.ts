@@ -5,7 +5,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 
 import { prisma } from '@/lib/clients';
 
-import { ContactFormSchema, contactFormSchema } from './schemas';
+import { ContactFormData, contactFormSchema } from './schemas';
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
@@ -16,7 +16,7 @@ export const incrBlogViewById = async (id: string) => {
   });
 };
 
-export const submitContactForm = async (data: ContactFormSchema) => {
+export const submitContactForm = async (data: ContactFormData) => {
   noStore();
   contactFormSchema.parse(data);
   await prisma.contactFormSubmission.create({ data });

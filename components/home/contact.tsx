@@ -24,7 +24,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { contactInfo } from '@/constants/content';
 import { contact, contactForm, guestbook, home } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
-import { contactFormSchema } from '@/lib/schemas';
+import { ContactFormData, contactFormSchema } from '@/lib/schemas';
 
 export interface ContactProps extends Omit<BoxProps<'section'>, 'children'> {
   defaultShowInGuestbook?: boolean;
@@ -41,7 +41,7 @@ export const Contact: FC<ContactProps> = ({
     setError,
     trigger,
     watch,
-  } = useForm({
+  } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     mode: 'onTouched',
     defaultValues: {

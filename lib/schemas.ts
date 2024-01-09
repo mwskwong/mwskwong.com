@@ -24,4 +24,4 @@ export const contactFormSchema = z.discriminatedUnion('showInGuestbook', [
     showInGuestbook: z.literal(true),
   }),
 ]);
-export type ContactFormSchema = z.infer<typeof contactFormSchema>;
+export type ContactFormData = z.infer<typeof contactFormSchema>;
