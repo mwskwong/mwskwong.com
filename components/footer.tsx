@@ -9,7 +9,7 @@ import { FC } from 'react';
 import { firstName, lastName, middleName } from '@/constants/content';
 import { getPlatformProfiles } from '@/lib/queries';
 
-import { ContentfulIcon } from './contentful-icon';
+import { Icon } from './contentful';
 
 export type FooterProps = Omit<BoxProps<'footer'>, 'children'>;
 export const Footer: FC<FooterProps> = async (props) => {
@@ -45,7 +45,7 @@ export const Footer: FC<FooterProps> = async (props) => {
                     size="sm"
                     target="_blank"
                   >
-                    <ContentfulIcon contentfulId={platform.id} />
+                    <Icon contentfulId={platform.id} />
                   </IconButton>
                 </Tooltip>
               ),

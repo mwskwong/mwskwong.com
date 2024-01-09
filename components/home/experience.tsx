@@ -14,7 +14,7 @@ import { experience } from '@/constants/nav';
 import { SiPrismaHexDark, SiVercelHexDark } from '@/constants/simple-icons';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
-import { ContentfulIcon } from '../contentful-icon';
+import { Icon } from '../contentful';
 
 import { Timeline, TimelineItem } from './timeline';
 
@@ -102,7 +102,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
                       },
                     }}
                   >
-                    <ContentfulIcon color="default" contentfulId={id} />
+                    <Icon color="default" contentfulId={id} />
                     <Link
                       color="neutral"
                       href={url}

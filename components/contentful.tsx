@@ -85,7 +85,7 @@ export type ContentfulIconProps = ComponentProps<IconType> &
     contentfulId: LiteralUnion<keyof typeof Icons, string>;
   };
 
-export const ContentfulIcon: FC<ContentfulIconProps> = forwardRef(
+export const Icon: FC<ContentfulIconProps> = forwardRef(
   ({ contentfulId, ...props }, ref) => {
     if (!(contentfulId in Icons)) return null;
 
@@ -94,4 +94,4 @@ export const ContentfulIcon: FC<ContentfulIconProps> = forwardRef(
   },
 );
 
-ContentfulIcon.displayName = 'ContentfulIcon';
+Icon.displayName = 'Icon';

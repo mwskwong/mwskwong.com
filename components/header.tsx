@@ -15,7 +15,7 @@ import { linkedin } from '@/constants/contentful-ids';
 import { home, nav } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/queries';
 
-import { ContentfulIcon } from './contentful-icon';
+import { Icon } from './contentful';
 import { ModeToggleButton } from './mode-toggle-button';
 import { NavDrawer } from './nav-drawer';
 
@@ -86,7 +86,7 @@ export const Header: FC<HeaderProps> = async (props) => {
                       target="_blank"
                       variant="outlined"
                     >
-                      <ContentfulIcon contentfulId={platform.id} />
+                      <Icon contentfulId={platform.id} />
                     </IconButton>
                   </Tooltip>
                 ),

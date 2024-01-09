@@ -9,7 +9,7 @@ import { FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';
 
-import { ContentfulIcon } from '../contentful-icon';
+import { Icon } from '../contentful';
 
 export type FunFactProps = Omit<BoxProps<'section'>, 'children'>;
 export const FunFact: FC<FunFactProps> = async (props) => {
@@ -47,7 +47,7 @@ export const FunFact: FC<FunFactProps> = async (props) => {
                   spacing={2}
                   sx={{ '--Icon-fontSize': 'var(--joy-fontSize-xl5)' }}
                 >
-                  <ContentfulIcon contentfulId={id} />
+                  <Icon contentfulId={id} />
                   <Link
                     href={url}
                     maxWidth="20ch"

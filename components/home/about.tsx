@@ -11,7 +11,7 @@ import { firstName, lastName, selfIntroduction } from '@/constants/content';
 import { about } from '@/constants/nav';
 import { getPersonalPhoto, getSkillCategories } from '@/lib/queries';
 
-import { ContentfulIcon } from '../contentful-icon';
+import { Icon } from '../contentful';
 import { Image } from '../image';
 
 export type AboutProps = Omit<BoxProps<'section'>, 'children'>;
@@ -66,7 +66,7 @@ export const About: FC<AboutProps> = async (props) => {
                     }}
                     variant="outlined"
                   >
-                    <ContentfulIcon contentfulId={id} />
+                    <Icon contentfulId={id} />
                   </Sheet>
                   <Typography level="title-md">{name}</Typography>
                   <Stack
