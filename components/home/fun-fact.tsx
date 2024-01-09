@@ -42,7 +42,12 @@ export const FunFact: FC<FunFactProps> = async (props) => {
             {techStack.map(({ id, name, url }) => (
               <Grid key={name} sm={3} xs={6}>
                 <Stack alignItems="center" position="relative" spacing={2}>
-                  <Logo colorScheme="light" contentfulId={id} width={40} />
+                  <Logo
+                    colorScheme="light"
+                    contentfulId={id}
+                    height={40}
+                    width={40}
+                  />
                   <Link
                     color="neutral"
                     href={url}
