@@ -29,7 +29,7 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
                 {dayjs(submittedAt).fromNow()}
               </Typography>
             </Typography>
-            <Typography component="pre" level="body-md">
+            <Typography component="pre" level="body-md" whiteSpace="pre-wrap">
               {message}
             </Typography>
           </ListItemContent>
