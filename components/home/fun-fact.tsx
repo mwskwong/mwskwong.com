@@ -9,7 +9,7 @@ import { FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';
 
-import { Icon } from '../contentful';
+import { Logo } from '../contentful';
 
 export type FunFactProps = Omit<BoxProps<'section'>, 'children'>;
 export const FunFact: FC<FunFactProps> = async (props) => {
@@ -41,14 +41,10 @@ export const FunFact: FC<FunFactProps> = async (props) => {
           >
             {techStack.map(({ id, name, url }) => (
               <Grid key={name} sm={3} xs={6}>
-                <Stack
-                  alignItems="center"
-                  position="relative"
-                  spacing={2}
-                  sx={{ '--Icon-fontSize': 'var(--joy-fontSize-xl5)' }}
-                >
-                  <Icon contentfulId={id} />
+                <Stack alignItems="center" position="relative" spacing={2}>
+                  <Logo colorScheme="light" contentfulId={id} width={40} />
                   <Link
+                    color="neutral"
                     href={url}
                     maxWidth="20ch"
                     overlay
