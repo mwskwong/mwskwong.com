@@ -22,7 +22,6 @@ export const react = '6AvNh3tmHsqkj6hsPjDYFq';
 export const reactHookForm = '65juthZmgU0hNCkWDxC7iG';
 export const nextJs = 'NbXE4EvJWCDiNb7eKrafg';
 export const joyUi = '2rMi7Lv3slZk6lLkgx1pSJ';
-export const zod = '5zzwWh21mWyMYdj7JF4mk5';
 export const typescript = '2SVIu6dyBbuT2JCunSq5op';
 export const vercel = '5OzQi3jbmYpxkPx7dxtuGi';
 export const contentful = '7A13OO92u9GI3ZyZOcyTQT';
