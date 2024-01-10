@@ -24,6 +24,7 @@ import { CoverImage } from '@/components/blog/cover-image';
 import { Heading } from '@/components/blog/heading';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
+import { ColorInversionBox } from '@/components/color-inversion-box';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contact } from '@/constants/nav';
@@ -320,10 +321,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           ) : null}
         </Container>
         <SectionDivider bgcolor={contactMeBgColor} />
-        <Box
+        <ColorInversionBox
           bgcolor={contactMeBgColor}
+          color="primary"
           component="section"
-          data-joy-color-scheme="dark"
+          variant="solid"
         >
           <Container
             sx={{
@@ -344,7 +346,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Button>
             </Stack>
           </Container>
-        </Box>
+        </ColorInversionBox>
       </main>
       <SectionDivider bgcolor="var(--Footer-bg)" color={contactMeBgColor} />
       <script
