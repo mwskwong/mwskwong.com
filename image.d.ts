@@ -6,6 +6,14 @@ declare module '*.svg' {
   export default content;
 }
 
+declare module '*.svg?monochrome' {
+  import { FC, SVGProps } from 'react';
+
+  const content: FC<SVGProps<SVGSVGElement>>;
+
+  export default content;
+}
+
 declare module '*.svg?url' {
   import { StaticImageData } from 'next/image';
 

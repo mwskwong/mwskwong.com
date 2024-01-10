@@ -13,7 +13,7 @@ import Typography from '@mui/joy/Typography';
 import { Search, X } from 'lucide-react';
 import { FC, useDeferredValue, useMemo, useState } from 'react';
 
-import { ContentfulIcon } from '../contentful-icon';
+import { Icon } from '../contentful';
 
 export interface SelfLearningProps extends Omit<StackProps, 'children'> {
   courses?: {
@@ -86,10 +86,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
               <Grid key={name} md={6} xs={12}>
                 <Card orientation="horizontal" sx={{ height: { sm: '100%' } }}>
                   {institution ? (
-                    <ContentfulIcon
-                      color="default"
-                      contentfulId={institution.id}
-                    />
+                    <Icon color="default" contentfulId={institution.id} />
                   ) : null}
                   <Stack spacing="inherit">
                     <CardContent>
