@@ -16,7 +16,7 @@ import { getJsonLdPerson } from '@/lib/utils';
 const bgcolors = {
   hero: 'background.body',
   about: 'background.surface',
-  funFact: 'primary.solidBg',
+  funFact: 'primary.900',
   experience: 'background.body',
   education: 'background.surface',
   contact: 'background.body',
@@ -44,7 +44,7 @@ const Home: FC<{
         <About bgcolor={bgcolors.about} />
         <SectionDivider bgcolor={bgcolors.funFact} color={bgcolors.about} />
 
-        <FunFact bgcolor={bgcolors.funFact} />
+        <FunFact bgcolor={bgcolors.funFact} data-joy-color-scheme="dark" />
         <SectionDivider
           bgcolor={bgcolors.experience}
           color={bgcolors.funFact}

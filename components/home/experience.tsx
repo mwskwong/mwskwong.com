@@ -6,22 +6,12 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
-import {
-  prismaReadReplicasExtension,
-  vercelStyleGuide,
-} from '@/constants/contentful-ids';
 import { experience } from '@/constants/nav';
-import { SiPrismaHexDark, SiVercelHexDark } from '@/constants/simple-icons';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
-import { ContentfulIcon } from '../contentful-icon';
+import { Logo, logoClasses } from '../contentful';
 
 import { Timeline, TimelineItem } from './timeline';
-
-const darkModeIconColors = {
-  [prismaReadReplicasExtension]: SiPrismaHexDark,
-  [vercelStyleGuide]: SiVercelHexDark,
-};
 
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
 export const Experience: FC<ExperienceProps> = async (props) => {
@@ -79,30 +69,35 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               disableEqualOverflow
               justifyContent="center"
               spacing={6}
+              sx={{
+                [`& .${logoClasses.colorSchemeLight}`]: {
+                  display: 'none',
+                },
+                '[data-joy-color-scheme="dark"] &': {
+                  [`& .${logoClasses.colorSchemeDark}`]: {
+                    display: 'none',
+                  },
+                  [`& .${logoClasses.colorSchemeLight}`]: {
+                    display: 'block',
+                  },
+                },
+              }}
             >
               {contributedProjects.map(({ id, name, url }) => (
                 <Grid key={id} sm={3} xs={6}>
-                  <Stack
-                    alignItems="center"
-                    position="relative"
-                    spacing={2}
-                    sx={{
-                      '--Icon-fontSize': 'var(--joy-fontSize-xl5)',
-                      // make use of light color for Vercel and Prisma icon when in dark mode
-                      // because both of them are having a dark color by default
-                      '[data-joy-color-scheme="dark"] &': {
-                        '& > svg': {
-                          fill:
-                            id in darkModeIconColors
-                              ? darkModeIconColors[
-                                  id as keyof typeof darkModeIconColors
-                                ]
-                              : undefined,
-                        },
-                      },
-                    }}
-                  >
-                    <ContentfulIcon color="default" contentfulId={id} />
+                  <Stack alignItems="center" position="relative" spacing={2}>
+                    <Logo
+                      colorScheme="light"
+                      contentfulId={id}
+                      height={40}
+                      width={40}
+                    />
+                    <Logo
+                      colorScheme="dark"
+                      contentfulId={id}
+                      height={40}
+                      width={40}
+                    />
                     <Link
                       color="neutral"
                       href={url}

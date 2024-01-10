@@ -2,10 +2,11 @@
 
 import { send } from '@emailjs/nodejs';
 import { unstable_noStore as noStore } from 'next/cache';
+import { parse } from 'valibot';
 
 import { prisma } from '@/lib/clients';
 
-import { ContactFormSchema, contactFormSchema } from './schemas';
+import { ContactFormData, contactFormSchema } from './schemas';
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
@@ -16,9 +17,9 @@ export const incrBlogViewById = async (id: string) => {
   });
 };
 
-export const submitContactForm = async (data: ContactFormSchema) => {
+export const submitContactForm = async (data: ContactFormData) => {
   noStore();
-  contactFormSchema.parse(data);
+  parse(contactFormSchema, data);
   await prisma.contactFormSubmission.create({ data });
   await send(
     process.env.EMAILJS_SERVICE_ID ?? '',

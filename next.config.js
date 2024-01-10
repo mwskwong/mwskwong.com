@@ -14,11 +14,13 @@ const config = {
       {
         protocol: 'https',
         hostname: 'images.ctfassets.net',
+        port: '',
       },
       {
         protocol: 'https',
         hostname: 'image.thum.io',
         pathname: '/get/pdfSource/width/**',
+        port: '',
       },
     ],
   },
@@ -36,7 +38,7 @@ const config = {
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
+        resourceQuery: /monochrome/, // *.svg?monochrome
         use: [
           {
             loader: '@svgr/webpack',
@@ -53,6 +55,15 @@ const config = {
             },
           },
         ],
+      },
+      {
+        test: /\.svg$/i,
+        issuer: fileLoaderRule.issuer,
+        resourceQuery: {
+          // exclude if *.svg?url and *.svg?monochrome
+          not: [...fileLoaderRule.resourceQuery.not, /monochrome/, /url/],
+        },
+        use: ['@svgr/webpack'],
       },
     );
 

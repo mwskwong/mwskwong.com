@@ -1,6 +1,6 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import Alert from '@mui/joy/Alert';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -24,7 +24,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { contactInfo } from '@/constants/content';
 import { contact, contactForm, guestbook, home } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
-import { contactFormSchema } from '@/lib/schemas';
+import { ContactFormData, contactFormSchema } from '@/lib/schemas';
 
 export interface ContactProps extends Omit<BoxProps<'section'>, 'children'> {
   defaultShowInGuestbook?: boolean;
@@ -41,9 +41,10 @@ export const Contact: FC<ContactProps> = ({
     setError,
     trigger,
     watch,
-  } = useForm({
-    resolver: zodResolver(contactFormSchema),
+  } = useForm<ContactFormData>({
+    resolver: valibotResolver(contactFormSchema),
     mode: 'onTouched',
+    // FIXME: get default values from contactFormSchema?
     defaultValues: {
       name: '',
       email: '',
