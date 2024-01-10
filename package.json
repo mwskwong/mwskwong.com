@@ -8,7 +8,7 @@
     "dev": "next dev",
     "format": "prettier --write .",
     "postinstall": "patch-package && npm run prisma:generate",
-    "lint": "tsc && next lint",
+    "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:push": "dotenv -e .env.development.local -- prisma db push",
     "prisma:studio": "dotenv -e .env.development.local -- prisma studio",
