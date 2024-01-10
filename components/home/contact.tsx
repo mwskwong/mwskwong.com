@@ -1,6 +1,6 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import Alert from '@mui/joy/Alert';
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -42,8 +42,9 @@ export const Contact: FC<ContactProps> = ({
     trigger,
     watch,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: valibotResolver(contactFormSchema),
     mode: 'onTouched',
+    // FIXME: get default values from contactFormSchema?
     defaultValues: {
       name: '',
       email: '',
