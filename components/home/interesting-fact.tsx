@@ -17,14 +17,7 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
 
   return (
     <Box component="section" {...props}>
-      <Container
-        sx={{
-          color: 'var(--variant-plainColor)',
-          '& ::selection': {
-            bgcolor: 'var(--variant-softBg)',
-          },
-        }}
-      >
+      <Container>
         <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
           <Stack spacing={2}>
             <Typography level="h2">Interesting Fact</Typography>

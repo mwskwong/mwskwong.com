@@ -325,13 +325,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           component="section"
           data-joy-color-scheme="dark"
         >
-          <Container
-            sx={{
-              '& ::selection': {
-                bgcolor: 'var(--variant-softBg)',
-              },
-            }}
-          >
+          <Container>
             <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
               <Typography level="h2">Any Questions or Comments?</Typography>
               <Button
