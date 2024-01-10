@@ -1,9 +1,9 @@
 import Box, { BoxProps } from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Container from '@mui/joy/Container';
-import Grid from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
+import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
@@ -29,39 +29,30 @@ export const FunFact: FC<FunFactProps> = async (props) => {
           <Stack spacing={2}>
             <Typography level="h2">Fun Fact</Typography>
             <Typography maxWidth="sm">
-              This website&apos;s functionality is enabled by these specific
-              software packages and platforms.
+              This website is built on top of the following libraries and
+              platforms.
             </Typography>
           </Stack>
-          <Grid
-            container
-            disableEqualOverflow
+
+          <Stack
+            direction="row"
+            flexWrap="wrap"
             justifyContent="center"
-            spacing={6}
+            spacing={2}
           >
             {techStack.map(({ id, name, url }) => (
-              <Grid key={name} sm={3} xs={6}>
-                <Stack alignItems="center" position="relative" spacing={2}>
+              <Tooltip key={id} title={name}>
+                <Link href={url} target="_blank">
                   <Logo
                     colorScheme="light"
                     contentfulId={id}
-                    height={40}
-                    width={40}
+                    height={36}
+                    width={36}
                   />
-                  <Link
-                    color="neutral"
-                    href={url}
-                    maxWidth="20ch"
-                    overlay
-                    target="_blank"
-                    typography="title-md"
-                  >
-                    {name}
-                  </Link>
-                </Stack>
-              </Grid>
+                </Link>
+              </Tooltip>
             ))}
-          </Grid>
+          </Stack>
           <Typography>...and more</Typography>
           <Button
             component="a"
