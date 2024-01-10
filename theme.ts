@@ -11,12 +11,6 @@ declare module '@mui/joy/styles/types/zIndex' {
   }
 }
 
-declare module '@mui/joy/styles' {
-  interface FontSizeOverrides {
-    xl5: true;
-  }
-}
-
 const palette = {
   common: { black: '#09090B' },
 } satisfies PartialDeep<PaletteOptions>;
@@ -30,9 +24,6 @@ export const theme = extendTheme({
     body: GeistSans.style.fontFamily,
     display: GeistSans.style.fontFamily,
     code: GeistMono.style.fontFamily,
-  },
-  fontSize: {
-    xl5: '3rem',
   },
   zIndex: {
     header: 1100,
