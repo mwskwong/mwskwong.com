@@ -11,8 +11,8 @@ import { getTechStack } from '@/lib/queries';
 
 import { Logo } from '../contentful';
 
-export type FunFactProps = Omit<BoxProps<'section'>, 'children'>;
-export const FunFact: FC<FunFactProps> = async (props) => {
+export type InterestingFactProps = Omit<BoxProps<'section'>, 'children'>;
+export const InterestingFact: FC<InterestingFactProps> = async (props) => {
   const techStack = await getTechStack();
 
   return (
@@ -27,7 +27,7 @@ export const FunFact: FC<FunFactProps> = async (props) => {
       >
         <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
           <Stack spacing={2}>
-            <Typography level="h2">Fun Fact</Typography>
+            <Typography level="h2">Interesting Fact</Typography>
             <Typography maxWidth="sm">
               This website is built on top of the following libraries and
               platforms.
