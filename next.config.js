@@ -106,6 +106,7 @@ const config = {
   experimental: {
     ppr: true,
     webpackBuildWorker: true,
+    missingSuspenseWithCSRBailout: true,
     optimizePackageImports: ['@mui/joy'],
   },
 };

@@ -6,8 +6,8 @@ import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';
 import { Education } from '@/components/home/education';
 import { Experience } from '@/components/home/experience';
-import { FunFact } from '@/components/home/fun-fact';
 import { Hero } from '@/components/home/hero';
+import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { headline } from '@/constants/content';
@@ -16,7 +16,7 @@ import { getJsonLdPerson } from '@/lib/utils';
 const bgcolors = {
   hero: 'background.body',
   about: 'background.surface',
-  funFact: 'primary.900',
+  interestingFact: 'primary.900',
   experience: 'background.body',
   education: 'background.surface',
   contact: 'background.body',
@@ -42,12 +42,18 @@ const Home: FC<{
         <SectionDivider bgcolor={bgcolors.about} color={bgcolors.hero} />
 
         <About bgcolor={bgcolors.about} />
-        <SectionDivider bgcolor={bgcolors.funFact} color={bgcolors.about} />
+        <SectionDivider
+          bgcolor={bgcolors.interestingFact}
+          color={bgcolors.about}
+        />
 
-        <FunFact bgcolor={bgcolors.funFact} data-joy-color-scheme="dark" />
+        <InterestingFact
+          bgcolor={bgcolors.interestingFact}
+          data-joy-color-scheme="dark"
+        />
         <SectionDivider
           bgcolor={bgcolors.experience}
-          color={bgcolors.funFact}
+          color={bgcolors.interestingFact}
         />
 
         <Experience color={bgcolors.experience} />
