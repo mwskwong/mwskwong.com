@@ -1,28 +1,18 @@
 import {
   IconType,
-  SiContentful,
   SiDatacamp,
   SiEnterprisedb,
   SiGithub,
   SiGoogle,
-  SiImprovmx,
   SiLinkedin,
   SiMicrosoft,
   SiMongodb,
-  SiMui,
-  SiNextdotjs,
   SiOracle,
-  SiPlanetscale,
-  SiPrisma,
-  SiReact,
-  SiReacthookform,
   SiStackoverflow,
-  SiTypescript,
   SiUdemy,
-  SiVercel,
   SiYoutube,
-  SiZod,
 } from '@icons-pack/react-simple-icons';
+import { clsx } from 'clsx';
 import {
   BrainCircuit,
   Bug,
@@ -54,8 +44,6 @@ import Valibot from '@/logos/valibot.svg';
 import VercelDark from '@/logos/vercel-dark.svg';
 import VercelLight from '@/logos/vercel-light.svg';
 
-import { SiEmailjs } from './icons/si-emailjs';
-
 const Icons = {
   [contentfulIds.dataCamp]: SiDatacamp,
   [contentfulIds.enterpriseDb]: SiEnterprisedb,
@@ -77,21 +65,6 @@ const Icons = {
   [contentfulIds.mobile]: TabletSmartphone,
   [contentfulIds.qa]: Bug,
   [contentfulIds.softSkills]: MessagesSquare,
-  [contentfulIds.react]: SiReact,
-  [contentfulIds.nextJs]: SiNextdotjs,
-  [contentfulIds.typescript]: SiTypescript,
-  [contentfulIds.joyUi]: SiMui,
-  [contentfulIds.reactHookForm]: SiReacthookform,
-  [contentfulIds.zod]: SiZod,
-  [contentfulIds.prisma]: SiPrisma,
-  [contentfulIds.planetScale]: SiPlanetscale,
-  [contentfulIds.vercel]: SiVercel,
-  [contentfulIds.contentful]: SiContentful,
-  [contentfulIds.emailjs]: SiEmailjs,
-  [contentfulIds.improvMx]: SiImprovmx,
-  [contentfulIds.prismaReadReplicasExtension]: SiPrisma,
-  [contentfulIds.muiCore]: SiMui,
-  [contentfulIds.vercelStyleGuide]: SiVercel,
 };
 
 export type IconProps = ComponentProps<IconType> &
@@ -111,7 +84,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
 Icon.displayName = 'Icon';
 
 const Logos = {
-  [contentfulIds.muiCore]: { light: Mui, dark: undefined },
+  [contentfulIds.muiCore]: { light: Mui, dark: Mui },
   [contentfulIds.joyUi]: { light: Mui, dark: undefined },
   [contentfulIds.nextJs]: { light: NextJsLight, dark: undefined },
   [contentfulIds.prisma]: { light: PrismaLight, dark: undefined },
@@ -136,12 +109,31 @@ export interface LogoProps extends SVGProps<SVGSVGElement> {
   colorScheme?: 'light' | 'dark';
 }
 
+export const logoClasses = {
+  colorSchemeLight: 'ContentfulLogo-colorSchemeLight',
+  colorSchemeDark: 'ContentfulLogo-colorSchemeDark',
+};
+
 export const Logo = forwardRef<SVGSVGElement, LogoProps>(
-  ({ contentfulId, colorScheme = 'dark', ...props }, ref) => {
+  ({ contentfulId, colorScheme = 'dark', className, ...props }, ref) => {
     if (!(contentfulId in Logos)) return null;
 
     const Logo = Logos[contentfulId as keyof typeof Logos][colorScheme];
-    return Logo && <Logo ref={ref} {...props} />;
+    return (
+      Logo && (
+        <Logo
+          className={clsx(
+            {
+              [logoClasses.colorSchemeLight]: colorScheme === 'light',
+              [logoClasses.colorSchemeDark]: colorScheme === 'dark',
+            },
+            className,
+          )}
+          ref={ref}
+          {...props}
+        />
+      )
+    );
   },
 );
 
