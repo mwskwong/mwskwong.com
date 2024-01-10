@@ -105,8 +105,8 @@ export const Contact: FC<ContactProps> = ({
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderRadius: 'sm',
-                      width: 48,
-                      height: 48,
+                      width: 40,
+                      height: 40,
                       mb: 2,
                     }}
                     variant="outlined"
@@ -142,8 +142,8 @@ export const Contact: FC<ContactProps> = ({
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderRadius: 'sm',
-                      width: 48,
-                      height: 48,
+                      width: 40,
+                      height: 40,
                     }}
                     variant="outlined"
                   >
