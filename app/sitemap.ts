@@ -1,16 +1,23 @@
 import { MetadataRoute } from 'next';
 
 import { baseUrl } from '@/constants/base-url';
-import { getBlogs } from '@/lib/queries';
+import { getBlogs, getPrivacyStatement } from '@/lib/queries';
 
 const sitemap = async () => {
-  const blogs = await getBlogs();
+  const [privacyStatement, blogs] = await Promise.all([
+    getPrivacyStatement(),
+    getBlogs(),
+  ]);
 
   return [
-    ...['/', '/blog', '/guestbook', '/privacy-statement'].map((route) => ({
+    ...['/', '/blog', '/guestbook'].map((route) => ({
       url: `${baseUrl}${route}`,
       lastModified: new Date(),
     })),
+    {
+      url: `${baseUrl}/privacy-statemnt`,
+      lastModified: privacyStatement.updatedAt,
+    },
     ...blogs.map(({ slug, updatedAt }) => ({
       url: `${baseUrl}/blog/${slug}`,
       lastModified: updatedAt,

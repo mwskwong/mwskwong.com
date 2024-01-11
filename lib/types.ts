@@ -107,3 +107,10 @@ export interface SkillCategorySkeleton {
     proficiency: EntryFieldTypes.Integer;
   };
 }
+
+export interface PrivacyStatement {
+  contentTypeId: 'privacyStatement';
+  fields: {
+    content?: EntryFieldTypes.Text;
+  };
+}

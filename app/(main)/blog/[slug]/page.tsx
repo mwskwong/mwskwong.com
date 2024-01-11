@@ -3,27 +3,20 @@ import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
 import Container from '@mui/joy/Container';
 import Grid from '@mui/joy/Grid';
-import Link from '@mui/joy/Link';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { FC, RefObject, Suspense } from 'react';
-import rehypePrettyCode, { Options } from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
+import { FC, Suspense } from 'react';
 import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { CoverImage } from '@/components/blog/cover-image';
-import { Heading } from '@/components/blog/heading';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
+import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contact } from '@/constants/nav';
@@ -100,224 +93,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             </Grid>
           </Grid>
           {blog.coverPhoto ? <CoverImage src={blog.coverPhoto} /> : null}
-          {blog.content ? (
-            <MDXRemote
-              components={{
-                h2: ({ ref, color, ...props }) => (
-                  <Heading
-                    level="h2"
-                    mb={3}
-                    mt={6}
-                    ref={ref as RefObject<HTMLHeadElement> | undefined}
-                    sx={{
-                      scrollMarginTop: 'calc(var(--Header-height) + 8px * 6)',
-                    }}
-                    textColor={color}
-                    {...props}
-                  />
-                ),
-                h3: ({ ref, color, ...props }) => (
-                  <Heading
-                    level="h3"
-                    mb={1.5}
-                    mt={4}
-                    ref={ref as RefObject<HTMLHeadElement> | undefined}
-                    sx={{
-                      scrollMarginTop: 'calc(var(--Header-height) + 8px * 4)',
-                    }}
-                    textColor={color}
-                    {...props}
-                  />
-                ),
-                h4: ({ ref, color, ...props }) => (
-                  <Heading
-                    level="h4"
-                    mb={1}
-                    mt={3}
-                    ref={ref as RefObject<HTMLHeadElement> | undefined}
-                    sx={{
-                      scrollMarginTop: 'calc(var(--Header-height) + 8px * 3)',
-                    }}
-                    textColor={color}
-                    {...props}
-                  />
-                ),
-                p: ({ ref, color, ...props }) => (
-                  <Typography
-                    my={2}
-                    ref={ref as RefObject<HTMLParagraphElement> | undefined}
-                    textColor={color}
-                    {...props}
-                  />
-                ),
-                a: ({ ref, color, children, ...props }) => (
-                  <Link
-                    ref={ref as RefObject<HTMLAnchorElement> | undefined}
-                    sx={{ '& > code': { color: 'inherit' } }}
-                    target="_blank"
-                    textColor={color}
-                    underline="always"
-                    {...props}
-                  >
-                    {children}
-                  </Link>
-                ),
-                ul: ({ ref, color, ...props }) => (
-                  <List
-                    component="ul"
-                    marker="disc"
-                    ref={ref as RefObject<HTMLUListElement> | undefined}
-                    sx={{ color, my: 2, '--List-padding': '0px' }}
-                    {...props}
-                  />
-                ),
-                ol: ({ ref, color, ...props }) => (
-                  <List
-                    component="ol"
-                    marker="decimal"
-                    ref={ref as RefObject<HTMLOListElement> | undefined}
-                    sx={{ color, my: 2, '--List-padding': '0px' }}
-                    {...props}
-                  />
-                ),
-                li: ({ ref, color, ...props }) => (
-                  <ListItem
-                    ref={ref as RefObject<HTMLLIElement> | undefined}
-                    sx={{
-                      color,
-                      // handle <p>, which has margin by default, nested in <li>
-                      '& :first-child': { mt: 0 },
-                      '& :last-child': { mb: 0 },
-                    }}
-                    {...props}
-                  />
-                ),
-                figure: (props) => {
-                  if (props['data-rehype-pretty-code-figure'] === '') {
-                    const { ref, color, ...rest } = props;
-                    return (
-                      <Sheet
-                        component="figure"
-                        ref={ref as RefObject<HTMLElement> | undefined}
-                        sx={{
-                          color,
-                          borderRadius: 'md',
-                          my: 2,
-                          overflow: 'hidden',
-                        }}
-                        variant="outlined"
-                        {...rest}
-                      />
-                    );
-                  }
-                  return <figure {...props} />;
-                },
-                figcaption: (props) => {
-                  if (props['data-rehype-pretty-code-title'] === '') {
-                    const { ref, color, ...rest } = props;
-                    return (
-                      <Typography
-                        component="figcaption"
-                        level="body-sm"
-                        pt={2}
-                        ref={ref as RefObject<HTMLElement> | undefined}
-                        textAlign="center"
-                        textColor={color}
-                        {...rest}
-                      />
-                    );
-                  }
-                  return <figcaption {...props} />;
-                },
-                pre: ({ ref, ...props }) => (
-                  <Box
-                    component="pre"
-                    m={0}
-                    overflow="auto"
-                    py={2}
-                    ref={ref as RefObject<HTMLPreElement> | undefined}
-                    {...props}
-                  />
-                ),
-                code: (props) => {
-                  const inlineCode = props.style === undefined;
-
-                  if (inlineCode) {
-                    const { ref, color, ...rest } = props;
-                    return (
-                      <Typography
-                        color="warning"
-                        component="code"
-                        display="inline"
-                        fontFamily="code"
-                        fontSize="0.875em"
-                        mx={0}
-                        noWrap
-                        ref={ref as RefObject<HTMLElement> | undefined}
-                        textColor={color}
-                        variant="plain"
-                        {...rest}
-                      />
-                    );
-                  }
-
-                  return <code {...props} />;
-                },
-                span: ({ ref, ...props }) => (
-                  <Box
-                    component="span"
-                    ref={ref as RefObject<HTMLSpanElement> | undefined}
-                    sx={{
-                      // match code block
-                      'code[style] &': {
-                        '&[data-line]': { px: 2 },
-                        '&[data-highlighted-line]': {
-                          bgcolor: 'neutral.softBg',
-                        },
-                      },
-                    }}
-                    {...props}
-                  />
-                ),
-                mark: (props) => {
-                  if (props['data-highlighted-chars'] === '') {
-                    const { ref, color, ...rest } = props;
-                    return (
-                      <Typography
-                        component="mark"
-                        ref={ref as RefObject<HTMLElement> | undefined}
-                        textColor={color}
-                        variant="soft"
-                        {...rest}
-                      />
-                    );
-                  }
-
-                  return <mark {...props} />;
-                },
-              }}
-              options={{
-                mdxOptions: {
-                  rehypePlugins: [
-                    [
-                      // @ts-expect-error this plugin is depending on unified v11 while next-mdx-remote is depending on mdx v2 --> unified v10
-                      rehypePrettyCode,
-                      {
-                        theme: {
-                          dark: 'dark-plus',
-                          light: 'light-plus',
-                        },
-                        keepBackground: false,
-                        defaultLang: { block: 'ansi' },
-                      } satisfies Options,
-                    ],
-                    rehypeSlug,
-                  ],
-                },
-              }}
-              source={blog.content}
-            />
-          ) : null}
+          {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
         <SectionDivider bgcolor={contactMeBgColor} />
         <Box

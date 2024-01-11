@@ -1,17 +1,14 @@
 import Container from '@mui/joy/Container';
-import Link from '@mui/joy/Link';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
 import Typography from '@mui/joy/Typography';
 import { capitalize } from 'lodash-es';
 import { Metadata, ResolvingMetadata } from 'next';
-import NextLink from 'next/link';
 import { FC } from 'react';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
+import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { contact } from '@/constants/nav';
+import { getPrivacyStatement } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
 const websiteDisplayName = capitalize(process.env.NEXT_PUBLIC_PROD_URL);
@@ -23,13 +20,13 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   day: 'numeric',
 });
 
-const createdAt = new Date('2024-01-11');
-const updatedAt = new Date('2024-01-11');
-
 const description = `Privacy policy for ${websiteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
 
 const PrivacyStatement: FC = async () => {
-  const person = await getJsonLdPerson();
+  const [{ createdAt, updatedAt, content }, person] = await Promise.all([
+    getPrivacyStatement(),
+    getJsonLdPerson(),
+  ]);
   return (
     <>
       <main>
@@ -38,119 +35,13 @@ const PrivacyStatement: FC = async () => {
           maxWidth="md"
           sx={{ py: 'var(--Section-paddingY)' }}
         >
-          <Typography level="h1" mb={3}>
+          <Typography level="h1" mb={3} mt={1}>
             Privacy Statement
           </Typography>
-          <Typography level="h2" mb={3} mt={6}>
-            Introduction
-          </Typography>
-          <Typography my={2}>
-            {websiteDisplayName} respects the privacy of our visitors and is
-            committed to protecting personal information. This Privacy Statement
-            outlines our practices concerning the collection, use, storage, and
-            sharing of personal data in compliance with the{' '}
-            <Link
-              href="https://www.pcpd.org.hk/english/data_privacy_law/ordinance_at_a_Glance/ordinance.html"
-              target="_blank"
-              underline="always"
-            >
-              Personal Data (Privacy) Ordinance (PDPO)
-            </Link>{' '}
-            of Hong Kong and the{' '}
-            <Link href="https://gdpr.eu/" target="_blank" underline="always">
-              General Data Protection Regulation (GDPR)
-            </Link>{' '}
-            of the European Union.
-          </Typography>
-          <Typography level="h2" mb={3} mt={6}>
-            Data Collection, Storage, and Use
-          </Typography>
-          <Typography my={2}>
-            The following data is collected on our website:
-          </Typography>
-          <List marker="disc" sx={{ my: 2, '--List-padding': '0px' }}>
-            <ListItem>
-              <Typography level="title-md">Contact Form</Typography>
-              When you provide your Name, Email, Subject, and Message through
-              our contact form, we will use this information to respond to your
-              inquiries or to send you requested information. The submission
-              date is also recorded. This data is stored securely in{' '}
-              <Link
-                href="https://planetscale.com/"
-                target="_blank"
-                underline="always"
-              >
-                PlanetScale
-              </Link>
-              , hosted in the AWS ap-southeast-1 (Singapore) region.
-            </ListItem>
-            <ListItem nested>
-              <ListItem sx={{ display: 'var(--_List-markerDisplay)' }}>
-                <Typography level="title-md">
-                  Vercel Analytics and Speed Insights
-                </Typography>
-                To enhance our website, we use{' '}
-                <Link
-                  href="https://vercel.com/analytics"
-                  target="_blank"
-                  underline="always"
-                >
-                  Vercel Web Analytics and Vercel Speed Insights
-                </Link>
-                . These tools collect aggregated data to provide insights into
-                website usage and performance, with no individual visitor
-                identification. For more information on Vercel&apos;s data
-                practices, please refer to their privacy policies:
-              </ListItem>
-              <List marker="circle" sx={{ my: 2, '--List-padding': '0px' }}>
-                <ListItem>
-                  <Link
-                    href="https://vercel.com/docs/analytics/privacy-policy"
-                    target="_blank"
-                    underline="always"
-                  >
-                    Vercel Web Analytics Privacy and Compliance
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link
-                    href="https://vercel.com/docs/speed-insights/privacy-policy"
-                    target="_blank"
-                    underline="always"
-                  >
-                    Vercel Speed Insights Privacy and Compliance
-                  </Link>
-                </ListItem>
-              </List>
-            </ListItem>
-          </List>
-          <Typography level="h2" mb={3} mt={6}>
-            Your Rights
-          </Typography>
-          <Typography my={2}>
-            Under PDPO and GDPR, you have rights over your personal data,
-            including access, rectification, erasure, restriction on processing,
-            data portability, and objection to processing. To exercise these
-            rights, please reach out to us at the contact information below.
-          </Typography>
-          <Typography level="h2" mb={3} mt={6}>
-            Contact Us
-          </Typography>
-          <Typography my={2}>
-            For privacy-related questions or requests, please{' '}
-            <Link
-              component={NextLink}
-              href={{ pathname: contact.pathname, hash: contact.id }}
-              underline="always"
-            >
-              contact us
-            </Link>
-            . We are dedicated to addressing any privacy concerns and to
-            providing a fair resolution.
-          </Typography>
+          {content ? <Mdx source={content} /> : null}
           <Typography my={2}>
             This Privacy Statement is subject to updates. The last revision was
-            made on {dateFormatter.format(updatedAt)}. Please review
+            made on {dateFormatter.format(new Date(updatedAt))}. Please review
             periodically for changes.
           </Typography>
         </Container>
@@ -165,8 +56,8 @@ const PrivacyStatement: FC = async () => {
                 '@type': 'Article',
                 headline: `${websiteDisplayName} Privacy Statement`,
                 description,
-                datePublished: createdAt.toISOString(),
-                dateModified: updatedAt.toISOString(),
+                datePublished: createdAt,
+                dateModified: updatedAt,
                 url: `${baseUrl}/privacy-statement`,
                 author: { '@id': person['@id'] },
               } satisfies Article,
