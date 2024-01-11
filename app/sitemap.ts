@@ -7,7 +7,7 @@ const sitemap = async () => {
   const blogs = await getBlogs();
 
   return [
-    ...['/', '/blog', '/guestbook'].map((route) => ({
+    ...['/', '/blog', '/guestbook', '/privacy-statement'].map((route) => ({
       url: `${baseUrl}${route}`,
       lastModified: new Date(),
     })),
