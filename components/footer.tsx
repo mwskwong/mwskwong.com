@@ -1,12 +1,16 @@
 import Box, { BoxProps } from '@mui/joy/Box';
+import Container from '@mui/joy/Container';
+import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
+import NextLink from 'next/link';
 import { FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
+import { privacyStatement } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/queries';
 
 import { Icon } from './contentful';
@@ -18,40 +22,62 @@ export const Footer: FC<FooterProps> = async (props) => {
 
   return (
     <Box component="footer" {...props}>
-      <Stack alignItems="center" spacing={2}>
-        <Box textAlign="center">
-          <Typography level="body-sm">
-            {`Copyright © ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
-          </Typography>
-          <Typography level="body-sm">
-            Branding logo designed by{' '}
+      <Container>
+        <Stack
+          alignItems="center"
+          direction={{ md: 'row' }}
+          // FIXME: WORKAROUND: this is a bug, when direction contains responsive value, spacing doesn't work
+          gap={4}
+          justifyContent="space-between"
+        >
+          <Stack
+            direction="row"
+            divider={<Divider orientation="vertical" />}
+            flexWrap="wrap"
+            justifyContent={{ xs: 'center', md: 'flex-start' }}
+            spacing={1}
+          >
+            <Typography level="body-sm">
+              {`© ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
+            </Typography>
             <Link
-              href="https://www.upwork.com/freelancers/manojk4"
-              target="_blank"
-              underline="always"
+              color="neutral"
+              component={NextLink}
+              href={privacyStatement.pathname}
+              typography="body-sm"
             >
-              Manoj Kumar
+              {privacyStatement.label}
             </Link>
-          </Typography>
-        </Box>
-        <Stack direction="row" spacing={1}>
-          {platformProfiles.map(
-            ({ platform, url }) =>
-              platform && (
-                <Tooltip key={platform.id} title={`${platform.name} profile`}>
-                  <IconButton
-                    component="a"
-                    href={url}
-                    size="sm"
-                    target="_blank"
-                  >
-                    <Icon contentfulId={platform.id} />
-                  </IconButton>
-                </Tooltip>
-              ),
-          )}
+            <Typography level="body-sm">
+              Branding logo designed by{' '}
+              <Link
+                href="https://www.upwork.com/freelancers/manojk4"
+                target="_blank"
+                underline="always"
+              >
+                Manoj Kumar
+              </Link>
+            </Typography>
+          </Stack>
+          <Stack direction="row" spacing={1}>
+            {platformProfiles.map(
+              ({ platform, url }) =>
+                platform && (
+                  <Tooltip key={platform.id} title={`${platform.name} profile`}>
+                    <IconButton
+                      component="a"
+                      href={url}
+                      size="sm"
+                      target="_blank"
+                    >
+                      <Icon contentfulId={platform.id} />
+                    </IconButton>
+                  </Tooltip>
+                ),
+            )}
+          </Stack>
         </Stack>
-      </Stack>
+      </Container>
     </Box>
   );
 };
