@@ -15,23 +15,23 @@ export const name = { firstName, middleName, lastName };
 export const selfIntroduction =
   'Dynamic and experienced Web Engineer. Skilled in web development, database management, analytical thinking, and creative problem-solving. Adaptable team player with the ability to work independently and an eagerness to succeed.';
 
-export const contactInfo = [
-  {
+export const contactInfo = {
+  phone: {
     Icon: Phone,
     title: 'Call Me At',
     value: phone,
     url: `tel:${phone.replaceAll(' ', '')}`,
   },
-  {
+  email: {
     Icon: Mail,
     title: 'Email Me At',
     value: email,
     url: `mailto:${email}`,
   },
-  {
+  address: {
     Icon: MapPin,
     title: 'Find Me At',
     value: address,
     url: 'https://www.google.com/maps/place/Hong+Kong',
   },
-];
+};

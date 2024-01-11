@@ -30,5 +30,10 @@ export const guestbook = {
   label: 'Guestbook',
   pathname: '/guestbook',
 } as const;
+export const privacyStatement = {
+  id: undefined,
+  label: 'Privacy Statement',
+  pathname: '/privacy-statement',
+} as const;
 
 export const nav = [about, experience, education, contact, blog, guestbook];

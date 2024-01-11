@@ -92,7 +92,7 @@ export const generateMetadata = async (
 
   return {
     title,
-    description: '',
+    description,
     openGraph: { ...openGraph, url: path },
   } satisfies Metadata;
 };

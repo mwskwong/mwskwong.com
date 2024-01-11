@@ -36,6 +36,16 @@ export const theme = extendTheme({
         },
       },
     },
+    JoyLink: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          display:
+            !ownerState.startDecorator && !ownerState.endDecorator
+              ? 'inline'
+              : undefined,
+        }),
+      },
+    },
     JoyStack: {
       defaultProps: { useFlexGap: true },
     },

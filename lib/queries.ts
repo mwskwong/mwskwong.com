@@ -16,6 +16,7 @@ import {
   ExperienceSkeleton,
   OrganizationSkeleton,
   PlatformProfileSkeleton,
+  PrivacyStatement,
   ProjectSkeleton,
   SkillCategorySkeleton,
   SkillSkeleton,
@@ -253,6 +254,18 @@ export const getTechStack = cache(async () => {
   }));
 });
 
+export const getPrivacyStatement = cache(async () => {
+  const entry = await contentful.getEntry<PrivacyStatement>(
+    'vBgRhppBunYrha2FXJ0tM',
+  );
+
+  return {
+    createdAt: entry.sys.createdAt,
+    updatedAt: entry.sys.updatedAt,
+    content: entry.fields.content,
+  };
+});
+
 // Use React.cache here, because we want to achieve the following
 //   1. DB is queried only once in the blog listing page
 //   2. The result of getBlogsMetadataByIds is NOT cached in other server requests
@@ -260,7 +273,6 @@ export const getTechStack = cache(async () => {
 //      it should see the metadata updated
 // It works, because React will invalidate the cache for all memoized functions for each server request.
 // See https://react.dev/reference/react/cache#caveats
-
 export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
   noStore();
   return prisma.blogMetadata.findMany({ where: { id: { in: ids } } });
