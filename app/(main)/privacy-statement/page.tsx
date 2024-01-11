@@ -141,6 +141,7 @@ const PrivacyStatement: FC = async () => {
             <Link
               component={NextLink}
               href={{ pathname: contact.pathname, hash: contact.id }}
+              underline="always"
             >
               contact us
             </Link>
