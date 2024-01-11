@@ -26,7 +26,6 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
               platforms.
             </Typography>
           </Stack>
-
           <Stack
             direction="row"
             flexWrap="wrap"
