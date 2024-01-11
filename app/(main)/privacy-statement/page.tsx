@@ -46,8 +46,8 @@ const PrivacyStatement: FC = async () => {
           <Typography my={2}>
             {websiteDisplayName} respects the privacy of our visitors and is
             committed to protecting personal information. This Privacy Statement
-            outlines our practices concerning the collection, use, and sharing
-            of personal data in compliance with the{' '}
+            outlines our practices concerning the collection, use, storage, and
+            sharing of personal data in compliance with the{' '}
             <Link
               href="https://www.pcpd.org.hk/english/data_privacy_law/ordinance_at_a_Glance/ordinance.html"
               target="_blank"
