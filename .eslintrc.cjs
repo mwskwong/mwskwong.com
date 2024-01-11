@@ -92,6 +92,7 @@ module.exports = {
     {
       files: [
         '.prettierrc.js',
+        'lint-staged.config.js',
         'next.config.js',
         'app/**/page.tsx',
         'app/**/layout.tsx',
