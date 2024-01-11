@@ -5,12 +5,13 @@ import ListItem from '@mui/joy/ListItem';
 import Typography from '@mui/joy/Typography';
 import { capitalize } from 'lodash-es';
 import { Metadata, ResolvingMetadata } from 'next';
+import NextLink from 'next/link';
 import { FC } from 'react';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { contactInfo } from '@/constants/content';
+import { contact } from '@/constants/nav';
 import { getJsonLdPerson } from '@/lib/utils';
 
 const websiteDisplayName = capitalize(process.env.NEXT_PUBLIC_PROD_URL);
@@ -136,33 +137,15 @@ const PrivacyStatement: FC = async () => {
             Contact Us
           </Typography>
           <Typography my={2}>
-            For privacy-related questions or requests, please contact us via:
-          </Typography>
-          <List marker="disc" sx={{ my: 2, '--List-padding': '0px' }}>
-            <ListItem>
-              Email:{' '}
-              <Link
-                href={contactInfo.email.url}
-                target="_blank"
-                underline="always"
-              >
-                {contactInfo.email.value}
-              </Link>
-            </ListItem>
-            <ListItem>
-              Phone:{' '}
-              <Link
-                href={contactInfo.phone.url}
-                target="_blank"
-                underline="always"
-              >
-                {contactInfo.phone.value}
-              </Link>
-            </ListItem>
-          </List>
-          <Typography my={2}>
-            We are dedicated to addressing any privacy concerns and to providing
-            a fair resolution.
+            For privacy-related questions or requests, please{' '}
+            <Link
+              component={NextLink}
+              href={{ pathname: contact.pathname, hash: contact.id }}
+            >
+              contact us
+            </Link>
+            . We are dedicated to addressing any privacy concerns and to
+            providing a fair resolution.
           </Typography>
           <Typography my={2}>
             This Privacy Statement is subject to updates. The last revision was
