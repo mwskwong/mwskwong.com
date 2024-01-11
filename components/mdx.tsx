@@ -116,7 +116,14 @@ export const components = {
       component="ul"
       marker="disc"
       ref={ref as RefObject<HTMLUListElement>}
-      sx={{ color, my: 2, '--List-padding': '0px' }}
+      sx={{
+        color,
+        my: 2,
+        '--List-padding': '0px',
+        '& ul > li': {
+          '--_List-markerType': 'circle',
+        },
+      }}
       {...props}
     />
   ),
