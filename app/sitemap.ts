@@ -15,7 +15,7 @@ const sitemap = async () => {
       lastModified: new Date(),
     })),
     {
-      url: `${baseUrl}/privacy-statemnt`,
+      url: `${baseUrl}/privacy-statement`,
       lastModified: privacyStatement.updatedAt,
     },
     ...blogs.map(({ slug, updatedAt }) => ({
