@@ -8,6 +8,7 @@ const config = {
       exclude: ['error'],
     },
   },
+  eslint: { dirs: ['app', 'components', 'constants', 'lib'] },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

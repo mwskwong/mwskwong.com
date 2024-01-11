@@ -1,5 +1,7 @@
 const { resolve } = require('node:path');
 
+const { JAVASCRIPT_FILES } = require('@vercel/style-guide/eslint/constants');
+
 const project = resolve(__dirname, 'tsconfig.json');
 
 /** @type {import('eslint').Linter.Config} */
@@ -77,10 +79,21 @@ module.exports = {
     'sort-imports': ['warn', { ignoreDeclarationSort: true }],
   },
   overrides: [
-    // Next.js App Router file convention
+    /**
+     * Type aware linting doesn't work in JS
+     * @see {@link https://typescript-eslint.io/linting/typed-linting#how-can-i-disable-type-aware-linting-for-a-subset-of-files}
+     */
+    {
+      files: JAVASCRIPT_FILES,
+      extends: ['plugin:@typescript-eslint/disable-type-checked'],
+    },
+    // Varies file convention from libraries, e.g. Next.js App Router and Prettier
     // Must use default export
     {
       files: [
+        '.prettierrc.js',
+        'lint-staged.config.js',
+        'next.config.js',
         'app/**/page.tsx',
         'app/**/layout.tsx',
         'app/**/not-found.tsx',

@@ -1,8 +1,8 @@
 import Box, { BoxProps } from '@mui/joy/Box';
 import Container from '@mui/joy/Container';
-import Grid from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
+import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
 import { FC } from 'react';
 
@@ -64,11 +64,11 @@ export const Experience: FC<ExperienceProps> = async (props) => {
                 the projects I&apos;ve contributed to thus far.
               </Typography>
             </Stack>
-            <Grid
-              container
-              disableEqualOverflow
+            <Stack
+              direction="row"
+              flexWrap="wrap"
               justifyContent="center"
-              spacing={6}
+              spacing={2}
               sx={{
                 [`& .${logoClasses.colorSchemeLight}`]: {
                   display: 'none',
@@ -84,34 +84,24 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               }}
             >
               {contributedProjects.map(({ id, name, url }) => (
-                <Grid key={id} sm={3} xs={6}>
-                  <Stack alignItems="center" position="relative" spacing={2}>
+                <Tooltip key={id} title={name}>
+                  <Link href={url} target="_blank">
                     <Logo
                       colorScheme="light"
                       contentfulId={id}
-                      height={40}
-                      width={40}
+                      height={36}
+                      width={36}
                     />
                     <Logo
                       colorScheme="dark"
                       contentfulId={id}
-                      height={40}
-                      width={40}
+                      height={36}
+                      width={36}
                     />
-                    <Link
-                      color="neutral"
-                      href={url}
-                      maxWidth="20ch"
-                      overlay
-                      target="_blank"
-                      typography="title-md"
-                    >
-                      {name}
-                    </Link>
-                  </Stack>
-                </Grid>
+                  </Link>
+                </Tooltip>
               ))}
-            </Grid>
+            </Stack>
             <Typography>...and more to come</Typography>
           </Stack>
         </Stack>

@@ -29,6 +29,13 @@ export const theme = extendTheme({
     header: 1100,
   },
   components: {
+    JoyCheckbox: {
+      styleOverrides: {
+        root: {
+          WebkitTapHighlightColor: 'transparent',
+        },
+      },
+    },
     JoyStack: {
       defaultProps: { useFlexGap: true },
     },
