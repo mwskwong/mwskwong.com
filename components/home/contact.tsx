@@ -88,7 +88,7 @@ export const Contact: FC<ContactProps> = ({
               spacing={3}
               xs={12}
             >
-              {contactInfo.map(({ Icon, title, value, url }) => (
+              {Object.values(contactInfo).map(({ Icon, title, value, url }) => (
                 <Grid
                   alignItems="center"
                   display="flex"
