@@ -18,6 +18,7 @@ import Textarea from '@mui/joy/Textarea';
 import Typography from '@mui/joy/Typography';
 import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -30,10 +31,8 @@ export interface ContactProps extends Omit<BoxProps<'section'>, 'children'> {
   defaultShowInGuestbook?: boolean;
 }
 
-export const Contact: FC<ContactProps> = ({
-  defaultShowInGuestbook = false,
-  ...props
-}) => {
+export const Contact: FC<ContactProps> = (props) => {
+  const searchParams = useSearchParams();
   const {
     handleSubmit,
     control,
@@ -50,7 +49,7 @@ export const Contact: FC<ContactProps> = ({
       email: '',
       subject: '',
       message: '',
-      showInGuestbook: defaultShowInGuestbook,
+      showInGuestbook: searchParams.get('showInGuestbook') === 'true',
     },
     progressive: true,
   });
