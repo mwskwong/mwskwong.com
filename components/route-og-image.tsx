@@ -8,7 +8,7 @@ import Logo from '@/app/icon.svg?monochrome';
 export const RouteOgImage =
   ({
     title,
-    size,
+    size = { width: 1200, height: 630 },
   }: {
     title: string;
     size?: { width: number; height: number };
@@ -22,29 +22,22 @@ export const RouteOgImage =
             width: '100%',
             height: '100%',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 8 * 8,
           }}
         >
           {/* --joy-palette-primary-plainColor */}
-          <Logo fill="#0B6BCB" width={128} />
-          <hr
-            // https://mui.com/joy-ui/react-divider/#vertical-divider
-            style={{
-              margin: 0,
-              position: 'relative',
-              height: 128 - 8 * 2 * 2,
-              flexShrink: 0,
-              backgroundColor: '#636b7433',
-              inlineSize: 1,
-            }}
+          <Logo
+            fill="#0B6BCB"
+            height={64}
+            style={{ position: 'absolute', top: size.height * 0.25 - 64 / 2 }}
           />
           <h1
             // https://mui.com/joy-ui/customization/default-theme-viewer/
             style={{
               fontWeight: 700,
-              fontSize: '5rem',
+              fontSize: '8rem',
               lineHeight: 1.33334,
               letterSpacing: '-0.025em',
             }}

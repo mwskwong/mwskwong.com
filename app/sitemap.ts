@@ -1,11 +1,11 @@
 import { MetadataRoute } from 'next';
 
 import { baseUrl } from '@/constants/base-url';
-import { getBlogs, getPrivacyStatement } from '@/lib/queries';
+import { getBlogs, getPrivacyPolicy } from '@/lib/queries';
 
 const sitemap = async () => {
-  const [privacyStatement, blogs] = await Promise.all([
-    getPrivacyStatement(),
+  const [privacyPolicy, blogs] = await Promise.all([
+    getPrivacyPolicy(),
     getBlogs(),
   ]);
 
@@ -15,8 +15,8 @@ const sitemap = async () => {
       lastModified: new Date(),
     })),
     {
-      url: `${baseUrl}/privacy-statement`,
-      lastModified: privacyStatement.updatedAt,
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: privacyPolicy.updatedAt,
     },
     ...blogs.map(({ slug, updatedAt }) => ({
       url: `${baseUrl}/blog/${slug}`,

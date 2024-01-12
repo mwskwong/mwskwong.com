@@ -108,8 +108,8 @@ export interface SkillCategorySkeleton {
   };
 }
 
-export interface PrivacyStatement {
-  contentTypeId: 'privacyStatement';
+export interface PrivacyPolicy {
+  contentTypeId: 'privacyPolicy';
   fields: {
     content?: EntryFieldTypes.Text;
   };
