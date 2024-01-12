@@ -46,7 +46,7 @@ export const Footer: FC<FooterProps> = async (props) => {
         </Stack>
 
         <Typography level="body-sm" mt={2}>
-          {`© ${currYear} ${lastName.toUpperCase()}, ${firstName} ${middleName}`}
+          © {currYear} {lastName.toUpperCase()}, {firstName} {middleName}
         </Typography>
         <Typography level="body-sm">
           Branding logo designed by{' '}

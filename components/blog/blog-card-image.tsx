@@ -19,9 +19,7 @@ export const BlogCardImage: FC<BlogCardImageProps> = ({ sx, ...props }) => {
         fill
         role="presentation"
         sizes={[
-          `${theme.breakpoints.up('lg')} ${
-            theme.breakpoints.values.lg / (12 / 4)
-          }px`,
+          `${theme.breakpoints.up('lg')} ${theme.breakpoints.values.lg / (12 / 4)}px`,
           `${theme.breakpoints.up('md')} ${Math.round((4 / 12) * 100)}vw`,
           `${theme.breakpoints.up('sm')} ${Math.round((6 / 12) * 100)}vw`,
           '100vw',
