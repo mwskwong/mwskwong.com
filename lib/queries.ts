@@ -16,7 +16,7 @@ import {
   ExperienceSkeleton,
   OrganizationSkeleton,
   PlatformProfileSkeleton,
-  PrivacyStatement,
+  PrivacyPolicy,
   ProjectSkeleton,
   SkillCategorySkeleton,
   SkillSkeleton,
@@ -254,9 +254,9 @@ export const getTechStack = cache(async () => {
   }));
 });
 
-export const getPrivacyStatement = cache(async () => {
-  const entry = await contentful.getEntry<PrivacyStatement>(
-    'vBgRhppBunYrha2FXJ0tM',
+export const getPrivacyPolicy = cache(async () => {
+  const entry = await contentful.getEntry<PrivacyPolicy>(
+    '13hUvxPc7WtvdUSAJK5WAm',
   );
 
   return {

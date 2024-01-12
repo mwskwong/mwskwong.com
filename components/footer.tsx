@@ -12,7 +12,7 @@ import NextLink from 'next/link';
 import { FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
-import { privacyStatement } from '@/constants/nav';
+import { privacyPolicy } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/queries';
 
 import { Icon } from './contentful';
@@ -68,11 +68,8 @@ export const Footer: FC<FooterProps> = async (props) => {
           }}
         >
           <ListItem>
-            <ListItemButton
-              component={NextLink}
-              href={privacyStatement.pathname}
-            >
-              {privacyStatement.label}
+            <ListItemButton component={NextLink} href={privacyPolicy.pathname}>
+              {privacyPolicy.label}
             </ListItemButton>
           </ListItem>
         </List>

@@ -2,7 +2,7 @@ import Button from '@mui/joy/Button';
 import Container from '@mui/joy/Container';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { FC, Suspense } from 'react';
 import { BreadcrumbList, Graph } from 'schema-dts';
@@ -82,19 +82,10 @@ const Guestbook: FC = async () => {
   );
 };
 
-export const generateMetadata = async (
-  _: object,
-  parent: ResolvingMetadata,
-) => {
-  const title = 'Guestbook';
-  const path = '/guestbook';
-  const { openGraph } = await parent;
-
-  return {
-    title,
-    description,
-    openGraph: { ...openGraph, url: path },
-  } satisfies Metadata;
-};
+export const metadata = {
+  title: 'Guestbook',
+  description,
+  openGraph: { type: 'website', url: '/guestbook' },
+} satisfies Metadata;
 
 export default Guestbook;

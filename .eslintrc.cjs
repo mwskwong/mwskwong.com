@@ -80,7 +80,7 @@ module.exports = {
   },
   overrides: [
     /**
-     * Type aware linting doesn't work in JS
+     * JS files are using @babel/eslint-parser, so typed linting doesn't work there.
      * @see {@link https://typescript-eslint.io/linting/typed-linting#how-can-i-disable-type-aware-linting-for-a-subset-of-files}
      */
     {
@@ -98,6 +98,8 @@ module.exports = {
         'app/**/layout.tsx',
         'app/**/not-found.tsx',
         'app/**/*error.tsx',
+        'app/apple-icon.tsx',
+        'app/**/opengraph-image.tsx',
         'app/sitemap.ts',
         'app/robots.ts',
       ],

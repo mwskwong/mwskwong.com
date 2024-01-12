@@ -1,14 +1,14 @@
 import Container from '@mui/joy/Container';
 import Typography from '@mui/joy/Typography';
 import { capitalize } from 'lodash-es';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import { FC } from 'react';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { getPrivacyStatement } from '@/lib/queries';
+import { getPrivacyPolicy } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
 const websiteDisplayName = capitalize(process.env.NEXT_PUBLIC_PROD_URL);
@@ -22,9 +22,9 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
 
 const description = `Privacy policy for ${websiteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
 
-const PrivacyStatement: FC = async () => {
+const PrivacyPolicy: FC = async () => {
   const [{ createdAt, updatedAt, content }, person] = await Promise.all([
-    getPrivacyStatement(),
+    getPrivacyPolicy(),
     getJsonLdPerson(),
   ]);
   return (
@@ -36,11 +36,11 @@ const PrivacyStatement: FC = async () => {
           sx={{ py: 'var(--Section-paddingY)' }}
         >
           <Typography level="h1" mb={3} mt={1}>
-            Privacy Statement
+            Privacy Policy
           </Typography>
           {content ? <Mdx source={content} /> : null}
           <Typography my={2}>
-            This Privacy Statement is subject to updates. The last revision was
+            This Privacy Policy is subject to updates. The last revision was
             made on {dateFormatter.format(new Date(updatedAt))}. Please review
             periodically for changes.
           </Typography>
@@ -54,11 +54,11 @@ const PrivacyStatement: FC = async () => {
             '@graph': [
               {
                 '@type': 'Article',
-                headline: `${websiteDisplayName} Privacy Statement`,
+                headline: `${websiteDisplayName} Privacy Policy`,
                 description,
                 datePublished: createdAt,
                 dateModified: updatedAt,
-                url: `${baseUrl}/privacy-statement`,
+                url: `${baseUrl}/privacy-policy`,
                 author: { '@id': person['@id'] },
               } satisfies Article,
               {
@@ -72,8 +72,8 @@ const PrivacyStatement: FC = async () => {
                   },
                   {
                     '@type': 'ListItem',
-                    name: 'Privacy Statement',
-                    item: `${baseUrl}/privacy-statement`,
+                    name: 'Privacy Policy',
+                    item: `${baseUrl}/privacy-policy`,
                     position: 2,
                   },
                 ],
@@ -89,19 +89,20 @@ const PrivacyStatement: FC = async () => {
   );
 };
 
-export const generateMetadata = async (
-  _: object,
-  parent: ResolvingMetadata,
-) => {
-  const title = 'Privacy Statement';
-  const path = '/privacy-statement';
-  const { openGraph } = await parent;
+export const generateMetadata = async () => {
+  const { createdAt, updatedAt } = await getPrivacyPolicy();
 
   return {
-    title,
+    title: 'Privacy Policy',
     description,
-    openGraph: { ...openGraph, url: path },
+    openGraph: {
+      type: 'article',
+      authors: baseUrl,
+      publishedTime: createdAt,
+      modifiedTime: updatedAt,
+      url: '/privacy-policy',
+    },
   } satisfies Metadata;
 };
 
-export default PrivacyStatement;
+export default PrivacyPolicy;
