@@ -91,9 +91,9 @@ module.exports = {
     // Must use default export
     {
       files: [
-        '.prettierrc.js',
         'lint-staged.config.js',
         'next.config.js',
+        'prettier.config.js',
         'app/**/page.tsx',
         'app/**/layout.tsx',
         'app/**/not-found.tsx',
