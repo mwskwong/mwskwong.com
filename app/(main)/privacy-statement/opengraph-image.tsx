@@ -1,4 +1,7 @@
 import { RouteOgImage } from '@/components/route-og-image';
 
-export { runtime, size, contentType } from '@/components/route-og-image';
-export default RouteOgImage('Privacy Statement');
+export const runtime = 'edge';
+export const size = { width: 1200, height: 630 };
+export const contentType = 'image/png';
+
+export default RouteOgImage({ title: 'Privacy Statement', size });
