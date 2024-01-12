@@ -7,7 +7,7 @@ import Grid from '@mui/joy/Grid';
 import Link from '@mui/joy/Link';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { FC, Suspense } from 'react';
 import { BreadcrumbList, Graph } from 'schema-dts';
@@ -143,19 +143,10 @@ const Blogs: FC = async () => {
   );
 };
 
-export const generateMetadata = async (
-  _: object,
-  parent: ResolvingMetadata,
-) => {
-  const title = 'Blog';
-  const path = '/blog';
-  const { openGraph } = await parent;
-
-  return {
-    title,
-    description,
-    openGraph: { ...openGraph, url: path },
-  } satisfies Metadata;
-};
+export const metadata = {
+  title: 'Blog',
+  description,
+  openGraph: { type: 'website', url: '/blog' },
+} satisfies Metadata;
 
 export default Blogs;

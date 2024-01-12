@@ -98,6 +98,7 @@ module.exports = {
         'app/**/layout.tsx',
         'app/**/not-found.tsx',
         'app/**/*error.tsx',
+        'app/**/opengraph-image.tsx',
         'app/sitemap.ts',
         'app/robots.ts',
       ],

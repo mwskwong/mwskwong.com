@@ -1,7 +1,7 @@
 import Container from '@mui/joy/Container';
 import Typography from '@mui/joy/Typography';
 import { capitalize } from 'lodash-es';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import { FC } from 'react';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
@@ -89,18 +89,19 @@ const PrivacyStatement: FC = async () => {
   );
 };
 
-export const generateMetadata = async (
-  _: object,
-  parent: ResolvingMetadata,
-) => {
-  const title = 'Privacy Statement';
-  const path = '/privacy-statement';
-  const { openGraph } = await parent;
+export const generateMetadata = async () => {
+  const { createdAt, updatedAt } = await getPrivacyStatement();
 
   return {
-    title,
+    title: 'Privacy Statement',
     description,
-    openGraph: { ...openGraph, url: path },
+    openGraph: {
+      type: 'article',
+      authors: baseUrl,
+      publishedTime: createdAt,
+      modifiedTime: updatedAt,
+      url: '/privacy-statement',
+    },
   } satisfies Metadata;
 };
 
