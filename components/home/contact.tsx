@@ -27,10 +27,7 @@ import { contact, contactForm, guestbook, home } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
 import { ContactFormData, contactFormSchema } from '@/lib/schemas';
 
-export interface ContactProps extends Omit<BoxProps<'section'>, 'children'> {
-  defaultShowInGuestbook?: boolean;
-}
-
+export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 export const Contact: FC<ContactProps> = (props) => {
   const searchParams = useSearchParams();
   const {

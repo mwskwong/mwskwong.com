@@ -63,7 +63,7 @@ const Home: FC = async () => {
         <Education bgcolor={bgcolors.education} />
         <SectionDivider bgcolor={bgcolors.contact} color={bgcolors.education} />
 
-        <Contact bgcolor={bgcolors.contact} defaultShowInGuestbook />
+        <Contact bgcolor={bgcolors.contact} />
       </Box>
       <SectionDivider bgcolor="var(--Footer-bg)" />
       <script
