@@ -18,8 +18,7 @@ import Textarea from '@mui/joy/Textarea';
 import Typography from '@mui/joy/Typography';
 import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
@@ -29,12 +28,12 @@ import { ContactFormData, contactFormSchema } from '@/lib/schemas';
 
 export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 export const Contact: FC<ContactProps> = (props) => {
-  const searchParams = useSearchParams();
   const {
     handleSubmit,
     control,
     formState: { isSubmitting, isSubmitSuccessful, isValid, errors },
     setError,
+    setValue,
     trigger,
     watch,
   } = useForm<ContactFormData>({
@@ -46,12 +45,30 @@ export const Contact: FC<ContactProps> = (props) => {
       email: '',
       subject: '',
       message: '',
-      showInGuestbook: searchParams.get('showInGuestbook') === 'true',
+      showInGuestbook: false,
     },
     progressive: true,
   });
 
   const showInGuestbook = watch('showInGuestbook');
+
+  useEffect(() => {
+    /**
+     * not using useSearchParam here,
+     * or else the page (or the nearest suspense, which is impractical in this case)
+     * will be client-side rendered.
+     * @see {@link https://nextjs.org/docs/app/api-reference/functions/use-search-params#static-rendering}
+     *
+     * Since we are checking the checkbox on the client-side,
+     * there will be a delay before the checkbox is checked,
+     * if the client device is very slow (unable to reproduce with "Low-end mobile" in Chromium browser).
+     * But this is acceptable for this case.
+     */
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get('showInGuestbook') === 'true') {
+      setValue('showInGuestbook', true);
+    }
+  }, [setValue]);
 
   return (
     <Box component="section" {...props}>
