@@ -28,7 +28,6 @@ const Image = async () =>
           style={{
             fontWeight: 700,
             fontSize: '7rem',
-            lineHeight: 1.33334,
             letterSpacing: '0.025em',
             textTransform: 'uppercase',
             marginTop: 32,
@@ -42,7 +41,6 @@ const Image = async () =>
           style={{
             fontWeight: 700,
             fontSize: '3.75rem',
-            lineHeight: 1.33334,
             letterSpacing: '0.6667em',
             textTransform: 'uppercase',
             margin: 0,
