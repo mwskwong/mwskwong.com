@@ -156,9 +156,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                       >
                         <Image
                           alt=""
-                          src={`https://image.thum.io/get/pdfSource/width/${
-                            listItemImageSize.width * 8
-                          }/${url}`}
+                          src={`https://image.thum.io/get/pdfSource/width/${listItemImageSize.width * 8}/${url}`}
                           {...listItemImageSize}
                           sx={[listItemImageSx, { objectPosition: 'top' }]}
                         />
