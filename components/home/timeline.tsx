@@ -128,6 +128,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                   '& > li': {
                     minWidth: { sm: 250 },
                     width: { xs: '100%', sm: 'auto' },
+                    maxWidth: '100%',
                     '&:not(:only-child)': { maxWidth: { sm: 400 } },
                   },
                 }}
