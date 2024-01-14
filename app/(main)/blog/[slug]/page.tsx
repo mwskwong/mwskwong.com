@@ -16,11 +16,13 @@ import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { CoverImage } from '@/components/blog/cover-image';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
+import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { contact } from '@/constants/nav';
-import { getBlogBySlug, getBlogs } from '@/lib/queries';
+import { firstName, headline, lastName } from '@/constants/content';
+import { blog as blogPage, home } from '@/constants/nav';
+import { getBlogBySlug, getBlogs, getPersonalPhoto } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
 // data attribute auto injected by rehype-pretty-code
@@ -47,8 +49,9 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const [blog, person] = await Promise.all([
+  const [blog, personalPhoto, person] = await Promise.all([
     getBlogBySlug(slug),
+    getPersonalPhoto(),
     getJsonLdPerson(),
   ]);
   if (!blog) notFound();
@@ -103,15 +106,47 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
         >
           <Container>
             <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
-              <Typography level="h2">Any Questions or Comments?</Typography>
-              <Button
-                component={NextLink}
-                endDecorator={<ArrowRight />}
-                href={{ pathname: contact.pathname, hash: contact.id }}
-                size="lg"
+              <Typography level="h2">About The Author</Typography>
+              <Stack alignItems="center" spacing={2}>
+                {personalPhoto ? (
+                  <Image
+                    alt={`${firstName} ${lastName}`}
+                    height={48}
+                    src={personalPhoto}
+                    sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
+                    width={48}
+                  />
+                ) : null}
+                <div>
+                  <Typography level="title-lg">
+                    {firstName} {lastName}
+                  </Typography>
+                  <Typography>{headline}</Typography>
+                </div>
+              </Stack>
+              <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                justifyContent="center"
+                spacing={2}
               >
-                Contact Me
-              </Button>
+                <Button
+                  component={NextLink}
+                  endDecorator={<ArrowRight />}
+                  href={home.pathname}
+                  size="lg"
+                >
+                  Learn More
+                </Button>
+                <Button
+                  color="neutral"
+                  component={NextLink}
+                  href={blogPage.pathname}
+                  size="lg"
+                  variant="outlined"
+                >
+                  My Other Articles
+                </Button>
+              </Stack>
             </Stack>
           </Container>
         </Box>

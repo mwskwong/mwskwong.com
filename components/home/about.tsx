@@ -35,11 +35,7 @@ export const About: FC<AboutProps> = async (props) => {
                 height={200}
                 priority
                 src={personalPhoto}
-                sx={{
-                  borderRadius: 'md',
-                  border: 1,
-                  borderColor: 'neutral.outlinedBorder',
-                }}
+                sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
                 width={200}
               />
             ) : null}
