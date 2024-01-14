@@ -36,6 +36,13 @@ export const theme = extendTheme({
         },
       },
     },
+    JoyChip: {
+      styleOverrides: {
+        root: {
+          WebkitTapHighlightColor: 'transparent',
+        },
+      },
+    },
     JoyLink: {
       styleOverrides: {
         root: ({ ownerState }) => ({
