@@ -3,7 +3,9 @@ import Button from '@mui/joy/Button';
 import Chip from '@mui/joy/Chip';
 import Container from '@mui/joy/Container';
 import Grid from '@mui/joy/Grid';
+import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
+import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
 import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
@@ -16,13 +18,19 @@ import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { CoverImage } from '@/components/blog/cover-image';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
+import { Icon } from '@/components/contentful';
 import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { firstName, headline, lastName } from '@/constants/content';
 import { blog as blogPage, home } from '@/constants/nav';
-import { getBlogBySlug, getBlogs, getPersonalPhoto } from '@/lib/queries';
+import {
+  getBlogBySlug,
+  getBlogs,
+  getPersonalPhoto,
+  getPlatformProfiles,
+} from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
 // data attribute auto injected by rehype-pretty-code
@@ -49,9 +57,10 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const [blog, personalPhoto, person] = await Promise.all([
+  const [blog, personalPhoto, platformProfiles, person] = await Promise.all([
     getBlogBySlug(slug),
     getPersonalPhoto(),
+    getPlatformProfiles(),
     getJsonLdPerson(),
   ]);
   if (!blog) notFound();
@@ -123,6 +132,26 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   </Typography>
                   <Typography>{headline}</Typography>
                 </div>
+                <Stack direction="row" spacing={1}>
+                  {platformProfiles.map(
+                    ({ platform, url }) =>
+                      platform && (
+                        <Tooltip
+                          key={platform.id}
+                          title={`${platform.name} profile`}
+                        >
+                          <IconButton
+                            component="a"
+                            href={url}
+                            size="sm"
+                            target="_blank"
+                          >
+                            <Icon contentfulId={platform.id} />
+                          </IconButton>
+                        </Tooltip>
+                      ),
+                  )}
+                </Stack>
               </Stack>
               <Stack
                 direction={{ xs: 'column', sm: 'row' }}
