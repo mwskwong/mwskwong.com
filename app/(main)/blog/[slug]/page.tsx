@@ -119,10 +119,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 {personalPhoto ? (
                   <Image
                     alt={`${firstName} ${lastName}`}
-                    height={56}
+                    height={48}
                     src={personalPhoto}
                     sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
-                    width={56}
+                    width={48}
                   />
                 ) : null}
                 <div>
