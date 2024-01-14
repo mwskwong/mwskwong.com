@@ -252,7 +252,7 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
       modifiedTime: updatedAt,
       tags: categories,
       url: `/blog/${slug}`,
-      images: coverPhoto,
+      images: `https:${coverPhoto}`,
     },
   } satisfies Metadata;
 };
