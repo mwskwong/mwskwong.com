@@ -7,7 +7,6 @@ import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
 import Tooltip from '@mui/joy/Tooltip';
 import Typography from '@mui/joy/Typography';
-import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
@@ -115,7 +114,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
         >
           <Container>
             <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
-              <Typography level="h2">About The Author</Typography>
+              <Typography level="h2">Written By</Typography>
               <Stack alignItems="center" spacing={2}>
                 {personalPhoto ? (
                   <Image
@@ -158,12 +157,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 justifyContent="center"
                 spacing={2}
               >
-                <Button
-                  component={NextLink}
-                  endDecorator={<ArrowRight />}
-                  href={home.pathname}
-                  size="lg"
-                >
+                <Button component={NextLink} href={home.pathname} size="lg">
                   Learn More
                 </Button>
                 <Button
@@ -173,7 +167,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   size="lg"
                   variant="outlined"
                 >
-                  My Other Articles
+                  More Articles
                 </Button>
               </Stack>
             </Stack>
