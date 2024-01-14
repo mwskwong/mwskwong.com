@@ -7,6 +7,7 @@ import {
   firstName,
   lastName,
   phone,
+  selfIntroduction,
 } from '@/constants/content';
 
 import {
@@ -23,9 +24,10 @@ export const getJsonLdPerson = async () => {
   ]);
 
   return {
-    '@id': baseUrl,
+    '@id': 'mwskwong',
     '@type': 'Person',
     name: `${firstName} ${lastName}`,
+    alternateName: 'mwskwong',
     telephone: phone,
     jobTitle: latestJobTitle,
     email,
@@ -33,5 +35,6 @@ export const getJsonLdPerson = async () => {
     url: baseUrl,
     image: personalPhoto,
     sameAs: platformProfiles.map(({ url }) => url),
+    description: selfIntroduction,
   } satisfies Person;
 };
