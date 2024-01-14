@@ -28,7 +28,6 @@ export const Hero: FC<HeroProps> = async (props) => {
       <Container sx={{ textAlign: 'center' }}>
         <Stack alignItems="center" spacing={2}>
           <Chip
-            component={NextLink}
             endDecorator={
               <Typography
                 color="primary"
@@ -39,7 +38,7 @@ export const Hero: FC<HeroProps> = async (props) => {
                 Read more
               </Typography>
             }
-            href={blog.pathname}
+            slotProps={{ action: { component: NextLink, href: blog.pathname } }}
             variant="outlined"
           >
             I started writing articles.
