@@ -1,7 +1,9 @@
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import List, { ListProps } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Skeleton from '@mui/joy/Skeleton';
 import Typography from '@mui/joy/Typography';
 import dayjs, { extend } from 'dayjs';
@@ -20,9 +22,28 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
 }) => {
   const submissions = await getGuestbookSubmissions();
   return (
-    <List sx={mergeSx({ '--List-gap': '16px' }, sx)} {...props}>
+    <List
+      sx={mergeSx(
+        {
+          '--List-gap': '16px',
+          '--ListItemDecorator-size': '48px',
+          '& > li': { alignItems: 'flex-start' },
+        },
+        sx,
+      )}
+      {...props}
+    >
       {submissions.map(({ id, name, message, submittedAt }) => (
         <ListItem key={id}>
+          <ListItemDecorator>
+            <Avatar size="sm" sx={{ textTransform: 'uppercase' }}>
+              {name
+                .split(' ')
+                .slice(0, 2)
+                .map((text) => text[0])
+                .join('')}
+            </Avatar>
+          </ListItemDecorator>
           <ListItemContent>
             <Typography level="title-md">
               {name}
@@ -46,9 +67,22 @@ export const SubmissionListSkeleton: FC<SubmissionListProps> = ({
   ...props
 }) => {
   return (
-    <List sx={mergeSx({ '--List-gap': '16px' }, sx)} {...props}>
+    <List
+      sx={mergeSx(
+        {
+          '--List-gap': '16px',
+          '--ListItemDecorator-size': '48px',
+          '& > li': { alignItems: 'flex-start' },
+        },
+        sx,
+      )}
+      {...props}
+    >
       {Array.from({ length: 5 }, (_, index) => (
         <ListItem key={index}>
+          <ListItemDecorator>
+            <Skeleton height={32} variant="circular" width={32} />
+          </ListItemDecorator>
           <ListItemContent>
             <Box alignItems="center" display="flex">
               <Skeleton level="title-md" variant="text" width={120} />
