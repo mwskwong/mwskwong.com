@@ -59,7 +59,11 @@ const Blogs: FC = async () => {
               ) => (
                 <Grid key={id} md={4} sm={6} xs={12}>
                   <Card component="article" sx={{ height: { sm: '100%' } }}>
-                    <BlogCardImage priority={index === 0} src={coverPhoto} />
+                    <BlogCardImage
+                      alt={`Thumbnail for ${title}`}
+                      priority={index === 0}
+                      src={coverPhoto}
+                    />
                     <Stack direction="row" flexWrap="wrap" spacing={1}>
                       {categories?.map((category) => (
                         <Chip color="primary" key={category}>

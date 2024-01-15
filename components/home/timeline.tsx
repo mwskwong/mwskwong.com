@@ -140,7 +140,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                         sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
                       >
                         <Image
-                          alt=""
+                          alt={`Thumbnail for ${name}`}
                           src={thumbnail}
                           {...listItemImageSize}
                           sx={listItemImageSx}
@@ -157,7 +157,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                         sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
                       >
                         <ThumIoPdfImage
-                          alt=""
+                          alt={`Thumbnail for ${title}`}
                           src={url}
                           {...listItemImageSize}
                           sx={[listItemImageSx, { objectPosition: 'top' }]}

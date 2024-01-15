@@ -4,11 +4,10 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import { useTheme } from '@mui/joy/styles';
 import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
-import { SetOptional } from 'type-fest';
 
 import { Image, ImageProps } from '../image';
 
-export type CoverImageProps = SetOptional<ImageProps, 'alt'>;
+export type CoverImageProps = ImageProps;
 export const CoverImage: FC<CoverImageProps> = ({ sx, ...props }) => {
   const theme = useTheme();
 
@@ -19,11 +18,10 @@ export const CoverImage: FC<CoverImageProps> = ({ sx, ...props }) => {
       sx={{ borderRadius: 'md' }}
       variant="outlined"
     >
+      {/* eslint-disable-next-line jsx-a11y/alt-text -- provided by parent */}
       <Image
-        alt=""
         fill
         priority
-        role="presentation"
         sizes={[
           `${theme.breakpoints.up('md')} ${theme.breakpoints.values.md}px`,
           '100vw',
