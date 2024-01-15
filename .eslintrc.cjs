@@ -91,7 +91,6 @@ module.exports = {
     // Must use default export
     {
       files: [
-        'lint-staged.config.js',
         'next.config.js',
         'prettier.config.js',
         'app/**/page.tsx',
