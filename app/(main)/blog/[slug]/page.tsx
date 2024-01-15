@@ -103,12 +103,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
             </Grid>
           </Grid>
-          {blog.coverPhoto ? (
-            <CoverImage
-              alt={`Cover photo for ${blog.title}`}
-              src={blog.coverPhoto}
-            />
-          ) : null}
+          <CoverImage
+            alt={`Cover photo for ${blog.title}`}
+            src={blog.coverPhoto}
+          />
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
         <SectionDivider bgcolor={contactMeBgColor} />
@@ -121,15 +119,13 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
               <Typography level="h2">Written By</Typography>
               <Stack alignItems="center" spacing={2}>
-                {personalPhoto ? (
-                  <Image
-                    alt={`${firstName} ${lastName}`}
-                    height={48}
-                    src={personalPhoto}
-                    sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
-                    width={48}
-                  />
-                ) : null}
+                <Image
+                  alt={`${firstName} ${lastName}`}
+                  height={48}
+                  src={personalPhoto}
+                  sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
+                  width={48}
+                />
                 <div>
                   <Typography level="title-lg">
                     {firstName} {lastName}
