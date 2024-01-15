@@ -10,8 +10,20 @@ const config = {
   },
   eslint: { dirs: ['app', 'components', 'constants', 'lib'] },
   images: {
-    loader: 'custom',
-    loaderFile: './image-loaders.ts',
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'image.thum.io',
+        pathname: '/get/pdfSource/width/**',
+        port: '',
+      },
+    ],
   },
   webpack: (config) => {
     const fileLoaderRule = config.module.rules.find((rule) =>
