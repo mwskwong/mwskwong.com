@@ -158,7 +158,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 spacing={2}
               >
                 <Button component={NextLink} href={home.pathname} size="lg">
-                  Learn More
+                  More About Me
                 </Button>
                 <Button
                   color="neutral"
