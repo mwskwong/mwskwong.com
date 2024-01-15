@@ -49,7 +49,7 @@ const Blogs: FC = async () => {
                 {
                   id,
                   createdAt,
-                  coverPhoto = '',
+                  coverPhoto,
                   slug,
                   title,
                   description,
