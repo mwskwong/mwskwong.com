@@ -189,9 +189,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 '@type': 'BlogPosting',
                 headline: blog.title,
                 description: blog.description,
-                image: [630, 630 * (4 / 3), 630 * (16 / 9)].map(
-                  (w) => `https:${blog.coverPhoto}?w=${w}&h=630&fit=fill`,
-                ),
+                image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
                 url: `${baseUrl}/blog/${slug}`,
@@ -254,7 +252,7 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
       modifiedTime: updatedAt,
       tags: categories,
       url: `/blog/${slug}`,
-      images: `https:${coverPhoto}`,
+      images: coverPhoto,
     },
   } satisfies Metadata;
 };
