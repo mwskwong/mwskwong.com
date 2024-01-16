@@ -86,18 +86,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               {contributedProjects.map(({ id, name, url }) => (
                 <Tooltip key={id} title={name}>
                   <Link href={url} target="_blank">
-                    <Logo
-                      colorScheme="light"
-                      contentfulId={id}
-                      height={36}
-                      width={36}
-                    />
-                    <Logo
-                      colorScheme="dark"
-                      contentfulId={id}
-                      height={36}
-                      width={36}
-                    />
+                    <Logo contentfulId={id} height={36} width={36} />
                   </Link>
                 </Tooltip>
               ))}
