@@ -133,7 +133,6 @@ const Blogs: FC = async () => {
                   {
                     '@type': 'ListItem',
                     name: 'Blog',
-                    item: `${baseUrl}/blog`,
                     position: 2,
                   },
                 ],

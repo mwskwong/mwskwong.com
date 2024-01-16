@@ -74,7 +74,6 @@ const PrivacyPolicy: FC = async () => {
                   {
                     '@type': 'ListItem',
                     name: 'Privacy Policy',
-                    item: `${baseUrl}/privacy-policy`,
                     position: 2,
                   },
                 ],
