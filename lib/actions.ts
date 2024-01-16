@@ -1,7 +1,7 @@
 'use server';
 
 import { send } from '@emailjs/nodejs';
-import { unstable_noStore as noStore, revalidateTag } from 'next/cache';
+import { unstable_noStore as noStore } from 'next/cache';
 import { parse } from 'valibot';
 
 import { prisma } from '@/lib/clients';
@@ -30,6 +30,4 @@ export const submitContactForm = async (data: ContactFormData) => {
       privateKey: process.env.EMAILJS_PRIVATE_KEY,
     },
   );
-
-  if (data.showInGuestbook) revalidateTag('guestbook-submissions');
 };

@@ -1,35 +1,26 @@
-import Avatar from '@mui/joy/Avatar';
 import Button from '@mui/joy/Button';
 import Container from '@mui/joy/Container';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemContent from '@mui/joy/ListItemContent';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import dayjs, { extend } from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import { BreadcrumbList, Graph } from 'schema-dts';
 
+import {
+  SubmissionList,
+  SubmissionListSkeleton,
+} from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { contactForm } from '@/constants/nav';
-import { getGuestbookSubmissions } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
-
-extend(relativeTime);
 
 const description =
   'Drop a line in my guestbook. Share your thoughts, stories, or a simple hello.';
 
 const Guestbook: FC = async () => {
-  const [submissions, person] = await Promise.all([
-    getGuestbookSubmissions(),
-    getJsonLdPerson(),
-  ]);
+  const person = await getJsonLdPerson();
 
   return (
     <>
@@ -55,43 +46,9 @@ const Guestbook: FC = async () => {
           >
             Leave A Message
           </Button>
-          <List
-            sx={{
-              '--List-gap': '16px',
-              '--ListItemDecorator-size': '48px',
-              '& > li': { alignItems: 'flex-start' },
-            }}
-          >
-            {submissions.map(({ id, name, message, submittedAt }) => (
-              <ListItem key={id}>
-                <ListItemDecorator>
-                  <Avatar size="sm" sx={{ textTransform: 'uppercase' }}>
-                    {name
-                      .split(' ')
-                      .slice(0, 2)
-                      .map((text) => text[0])
-                      .join('')}
-                  </Avatar>
-                </ListItemDecorator>
-                <ListItemContent>
-                  <Typography level="title-md">
-                    {name}
-                    <Typography level="body-sm">
-                      {' · '}
-                      {dayjs(submittedAt).fromNow()}
-                    </Typography>
-                  </Typography>
-                  <Typography
-                    component="pre"
-                    level="body-md"
-                    whiteSpace="pre-wrap"
-                  >
-                    {message}
-                  </Typography>
-                </ListItemContent>
-              </ListItem>
-            ))}
-          </List>
+          <Suspense fallback={<SubmissionListSkeleton />}>
+            <SubmissionList />
+          </Suspense>
         </Stack>
       </Container>
       <SectionDivider bgcolor="var(--Footer-bg)" />

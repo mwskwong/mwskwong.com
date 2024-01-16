@@ -289,12 +289,10 @@ export const getBlogMetadataById = (id: string) => {
   return prisma.blogMetadata.findUnique({ where: { id } });
 };
 
-export const getGuestbookSubmissions = cache(
-  () =>
-    prisma.contactFormSubmission.findMany({
-      where: { showInGuestbook: true },
-      orderBy: { submittedAt: 'desc' },
-    }),
-  ['guestbook-submissions'],
-  { tags: ['guestbook-submissions'] },
-);
+export const getGuestbookSubmissions = () => {
+  noStore();
+  return prisma.contactFormSubmission.findMany({
+    where: { showInGuestbook: true },
+    orderBy: { submittedAt: 'desc' },
+  });
+};
