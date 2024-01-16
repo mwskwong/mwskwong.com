@@ -12,6 +12,7 @@ import { StaticImageData } from 'next/image';
 import { FC, Fragment, forwardRef } from 'react';
 
 import { Image } from '../image';
+import { ThumIoPdfImage } from '../thumb-io-pdf-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',
@@ -155,9 +156,9 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                       <ListItemDecorator
                         sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
                       >
-                        <Image
+                        <ThumIoPdfImage
                           alt={`Thumbnail for ${title}`}
-                          src={`https://image.thum.io/get/pdfSource/width/${listItemImageSize.width * 8}/${url}`}
+                          src={url}
                           {...listItemImageSize}
                           sx={[listItemImageSx, { objectPosition: 'top' }]}
                         />

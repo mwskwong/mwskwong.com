@@ -35,7 +35,7 @@ export const getBlogBySlug = cache(async (slug: string) => {
       id: item.sys.id,
       createdAt: item.sys.createdAt,
       updatedAt: item.sys.updatedAt,
-      coverPhoto: `https:${item.fields.coverPhoto?.fields.file?.url}`,
+      coverPhoto: item.fields.coverPhoto?.fields.file?.url,
       categories: item.fields.categories,
       title: item.fields.title,
       slug: item.fields.slug,
@@ -59,7 +59,7 @@ export const getBlogs = cache(
       id: item.sys.id,
       createdAt: item.sys.createdAt,
       updatedAt: item.sys.updatedAt,
-      coverPhoto: `https:${item.fields.coverPhoto?.fields.file?.url}`,
+      coverPhoto: item.fields.coverPhoto?.fields.file?.url,
       categories: item.fields.categories,
       title: item.fields.title,
       slug: item.fields.slug,
@@ -94,14 +94,14 @@ export const getCourses = cache(async () => {
       id: item.fields.institution.sys.id,
       name: item.fields.institution.fields.name,
     },
-    certificate: `https:${item.fields.certificate?.fields.file?.url}`,
+    certificate: item.fields.certificate?.fields.file?.url,
     categories: item.fields.categories,
   }));
 });
 
 export const getCv = cache(async () => {
   const asset = await contentful.getAsset('6mTh13ou7wM2Cs7ZC1tcdn');
-  return `https:${asset.fields.file?.url}`;
+  return asset.fields.file?.url;
 });
 
 export const getEducations = cache(async () => {
@@ -122,13 +122,13 @@ export const getEducations = cache(async () => {
     ...item.fields,
     school: item.fields.school && {
       ...item.fields.school.fields,
-      logo: `https:${item.fields.school.fields.logo?.fields.file?.url}`,
+      logo: item.fields.school.fields.logo?.fields.file?.url,
     },
     grade: item.fields.grade,
     supportingDocuments: item.fields.supportingDocuments?.map(
       (supportingDocument) => ({
         title: supportingDocument?.fields.title,
-        url: `https:${supportingDocument?.fields.file?.url}`,
+        url: supportingDocument?.fields.file?.url,
       }),
     ),
   }));
@@ -166,16 +166,16 @@ export const getExperiences = cache(async () => {
       )
       .map((company) => ({
         ...company.fields,
-        logo: `https:${company.fields.logo?.fields.file?.url}`,
+        logo: company.fields.logo?.fields.file?.url,
       })),
     projects: item.fields.projects?.map((project) => ({
       ...project?.fields,
-      thumbnail: `https:${project?.fields.thumbnail?.fields.file?.url}`,
+      thumbnail: project?.fields.thumbnail?.fields.file?.url,
     })),
     supportingDocuments: item.fields.supportingDocuments?.map(
       (supportingDocument) => ({
         title: supportingDocument?.fields.title,
-        url: `https:${supportingDocument?.fields.file?.url}`,
+        url: supportingDocument?.fields.file?.url,
       }),
     ),
     skills: item.fields.skills
@@ -189,7 +189,7 @@ export const getExperiences = cache(async () => {
 
 export const getPersonalPhoto = cache(async () => {
   const asset = await contentful.getAsset('6MPuamYCrTMaP2hJu4t6WM');
-  return `https:${asset.fields.file?.url}`;
+  return asset.fields.file?.url;
 });
 
 export const getPlatformProfiles = cache(async () => {

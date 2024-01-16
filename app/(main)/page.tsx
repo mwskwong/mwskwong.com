@@ -1,6 +1,6 @@
 import Box from '@mui/joy/Box';
 import { FC } from 'react';
-import { Article, BreadcrumbList, Graph } from 'schema-dts';
+import { BreadcrumbList, Graph } from 'schema-dts';
 
 import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';
@@ -10,7 +10,6 @@ import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { headline } from '@/constants/content';
 import { getJsonLdPerson } from '@/lib/utils';
 
 const bgcolors = {
@@ -71,14 +70,6 @@ const Home: FC = async () => {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@graph': [
-              {
-                '@type': 'Article',
-                headline,
-                image: `${baseUrl}/opengraph-image.png`,
-                datePublished: new Date(2019, 9, 23, 0, 0, 0).toISOString(),
-                dateModified: new Date().toISOString(),
-                author: { '@id': person['@id'] },
-              } satisfies Article,
               {
                 '@type': 'BreadcrumbList',
                 itemListElement: [

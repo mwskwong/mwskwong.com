@@ -103,10 +103,12 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
             </Grid>
           </Grid>
-          <CoverImage
-            alt={`Cover photo for ${blog.title}`}
-            src={blog.coverPhoto}
-          />
+          {blog.coverPhoto ? (
+            <CoverImage
+              alt={`Cover photo for ${blog.title}`}
+              src={blog.coverPhoto}
+            />
+          ) : null}
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
         <SectionDivider bgcolor={contactMeBgColor} />
@@ -119,13 +121,15 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
               <Typography level="h2">Written By</Typography>
               <Stack alignItems="center" spacing={2}>
-                <Image
-                  alt={`${firstName} ${lastName}`}
-                  height={48}
-                  src={personalPhoto}
-                  sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
-                  width={48}
-                />
+                {personalPhoto ? (
+                  <Image
+                    alt={`${firstName} ${lastName}`}
+                    height={48}
+                    src={personalPhoto}
+                    sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
+                    width={48}
+                  />
+                ) : null}
                 <div>
                   <Typography level="title-lg">
                     {firstName} {lastName}
@@ -185,11 +189,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 '@type': 'BlogPosting',
                 headline: blog.title,
                 description: blog.description,
-                image: blog.coverPhoto,
+                image: [630, 630 * (4 / 3), 630 * (16 / 9)].map(
+                  (w) => `https:${blog.coverPhoto}?w=${w}&h=630&fit=fill`,
+                ),
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
                 url: `${baseUrl}/blog/${slug}`,
                 author: { '@id': person['@id'] },
+                keywords: blog.categories,
               } satisfies BlogPosting,
               {
                 '@type': 'BreadcrumbList',
