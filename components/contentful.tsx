@@ -84,17 +84,17 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
 Icon.displayName = 'Icon';
 
 const Logos = {
-  [contentfulIds.muiCore]: { light: Mui, dark: Mui },
-  [contentfulIds.joyUi]: { light: Mui, dark: Mui },
+  [contentfulIds.muiCore]: Mui,
+  [contentfulIds.joyUi]: Mui,
   [contentfulIds.nextJs]: { light: NextJsLight, dark: undefined },
   [contentfulIds.prisma]: { light: PrismaLight, dark: undefined },
   [contentfulIds.react]: { light: ReactLight, dark: undefined },
-  [contentfulIds.reactHookForm]: { light: ReactHookForm, dark: ReactHookForm },
-  [contentfulIds.typescript]: { light: TypeScript, dark: TypeScript },
-  [contentfulIds.valibot]: { light: Valibot, dark: Valibot },
+  [contentfulIds.reactHookForm]: ReactHookForm,
+  [contentfulIds.typescript]: TypeScript,
+  [contentfulIds.valibot]: Valibot,
   [contentfulIds.contentful]: { light: ContentfulLight, dark: undefined },
-  [contentfulIds.emailjs]: { light: EmailJs, dark: EmailJs },
-  [contentfulIds.improvMx]: { light: ImprovMx, dark: ImprovMx },
+  [contentfulIds.emailjs]: EmailJs,
+  [contentfulIds.improvMx]: ImprovMx,
   [contentfulIds.planetScale]: { light: PlanetScaleLight, dark: undefined },
   [contentfulIds.vercel]: { light: VercelLight, dark: VercelDark },
   [contentfulIds.vercelStyleGuide]: { light: VercelLight, dark: VercelDark },
@@ -106,7 +106,7 @@ const Logos = {
 
 export interface LogoProps extends SVGProps<SVGSVGElement> {
   contentfulId: LiteralUnion<keyof typeof Logos, string>;
-  colorScheme?: 'light' | 'dark';
+  colorScheme?: 'light' | 'dark' | 'auto';
 }
 
 export const logoClasses = {
@@ -115,17 +115,44 @@ export const logoClasses = {
 };
 
 export const Logo = forwardRef<SVGSVGElement, LogoProps>(
-  ({ contentfulId, colorScheme = 'dark', className, ...props }, ref) => {
+  ({ contentfulId, colorScheme = 'auto', className, ...props }, ref) => {
     if (!(contentfulId in Logos)) return null;
 
-    const Logo = Logos[contentfulId as keyof typeof Logos][colorScheme];
+    const MaybeLogo = Logos[contentfulId as keyof typeof Logos];
+    const universal = typeof MaybeLogo === 'function';
+
+    if (colorScheme === 'auto') {
+      if (universal) return <MaybeLogo ref={ref} {...props} />;
+
+      const { light: LightLogo, dark: DarkLogo } = MaybeLogo;
+      return (
+        <>
+          <LightLogo
+            className={logoClasses.colorSchemeLight}
+            ref={ref}
+            {...props}
+          />
+          {DarkLogo ? (
+            <DarkLogo
+              className={logoClasses.colorSchemeDark}
+              ref={ref}
+              {...props}
+            />
+          ) : null}
+        </>
+      );
+    }
+
+    const Logo = universal ? MaybeLogo : MaybeLogo[colorScheme];
     return (
       Logo && (
         <Logo
           className={clsx(
             {
-              [logoClasses.colorSchemeLight]: colorScheme === 'light',
-              [logoClasses.colorSchemeDark]: colorScheme === 'dark',
+              [logoClasses.colorSchemeLight]:
+                !universal && colorScheme === 'light',
+              [logoClasses.colorSchemeDark]:
+                !universal && colorScheme === 'dark',
             },
             className,
           )}
