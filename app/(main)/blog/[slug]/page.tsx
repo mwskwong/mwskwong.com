@@ -189,11 +189,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 '@type': 'BlogPosting',
                 headline: blog.title,
                 description: blog.description,
-                image: blog.coverPhoto,
+                image: [630, 630 * (4 / 3), 630 * (16 / 9)].map(
+                  (w) => `https:${blog.coverPhoto}?w=${w}&h=630&fit=fill`,
+                ),
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
                 url: `${baseUrl}/blog/${slug}`,
                 author: { '@id': person['@id'] },
+                keywords: blog.categories,
               } satisfies BlogPosting,
               {
                 '@type': 'BreadcrumbList',

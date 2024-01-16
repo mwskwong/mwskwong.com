@@ -56,6 +56,7 @@ const PrivacyPolicy: FC = async () => {
                 '@type': 'Article',
                 headline: `${websiteDisplayName} Privacy Policy`,
                 description,
+                image: `${baseUrl}/privacy-policy/opengraph-image`,
                 datePublished: createdAt,
                 dateModified: updatedAt,
                 url: `${baseUrl}/privacy-policy`,
