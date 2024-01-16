@@ -69,7 +69,6 @@ const Guestbook: FC = async () => {
                   {
                     '@type': 'ListItem',
                     name: 'Guestbook',
-                    item: `${baseUrl}/guestbook`,
                     position: 2,
                   },
                 ],

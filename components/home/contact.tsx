@@ -39,7 +39,6 @@ export const Contact: FC<ContactProps> = (props) => {
   } = useForm<ContactFormData>({
     resolver: valibotResolver(contactFormSchema),
     mode: 'onTouched',
-    // FIXME: get default values from contactFormSchema?
     defaultValues: {
       name: '',
       email: '',

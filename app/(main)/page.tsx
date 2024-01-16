@@ -9,7 +9,6 @@ import { Experience } from '@/components/home/experience';
 import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
-import { baseUrl } from '@/constants/base-url';
 import { getJsonLdPerson } from '@/lib/utils';
 
 const bgcolors = {
@@ -76,7 +75,6 @@ const Home: FC = async () => {
                   {
                     '@type': 'ListItem',
                     name: 'Home',
-                    item: baseUrl,
                     position: 1,
                   },
                 ],
