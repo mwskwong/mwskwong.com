@@ -143,7 +143,7 @@ export const Contact: FC<ContactProps> = (props) => {
             {isSubmitSuccessful ? (
               <Grid md={8} xs={12}>
                 <Stack
-                  alignItems="center"
+                  alignItems={{ sm: 'center' }}
                   height="100%"
                   justifyContent="center"
                   py={6}
@@ -159,6 +159,7 @@ export const Contact: FC<ContactProps> = (props) => {
                       borderRadius: 'sm',
                       width: 48,
                       height: 48,
+                      mx: 'auto',
                     }}
                     variant="outlined"
                   >
