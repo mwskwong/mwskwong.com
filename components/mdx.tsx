@@ -19,6 +19,7 @@ import rehypeSlug from 'rehype-slug';
 
 export const Heading: FC<TypographyProps> = ({
   id,
+  slotProps,
   sx,
   children,
   ...props
@@ -26,13 +27,20 @@ export const Heading: FC<TypographyProps> = ({
   <Typography
     endDecorator={<LinkIcon />}
     id={id}
+    slotProps={merge(
+      {
+        endDecorator: {
+          sx: {
+            display: { xs: 'none', md: 'unset' },
+            visibility: 'hidden',
+            '--Icon-fontSize': 'var(--joy-fontSize-xl)',
+          },
+        },
+      },
+      slotProps,
+    )}
     sx={mergeSx(
       {
-        '& .MuiTypography-endDecorator': {
-          display: { xs: 'none', md: 'unset' },
-          visibility: 'hidden',
-          '--Icon-fontSize': 'var(--joy-fontSize-xl)',
-        },
         '&:hover': {
           '& .MuiTypography-endDecorator': {
             visibility: 'unset',
