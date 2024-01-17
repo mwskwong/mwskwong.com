@@ -19,7 +19,7 @@ import {
   Textarea,
   Typography,
 } from '@mui/joy';
-import { AlertTriangle, ArrowUp, Send, ThumbsUp } from 'lucide-react';
+import { AlertTriangle, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -143,10 +143,9 @@ export const Contact: FC<ContactProps> = (props) => {
             {isSubmitSuccessful ? (
               <Grid md={8} xs={12}>
                 <Stack
-                  alignItems={{ sm: 'center' }}
+                  alignItems="center"
                   height="100%"
-                  justifyContent="center"
-                  py={6}
+                  mb={6}
                   spacing={2}
                   textAlign="center"
                 >
@@ -159,7 +158,6 @@ export const Contact: FC<ContactProps> = (props) => {
                       borderRadius: 'sm',
                       width: 48,
                       height: 48,
-                      mx: 'auto',
                     }}
                     variant="outlined"
                   >
@@ -170,22 +168,28 @@ export const Contact: FC<ContactProps> = (props) => {
                     <Typography maxWidth="sm">
                       Thank you for reaching out! I have received your message
                       and will respond promptly, should you have provided your
-                      email address. Meanwhile, feel free to check out my{' '}
-                      <Link
-                        component={NextLink}
-                        href={guestbook.pathname}
-                        underline="always"
-                      >
-                        Guestbook
-                      </Link>{' '}
-                      to see what others have to say. Thank you!
+                      email address.
                     </Typography>
                   </div>
+                </Stack>
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  justifyContent="center"
+                  spacing={2}
+                >
                   <Button
+                    component={NextLink}
+                    href={guestbook.pathname}
+                    size="lg"
+                  >
+                    Guestbook
+                  </Button>
+                  <Button
+                    color="neutral"
                     component={NextLink}
                     href={{ pathname: home.pathname, hash: home.id }}
                     size="lg"
-                    startDecorator={<ArrowUp />}
+                    variant="outlined"
                   >
                     Back to Top
                   </Button>
