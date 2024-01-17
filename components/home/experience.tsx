@@ -1,9 +1,12 @@
-import Box, { BoxProps } from '@mui/joy/Box';
-import Container from '@mui/joy/Container';
-import Link from '@mui/joy/Link';
-import Stack from '@mui/joy/Stack';
-import Tooltip from '@mui/joy/Tooltip';
-import Typography from '@mui/joy/Typography';
+import {
+  Box,
+  BoxProps,
+  Container,
+  Link,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/joy';
 import { FC } from 'react';
 
 import { experience } from '@/constants/nav';

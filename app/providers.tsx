@@ -1,8 +1,11 @@
 'use client';
 
-import CssBaseline from '@mui/joy/CssBaseline';
-import GlobalStyles from '@mui/joy/GlobalStyles';
-import { CssVarsProvider, getInitColorSchemeScript } from '@mui/joy/styles';
+import {
+  CssBaseline,
+  CssVarsProvider,
+  GlobalStyles,
+  getInitColorSchemeScript,
+} from '@mui/joy';
 import { FC, PropsWithChildren } from 'react';
 
 import { globalStyles, theme } from '@/theme';

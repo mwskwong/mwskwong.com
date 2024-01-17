@@ -1,5 +1,4 @@
-import Skeleton from '@mui/joy/Skeleton';
-import Typography, { TypographyProps } from '@mui/joy/Typography';
+import { Skeleton, Typography, TypographyProps } from '@mui/joy';
 import { Eye } from 'lucide-react';
 import { FC } from 'react';
 

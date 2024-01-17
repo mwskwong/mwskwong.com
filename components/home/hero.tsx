@@ -1,10 +1,13 @@
 import { SiLinkedin } from '@icons-pack/react-simple-icons';
-import Box, { BoxProps } from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Chip from '@mui/joy/Chip';
-import Container from '@mui/joy/Container';
-import Stack from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
+import {
+  Box,
+  BoxProps,
+  Button,
+  Chip,
+  Container,
+  Stack,
+  Typography,
+} from '@mui/joy';
 import { ArrowRight } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC } from 'react';

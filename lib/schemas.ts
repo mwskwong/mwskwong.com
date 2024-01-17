@@ -32,7 +32,7 @@ export const contactFormSchema = variant('showInGuestbook', [
     baseContactFormSchema,
     object({
       email: optional(
-        union([string([email()]), literal('')], 'Not a valid email'),
+        union([string([email('Not a valid email')]), literal('')]),
       ),
       subject: optional(string()),
       showInGuestbook: literal(true),

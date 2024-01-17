@@ -1,7 +1,6 @@
 'use client';
 
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
-import Tooltip from '@mui/joy/Tooltip';
+import { IconButton, IconButtonProps, Tooltip } from '@mui/joy';
 import { Check, Copy } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useRef, useState } from 'react';

@@ -1,4 +1,4 @@
-import Box from '@mui/joy/Box';
+import { Box } from '@mui/joy';
 import { FC } from 'react';
 import { BreadcrumbList, Graph } from 'schema-dts';
 

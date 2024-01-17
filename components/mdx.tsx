@@ -1,9 +1,12 @@
-import Box from '@mui/joy/Box';
-import Link from '@mui/joy/Link';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import Sheet from '@mui/joy/Sheet';
-import Typography, { TypographyProps } from '@mui/joy/Typography';
+import {
+  Box,
+  Link,
+  List,
+  ListItem,
+  Sheet,
+  Typography,
+  TypographyProps,
+} from '@mui/joy';
 import { merge } from 'lodash-es';
 import { LinkIcon } from 'lucide-react';
 import { MDXComponents } from 'mdx/types';

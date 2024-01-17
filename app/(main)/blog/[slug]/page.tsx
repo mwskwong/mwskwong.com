@@ -1,12 +1,15 @@
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Chip from '@mui/joy/Chip';
-import Container from '@mui/joy/Container';
-import Grid from '@mui/joy/Grid';
-import IconButton from '@mui/joy/IconButton';
-import Stack from '@mui/joy/Stack';
-import Tooltip from '@mui/joy/Tooltip';
-import Typography from '@mui/joy/Typography';
+import {
+  AspectRatio,
+  Box,
+  Button,
+  Chip,
+  Container,
+  Grid,
+  IconButton,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/joy';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
@@ -14,7 +17,6 @@ import { FC, Suspense } from 'react';
 import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
-import { CoverImage } from '@/components/blog/cover-image';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { Icon } from '@/components/contentful';
@@ -23,6 +25,7 @@ import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { firstName, headline, lastName } from '@/constants/content';
+import { breakpoints } from '@/constants/mui-joy';
 import { blog as blogPage, home } from '@/constants/nav';
 import {
   getBlogBySlug,
@@ -63,6 +66,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     getJsonLdPerson(),
   ]);
   if (!blog) notFound();
+  const { md } = breakpoints.values;
 
   return (
     <>
@@ -104,10 +108,22 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             </Grid>
           </Grid>
           {blog.coverPhoto ? (
-            <CoverImage
-              alt={`Cover photo for ${blog.title}`}
-              src={blog.coverPhoto}
-            />
+            <AspectRatio
+              objectFit="cover"
+              ratio="1200/630"
+              sx={{ borderRadius: 'md' }}
+              variant="outlined"
+            >
+              {/* eslint-disable-next-line jsx-a11y/img-redundant-alt -- cover photo is a valid word */}
+              <Image
+                alt={`Cover photo for ${blog.title}`}
+                fill
+                priority
+                sizes={[`(min-width: ${md}px)' ${md}px`, '100vw'].join(',')}
+                src={blog.coverPhoto}
+                sx={{ width: '100%', height: 'auto' }}
+              />
+            </AspectRatio>
           ) : null}
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>

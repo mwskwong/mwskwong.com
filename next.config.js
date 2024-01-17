@@ -107,7 +107,7 @@ const config = {
   experimental: {
     ppr: true,
     webpackBuildWorker: true,
-    optimizePackageImports: ['@mui/joy'],
+    optimizePackageImports: ['@mui/joy', '@mui/base'],
   },
 };
 

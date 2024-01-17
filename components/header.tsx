@@ -1,12 +1,15 @@
-import Box, { BoxProps } from '@mui/joy/Box';
-import Container from '@mui/joy/Container';
-import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
-import Stack from '@mui/joy/Stack';
-import Tooltip from '@mui/joy/Tooltip';
+import {
+  Box,
+  BoxProps,
+  Container,
+  IconButton,
+  Link,
+  List,
+  ListItem,
+  ListItemButton,
+  Stack,
+  Tooltip,
+} from '@mui/joy';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
