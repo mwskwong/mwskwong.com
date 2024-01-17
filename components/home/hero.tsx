@@ -31,20 +31,24 @@ export const Hero: FC<HeroProps> = async (props) => {
       <Container sx={{ textAlign: 'center' }}>
         <Stack alignItems="center" spacing={2}>
           <Chip
-            endDecorator={
-              <Typography
-                color="primary"
-                endDecorator={<ArrowRight />}
-                fontWeight="lg"
-                level="title-sm"
-              >
-                Read more
-              </Typography>
-            }
-            slotProps={{ action: { component: NextLink, href: blog.pathname } }}
+            endDecorator={<ArrowRight />}
+            slotProps={{
+              action: { component: NextLink, href: blog.pathname },
+              endDecorator: {
+                sx: { '--Icon-color': 'var(--joy-palette-primary-plainColor)' },
+              },
+            }}
             variant="outlined"
           >
-            I started writing articles.
+            I started writing articles.&nbsp;
+            <Typography
+              color="primary"
+              display="inline"
+              fontWeight="lg"
+              level="inherit"
+            >
+              Read More
+            </Typography>
           </Chip>
           <Typography level="h1">
             {"I'm "}
