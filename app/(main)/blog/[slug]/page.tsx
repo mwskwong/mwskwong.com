@@ -1,12 +1,14 @@
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Chip from '@mui/joy/Chip';
-import Container from '@mui/joy/Container';
-import Grid from '@mui/joy/Grid';
-import IconButton from '@mui/joy/IconButton';
-import Stack from '@mui/joy/Stack';
-import Tooltip from '@mui/joy/Tooltip';
-import Typography from '@mui/joy/Typography';
+import {
+  Box,
+  Button,
+  Chip,
+  Container,
+  Grid,
+  IconButton,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/joy';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';

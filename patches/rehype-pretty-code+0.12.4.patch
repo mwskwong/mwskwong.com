@@ -1,0 +1,28 @@
+diff --git a/node_modules/rehype-pretty-code/dist/index.d.ts b/node_modules/rehype-pretty-code/dist/index.d.ts
+index 4c88d57..07d1784 100644
+--- a/node_modules/rehype-pretty-code/dist/index.d.ts
++++ b/node_modules/rehype-pretty-code/dist/index.d.ts
+@@ -2,19 +2,19 @@ import { Element, Properties, Text, Root } from 'hast';
+ import { ShikijiTransformer, BundledHighlighterOptions, Highlighter, BuiltinTheme, ThemeRegistrationRaw } from 'shikiji';
+ import { Transformer } from 'unified';
+ 
+-type LineElement = Omit<Element, 'properties'> & {
++export type LineElement = Omit<Element, 'properties'> & {
+     properties: Properties & {
+         className?: string[];
+     };
+ };
+-type CharsElement = Omit<Element, 'properties' | 'children'> & {
++export type CharsElement = Omit<Element, 'properties' | 'children'> & {
+     properties: Properties & {
+         className?: string[];
+     };
+     children: Array<Element | Text>;
+ };
+-type Theme = BuiltinTheme | ThemeRegistrationRaw;
+-interface Options {
++export type Theme = BuiltinTheme | ThemeRegistrationRaw;
++export interface Options {
+     grid?: boolean;
+     theme?: Theme | Record<string, Theme>;
+     keepBackground?: boolean;

@@ -1,10 +1,13 @@
-import Box, { BoxProps } from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Container from '@mui/joy/Container';
-import Link from '@mui/joy/Link';
-import Stack from '@mui/joy/Stack';
-import Tooltip from '@mui/joy/Tooltip';
-import Typography from '@mui/joy/Typography';
+import {
+  Box,
+  BoxProps,
+  Button,
+  Container,
+  Link,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/joy';
 import { FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';

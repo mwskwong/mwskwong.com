@@ -1,4 +1,4 @@
-import { Theme, extendTheme } from '@mui/joy/styles';
+import { Theme, extendTheme } from '@mui/joy';
 import { PaletteOptions } from '@mui/joy/styles/types';
 import { CSSObject, Interpolation } from '@mui/styled-engine';
 import { GeistMono } from 'geist/font/mono';

@@ -1,5 +1,4 @@
-import Container from '@mui/joy/Container';
-import Typography from '@mui/joy/Typography';
+import { Container, Typography } from '@mui/joy';
 import { capitalize } from 'lodash-es';
 import { Metadata } from 'next';
 import { FC } from 'react';

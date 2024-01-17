@@ -1,11 +1,14 @@
-import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
-import List, { ListProps } from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemContent from '@mui/joy/ListItemContent';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import Skeleton from '@mui/joy/Skeleton';
-import Typography from '@mui/joy/Typography';
+import {
+  Avatar,
+  Box,
+  List,
+  ListItem,
+  ListItemContent,
+  ListItemDecorator,
+  ListProps,
+  Skeleton,
+  Typography,
+} from '@mui/joy';
 import dayjs, { extend } from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { mergeSx } from 'merge-sx';

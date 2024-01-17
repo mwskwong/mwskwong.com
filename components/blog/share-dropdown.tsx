@@ -6,14 +6,17 @@ import {
   SiReddit,
   SiX,
 } from '@icons-pack/react-simple-icons';
-import Dropdown, { DropdownProps } from '@mui/joy/Dropdown';
-import IconButton from '@mui/joy/IconButton';
-import ListDivider from '@mui/joy/ListDivider';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import Menu from '@mui/joy/Menu';
-import MenuButton from '@mui/joy/MenuButton';
-import MenuItem from '@mui/joy/MenuItem';
-import Tooltip from '@mui/joy/Tooltip';
+import {
+  Dropdown,
+  DropdownProps,
+  IconButton,
+  ListDivider,
+  ListItemDecorator,
+  Menu,
+  MenuButton,
+  MenuItem,
+  Tooltip,
+} from '@mui/joy';
 import { Share2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useMemo } from 'react';
