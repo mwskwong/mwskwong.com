@@ -170,7 +170,10 @@ const Blogs: FC = async () => {
 export const metadata = {
   title: 'Blog',
   description,
-  openGraph: { type: 'website', url: '/blog' },
+  openGraph: { type: 'website', url: blog.pathname },
+  alternates: {
+    types: { 'application/rss+xml': `${baseUrl}${blog.pathname}/rss.xml` },
+  },
 } satisfies Metadata;
 
 export default Blogs;

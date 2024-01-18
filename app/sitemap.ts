@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 
 import { baseUrl } from '@/constants/base-url';
+import { blog, guestbook, home } from '@/constants/nav';
 import { getBlogs, getPrivacyPolicy } from '@/lib/queries';
 
 const sitemap = async () => {
@@ -10,7 +11,7 @@ const sitemap = async () => {
   ]);
 
   return [
-    ...['/', '/blog', '/guestbook'].map((route) => ({
+    ...[home.pathname, blog.pathname, guestbook.pathname].map((route) => ({
       url: `${baseUrl}${route}`,
       lastModified: new Date(),
     })),

@@ -7,6 +7,7 @@ import { Article, BreadcrumbList, Graph } from 'schema-dts';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
+import { privacyPolicy } from '@/constants/nav';
 import { getPrivacyPolicy } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
@@ -99,7 +100,7 @@ export const generateMetadata = async () => {
       authors: baseUrl,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
-      url: '/privacy-policy',
+      url: privacyPolicy.pathname,
     },
   } satisfies Metadata;
 };

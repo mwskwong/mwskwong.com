@@ -10,7 +10,7 @@ import {
 } from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
-import { contactForm } from '@/constants/nav';
+import { contactForm, guestbook } from '@/constants/nav';
 import { getJsonLdPerson } from '@/lib/utils';
 
 const description =
@@ -84,7 +84,7 @@ const Guestbook: FC = async () => {
 export const metadata = {
   title: 'Guestbook',
   description,
-  openGraph: { type: 'website', url: '/guestbook' },
+  openGraph: { type: 'website', url: guestbook.pathname },
 } satisfies Metadata;
 
 export default Guestbook;
