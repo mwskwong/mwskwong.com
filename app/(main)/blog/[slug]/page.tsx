@@ -279,6 +279,10 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
       url: `/blog/${slug}`,
       images: coverPhoto,
     },
+    // This is not inherit from parent some how
+    alternates: {
+      types: { 'application/rss+xml': `${baseUrl}${blogRssFeed.pathname}` },
+    },
   } satisfies Metadata;
 };
 
