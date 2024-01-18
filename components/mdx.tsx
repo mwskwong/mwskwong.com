@@ -17,7 +17,7 @@ import { FC, RefObject } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
-export const Heading: FC<TypographyProps> = ({
+const Heading: FC<TypographyProps> = ({
   id,
   slotProps,
   sx,
