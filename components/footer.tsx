@@ -1,3 +1,4 @@
+import { SiRss } from '@icons-pack/react-simple-icons';
 import {
   Box,
   BoxProps,
@@ -11,7 +12,6 @@ import {
   Tooltip,
   Typography,
 } from '@mui/joy';
-import { Rss } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -52,8 +52,9 @@ export const Footer: FC<FooterProps> = async (props) => {
               component={NextLink}
               href={blogRssFeed.pathname}
               size="sm"
+              target="_blank"
             >
-              <Rss />
+              <SiRss />
             </IconButton>
           </Tooltip>
         </Stack>
