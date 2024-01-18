@@ -20,7 +20,7 @@ import { Image } from '@/components/image';
 import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { breakpoints } from '@/constants/mui-joy';
-import { blog } from '@/constants/nav';
+import { blog, blogRssFeed } from '@/constants/nav';
 import { getBlogs } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
@@ -170,7 +170,10 @@ const Blogs: FC = async () => {
 export const metadata = {
   title: 'Blog',
   description,
-  openGraph: { type: 'website', url: '/blog' },
+  openGraph: { type: 'website', url: blog.pathname },
+  alternates: {
+    types: { 'application/rss+xml': `${baseUrl}${blogRssFeed.pathname}` },
+  },
 } satisfies Metadata;
 
 export default Blogs;

@@ -11,11 +11,12 @@ import {
   Tooltip,
   Typography,
 } from '@mui/joy';
+import { Rss } from 'lucide-react';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
-import { privacyPolicy } from '@/constants/nav';
+import { blogRssFeed, privacyPolicy } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/queries';
 
 import { Icon } from './contentful';
@@ -46,6 +47,15 @@ export const Footer: FC<FooterProps> = async (props) => {
                 </Tooltip>
               ),
           )}
+          <Tooltip title="RSS Feed">
+            <IconButton
+              component={NextLink}
+              href={blogRssFeed.pathname}
+              size="sm"
+            >
+              <Rss />
+            </IconButton>
+          </Tooltip>
         </Stack>
 
         <Typography level="body-sm" mt={2}>
