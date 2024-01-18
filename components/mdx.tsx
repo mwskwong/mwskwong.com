@@ -17,7 +17,7 @@ import { FC, RefObject } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
-const Heading: FC<TypographyProps> = ({
+export const Heading: FC<TypographyProps> = ({
   id,
   slotProps,
   sx,
@@ -280,8 +280,8 @@ export const Mdx: FC<MdxProps> = ({
               rehypePrettyCode,
               {
                 theme: {
-                  dark: 'github-dark-dimmed',
-                  light: 'github-light',
+                  dark: 'dark-plus',
+                  light: 'light-plus',
                 },
                 keepBackground: false,
                 defaultLang: { block: 'ansi' },
