@@ -25,7 +25,7 @@ export const GET = async () => {
               <description>${encodeHtmlEntities(description)}</description>
               <author>${email} (${firstName} ${lastName})</author>
               ${categories.map((category) => `<category>${category}</category>`).join('')}
-              <pubDate>${createdAt}</pubDate>
+              <pubDate>${new Date(createdAt).toUTCString()}</pubDate>
             </item>
           `,
         )
