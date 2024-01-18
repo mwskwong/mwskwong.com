@@ -32,7 +32,7 @@
     "dayjs": "^1.11.10",
     "geist": "^1.2.1",
     "lodash-es": "^4.17.21",
-    "lucide-react": "^0.311.0",
+    "lucide-react": "^0.312.0",
     "merge-sx": "^2.0.0",
     "next": "canary",
     "next-mdx-remote": "^4.4.1",
@@ -43,7 +43,7 @@
     "rehype-pretty-code": "^0.12.5",
     "rehype-slug": "^6.0.0",
     "schema-dts": "^1.1.2",
-    "shikiji": "0.10.0-beta.4",
+    "shikiji": "0.10.0-beta.7",
     "valibot": "^0.26.0"
   },
   "devDependencies": {
