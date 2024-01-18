@@ -52,6 +52,7 @@ export const Footer: FC<FooterProps> = async (props) => {
               component={NextLink}
               href={blogRssFeed.pathname}
               size="sm"
+              target="_blank"
             >
               <SiRss />
             </IconButton>

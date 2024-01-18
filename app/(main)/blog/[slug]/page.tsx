@@ -177,6 +177,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       component={NextLink}
                       href={blogRssFeed.pathname}
                       size="sm"
+                      target="_blank"
                     >
                       <SiRss />
                     </IconButton>
