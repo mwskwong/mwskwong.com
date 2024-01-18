@@ -1,3 +1,4 @@
+import { SiRss } from '@icons-pack/react-simple-icons';
 import {
   AspectRatio,
   Box,
@@ -10,7 +11,6 @@ import {
   Tooltip,
   Typography,
 } from '@mui/joy';
-import { Rss } from 'lucide-react';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
@@ -178,7 +178,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       href={blogRssFeed.pathname}
                       size="sm"
                     >
-                      <Rss />
+                      <SiRss />
                     </IconButton>
                   </Tooltip>
                 </Stack>
