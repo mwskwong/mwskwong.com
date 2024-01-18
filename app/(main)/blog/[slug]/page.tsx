@@ -10,6 +10,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/joy';
+import { Rss } from 'lucide-react';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
@@ -26,7 +27,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { baseUrl } from '@/constants/base-url';
 import { firstName, headline, lastName } from '@/constants/content';
 import { breakpoints } from '@/constants/mui-joy';
-import { blog as blogPage, home } from '@/constants/nav';
+import { blog as blogPage, blogRssFeed, home } from '@/constants/nav';
 import {
   getBlogBySlug,
   getBlogs,
@@ -171,6 +172,15 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                         </Tooltip>
                       ),
                   )}
+                  <Tooltip title="RSS Feed">
+                    <IconButton
+                      component={NextLink}
+                      href={blogRssFeed.pathname}
+                      size="sm"
+                    >
+                      <Rss />
+                    </IconButton>
+                  </Tooltip>
                 </Stack>
               </Stack>
               <Stack
