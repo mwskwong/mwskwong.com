@@ -35,7 +35,10 @@ export const Hero: FC<HeroProps> = async (props) => {
             slotProps={{
               action: { component: NextLink, href: blog.pathname },
               endDecorator: {
-                sx: { '--Icon-color': 'var(--joy-palette-primary-plainColor)' },
+                sx: {
+                  '--Icon-color':
+                    'rgba(var(--joy-palette-primary-mainChannel) / 1)',
+                },
               },
             }}
             variant="outlined"
