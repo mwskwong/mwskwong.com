@@ -18,11 +18,12 @@ export const GET = async () => {
       <language>en</language>
       ${blogs
         .map(
-          ({ title, slug, description, categories = [], createdAt }) => `
+          ({ title, slug, description, categories = [], createdAt, id }) => `
             <item>
               <title>${title}</title>
               <link>${baseUrl}${blog.pathname}/${slug}</link>
               <description>${encodeHtmlEntities(description)}</description>
+              <guid>${id}</guid>
               <author>${email} (${firstName} ${lastName})</author>
               ${categories.map((category) => `<category>${category}</category>`).join('')}
               <pubDate>${new Date(createdAt).toUTCString()}</pubDate>
