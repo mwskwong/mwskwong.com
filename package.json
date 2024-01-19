@@ -7,7 +7,7 @@
     "build": "next build",
     "dev": "next dev",
     "format": "prettier --write .",
-    "postinstall": "pnpm run prisma:generate",
+    "postinstall": "patch-package && npm run prisma:generate",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:push": "dotenv -e .env.development.local -- prisma db push",
@@ -43,7 +43,7 @@
     "rehype-pretty-code": "^0.12.5",
     "rehype-slug": "^6.0.0",
     "schema-dts": "^1.1.2",
-    "shikiji": "^0.9.19",
+    "shikiji": "0.10.0-beta.8",
     "valibot": "^0.26.0"
   },
   "devDependencies": {
@@ -62,11 +62,5 @@
     "prettier-plugin-prisma": "^5.0.0",
     "type-fest": "^4.9.0",
     "typescript": "^5.3.3"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@vercel/style-guide@5.2.0-canary.1": "patches/@vercel__style-guide@5.2.0-canary.1.patch",
-      "geist@1.2.1": "patches/geist@1.2.1.patch"
-    }
   }
 }
