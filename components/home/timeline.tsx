@@ -160,6 +160,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                       >
                         <Image
                           alt={`Thumbnail for ${title}`}
+                          // to support for 4x dpi
                           src={`https://image.thum.io/get/pdfSource/width/${listItemImageSize.width * 4}/${url}`}
                           {...listItemImageSize}
                           sx={[listItemImageSx, { objectPosition: 'top' }]}

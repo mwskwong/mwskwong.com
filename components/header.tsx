@@ -14,7 +14,7 @@ import NextLink from 'next/link';
 import { FC } from 'react';
 
 import Logo from '@/app/icon.svg?monochrome';
-import { linkedin } from '@/constants/contentful-ids';
+import { github, linkedin } from '@/constants/contentful-ids';
 import { home, nav } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/queries';
 
@@ -25,7 +25,7 @@ import { NavDrawer } from './nav-drawer';
 export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
 export const Header: FC<HeaderProps> = async (props) => {
   const platformProfiles = (await getPlatformProfiles()).filter(
-    ({ platform }) => platform?.id !== linkedin,
+    ({ platform }) => platform?.id === linkedin || platform?.id === github,
   );
 
   return (
