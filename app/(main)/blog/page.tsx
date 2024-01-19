@@ -13,7 +13,7 @@ import {
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { FC, Suspense } from 'react';
-import { BreadcrumbList, Graph } from 'schema-dts';
+import { BreadcrumbList, WithContext } from 'schema-dts';
 
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { Image } from '@/components/image';
@@ -22,7 +22,6 @@ import { baseUrl } from '@/constants/base-url';
 import { breakpoints } from '@/constants/mui-joy';
 import { blog, blogRssFeed } from '@/constants/nav';
 import { getBlogs } from '@/lib/queries';
-import { getJsonLdPerson } from '@/lib/utils';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -33,10 +32,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
 const description = 'Personal perspectives on a broad range of topics.';
 
 const Blogs: FC = async () => {
-  const [blogs, person] = await Promise.all([
-    getBlogs({ page: 1 }),
-    getJsonLdPerson(),
-  ]);
+  const blogs = await getBlogs({ page: 1 });
   const blogIds = blogs.map(({ id }) => id);
   const { sm, md, lg } = breakpoints.values;
 
@@ -139,27 +135,22 @@ const Blogs: FC = async () => {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@graph': [
+            '@type': 'BreadcrumbList',
+            itemListElement: [
               {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                  {
-                    '@type': 'ListItem',
-                    name: 'Home',
-                    item: baseUrl,
-                    position: 1,
-                  },
-                  {
-                    '@type': 'ListItem',
-                    name: 'Blog',
-                    position: 2,
-                  },
-                ],
-                name: 'Breadcrumbs',
-              } satisfies BreadcrumbList,
-              person,
+                '@type': 'ListItem',
+                name: 'Home',
+                item: baseUrl,
+                position: 1,
+              },
+              {
+                '@type': 'ListItem',
+                name: 'Blog',
+                position: 2,
+              },
             ],
-          } satisfies Graph),
+            name: 'Breadcrumbs',
+          } satisfies WithContext<BreadcrumbList>),
         }}
         type="application/ld+json"
       />

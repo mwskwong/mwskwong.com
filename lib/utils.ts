@@ -1,6 +1,5 @@
 import { Person } from 'schema-dts';
 
-import { baseUrl } from '@/constants/base-url';
 import {
   address,
   email,
@@ -32,7 +31,7 @@ export const getJsonLdPerson = async () => {
     jobTitle: latestJobTitle,
     email,
     address,
-    url: baseUrl,
+    url: `https://${process.env.NEXT_PUBLIC_PROD_URL}`,
     image: personalPhoto,
     sameAs: platformProfiles.map(({ url }) => url),
     description: selfIntroduction,
