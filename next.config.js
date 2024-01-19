@@ -103,7 +103,11 @@ const config = {
       ],
     },
   ],
-  transpilePackages: ['geist'],
+  /**
+   * only works for `fetch` for now
+   * @see {@link https://nextjs.org/docs/app/api-reference/next-config-js/logging}
+   */
+  logging: { fetches: { fullUrl: true } },
   experimental: {
     ppr: true,
     webpackBuildWorker: true,
