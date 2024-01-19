@@ -1,0 +1,32 @@
+diff --git a/typescript/tsconfig.node18.json b/typescript/tsconfig.node18.json
+index dccb40c76a36892dab5341d4a5a36e926737ef32..488b8219c258ef04e105d24af852657077ec4a39 100644
+--- a/typescript/tsconfig.node18.json
++++ b/typescript/tsconfig.node18.json
+@@ -4,9 +4,9 @@
+   "display": "Vercel Node 18",
+   "docs": "https://github.com/vercel/style-guide",
+   "compilerOptions": {
+-    "lib": ["es2023"],
++    "lib": ["esnext"],
+     "module": "node16",
+-    "target": "es2023",
++    "target": "esnext",
+     "moduleResolution": "node16"
+   }
+ }
+diff --git a/typescript/tsconfig.node20.json b/typescript/tsconfig.node20.json
+index 034a2437e192298544d115ba88d9f2d6e73a6788..73294b1ec7d6b797a549e6a4465cbf4291335006 100644
+--- a/typescript/tsconfig.node20.json
++++ b/typescript/tsconfig.node20.json
+@@ -4,9 +4,9 @@
+   "display": "Vercel Node 20",
+   "docs": "https://github.com/vercel/style-guide",
+   "compilerOptions": {
+-    "lib": ["es2023"],
++    "lib": ["esnext"],
+     "module": "node16",
+-    "target": "es2023",
++    "target": "esnext",
+     "moduleResolution": "node16"
+   }
+ }
