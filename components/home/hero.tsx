@@ -62,7 +62,7 @@ export const Hero: FC<HeroProps> = async (props) => {
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           justifyContent="center"
-          mt={8}
+          mt={6}
           spacing={2}
         >
           <Button component="a" href={cv} size="lg" target="_blank">
