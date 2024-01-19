@@ -49,7 +49,7 @@ export const Footer: FC<FooterProps> = async (props) => {
           )}
           <Tooltip title="RSS Feed">
             <IconButton
-              component={NextLink}
+              component="a"
               href={blogRssFeed.pathname}
               size="sm"
               target="_blank"

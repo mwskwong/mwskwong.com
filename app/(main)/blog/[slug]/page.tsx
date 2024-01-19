@@ -174,7 +174,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   )}
                   <Tooltip title="RSS Feed">
                     <IconButton
-                      component={NextLink}
+                      component="a"
                       href={blogRssFeed.pathname}
                       size="sm"
                       target="_blank"
