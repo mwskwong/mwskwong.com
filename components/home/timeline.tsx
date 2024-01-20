@@ -132,15 +132,16 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                     width: { xs: '100%', sm: 'auto' },
                     maxWidth: '100%',
                     '&:not(:only-child)': { maxWidth: { sm: 400 } },
+                    '& .MuiListItemDecorator-root': {
+                      ml: 'calc(var(--ListItem-paddingX) * -1)',
+                    },
                   },
                 }}
               >
                 {projects.map(({ name, thumbnail = '', url }) => (
                   <ListItem key={title}>
                     <ListItemButton component="a" href={url} target="_blank">
-                      <ListItemDecorator
-                        sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
-                      >
+                      <ListItemDecorator>
                         <Image
                           alt={`Thumbnail for ${name}`}
                           src={thumbnail}
@@ -155,9 +156,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                 {supportingDocuments.map(({ title, url = '' }) => (
                   <ListItem key={title}>
                     <ListItemButton component="a" href={url} target="_blank">
-                      <ListItemDecorator
-                        sx={{ ml: 'calc(var(--ListItem-paddingX) * -1)' }}
-                      >
+                      <ListItemDecorator>
                         <Image
                           alt={`Thumbnail for ${title}`}
                           // to support for 4x dpi
