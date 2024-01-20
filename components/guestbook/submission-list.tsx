@@ -9,6 +9,7 @@ import {
   Skeleton,
   Typography,
 } from '@mui/joy';
+import { SxProps } from '@mui/joy/styles/types';
 import dayjs, { extend } from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { mergeSx } from 'merge-sx';
@@ -18,6 +19,13 @@ import { getGuestbookSubmissions } from '@/lib/queries';
 
 extend(relativeTime);
 
+const submissionListSx = {
+  '--List-gap': '16px',
+  '--ListItemDecorator-size': '48px',
+  '--ListItem-paddingX': '0px',
+  '& > li': { alignItems: 'flex-start' },
+} satisfies SxProps;
+
 export type SubmissionListProps = Omit<ListProps, 'children'>;
 export const SubmissionList: FC<SubmissionListProps> = async ({
   sx,
@@ -25,17 +33,7 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
 }) => {
   const submissions = await getGuestbookSubmissions();
   return (
-    <List
-      sx={mergeSx(
-        {
-          '--List-gap': '16px',
-          '--ListItemDecorator-size': '48px',
-          '& > li': { alignItems: 'flex-start' },
-        },
-        sx,
-      )}
-      {...props}
-    >
+    <List sx={mergeSx(submissionListSx, sx)} {...props}>
       {submissions.map(({ id, name, message, submittedAt }) => (
         <ListItem key={id}>
           <ListItemDecorator>
@@ -70,17 +68,7 @@ export const SubmissionListSkeleton: FC<SubmissionListProps> = ({
   ...props
 }) => {
   return (
-    <List
-      sx={mergeSx(
-        {
-          '--List-gap': '16px',
-          '--ListItemDecorator-size': '48px',
-          '& > li': { alignItems: 'flex-start' },
-        },
-        sx,
-      )}
-      {...props}
-    >
+    <List sx={mergeSx(submissionListSx, sx)} {...props}>
       {Array.from({ length: 5 }, (_, index) => (
         <ListItem key={index}>
           <ListItemDecorator>
