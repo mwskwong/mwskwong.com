@@ -6,28 +6,78 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemDecorator,
+  ListItemProps,
   Stack,
   Typography,
 } from '@mui/joy';
-import { SxProps } from '@mui/joy/styles/types';
+import { mergeSx } from 'merge-sx';
 import { StaticImageData } from 'next/image';
 import { FC, Fragment, forwardRef } from 'react';
 
-import { Image } from '../image';
+import { Image, ImageProps } from '../image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',
   year: 'numeric',
 });
 
-const listItemImageSize = { width: 80, height: 56 };
-const listItemImageSx = {
-  flexShrink: 0,
-  borderRadius: 'var(--ListItem-radius)',
-  border: 1,
-  borderColor: 'neutral.outlinedBorder',
-} satisfies SxProps;
+type ListItemWithThumbnailProps = ListItemProps & {
+  href?: string;
+  thumbnailSrc?: string | StaticImageData;
+  slotProps?: {
+    thumbnail?: Partial<ImageProps>;
+  };
+};
+
+const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
+  href,
+  thumbnailSrc,
+  children,
+  sx,
+  slotProps,
+  ...props
+}) => {
+  const { thumbnail, ...listItemSlotProps } = slotProps ?? {};
+  const { sx: thumbnailSx, ...thumbnailProps } = thumbnail ?? {};
+  return (
+    <ListItem
+      slotProps={listItemSlotProps}
+      sx={mergeSx(
+        {
+          minWidth: { sm: 250 },
+          width: { xs: '100%', sm: 'auto' },
+          maxWidth: '100%',
+          '&:not(:only-child)': { maxWidth: { sm: 400 } },
+        },
+        sx,
+      )}
+      {...props}
+    >
+      <ListItemButton component="a" href={href} sx={{ gap: 2 }} target="_blank">
+        {thumbnailSrc ? (
+          <Image
+            alt={`Thumbnail for ${children?.toString()}`}
+            height={56}
+            src={thumbnailSrc}
+            sx={mergeSx(
+              {
+                flexShrink: 0,
+                borderRadius: 'var(--ListItem-radius)',
+                border: 1,
+                borderColor: 'neutral.outlinedBorder',
+                ml: 'calc(var(--ListItem-paddingX) * -1)',
+              },
+              thumbnailSx,
+            )}
+            width={80}
+            {...thumbnailProps}
+          />
+        ) : null}
+        {children}
+      </ListItemButton>
+    </ListItem>
+  );
+};
 
 export interface TimelineItemProps extends Omit<GridProps, 'children'> {
   from?: Date;
@@ -125,49 +175,28 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                 sx={{
                   '--List-radius': 'var(--joy-radius-sm)',
                   '--List-padding': '0px',
-                  '--ListItemDecorator-size': `calc(${listItemImageSize.width}px + var(--ListItem-paddingX))`,
                   flexWrap: 'wrap',
-                  '& > li': {
-                    minWidth: { sm: 250 },
-                    width: { xs: '100%', sm: 'auto' },
-                    maxWidth: '100%',
-                    '&:not(:only-child)': { maxWidth: { sm: 400 } },
-                    '& .MuiListItemDecorator-root': {
-                      ml: 'calc(var(--ListItem-paddingX) * -1)',
-                    },
-                  },
                 }}
               >
-                {projects.map(({ name, thumbnail = '', url }) => (
-                  <ListItem key={title}>
-                    <ListItemButton component="a" href={url} target="_blank">
-                      <ListItemDecorator>
-                        <Image
-                          alt={`Thumbnail for ${name}`}
-                          src={thumbnail}
-                          {...listItemImageSize}
-                          sx={listItemImageSx}
-                        />
-                      </ListItemDecorator>
-                      {name}
-                    </ListItemButton>
-                  </ListItem>
+                {projects.map(({ name, thumbnail, url }) => (
+                  <ListItemWithThumbnail
+                    href={url}
+                    key={name}
+                    thumbnailSrc={thumbnail}
+                  >
+                    {name}
+                  </ListItemWithThumbnail>
                 ))}
-                {supportingDocuments.map(({ title, url = '' }) => (
-                  <ListItem key={title}>
-                    <ListItemButton component="a" href={url} target="_blank">
-                      <ListItemDecorator>
-                        <Image
-                          alt={`Thumbnail for ${title}`}
-                          // to support for 4x dpi
-                          src={`https://image.thum.io/get/pdfSource/width/${listItemImageSize.width * 4}/${url}`}
-                          {...listItemImageSize}
-                          sx={[listItemImageSx, { objectPosition: 'top' }]}
-                        />
-                      </ListItemDecorator>
-                      {title}
-                    </ListItemButton>
-                  </ListItem>
+                {supportingDocuments.map(({ title, url }) => (
+                  <ListItemWithThumbnail
+                    href={url}
+                    key={title}
+                    slotProps={{ thumbnail: { sx: { objectPosition: 'top' } } }}
+                    // to support for 4x dpi
+                    thumbnailSrc={`https://image.thum.io/get/pdfSource/width/${80 * 4}/${url}`}
+                  >
+                    {title}
+                  </ListItemWithThumbnail>
                 ))}
               </List>
             )}
