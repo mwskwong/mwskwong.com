@@ -54,7 +54,7 @@ export const Footer: FC<FooterProps> = async (props) => {
               size="sm"
               target="_blank"
             >
-              <SiRss />
+              <SiRss viewBox="-2 -2 28 28" />
             </IconButton>
           </Tooltip>
         </Stack>
