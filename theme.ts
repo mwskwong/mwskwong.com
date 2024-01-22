@@ -113,7 +113,11 @@ export const globalStyles = (theme: Theme) =>
         // attempting to match simple icons
         // lucide icons already effectively have padding surrounding the path
         // according to the current design of the icons
-        '&:not(.lucide)': { padding: `${(2 / 24).toFixed(5)}em` },
+        '&:not(.lucide)': {
+          width: `${(20 / 24).toFixed(5)}em`,
+          height: `${(20 / 24).toFixed(5)}em`,
+          margin: `${(2 / 24).toFixed(5)}em`,
+        },
       },
     },
   }) satisfies Interpolation<Theme>;
