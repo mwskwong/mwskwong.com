@@ -20,15 +20,15 @@
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
     "@icons-pack/react-simple-icons": "^9.3.0",
-    "@mui/base": "5.0.0-beta.32",
-    "@mui/joy": "5.0.0-beta.23",
-    "@mui/styled-engine": "^5.15.5",
+    "@mui/base": "5.0.0-beta.33",
+    "@mui/joy": "5.0.0-beta.24",
+    "@mui/styled-engine": "^5.15.6",
     "@prisma/client": "^5.8.1",
     "@prisma/extension-read-replicas": "^0.3.0",
     "@vercel/analytics": "^1.1.2",
-    "@vercel/speed-insights": "^1.0.5",
+    "@vercel/speed-insights": "^1.0.7",
     "clsx": "^2.1.0",
-    "contentful": "^10.6.16",
+    "contentful": "^10.6.17",
     "dayjs": "^1.11.10",
     "geist": "^1.2.1",
     "lodash-es": "^4.17.21",
@@ -40,10 +40,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
-    "rehype-pretty-code": "^0.12.5",
+    "rehype-pretty-code": "^0.12.6",
     "rehype-slug": "^6.0.0",
     "schema-dts": "^1.1.2",
-    "shikiji": "^0.9.19",
+    "shikiji": "^0.10.0",
     "valibot": "^0.26.0"
   },
   "devDependencies": {
@@ -60,7 +60,7 @@
     "patch-package": "^8.0.0",
     "prettier": "^3.2.4",
     "prettier-plugin-prisma": "^5.0.0",
-    "type-fest": "^4.9.0",
+    "type-fest": "^4.10.0",
     "typescript": "^5.3.3"
   }
 }

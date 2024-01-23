@@ -102,18 +102,15 @@ export const globalStyles = (theme: Theme) =>
     section: { paddingBlock: 'var(--Section-paddingY)' },
     svg: {
       display: 'block',
-      // match icons
-      '&[viewBox="0 0 24 24"]': {
+      // match icons, the 2nd one is for Simple Icons with modified view box
+      // such that the icon will appears to have the same size as Lucide icons
+      '&[viewBox="0 0 24 24"], &[viewBox="-2 -2 28 28"]': {
         color: 'var(--Icon-color, var(--joy-palette-text-icon))',
         margin: 'var(--Icon-margin)',
         fontSize: 'var(--Icon-fontSize, 1.5rem)',
         width: '1em',
         height: '1em',
         flexShrink: 0,
-        // attempting to match simple icons
-        // lucide icons already effectively have padding surrounding the path
-        // according to the current design of the icons
-        '&:not(.lucide)': { padding: `${(2 / 24).toFixed(5)}em` },
       },
     },
   }) satisfies Interpolation<Theme>;

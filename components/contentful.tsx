@@ -44,18 +44,26 @@ import Valibot from '@/logos/valibot.svg';
 import VercelDark from '@/logos/vercel-dark.svg';
 import VercelLight from '@/logos/vercel-light.svg';
 
+const generateSimpleIcon = (SiIcon: IconType) => {
+  const Icon: IconType = forwardRef((props, ref) => (
+    <SiIcon ref={ref} viewBox="-2 -2 28 28" {...props} />
+  ));
+  Icon.displayName = SiIcon.displayName;
+  return Icon;
+};
+
 const Icons = {
-  [contentfulIds.dataCamp]: SiDatacamp,
-  [contentfulIds.enterpriseDb]: SiEnterprisedb,
-  [contentfulIds.github]: SiGithub,
-  [contentfulIds.google]: SiGoogle,
-  [contentfulIds.linkedin]: SiLinkedin,
-  [contentfulIds.microsoft]: SiMicrosoft,
-  [contentfulIds.mongodb]: SiMongodb,
-  [contentfulIds.oracle]: SiOracle,
-  [contentfulIds.stackOverflow]: SiStackoverflow,
-  [contentfulIds.udemy]: SiUdemy,
-  [contentfulIds.youtube]: SiYoutube,
+  [contentfulIds.dataCamp]: generateSimpleIcon(SiDatacamp),
+  [contentfulIds.enterpriseDb]: generateSimpleIcon(SiEnterprisedb),
+  [contentfulIds.github]: generateSimpleIcon(SiGithub),
+  [contentfulIds.google]: generateSimpleIcon(SiGoogle),
+  [contentfulIds.linkedin]: generateSimpleIcon(SiLinkedin),
+  [contentfulIds.microsoft]: generateSimpleIcon(SiMicrosoft),
+  [contentfulIds.mongodb]: generateSimpleIcon(SiMongodb),
+  [contentfulIds.oracle]: generateSimpleIcon(SiOracle),
+  [contentfulIds.stackOverflow]: generateSimpleIcon(SiStackoverflow),
+  [contentfulIds.udemy]: generateSimpleIcon(SiUdemy),
+  [contentfulIds.youtube]: generateSimpleIcon(SiYoutube),
   [contentfulIds.backend]: Terminal,
   [contentfulIds.cms]: MonitorDot,
   [contentfulIds.database]: Database,

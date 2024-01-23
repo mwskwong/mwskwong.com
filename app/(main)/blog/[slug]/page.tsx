@@ -179,7 +179,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       size="sm"
                       target="_blank"
                     >
-                      <SiRss />
+                      <SiRss viewBox="-2 -2 28 28" />
                     </IconButton>
                   </Tooltip>
                 </Stack>
