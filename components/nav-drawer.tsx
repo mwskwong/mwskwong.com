@@ -43,7 +43,9 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
             }}
           >
             {nav.map(({ id, label, pathname }) => (
-              <ListItem key={`${pathname}-${id}`}>
+              // prevent keys from starting from "/".
+              // The key is being embedded in the HTML and Google thinks that's a path and try to crawl it
+              <ListItem key={`${pathname}-${id}`.slice(1)}>
                 <ListItemButton
                   component={NextLink}
                   href={{ pathname, hash: id }}
