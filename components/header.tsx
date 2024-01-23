@@ -66,7 +66,9 @@ export const Header: FC<HeaderProps> = async (props) => {
               }}
             >
               {nav.map(({ label, id, pathname }) => (
-                <ListItem key={`${pathname}-${id}`}>
+                // prevent keys from starting from "/".
+                // The key is being embedded in the HTML and Google thinks that's a path and try to crawl it
+                <ListItem key={`${pathname}-${id}`.slice(1)}>
                   <ListItemButton
                     component={NextLink}
                     href={{ pathname, hash: id }}
