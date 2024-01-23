@@ -33,6 +33,7 @@ export const metadata = {
   authors: { name, url: baseUrl },
   metadataBase: new URL(baseUrl),
   openGraph: { url: '/', type: 'website' },
+  robots: { 'max-image-preview': 'large' },
   archives: ['https://v2.mwskwong.com'],
 } satisfies Metadata;
 
