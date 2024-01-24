@@ -1,7 +1,4 @@
-import { RouteOgImage } from '@/components/route-og-image';
+import { routeOgImage } from '../route-og-image';
 
 export const runtime = 'edge';
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
-
-export default RouteOgImage({ title: 'Blog', size });
+export default routeOgImage({ title: 'Blog' });

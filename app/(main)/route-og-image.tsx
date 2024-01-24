@@ -5,10 +5,10 @@ import Logo from '@/app/icon.svg?monochrome';
 // Cannot extract other variables, e.g. runtime, size to here
 // or else the following error will occur: TypeError: Failed to parse URL from /_next/static/media/geist-bold.b0ba426e.otf
 
-export const RouteOgImage =
+export const routeOgImage =
   ({
     title,
-    size,
+    size = { width: 1200, height: 630 },
   }: {
     title: string;
     size?: { width: number; height: number };

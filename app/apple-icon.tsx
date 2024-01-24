@@ -6,7 +6,7 @@ export const runtime = 'edge';
 export const size = { width: 180, height: 180 };
 export const contentType = 'image/png';
 
-const Icon = () =>
+const appleIcon = () =>
   new ImageResponse(
     (
       <div
@@ -26,4 +26,4 @@ const Icon = () =>
     size,
   );
 
-export default Icon;
+export default appleIcon;
