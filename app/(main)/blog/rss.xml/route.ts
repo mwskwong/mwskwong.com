@@ -2,9 +2,7 @@ import { baseUrl } from '@/constants/base-url';
 import { email, firstName, lastName } from '@/constants/content';
 import { blog, blogRssFeed } from '@/constants/nav';
 import { getBlogs } from '@/lib/queries';
-
-const encodeHtmlEntities = (str: string) =>
-  str.replace(/[\u00A0-\u9999<>&]/gim, (i) => `&#${i.charCodeAt(0)};`);
+import { encodeHtmlEntities } from '@/lib/utils';
 
 export const GET = async () => {
   const blogs = await getBlogs();
