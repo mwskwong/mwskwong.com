@@ -52,6 +52,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                 interactionType: { '@type': 'CommentAction' },
                 userInteractionCount: comments.length,
               },
+              url: baseUrl + guestbook.pathname,
             } satisfies DiscussionForumPosting,
             {
               '@type': 'BreadcrumbList',
