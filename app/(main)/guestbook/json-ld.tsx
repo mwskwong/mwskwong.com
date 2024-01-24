@@ -14,12 +14,11 @@ import { getJsonLdPerson } from '@/lib/utils';
 export interface JsonLdProps {
   discussionForumPosting: {
     text: string;
-    headline?: string;
   };
 }
 
 export const JsonLd: FC<JsonLdProps> = async ({
-  discussionForumPosting: { text, headline },
+  discussionForumPosting: { text },
 }) => {
   const [comments, person] = await Promise.all([
     getGuestbookSubmissions(),
@@ -46,7 +45,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                     text: message,
                   }) satisfies Comment,
               ),
-              headline,
+              headline: guestbook.label,
               interactionStatistic: {
                 '@type': 'InteractionCounter',
                 interactionType: { '@type': 'CommentAction' },

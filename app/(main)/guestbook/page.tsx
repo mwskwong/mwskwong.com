@@ -46,12 +46,7 @@ const Guestbook: FC = () => (
     </Container>
     <SectionDivider bgcolor="var(--Footer-bg)" />
     <Suspense>
-      <JsonLd
-        discussionForumPosting={{
-          text: description,
-          headline: guestbook.label,
-        }}
-      />
+      <JsonLd discussionForumPosting={{ text: description }} />
     </Suspense>
   </>
 );
