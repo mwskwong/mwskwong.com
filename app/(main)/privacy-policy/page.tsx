@@ -36,7 +36,7 @@ const PrivacyPolicy: FC = async () => {
           sx={{ py: 'var(--Section-paddingY)' }}
         >
           <Typography level="h1" mb={3} mt={1}>
-            Privacy Policy
+            {privacyPolicy.label}
           </Typography>
           {content ? <Mdx source={content} /> : null}
           <Typography my={2}>
@@ -73,7 +73,7 @@ const PrivacyPolicy: FC = async () => {
                   },
                   {
                     '@type': 'ListItem',
-                    name: 'Privacy Policy',
+                    name: privacyPolicy.label,
                     position: 2,
                   },
                 ],
@@ -93,7 +93,7 @@ export const generateMetadata = async () => {
   const { createdAt, updatedAt } = await getPrivacyPolicy();
 
   return {
-    title: 'Privacy Policy',
+    title: privacyPolicy.label,
     description,
     openGraph: {
       type: 'article',

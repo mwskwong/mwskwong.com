@@ -1,4 +1,6 @@
+import { privacyPolicy } from '@/constants/nav';
+
 import { routeOgImage } from '../route-og-image';
 
 export const runtime = 'edge';
-export default routeOgImage({ title: 'Privacy Policy' });
+export default routeOgImage({ title: privacyPolicy.label });

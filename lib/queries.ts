@@ -291,10 +291,10 @@ export const getBlogMetadataById = (id: string) => {
 
 // prevent caching this despite technically we can + revalidate when new submission happened.
 // this allows moderation on PROD by directly updating the DB
-export const getGuestbookSubmissions = () => {
+export const getGuestbookSubmissions = reactCache(() => {
   noStore();
   return prisma.contactFormSubmission.findMany({
     where: { showInGuestbook: true },
     orderBy: { submittedAt: 'desc' },
   });
-};
+});
