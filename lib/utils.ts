@@ -37,3 +37,6 @@ export const getJsonLdPerson = async () => {
     description: selfIntroduction,
   } satisfies Person;
 };
+
+export const encodeHtmlEntities = (str: string) =>
+  str.replace(/[\u00A0-\u9999<>&]/gim, (i) => `&#${i.charCodeAt(0)};`);

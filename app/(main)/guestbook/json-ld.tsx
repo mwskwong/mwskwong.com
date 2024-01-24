@@ -9,7 +9,7 @@ import {
 import { baseUrl } from '@/constants/base-url';
 import { guestbook } from '@/constants/nav';
 import { getGuestbookSubmissions } from '@/lib/queries';
-import { getJsonLdPerson } from '@/lib/utils';
+import { encodeHtmlEntities, getJsonLdPerson } from '@/lib/utils';
 
 export interface JsonLdProps {
   discussionForumPosting: {
@@ -42,7 +42,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                     '@type': 'Comment',
                     author: { '@type': 'Person', name },
                     datePublished: submittedAt.toISOString(),
-                    text: message,
+                    text: encodeHtmlEntities(message),
                   }) satisfies Comment,
               ),
               headline: guestbook.label,
