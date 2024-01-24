@@ -182,7 +182,7 @@ export const Contact: FC<ContactProps> = (props) => {
                     href={guestbook.pathname}
                     size="lg"
                   >
-                    Guestbook
+                    {guestbook.label}
                   </Button>
                   <Button
                     color="neutral"
@@ -339,7 +339,7 @@ export const Contact: FC<ContactProps> = (props) => {
                                   href={guestbook.pathname}
                                   underline="always"
                                 >
-                                  Guestbook
+                                  {guestbook.label}
                                 </Link>
                                 .
                               </Typography>

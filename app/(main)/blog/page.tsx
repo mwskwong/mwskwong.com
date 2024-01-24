@@ -41,7 +41,7 @@ const Blogs: FC = async () => {
       <Container component="main" sx={{ py: 'var(--Section-paddingY)' }}>
         <Stack spacing={8}>
           <Stack spacing={2} textAlign="center">
-            <Typography level="h1">Blog</Typography>
+            <Typography level="h1">{blog.label}</Typography>
             <Typography>{description}</Typography>
           </Stack>
           <Grid container spacing={2}>
@@ -145,7 +145,7 @@ const Blogs: FC = async () => {
               },
               {
                 '@type': 'ListItem',
-                name: 'Blog',
+                name: blog.label,
                 position: 2,
               },
             ],
@@ -159,7 +159,7 @@ const Blogs: FC = async () => {
 };
 
 export const metadata = {
-  title: 'Blog',
+  title: blog.label,
   description,
   openGraph: { type: 'website', url: blog.pathname },
   alternates: {

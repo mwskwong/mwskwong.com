@@ -234,7 +234,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   },
                   {
                     '@type': 'ListItem',
-                    name: 'Blog',
+                    name: blogPage.label,
                     item: `${baseUrl}/blog`,
                     position: 2,
                   },
