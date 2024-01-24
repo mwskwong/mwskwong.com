@@ -7,7 +7,7 @@ export const runtime = 'edge';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const Image = async () =>
+const opengraphImage = async () =>
   new ImageResponse(
     (
       <div
@@ -65,4 +65,4 @@ const Image = async () =>
     },
   );
 
-export default Image;
+export default opengraphImage;
