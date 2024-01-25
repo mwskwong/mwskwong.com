@@ -62,7 +62,7 @@ const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
     >
       <ListItemButton component="a" href={href} sx={{ gap: 2 }} target="_blank">
         {thumbnailSrc ? (
-          // eslint-disable-next-line jsx-a11y/alt-text -- alt pass via imageProps
+           // eslint-disable-next-line jsx-a11y/alt-text -- alt pass via imageProps
           <Image src={thumbnailSrc} {...imageProps} />
         ) : (
           href?.endsWith('.pdf') && (
