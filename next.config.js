@@ -4,9 +4,7 @@ import NextBundleAnalyzer from '@next/bundle-analyzer';
 const config = {
   compiler: {
     emotion: true,
-    removeConsole: process.env.NODE_ENV === 'production' && {
-      exclude: ['error'],
-    },
+    removeConsole: process.env.NODE_ENV === 'production',
   },
   eslint: { dirs: ['app', 'components', 'constants', 'lib'] },
   images: {
