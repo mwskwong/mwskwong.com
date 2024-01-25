@@ -289,7 +289,7 @@ export const getBlogMetadataById = (id: string) => {
   return prisma.blogMetadata.findUnique({ where: { id } });
 };
 
-// prevent caching this despite technically we can + revalidate when new submission happened.
+// prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
 // this allows moderation on PROD by directly updating the DB
 export const getGuestbookSubmissions = reactCache(() => {
   noStore();
