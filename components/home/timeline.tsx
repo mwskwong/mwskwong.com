@@ -15,6 +15,7 @@ import { StaticImageData } from 'next/image';
 import { FC, Fragment, forwardRef } from 'react';
 
 import { Image, ImageProps } from '../image';
+import { ThumIoPdfThumbnailImage } from '../thum-io-pdf-thumbnail-image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',
@@ -24,9 +25,6 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
 type ListItemWithThumbnailProps = ListItemProps & {
   href?: string;
   thumbnailSrc?: string | StaticImageData;
-  slotProps?: {
-    thumbnail?: Partial<ImageProps>;
-  };
 };
 
 const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
@@ -34,14 +32,23 @@ const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
   thumbnailSrc,
   children,
   sx,
-  slotProps,
   ...props
 }) => {
-  const { thumbnail, ...listItemSlotProps } = slotProps ?? {};
-  const { sx: thumbnailSx, ...thumbnailProps } = thumbnail ?? {};
+  const imageProps = {
+    alt: `Thumbnail for ${children?.toString()}`,
+    height: 56,
+    sx: {
+      flexShrink: 0,
+      borderRadius: 'var(--ListItem-radius)',
+      border: 1,
+      borderColor: 'neutral.outlinedBorder',
+      ml: 'calc(var(--ListItem-paddingX) * -1)',
+    },
+    width: 80,
+  } satisfies Omit<ImageProps, 'src'>;
+
   return (
     <ListItem
-      slotProps={listItemSlotProps}
       sx={mergeSx(
         {
           minWidth: { sm: 250 },
@@ -55,24 +62,17 @@ const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
     >
       <ListItemButton component="a" href={href} sx={{ gap: 2 }} target="_blank">
         {thumbnailSrc ? (
-          <Image
-            alt={`Thumbnail for ${children?.toString()}`}
-            height={56}
-            src={thumbnailSrc}
-            sx={mergeSx(
-              {
-                flexShrink: 0,
-                borderRadius: 'var(--ListItem-radius)',
-                border: 1,
-                borderColor: 'neutral.outlinedBorder',
-                ml: 'calc(var(--ListItem-paddingX) * -1)',
-              },
-              thumbnailSx,
-            )}
-            width={80}
-            {...thumbnailProps}
-          />
-        ) : null}
+           // eslint-disable-next-line jsx-a11y/alt-text -- alt pass via imageProps
+          <Image src={thumbnailSrc} {...imageProps} />
+        ) : (
+          href?.endsWith('.pdf') && (
+            <ThumIoPdfThumbnailImage
+              src={href}
+              {...imageProps}
+              sx={[imageProps.sx, { objectPosition: 'top' }]}
+            />
+          )
+        )}
         {children}
       </ListItemButton>
     </ListItem>
@@ -188,13 +188,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
                   </ListItemWithThumbnail>
                 ))}
                 {supportingDocuments.map(({ title, url }) => (
-                  <ListItemWithThumbnail
-                    href={url}
-                    key={title}
-                    slotProps={{ thumbnail: { sx: { objectPosition: 'top' } } }}
-                    // to support for 4x dpi
-                    thumbnailSrc={`https://image.thum.io/get/pdfSource/width/${80 * 4}/${url}`}
-                  >
+                  <ListItemWithThumbnail href={url} key={title}>
                     {title}
                   </ListItemWithThumbnail>
                 ))}
