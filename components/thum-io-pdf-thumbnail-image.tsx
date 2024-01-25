@@ -1,5 +1,3 @@
-'use client';
-
 import { FC, forwardRef } from 'react';
 
 import { thumIoPdfThumbnailLoader } from '@/image-loaders';
