@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-import { baseUrl } from '@/constants/base-url';
+import { baseUrl } from '@/constants/site-config';
 
 const robots = () =>
   ({

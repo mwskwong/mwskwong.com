@@ -18,9 +18,9 @@ import { BreadcrumbList, WithContext } from 'schema-dts';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { Image } from '@/components/image';
 import { SectionDivider } from '@/components/section-divider';
-import { baseUrl } from '@/constants/base-url';
 import { breakpoints } from '@/constants/mui-joy';
 import { blog, blogRssFeed } from '@/constants/nav';
+import { baseUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {

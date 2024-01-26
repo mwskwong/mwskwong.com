@@ -21,7 +21,7 @@ import { Share2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useMemo } from 'react';
 
-import { baseUrl } from '@/constants/base-url';
+import { baseUrl } from '@/constants/site-config';
 import { firstName, lastName } from '@/constants/content';
 
 export interface ShareDropdownProps extends Omit<DropdownProps, 'children'> {

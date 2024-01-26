@@ -1,6 +1,6 @@
-import { baseUrl } from '@/constants/base-url';
 import { email, firstName, lastName } from '@/constants/content';
 import { blog, blogRssFeed } from '@/constants/nav';
+import { baseUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 import { encodeHtmlEntities } from '@/lib/utils';
 

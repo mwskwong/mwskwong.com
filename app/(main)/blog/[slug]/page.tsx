@@ -24,7 +24,7 @@ import { Icon } from '@/components/contentful';
 import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
-import { baseUrl } from '@/constants/base-url';
+import { baseUrl } from '@/constants/site-config';
 import { firstName, headline, lastName } from '@/constants/content';
 import { breakpoints } from '@/constants/mui-joy';
 import { blog as blogPage, blogRssFeed, home } from '@/constants/nav';

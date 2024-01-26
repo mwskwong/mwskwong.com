@@ -3,13 +3,13 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Metadata } from 'next';
 import { FC, PropsWithChildren } from 'react';
 
-import { baseUrl } from '@/constants/base-url';
 import {
   firstName,
   headline,
   lastName,
   selfIntroduction,
 } from '@/constants/content';
+import { baseUrl } from '@/constants/site-config';
 
 import { Providers } from './providers';
 

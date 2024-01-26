@@ -1,17 +1,14 @@
 import { Container, Typography } from '@mui/joy';
-import { capitalize } from 'lodash-es';
 import { Metadata } from 'next';
 import { FC } from 'react';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
-import { baseUrl } from '@/constants/base-url';
 import { privacyPolicy } from '@/constants/nav';
+import { baseUrl, websiteDisplayName } from '@/constants/site-config';
 import { getPrivacyPolicy } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
-
-const websiteDisplayName = capitalize(process.env.NEXT_PUBLIC_PROD_URL);
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   weekday: 'long',
