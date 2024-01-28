@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next';
 
-import { baseUrl } from '@/constants/base-url';
 import {
   blog,
   guestbook,
   home,
   privacyPolicy as privacyPolicyNav,
 } from '@/constants/nav';
+import { baseUrl } from '@/constants/site-config';
 import { getBlogs, getPrivacyPolicy } from '@/lib/queries';
 
 const sitemap = async () => {

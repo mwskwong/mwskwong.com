@@ -5,7 +5,7 @@ import { Check, Copy } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useRef, useState } from 'react';
 
-import { baseUrl } from '@/constants/base-url';
+import { baseUrl } from '@/constants/site-config';
 
 export interface ActionsProps {
   blog: {

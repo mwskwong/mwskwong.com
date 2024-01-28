@@ -6,8 +6,8 @@ import {
   Graph,
 } from 'schema-dts';
 
-import { baseUrl } from '@/constants/base-url';
 import { guestbook } from '@/constants/nav';
+import { baseUrl, websiteDisplayName } from '@/constants/site-config';
 import { getGuestbookSubmissions } from '@/lib/queries';
 import { encodeHtmlEntities, getJsonLdPerson } from '@/lib/utils';
 
@@ -45,7 +45,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                     text: encodeHtmlEntities(message),
                   }) satisfies Comment,
               ),
-              headline: guestbook.label,
+              headline: `${websiteDisplayName} ${guestbook.label}`,
               interactionStatistic: {
                 '@type': 'InteractionCounter',
                 interactionType: { '@type': 'CommentAction' },
