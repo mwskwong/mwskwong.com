@@ -17,7 +17,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   day: 'numeric',
 });
 
-const description = `Privacy policy for ${websiteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
+const description = `${privacyPolicy.label} for ${websiteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
 
 const PrivacyPolicy: FC = async () => {
   const [{ createdAt, updatedAt, content }, person] = await Promise.all([
@@ -51,7 +51,7 @@ const PrivacyPolicy: FC = async () => {
             '@graph': [
               {
                 '@type': 'Article',
-                headline: `${websiteDisplayName} Privacy Policy`,
+                headline: `${websiteDisplayName} ${privacyPolicy.label}`,
                 description,
                 image: `${baseUrl}/privacy-policy/opengraph-image`,
                 datePublished: createdAt,

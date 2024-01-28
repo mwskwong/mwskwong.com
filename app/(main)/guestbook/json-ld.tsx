@@ -45,7 +45,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                     text: encodeHtmlEntities(message),
                   }) satisfies Comment,
               ),
-              headline: websiteDisplayName + guestbook.label,
+              headline: `${websiteDisplayName} ${guestbook.label}`,
               interactionStatistic: {
                 '@type': 'InteractionCounter',
                 interactionType: { '@type': 'CommentAction' },
