@@ -13,6 +13,7 @@ import { FC } from 'react';
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
 import { about } from '@/constants/nav';
 import { getPersonalPhoto, getSkillCategories } from '@/lib/queries';
+import { dominateColorDataURL } from '@/lib/utils';
 
 import { Icon } from '../contentful';
 import { Image } from '../image';
@@ -35,7 +36,9 @@ export const About: FC<AboutProps> = async (props) => {
             {personalPhoto ? (
               <Image
                 alt={`${firstName} ${lastName}`}
+                blurDataURL={await dominateColorDataURL(personalPhoto)}
                 height={200}
+                placeholder="blur"
                 priority
                 src={personalPhoto}
                 sx={{
