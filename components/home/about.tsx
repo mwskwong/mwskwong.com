@@ -35,10 +35,7 @@ export const About: FC<AboutProps> = async (props) => {
             {personalPhoto ? (
               <Image
                 alt={`${firstName} ${lastName}`}
-                // 1x1 white
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII="
                 height={200}
-                placeholder="blur"
                 priority
                 src={personalPhoto}
                 sx={{
