@@ -34,7 +34,7 @@ import {
   getPersonalPhoto,
   getPlatformProfiles,
 } from '@/lib/queries';
-import { dominateColorDataURL, getJsonLdPerson } from '@/lib/utils';
+import { getJsonLdPerson } from '@/lib/utils';
 
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
@@ -118,9 +118,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               {/* eslint-disable-next-line jsx-a11y/img-redundant-alt -- cover photo is a valid word */}
               <Image
                 alt={`Cover photo for ${blog.title}`}
-                blurDataURL={await dominateColorDataURL(blog.coverPhoto)}
                 fill
-                placeholder="blur"
                 priority
                 sizes={[`(min-width: ${md}px)' ${md}px`, '100vw'].join(',')}
                 src={blog.coverPhoto}

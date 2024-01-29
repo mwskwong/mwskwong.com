@@ -22,7 +22,6 @@ import { breakpoints } from '@/constants/mui-joy';
 import { blog, blogRssFeed } from '@/constants/nav';
 import { baseUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
-import { dominateColorDataURL } from '@/lib/utils';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   year: 'numeric',
@@ -46,96 +45,86 @@ const Blogs: FC = async () => {
             <Typography>{description}</Typography>
           </Stack>
           <Grid container spacing={2}>
-            {await Promise.all(
-              blogs.map(
-                async (
-                  {
-                    id,
-                    createdAt,
-                    coverPhoto,
-                    slug,
-                    title,
-                    description,
-                    categories,
-                  },
-                  index,
-                ) => (
-                  <Grid key={id} md={4} sm={6} xs={12}>
-                    <Card component="article" sx={{ height: { sm: '100%' } }}>
-                      {coverPhoto ? (
-                        <AspectRatio
-                          objectFit="cover"
-                          ratio="1200/630"
-                          variant="outlined"
-                        >
-                          <Image
-                            alt={`Thumbnail for ${title}`}
-                            blurDataURL={await dominateColorDataURL(coverPhoto)}
-                            fill
-                            placeholder="blur"
-                            priority={index === 0}
-                            sizes={[
-                              `(min-width: ${lg}px) ${Math.round((4 / 12) * lg)}px`,
-                              `(min-width: ${md}px) ${Math.round((4 / 12) * 100)}vw`,
-                              `(min-width: ${sm}px) ${Math.round((6 / 12) * 100)}vw`,
-                              '100vw',
-                            ].join(',')}
-                            src={coverPhoto}
-                            sx={{ width: '100%', height: 'auto' }}
-                          />
-                        </AspectRatio>
-                      ) : null}
-                      <Stack direction="row" flexWrap="wrap" spacing={1}>
-                        {categories?.map((category) => (
-                          <Chip color="primary" key={category}>
-                            {category}
-                          </Chip>
-                        ))}
-                      </Stack>
-                      <CardContent>
-                        <Link
-                          color="neutral"
-                          component={NextLink}
-                          display="-webkit-box"
-                          href={`${blog.pathname}/${slug}`}
-                          overflow="hidden"
-                          overlay
-                          sx={{
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                          }}
-                          typography="title-lg"
-                        >
-                          {title}
-                        </Link>
-                        <Typography
-                          display="-webkit-box"
-                          overflow="hidden"
-                          sx={{
-                            WebkitLineClamp: 3,
-                            WebkitBoxOrient: 'vertical',
-                          }}
-                        >
-                          {description}
-                        </Typography>
-                      </CardContent>
-                      <CardContent orientation="horizontal" sx={{ flex: 0 }}>
-                        <Typography level="body-sm">
-                          {dateFormatter.format(new Date(createdAt))}
-                        </Typography>
-                        <Divider orientation="vertical" />
-                        <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
-                          <Views
-                            blogId={id}
-                            blogIds={blogIds}
-                            level="body-sm"
-                            readOnly
-                          />
-                        </Suspense>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                ),
+            {blogs.map(
+              (
+                {
+                  id,
+                  createdAt,
+                  coverPhoto,
+                  slug,
+                  title,
+                  description,
+                  categories,
+                },
+                index,
+              ) => (
+                <Grid key={id} md={4} sm={6} xs={12}>
+                  <Card component="article" sx={{ height: { sm: '100%' } }}>
+                    {coverPhoto ? (
+                      <AspectRatio
+                        objectFit="cover"
+                        ratio="1200/630"
+                        variant="outlined"
+                      >
+                        <Image
+                          alt={`Thumbnail for ${title}`}
+                          fill
+                          priority={index === 0}
+                          sizes={[
+                            `(min-width: ${lg}px) ${Math.round((4 / 12) * lg)}px`,
+                            `(min-width: ${md}px) ${Math.round((4 / 12) * 100)}vw`,
+                            `(min-width: ${sm}px) ${Math.round((6 / 12) * 100)}vw`,
+                            '100vw',
+                          ].join(',')}
+                          src={coverPhoto}
+                          sx={{ width: '100%', height: 'auto' }}
+                        />
+                      </AspectRatio>
+                    ) : null}
+                    <Stack direction="row" flexWrap="wrap" spacing={1}>
+                      {categories?.map((category) => (
+                        <Chip color="primary" key={category}>
+                          {category}
+                        </Chip>
+                      ))}
+                    </Stack>
+                    <CardContent>
+                      <Link
+                        color="neutral"
+                        component={NextLink}
+                        display="-webkit-box"
+                        href={`${blog.pathname}/${slug}`}
+                        overflow="hidden"
+                        overlay
+                        sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
+                        typography="title-lg"
+                      >
+                        {title}
+                      </Link>
+                      <Typography
+                        display="-webkit-box"
+                        overflow="hidden"
+                        sx={{ WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}
+                      >
+                        {description}
+                      </Typography>
+                    </CardContent>
+                    <CardContent orientation="horizontal" sx={{ flex: 0 }}>
+                      <Typography level="body-sm">
+                        {dateFormatter.format(new Date(createdAt))}
+                      </Typography>
+                      <Divider orientation="vertical" />
+                      <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
+                        <Views
+                          blogId={id}
+                          blogIds={blogIds}
+                          level="body-sm"
+                          readOnly
+                        />
+                      </Suspense>
+                    </CardContent>
+                  </Card>
+                </Grid>
               ),
             )}
           </Grid>
