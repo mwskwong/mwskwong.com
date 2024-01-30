@@ -4,4 +4,4 @@ import { routeOgImage } from '../route-og-image';
 
 export const runtime = 'edge';
 export { size, contentType } from '../route-og-image';
-export default routeOgImage({ title: privacyPolicy.label });
+export default routeOgImage(privacyPolicy.label);
