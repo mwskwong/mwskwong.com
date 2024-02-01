@@ -12,6 +12,19 @@ index a458b2f..598d8df 100644
 +  JAVASCRIPT_FILES: ['*.js?(x)', '*.@(m|c)js'],
    TYPESCRIPT_FILES: ['*.ts?(x)'],
  };
+diff --git a/node_modules/@vercel/style-guide/typescript/tsconfig.node18.json b/node_modules/@vercel/style-guide/typescript/tsconfig.node18.json
+index dccb40c..e027b91 100644
+--- a/node_modules/@vercel/style-guide/typescript/tsconfig.node18.json
++++ b/node_modules/@vercel/style-guide/typescript/tsconfig.node18.json
+@@ -6,7 +6,7 @@
+   "compilerOptions": {
+     "lib": ["es2023"],
+     "module": "node16",
+-    "target": "es2023",
++    "target": "es2022",
+     "moduleResolution": "node16"
+   }
+ }
 diff --git a/node_modules/@vercel/style-guide/typescript/tsconfig.node20.json b/node_modules/@vercel/style-guide/typescript/tsconfig.node20.json
 index 034a243..24bd082 100644
 --- a/node_modules/@vercel/style-guide/typescript/tsconfig.node20.json
