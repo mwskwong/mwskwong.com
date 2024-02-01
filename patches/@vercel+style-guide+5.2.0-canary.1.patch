@@ -13,18 +13,15 @@ index a458b2f..598d8df 100644
    TYPESCRIPT_FILES: ['*.ts?(x)'],
  };
 diff --git a/node_modules/@vercel/style-guide/typescript/tsconfig.node20.json b/node_modules/@vercel/style-guide/typescript/tsconfig.node20.json
-index 034a243..73294b1 100644
+index 034a243..24bd082 100644
 --- a/node_modules/@vercel/style-guide/typescript/tsconfig.node20.json
 +++ b/node_modules/@vercel/style-guide/typescript/tsconfig.node20.json
-@@ -4,9 +4,9 @@
-   "display": "Vercel Node 20",
-   "docs": "https://github.com/vercel/style-guide",
+@@ -6,7 +6,7 @@
    "compilerOptions": {
--    "lib": ["es2023"],
-+    "lib": ["esnext"],
+     "lib": ["es2023"],
      "module": "node16",
 -    "target": "es2023",
-+    "target": "esnext",
++    "target": "es2022",
      "moduleResolution": "node16"
    }
  }
