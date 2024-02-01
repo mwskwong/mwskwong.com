@@ -11,13 +11,12 @@ const appleIcon = () =>
     (
       <div
         style={{
-          background: '#FFF', // --joy-palette-background-body
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: 24,
+          padding: 16,
         }}
       >
         {/* --joy-palette-primary-plainColor */}
