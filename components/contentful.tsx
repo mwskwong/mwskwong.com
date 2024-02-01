@@ -14,12 +14,12 @@ import {
 } from '@icons-pack/react-simple-icons';
 import { clsx } from 'clsx';
 import {
+  Activity,
   BrainCircuit,
   Bug,
   Database,
   LayoutDashboard,
   LucideProps,
-  MessagesSquare,
   MonitorDot,
   TabletSmartphone,
   Terminal,
@@ -72,7 +72,7 @@ const Icons = {
   [contentfulIds.machineLearning]: BrainCircuit,
   [contentfulIds.mobile]: TabletSmartphone,
   [contentfulIds.qa]: Bug,
-  [contentfulIds.softSkills]: MessagesSquare,
+  [contentfulIds.monitoring]: Activity,
 };
 
 export type IconProps = ComponentProps<IconType> &
