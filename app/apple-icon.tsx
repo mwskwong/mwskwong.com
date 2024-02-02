@@ -11,16 +11,16 @@ const appleIcon = () =>
     (
       <div
         style={{
-          background: '#FFF', // --joy-palette-background-body
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          padding: 8,
         }}
       >
         {/* --joy-palette-primary-plainColor */}
-        <Logo fill="#0B6BCB" width={size.width * 0.55} />
+        <Logo fill="#0B6BCB" width="100%" />
       </div>
     ),
     size,
