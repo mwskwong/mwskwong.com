@@ -71,7 +71,7 @@ const config = {
 
     return config;
   },
-  headers: () => [
+  headers: async () => [
     {
       source: '/:path*',
       headers: [
