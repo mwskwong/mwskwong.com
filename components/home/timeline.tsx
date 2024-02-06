@@ -204,6 +204,7 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
               <Stack direction="row" flexWrap="wrap" spacing={1}>
                 {tags.map(({ label, url }) => (
                   <Chip
+                    color="primary"
                     key={label}
                     slotProps={{
                       action: url
