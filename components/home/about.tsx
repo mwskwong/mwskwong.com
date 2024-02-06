@@ -4,12 +4,10 @@ import {
   Card,
   Chip,
   Container,
-  Grid,
   Sheet,
   Stack,
   Typography,
 } from '@mui/joy';
-import { chunk } from 'lodash-es';
 import { FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
@@ -52,39 +50,38 @@ export const About: FC<AboutProps> = async (props) => {
               {selfIntroduction}
             </Typography>
           </Stack>
-          <Grid container spacing={4}>
-            {chunk(skillCategories, 3).map((column, index) => (
-              // eslint-disable-next-line react/no-array-index-key -- we are not gonna sort the columns in runtime
-              <Grid key={index} lg={4} sm={6} xs={12}>
-                <Stack spacing={4}>
-                  {column.map(({ id, name, skills }) => (
-                    <Card key={id}>
-                      <Sheet
-                        color="primary"
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          borderRadius: 'sm',
-                          width: 48,
-                          height: 48,
-                        }}
-                        variant="outlined"
-                      >
-                        <Icon contentfulId={id} />
-                      </Sheet>
-                      <Typography level="title-md">{name}</Typography>
-                      <Stack direction="row" flexWrap="wrap" spacing={1}>
-                        {skills.map((skill) => (
-                          <Chip key={skill}>{skill}</Chip>
-                        ))}
-                      </Stack>
-                    </Card>
+          <Box
+            sx={{
+              columnCount: { xs: 1, sm: 2, md: 3 },
+              columnGap: 4,
+              '& > *': { breakInside: 'avoid', mb: 4 },
+            }}
+          >
+            {skillCategories.map(({ id, name, skills }) => (
+              <Card key={id}>
+                <Sheet
+                  color="primary"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 'sm',
+                    width: 48,
+                    height: 48,
+                  }}
+                  variant="outlined"
+                >
+                  <Icon contentfulId={id} />
+                </Sheet>
+                <Typography level="title-md">{name}</Typography>
+                <Stack direction="row" flexWrap="wrap" spacing={1}>
+                  {skills.map((skill) => (
+                    <Chip key={skill}>{skill}</Chip>
                   ))}
                 </Stack>
-              </Grid>
+              </Card>
             ))}
-          </Grid>
+          </Box>
         </Stack>
       </Container>
     </Box>
