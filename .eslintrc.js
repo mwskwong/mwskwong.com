@@ -91,8 +91,8 @@ module.exports = {
     // Must use default export
     {
       files: [
-        'next.config.js',
-        'prettier.config.js',
+        'next.config.mjs',
+        'prettier.config.mjs',
         'app/**/page.tsx',
         'app/**/layout.tsx',
         'app/**/not-found.tsx',
