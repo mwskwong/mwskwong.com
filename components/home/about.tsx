@@ -75,8 +75,17 @@ export const About: FC<AboutProps> = async (props) => {
                 </Sheet>
                 <Typography level="title-md">{name}</Typography>
                 <Stack direction="row" flexWrap="wrap" spacing={1}>
-                  {skills.map((skill) => (
-                    <Chip key={skill}>{skill}</Chip>
+                  {skills.map(({ name, url }) => (
+                    <Chip
+                      key={name}
+                      slotProps={{
+                        action: url
+                          ? { component: 'a', href: url, target: '_blank' }
+                          : undefined,
+                      }}
+                    >
+                      {name}
+                    </Chip>
                   ))}
                 </Stack>
               </Card>

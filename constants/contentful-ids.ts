@@ -9,6 +9,7 @@ export const oracle = '7zGOgiIofeUxiotCfqQlxr';
 export const stackOverflow = '1VVUJjfmnMSqIYZcpbQVLI';
 export const udemy = '1HehJlTFU3uyHsvibs0jGk';
 export const youtube = '2tWpm6AFYaWAIBo6JoVufQ';
+
 export const backend = '2FtEFXEYpFad3n0eE4CNyF';
 export const cms = '6RuL6dXWQqCMYjaLuA14A4';
 export const database = '1ga6JyLWtemRU5cf9oTOQa';
@@ -18,6 +19,8 @@ export const machineLearning = '4nOEnXVl1fCJGetHGVnsZ8';
 export const mobile = '3biweEjbkRyZaII8ZgkQhI';
 export const qa = '119H1LBXMmT8xLTdnAq1PS';
 export const monitoring = '632XHEYS6JH9L1l61PHQLx';
+export const toolsAndPlatforms = '49VijdvfwgdRLADfqZ3vTk';
+
 export const react = '6AvNh3tmHsqkj6hsPjDYFq';
 export const reactHookForm = '65juthZmgU0hNCkWDxC7iG';
 export const nextJs = 'NbXE4EvJWCDiNb7eKrafg';

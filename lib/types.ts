@@ -97,6 +97,7 @@ export interface SkillSkeleton {
     name: EntryFieldTypes.Symbol;
     category?: EntryFieldTypes.EntryLink<SkillCategorySkeleton>;
     proficiency: EntryFieldTypes.Integer;
+    url?: EntryFieldTypes.Symbol;
   };
 }
 
@@ -104,7 +105,7 @@ export interface SkillCategorySkeleton {
   contentTypeId: 'skillCategory';
   fields: {
     name: EntryFieldTypes.Symbol;
-    proficiency: EntryFieldTypes.Integer;
+    proficiency?: EntryFieldTypes.Integer;
   };
 }
 
