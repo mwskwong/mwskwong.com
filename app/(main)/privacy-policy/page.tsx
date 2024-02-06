@@ -99,6 +99,7 @@ export const generateMetadata = async () => {
       modifiedTime: updatedAt,
       url: privacyPolicy.pathname,
     },
+    alternates: { canonical: privacyPolicy.pathname },
   } satisfies Metadata;
 };
 

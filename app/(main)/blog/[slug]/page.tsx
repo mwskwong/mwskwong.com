@@ -277,11 +277,11 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       tags: categories,
-      url: `/blog/${slug}`,
+      url: `${blogPage.pathname}/${slug}`,
       images: coverPhoto,
     },
-    // This is not inherit from parent some how
     alternates: {
+      canonical: `${blogPage.pathname}/${slug}`,
       types: { 'application/rss+xml': `${baseUrl}${blogRssFeed.pathname}` },
     },
   } satisfies Metadata;
