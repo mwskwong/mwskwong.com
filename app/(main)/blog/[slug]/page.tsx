@@ -120,7 +120,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 alt={`Cover photo for ${blog.title}`}
                 fill
                 priority
-                sizes={[`(min-width: ${md}px)' ${md}px`, '100vw'].join(',')}
+                sizes={[`(min-width: ${md}px) ${md}px`, '100vw'].join(',')}
                 src={blog.coverPhoto}
                 sx={{ width: '100%', height: 'auto' }}
               />
