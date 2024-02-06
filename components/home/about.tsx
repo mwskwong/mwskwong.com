@@ -1,6 +1,7 @@
 import {
   Box,
   BoxProps,
+  Card,
   Chip,
   Container,
   Grid,
@@ -8,6 +9,7 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
+import { chunk } from 'lodash-es';
 import { FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
@@ -27,7 +29,7 @@ export const About: FC<AboutProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack alignItems="center" spacing={8} textAlign="center">
+        <Stack alignItems="center" spacing={8}>
           <Typography id={about.id} level="h2">
             About
           </Typography>
@@ -48,40 +50,35 @@ export const About: FC<AboutProps> = async (props) => {
             ) : null}
             <Typography maxWidth="sm">{selfIntroduction}</Typography>
           </Stack>
-          <Grid
-            container
-            disableEqualOverflow
-            justifyContent="center"
-            spacing={6}
-          >
-            {skillCategories.map(({ id, name, skills }) => (
-              <Grid key={id} lg={4} sm={6} xs={12}>
-                <Stack alignItems="center" spacing={2}>
-                  <Sheet
-                    color="primary"
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: 'sm',
-                      width: 48,
-                      height: 48,
-                    }}
-                    variant="outlined"
-                  >
-                    <Icon contentfulId={id} />
-                  </Sheet>
-                  <Typography level="title-md">{name}</Typography>
-                  <Stack
-                    direction="row"
-                    flexWrap="wrap"
-                    justifyContent="center"
-                    spacing={1}
-                  >
-                    {skills.map((skill) => (
-                      <Chip key={skill}>{skill}</Chip>
-                    ))}
-                  </Stack>
+          <Grid container spacing={4}>
+            {chunk(skillCategories, 3).map((column, index) => (
+              // eslint-disable-next-line react/no-array-index-key -- we are not gonna sort the columns in runtime
+              <Grid key={index} lg={4} sm={6} xs={12}>
+                <Stack spacing={4}>
+                  {column.map(({ id, name, skills }) => (
+                    <Card key={id}>
+                      <Sheet
+                        color="primary"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          borderRadius: 'sm',
+                          width: 48,
+                          height: 48,
+                        }}
+                        variant="outlined"
+                      >
+                        <Icon contentfulId={id} />
+                      </Sheet>
+                      <Typography level="title-md">{name}</Typography>
+                      <Stack direction="row" flexWrap="wrap" spacing={1}>
+                        {skills.map((skill) => (
+                          <Chip key={skill}>{skill}</Chip>
+                        ))}
+                      </Stack>
+                    </Card>
+                  ))}
                 </Stack>
               </Grid>
             ))}
