@@ -120,11 +120,11 @@ export const Contact: FC<ContactProps> = (props) => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderRadius: 'sm',
-                      width: 48,
-                      height: 48,
+                      width: 40,
+                      height: 40,
                       mb: 2,
                     }}
-                    variant="outlined"
+                    variant="soft"
                   >
                     <Icon />
                   </Sheet>
@@ -155,22 +155,22 @@ export const Contact: FC<ContactProps> = (props) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      borderRadius: 'sm',
-                      width: 48,
-                      height: 48,
+                      boxShadow: 'sm',
+                      borderRadius: '50%',
+                      width: 100,
+                      height: 100,
+                      '--Icon-fontSize': '2.5rem',
                     }}
                     variant="outlined"
                   >
-                    <ThumbsUp />
+                    <ThumbsUp size={2.5 * 16} absoluteStrokeWidth />
                   </Sheet>
-                  <div>
-                    <Typography level="title-md">Thank You!</Typography>
-                    <Typography maxWidth="sm">
-                      Thank you for reaching out! I have received your message
-                      and will respond promptly, should you have provided your
-                      email address.
-                    </Typography>
-                  </div>
+                  <Typography level="title-lg">Thank You!</Typography>
+                  <Typography maxWidth="sm">
+                    Thank you for reaching out! I have received your message and
+                    will respond promptly, should you have provided your email
+                    address.
+                  </Typography>
                 </Stack>
                 <Stack
                   direction={{ xs: 'column', sm: 'row' }}

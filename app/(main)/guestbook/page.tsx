@@ -55,6 +55,7 @@ export const metadata = {
   title: guestbook.label,
   description,
   openGraph: { type: 'website', url: guestbook.pathname },
+  alternates: { canonical: guestbook.pathname },
 } satisfies Metadata;
 
 export default Guestbook;

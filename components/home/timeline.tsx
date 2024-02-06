@@ -98,7 +98,7 @@ export interface TimelineItemProps extends Omit<GridProps, 'children'> {
     title?: string;
     url?: string;
   }[];
-  tags?: string[];
+  tags?: { label: string; url?: string }[];
 }
 
 export const TimelineItem: FC<TimelineItemProps> = forwardRef(
@@ -202,9 +202,17 @@ export const TimelineItem: FC<TimelineItemProps> = forwardRef(
             )}
             {tags.length > 0 && (
               <Stack direction="row" flexWrap="wrap" spacing={1}>
-                {tags.map((tag) => (
-                  <Chip color="primary" key={tag}>
-                    {tag}
+                {tags.map(({ label, url }) => (
+                  <Chip
+                    color="primary"
+                    key={label}
+                    slotProps={{
+                      action: url
+                        ? { component: 'a', href: url, target: '_blank' }
+                        : undefined,
+                    }}
+                  >
+                    {label}
                   </Chip>
                 ))}
               </Stack>

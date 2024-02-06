@@ -35,6 +35,7 @@ export const metadata = {
   openGraph: { url: '/', type: 'website' },
   robots: { 'max-image-preview': 'large' },
   archives: ['https://v2.mwskwong.com'],
+  alternates: { canonical: '/' },
 } satisfies Metadata;
 
 export default RootLayout;

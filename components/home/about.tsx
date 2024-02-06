@@ -1,9 +1,9 @@
 import {
   Box,
   BoxProps,
+  Card,
   Chip,
   Container,
-  Grid,
   Sheet,
   Stack,
   Typography,
@@ -27,7 +27,7 @@ export const About: FC<AboutProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack alignItems="center" spacing={8} textAlign="center">
+        <Stack alignItems="center" spacing={8}>
           <Typography id={about.id} level="h2">
             About
           </Typography>
@@ -46,46 +46,53 @@ export const About: FC<AboutProps> = async (props) => {
                 width={200}
               />
             ) : null}
-            <Typography maxWidth="sm">{selfIntroduction}</Typography>
+            <Typography maxWidth="sm" textAlign="center">
+              {selfIntroduction}
+            </Typography>
           </Stack>
-          <Grid
-            container
-            disableEqualOverflow
-            justifyContent="center"
-            spacing={6}
+          <Box
+            sx={{
+              columnCount: { xs: 1, sm: 2, md: 3 },
+              columnGap: 4,
+              '& > *': { breakInside: 'avoid', mb: 4 },
+            }}
           >
             {skillCategories.map(({ id, name, skills }) => (
-              <Grid key={id} lg={4} sm={6} xs={12}>
-                <Stack alignItems="center" spacing={2}>
-                  <Sheet
-                    color="primary"
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: 'sm',
-                      width: 48,
-                      height: 48,
-                    }}
-                    variant="outlined"
-                  >
-                    <Icon contentfulId={id} />
-                  </Sheet>
-                  <Typography level="title-md">{name}</Typography>
-                  <Stack
-                    direction="row"
-                    flexWrap="wrap"
-                    justifyContent="center"
-                    spacing={1}
-                  >
-                    {skills.map((skill) => (
-                      <Chip key={skill}>{skill}</Chip>
-                    ))}
-                  </Stack>
+              <Card key={id}>
+                <Sheet
+                  color="primary"
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 'sm',
+                    width: 40,
+                    height: 40,
+                  }}
+                  variant="soft"
+                >
+                  <Icon contentfulId={id} />
+                </Sheet>
+                <Typography level="title-md" mt={2}>
+                  {name}
+                </Typography>
+                <Stack direction="row" flexWrap="wrap" spacing={1}>
+                  {skills.map(({ name, url }) => (
+                    <Chip
+                      key={name}
+                      slotProps={{
+                        action: url
+                          ? { component: 'a', href: url, target: '_blank' }
+                          : undefined,
+                      }}
+                    >
+                      {name}
+                    </Chip>
+                  ))}
                 </Stack>
-              </Grid>
+              </Card>
             ))}
-          </Grid>
+          </Box>
         </Stack>
       </Container>
     </Box>

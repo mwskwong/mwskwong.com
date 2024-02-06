@@ -21,6 +21,7 @@ import {
   LayoutDashboard,
   LucideProps,
   MonitorDot,
+  Shapes,
   TabletSmartphone,
   Terminal,
   Workflow,
@@ -73,6 +74,7 @@ const Icons = {
   [contentfulIds.mobile]: TabletSmartphone,
   [contentfulIds.qa]: Bug,
   [contentfulIds.monitoring]: Activity,
+  [contentfulIds.toolsAndPlatforms]: Shapes,
 };
 
 export type IconProps = ComponentProps<IconType> &
