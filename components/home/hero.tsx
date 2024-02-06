@@ -27,8 +27,14 @@ export const Hero: FC<HeroProps> = async (props) => {
   ]);
 
   return (
-    <Box component="section" pt={{ sm: 16 }} {...props}>
-      <Container sx={{ textAlign: 'center' }}>
+    <Box
+      alignItems="center"
+      component="section"
+      display="flex"
+      minHeight="calc(100svh - var(--Header-height))"
+      {...props}
+    >
+      <Container sx={{ textAlign: 'center', pb: 'var(--Header-height)' }}>
         <Stack alignItems="center" spacing={2}>
           <Chip
             endDecorator={<ArrowRight />}
