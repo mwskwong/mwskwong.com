@@ -48,7 +48,9 @@ export const About: FC<AboutProps> = async (props) => {
                 width={200}
               />
             ) : null}
-            <Typography maxWidth="sm">{selfIntroduction}</Typography>
+            <Typography maxWidth="sm" textAlign="center">
+              {selfIntroduction}
+            </Typography>
           </Stack>
           <Grid container spacing={4}>
             {chunk(skillCategories, 3).map((column, index) => (
