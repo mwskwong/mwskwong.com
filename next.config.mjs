@@ -1,3 +1,5 @@
+// @ts-check
+
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 
 /** @type {import('next').NextConfig} */
