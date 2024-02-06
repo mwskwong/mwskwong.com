@@ -163,7 +163,7 @@ export const Contact: FC<ContactProps> = (props) => {
                     }}
                     variant="outlined"
                   >
-                    <ThumbsUp size={2.5 * 16} absoluteStrokeWidth />
+                    <ThumbsUp absoluteStrokeWidth size={2.5 * 16} />
                   </Sheet>
                   <Typography level="title-lg">Thank You!</Typography>
                   <Typography maxWidth="sm">
