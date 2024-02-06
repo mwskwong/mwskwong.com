@@ -37,7 +37,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
           organizations: companies,
           organizationsRelationship: companiesRelationship,
           descriptions: jobDuties,
-          tags: skills,
+          tags: skills.map(({ name, url }) => ({ label: name, url })),
           ...rest,
         }),
       ),

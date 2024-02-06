@@ -199,7 +199,7 @@ export const getExperiences = cache(async () => {
         (elem): elem is Entry<SkillSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> =>
           Boolean(elem),
       )
-      .map((skill) => skill.fields.name),
+      .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
   }));
 });
 
@@ -242,7 +242,7 @@ export const getSkillCategories = cache(async () => {
     name: skillCategory.fields.name,
     skills: skills
       .filter((skill) => skill.fields.category?.sys.id === skillCategory.sys.id)
-      .map((skill) => skill.fields.name),
+      .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
   }));
 });
 

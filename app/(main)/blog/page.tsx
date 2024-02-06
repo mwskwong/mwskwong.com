@@ -163,6 +163,7 @@ export const metadata = {
   description,
   openGraph: { type: 'website', url: blog.pathname },
   alternates: {
+    canonical: blog.pathname,
     types: { 'application/rss+xml': `${baseUrl}${blogRssFeed.pathname}` },
   },
 } satisfies Metadata;
