@@ -124,7 +124,7 @@ export const Contact: FC<ContactProps> = (props) => {
                       height: 40,
                       mb: 2,
                     }}
-                    variant="soft"
+                    variant="outlined"
                   >
                     <Icon />
                   </Sheet>

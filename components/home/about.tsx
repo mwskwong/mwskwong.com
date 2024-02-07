@@ -2,6 +2,7 @@ import {
   Box,
   BoxProps,
   Card,
+  CardContent,
   Chip,
   Container,
   Sheet,
@@ -66,30 +67,31 @@ export const About: FC<AboutProps> = async (props) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderRadius: 'sm',
+                    boxShadow: 'sm',
                     width: 40,
                     height: 40,
                   }}
-                  variant="soft"
+                  variant="outlined"
                 >
                   <Icon contentfulId={id} />
                 </Sheet>
-                <Typography level="title-md" mt={2}>
-                  {name}
-                </Typography>
-                <Stack direction="row" flexWrap="wrap" spacing={1}>
-                  {skills.map(({ name, url }) => (
-                    <Chip
-                      key={name}
-                      slotProps={{
-                        action: url
-                          ? { component: 'a', href: url, target: '_blank' }
-                          : undefined,
-                      }}
-                    >
-                      {name}
-                    </Chip>
-                  ))}
-                </Stack>
+                <CardContent>
+                  <Typography level="title-md">{name}</Typography>
+                  <Stack direction="row" flexWrap="wrap" spacing={1}>
+                    {skills.map(({ name, url }) => (
+                      <Chip
+                        key={name}
+                        slotProps={{
+                          action: url
+                            ? { component: 'a', href: url, target: '_blank' }
+                            : undefined,
+                        }}
+                      >
+                        {name}
+                      </Chip>
+                    ))}
+                  </Stack>
+                </CardContent>
               </Card>
             ))}
           </Box>
