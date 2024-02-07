@@ -242,7 +242,11 @@ export const getSkillCategories = cache(async () => {
     name: skillCategory.fields.name,
     skills: skills
       .filter((skill) => skill.fields.category?.sys.id === skillCategory.sys.id)
-      .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
+      .map((skill) => ({
+        name: skill.fields.name,
+        proficiency: skill.fields.proficiency,
+        url: skill.fields.url,
+      })),
   }));
 });
 
