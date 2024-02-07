@@ -77,7 +77,6 @@ export const SelfLearning: FC<SelfLearningProps> = ({
           fullWidth
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Search courses..."
-          size="lg"
           startDecorator={<Search />}
           sx={{ maxWidth: 400, mx: 'auto' }}
           type="search"
