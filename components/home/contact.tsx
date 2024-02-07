@@ -100,7 +100,7 @@ export const Contact: FC<ContactProps> = (props) => {
               container
               fontStyle="initial"
               md={4}
-              spacing={3}
+              spacing={4}
               xs={12}
             >
               {Object.values(contactInfo).map(({ Icon, title, value, url }) => (
