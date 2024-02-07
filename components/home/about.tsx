@@ -4,6 +4,7 @@ import {
   Card,
   Chip,
   Container,
+  Sheet,
   Stack,
   Typography,
 } from '@mui/joy';
@@ -58,13 +59,21 @@ export const About: FC<AboutProps> = async (props) => {
           >
             {skillCategories.map(({ id, name, skills }) => (
               <Card key={id}>
-                <Typography
-                  level="title-md"
-                  startDecorator={<Icon contentfulId={id} />}
+                <Sheet
+                  color="primary"
                   sx={{
-                    '--Icon-color': 'var(--joy-palette-primary-plainColor)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 'sm',
+                    width: 40,
+                    height: 40,
                   }}
+                  variant="soft"
                 >
+                  <Icon contentfulId={id} />
+                </Sheet>
+                <Typography level="title-md" mt={2}>
                   {name}
                 </Typography>
                 <Stack direction="row" flexWrap="wrap" spacing={1}>
