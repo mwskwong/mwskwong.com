@@ -111,24 +111,15 @@ export const Contact: FC<ContactProps> = (props) => {
                   key={title}
                   md={12}
                   sm={4}
+                  sx={{
+                    '--Icon-color': 'var(--joy-palette-primary-plainColor)',
+                  }}
                   xs={12}
                 >
-                  <Sheet
-                    color="primary"
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: 'sm',
-                      width: 40,
-                      height: 40,
-                      mb: 2,
-                    }}
-                    variant="soft"
-                  >
-                    <Icon />
-                  </Sheet>
-                  <Typography level="title-md">{title}</Typography>
+                  <Icon />
+                  <Typography level="title-md" mt={2}>
+                    {title}
+                  </Typography>
                   <Link
                     color="neutral"
                     href={url}
