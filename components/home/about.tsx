@@ -1,22 +1,13 @@
-import {
-  Box,
-  BoxProps,
-  Card,
-  CardContent,
-  Chip,
-  Container,
-  Sheet,
-  Stack,
-  Typography,
-} from '@mui/joy';
+import { Box, BoxProps, Container, Stack, Typography } from '@mui/joy';
 import { FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
 import { about } from '@/constants/nav';
 import { getPersonalPhoto, getSkillCategories } from '@/lib/queries';
 
-import { Icon } from '../contentful';
 import { Image } from '../image';
+
+import { SkillSet } from './skill-set';
 
 export type AboutProps = Omit<BoxProps<'section'>, 'children'>;
 export const About: FC<AboutProps> = async (props) => {
@@ -51,49 +42,7 @@ export const About: FC<AboutProps> = async (props) => {
               {selfIntroduction}
             </Typography>
           </Stack>
-          <Box
-            sx={{
-              columnCount: { xs: 1, sm: 2, md: 3 },
-              columnGap: 4,
-              '& > *': { breakInside: 'avoid', mb: 4 },
-            }}
-          >
-            {skillCategories.map(({ id, name, skills }) => (
-              <Card key={id}>
-                <Sheet
-                  color="primary"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 'sm',
-                    width: 40,
-                    height: 40,
-                  }}
-                  variant="soft"
-                >
-                  <Icon contentfulId={id} />
-                </Sheet>
-                <CardContent>
-                  <Typography level="title-md">{name}</Typography>
-                  <Stack direction="row" flexWrap="wrap" spacing={1}>
-                    {skills.map(({ name, url }) => (
-                      <Chip
-                        key={name}
-                        slotProps={{
-                          action: url
-                            ? { component: 'a', href: url, target: '_blank' }
-                            : undefined,
-                        }}
-                      >
-                        {name}
-                      </Chip>
-                    ))}
-                  </Stack>
-                </CardContent>
-              </Card>
-            ))}
-          </Box>
+          <SkillSet skillCategories={skillCategories} />
         </Stack>
       </Container>
     </Box>
