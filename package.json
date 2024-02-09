@@ -41,7 +41,7 @@
     "rehype-pretty-code": "^0.13.0",
     "rehype-slug": "^6.0.0",
     "schema-dts": "^1.1.2",
-    "shiki": "^1.0.0",
+    "shiki": "^1.1.0",
     "valibot": "^0.28.1"
   },
   "devDependencies": {
