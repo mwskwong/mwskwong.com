@@ -20,7 +20,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@icons-pack/react-simple-icons": "^9.3.0",
     "@mui/base": "5.0.0-beta.36",
-    "@mui/joy": "5.0.0-beta.27",
+    "@mui/joy": "5.0.0-beta.28",
     "@mui/styled-engine": "^5.15.9",
     "@prisma/client": "^5.9.1",
     "@prisma/extension-read-replicas": "^0.3.0",
