@@ -31,7 +31,7 @@
     "dayjs": "^1.11.10",
     "geist": "^1.2.2",
     "lodash-es": "^4.17.21",
-    "lucide-react": "^0.323.0",
+    "lucide-react": "^0.325.0",
     "merge-sx": "^2.0.0",
     "next": "canary",
     "next-mdx-remote": "^4.4.1",
