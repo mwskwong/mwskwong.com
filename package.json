@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "cypress:open": "cypress open",
     "dev": "next dev",
     "format": "prettier --write .",
     "postinstall": "patch-package && npm run prisma:generate",
     "lint": "next lint",
+    "prisma:db:push": "dotenv -e .env.development.local -- prisma db push",
     "prisma:generate": "prisma generate",
-    "prisma:push": "dotenv -e .env.development.local -- prisma db push",
     "prisma:studio": "dotenv -e .env.development.local -- prisma studio",
     "start": "next start"
   },
@@ -53,6 +54,7 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@vercel/style-guide": "^5.2.0",
+    "cypress": "^13.6.4",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.56.0",
     "patch-package": "^8.0.0",
