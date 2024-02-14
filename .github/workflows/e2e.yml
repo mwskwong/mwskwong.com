@@ -21,5 +21,6 @@ jobs:
         with:
           install: false
           browser: ${{ matrix.browser }}
+          headed: true
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.environment_url }}
