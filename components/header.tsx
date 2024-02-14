@@ -52,11 +52,13 @@ export const Header: FC<HeaderProps> = async (props) => {
             <Link
               aria-label="Go to home page"
               component={NextLink}
+              data-cy="logo"
               href={{ pathname: home.pathname, hash: home.id }}
             >
               <Logo width={30} />
             </Link>
             <List
+              data-cy="nav-list-md"
               orientation="horizontal"
               sx={{
                 '--List-radius': 'var(--joy-radius-sm)',

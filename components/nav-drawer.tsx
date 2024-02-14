@@ -27,13 +27,18 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
   return (
     <>
       <Tooltip title="Toggle navigation drawer">
-        <IconButton onClick={() => setOpen(true)} {...slotProps?.drawerButton}>
+        <IconButton
+          data-cy="menu-button"
+          onClick={() => setOpen(true)}
+          {...slotProps?.drawerButton}
+        >
           <Menu />
         </IconButton>
       </Tooltip>
       <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
         <Box component="nav" pb={1} pt={10} px={1}>
           <List
+            data-cy="nav-list-xs"
             size="lg"
             sx={{
               '--List-gap': (theme) => theme.spacing(1),

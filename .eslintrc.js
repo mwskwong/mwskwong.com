@@ -113,5 +113,9 @@ module.exports = {
       files: ['**/*.d.ts'],
       rules: { 'import/no-default-export': 'off' },
     },
+    {
+      files: ['cypress/**'],
+      extends: ['plugin:cypress/recommended'],
+    },
   ],
 };
