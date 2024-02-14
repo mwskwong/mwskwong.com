@@ -1,5 +1,6 @@
 describe('template spec', () => {
   it('passes', () => {
-    cy.visit('/');
+    // eslint-disable-next-line no-console -- debug
+    cy.visit('/').then((win) => console.log(win.location.href));
   });
 });
