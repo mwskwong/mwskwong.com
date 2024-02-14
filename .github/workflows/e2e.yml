@@ -15,8 +15,10 @@ jobs:
           node-version: 20.x
           cache: 'npm'
       - run: npm ci
+      - run: npx playwright install-deps webkit
       - uses: cypress-io/github-action@v6
         with:
+          install: false
           browser: ${{ matrix.browser }}
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.environment_url }}
