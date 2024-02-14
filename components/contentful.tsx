@@ -31,6 +31,7 @@ import { LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
 import ContentfulLight from '@/logos/contentful-light.svg';
+import CypressLight from '@/logos/cypress-light.svg';
 import EmailJs from '@/logos/emailjs.svg';
 import ImprovMx from '@/logos/improvmx.svg';
 import Mui from '@/logos/mui.svg';
@@ -112,6 +113,7 @@ const Logos = {
     light: PrismaLight,
     dark: PrismaDark,
   },
+  [contentfulIds.cypress]: { light: CypressLight, dark: undefined },
 };
 
 export interface LogoProps extends SVGProps<SVGSVGElement> {
