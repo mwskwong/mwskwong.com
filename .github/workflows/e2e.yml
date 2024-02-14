@@ -2,7 +2,7 @@ name: E2E
 on: deployment_status
 
 jobs:
-  e2e-chrome:
+  e2e:
     if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     strategy:
