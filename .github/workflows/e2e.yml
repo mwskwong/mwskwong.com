@@ -5,6 +5,9 @@ jobs:
   e2e-chrome:
     if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chrome, edge, firefox, webkit]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -14,6 +17,6 @@ jobs:
       - run: npm ci
       - uses: cypress-io/github-action@v6
         with:
-          browser: chrome
+          browser: ${{ matrix.browser }}
         env:
-          CYPRESS_BASE_URL: ${{github.event.deployment_status.environment_url}}
+          CYPRESS_BASE_URL: ${{ github.event.deployment_status.environment_url }}
