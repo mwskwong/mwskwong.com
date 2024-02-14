@@ -9,9 +9,6 @@ jobs:
       matrix:
         browser: [chrome, edge, firefox, webkit]
     steps:
-      - run: echo $GITHUB_REF
-      - run: echo ${{ github.event.deployment.ref }}
-      - run: export GITHUB_REF="${{ github.event.deployment.ref }}"
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
