@@ -36,3 +36,4 @@ export const prismaReadReplicasExtension = '6myzHQnxgEBbUt9RMvHx5g';
 export const muiCore = '34jdGzLYPeSdsX8ufmmtnX';
 export const vercelStyleGuide = '6scCFCr3pGATuvQEFnpkC7';
 export const valibot = 'ULFnAQDuQIweV6ehX8od0';
+export const cypress = '2ZcY6scvuQb0WabbaaV4mO';
