@@ -1,5 +1,3 @@
-import { ValiError } from 'valibot';
-
 // ***********************************************************
 // This example support/e2e.ts is processed and
 // loaded automatically before your test files.
@@ -23,7 +21,7 @@ import './commands';
 
 Cypress.on('uncaught:exception', (err) => {
   // FIXME: This error is some times thrown when testing in webkit browser for unknown reasons
-  if (err instanceof ValiError) {
+  if (err.name === 'ValiError') {
     return false;
   }
 });
