@@ -14,5 +14,6 @@ jobs:
             --no-cache \
             --throttle
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           path: ./.unlighthouse/ci-result.json
