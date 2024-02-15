@@ -3,10 +3,10 @@ export default {
   ci: {
     reporter: 'jsonExpanded',
     budget: {
-      performance: 70,
-      accessibility: 98,
-      'best-practices': 83,
-      seo: 92,
+      performance: 90,
+      accessibility: 98, // minus point from code blocks some times have color contrast issue
+      'best-practices': 92, // minus point from hydration errors are some times logged
+      seo: 92, // minus point from non-PROD not being indexable
     },
   },
 };
