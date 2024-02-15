@@ -1,4 +1,10 @@
 import { blog, home, nav, privacyPolicy } from '../fixtures/nav';
+import {
+  github,
+  linkedin,
+  rss,
+  stackOverflow,
+} from '../fixtures/platform-profiles';
 import { md, xs } from '../fixtures/viewports';
 
 describe('Site navigation', () => {
@@ -23,10 +29,7 @@ describe('Site navigation', () => {
       cy.get('[data-cy="nav-list-xs"]').should('not.be.visible');
     });
 
-    for (const [key, viewport] of [
-      ['xs', xs],
-      ['md', md],
-    ] as const) {
+    for (const [key, viewport] of Object.entries({ xs, md })) {
       describe(`Viewport: ${key}`, viewport, () => {
         beforeEach(() => {
           if (key === 'xs') {
@@ -56,4 +59,74 @@ describe('Site navigation', () => {
   });
 
   // TODO: platform profile links tests
+  describe.only('Platform profile links', () => {
+    const allLinks = {
+      GitHub: github,
+      LinkedIn: linkedin,
+      'Stack Overflow': stackOverflow,
+      RSS: rss,
+    };
+
+    const containers = [
+      {
+        component: 'header',
+        visibleLinks: { GitHub: github, LinkedIn: linkedin },
+      },
+      {
+        component: 'footer',
+        visibleLinks: allLinks,
+      },
+    ];
+
+    beforeEach(() => cy.visit(home.pathname));
+
+    for (const { component, visibleLinks } of containers) {
+      describe(component, () => {
+        for (const [iconTitle, url] of Object.entries(visibleLinks)) {
+          describe(`${iconTitle} link`, () => {
+            beforeEach(() => {
+              // suppress all errors thrown by stackoverflow.com
+              cy.origin('https://stackoverflow.com', () => {
+                cy.on('uncaught:exception', () => false);
+              });
+            });
+
+            it(`opens ${url} in a new tab`, () => {
+              cy.get(component)
+                .find('svg')
+                .contains('title', iconTitle)
+                .parents('a')
+                .should('have.attr', 'target', '_blank')
+                .invoke('attr', 'target', '_self')
+                .click({ force: true });
+
+              if (url.startsWith('https')) {
+                cy.origin(url, { args: { url } }, ({ url }) => {
+                  cy.url().should('equal', url);
+                });
+              } else {
+                cy.location('pathname').should('equal', url);
+              }
+            });
+          });
+        }
+
+        const visibleIconTitles = Object.keys(visibleLinks);
+        const notExistIconTitles = Object.keys(allLinks).filter(
+          (iconTitle) => !visibleIconTitles.includes(iconTitle),
+        );
+
+        for (const iconTitle of notExistIconTitles) {
+          describe(`${iconTitle} link`, () => {
+            it(`should not exist`, () => {
+              cy.get(component)
+                .find('svg')
+                .contains('title', iconTitle)
+                .should('not.exist');
+            });
+          });
+        }
+      });
+    }
+  });
 });
