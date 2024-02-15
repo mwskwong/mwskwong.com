@@ -11,7 +11,7 @@ jobs:
           unlighthouse-ci \
             --site ${{ github.event.deployment_status.environment_url }} \
             --reporter jsonExpanded \
-            --budget 90 \
+            --budget 80 \
             --no-cache \
             --throttle
       - uses: actions/upload-artifact@v4
