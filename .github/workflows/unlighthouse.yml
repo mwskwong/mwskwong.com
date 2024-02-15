@@ -13,4 +13,4 @@ jobs:
             --budget 90 \
             --no-cache \
             --throttle \
-            --samples 3
+            --samples 2
