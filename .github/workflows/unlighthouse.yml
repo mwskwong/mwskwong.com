@@ -13,3 +13,6 @@ jobs:
             --budget 90 \
             --no-cache \
             --throttle
+      - uses: actions/upload-artifact@v4
+        with:
+          path: ./.unlighthouse/ci-result.json
