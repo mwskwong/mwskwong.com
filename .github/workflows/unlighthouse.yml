@@ -12,5 +12,4 @@ jobs:
             --site ${{ github.event.deployment_status.environment_url }} \
             --budget 90 \
             --no-cache \
-            --throttle \
-            --samples 2
+            --throttle
