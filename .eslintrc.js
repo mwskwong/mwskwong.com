@@ -94,6 +94,7 @@ module.exports = {
         'cypress.config.mjs',
         'next.config.mjs',
         'prettier.config.mjs',
+        'unlighthouse.config.ts',
         'app/**/page.tsx',
         'app/**/layout.tsx',
         'app/**/not-found.tsx',

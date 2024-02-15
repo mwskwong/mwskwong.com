@@ -6,14 +6,9 @@ jobs:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: npm install -g @unlighthouse/cli puppeteer
-      - run: |
-          unlighthouse-ci \
-            --site ${{ github.event.deployment_status.environment_url }} \
-            --reporter jsonExpanded \
-            --budget 80 \
-            --no-cache \
-            --throttle
+      - run: unlighthouse-ci --site ${{ github.event.deployment_status.environment_url }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
