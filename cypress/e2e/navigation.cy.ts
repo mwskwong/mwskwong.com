@@ -1,3 +1,5 @@
+import { pick } from 'lodash-es';
+
 import { blog, home, nav, privacyPolicy } from '../fixtures/nav';
 import {
   github,
@@ -59,7 +61,7 @@ describe('Site navigation', () => {
   });
 
   // TODO: platform profile links tests
-  describe.only('Platform profile links', () => {
+  describe('Platform profile links', () => {
     const allLinks = {
       GitHub: github,
       LinkedIn: linkedin,
@@ -70,12 +72,20 @@ describe('Site navigation', () => {
     const containers = [
       {
         component: 'header',
-        visibleLinks: { GitHub: github, LinkedIn: linkedin },
+        visibleLinks: pick(allLinks, ['GitHub', 'LinkedIn']),
       },
       {
         component: 'footer',
         visibleLinks: allLinks,
       },
+    ];
+
+    /**
+     * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses}
+     */
+    const successfulAndRedirectionStatusCodes = [
+      200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304,
+      305, 306, 307, 308,
     ];
 
     beforeEach(() => cy.visit(home.pathname));
@@ -84,29 +94,31 @@ describe('Site navigation', () => {
       describe(component, () => {
         for (const [iconTitle, url] of Object.entries(visibleLinks)) {
           describe(`${iconTitle} link`, () => {
-            beforeEach(() => {
-              // suppress all errors thrown by stackoverflow.com
-              cy.origin('https://stackoverflow.com', () => {
-                cy.on('uncaught:exception', () => false);
-              });
-            });
-
             it(`opens ${url} in a new tab`, () => {
               cy.get(component)
                 .find('svg')
                 .contains('title', iconTitle)
                 .parents('a')
-                .should('have.attr', 'target', '_blank')
-                .invoke('attr', 'target', '_self')
-                .click({ force: true });
+                .as('link');
 
-              if (url.startsWith('https')) {
-                cy.origin(url, { args: { url } }, ({ url }) => {
-                  cy.url().should('equal', url);
-                });
-              } else {
-                cy.location('pathname').should('equal', url);
-              }
+              cy.get('@link').should('have.attr', 'href', url);
+              cy.get('@link').should('have.attr', 'target', '_blank');
+
+              cy.request({ url, failOnStatusCode: false }).then(
+                ({ status }) => {
+                  const validStatusCodes = [
+                    ...successfulAndRedirectionStatusCodes,
+                  ];
+
+                  // LinkedIn's specially HTTP status code
+                  // It returns for any "unauthorized" access to prevent random sites from linking to it
+                  if (url.includes('linkedin')) {
+                    validStatusCodes.push(999);
+                  }
+
+                  expect(status).to.be.oneOf(validStatusCodes);
+                },
+              );
             });
           });
         }
