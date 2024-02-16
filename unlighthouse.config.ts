@@ -9,4 +9,7 @@ export default {
       seo: 92, // minus point from non-PROD not being indexable
     },
   },
+  lighthouseOptions: {
+    throttlingMethod: 'devtools',
+  },
 };
