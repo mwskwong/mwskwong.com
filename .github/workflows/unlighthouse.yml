@@ -8,8 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm install -g @unlighthouse/cli puppeteer
-      - run: unlighthouse-ci --site ${{ github.event.deployment_status.environment_url }}
+      # FIXME: --samples is currently bugged, set it to 3 when unlighthouse is using lighthouse v10+
+      # FIXME: --throttle is not recognized when specified in config file, specifying it with CLI option instead
+      - run: |
+          unlighthouse-ci \
+          --site ${{ github.event.deployment_status.environment_url }} \
+          --throttle
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          path: ./.unlighthouse/ci-result.json
+          path: .unlighthouse
