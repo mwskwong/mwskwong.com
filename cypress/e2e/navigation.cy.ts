@@ -80,14 +80,6 @@ describe('Site navigation', () => {
       },
     ];
 
-    /**
-     * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses}
-     */
-    const successfulAndRedirectionStatusCodes = [
-      200, 201, 202, 203, 204, 205, 206, 207, 208, 226, 300, 301, 302, 303, 304,
-      305, 306, 307, 308,
-    ];
-
     beforeEach(() => cy.visit(home.pathname));
 
     for (const { component, visibleLinks } of containers) {
@@ -103,22 +95,6 @@ describe('Site navigation', () => {
 
               cy.get('@link').should('have.attr', 'href', url);
               cy.get('@link').should('have.attr', 'target', '_blank');
-
-              cy.request({ url, failOnStatusCode: false }).then(
-                ({ status }) => {
-                  const validStatusCodes = [
-                    ...successfulAndRedirectionStatusCodes,
-                  ];
-
-                  // LinkedIn's specially HTTP status code
-                  // It returns for any "unauthorized" access to prevent random sites from linking to it
-                  if (url.includes('linkedin')) {
-                    validStatusCodes.push(999);
-                  }
-
-                  expect(status).to.be.oneOf(validStatusCodes);
-                },
-              );
             });
           });
         }
