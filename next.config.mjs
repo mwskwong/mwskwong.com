@@ -2,6 +2,16 @@
 
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 
+const sharedSvgoPlugins = [
+  'prefixIds',
+  'removeRasterImages',
+  'removeScriptElement',
+  'removeOffCanvasPaths',
+  'reusePaths',
+  'removeXlink',
+  'removeXMLNS',
+];
+
 /** @type {import('next').NextConfig} */
 const config = {
   compiler: {
@@ -52,6 +62,7 @@ const config = {
                     params: { overrides: { inlineStyles: false } },
                   },
                   'removeStyleElement',
+                  ...sharedSvgoPlugins,
                 ],
               },
             },
@@ -65,7 +76,16 @@ const config = {
           // exclude if *.svg?url and *.svg?monochrome
           not: [...fileLoaderRule.resourceQuery.not, /monochrome/, /url/],
         },
-        use: ['@svgr/webpack'],
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: ['preset-default', ...sharedSvgoPlugins],
+              },
+            },
+          },
+        ],
       },
     );
 
