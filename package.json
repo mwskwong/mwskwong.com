@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run --browser chrome",
+    "cypress:run": "cypress run --browser edge",
     "dev": "next dev",
     "format": "prettier --write .",
     "postinstall": "patch-package && npm run prisma:generate",

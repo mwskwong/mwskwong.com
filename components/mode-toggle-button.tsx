@@ -12,10 +12,13 @@ export const ModeToggleButton: FC<ModeToggleButtonProps> = (props) => {
   return (
     <Tooltip title="Toggle color mode">
       <IconButton
+        data-cy="mode-toggle-button"
         onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
         {...props}
       >
-        <NoSsr>{mode === 'dark' ? <Sun /> : <Moon />}</NoSsr>
+        <NoSsr>
+          {mode === 'dark' ? <Sun data-cy="sun" /> : <Moon data-cy="moon" />}
+        </NoSsr>
       </IconButton>
     </Tooltip>
   );
