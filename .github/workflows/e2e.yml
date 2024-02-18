@@ -22,4 +22,5 @@ jobs:
           install: false
           browser: ${{ matrix.browser }}
         env:
+          VERCEL_ENV: ${{ github.event.deployment_status.environment }}
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.environment_url }}
