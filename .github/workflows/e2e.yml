@@ -24,6 +24,7 @@ jobs:
           browser: ${{ matrix.browser }}
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-          ENVIRONMENT: ${{ github.event.deployment_status.environment }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CYPRESS_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          CYPRESS_ENVIRONMENT: ${{ github.event.deployment_status.environment }}
