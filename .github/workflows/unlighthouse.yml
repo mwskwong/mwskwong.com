@@ -4,6 +4,7 @@ on: deployment_status
 jobs:
   unlighthouse:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    environment: ${{ github.event.deployment_status.environment }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
