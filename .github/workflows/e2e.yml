@@ -4,7 +4,7 @@ on: deployment_status
 jobs:
   e2e:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
-    # environment: ${{ github.event.deployment_status.environment }}
+    environment: ${{ github.event.deployment_status.environment }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
