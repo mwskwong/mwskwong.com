@@ -8,6 +8,8 @@ import {
 } from 'next/cache';
 import { cache as reactCache } from 'react';
 
+import { cv, privacyPolicy } from '@/constants/contentful-ids';
+
 import { contentful, prisma } from './clients';
 import {
   BlogSkeleton,
@@ -106,7 +108,7 @@ export const getCourses = cache(async () => {
 });
 
 export const getCv = cache(async () => {
-  const asset = await contentful.getAsset('6mTh13ou7wM2Cs7ZC1tcdn');
+  const asset = await contentful.getAsset(cv);
   return asset.fields.file && `https:${asset.fields.file.url}`;
 });
 
@@ -265,9 +267,7 @@ export const getTechStack = cache(async () => {
 });
 
 export const getPrivacyPolicy = cache(async () => {
-  const entry = await contentful.getEntry<PrivacyPolicy>(
-    '13hUvxPc7WtvdUSAJK5WAm',
-  );
+  const entry = await contentful.getEntry<PrivacyPolicy>(privacyPolicy);
 
   return {
     createdAt: entry.sys.createdAt,

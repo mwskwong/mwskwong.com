@@ -37,3 +37,6 @@ export const muiCore = '34jdGzLYPeSdsX8ufmmtnX';
 export const vercelStyleGuide = '6scCFCr3pGATuvQEFnpkC7';
 export const valibot = 'ULFnAQDuQIweV6ehX8od0';
 export const cypress = '2ZcY6scvuQb0WabbaaV4mO';
+
+export const cv = '6mTh13ou7wM2Cs7ZC1tcdn';
+export const privacyPolicy = '13hUvxPc7WtvdUSAJK5WAm';

@@ -4,6 +4,7 @@ on: deployment_status
 jobs:
   e2e:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+    environment: ${{ github.event.deployment_status.environment }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -22,5 +23,7 @@ jobs:
           install: false
           browser: ${{ matrix.browser }}
         env:
-          VERCEL_ENV: ${{ github.event.deployment_status.environment }}
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          ENVIRONMENT: ${{ github.event.deployment_status.environment }}

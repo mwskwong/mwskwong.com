@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["es5", "dom"],
-    "types": ["cypress", "node", "lodash-es"]
+    "types": ["cypress", "node", "lodash-es", "contentful"]
   },
   "include": ["**/*.ts"]
 }
