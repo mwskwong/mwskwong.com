@@ -8,7 +8,7 @@ describe('Download CV', () => {
       .should('have.attr', 'target', '_blank')
       .invoke('attr', 'href')
       .then((href) => {
-        void contentful.getAsset(cv).then((asset) => {
+        cy.wrap(contentful.getAsset(cv)).then((asset) => {
           expect(asset.fields.file?.contentType).to.equal('application/pdf');
           expect(href).to.equal(`https:${asset.fields.file?.url}`);
         });

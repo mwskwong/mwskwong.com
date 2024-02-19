@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-namespace -- Cypress extension */
+/* eslint-disable @typescript-eslint/method-signature-style -- this is how Cypress defined the interface and the extension should match that */
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -35,3 +37,20 @@
 //     }
 //   }
 // }
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      wrap<E extends Node = HTMLElement>(
+        element: E | JQuery<E>,
+        options?: Partial<Loggable & Timeoutable>,
+      ): Chainable<JQuery<E>>;
+      wrap<S>(
+        object: S | Promise<S>,
+        options?: Partial<Loggable & Timeoutable>,
+      ): Chainable<S>;
+    }
+  }
+}
+
+export {};
