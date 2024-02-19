@@ -9,10 +9,11 @@ describe('Download CV', () => {
       .invoke('attr', 'href')
       .then((href: string) => {
         cy.wrap(contentful.getAsset(cv)).then((asset) => {
-          expect(asset.fields.file?.contentType).to.equal('application/pdf');
           expect(href).to.equal(`https:${asset.fields.file?.url}`);
         });
-        cy.request(href).its('isOkStatusCode');
+        cy.request(href)
+          .its('headers')
+          .should('have.a.property', 'content-type', 'application/pdf');
       });
   });
 });
