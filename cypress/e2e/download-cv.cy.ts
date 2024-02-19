@@ -7,11 +7,12 @@ describe('Download CV', () => {
     cy.contains('Download CV')
       .should('have.attr', 'target', '_blank')
       .invoke('attr', 'href')
-      .then((href) => {
+      .then((href: string) => {
         cy.wrap(contentful.getAsset(cv)).then((asset) => {
           expect(asset.fields.file?.contentType).to.equal('application/pdf');
           expect(href).to.equal(`https:${asset.fields.file?.url}`);
         });
+        cy.request(href).its('isOkStatusCode');
       });
   });
 });
