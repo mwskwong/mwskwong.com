@@ -1,9 +1,10 @@
 import { cv } from '../fixtures/contentful-ids';
+import { home } from '../fixtures/nav';
 import { contentful } from '../support/clients';
 
 describe('Download CV', () => {
   it('should download CV', () => {
-    cy.visit('/');
+    cy.visit(home.pathname);
     cy.contains('Download CV')
       .should('have.attr', 'target', '_blank')
       .invoke('attr', 'href')

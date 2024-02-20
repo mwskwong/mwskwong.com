@@ -1,4 +1,5 @@
 import { colors } from '../fixtures/colors';
+import { home } from '../fixtures/nav';
 
 describe('Color mode', () => {
   const expectColorMode = (colorMode: 'dark' | 'light') => {
@@ -8,7 +9,7 @@ describe('Color mode', () => {
       .and('have.css', 'color', colors[colorMode].color);
   };
 
-  beforeEach(() => cy.visit('/'));
+  beforeEach(() => cy.visit(home.pathname));
 
   it('default is light mode', () => expectColorMode('light'));
 
