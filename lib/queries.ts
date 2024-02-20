@@ -226,7 +226,7 @@ export const getPlatformProfiles = cache(async () => {
   return orderBy(platformProfiles, 'platform.name');
 });
 
-export const getSkillCategories = cache(async () => {
+export const getSkillSet = cache(async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     contentful.getEntries<SkillSkeleton>({
       content_type: 'skill',

@@ -91,10 +91,8 @@ describe('Site navigation', () => {
                 .find('svg')
                 .contains('title', iconTitle)
                 .parents('a')
-                .as('link');
-
-              cy.get('@link').should('have.attr', 'href', url);
-              cy.get('@link').should('have.attr', 'target', '_blank');
+                .should('have.attr', 'target', '_blank')
+                .and('have.attr', 'href', url);
             });
           });
         }
