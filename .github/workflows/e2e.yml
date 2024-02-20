@@ -4,7 +4,7 @@ on: deployment_status
 jobs:
   e2e:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         browser: [chrome, edge, firefox, webkit]
@@ -16,8 +16,6 @@ jobs:
           node-version: 20.x
           # cache: 'npm' # currently npm cache doesn't work in deployment_status
       - run: npm ci
-      - run: npx playwright install-deps webkit
-        if: matrix.browser == 'webkit'
       - uses: cypress-io/github-action@v6
         with:
           install: false
