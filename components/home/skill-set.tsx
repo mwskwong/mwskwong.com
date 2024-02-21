@@ -46,6 +46,7 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
       <Stack alignItems="center" maxWidth={300} mx="auto" width="100%">
         <Typography level="title-md">Skill Proficiency</Typography>
         <Slider
+          data-cy="skill-proficiency-slider"
           getAriaLabel={() => 'Skill proficiency range'}
           max={5}
           min={1}
