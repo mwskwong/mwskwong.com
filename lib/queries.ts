@@ -24,6 +24,22 @@ import {
   SkillSkeleton,
 } from './types';
 
+const formatBlog = (
+  blogEntry: Entry<BlogSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'>,
+) => ({
+  id: blogEntry.sys.id,
+  createdAt: blogEntry.sys.createdAt,
+  updatedAt: blogEntry.sys.updatedAt,
+  coverPhoto:
+    blogEntry.fields.coverPhoto?.fields.file &&
+    `https:${blogEntry.fields.coverPhoto.fields.file.url}`,
+  categories: blogEntry.fields.categories,
+  title: blogEntry.fields.title,
+  slug: blogEntry.fields.slug,
+  description: blogEntry.fields.description,
+  content: blogEntry.fields.content,
+});
+
 export const getBlogBySlug = cache(async (slug: string) => {
   const { items } = await contentful.getEntries<BlogSkeleton>({
     content_type: 'blog',
@@ -31,22 +47,13 @@ export const getBlogBySlug = cache(async (slug: string) => {
     limit: 1,
   });
 
-  const item = items[0];
-  return (
-    item && {
-      id: item.sys.id,
-      createdAt: item.sys.createdAt,
-      updatedAt: item.sys.updatedAt,
-      coverPhoto:
-        item.fields.coverPhoto?.fields.file &&
-        `https:${item.fields.coverPhoto.fields.file.url}`,
-      categories: item.fields.categories,
-      title: item.fields.title,
-      slug: item.fields.slug,
-      description: item.fields.description,
-      content: item.fields.content,
-    }
-  );
+  const blog = items[0];
+  return blog && formatBlog(blog);
+});
+
+export const getBlogById = cache(async (id: string) => {
+  const blog = await contentful.getEntry<BlogSkeleton>(id);
+  return formatBlog(blog);
 });
 
 export const getBlogs = cache(
@@ -307,6 +314,15 @@ export const getBlogMetadataById = async (id: string) => {
     const { likes, ...rest } = metadata;
     return { ...rest, like: likes.length };
   }
+};
+
+export const hasUserLikedBlog = async (blogId: string, userId: string) => {
+  noStore();
+  const entry = await prisma.blogLike.findUnique({
+    where: { blogId_userId: { blogId, userId } },
+  });
+
+  return Boolean(entry);
 };
 
 // prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
