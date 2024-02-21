@@ -9,7 +9,6 @@ import {
   ListItem,
   ListItemButton,
   Stack,
-  Tooltip,
   Typography,
 } from '@mui/joy';
 import NextLink from 'next/link';
@@ -35,28 +34,27 @@ export const Footer: FC<FooterProps> = async (props) => {
           {platformProfiles.map(
             ({ platform, url }) =>
               platform && (
-                <Tooltip key={platform.id} title={`${platform.name} profile`}>
-                  <IconButton
-                    component="a"
-                    href={url}
-                    size="sm"
-                    target="_blank"
-                  >
-                    <Icon contentfulId={platform.id} />
-                  </IconButton>
-                </Tooltip>
+                <IconButton
+                  aria-label={`${platform.name} profile`}
+                  component="a"
+                  href={url}
+                  key={platform.id}
+                  size="sm"
+                  target="_blank"
+                >
+                  <Icon contentfulId={platform.id} />
+                </IconButton>
               ),
           )}
-          <Tooltip title="RSS Feed">
-            <IconButton
-              component="a"
-              href={blogRssFeed.pathname}
-              size="sm"
-              target="_blank"
-            >
-              <SiRss viewBox="-2 -2 28 28" />
-            </IconButton>
-          </Tooltip>
+          <IconButton
+            aria-label="RSS Feed"
+            component="a"
+            href={blogRssFeed.pathname}
+            size="sm"
+            target="_blank"
+          >
+            <SiRss viewBox="-2 -2 28 28" />
+          </IconButton>
         </Stack>
 
         <Typography level="body-sm" mt={2}>

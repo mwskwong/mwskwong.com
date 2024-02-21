@@ -16,22 +16,19 @@ import { FC, useDeferredValue, useMemo, useState } from 'react';
 import { Icon } from '../contentful';
 
 export interface SkillSetProps extends Omit<StackProps, 'children'> {
-  skillCategories?: {
+  skillSet?: {
     id: string;
     name?: string;
     skills: { name?: string; proficiency?: number; url?: string }[];
   }[];
 }
 
-export const SkillSet: FC<SkillSetProps> = ({
-  skillCategories = [],
-  ...props
-}) => {
+export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
   const [proficiency, setProficiency] = useState<[number, number]>([1, 5]);
   const deferredProficiency = useDeferredValue(proficiency);
-  const filteredSkillCategories = useMemo(
+  const filteredSkillSet = useMemo(
     () =>
-      skillCategories
+      skillSet
         .map(({ skills, ...category }) => ({
           ...category,
           skills: skills.filter(
@@ -41,14 +38,15 @@ export const SkillSet: FC<SkillSetProps> = ({
           ),
         }))
         .filter(({ skills }) => skills.length > 0),
-    [deferredProficiency, skillCategories],
+    [deferredProficiency, skillSet],
   );
 
   return (
-    <Stack spacing={2} {...props}>
+    <Stack data-cy="skill-set" spacing={2} {...props}>
       <Stack alignItems="center" maxWidth={300} mx="auto" width="100%">
         <Typography level="title-md">Skill Proficiency</Typography>
         <Slider
+          data-cy="skill-proficiency-slider"
           getAriaLabel={() => 'Skill proficiency range'}
           max={5}
           min={1}
@@ -66,8 +64,8 @@ export const SkillSet: FC<SkillSetProps> = ({
           '& > *': { breakInside: 'avoid', mb: 4 },
         }}
       >
-        {filteredSkillCategories.map(({ id, name, skills }) => (
-          <Card key={id}>
+        {filteredSkillSet.map(({ id, name, skills }) => (
+          <Card data-cy={id} key={id}>
             <Sheet
               color="primary"
               sx={{
@@ -83,7 +81,9 @@ export const SkillSet: FC<SkillSetProps> = ({
               <Icon contentfulId={id} />
             </Sheet>
             <CardContent>
-              <Typography level="title-md">{name}</Typography>
+              <Typography data-cy="title" level="title-md">
+                {name}
+              </Typography>
               <Stack direction="row" flexWrap="wrap" spacing={1}>
                 {skills.map(({ name, url }) => (
                   <Chip

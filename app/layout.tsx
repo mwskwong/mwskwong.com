@@ -14,7 +14,8 @@ import { baseUrl } from '@/constants/site-config';
 import { Providers } from './providers';
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-  <html lang="en">
+  // data-joy-color-scheme is dynamically injected, suppressing the hydration warning in this case
+  <html lang="en" suppressHydrationWarning>
     <body>
       <Providers>{children}</Providers>
       <Analytics />
