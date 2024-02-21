@@ -34,15 +34,16 @@ export const Views: FC<ViewsProps> = async ({
   return (
     <>
       {readOnly ? null : <IncrBlogView blogId={blogId} />}
-      <Typography startDecorator={<Eye aria-label="views" />} {...props}>
-        {numberFormatter.format(metadata?.view ?? 0)}
+      <Typography startDecorator={<Eye />} {...props}>
+        {numberFormatter.format(metadata?.view ?? 0)} views
       </Typography>
     </>
   );
 };
 
 export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
-  <Typography startDecorator={<Eye aria-label="views" />} {...props}>
+  <Typography startDecorator={<Eye />} {...props}>
     <Skeleton level={props.level} variant="text" width="3ch" />
+    &nbsp;views
   </Typography>
 );

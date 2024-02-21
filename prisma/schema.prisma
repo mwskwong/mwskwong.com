@@ -17,7 +17,7 @@ model BlogMetadata {
 model BlogLike {
   blogId       String
   userId       String
-  blogMetadata BlogMetadata @relation(fields: [blogId], references: [id])
+  blogMetadata BlogMetadata @relation(fields: [userId], references: [id])
 
   @@id([blogId, userId])
 }

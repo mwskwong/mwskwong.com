@@ -15,7 +15,6 @@ import NextLink from 'next/link';
 import { FC, Suspense } from 'react';
 import { BreadcrumbList, WithContext } from 'schema-dts';
 
-import { Likes, LikesSkeleton } from '@/components/blog/likes';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { Image } from '@/components/image';
 import { SectionDivider } from '@/components/section-divider';
@@ -121,15 +120,6 @@ const Blogs: FC = async () => {
                           blogIds={blogIds}
                           level="body-sm"
                           readOnly
-                        />
-                      </Suspense>
-                      <Divider orientation="vertical" />
-                      <Suspense fallback={<LikesSkeleton level="body-sm" />}>
-                        <Likes
-                          blogId={id}
-                          blogIds={blogIds}
-                          readOnly
-                          typography="body-sm"
                         />
                       </Suspense>
                     </CardContent>
