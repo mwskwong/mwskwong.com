@@ -53,7 +53,6 @@ describe('Skill set', () => {
     }
   });
 
-  // TODO: test for filter by proficiency
   describe('Skill proficiency slider', () => {
     it('filters the skill set by proficiency 2 - 4', () => {
       const targetProficiency = [2, 4] as const;
@@ -70,8 +69,8 @@ describe('Skill set', () => {
 
           cy.root().click(
             sliderBoundingBox.width *
-              (targetProficiency[0] / maxProficiency) *
-              0.9,
+              // (the selection range is between 1 - 1.999... so the sweetest spot is the middle of it, i.e. 1.5)
+              ((targetProficiency[0] - 0.5) / maxProficiency),
             0,
           );
           cy.get('@leftThumb')
@@ -79,7 +78,8 @@ describe('Skill set', () => {
             .should('be.visible');
 
           cy.root().click(
-            sliderBoundingBox.width * (targetProficiency[1] / maxProficiency),
+            sliderBoundingBox.width *
+              ((targetProficiency[1] - 0.5) / maxProficiency),
             0,
           );
           cy.get('@rightThumb')
