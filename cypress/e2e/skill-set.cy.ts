@@ -21,8 +21,8 @@ describe('Skill set', () => {
     cy.get('[data-cy="skill-set"]').as('skillSetElem');
   });
 
-  it('displays the entire skill set initially', () => {
-    for (const { id, name, skills } of ctx.skillSet ?? []) {
+  const expectSkillSetToDisplay = (skillSet: SkillSet) => {
+    for (const { id, name, skills } of skillSet) {
       cy.log(`Testing ${name} category`);
 
       cy.get('@skillSetElem')
@@ -45,48 +45,62 @@ describe('Skill set', () => {
           }
         });
     }
+  };
+
+  it('displays the entire skill set initially', () => {
+    if (ctx.skillSet) {
+      expectSkillSetToDisplay(ctx.skillSet);
+    }
   });
 
   // TODO: test for filter by proficiency
-  // describe('Skill proficiency slider', () => {
-  //   it.only('filters the skill set by proficiency', () => {
-  //     // cy.get('[data-cy="skill-set"]').as('skillSetElem');
-  //     // cy.get('[data-cy="skill-set-proficiency-slider"]').as('slider');
-  //     // cy.get('@slider').invoke('val', 3).trigger('change');
-  //     // cy.get('@skillSetElem').should('have.length', 1);
+  describe('Skill proficiency slider', () => {
+    it('filters the skill set by proficiency 2 - 4', () => {
+      const targetProficiency = [2, 4] as const;
 
-  //     cy.get('@skillSetElem')
-  //       .get('[data-cy="skill-proficiency-slider"]')
-  //       .within(($slider) => {
-  //         cy.get(`.${sliderClasses.thumb}`).as('thumbs');
-  //         cy.get('@thumbs').first().as('leftThumb');
-  //         cy.get('@thumbs').last().as('rightThumb');
+      cy.get('@skillSetElem')
+        .get('[data-cy="skill-proficiency-slider"]')
+        .within(($slider) => {
+          cy.get(`.${sliderClasses.thumb}`).as('thumbs');
+          cy.get('@thumbs').first().as('leftThumb');
+          cy.get('@thumbs').last().as('rightThumb');
 
-  //         const sliderBoundingBox = $slider.get(0).getBoundingClientRect();
-  //         const targetRange = [2, 4] as const;
-  //         const min = 1;
-  //         const max = 5;
+          const sliderBoundingBox = $slider.get(0).getBoundingClientRect();
+          const maxProficiency = 5;
 
-  //         cy.get('@leftThumb').drag(`.${sliderClasses.thumb}`, {
-  //           target: {
-  //             // use force here because Cypress mistakenly thinks the slider root is covering the slider thumb
-  //             x: sliderBoundingBox.width * (targetRange[0] / max),
-  //             y: 0,
-  //             force: true,
-  //           },
-  //         });
-  //         cy.get('@leftThumb').contains(targetRange[0]).should('be.visible');
+          cy.root().click(
+            sliderBoundingBox.width *
+              (targetProficiency[0] / maxProficiency) *
+              0.9,
+            0,
+          );
+          cy.get('@leftThumb')
+            .contains(targetProficiency[0])
+            .should('be.visible');
 
-  //         cy.get('@rightThumb').drag(`.${sliderClasses.thumb}`, {
-  //           target: {
-  //             // use force here because Cypress mistakenly thinks the slider root is covering the slider thumb
-  //             x: -sliderBoundingBox.width * ((max - targetRange[1]) / max),
-  //             y: 0,
-  //             force: true,
-  //           },
-  //         });
-  //         cy.get('@rightThumb').contains(targetRange[1]).should('be.visible');
-  //       });
-  //   });
-  // });
+          cy.root().click(
+            sliderBoundingBox.width * (targetProficiency[1] / maxProficiency),
+            0,
+          );
+          cy.get('@rightThumb')
+            .contains(targetProficiency[1])
+            .should('be.visible');
+        });
+
+      if (ctx.skillSet) {
+        expectSkillSetToDisplay(
+          ctx.skillSet
+            .map(({ skills, ...skillCategory }) => ({
+              ...skillCategory,
+              skills: skills.filter(
+                ({ proficiency }) =>
+                  proficiency >= targetProficiency[0] &&
+                  proficiency <= targetProficiency[1],
+              ),
+            }))
+            .filter(({ skills }) => skills.length),
+        );
+      }
+    });
+  });
 });
