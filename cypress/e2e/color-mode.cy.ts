@@ -1,14 +1,14 @@
 import { colors } from '../fixtures/colors';
 import { home } from '../fixtures/nav';
 
-describe('Color mode', () => {
-  const expectColorMode = (colorMode: 'dark' | 'light') => {
-    cy.get('html').should('have.attr', 'data-joy-color-scheme', colorMode);
-    cy.get('body')
-      .should('have.css', 'background-color', colors[colorMode].bgColor)
-      .and('have.css', 'color', colors[colorMode].color);
-  };
+const expectColorMode = (colorMode: 'dark' | 'light') => {
+  cy.get('html').should('have.attr', 'data-joy-color-scheme', colorMode);
+  cy.get('body')
+    .should('have.css', 'background-color', colors[colorMode].bgColor)
+    .and('have.css', 'color', colors[colorMode].color);
+};
 
+describe('Color mode', () => {
   beforeEach(() => cy.visit(home.pathname));
 
   it('default is light mode', () => expectColorMode('light'));

@@ -1,20 +1,31 @@
+import { Asset } from 'contentful';
+
 import { cv } from '../fixtures/contentful-ids';
 import { home } from '../fixtures/nav';
 import { contentful } from '../support/clients';
 
 describe('Download CV', () => {
-  it('should download CV', () => {
-    cy.visit(home.pathname);
+  const ctx = {
+    cv: undefined as Asset<'WITHOUT_UNRESOLVABLE_LINKS'> | undefined,
+  };
+
+  before(() => {
+    cy.wrap(contentful.getAsset(cv)).then((asset) => {
+      ctx.cv = asset;
+    });
+  });
+
+  beforeEach(() => cy.visit(home.pathname));
+
+  it('should open CV in a new tab (for browsers with PDF reader built-in)', () => {
+    const href = `https:${ctx.cv?.fields.file?.url}`;
+
     cy.contains('Download CV')
       .should('have.attr', 'target', '_blank')
-      .invoke('attr', 'href')
-      .then((href: string) => {
-        cy.wrap(contentful.getAsset(cv)).then((asset) => {
-          expect(href).to.equal(`https:${asset.fields.file?.url}`);
-        });
-        cy.request(href)
-          .its('headers')
-          .should('have.a.property', 'content-type', 'application/pdf');
-      });
+      .should('have.attr', 'href', href);
+
+    cy.request(href)
+      .its('headers')
+      .should('have.a.property', 'content-type', 'application/pdf');
   });
 });
