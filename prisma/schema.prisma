@@ -9,8 +9,17 @@ datasource db {
 }
 
 model BlogMetadata {
-  id   String @id
-  view Int    @default(0)
+  id    String     @id
+  view  Int        @default(0)
+  likes BlogLike[]
+}
+
+model BlogLike {
+  blogId       String
+  userId       String
+  blogMetadata BlogMetadata @relation(fields: [userId], references: [id])
+
+  @@id([blogId, userId])
 }
 
 model ContactFormSubmission {

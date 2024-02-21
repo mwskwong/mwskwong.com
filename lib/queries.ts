@@ -283,14 +283,30 @@ export const getPrivacyPolicy = cache(async () => {
 //      it should see the metadata updated
 // It works, because React will invalidate the cache for all memoized functions for each server request.
 // See https://react.dev/reference/react/cache#caveats
-export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
+export const getBlogsMetadataByIds = reactCache(async (ids: string[]) => {
   noStore();
-  return prisma.blogMetadata.findMany({ where: { id: { in: ids } } });
+  const metadata = await prisma.blogMetadata.findMany({
+    where: { id: { in: ids } },
+    include: { likes: true },
+  });
+
+  return metadata.map(({ likes, ...rest }) => ({
+    ...rest,
+    like: likes.length,
+  }));
 });
 
-export const getBlogMetadataById = (id: string) => {
+export const getBlogMetadataById = async (id: string) => {
   noStore();
-  return prisma.blogMetadata.findUnique({ where: { id } });
+  const metadata = await prisma.blogMetadata.findUnique({
+    where: { id },
+    include: { likes: true },
+  });
+
+  if (metadata) {
+    const { likes, ...rest } = metadata;
+    return { ...rest, like: likes.length };
+  }
 };
 
 // prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
