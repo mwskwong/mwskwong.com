@@ -1,18 +1,15 @@
-import { Asset } from 'contentful';
-
-import { cv } from '../fixtures/contentful-ids';
 import { home } from '../fixtures/nav';
-import { contentful } from '../support/clients';
+import { Cv, getCv } from '../support/queries';
 
 interface DownloadCvCtx {
-  cv?: Asset<'WITHOUT_UNRESOLVABLE_LINKS'>;
+  cv?: Cv;
 }
 
 describe('Download CV', () => {
   const ctx: DownloadCvCtx = {};
 
   before(() => {
-    cy.wrap(contentful.getAsset(cv)).then((asset) => {
+    cy.wrap(getCv()).then((asset) => {
       ctx.cv = asset;
     });
   });
@@ -20,7 +17,7 @@ describe('Download CV', () => {
   beforeEach(() => cy.visit(home.pathname));
 
   it('should open CV in a new tab (for browsers with PDF reader built-in)', () => {
-    const href = `https:${ctx.cv?.fields.file?.url}`;
+    const href = `https:${ctx.cv}`;
 
     cy.contains('Download CV')
       .should('have.attr', 'target', '_blank')
