@@ -1,25 +1,25 @@
 import { colors } from '../fixtures/colors';
 import { home } from '../fixtures/nav';
 
-const expectColorMode = (colorMode: 'dark' | 'light') => {
-  cy.get('html').should('have.attr', 'data-joy-color-scheme', colorMode);
-  cy.get('body')
-    .should('have.css', 'background-color', colors[colorMode].bgColor)
-    .and('have.css', 'color', colors[colorMode].color);
-};
-
 describe('Color mode', () => {
   beforeEach(() => cy.visit(home.pathname));
 
-  it('default is light mode', () => expectColorMode('light'));
+  const expectColorModeToBe = (colorMode: 'dark' | 'light') => {
+    cy.get('html').should('have.attr', 'data-joy-color-scheme', colorMode);
+    cy.get('body')
+      .should('have.css', 'background-color', colors[colorMode].bgColor)
+      .and('have.css', 'color', colors[colorMode].color);
+  };
+
+  it('default is light mode', () => expectColorModeToBe('light'));
 
   describe('Mode toggle button', () => {
     it('toggles color mode', () => {
       cy.get('[data-cy="mode-toggle-button"]').click();
-      expectColorMode('dark');
+      expectColorModeToBe('dark');
 
       cy.get('[data-cy="mode-toggle-button"]').click();
-      expectColorMode('light');
+      expectColorModeToBe('light');
     });
 
     it('updates icon according to color mode', () => {
