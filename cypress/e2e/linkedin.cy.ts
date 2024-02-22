@@ -1,11 +1,17 @@
+import { linkedin } from '../fixtures/contentful-ids';
 import { home } from '../fixtures/nav';
-import { linkedin } from '../fixtures/platform-profiles';
+import { Ctx } from '../support/e2e';
 
 describe('LinkedIn', () => {
+  const { platformProfiles } = Cypress.env('ctx') as Ctx;
+  const url = platformProfiles.find(
+    ({ platform }) => platform?.id === linkedin,
+  )?.url;
+
   it('should links to my LinkedIn profile', () => {
     cy.visit(home.pathname);
     cy.contains('LinkedIn')
-      .should('have.attr', 'target', '_blank')
-      .and('have.attr', 'href', linkedin);
+      .should('have.attr', 'href', url)
+      .shouldOpenLinkInNewTab();
   });
 });
