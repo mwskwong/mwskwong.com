@@ -46,12 +46,45 @@ declare global {
         element: E | JQuery<E>,
         options?: Partial<Loggable & Timeoutable>,
       ): Chainable<JQuery<E>>;
+
       wrap<S>(
         object: S | Promise<S>,
         options?: Partial<Loggable & Timeoutable>,
       ): Chainable<S>;
+
+      shouldOpenLinkInNewTab(): Chainable<JQuery<HTMLAnchorElement>>;
     }
   }
 }
+
+Cypress.Commands.add(
+  'shouldOpenLinkInNewTab',
+  { prevSubject: 'element' },
+  (subject) => {
+    cy.wrap(subject)
+      .should('have.attr', 'target', '_blank')
+      .invoke('attr', 'href')
+      .then((href) => {
+        expect(href).to.be.a('string');
+
+        if (href) {
+          cy.request({ url: href, failOnStatusCode: false }).then(
+            ({ status }) => {
+              const url = new URL(href);
+              if (url.hostname === 'www.linkedin.com') {
+                // 999 is the status code returned when LinkedIn is visited by bots
+                expect(status).to.satisfy(
+                  (status: number) =>
+                    (status >= 200 && status <= 399) || status === 999,
+                );
+              } else {
+                expect(status).to.be.within(200, 399);
+              }
+            },
+          );
+        }
+      });
+  },
+);
 
 export {};

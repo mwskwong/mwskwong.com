@@ -35,5 +35,10 @@ export const privacyPolicy = {
   label: 'Privacy Policy',
   pathname: '/privacy-policy',
 } as const;
+export const blogRssFeed = {
+  id: undefined,
+  label: undefined,
+  pathname: '/blog/rss.xml',
+} as const;
 
 export const nav = [about, experience, education, contact, blog, guestbook];

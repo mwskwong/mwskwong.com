@@ -1,15 +1,13 @@
 import pick from 'lodash/pick';
 
-import { blog, home, nav, privacyPolicy } from '../fixtures/nav';
-import {
-  github,
-  linkedin,
-  rss,
-  stackOverflow,
-} from '../fixtures/platform-profiles';
+import { github, linkedin, stackOverflow } from '../fixtures/contentful-ids';
+import { blog, blogRssFeed, home, nav, privacyPolicy } from '../fixtures/nav';
 import { md, xs } from '../fixtures/viewports';
+import { Ctx } from '../support/e2e';
 
 describe('Site navigation', () => {
+  const { platformProfiles } = Cypress.env('ctx') as Ctx;
+
   it('navigates to home page on logo click', () => {
     cy.visit(blog.pathname);
     cy.get('[data-cy="logo"]').click();
@@ -60,13 +58,17 @@ describe('Site navigation', () => {
     cy.location('pathname').should('equal', privacyPolicy.pathname);
   });
 
-  // TODO: platform profile links tests
-  describe('Platform profile links', () => {
+  describe.only('Platform profile links', () => {
     const allLinks = {
-      GitHub: github,
-      LinkedIn: linkedin,
-      'Stack Overflow': stackOverflow,
-      RSS: rss,
+      GitHub: platformProfiles.find(({ platform }) => platform?.id === github)
+        ?.url,
+      LinkedIn: platformProfiles.find(
+        ({ platform }) => platform?.id === linkedin,
+      )?.url,
+      'Stack Overflow': platformProfiles.find(
+        ({ platform }) => platform?.id === stackOverflow,
+      )?.url,
+      RSS: blogRssFeed.pathname,
     };
 
     const containers = [
@@ -84,15 +86,15 @@ describe('Site navigation', () => {
 
     for (const { component, visibleLinks } of containers) {
       describe(component, () => {
-        for (const [iconTitle, url] of Object.entries(visibleLinks)) {
+        for (const [iconTitle, url = ''] of Object.entries(visibleLinks)) {
           describe(`${iconTitle} link`, () => {
             it(`opens ${url} in a new tab`, () => {
               cy.get(component)
                 .find('svg')
                 .contains('title', iconTitle)
                 .parents('a')
-                .should('have.attr', 'target', '_blank')
-                .and('have.attr', 'href', url);
+                .should('have.attr', 'href', url)
+                .shouldOpenLinkInNewTab();
             });
           });
         }

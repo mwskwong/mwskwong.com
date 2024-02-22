@@ -1,3 +1,7 @@
+export const github = '5okHEYjphz0Ijf8buAc53L';
+export const linkedin = '1pixZwU07yhCdpEdkxGVof';
+export const stackOverflow = '1VVUJjfmnMSqIYZcpbQVLI';
+
 export const cv = '6mTh13ou7wM2Cs7ZC1tcdn';
 
 export const backend = '2FtEFXEYpFad3n0eE4CNyF';
