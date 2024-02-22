@@ -18,7 +18,11 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en" suppressHydrationWarning>
     <body>
       <Providers>{children}</Providers>
-      <Analytics />
+      <Analytics
+        mode={
+          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
+        }
+      />
       <SpeedInsights />
     </body>
   </html>
