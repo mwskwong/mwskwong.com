@@ -71,10 +71,10 @@ Cypress.Commands.add(
           cy.request({ url: href, failOnStatusCode: false }).then(
             ({ status }) => {
               // use a dummy URL as base URL because href can be a relative path
-              const url = new URL(href, 'https://example.com');
+              const url = new URL(href, Cypress.config('baseUrl') ?? '');
 
               if (url.hostname === 'www.linkedin.com') {
-                // 999 isreturned when LinkedIn is visited by bots
+                // 999 is returned when LinkedIn is visited by bots
                 expect(status).to.satisfy(
                   (status: number) =>
                     (status >= 200 && status <= 399) || status === 999,
