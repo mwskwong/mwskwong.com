@@ -17,6 +17,16 @@ import { FC, RefObject } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
+// data attribute auto injected by rehype-pretty-code
+declare module 'react' {
+  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+    'data-language'?: string;
+    'data-rehype-pretty-code-figure'?: '';
+    'data-rehype-pretty-code-title'?: '';
+    'data-highlighted-chars'?: '';
+  }
+}
+
 const Heading: FC<TypographyProps> = ({
   id,
   slotProps,

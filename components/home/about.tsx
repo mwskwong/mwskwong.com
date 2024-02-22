@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
 import { about } from '@/constants/nav';
-import { getPersonalPhoto, getSkillCategories } from '@/lib/queries';
+import { getPersonalPhoto, getSkillSet } from '@/lib/queries';
 
 import { Image } from '../image';
 
@@ -11,9 +11,9 @@ import { SkillSet } from './skill-set';
 
 export type AboutProps = Omit<BoxProps<'section'>, 'children'>;
 export const About: FC<AboutProps> = async (props) => {
-  const [personalPhoto, skillCategories] = await Promise.all([
+  const [personalPhoto, skillSet] = await Promise.all([
     getPersonalPhoto(),
-    getSkillCategories(),
+    getSkillSet(),
   ]);
 
   return (
@@ -42,7 +42,7 @@ export const About: FC<AboutProps> = async (props) => {
               {selfIntroduction}
             </Typography>
           </Stack>
-          <SkillSet skillCategories={skillCategories} />
+          <SkillSet skillSet={skillSet} />
         </Stack>
       </Container>
     </Box>

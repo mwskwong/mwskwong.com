@@ -8,7 +8,6 @@ import {
   Grid,
   IconButton,
   Stack,
-  Tooltip,
   Typography,
 } from '@mui/joy';
 import { Metadata } from 'next';
@@ -35,16 +34,6 @@ import {
   getPlatformProfiles,
 } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
-
-// data attribute auto injected by rehype-pretty-code
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    'data-language'?: string;
-    'data-rehype-pretty-code-figure'?: '';
-    'data-rehype-pretty-code-title'?: '';
-    'data-highlighted-chars'?: '';
-  }
-}
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   weekday: 'long',
@@ -157,31 +146,27 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   {platformProfiles.map(
                     ({ platform, url }) =>
                       platform && (
-                        <Tooltip
+                        <IconButton
+                          aria-label={`${platform.name} profile`}
+                          component="a"
+                          href={url}
                           key={platform.id}
-                          title={`${platform.name} profile`}
+                          size="sm"
+                          target="_blank"
                         >
-                          <IconButton
-                            component="a"
-                            href={url}
-                            size="sm"
-                            target="_blank"
-                          >
-                            <Icon contentfulId={platform.id} />
-                          </IconButton>
-                        </Tooltip>
+                          <Icon contentfulId={platform.id} />
+                        </IconButton>
                       ),
                   )}
-                  <Tooltip title="RSS Feed">
-                    <IconButton
-                      component="a"
-                      href={blogRssFeed.pathname}
-                      size="sm"
-                      target="_blank"
-                    >
-                      <SiRss viewBox="-2 -2 28 28" />
-                    </IconButton>
-                  </Tooltip>
+                  <IconButton
+                    aria-label="RSS Feed"
+                    component="a"
+                    href={blogRssFeed.pathname}
+                    size="sm"
+                    target="_blank"
+                  >
+                    <SiRss viewBox="-2 -2 28 28" />
+                  </IconButton>
                 </Stack>
               </Stack>
               <Stack
