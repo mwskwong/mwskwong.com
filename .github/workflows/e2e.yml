@@ -24,8 +24,8 @@ jobs:
           install: false
           browser: ${{ matrix.browser }}
         env:
-          UV_THREADPOOL_SIZE: 64
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CYPRESS_CONTENTFUL_ACCESS_TOKEN: ${{ github.event.deployment_status.environment == 'Production' && secrets.CONTENTFUL_ACCESS_TOKEN_PROD || secrets.CONTENTFUL_ACCESS_TOKEN_DEVELOP }}
           CYPRESS_ENVIRONMENT: ${{ github.event.deployment_status.environment }}
