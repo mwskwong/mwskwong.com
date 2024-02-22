@@ -42,11 +42,10 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
   );
 
   return (
-    <Stack data-cy="skill-set" spacing={2} {...props}>
+    <Stack spacing={2} {...props}>
       <Stack alignItems="center" maxWidth={300} mx="auto" width="100%">
         <Typography level="title-md">Skill Proficiency</Typography>
         <Slider
-          data-cy="skill-proficiency-slider"
           getAriaLabel={() => 'Skill proficiency range'}
           max={5}
           min={1}
@@ -65,7 +64,7 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
         }}
       >
         {filteredSkillSet.map(({ id, name, skills }) => (
-          <Card data-cy={id} key={id}>
+          <Card key={id}>
             <Sheet
               color="primary"
               sx={{
@@ -81,9 +80,7 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
               <Icon contentfulId={id} />
             </Sheet>
             <CardContent>
-              <Typography data-cy="title" level="title-md">
-                {name}
-              </Typography>
+              <Typography level="title-md">{name}</Typography>
               <Stack direction="row" flexWrap="wrap" spacing={1}>
                 {skills.map(({ name, url }) => (
                   <Chip

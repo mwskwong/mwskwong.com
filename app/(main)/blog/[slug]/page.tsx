@@ -35,16 +35,6 @@ import {
 } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
-// data attribute auto injected by rehype-pretty-code
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    'data-language'?: string;
-    'data-rehype-pretty-code-figure'?: '';
-    'data-rehype-pretty-code-title'?: '';
-    'data-highlighted-chars'?: '';
-  }
-}
-
 const dateFormatter = new Intl.DateTimeFormat('en', {
   weekday: 'long',
   year: 'numeric',

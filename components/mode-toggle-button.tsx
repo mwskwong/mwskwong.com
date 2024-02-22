@@ -12,13 +12,10 @@ export const ModeToggleButton: FC<ModeToggleButtonProps> = (props) => {
   return (
     <IconButton
       aria-label="Toggle color mode"
-      data-cy="mode-toggle-button"
       onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
       {...props}
     >
-      <NoSsr>
-        {mode === 'dark' ? <Sun data-cy="sun" /> : <Moon data-cy="moon" />}
-      </NoSsr>
+      <NoSsr>{mode === 'dark' ? <Sun /> : <Moon />}</NoSsr>
     </IconButton>
   );
 };

@@ -27,7 +27,6 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
     <>
       <IconButton
         aria-label="Toggle navigation drawer"
-        data-cy="menu-button"
         onClick={() => setOpen(true)}
         {...slotProps?.drawerButton}
       >
@@ -36,7 +35,6 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
       <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
         <Box component="nav" pb={1} pt={10} px={1}>
           <List
-            data-cy="nav-list-xs"
             size="lg"
             sx={{
               '--List-gap': (theme) => theme.spacing(1),
