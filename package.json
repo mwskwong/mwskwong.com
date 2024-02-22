@@ -4,8 +4,6 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run --browser edge",
     "dev": "next dev",
     "format": "prettier --write .",
     "postinstall": "patch-package && npm run prisma:generate",
@@ -21,9 +19,9 @@
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
     "@icons-pack/react-simple-icons": "^9.3.0",
-    "@mui/base": "5.0.0-beta.36",
+    "@mui/base": "5.0.0-beta.37",
     "@mui/joy": "5.0.0-beta.28",
-    "@mui/styled-engine": "^5.15.9",
+    "@mui/styled-engine": "^5.15.11",
     "@prisma/client": "^5.10.2",
     "@prisma/extension-read-replicas": "^0.3.0",
     "@vercel/analytics": "^1.2.2",
@@ -55,16 +53,14 @@
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "@vercel/style-guide": "^5.2.0",
-    "cypress": "^13.6.5",
     "dotenv-cli": "^7.3.0",
     "eslint": "^8.56.0",
-    "eslint-plugin-cypress": "^2.15.1",
     "patch-package": "^8.0.0",
     "playwright-webkit": "^1.41.2",
     "prettier": "^3.2.5",
     "prettier-plugin-prisma": "^5.0.0",
     "prisma": "^5.10.2",
-    "type-fest": "^4.10.2",
+    "type-fest": "^4.10.3",
     "typescript": "^5.3.3"
   }
 }

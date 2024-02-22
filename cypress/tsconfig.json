@@ -1,9 +1,0 @@
-{
-  "extends": "@vercel/style-guide/typescript",
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["es5", "dom"],
-    "types": ["cypress", "node", "lodash", "contentful", "@mui/joy"]
-  },
-  "include": ["**/*.ts"]
-}
