@@ -70,12 +70,20 @@ Cypress.Commands.add(
         if (href) {
           cy.request({ url: href, failOnStatusCode: false }).then(
             ({ status }) => {
-              const url = new URL(href);
+              // use a dummy URL as base URL because href can be a relative path
+              const url = new URL(href, 'https://example.com');
+
               if (url.hostname === 'www.linkedin.com') {
-                // 999 is the status code returned when LinkedIn is visited by bots
+                // 999 isreturned when LinkedIn is visited by bots
                 expect(status).to.satisfy(
                   (status: number) =>
                     (status >= 200 && status <= 399) || status === 999,
+                );
+              } else if (url.hostname === 'stackoverflow.com') {
+                // 403 returned when Stack Overflow is visited by bots
+                expect(status).to.satisfy(
+                  (status: number) =>
+                    (status >= 200 && status <= 399) || status === 403,
                 );
               } else {
                 expect(status).to.be.within(200, 399);
