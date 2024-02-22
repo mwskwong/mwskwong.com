@@ -1,5 +1,3 @@
-import { pick } from 'lodash-es';
-
 import { blog, home, nav, privacyPolicy } from '../fixtures/nav';
 import {
   github,
@@ -72,7 +70,7 @@ describe('Site navigation', () => {
     const containers = [
       {
         component: 'header',
-        visibleLinks: pick(allLinks, ['GitHub', 'LinkedIn']),
+        visibleLinks: Cypress._.pick(allLinks, ['GitHub', 'LinkedIn']),
       },
       {
         component: 'footer',

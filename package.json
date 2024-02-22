@@ -47,7 +47,6 @@
     "valibot": "^0.29.0"
   },
   "devDependencies": {
-    "@4tw/cypress-drag-drop": "^2.2.5",
     "@next/bundle-analyzer": "canary",
     "@next/eslint-plugin-next": "canary",
     "@svgr/webpack": "^8.1.0",

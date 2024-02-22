@@ -1,12 +1,16 @@
 {
-  "extends": "@vercel/style-guide/typescript/node20",
+  // WORKAROUND: Cypress is unable to resolve "@vercel/style-guide/typescript/node20" correctly
+  "extends": "./node_modules/@vercel/style-guide/typescript/tsconfig.node20",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Vercel Base",
+  "docs": "https://github.com/vercel/style-guide",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "noEmit": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",

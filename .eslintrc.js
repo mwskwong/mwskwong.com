@@ -91,7 +91,7 @@ module.exports = {
     // Must use default export
     {
       files: [
-        'cypress.config.mjs',
+        'cypress.config.ts',
         'next.config.mjs',
         'prettier.config.mjs',
         'unlighthouse.config.ts',

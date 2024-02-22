@@ -3,14 +3,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["es5", "dom"],
-    "types": [
-      "cypress",
-      "node",
-      "lodash-es",
-      "contentful",
-      "@4tw/cypress-drag-drop",
-      "@mui/joy"
-    ]
+    "types": ["cypress", "node", "contentful", "@mui/joy"]
   },
   "include": ["**/*.ts"]
 }

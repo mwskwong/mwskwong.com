@@ -3,7 +3,6 @@ import { cv } from '../fixtures/contentful-ids';
 import { contentful } from './clients';
 import { SkillCategorySkeleton, SkillSkeleton } from './types';
 
-export type SkillSet = Awaited<ReturnType<typeof getSkillSet>>;
 export const getSkillSet = async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     contentful.getEntries<SkillSkeleton>({
@@ -30,7 +29,6 @@ export const getSkillSet = async () => {
   }));
 };
 
-export type Cv = Awaited<ReturnType<typeof getCv>>;
 export const getCv = async () => {
   const asset = await contentful.getAsset(cv);
   return asset.fields.file && `https:${asset.fields.file.url}`;

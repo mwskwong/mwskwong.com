@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-namespace -- Cypress extension */
 /* eslint-disable @typescript-eslint/method-signature-style -- this is how Cypress defined the interface and the extension should match that */
 /// <reference types="cypress" />
-import '@4tw/cypress-drag-drop';
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -54,3 +53,5 @@ declare global {
     }
   }
 }
+
+export {};

@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands';
+import { getCv, getSkillSet } from './queries';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -25,3 +26,8 @@ Cypress.on('uncaught:exception', (err) => {
     return false;
   }
 });
+
+export interface Ctx {
+  cv: Awaited<ReturnType<typeof getCv>>;
+  skillSet: Awaited<ReturnType<typeof getSkillSet>>;
+}

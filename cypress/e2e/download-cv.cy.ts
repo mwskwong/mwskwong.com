@@ -1,28 +1,18 @@
 import { home } from '../fixtures/nav';
-import { Cv, getCv } from '../support/queries';
-
-interface DownloadCvCtx {
-  cv?: Cv;
-}
+import { Ctx } from '../support/e2e';
 
 describe('Download CV', () => {
-  const ctx: DownloadCvCtx = {};
-
-  before(() => {
-    cy.wrap(getCv()).then((asset) => {
-      ctx.cv = asset;
-    });
-  });
+  const { cv } = Cypress.env('ctx') as Ctx;
 
   beforeEach(() => cy.visit(home.pathname));
 
   it('should open CV in a new tab (for browsers with PDF reader built-in)', () => {
-    if (ctx.cv) {
+    if (cv) {
       cy.contains('Download CV')
         .should('have.attr', 'target', '_blank')
-        .should('have.attr', 'href', ctx.cv);
+        .should('have.attr', 'href', cv);
 
-      cy.request(ctx.cv)
+      cy.request(cv)
         .its('headers')
         .should('have.a.property', 'content-type', 'application/pdf');
     }

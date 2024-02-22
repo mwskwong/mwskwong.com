@@ -1,64 +1,54 @@
 import { sliderClasses } from '@mui/joy';
 
 import { about } from '../fixtures/nav';
-import { SkillSet, getSkillSet } from '../support/queries';
-
-interface SkillSetCtx {
-  skillSet?: SkillSet;
-}
+import { Ctx } from '../support/e2e';
 
 describe('Skill set', () => {
-  const ctx: SkillSetCtx = {};
-
-  before(() => {
-    cy.wrap(getSkillSet()).then((skillSet) => {
-      ctx.skillSet = skillSet;
-    });
-  });
+  const { skillSet } = Cypress.env('ctx') as Ctx;
 
   beforeEach(() => {
     cy.visit(`${about.pathname}#${about.id}`);
     cy.get('[data-cy="skill-set"]').as('skillSetElem');
   });
 
-  const expectSkillSetToDisplay = (skillSet: SkillSet) => {
-    for (const { id, name, skills } of skillSet) {
-      cy.log(`Testing ${name} category`);
+  for (const { id, name, skills } of skillSet) {
+    describe(`${name} category`, () => {
+      it(`displays "${name}" as the title`, () => {
+        cy.get('@skillSetElem')
+          .find(`[data-cy=${id}]`)
+          .find('[data-cy="title"]')
+          .contains(name)
+          .should('be.visible');
+      });
 
-      cy.get('@skillSetElem')
-        .get(`[data-cy=${id}]`)
-        .within(() => {
-          cy.get('[data-cy="title"]').contains(name).should('be.visible');
+      for (const { name, url } of skills) {
+        it(`contains "${name}" skill ${url ? `which links to ${url}` : ''}`, () => {
+          cy.get('@skillSetElem')
+            .find(`[data-cy=${id}]`)
+            .contains(new RegExp(`^${name}$`))
+            .should('be.visible')
+            .parent()
+            .as('chip');
 
-          for (const { name, url } of skills) {
-            cy.log(`Testing ${name} skill`);
-
-            cy.contains(name).should('be.visible').parent().as('chip');
-            if (url) {
-              cy.get('@chip')
-                .find('a')
-                .should('have.attr', 'target', '_blank')
-                .and('have.attr', 'href', url);
-            } else {
-              cy.get('@chip').find('a').should('not.exist');
-            }
+          if (url) {
+            cy.get('@chip')
+              .find('a')
+              .should('have.attr', 'target', '_blank')
+              .and('have.attr', 'href', url);
+          } else {
+            cy.get('@chip').find('a').should('not.exist');
           }
         });
-    }
-  };
-
-  it('displays the entire skill set initially', () => {
-    if (ctx.skillSet) {
-      expectSkillSetToDisplay(ctx.skillSet);
-    }
-  });
+      }
+    });
+  }
 
   describe('Skill proficiency slider', () => {
-    it('filters the skill set by proficiency 2 - 4', () => {
-      const targetProficiency = [2, 4] as const;
+    const targetProficiency = [2, 4] as const;
 
+    it('filters the skill set by proficiency 2 - 4', () => {
       cy.get('@skillSetElem')
-        .get('[data-cy="skill-proficiency-slider"]')
+        .find('[data-cy="skill-proficiency-slider"]')
         .within(($slider) => {
           cy.get(`.${sliderClasses.thumb}`).as('thumbs');
           cy.get('@thumbs').first().as('leftThumb');
@@ -87,19 +77,37 @@ describe('Skill set', () => {
             .should('be.visible');
         });
 
-      if (ctx.skillSet) {
-        expectSkillSetToDisplay(
-          ctx.skillSet
-            .map(({ skills, ...skillCategory }) => ({
-              ...skillCategory,
-              skills: skills.filter(
-                ({ proficiency }) =>
-                  proficiency >= targetProficiency[0] &&
-                  proficiency <= targetProficiency[1],
-              ),
-            }))
-            .filter(({ skills }) => skills.length),
+      for (const { id, name, skills } of skillSet) {
+        cy.log(`${name} category`);
+
+        const hasSkills = skills.some(
+          ({ proficiency }) =>
+            proficiency >= targetProficiency[0] &&
+            proficiency <= targetProficiency[1],
         );
+
+        if (hasSkills) {
+          cy.get('@skillSetElem').find(`[data-cy=${id}]`).should('be.visible');
+          for (const { name, proficiency } of skills) {
+            cy.log(`${name} skill`);
+            if (
+              proficiency >= targetProficiency[0] &&
+              proficiency <= targetProficiency[1]
+            ) {
+              cy.get('@skillSetElem')
+                .find(`[data-cy=${id}]`)
+                .contains(new RegExp(`^${name}$`))
+                .should('be.visible');
+            } else {
+              cy.get('@skillSetElem')
+                .find(`[data-cy=${id}]`)
+                .contains(new RegExp(`^${name}$`))
+                .should('not.exist');
+            }
+          }
+        } else {
+          cy.get('@skillSetElem').find(`[data-cy=${id}]`).should('not.exist');
+        }
       }
     });
   });

@@ -1,8 +1,20 @@
-import { createClient } from 'contentful';
+import { ContentfulClientApi, createClient } from 'contentful';
 
-export const contentful = createClient({
-  space: Cypress.env('CONTENTFUL_SPACE_ID') as string,
-  accessToken: Cypress.env('CONTENTFUL_ACCESS_TOKEN') as string,
-  environment:
-    Cypress.env('ENVIRONMENT') === 'Production' ? 'master' : 'develop',
-}).withoutUnresolvableLinks;
+// eslint-disable-next-line import/no-mutable-exports -- contentful client require setup
+export let contentful: ContentfulClientApi<'WITHOUT_UNRESOLVABLE_LINKS'>;
+
+export const setupContentfulClient = ({
+  space,
+  accessToken,
+  environment,
+}: {
+  space: string;
+  accessToken: string;
+  environment: string;
+}) => {
+  contentful = createClient({
+    space,
+    accessToken,
+    environment: environment === 'Production' ? 'master' : 'develop',
+  }).withoutUnresolvableLinks;
+};
