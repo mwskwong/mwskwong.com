@@ -79,7 +79,11 @@ Cypress.Commands.add(
                   (status: number) =>
                     (status >= 200 && status <= 399) || status === 999,
                 );
-              } else if (url.hostname === 'stackoverflow.com') {
+              } else if (
+                ['stackoverflow.com', 'www.sap.com', 'poe.com'].includes(
+                  url.hostname,
+                )
+              ) {
                 // 403 returned when Stack Overflow is visited by bots
                 expect(status).to.satisfy(
                   (status: number) =>

@@ -33,8 +33,8 @@ describe('Skill set', () => {
           if (url) {
             cy.get('@chip')
               .find('a')
-              .should('have.attr', 'target', '_blank')
-              .and('have.attr', 'href', url);
+              .and('have.attr', 'href', url)
+              .shouldOpenLinkInNewTab();
           } else {
             cy.get('@chip').find('a').should('not.exist');
           }
