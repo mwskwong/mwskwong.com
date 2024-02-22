@@ -1,7 +1,7 @@
 'use server';
 
 import { Entry } from 'contentful';
-import orderBy from 'lodash/orderBy';
+import { orderBy } from 'lodash-es';
 import {
   unstable_cache as cache,
   unstable_noStore as noStore,

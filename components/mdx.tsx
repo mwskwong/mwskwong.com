@@ -7,7 +7,7 @@ import {
   Typography,
   TypographyProps,
 } from '@mui/joy';
-import merge from 'lodash/merge';
+import { merge } from 'lodash-es';
 import { LinkIcon } from 'lucide-react';
 import { MDXComponents } from 'mdx/types';
 import { mergeSx } from 'merge-sx';
