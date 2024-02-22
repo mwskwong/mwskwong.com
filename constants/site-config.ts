@@ -1,4 +1,4 @@
-import { capitalize } from 'lodash-es';
+import capitalize from 'lodash/capitalize';
 
 export const baseUrl = `https://${
   process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview' ||

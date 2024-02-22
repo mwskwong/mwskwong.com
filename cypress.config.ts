@@ -2,7 +2,11 @@ import { defineConfig } from 'cypress';
 
 import { setupContentfulClient } from './cypress/support/clients';
 import { Ctx } from './cypress/support/e2e';
-import { getCv, getSkillSet } from './cypress/support/queries';
+import {
+  getCv,
+  getPlatformProfiles,
+  getSkillSet,
+} from './cypress/support/queries';
 
 export default defineConfig({
   e2e: {
@@ -19,6 +23,7 @@ export default defineConfig({
       config.env.ctx = {
         cv: await getCv(),
         skillSet: await getSkillSet(),
+        platformProfiles: await getPlatformProfiles(),
       } satisfies Ctx;
 
       return config;

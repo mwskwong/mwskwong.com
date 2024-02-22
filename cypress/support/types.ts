@@ -17,3 +17,20 @@ export interface SkillCategorySkeleton {
     proficiency?: EntryFieldTypes.Integer;
   };
 }
+
+export interface OrganizationSkeleton {
+  contentTypeId: 'organization';
+  fields: {
+    name: EntryFieldTypes.Symbol;
+    url?: EntryFieldTypes.Symbol;
+    logo?: EntryFieldTypes.AssetLink;
+  };
+}
+
+export interface PlatformProfileSkeleton {
+  contentTypeId: 'platformProfile';
+  fields: {
+    platform: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
+    url: EntryFieldTypes.Symbol;
+  };
+}
