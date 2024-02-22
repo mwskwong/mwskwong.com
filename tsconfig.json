@@ -1,15 +1,12 @@
 {
   "extends": "@vercel/style-guide/typescript/node20",
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Vercel Base",
-  "docs": "https://github.com/vercel/style-guide",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "noEmit": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
