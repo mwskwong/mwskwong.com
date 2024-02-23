@@ -2,7 +2,6 @@ import { email, firstName, lastName } from '@/constants/content';
 import { blog, blogRssFeed } from '@/constants/nav';
 import { baseUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
-import { encodeHtmlEntities } from '@/lib/utils';
 
 export const GET = async () => {
   const blogs = await getBlogs();
@@ -10,7 +9,7 @@ export const GET = async () => {
     `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-      <title>${firstName} ${lastName} ${blog.label}</title>
+      <title><![CDATA[${firstName} ${lastName} - ${blog.label}]]></title>
       <link>${baseUrl}${blog.pathname}</link>
       <description>Personal perspectives on a broad range of topics.</description>
       <language>en</language>
@@ -19,9 +18,9 @@ export const GET = async () => {
         .map(
           ({ title, slug, description, categories = [], createdAt, id }) => `
             <item>
-              <title>${title}</title>
+              <title><![CDATA[${title}]]></title>
               <link>${baseUrl}${blog.pathname}/${slug}</link>
-              <description>${encodeHtmlEntities(description)}</description>
+              <description><![CDATA[${description}]]></description>
               <guid isPermaLink="false">${id}</guid>
               <author>${email} (${firstName} ${lastName})</author>
               ${categories.map((category) => `<category>${category}</category>`).join('')}
