@@ -9,7 +9,7 @@ export const GET = async () => {
     `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-      <title><![CDATA[${firstName} ${lastName} - ${blog.label}]]></title>
+      <title>${firstName} ${lastName} - ${blog.label}</title>
       <link>${baseUrl}${blog.pathname}</link>
       <description>Personal perspectives on a broad range of topics.</description>
       <language>en</language>
