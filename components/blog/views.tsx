@@ -24,7 +24,7 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 export const Views: FC<ViewsProps> = async ({
   blogIds,
   blogId,
-  readOnly,
+  readOnly = false,
   ...props
 }) => {
   const metadata = blogIds
@@ -33,7 +33,7 @@ export const Views: FC<ViewsProps> = async ({
 
   return (
     <>
-      {readOnly ? null : <IncrBlogView blogId={blogId} />}
+      {!readOnly && <IncrBlogView blogId={blogId} />}
       <Typography startDecorator={<Eye />} {...props}>
         {numberFormatter.format(metadata?.view ?? 0)} views
       </Typography>
