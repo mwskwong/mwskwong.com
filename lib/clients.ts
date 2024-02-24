@@ -8,9 +8,22 @@ export const contentful = createClient({
   environment: process.env.VERCEL_ENV === 'production' ? 'master' : 'develop',
 }).withoutUnresolvableLinks;
 
-export const prisma = new PrismaClient({
-  log:
-    process.env.NODE_ENV === 'development'
-      ? ['query', 'info', 'warn', 'error']
-      : undefined,
-}).$extends(readReplicas({ url: process.env.DATABASE_REPLICA_URL ?? '' }));
+/**
+ * Prevent Next.js dev server keep re-initializing the prisma client
+ * @see {@link https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices}
+ */
+declare global {
+  // eslint-disable-next-line no-var -- needed for globalThis.prisma to be defined in the global scope.
+  var prisma: undefined | ReturnType<typeof prismaClientSingleton>;
+}
+
+const prismaClientSingleton = () =>
+  new PrismaClient({
+    log:
+      process.env.NODE_ENV === 'development'
+        ? ['query', 'info', 'warn', 'error']
+        : undefined,
+  }).$extends(readReplicas({ url: process.env.DATABASE_REPLICA_URL ?? '' }));
+
+export const prisma = globalThis.prisma ?? prismaClientSingleton();
+if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma;
