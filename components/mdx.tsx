@@ -10,7 +10,6 @@ import {
 import { merge } from 'lodash-es';
 import { LinkIcon } from 'lucide-react';
 import { MDXComponents } from 'mdx/types';
-import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import { FC, RefObject } from 'react';
@@ -27,41 +26,31 @@ declare module 'react' {
   }
 }
 
-const Heading: FC<TypographyProps> = ({
-  id,
-  slotProps,
-  sx,
-  children,
-  ...props
-}) => (
-  <Typography
-    endDecorator={<LinkIcon />}
-    id={id}
-    slotProps={merge(
-      {
+const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
+  <Typography id={id} {...props}>
+    <Link
+      color="neutral"
+      endDecorator={<LinkIcon />}
+      href={`#${id}`}
+      slotProps={{
         endDecorator: {
           sx: {
             display: { xs: 'none', md: 'unset' },
             visibility: 'hidden',
             '--Icon-fontSize': 'var(--joy-fontSize-xl)',
+            '--Icon-color': 'var(--joy-palette-text-icon)',
           },
         },
-      },
-      slotProps,
-    )}
-    sx={mergeSx(
-      {
+      }}
+      sx={{
         '&:hover': {
-          '& .MuiTypography-endDecorator': {
+          '& .MuiLink-endDecorator': {
             visibility: 'unset',
           },
         },
-      },
-      sx,
-    )}
-    {...props}
-  >
-    <Link color="neutral" href={`#${id}`} textColor="inherit">
+      }}
+      textColor="inherit"
+    >
       {children}
     </Link>
   </Typography>
