@@ -337,7 +337,6 @@ export const Contact: FC<ContactProps> = (props) => {
                                 <Link
                                   component={NextLink}
                                   href={guestbook.pathname}
-                                  underline="always"
                                 >
                                   {guestbook.label}
                                 </Link>

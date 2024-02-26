@@ -114,7 +114,6 @@ export const components = {
         sx={{ '& > code': { color: 'inherit' } }}
         target={external ? '_blank' : undefined}
         textColor={color}
-        underline="always"
         {...props}
       >
         {children}
