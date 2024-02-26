@@ -1,5 +1,3 @@
-'use server';
-
 import { Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
 import {
