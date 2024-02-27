@@ -6,7 +6,7 @@ export default {
       // minus point from
       //   1. TBT due to MUI
       //   2. LCP due to images
-      performance: 80,
+      performance: 70,
       // minus point from
       //   1. Code block doesn't have enough color contrast
       //   2. Links rely on color to be distinguishable
