@@ -19,7 +19,7 @@ jobs:
           npm install
           cd ./node_modules/@unlighthouse/core/dist
           sed -i 's/lighthouse-core/core/' index.mjs
-      # FIXME: --throttle is not recognized when specified in config file, specifying it with CLI option instead
+      # FIXME: scanner.* config is currently not respected by unlighthouse-ci, specifying it with CLI option instead
       - run: |
           unlighthouse-ci \
           --site ${{ github.event.deployment_status.environment_url }} \
