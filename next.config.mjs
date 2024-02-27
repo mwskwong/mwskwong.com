@@ -2,6 +2,10 @@
 
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 
+const withBundleAnalyzer = NextBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 const sharedSvgoPlugins = [
   'prefixIds',
   'removeRasterImages',
@@ -137,6 +141,4 @@ const config = {
   },
 };
 
-export default NextBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })(
-  config,
-);
+export default withBundleAnalyzer(config);
