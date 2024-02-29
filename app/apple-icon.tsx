@@ -16,7 +16,8 @@ const appleIcon = () =>
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: 8,
+          padding: '22.5%',
+          background: '#FFF', // --joy-palette-background-body
         }}
       >
         {/* --joy-palette-primary-plainColor */}
