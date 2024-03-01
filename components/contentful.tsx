@@ -26,7 +26,7 @@ import {
   Terminal,
   Workflow,
 } from 'lucide-react';
-import { ComponentProps, SVGProps, forwardRef } from 'react';
+import { ComponentProps, FC, SVGProps, forwardRef } from 'react';
 import { LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
@@ -82,16 +82,12 @@ export type IconProps = ComponentProps<IconType> &
     contentfulId: LiteralUnion<keyof typeof Icons, string>;
   };
 
-export const Icon = forwardRef<SVGSVGElement, IconProps>(
-  ({ contentfulId, ...props }, ref) => {
-    if (!(contentfulId in Icons)) return null;
+export const Icon: FC<IconProps> = ({ contentfulId, ...props }) => {
+  if (!(contentfulId in Icons)) return null;
 
-    const Icon = Icons[contentfulId as keyof typeof Icons];
-    return <Icon ref={ref} {...props} />;
-  },
-);
-
-Icon.displayName = 'Icon';
+  const Icon = Icons[contentfulId as keyof typeof Icons];
+  return <Icon {...props} />;
+};
 
 const Logos = {
   [contentfulIds.muiCore]: Mui,
@@ -124,54 +120,45 @@ export const logoClasses = {
   colorSchemeDark: 'ContentfulLogo-colorSchemeDark',
 };
 
-export const Logo = forwardRef<SVGSVGElement, LogoProps>(
-  ({ contentfulId, colorScheme = 'auto', className, ...props }, ref) => {
-    if (!(contentfulId in Logos)) return null;
+export const Logo: FC<LogoProps> = ({
+  contentfulId,
+  colorScheme = 'auto',
+  className,
+  ...props
+}) => {
+  if (!(contentfulId in Logos)) return null;
 
-    const MaybeLogo = Logos[contentfulId as keyof typeof Logos];
-    const universal = typeof MaybeLogo === 'function';
+  const MaybeLogo = Logos[contentfulId as keyof typeof Logos];
+  const universal = typeof MaybeLogo === 'function';
 
-    if (colorScheme === 'auto') {
-      if (universal) return <MaybeLogo ref={ref} {...props} />;
+  if (colorScheme === 'auto') {
+    if (universal) return <MaybeLogo {...props} />;
 
-      const { light: LightLogo, dark: DarkLogo } = MaybeLogo;
-      return (
-        <>
-          <LightLogo
-            className={logoClasses.colorSchemeLight}
-            ref={ref}
-            {...props}
-          />
-          {DarkLogo ? (
-            <DarkLogo
-              className={logoClasses.colorSchemeDark}
-              ref={ref}
-              {...props}
-            />
-          ) : null}
-        </>
-      );
-    }
-
-    const Logo = universal ? MaybeLogo : MaybeLogo[colorScheme];
+    const { light: LightLogo, dark: DarkLogo } = MaybeLogo;
     return (
-      Logo && (
-        <Logo
-          className={clsx(
-            {
-              [logoClasses.colorSchemeLight]:
-                !universal && colorScheme === 'light',
-              [logoClasses.colorSchemeDark]:
-                !universal && colorScheme === 'dark',
-            },
-            className,
-          )}
-          ref={ref}
-          {...props}
-        />
-      )
+      <>
+        <LightLogo className={logoClasses.colorSchemeLight} {...props} />
+        {DarkLogo ? (
+          <DarkLogo className={logoClasses.colorSchemeDark} {...props} />
+        ) : null}
+      </>
     );
-  },
-);
+  }
 
-Logo.displayName = 'Logo';
+  const Logo = universal ? MaybeLogo : MaybeLogo[colorScheme];
+  return (
+    Logo && (
+      <Logo
+        className={clsx(
+          {
+            [logoClasses.colorSchemeLight]:
+              !universal && colorScheme === 'light',
+            [logoClasses.colorSchemeDark]: !universal && colorScheme === 'dark',
+          },
+          className,
+        )}
+        {...props}
+      />
+    )
+  );
+};
