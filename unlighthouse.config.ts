@@ -26,4 +26,13 @@ export default {
   scanner: {
     samples: 5,
   },
+  lighthouseOptions: {
+    // mobileSlow4G
+    // https://github.com/GoogleChrome/lighthouse/blob/912495d95e8d81a5ef94ba37ffbed9bc54536d1a/core/config/constants.js#L21
+    throttling: {
+      rttMs: 150,
+      throughputKbps: 1.6 * 1024,
+      cpuSlowdownMultiplier: 4,
+    },
+  },
 };
