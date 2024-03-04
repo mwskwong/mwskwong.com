@@ -27,7 +27,8 @@ export default {
     samples: 5,
   },
   lighthouseOptions: {
-    // mobileSlow4G
+    // based on mobileSlow4G preset, CPU is further throttled to match the mid-tier mobile benchmark index
+    // https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#benchmarking-cpu-power
     // https://github.com/GoogleChrome/lighthouse/blob/912495d95e8d81a5ef94ba37ffbed9bc54536d1a/core/config/constants.js#L21
     throttling: {
       rttMs: 150,
