@@ -32,7 +32,7 @@ export default {
     throttling: {
       rttMs: 150,
       throughputKbps: 1.6 * 1024,
-      cpuSlowdownMultiplier: 4,
+      cpuSlowdownMultiplier: 6,
     },
   },
 };
