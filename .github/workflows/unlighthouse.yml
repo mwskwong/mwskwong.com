@@ -8,11 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm install -g @unlighthouse/cli puppeteer
-      # FIXME: scanner.* config is currently not respected by unlighthouse-ci, specifying it with CLI option instead
-      - run: |
-          unlighthouse-ci \
-          --site ${{ github.event.deployment_status.environment_url }} \
-          --throttle
+      - run: npm list -g @unlighthouse/cli
+      - run: unlighthouse-ci --site ${{ github.event.deployment_status.environment_url }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
