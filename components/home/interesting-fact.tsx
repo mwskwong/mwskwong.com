@@ -25,8 +25,8 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
           <Stack spacing={2}>
             <Typography level="h2">Interesting Fact</Typography>
             <Typography maxWidth="sm">
-              This website is built on top of the following libraries and
-              platforms.
+              My website is a testing ground for new tech and design patterns.
+              Check out the libraries and platforms I use to build it.
             </Typography>
           </Stack>
           <Stack
