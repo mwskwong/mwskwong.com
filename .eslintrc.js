@@ -81,6 +81,7 @@ module.exports = {
   overrides: [
     /**
      * JS files are using @babel/eslint-parser, so typed linting doesn't work there.
+     * @see {@link https://github.com/vercel/style-guide/blob/canary/eslint/_base.js}
      * @see {@link https://typescript-eslint.io/linting/typed-linting#how-can-i-disable-type-aware-linting-for-a-subset-of-files}
      */
     {

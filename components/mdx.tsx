@@ -106,7 +106,7 @@ export const components = {
   ),
   a: ({ ref, color, children, ...props }) => {
     const external =
-      props.href?.startsWith('http://') || props.href?.startsWith('https://');
+      props.href?.startsWith('http://') ?? props.href?.startsWith('https://');
     return (
       <Link
         component={external ? 'a' : NextLink}
