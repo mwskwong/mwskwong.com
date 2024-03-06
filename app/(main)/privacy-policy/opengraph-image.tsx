@@ -1,7 +1,7 @@
 import { privacyPolicy } from '@/constants/nav';
-import { createImage } from '@/og-images/route';
+import { generateImage } from '@/og-images/route';
 
 export { size, contentType } from '@/og-images/config';
 export const runtime = 'edge';
 
-export default createImage(privacyPolicy.label);
+export default generateImage(privacyPolicy.label);

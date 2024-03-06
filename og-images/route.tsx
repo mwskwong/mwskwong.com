@@ -4,7 +4,7 @@ import Logo from '@/app/icon.svg?monochrome';
 
 import { getFonts, size } from './config';
 
-export const createImage = (title: string) => async () =>
+export const generateImage = (title: string) => async () =>
   new ImageResponse(
     (
       <div
