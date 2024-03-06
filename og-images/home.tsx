@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og';
 import Logo from '@/app/icon.svg?monochrome';
 import { firstName, lastName } from '@/constants/content';
 
-import { size } from './config';
+import { getFonts, size } from './config';
 
 export const Image = async () =>
   new ImageResponse(
@@ -50,18 +50,6 @@ export const Image = async () =>
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: 'Geist',
-          data: await fetch(
-            new URL(
-              'geist/assets/fonts/geist-sans/Geist-Bold.ttf',
-              import.meta.url,
-            ),
-          ).then((res) => res.arrayBuffer()),
-          weight: 700,
-          style: 'normal',
-        },
-      ],
+      fonts: await getFonts(),
     },
   );
