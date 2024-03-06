@@ -1,5 +1,4 @@
 import {
-  AspectRatio,
   Card,
   CardContent,
   Chip,
@@ -61,25 +60,26 @@ const Blogs: FC = async () => {
                 <Grid key={id} md={4} sm={6} xs={12}>
                   <Card component="article" sx={{ height: { sm: '100%' } }}>
                     {coverPhoto ? (
-                      <AspectRatio
-                        objectFit="cover"
-                        ratio="1200/630"
-                        variant="outlined"
-                      >
-                        <Image
-                          alt={`Thumbnail for ${title}`}
-                          fill
-                          priority={index === 0}
-                          sizes={[
-                            `(min-width: ${lg}px) ${Math.round((4 / 12) * lg)}px`,
-                            `(min-width: ${md}px) ${Math.round((4 / 12) * 100)}vw`,
-                            `(min-width: ${sm}px) ${Math.round((6 / 12) * 100)}vw`,
-                            '100vw',
-                          ].join(',')}
-                          src={coverPhoto}
-                          sx={{ width: '100%', height: 'auto' }}
-                        />
-                      </AspectRatio>
+                      <Image
+                        alt={`Thumbnail for ${title}`}
+                        width={lg / 3}
+                        height={(lg / 3 / 1200) * 630}
+                        priority={index === 0}
+                        sizes={[
+                          `(min-width: ${lg}px) ${Math.round((4 / 12) * lg)}px`,
+                          `(min-width: ${md}px) ${Math.round((4 / 12) * 100)}vw`,
+                          `(min-width: ${sm}px) ${Math.round((6 / 12) * 100)}vw`,
+                          '100vw',
+                        ].join(',')}
+                        src={coverPhoto}
+                        sx={{
+                          width: '100%',
+                          height: 'auto',
+                          border: 1,
+                          borderColor: 'neutral.outlinedBorder',
+                          borderRadius: 'var(--Card-childRadius)',
+                        }}
+                      />
                     ) : null}
                     <Stack direction="row" flexWrap="wrap" spacing={1}>
                       {categories?.map((category) => (
