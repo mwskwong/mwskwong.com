@@ -1,7 +1,7 @@
 import { blog } from '@/constants/nav';
+import { generateImage } from '@/og-images/route';
 
-import { routeOgImage } from '../route-og-image';
-
+export { size, contentType } from '@/og-images/config';
 export const runtime = 'edge';
-export { size, contentType } from '../route-og-image';
-export default routeOgImage(blog.label);
+
+export default generateImage(blog.label);
