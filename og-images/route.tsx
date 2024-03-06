@@ -2,10 +2,9 @@ import { ImageResponse } from 'next/og';
 
 import Logo from '@/app/icon.svg?monochrome';
 
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
+import { size } from './config';
 
-export const routeOgImage = (title: string) => async () =>
+export const createImage = (title: string) => async () =>
   new ImageResponse(
     (
       <div
@@ -51,7 +50,10 @@ export const routeOgImage = (title: string) => async () =>
         {
           name: 'Geist',
           data: await fetch(
-            new URL('@/fonts/geist-bold.otf', import.meta.url),
+            new URL(
+              'geist/assets/fonts/geist-sans/Geist-Bold.ttf',
+              import.meta.url,
+            ),
           ).then((res) => res.arrayBuffer()),
           weight: 700,
           style: 'normal',
