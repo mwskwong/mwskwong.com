@@ -1,6 +1,5 @@
 import { SiRss } from '@icons-pack/react-simple-icons';
 import {
-  AspectRatio,
   Box,
   Button,
   Chip,
@@ -98,22 +97,23 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             </Grid>
           </Grid>
           {blog.coverPhoto ? (
-            <AspectRatio
-              objectFit="cover"
-              ratio="1200/630"
-              sx={{ borderRadius: 'md' }}
-              variant="outlined"
-            >
-              {/* eslint-disable-next-line jsx-a11y/img-redundant-alt -- cover photo is a valid word */}
-              <Image
-                alt={`Cover photo for ${blog.title}`}
-                fill
-                priority
-                sizes={[`(min-width: ${md}px) ${md}px`, '100vw'].join(',')}
-                src={blog.coverPhoto}
-                sx={{ width: '100%', height: 'auto' }}
-              />
-            </AspectRatio>
+            //  eslint-disable-next-line jsx-a11y/img-redundant-alt -- cover photo is a valid word
+            <Image
+              alt={`Cover photo for ${blog.title}`}
+              width={md}
+              height={(md / 1200) * 630}
+              priority
+              sizes={[`(min-width: ${md}px) ${md}px`, '100vw'].join(',')}
+              src={blog.coverPhoto}
+              sx={{
+                display: 'block',
+                width: '100%',
+                height: 'auto',
+                border: 1,
+                borderColor: 'neutral.outlinedBorder',
+                borderRadius: 'md',
+              }}
+            />
           ) : null}
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
