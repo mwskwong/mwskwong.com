@@ -10,7 +10,6 @@
     "lint": "next lint",
     "prisma:db:push": "dotenv -e .env.development.local -- prisma db push",
     "prisma:generate": "prisma generate",
-    "prisma:studio": "dotenv -e .env.development.local -- prisma studio",
     "start": "next start"
   },
   "dependencies": {
