@@ -93,7 +93,6 @@ module.exports = {
     {
       files: [
         'next.config.mjs',
-        'prettier.config.mjs',
         'unlighthouse.config.ts',
         'app/**/page.tsx',
         'app/**/layout.tsx',
