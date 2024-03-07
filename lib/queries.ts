@@ -288,9 +288,13 @@ export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
   return db.select().from(blogMetadata).where(inArray(blogMetadata.id, ids));
 });
 
-export const getBlogMetadataById = (id: string) => {
+export const getBlogMetadataById = async (id: string) => {
   noStore();
-  return db.select().from(blogMetadata).where(eq(blogMetadata.id, id));
+  const metadata = await db
+    .select()
+    .from(blogMetadata)
+    .where(eq(blogMetadata.id, id));
+  return metadata[0];
 };
 
 // prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
