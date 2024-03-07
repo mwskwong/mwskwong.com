@@ -3,13 +3,14 @@
   "version": "3.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "npm run drizzle:migrate:prod",
     "build": "next build",
     "dev": "next dev",
     "drizzle:generate": "drizzle-kit generate:pg",
     "drizzle:migrate:dev": "npx tsx --env-file .env.development.local --env-file .env.local lib/db-migrate.ts",
     "drizzle:migrate:prod": "npx tsx lib/db-migrate.ts",
     "format": "prettier --write .",
-    "postinstall": "patch-package && npm run drizzle:migrate:prod",
+    "postinstall": "patch-package",
     "lint": "next lint",
     "start": "next start"
   },
