@@ -8,6 +8,9 @@ export const contentful = createClient({
   environment: process.env.VERCEL_ENV === 'production' ? 'master' : 'develop',
 }).withoutUnresolvableLinks;
 
+// eslint-disable-next-line no-console -- debug
+console.log(process.env.DATABASE_URL);
+
 /**
  * Prevent Next.js dev server keep re-initializing the prisma client
  * @see {@link https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices}
