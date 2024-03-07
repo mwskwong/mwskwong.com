@@ -41,7 +41,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                   ({
                     '@type': 'Comment',
                     author: { '@type': 'Person', name },
-                    datePublished: submittedAt.toISOString(),
+                    datePublished: submittedAt?.toISOString(),
                     text: encodeHtmlEntities(message),
                   }) satisfies Comment,
               ),
