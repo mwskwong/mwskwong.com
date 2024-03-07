@@ -25,6 +25,6 @@ export const contactFormSubmission = pgTable(
     submittedAt: timestamp('submitted_at').defaultNow(),
   },
   ({ showInGuestbook, submittedAt }) => ({
-    guestbookIdx: index().on(showInGuestbook, submittedAt).desc(),
+    guestbookIdx: index().on(showInGuestbook, submittedAt),
   }),
 );

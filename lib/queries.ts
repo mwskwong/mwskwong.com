@@ -8,9 +8,9 @@ import {
 import { cache as reactCache } from 'react';
 
 import { cv, privacyPolicy } from '@/constants/contentful-ids';
-import { blogMetadata, contactFormSubmission } from '@/db/schema';
 
 import { cms, db } from './clients';
+import { blogMetadata, contactFormSubmission } from './db-schema';
 import {
   BlogSkeleton,
   CourseSkeleton,

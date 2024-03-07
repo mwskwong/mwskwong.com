@@ -5,11 +5,15 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "drizzle:generate": "drizzle-kit generate:pg",
+    "drizzle:migrate:dev": "npx tsx --env-file .env.development.local --env-file .env.local lib/db-migrate.ts",
+    "drizzle:migrate:prod": "npx tsx lib/db-migrate.ts",
     "format": "prettier --write .",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package && npm run drizzle:migrate:prod",
     "lint": "next lint",
     "start": "next start"
   },
+  "prettier": "@vercel/style-guide/prettier",
   "dependencies": {
     "@emailjs/nodejs": "^2.2.0",
     "@emotion/cache": "^11.11.0",
@@ -52,13 +56,11 @@
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@vercel/style-guide": "^6.0.0",
-    "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.20.14",
     "eslint": "^8.57.0",
     "patch-package": "^8.0.0",
     "prettier": "^3.2.5",
     "type-fest": "^4.11.1",
     "typescript": "^5.4.2"
-  },
-  "prettier": "@vercel/style-guide/prettier"
+  }
 }

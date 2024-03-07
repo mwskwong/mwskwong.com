@@ -5,10 +5,10 @@ import { sql } from 'drizzle-orm';
 import { unstable_noStore as noStore } from 'next/cache';
 import { parse } from 'valibot';
 
-import { blogMetadata, contactFormSubmission } from '@/db/schema';
 import { db } from '@/lib/clients';
 
-import { ContactFormData, contactFormSchema } from './schemas';
+import { blogMetadata, contactFormSubmission } from './db-schema';
+import { ContactForm, contactForm } from './validation-schema';
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
@@ -21,9 +21,9 @@ export const incrBlogViewById = async (id: string) => {
     });
 };
 
-export const submitContactForm = async (data: ContactFormData) => {
+export const submitContactForm = async (data: ContactForm) => {
   noStore();
-  parse(contactFormSchema, data);
+  parse(contactForm, data);
   await db.insert(contactFormSubmission).values(data);
   await send(
     process.env.EMAILJS_SERVICE_ID ?? '',
