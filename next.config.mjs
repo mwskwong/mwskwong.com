@@ -20,7 +20,7 @@ const sharedSvgoPlugins = [
 const config = {
   compiler: {
     emotion: true,
-    // removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === 'production',
   },
   eslint: { dirs: ['app', 'components', 'constants', 'lib', 'og-images'] },
   images: {
