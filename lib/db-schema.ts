@@ -10,7 +10,7 @@ import {
 
 export const blogMetadata = pgTable('blog_metadata', {
   id: varchar('id').primaryKey(),
-  view: integer('view').default(0),
+  view: integer('view').notNull().default(0),
 });
 
 export const contactFormSubmission = pgTable(
@@ -21,8 +21,8 @@ export const contactFormSubmission = pgTable(
     email: varchar('email'),
     subject: varchar('subject'),
     message: varchar('message').notNull(),
-    showInGuestbook: boolean('show_in_guestbook').default(false),
-    submittedAt: timestamp('submitted_at').defaultNow(),
+    showInGuestbook: boolean('show_in_guestbook').notNull().default(false),
+    submittedAt: timestamp('submitted_at').notNull().defaultNow(),
   },
   ({ showInGuestbook, submittedAt }) => ({
     guestbookIdx: index().on(showInGuestbook, submittedAt),
