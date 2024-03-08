@@ -85,7 +85,7 @@ module.exports = {
      * @see {@link https://typescript-eslint.io/linting/typed-linting#how-can-i-disable-type-aware-linting-for-a-subset-of-files}
      */
     {
-      files: [...JAVASCRIPT_FILES, '*.mts'], // WORKAROUND: allow .mts to use top level await
+      files: JAVASCRIPT_FILES,
       extends: ['plugin:@typescript-eslint/disable-type-checked'],
     },
     // Varies file convention from libraries, e.g. Next.js App Router and Prettier
