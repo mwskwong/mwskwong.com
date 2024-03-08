@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "postinstall": "patch-package",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "upgrade": "npm update && npm run format && tsc --noEmit && npm run lint -- --fix"
   },
   "prettier": "@vercel/style-guide/prettier",
   "dependencies": {
@@ -20,7 +21,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
-    "@icons-pack/react-simple-icons": "^9.3.0",
+    "@icons-pack/react-simple-icons": "^9.4.0",
     "@mui/base": "5.0.0-beta.38",
     "@mui/joy": "5.0.0-beta.30",
     "@mui/material-nextjs": "^5.15.11",
@@ -29,10 +30,10 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "clsx": "^2.1.0",
-    "contentful": "^10.7.0",
+    "contentful": "^10.8.0",
     "dayjs": "^1.11.10",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.29.5",
+    "drizzle-orm": "^0.30.0",
     "geist": "^1.2.2",
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.350.0",
