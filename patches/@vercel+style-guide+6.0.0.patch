@@ -1,0 +1,11 @@
+diff --git a/node_modules/@vercel/style-guide/eslint/constants.js b/node_modules/@vercel/style-guide/eslint/constants.js
+index a458b2f..d54dda4 100644
+--- a/node_modules/@vercel/style-guide/eslint/constants.js
++++ b/node_modules/@vercel/style-guide/eslint/constants.js
+@@ -1,5 +1,5 @@
+ module.exports = {
+   ECMA_VERSION: 2021,
+   JAVASCRIPT_FILES: ['*.js?(x)', '*.mjs'],
+-  TYPESCRIPT_FILES: ['*.ts?(x)'],
++  TYPESCRIPT_FILES: ['*.ts?(x)', '*.mts'],
+ };

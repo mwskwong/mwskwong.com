@@ -25,9 +25,14 @@ import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
-import { contact, contactForm, guestbook, home } from '@/constants/nav';
+import {
+  contact,
+  contactForm as contactFormNav,
+  guestbook,
+  home,
+} from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
-import { ContactFormData, contactFormSchema } from '@/lib/schemas';
+import { ContactForm, contactForm } from '@/lib/validation-schema';
 
 export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 export const Contact: FC<ContactProps> = (props) => {
@@ -39,8 +44,8 @@ export const Contact: FC<ContactProps> = (props) => {
     setValue,
     trigger,
     watch,
-  } = useForm<ContactFormData>({
-    resolver: valibotResolver(contactFormSchema),
+  } = useForm<ContactForm>({
+    resolver: valibotResolver(contactForm),
     mode: 'onTouched',
     defaultValues: {
       name: '',
@@ -200,7 +205,7 @@ export const Contact: FC<ContactProps> = (props) => {
                 <Grid
                   columnSpacing={2}
                   container
-                  id={contactForm.id}
+                  id={contactFormNav.id}
                   md={8}
                   rowSpacing={1}
                   sx={{

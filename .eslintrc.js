@@ -92,8 +92,8 @@ module.exports = {
     // Must use default export
     {
       files: [
+        'drizzle.config.ts',
         'next.config.mjs',
-        'prettier.config.mjs',
         'unlighthouse.config.ts',
         'app/**/page.tsx',
         'app/**/layout.tsx',
