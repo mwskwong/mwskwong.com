@@ -6,8 +6,6 @@
     "prebuild": "npm run prisma:migrate:deploy",
     "build": "next build",
     "dev": "next dev",
-    "drizzle:generate": "drizzle-kit generate:pg",
-    "drizzle:migrate": "npx tsx lib/db-migrate.mts",
     "format": "prettier --write .",
     "postinstall": "patch-package",
     "lint": "next lint",
