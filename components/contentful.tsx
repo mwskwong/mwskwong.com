@@ -31,7 +31,6 @@ import { LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
 import ContentfulLight from '@/logos/contentful-light.svg';
-import DrizzleLight from '@/logos/drizzle-light.svg';
 import EmailJs from '@/logos/emailjs.svg';
 import ImprovMx from '@/logos/improvmx.svg';
 import Mui from '@/logos/mui.svg';
@@ -102,7 +101,7 @@ const Logos = {
   [contentfulIds.contentful]: { light: ContentfulLight, dark: undefined },
   [contentfulIds.emailjs]: EmailJs,
   [contentfulIds.improvMx]: ImprovMx,
-  [contentfulIds.drizzle]: { light: DrizzleLight, dark: undefined },
+  [contentfulIds.prisma]: { light: PrismaLight, dark: PrismaDark },
   [contentfulIds.vercel]: { light: VercelLight, dark: VercelDark },
   [contentfulIds.vercelStyleGuide]: { light: VercelLight, dark: VercelDark },
   [contentfulIds.prismaReadReplicasExtension]: {

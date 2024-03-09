@@ -1,6 +1,5 @@
-import { neon } from '@neondatabase/serverless';
+import { PrismaClient } from '@prisma/client';
 import { createClient } from 'contentful';
-import { drizzle } from 'drizzle-orm/neon-http';
 
 export const cms = createClient({
   space: process.env.CONTENTFUL_SPACE_ID ?? '',
@@ -8,4 +7,20 @@ export const cms = createClient({
   environment: process.env.VERCEL_ENV === 'production' ? 'master' : 'develop',
 }).withoutUnresolvableLinks;
 
-export const db = drizzle(neon(process.env.DATABASE_URL ?? ''));
+/**@see {@link https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution} */
+const prismaClientSingleton = () =>
+  new PrismaClient({
+    log:
+      process.env.NODE_ENV === 'development'
+        ? ['query', 'info', 'warn', 'error']
+        : undefined,
+  });
+
+declare global {
+  // eslint-disable-next-line no-var -- needed for accessing globalThis.db
+  var db: undefined | ReturnType<typeof prismaClientSingleton>;
+}
+
+export const db = globalThis.db ?? prismaClientSingleton();
+
+if (process.env.NODE_ENV !== 'production') globalThis.db = db;
