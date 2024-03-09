@@ -8,7 +8,13 @@ export const cms = createClient({
 }).withoutUnresolvableLinks;
 
 /**@see {@link https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution} */
-const prismaClientSingleton = () => new PrismaClient();
+const prismaClientSingleton = () =>
+  new PrismaClient({
+    log:
+      process.env.NODE_ENV === 'development'
+        ? ['query', 'info', 'warn', 'error']
+        : undefined,
+  });
 
 declare global {
   // eslint-disable-next-line no-var -- needed for accessing globalThis.db
