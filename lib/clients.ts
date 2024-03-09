@@ -11,7 +11,7 @@ export const cms = createClient({
 const prismaClientSingleton = () => new PrismaClient();
 
 declare global {
-  // eslint-disable-next-line no-var -- needed for accessing globalThis.prisma
+  // eslint-disable-next-line no-var -- needed for accessing globalThis.db
   var db: undefined | ReturnType<typeof prismaClientSingleton>;
 }
 
