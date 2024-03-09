@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "private": true,
   "scripts": {
-    "prebuild": "npm run prisma:migrate:deploy",
+    "prebuild": "dotenv -e .env.local -- npm run prisma:migrate:deploy",
     "build": "next build",
     "dev": "next dev",
     "format": "prettier --write .",
