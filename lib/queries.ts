@@ -1,5 +1,4 @@
 import { Entry } from 'contentful';
-import { desc, eq, inArray } from 'drizzle-orm';
 import { orderBy } from 'lodash-es';
 import {
   unstable_cache as cache,
@@ -10,7 +9,6 @@ import { cache as reactCache } from 'react';
 import { cv, privacyPolicy } from '@/constants/contentful-ids';
 
 import { cms, db } from './clients';
-import { blogMetadata, contactFormSubmission } from './db-schema';
 import {
   BlogSkeleton,
   CourseSkeleton,
@@ -285,16 +283,12 @@ export const getPrivacyPolicy = cache(async () => {
 // See https://react.dev/reference/react/cache#caveats
 export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
   noStore();
-  return db.select().from(blogMetadata).where(inArray(blogMetadata.id, ids));
+  return db.blogMetadata.findMany({ where: { id: { in: ids } } });
 });
 
-export const getBlogMetadataById = async (id: string) => {
+export const getBlogMetadataById = (id: string) => {
   noStore();
-  const metadata = await db
-    .select()
-    .from(blogMetadata)
-    .where(eq(blogMetadata.id, id));
-  return metadata[0];
+  return db.blogMetadata.findUnique({ where: { id } });
 };
 
 // prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
@@ -302,9 +296,8 @@ export const getBlogMetadataById = async (id: string) => {
 // Also using React.cache here because both JSON+LD and the UI needs this data
 export const getGuestbookSubmissions = reactCache(() => {
   noStore();
-  return db
-    .select()
-    .from(contactFormSubmission)
-    .where(eq(contactFormSubmission.showInGuestbook, true))
-    .orderBy(desc(contactFormSubmission.submittedAt));
+  return db.contactFormSubmission.findMany({
+    where: { showInGuestbook: true },
+    orderBy: { submittedAt: 'desc' },
+  });
 });
