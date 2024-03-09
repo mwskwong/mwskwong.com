@@ -60,7 +60,6 @@
     "dotenv-cli": "^7.4.0",
     "eslint": "^8.57.0",
     "patch-package": "^8.0.0",
-    "postgres": "^3.4.3",
     "prettier": "^3.2.5",
     "prettier-plugin-prisma": "^5.0.0",
     "prisma": "^5.10.2",
