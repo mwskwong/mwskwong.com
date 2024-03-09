@@ -9,6 +9,7 @@
     "format": "prettier --write .",
     "postinstall": "patch-package",
     "lint": "next lint",
+    "postinsall": "npm run prisma:generate",
     "prisma:generate": "dotenv -e .env.local prisma generate",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:migrate:dev": "dotenv -e .env.local prisma migrate dev",
