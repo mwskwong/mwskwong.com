@@ -7,7 +7,10 @@ export const cms = createClient({
   environment: process.env.VERCEL_ENV === 'production' ? 'master' : 'develop',
 }).withoutUnresolvableLinks;
 
-/**@see {@link https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution} */
+/**
+ * @see {@link https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution}
+ */
+
 const prismaClientSingleton = () =>
   new PrismaClient({
     log:
@@ -17,10 +20,12 @@ const prismaClientSingleton = () =>
   });
 
 declare global {
-  // eslint-disable-next-line no-var -- needed for accessing globalThis.db
-  var db: undefined | ReturnType<typeof prismaClientSingleton>;
+  // eslint-disable-next-line no-var -- needed for defining globalThis.dbGlobal
+  var dbGlobal: undefined | ReturnType<typeof prismaClientSingleton>;
 }
 
-export const db = globalThis.db ?? prismaClientSingleton();
+export const db = globalThis.dbGlobal ?? prismaClientSingleton();
 
-if (process.env.NODE_ENV !== 'production') globalThis.db = db;
+if (process.env.NODE_ENV !== 'production') {
+  globalThis.dbGlobal = db;
+}
