@@ -132,7 +132,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     alt={`${firstName} ${lastName}`}
                     height={100}
                     src={personalPhoto}
-                    sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
+                    sx={{
+                      borderRadius: '50%',
+                      border: 1,
+                      borderColor: 'neutral.outlinedBorder',
+                    }}
                     width={100}
                   />
                 ) : null}
