@@ -30,7 +30,7 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "clsx": "^2.1.0",
-    "contentful": "^10.8.2",
+    "contentful": "^10.8.3",
     "dayjs": "^1.11.10",
     "geist": "^1.2.2",
     "lodash-es": "^4.17.21",
