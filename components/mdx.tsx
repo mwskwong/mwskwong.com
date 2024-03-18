@@ -16,6 +16,8 @@ import { FC, RefObject } from 'react';
 import rehypePrettyCode, { Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
+import { CopyCodeButton } from './copy-code-button';
+
 // data attribute auto injected by rehype-pretty-code
 declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
@@ -159,7 +161,7 @@ export const components = {
   ),
   figure: (props) => {
     if (props['data-rehype-pretty-code-figure'] === '') {
-      const { ref, color, ...rest } = props;
+      const { ref, color, children, ...rest } = props;
       return (
         <Sheet
           component="figure"
@@ -172,7 +174,19 @@ export const components = {
           }}
           variant="outlined"
           {...rest}
-        />
+        >
+          <CopyCodeButton
+            variant="outlined"
+            size="sm"
+            sx={{
+              position: 'absolute',
+              top: 10.5,
+              right: 10.5,
+              bgcolor: 'inherit',
+            }}
+          />
+          {children}
+        </Sheet>
       );
     }
     return <figure {...props} />;
