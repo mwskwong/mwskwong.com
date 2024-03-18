@@ -254,6 +254,10 @@ export const components = {
             bgcolor: 'neutral.softBg',
           },
         },
+        '[data-rehype-pretty-code-figure] :not([data-rehype-pretty-code-title]) + pre &':
+          {
+            '&[data-line]': { pr: `${8 + 32 + 10.5}px` },
+          },
       }}
       {...props}
     />
