@@ -30,36 +30,35 @@ const Home: FC = () => (
         },
       }}
     >
-      <Hero bgcolor={bgcolors.hero} />
-      <SectionDivider bgcolor={bgcolors.about} color={bgcolors.hero} />
+      <Hero sx={{ bgcolor: bgcolors.hero }} />
+      <SectionDivider sx={{ color: bgcolors.hero, bgcolor: bgcolors.about }} />
 
-      <About bgcolor={bgcolors.about} />
+      <About sx={{ bgcolor: bgcolors.about }} />
       <SectionDivider
-        bgcolor={bgcolors.interestingFact}
-        color={bgcolors.about}
+        sx={{ color: bgcolors.about, bgcolor: bgcolors.interestingFact }}
       />
 
       <InterestingFact
-        bgcolor={bgcolors.interestingFact}
         data-joy-color-scheme="dark"
+        sx={{ bgcolor: bgcolors.interestingFact }}
       />
       <SectionDivider
-        bgcolor={bgcolors.experience}
-        color={bgcolors.interestingFact}
+        sx={{ color: bgcolors.interestingFact, bgcolor: bgcolors.experience }}
       />
 
-      <Experience color={bgcolors.experience} />
+      <Experience sx={{ bgcolor: bgcolors.experience }} />
       <SectionDivider
-        bgcolor={bgcolors.education}
-        color={bgcolors.experience}
+        sx={{ color: bgcolors.experience, bgcolor: bgcolors.education }}
       />
 
-      <Education bgcolor={bgcolors.education} />
-      <SectionDivider bgcolor={bgcolors.contact} color={bgcolors.education} />
+      <Education sx={{ bgcolor: bgcolors.education }} />
+      <SectionDivider
+        sx={{ color: bgcolors.education, bgcolor: bgcolors.contact }}
+      />
 
-      <Contact bgcolor={bgcolors.contact} />
+      <Contact sx={{ bgcolor: bgcolors.contact }} />
     </Box>
-    <SectionDivider bgcolor="var(--Footer-bg)" />
+    <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
     <script
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({

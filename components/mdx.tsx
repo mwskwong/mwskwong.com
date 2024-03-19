@@ -116,9 +116,8 @@ export const components = {
       <Link
         ref={ref as RefObject<HTMLAnchorElement>}
         component={external ? 'a' : NextLink}
-        sx={{ '& > code': { color: 'inherit' } }}
+        sx={{ color, '& > code': { color: 'inherit' } }}
         target={external ? '_blank' : undefined}
-        textColor={color}
         {...props}
       >
         {children}

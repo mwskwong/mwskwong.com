@@ -116,7 +116,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           ) : null}
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
-        <SectionDivider bgcolor={contactMeBgColor} />
+        <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
         <Box
           component="section"
           data-joy-color-scheme="dark"
@@ -197,7 +197,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           </Container>
         </Box>
       </main>
-      <SectionDivider bgcolor="var(--Footer-bg)" color={contactMeBgColor} />
+      <SectionDivider
+        sx={{ color: contactMeBgColor, bgcolor: 'var(--Footer-bg)' }}
+      />
       <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
