@@ -10,7 +10,6 @@ import {
 import { merge } from 'lodash-es';
 import { LinkIcon } from 'lucide-react';
 import { MDXComponents } from 'mdx/types';
-import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import { FC, RefObject } from 'react';
@@ -29,7 +28,7 @@ declare module 'react' {
   }
 }
 
-const Heading: FC<TypographyProps> = ({ id, children, sx, ...props }) => (
+const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
   <Typography id={id} {...props}>
     <Link
       color="neutral"
@@ -45,17 +44,14 @@ const Heading: FC<TypographyProps> = ({ id, children, sx, ...props }) => (
           },
         },
       }}
-      sx={mergeSx(
-        {
-          color: 'inherit',
-          '&:hover': {
-            '& .MuiLink-endDecorator': {
-              visibility: 'unset',
-            },
+      sx={{
+        color: 'inherit',
+        '&:hover': {
+          '& .MuiLink-endDecorator': {
+            visibility: 'unset',
           },
         },
-        sx,
-      )}
+      }}
     >
       {children}
     </Link>
