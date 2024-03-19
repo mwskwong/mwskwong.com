@@ -137,8 +137,8 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Link
                     color="neutral"
                     href={url}
+                    sx={{ typography: 'body-md' }}
                     target={url.startsWith('http') ? '_blank' : undefined}
-                    typography="body-md"
                   >
                     {value}
                   </Link>

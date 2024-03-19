@@ -93,11 +93,14 @@ const Blogs: FC = async () => {
                         overlay
                         color="neutral"
                         component={NextLink}
-                        display="-webkit-box"
                         href={`${blog.pathname}/${slug}`}
-                        overflow="hidden"
-                        sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
-                        typography="title-lg"
+                        sx={{
+                          display: '-webkit-box',
+                          overflow: 'hidden',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          typography: 'title-lg',
+                        }}
                       >
                         {title}
                       </Link>

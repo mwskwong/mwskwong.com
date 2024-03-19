@@ -96,8 +96,8 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                           overlay
                           color="neutral"
                           href={certificate}
+                          sx={{ typography: 'title-md' }}
                           target="_blank"
-                          typography="title-md"
                         >
                           {name}
                         </Link>
