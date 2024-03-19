@@ -52,6 +52,17 @@ module.exports = {
       'error',
       { checksVoidReturn: false },
     ],
+    '@typescript-eslint/restrict-template-expressions': [
+      'error',
+      {
+        allowAny: false,
+        allowBoolean: false,
+        allowNullish: false,
+        allowNumber: true,
+        allowRegExp: false,
+        allowNever: false,
+      },
+    ],
     'react/function-component-definition': [
       'warn',
       {

@@ -56,7 +56,9 @@ const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
       <ListItemButton component="a" href={href} sx={{ gap: 2 }} target="_blank">
         {thumbnailSrc ? (
           <Image
-            alt={`Thumbnail for ${children?.toString()}`}
+            alt={
+              typeof children === 'string' ? `Thumbnail for ${children}` : ''
+            }
             height={56}
             src={thumbnailSrc}
             sx={mergeSx(
@@ -96,7 +98,7 @@ export interface TimelineItemProps extends Omit<GridProps, 'children'> {
   }[];
   supportingDocuments?: {
     title?: string;
-    url?: string;
+    url: string;
   }[];
   tags?: { label: string; url?: string }[];
 }

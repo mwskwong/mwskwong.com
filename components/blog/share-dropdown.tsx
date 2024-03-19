@@ -40,7 +40,7 @@ export const ShareDropdown: FC<ShareDropdownProps> = ({ blog, ...props }) => {
     {
       Icon: SiX,
       name: 'X',
-      url: `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${blog.categories?.map((category) => category.replace(' ', '')).join(',')}`,
+      url: `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${blog.categories?.map((category) => category.replace(' ', '')).join(',') ?? ''}`,
     },
     {
       Icon: SiFacebook,

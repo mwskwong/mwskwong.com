@@ -64,7 +64,7 @@ export const Header: FC<HeaderProps> = async (props) => {
                 display: { xs: 'none', md: 'flex' },
               }}
             >
-              {nav.map(({ label, id, pathname }) => (
+              {nav.map(({ label, id = '', pathname }) => (
                 // prevent keys from starting from "/".
                 // The key is being embedded in the HTML and Google thinks that's a path and try to crawl it
                 <ListItem key={`${pathname}-${id}`.slice(1)}>

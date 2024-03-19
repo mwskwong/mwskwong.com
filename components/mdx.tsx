@@ -33,7 +33,7 @@ const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
     <Link
       color="neutral"
       endDecorator={<LinkIcon />}
-      href={`#${id}`}
+      href={id ? `#${id}` : undefined}
       slotProps={{
         endDecorator: {
           sx: {

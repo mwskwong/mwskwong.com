@@ -43,7 +43,7 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
               '--ListItem-paddingX': (theme) => theme.spacing(8),
             }}
           >
-            {nav.map(({ id, label, pathname }) => (
+            {nav.map(({ id = '', label, pathname }) => (
               // prevent keys from starting from "/".
               // The key is being embedded in the HTML and Google thinks that's a path and try to crawl it
               <ListItem key={`${pathname}-${id}`.slice(1)}>
