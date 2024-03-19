@@ -71,7 +71,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           <Typography level="h1" sx={{ mb: 3, mt: 1 }}>
             {blog.title}
           </Typography>
-          <Grid container alignItems="center" mb={2} spacing={2}>
+          <Grid container spacing={2} sx={{ alignItems: 'center', mb: 2 }}>
             <Grid sm xs={12}>
               <Stack direction="row" flexWrap="wrap" spacing={1}>
                 {blog.categories?.map((category) => (

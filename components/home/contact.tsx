@@ -87,9 +87,9 @@ export const Contact: FC<ContactProps> = (props) => {
           <Grid
             container
             disableEqualOverflow
-            alignItems="center"
             component="form"
             spacing={6}
+            sx={{ alignItems: 'center' }}
             onSubmit={handleSubmit(async (data) => {
               try {
                 await submitContactForm(data);
@@ -103,20 +103,22 @@ export const Contact: FC<ContactProps> = (props) => {
             <Grid
               container
               component="address"
-              fontStyle="initial"
               md={4}
               spacing={4}
+              sx={{ fontStyle: 'initial' }}
               xs={12}
             >
               {Object.values(contactInfo).map(({ Icon, title, value, url }) => (
                 <Grid
                   key={title}
-                  alignItems="center"
-                  display="flex"
-                  flexDirection="column"
                   md={12}
                   sm={4}
                   xs={12}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                  }}
                 >
                   <Sheet
                     color="primary"
@@ -148,11 +150,13 @@ export const Contact: FC<ContactProps> = (props) => {
             {isSubmitSuccessful ? (
               <Grid md={8} xs={12}>
                 <Stack
-                  alignItems="center"
-                  height="100%"
-                  mb={6}
                   spacing={2}
-                  textAlign="center"
+                  sx={{
+                    alignItems: 'center',
+                    height: '100%',
+                    mb: 6,
+                    textAlign: 'center',
+                  }}
                 >
                   <Sheet
                     color="success"
