@@ -43,7 +43,9 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
 
   return (
     <Stack spacing={2} {...props}>
-      <Stack alignItems="center" maxWidth={300} mx="auto" width="100%">
+      <Stack
+        sx={{ alignItems: 'center', maxWidth: 300, mx: 'auto', width: '100%' }}
+      >
         <Typography level="title-md">Skill Proficiency</Typography>
         <Slider
           getAriaLabel={() => 'Skill proficiency range'}
@@ -81,7 +83,7 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
             </Sheet>
             <CardContent>
               <Typography level="title-md">{name}</Typography>
-              <Stack direction="row" flexWrap="wrap" spacing={1}>
+              <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
                 {skills.map(({ name, url }) => (
                   <Chip
                     key={name}

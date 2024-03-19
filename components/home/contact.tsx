@@ -183,8 +183,8 @@ export const Contact: FC<ContactProps> = (props) => {
                 </Stack>
                 <Stack
                   direction={{ xs: 'column', sm: 'row' }}
-                  justifyContent="center"
                   spacing={2}
+                  sx={{ justifyContent: 'center' }}
                 >
                   <Button
                     component={NextLink}

@@ -24,7 +24,7 @@ const Error: FC<{
     <Typography color="primary" level="h1" sx={{ fontSize: '8rem' }}>
       Oops
     </Typography>
-    <Stack alignItems={{ sm: 'center' }} spacing={2}>
+    <Stack spacing={2} sx={{ alignItems: { sm: 'center' } }}>
       <Typography level="h2">Something went wrong</Typography>
       <Typography>
         {error.message + (/[.!?]$/.test(error.message) ? '' : '.')} Please{' '}

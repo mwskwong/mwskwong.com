@@ -53,7 +53,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
 
   return (
     <Stack spacing={6} {...props}>
-      <Stack alignItems="center" spacing={2} sx={{ textAlign: 'center' }}>
+      <Stack spacing={2} sx={{ alignItems: 'center', textAlign: 'center' }}>
         <Typography level="h3">Self-learning</Typography>
         <Box component="figure" sx={{ maxWidth: 'sm' }}>
           <Typography component="blockquote" sx={{ fontStyle: 'italic' }}>

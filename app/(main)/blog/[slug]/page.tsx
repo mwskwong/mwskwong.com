@@ -73,7 +73,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           </Typography>
           <Grid container spacing={2} sx={{ alignItems: 'center', mb: 2 }}>
             <Grid sm xs={12}>
-              <Stack direction="row" flexWrap="wrap" spacing={1}>
+              <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
                 {blog.categories?.map((category) => (
                   <Chip key={category} color="primary">
                     {category}
@@ -83,10 +83,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             </Grid>
             <Grid sm="auto" xs={12}>
               <Stack
-                alignItems="center"
                 direction="row"
-                justifyContent="space-around"
                 spacing={1}
+                sx={{ alignItems: 'center', justifyContent: 'space-around' }}
               >
                 <Suspense fallback={<ViewsSkeleton mr={0.75} />}>
                   <Views blogId={blog.id} mr={0.75} />
@@ -124,9 +123,12 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           sx={{ bgcolor: contactMeBgColor }}
         >
           <Container>
-            <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
+            <Stack
+              spacing={8}
+              sx={{ alignItems: { sm: 'center' }, textAlign: 'center' }}
+            >
               <Typography level="h2">Written By</Typography>
-              <Stack alignItems="center" spacing={2}>
+              <Stack spacing={2} sx={{ alignItems: 'center' }}>
                 {personalPhoto ? (
                   <Image
                     alt={`${firstName} ${lastName}`}
@@ -175,8 +177,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
               <Stack
                 direction={{ xs: 'column', sm: 'row' }}
-                justifyContent="center"
                 spacing={2}
+                sx={{ justifyContent: 'center' }}
               >
                 <Button component={NextLink} href={home.pathname} size="lg">
                   More About Me

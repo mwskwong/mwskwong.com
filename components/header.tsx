@@ -48,12 +48,11 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
     >
       <Container>
         <Stack
-          alignItems="center"
           component="nav"
           direction="row"
-          justifyContent="space-between"
+          sx={{ alignItems: 'center', justifyContent: 'space-between' }}
         >
-          <Stack alignItems="center" direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
             <Link
               aria-label="Go to home page"
               component={NextLink}

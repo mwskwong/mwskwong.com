@@ -23,7 +23,7 @@ const Guestbook: FC = () => (
       sx={{ py: 'var(--Section-paddingY)' }}
     >
       <Stack spacing={8}>
-        <Stack spacing={2} textAlign="center">
+        <Stack spacing={2} sx={{ textAlign: 'center' }}>
           <Typography level="h1">{guestbook.label}</Typography>
           <Typography>{description}</Typography>
         </Stack>

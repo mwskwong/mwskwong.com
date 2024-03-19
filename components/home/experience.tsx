@@ -61,8 +61,8 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               <TimelineItem key={experience.title} {...experience} />
             ))}
           </Timeline>
-          <Stack spacing={6} textAlign="center">
-            <Stack alignItems="center" spacing={2}>
+          <Stack spacing={6} sx={{ textAlign: 'center' }}>
+            <Stack spacing={2} sx={{ alignItems: 'center' }}>
               <Typography level="h3">
                 Contribution To Open Source Projects
               </Typography>
@@ -73,10 +73,10 @@ export const Experience: FC<ExperienceProps> = async (props) => {
             </Stack>
             <Stack
               direction="row"
-              flexWrap="wrap"
-              justifyContent="center"
               spacing={2}
               sx={{
+                flexWrap: 'wrap',
+                justifyContent: 'center',
                 [`& .${logoClasses.colorSchemeLight}`]: {
                   display: 'none',
                 },

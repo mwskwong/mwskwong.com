@@ -39,7 +39,7 @@ const Blogs: FC = async () => {
     <>
       <Container component="main" sx={{ py: 'var(--Section-paddingY)' }}>
         <Stack spacing={8}>
-          <Stack spacing={2} textAlign="center">
+          <Stack spacing={2} sx={{ textAlign: 'center' }}>
             <Typography level="h1">{blog.label}</Typography>
             <Typography>{description}</Typography>
           </Stack>
@@ -81,7 +81,11 @@ const Blogs: FC = async () => {
                         }}
                       />
                     ) : null}
-                    <Stack direction="row" flexWrap="wrap" spacing={1}>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      sx={{ flexWrap: 'wrap' }}
+                    >
                       {categories?.map((category) => (
                         <Chip key={category} color="primary">
                           {category}

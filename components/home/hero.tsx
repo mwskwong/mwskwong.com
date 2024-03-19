@@ -30,7 +30,7 @@ export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
   return (
     <Box component="section" sx={mergeSx({ pt: { sm: 16 } }, sx)} {...props}>
       <Container sx={{ textAlign: 'center' }}>
-        <Stack alignItems="center" spacing={2}>
+        <Stack spacing={2} sx={{ alignItems: 'center' }}>
           <Chip
             endDecorator={<ArrowRight />}
             variant="outlined"
@@ -61,9 +61,8 @@ export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
         </Stack>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          justifyContent="center"
-          mt={6}
           spacing={2}
+          sx={{ justifyContent: 'center', mt: 6 }}
         >
           <Button component="a" href={cv} size="lg" target="_blank">
             Download CV

@@ -21,7 +21,10 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
+        <Stack
+          spacing={8}
+          sx={{ alignItems: { sm: 'center' }, textAlign: 'center' }}
+        >
           <Stack spacing={2}>
             <Typography level="h2">Interesting Fact</Typography>
             <Typography sx={{ maxWidth: 'sm' }}>
@@ -31,9 +34,8 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
           </Stack>
           <Stack
             direction="row"
-            flexWrap="wrap"
-            justifyContent="center"
             spacing={2}
+            sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
           >
             {techStack.map(({ id, name, url }) => (
               <Tooltip key={id} title={name}>

@@ -130,10 +130,9 @@ export const TimelineItem: FC<TimelineItemProps> = ({
         <Typography level="title-lg">{title}</Typography>
         <Stack spacing={1}>
           <Stack
-            alignItems="center"
             direction="row"
-            flexWrap="wrap"
             spacing={1}
+            sx={{ alignItems: 'center', flexWrap: 'wrap' }}
           >
             <Typography>
               {organizations.map(({ name, url }, index) => (
@@ -196,7 +195,7 @@ export const TimelineItem: FC<TimelineItemProps> = ({
             </List>
           )}
           {tags.length > 0 && (
-            <Stack direction="row" flexWrap="wrap" spacing={1}>
+            <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
               {tags.map(({ label, url }) => (
                 <Chip
                   key={label}
