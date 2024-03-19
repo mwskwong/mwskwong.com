@@ -29,7 +29,7 @@ export const Education: FC<EducationProps> = async (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={8}>
-          <Typography id={education.id} level="h2" textAlign="center">
+          <Typography id={education.id} level="h2" sx={{ textAlign: 'center' }}>
             Education
           </Typography>
           <Timeline>

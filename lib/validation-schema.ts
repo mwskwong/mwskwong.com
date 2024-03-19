@@ -11,14 +11,14 @@ import {
   variant,
 } from 'valibot';
 
-const baseContactFormSchema = object({
+const baseContactForm = object({
   name: string([minLength(1, 'Name is required')]),
   message: string([minLength(1, 'Message is required')]),
 });
 
-export const contactFormSchema = variant('showInGuestbook', [
+export const contactForm = variant('showInGuestbook', [
   merge([
-    baseContactFormSchema,
+    baseContactForm,
     object({
       email: string([
         minLength(1, 'Email is required'),
@@ -29,7 +29,7 @@ export const contactFormSchema = variant('showInGuestbook', [
     }),
   ]),
   merge([
-    baseContactFormSchema,
+    baseContactForm,
     object({
       email: optional(
         union([string([email('Not a valid email')]), literal('')]),
@@ -40,4 +40,4 @@ export const contactFormSchema = variant('showInGuestbook', [
   ]),
 ]);
 
-export type ContactFormData = Output<typeof contactFormSchema>;
+export type ContactForm = Output<typeof contactForm>;

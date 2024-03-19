@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/joy';
 import { ArrowRight } from 'lucide-react';
+import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -18,7 +19,7 @@ import { blog } from '@/constants/nav';
 import { getCv, getPlatformProfiles } from '@/lib/queries';
 
 export type HeroProps = Omit<BoxProps<'section'>, 'children'>;
-export const Hero: FC<HeroProps> = async (props) => {
+export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
   const [cv, linkedinProfile] = await Promise.all([
     getCv(),
     getPlatformProfiles().then((platformProfiles) =>
@@ -27,11 +28,12 @@ export const Hero: FC<HeroProps> = async (props) => {
   ]);
 
   return (
-    <Box component="section" pt={{ sm: 16 }} {...props}>
+    <Box component="section" sx={mergeSx({ pt: { sm: 16 } }, sx)} {...props}>
       <Container sx={{ textAlign: 'center' }}>
-        <Stack alignItems="center" spacing={2}>
+        <Stack spacing={2} sx={{ alignItems: 'center' }}>
           <Chip
             endDecorator={<ArrowRight />}
+            variant="outlined"
             slotProps={{
               action: { component: NextLink, href: blog.pathname },
               endDecorator: {
@@ -41,14 +43,12 @@ export const Hero: FC<HeroProps> = async (props) => {
                 },
               },
             }}
-            variant="outlined"
           >
             I started writing articles.&nbsp;
             <Typography
               color="primary"
-              display="inline"
-              fontWeight="lg"
               level="inherit"
+              sx={{ display: 'inline', fontWeight: 'lg' }}
             >
               Read More
             </Typography>
@@ -61,9 +61,8 @@ export const Hero: FC<HeroProps> = async (props) => {
         </Stack>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          justifyContent="center"
-          mt={6}
           spacing={2}
+          sx={{ justifyContent: 'center', mt: 6 }}
         >
           <Button component="a" href={cv} size="lg" target="_blank">
             Download CV

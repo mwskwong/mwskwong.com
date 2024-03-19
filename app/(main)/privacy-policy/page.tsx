@@ -32,11 +32,11 @@ const PrivacyPolicy: FC = async () => {
           maxWidth="md"
           sx={{ py: 'var(--Section-paddingY)' }}
         >
-          <Typography level="h1" mb={3} mt={1}>
+          <Typography level="h1" sx={{ mb: 3, mt: 1 }}>
             {privacyPolicy.label}
           </Typography>
           {content ? <Mdx source={content} /> : null}
-          <Typography my={2}>
+          <Typography sx={{ my: 2 }}>
             This Privacy Policy is subject to updates. The last revision was
             made on {dateFormatter.format(new Date(updatedAt))}. Please review
             periodically for changes.

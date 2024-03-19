@@ -7,15 +7,9 @@ import { FC, useEffect, useRef, useState } from 'react';
 
 import { baseUrl } from '@/constants/site-config';
 
-export interface ActionsProps {
-  blog: {
-    id: string;
-    categories?: string[];
-    title: string;
-  };
-}
+export type CopyUrlButtonProps = Omit<IconButtonProps, 'children'>;
 
-export const CopyUrlButton: FC<Omit<IconButtonProps, 'children'>> = (props) => {
+export const CopyUrlButton: FC<CopyUrlButtonProps> = (props) => {
   const [copied, setCopied] = useState(false);
   const pathname = usePathname();
   const url = `${baseUrl}${pathname}`;

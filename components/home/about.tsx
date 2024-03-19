@@ -19,26 +19,26 @@ export const About: FC<AboutProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack alignItems="center" spacing={8}>
+        <Stack spacing={8} sx={{ alignItems: 'center' }}>
           <Typography id={about.id} level="h2">
             About
           </Typography>
-          <Stack alignItems="center" spacing={4}>
+          <Stack spacing={4} sx={{ alignItems: 'center' }}>
             {personalPhoto ? (
               <Image
+                priority
                 alt={`${firstName} ${lastName}`}
                 height={200}
-                priority
                 src={personalPhoto}
+                width={200}
                 sx={{
                   borderRadius: '50%',
                   border: 1,
                   borderColor: 'neutral.outlinedBorder',
                 }}
-                width={200}
               />
             ) : null}
-            <Typography maxWidth="sm" textAlign="center">
+            <Typography sx={{ maxWidth: 'sm', textAlign: 'center' }}>
               {selfIntroduction}
             </Typography>
           </Stack>

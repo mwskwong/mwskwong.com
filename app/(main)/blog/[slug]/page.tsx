@@ -68,14 +68,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           <Typography level="body-sm">
             {dateFormatter.format(new Date(blog.createdAt))}
           </Typography>
-          <Typography level="h1" mb={3} mt={1}>
+          <Typography level="h1" sx={{ mb: 3, mt: 1 }}>
             {blog.title}
           </Typography>
-          <Grid alignItems="center" container mb={2} spacing={2}>
+          <Grid container spacing={2} sx={{ alignItems: 'center', mb: 2 }}>
             <Grid sm xs={12}>
-              <Stack direction="row" flexWrap="wrap" spacing={1}>
+              <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
                 {blog.categories?.map((category) => (
-                  <Chip color="primary" key={category}>
+                  <Chip key={category} color="primary">
                     {category}
                   </Chip>
                 ))}
@@ -83,10 +83,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             </Grid>
             <Grid sm="auto" xs={12}>
               <Stack
-                alignItems="center"
                 direction="row"
-                justifyContent="space-around"
                 spacing={1}
+                sx={{ alignItems: 'center', justifyContent: 'space-around' }}
               >
                 <Suspense fallback={<ViewsSkeleton mr={0.75} />}>
                   <Views blogId={blog.id} mr={0.75} />
@@ -99,12 +98,12 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           {blog.coverPhoto ? (
             //  eslint-disable-next-line jsx-a11y/img-redundant-alt -- cover photo is a valid word
             <Image
-              alt={`Cover photo for ${blog.title}`}
-              width={md}
-              height={(md / 1200) * 630}
               priority
+              alt={`Cover photo for ${blog.title}`}
+              height={(md / 1200) * 630}
               sizes={[`(min-width: ${md}px) ${md}px`, '100vw'].join(',')}
               src={blog.coverPhoto}
+              width={md}
               sx={{
                 display: 'block',
                 width: '100%',
@@ -117,23 +116,30 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           ) : null}
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
-        <SectionDivider bgcolor={contactMeBgColor} />
+        <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
         <Box
-          bgcolor={contactMeBgColor}
           component="section"
           data-joy-color-scheme="dark"
+          sx={{ bgcolor: contactMeBgColor }}
         >
           <Container>
-            <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
+            <Stack
+              spacing={8}
+              sx={{ alignItems: { sm: 'center' }, textAlign: 'center' }}
+            >
               <Typography level="h2">Written By</Typography>
-              <Stack alignItems="center" spacing={2}>
+              <Stack spacing={2} sx={{ alignItems: 'center' }}>
                 {personalPhoto ? (
                   <Image
                     alt={`${firstName} ${lastName}`}
                     height={100}
                     src={personalPhoto}
-                    sx={{ borderRadius: '50%', bgcolor: 'neutral.softBg' }}
                     width={100}
+                    sx={{
+                      borderRadius: '50%',
+                      border: 1,
+                      borderColor: 'neutral.outlinedBorder',
+                    }}
                   />
                 ) : null}
                 <div>
@@ -147,10 +153,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                     ({ platform, url }) =>
                       platform && (
                         <IconButton
+                          key={platform.id}
                           aria-label={`${platform.name} profile`}
                           component="a"
                           href={url}
-                          key={platform.id}
                           size="sm"
                           target="_blank"
                         >
@@ -171,8 +177,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
               <Stack
                 direction={{ xs: 'column', sm: 'row' }}
-                justifyContent="center"
                 spacing={2}
+                sx={{ justifyContent: 'center' }}
               >
                 <Button component={NextLink} href={home.pathname} size="lg">
                   More About Me
@@ -191,7 +197,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           </Container>
         </Box>
       </main>
-      <SectionDivider bgcolor="var(--Footer-bg)" color={contactMeBgColor} />
+      <SectionDivider
+        sx={{ color: contactMeBgColor, bgcolor: 'var(--Footer-bg)' }}
+      />
       <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

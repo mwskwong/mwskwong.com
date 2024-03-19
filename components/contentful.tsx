@@ -34,8 +34,8 @@ import ContentfulLight from '@/logos/contentful-light.svg';
 import EmailJs from '@/logos/emailjs.svg';
 import ImprovMx from '@/logos/improvmx.svg';
 import Mui from '@/logos/mui.svg';
+import Neon from '@/logos/neon-light.svg';
 import NextJsLight from '@/logos/nextjs-light.svg';
-import PlanetScaleLight from '@/logos/planetscale-light.svg';
 import PrismaDark from '@/logos/prisma-dark.svg';
 import PrismaLight from '@/logos/prisma-light.svg';
 import ReactHookForm from '@/logos/react-hook-form.svg';
@@ -93,7 +93,7 @@ const Logos = {
   [contentfulIds.muiCore]: Mui,
   [contentfulIds.joyUi]: Mui,
   [contentfulIds.nextJs]: { light: NextJsLight, dark: undefined },
-  [contentfulIds.prisma]: { light: PrismaLight, dark: undefined },
+  [contentfulIds.neon]: { light: Neon, dark: undefined },
   [contentfulIds.react]: { light: ReactLight, dark: undefined },
   [contentfulIds.reactHookForm]: ReactHookForm,
   [contentfulIds.typescript]: TypeScript,
@@ -101,7 +101,7 @@ const Logos = {
   [contentfulIds.contentful]: { light: ContentfulLight, dark: undefined },
   [contentfulIds.emailjs]: EmailJs,
   [contentfulIds.improvMx]: ImprovMx,
-  [contentfulIds.planetScale]: { light: PlanetScaleLight, dark: undefined },
+  [contentfulIds.prisma]: { light: PrismaLight, dark: PrismaDark },
   [contentfulIds.vercel]: { light: VercelLight, dark: VercelDark },
   [contentfulIds.vercelStyleGuide]: { light: VercelLight, dark: VercelDark },
   [contentfulIds.prismaReadReplicasExtension]: {

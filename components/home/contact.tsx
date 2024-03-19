@@ -25,9 +25,14 @@ import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
-import { contact, contactForm, guestbook, home } from '@/constants/nav';
+import {
+  contact,
+  contactForm as contactFormNav,
+  guestbook,
+  home,
+} from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
-import { ContactFormData, contactFormSchema } from '@/lib/schemas';
+import { ContactForm, contactForm } from '@/lib/validation-schema';
 
 export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 export const Contact: FC<ContactProps> = (props) => {
@@ -39,8 +44,8 @@ export const Contact: FC<ContactProps> = (props) => {
     setValue,
     trigger,
     watch,
-  } = useForm<ContactFormData>({
-    resolver: valibotResolver(contactFormSchema),
+  } = useForm<ContactForm>({
+    resolver: valibotResolver(contactForm),
     mode: 'onTouched',
     defaultValues: {
       name: '',
@@ -76,14 +81,15 @@ export const Contact: FC<ContactProps> = (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={8}>
-          <Typography id={contact.id} level="h2" textAlign="center">
+          <Typography id={contact.id} level="h2" sx={{ textAlign: 'center' }}>
             Contact
           </Typography>
           <Grid
-            alignItems="center"
-            component="form"
             container
             disableEqualOverflow
+            component="form"
+            spacing={6}
+            sx={{ alignItems: 'center' }}
             onSubmit={handleSubmit(async (data) => {
               try {
                 await submitContactForm(data);
@@ -93,28 +99,30 @@ export const Contact: FC<ContactProps> = (props) => {
                 });
               }
             })}
-            spacing={6}
           >
             <Grid
-              component="address"
               container
-              fontStyle="initial"
+              component="address"
               md={4}
               spacing={4}
+              sx={{ fontStyle: 'initial' }}
               xs={12}
             >
               {Object.values(contactInfo).map(({ Icon, title, value, url }) => (
                 <Grid
-                  alignItems="center"
-                  display="flex"
-                  flexDirection="column"
                   key={title}
                   md={12}
                   sm={4}
                   xs={12}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                  }}
                 >
                   <Sheet
                     color="primary"
+                    variant="soft"
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
@@ -124,7 +132,6 @@ export const Contact: FC<ContactProps> = (props) => {
                       height: 40,
                       mb: 2,
                     }}
-                    variant="soft"
                   >
                     <Icon />
                   </Sheet>
@@ -132,8 +139,8 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Link
                     color="neutral"
                     href={url}
+                    sx={{ typography: 'body-md' }}
                     target={url.startsWith('http') ? '_blank' : undefined}
-                    typography="body-md"
                   >
                     {value}
                   </Link>
@@ -143,14 +150,17 @@ export const Contact: FC<ContactProps> = (props) => {
             {isSubmitSuccessful ? (
               <Grid md={8} xs={12}>
                 <Stack
-                  alignItems="center"
-                  height="100%"
-                  mb={6}
                   spacing={2}
-                  textAlign="center"
+                  sx={{
+                    alignItems: 'center',
+                    height: '100%',
+                    mb: 6,
+                    textAlign: 'center',
+                  }}
                 >
                   <Sheet
                     color="success"
+                    variant="outlined"
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
@@ -161,12 +171,11 @@ export const Contact: FC<ContactProps> = (props) => {
                       height: 100,
                       '--Icon-fontSize': '2.5rem',
                     }}
-                    variant="outlined"
                   >
                     <ThumbsUp absoluteStrokeWidth size={2.5 * 16} />
                   </Sheet>
                   <Typography level="title-lg">Thank You!</Typography>
-                  <Typography maxWidth="sm">
+                  <Typography sx={{ maxWidth: 'sm' }}>
                     Thank you for reaching out! I have received your message and
                     will respond promptly, should you have provided your email
                     address.
@@ -174,8 +183,8 @@ export const Contact: FC<ContactProps> = (props) => {
                 </Stack>
                 <Stack
                   direction={{ xs: 'column', sm: 'row' }}
-                  justifyContent="center"
                   spacing={2}
+                  sx={{ justifyContent: 'center' }}
                 >
                   <Button
                     component={NextLink}
@@ -198,17 +207,16 @@ export const Contact: FC<ContactProps> = (props) => {
             ) : (
               <>
                 <Grid
-                  columnSpacing={2}
                   container
-                  id={contactForm.id}
+                  columnSpacing={2}
+                  id={contactFormNav.id}
                   md={8}
                   rowSpacing={1}
+                  unstable_level={1} // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
+                  xs={12}
                   sx={{
                     scrollMarginTop: 'calc(var(--Header-height) - 8px * 6)',
                   }}
-                  // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
-                  unstable_level={1}
-                  xs={12}
                 >
                   <Grid sm={6} xs={12}>
                     <Controller
@@ -310,6 +318,7 @@ export const Contact: FC<ContactProps> = (props) => {
                           <Checkbox
                             checked={value}
                             label="Show my message in the guestbook."
+                            slotProps={{ input: { ref } }}
                             onChange={(event) => {
                               onChange(event);
 
@@ -317,20 +326,21 @@ export const Contact: FC<ContactProps> = (props) => {
                                 void trigger(['email', 'subject']);
                               }
                             }}
-                            slotProps={{ input: { ref } }}
                             {...field}
                           />
                           <FormHelperText>
                             {error?.message ?? (
                               <Typography level="body-sm">
                                 Your{' '}
-                                <Typography fontWeight="md">name</Typography>
+                                <Typography sx={{ fontWeight: 'md' }}>
+                                  name
+                                </Typography>
                                 {', '}
-                                <Typography fontWeight="md">
+                                <Typography sx={{ fontWeight: 'md' }}>
                                   message
                                 </Typography>{' '}
                                 and{' '}
-                                <Typography fontWeight="md">
+                                <Typography sx={{ fontWeight: 'md' }}>
                                   submission date
                                 </Typography>{' '}
                                 will appear in the{' '}

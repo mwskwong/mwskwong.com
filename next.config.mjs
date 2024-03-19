@@ -137,7 +137,6 @@ const config = {
     ppr: true,
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy', '@mui/base'],
-    optimizeServerReact: true,
   },
 };
 

@@ -48,12 +48,16 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
           <ListItemContent>
             <Typography level="title-md">
               {name}
-              <Typography fontWeight="normal" level="body-sm">
+              <Typography level="body-sm" sx={{ fontWeight: 'normal' }}>
                 {' · '}
                 {dayjs(submittedAt).fromNow()}
               </Typography>
             </Typography>
-            <Typography component="pre" level="body-md" whiteSpace="pre-wrap">
+            <Typography
+              component="pre"
+              level="body-md"
+              sx={{ whiteSpace: 'pre-wrap' }}
+            >
               {message}
             </Typography>
           </ListItemContent>
@@ -75,7 +79,7 @@ export const SubmissionListSkeleton: FC<SubmissionListProps> = ({
             <Skeleton height={32} variant="circular" width={32} />
           </ListItemDecorator>
           <ListItemContent>
-            <Box alignItems="center" display="flex">
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Skeleton level="title-md" variant="text" width={120} />
               <Typography component="span" level="body-sm">
                 &nbsp;·&nbsp;

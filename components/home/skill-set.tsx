@@ -43,17 +43,19 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
 
   return (
     <Stack spacing={2} {...props}>
-      <Stack alignItems="center" maxWidth={300} mx="auto" width="100%">
+      <Stack
+        sx={{ alignItems: 'center', maxWidth: 300, mx: 'auto', width: '100%' }}
+      >
         <Typography level="title-md">Skill Proficiency</Typography>
         <Slider
           getAriaLabel={() => 'Skill proficiency range'}
           max={5}
           min={1}
+          value={proficiency}
+          valueLabelDisplay="on"
           onChange={(_, proficiency) =>
             setProficiency(proficiency as [number, number])
           }
-          value={proficiency}
-          valueLabelDisplay="on"
         />
       </Stack>
       <Box
@@ -67,6 +69,7 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
           <Card key={id}>
             <Sheet
               color="primary"
+              variant="soft"
               sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -75,13 +78,12 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
                 width: 40,
                 height: 40,
               }}
-              variant="soft"
             >
               <Icon contentfulId={id} />
             </Sheet>
             <CardContent>
               <Typography level="title-md">{name}</Typography>
-              <Stack direction="row" flexWrap="wrap" spacing={1}>
+              <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
                 {skills.map(({ name, url }) => (
                   <Chip
                     key={name}

@@ -21,19 +21,21 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
   return (
     <Box component="section" {...props}>
       <Container>
-        <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">
+        <Stack
+          spacing={8}
+          sx={{ alignItems: { sm: 'center' }, textAlign: 'center' }}
+        >
           <Stack spacing={2}>
             <Typography level="h2">Interesting Fact</Typography>
-            <Typography maxWidth="sm">
+            <Typography sx={{ maxWidth: 'sm' }}>
               My website is a testing ground for bleeding-edge techs and design
               patterns. Check out the libraries and platforms I use to build it.
             </Typography>
           </Stack>
           <Stack
             direction="row"
-            flexWrap="wrap"
-            justifyContent="center"
             spacing={2}
+            sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
           >
             {techStack.map(({ id, name, url }) => (
               <Tooltip key={id} title={name}>

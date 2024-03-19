@@ -32,8 +32,8 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
       >
         <Menu />
       </IconButton>
-      <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
-        <Box component="nav" pb={1} pt={10} px={1}>
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
+        <Box component="nav" sx={{ pb: 1, pt: 10, px: 1 }}>
           <List
             size="lg"
             sx={{
@@ -43,7 +43,7 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
               '--ListItem-paddingX': (theme) => theme.spacing(8),
             }}
           >
-            {nav.map(({ id, label, pathname }) => (
+            {nav.map(({ id = '', label, pathname }) => (
               // prevent keys from starting from "/".
               // The key is being embedded in the HTML and Google thinks that's a path and try to crawl it
               <ListItem key={`${pathname}-${id}`.slice(1)}>

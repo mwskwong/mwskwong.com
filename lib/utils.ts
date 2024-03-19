@@ -31,7 +31,9 @@ export const getJsonLdPerson = async () => {
     jobTitle: latestJobTitle,
     email,
     address,
-    url: `https://${process.env.NEXT_PUBLIC_PROD_URL}`,
+    url:
+      process.env.NEXT_PUBLIC_PROD_URL &&
+      `https://${process.env.NEXT_PUBLIC_PROD_URL}`,
     image: personalPhoto,
     sameAs: platformProfiles.map(({ url }) => url),
     description: selfIntroduction,
