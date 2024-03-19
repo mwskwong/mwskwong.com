@@ -98,7 +98,7 @@ export interface TimelineItemProps extends Omit<GridProps, 'children'> {
   }[];
   supportingDocuments?: {
     title?: string;
-    url: string;
+    url?: string;
   }[];
   tags?: { label: string; url?: string }[];
 }
@@ -184,7 +184,11 @@ export const TimelineItem: FC<TimelineItemProps> = ({
                   key={title}
                   slotProps={{ thumbnail: { sx: { objectPosition: 'top' } } }}
                   // to support for 4x dpi
-                  thumbnailSrc={`https://image.thum.io/get/pdfSource/width/${80 * 4}/${url}`}
+                  thumbnailSrc={
+                    url
+                      ? `https://image.thum.io/get/pdfSource/width/${80 * 4}/${url}`
+                      : undefined
+                  }
                 >
                   {title}
                 </ListItemWithThumbnail>
