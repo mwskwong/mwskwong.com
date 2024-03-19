@@ -10,6 +10,7 @@ import {
 import { merge } from 'lodash-es';
 import { LinkIcon } from 'lucide-react';
 import { MDXComponents } from 'mdx/types';
+import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import { FC, RefObject } from 'react';
@@ -28,13 +29,12 @@ declare module 'react' {
   }
 }
 
-const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
+const Heading: FC<TypographyProps> = ({ id, children, sx, ...props }) => (
   <Typography id={id} {...props}>
     <Link
       color="neutral"
       endDecorator={<LinkIcon />}
       href={id ? `#${id}` : undefined}
-      textColor="inherit"
       slotProps={{
         endDecorator: {
           sx: {
@@ -45,13 +45,17 @@ const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
           },
         },
       }}
-      sx={{
-        '&:hover': {
-          '& .MuiLink-endDecorator': {
-            visibility: 'unset',
+      sx={mergeSx(
+        {
+          color: 'inherit',
+          '&:hover': {
+            '& .MuiLink-endDecorator': {
+              visibility: 'unset',
+            },
           },
         },
-      }}
+        sx,
+      )}
     >
       {children}
     </Link>
@@ -63,10 +67,10 @@ export const components = {
     <Heading
       ref={ref as RefObject<HTMLHeadingElement>}
       level="h2"
-      mb={3}
-      mt={6}
-      textColor={color}
       sx={{
+        mb: 3,
+        mt: 6,
+        color,
         scrollMarginTop: 'calc(var(--Header-height) + 8px * 6)',
       }}
       {...props}
@@ -76,10 +80,10 @@ export const components = {
     <Heading
       ref={ref as RefObject<HTMLHeadingElement>}
       level="h3"
-      mb={1.5}
-      mt={4}
-      textColor={color}
       sx={{
+        mb: 1.5,
+        mt: 4,
+        color,
         scrollMarginTop: 'calc(var(--Header-height) + 8px * 4)',
       }}
       {...props}
@@ -89,10 +93,10 @@ export const components = {
     <Heading
       ref={ref as RefObject<HTMLHeadingElement>}
       level="h4"
-      mb={1}
-      mt={3}
-      textColor={color}
       sx={{
+        mb: 1,
+        mt: 3,
+        color,
         scrollMarginTop: 'calc(var(--Header-height) + 8px * 3)',
       }}
       {...props}
