@@ -8,7 +8,7 @@ export default {
        *   1. TBT due to MUI
        *   2. LCP due to images, e.g. profile pic and blog cover photo
        */
-      performance: 90,
+      performance: 95,
       /**
        * Minus point from
        *   1. Code block doesn't have enough color contrast
