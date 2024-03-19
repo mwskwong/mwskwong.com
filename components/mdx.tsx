@@ -34,6 +34,7 @@ const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
       color="neutral"
       endDecorator={<LinkIcon />}
       href={id ? `#${id}` : undefined}
+      textColor="inherit"
       slotProps={{
         endDecorator: {
           sx: {
@@ -51,7 +52,6 @@ const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
           },
         },
       }}
-      textColor="inherit"
     >
       {children}
     </Link>
@@ -61,48 +61,47 @@ const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
 export const components = {
   h2: ({ ref, color, ...props }) => (
     <Heading
+      ref={ref as RefObject<HTMLHeadingElement>}
       level="h2"
       mb={3}
       mt={6}
-      ref={ref as RefObject<HTMLHeadingElement>}
+      textColor={color}
       sx={{
         scrollMarginTop: 'calc(var(--Header-height) + 8px * 6)',
       }}
-      textColor={color}
       {...props}
     />
   ),
   h3: ({ ref, color, ...props }) => (
     <Heading
+      ref={ref as RefObject<HTMLHeadingElement>}
       level="h3"
       mb={1.5}
       mt={4}
-      ref={ref as RefObject<HTMLHeadingElement>}
+      textColor={color}
       sx={{
         scrollMarginTop: 'calc(var(--Header-height) + 8px * 4)',
       }}
-      textColor={color}
       {...props}
     />
   ),
   h4: ({ ref, color, ...props }) => (
     <Heading
+      ref={ref as RefObject<HTMLHeadingElement>}
       level="h4"
       mb={1}
       mt={3}
-      ref={ref as RefObject<HTMLHeadingElement>}
+      textColor={color}
       sx={{
         scrollMarginTop: 'calc(var(--Header-height) + 8px * 3)',
       }}
-      textColor={color}
       {...props}
     />
   ),
   p: ({ ref, color, ...props }) => (
     <Typography
-      my={2}
       ref={ref as RefObject<HTMLParagraphElement>}
-      textColor={color}
+      sx={{ my: 2, color }}
       {...props}
     />
   ),
@@ -111,8 +110,8 @@ export const components = {
       props.href?.startsWith('http://') ?? props.href?.startsWith('https://');
     return (
       <Link
-        component={external ? 'a' : NextLink}
         ref={ref as RefObject<HTMLAnchorElement>}
+        component={external ? 'a' : NextLink}
         sx={{ '& > code': { color: 'inherit' } }}
         target={external ? '_blank' : undefined}
         textColor={color}
@@ -124,9 +123,9 @@ export const components = {
   },
   ul: ({ ref, color, ...props }) => (
     <List
+      ref={ref as RefObject<HTMLUListElement>}
       component="ul"
       marker="disc"
-      ref={ref as RefObject<HTMLUListElement>}
       sx={{
         color,
         my: 2,
@@ -140,9 +139,9 @@ export const components = {
   ),
   ol: ({ ref, color, ...props }) => (
     <List
+      ref={ref as RefObject<HTMLOListElement>}
       component="ol"
       marker="decimal"
-      ref={ref as RefObject<HTMLOListElement>}
       sx={{ color, my: 2, '--List-padding': '0px' }}
       {...props}
     />
@@ -164,20 +163,20 @@ export const components = {
       const { ref, color, children, ...rest } = props;
       return (
         <Sheet
-          component="figure"
           ref={ref as RefObject<HTMLElement>}
+          component="figure"
+          variant="outlined"
           sx={{
             color,
             borderRadius: 'md',
             my: 2,
             overflow: 'hidden',
           }}
-          variant="outlined"
           {...rest}
         >
           <CopyCodeButton
-            variant="outlined"
             size="sm"
+            variant="outlined"
             sx={{
               position: 'absolute',
               top: 10.5,
@@ -196,12 +195,10 @@ export const components = {
       const { ref, color, ...rest } = props;
       return (
         <Typography
+          ref={ref as RefObject<HTMLElement>}
           component="figcaption"
           level="body-sm"
-          pt={2}
-          ref={ref as RefObject<HTMLElement>}
-          textAlign="center"
-          textColor={color}
+          sx={{ pt: 2, textAlign: 'center', color }}
           {...rest}
         />
       );
@@ -210,11 +207,11 @@ export const components = {
   },
   pre: ({ ref, ...props }) => (
     <Box
+      ref={ref as RefObject<HTMLPreElement>}
       component="pre"
       m={0}
       overflow="auto"
       py={2}
-      ref={ref as RefObject<HTMLPreElement>}
       {...props}
     />
   ),
@@ -225,16 +222,18 @@ export const components = {
       const { ref, color, ...rest } = props;
       return (
         <Typography
+          ref={ref as RefObject<HTMLElement>}
+          noWrap
           color="warning"
           component="code"
-          display="inline"
-          fontFamily="code"
-          fontSize="0.875em"
-          mx={0}
-          noWrap
-          ref={ref as RefObject<HTMLElement>}
-          textColor={color}
           variant="plain"
+          sx={{
+            display: 'inline',
+            fontFamily: 'code',
+            fontSize: '0.875em',
+            mx: 0,
+            color,
+          }}
           {...rest}
         />
       );
@@ -244,8 +243,8 @@ export const components = {
   },
   span: ({ ref, ...props }) => (
     <Box
-      component="span"
       ref={ref as RefObject<HTMLSpanElement>}
+      component="span"
       sx={{
         // match code block
         '[data-rehype-pretty-code-figure] &': {
@@ -267,9 +266,9 @@ export const components = {
       const { ref, color, ...rest } = props;
       return (
         <Typography
-          component="mark"
           ref={ref as RefObject<HTMLElement>}
-          textColor={color}
+          component="mark"
+          sx={{ color }}
           variant="soft"
           {...rest}
         />

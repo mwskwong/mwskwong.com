@@ -16,7 +16,7 @@ const NotFound: FC = () => (
       textAlign: 'center',
     }}
   >
-    <Typography color="primary" fontSize="8rem" level="h1">
+    <Typography color="primary" level="h1" sx={{ fontSize: '8rem' }}>
       404
     </Typography>
     <Stack alignItems={{ sm: 'center' }} spacing={2}>

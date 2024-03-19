@@ -49,11 +49,11 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
           getAriaLabel={() => 'Skill proficiency range'}
           max={5}
           min={1}
+          value={proficiency}
+          valueLabelDisplay="on"
           onChange={(_, proficiency) =>
             setProficiency(proficiency as [number, number])
           }
-          value={proficiency}
-          valueLabelDisplay="on"
         />
       </Stack>
       <Box
@@ -67,6 +67,7 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
           <Card key={id}>
             <Sheet
               color="primary"
+              variant="soft"
               sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -75,7 +76,6 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
                 width: 40,
                 height: 40,
               }}
-              variant="soft"
             >
               <Icon contentfulId={id} />
             </Sheet>

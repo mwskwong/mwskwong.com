@@ -26,19 +26,19 @@ export const About: FC<AboutProps> = async (props) => {
           <Stack alignItems="center" spacing={4}>
             {personalPhoto ? (
               <Image
+                priority
                 alt={`${firstName} ${lastName}`}
                 height={200}
-                priority
                 src={personalPhoto}
+                width={200}
                 sx={{
                   borderRadius: '50%',
                   border: 1,
                   borderColor: 'neutral.outlinedBorder',
                 }}
-                width={200}
               />
             ) : null}
-            <Typography maxWidth="sm" textAlign="center">
+            <Typography sx={{ maxWidth: 'sm', textAlign: 'center' }}>
               {selfIntroduction}
             </Typography>
           </Stack>

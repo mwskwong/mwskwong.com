@@ -70,6 +70,15 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'react/jsx-sort-props': [
+      'warn',
+      {
+        callbacksLast: true,
+        shorthandFirst: true,
+        multiline: 'last',
+        reservedFirst: true,
+      },
+    ],
     // sort import statements
     'import/order': [
       'warn',

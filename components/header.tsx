@@ -83,10 +83,10 @@ export const Header: FC<HeaderProps> = async (props) => {
               ({ platform, url }) =>
                 platform && (
                   <IconButton
+                    key={platform.id}
                     aria-label={`${platform.name} profile`}
                     component="a"
                     href={url}
-                    key={platform.id}
                     size="sm"
                     target="_blank"
                     variant="outlined"

@@ -35,10 +35,10 @@ export const Footer: FC<FooterProps> = async (props) => {
             ({ platform, url }) =>
               platform && (
                 <IconButton
+                  key={platform.id}
                   aria-label={`${platform.name} profile`}
                   component="a"
                   href={url}
-                  key={platform.id}
                   size="sm"
                   target="_blank"
                 >
@@ -57,7 +57,7 @@ export const Footer: FC<FooterProps> = async (props) => {
           </IconButton>
         </Stack>
 
-        <Typography level="body-sm" mt={2}>
+        <Typography level="body-sm" sx={{ mt: 2 }}>
           © {currYear} {lastName.toUpperCase()}, {firstName} {middleName}
         </Typography>
         <Typography level="body-sm">

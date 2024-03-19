@@ -15,7 +15,7 @@ import { Providers } from './providers';
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   // data-joy-color-scheme is dynamically injected, suppressing the hydration warning in this case
-  <html lang="en" suppressHydrationWarning>
+  <html suppressHydrationWarning lang="en">
     <body>
       <Providers>{children}</Providers>
       <Analytics

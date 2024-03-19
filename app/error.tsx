@@ -21,7 +21,7 @@ const Error: FC<{
       textAlign: 'center',
     }}
   >
-    <Typography color="primary" fontSize="8rem" level="h1">
+    <Typography color="primary" level="h1" sx={{ fontSize: '8rem' }}>
       Oops
     </Typography>
     <Stack alignItems={{ sm: 'center' }} spacing={2}>
@@ -32,14 +32,17 @@ const Error: FC<{
         {error.digest ? (
           <>
             {' with this error digest: '}
-            <Typography fontFamily="code" fontSize="0.875em" variant="soft">
+            <Typography
+              sx={{ fontFamily: 'code', fontSize: '0.875em' }}
+              variant="soft"
+            >
               {error.digest}
             </Typography>
           </>
         ) : null}{' '}
         to report the issue.
       </Typography>
-      <Button onClick={reset} size="lg" startDecorator={<RefreshCw />}>
+      <Button size="lg" startDecorator={<RefreshCw />} onClick={reset}>
         Try Again
       </Button>
     </Stack>

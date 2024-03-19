@@ -32,6 +32,7 @@ export const Hero: FC<HeroProps> = async (props) => {
         <Stack alignItems="center" spacing={2}>
           <Chip
             endDecorator={<ArrowRight />}
+            variant="outlined"
             slotProps={{
               action: { component: NextLink, href: blog.pathname },
               endDecorator: {
@@ -41,14 +42,12 @@ export const Hero: FC<HeroProps> = async (props) => {
                 },
               },
             }}
-            variant="outlined"
           >
             I started writing articles.&nbsp;
             <Typography
               color="primary"
-              display="inline"
-              fontWeight="lg"
               level="inherit"
+              sx={{ display: 'inline', fontWeight: 'lg' }}
             >
               Read More
             </Typography>

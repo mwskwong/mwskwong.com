@@ -32,7 +32,7 @@ export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
       >
         <Menu />
       </IconButton>
-      <Drawer anchor="right" onClose={() => setOpen(false)} open={open}>
+      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
         <Box component="nav" pb={1} pt={10} px={1}>
           <List
             size="lg"

@@ -62,16 +62,16 @@ const Blogs: FC = async () => {
                     {coverPhoto ? (
                       <Image
                         alt={`Thumbnail for ${title}`}
-                        width={lg / 3}
                         height={(lg / 3 / 1200) * 630}
                         priority={index === 0}
+                        src={coverPhoto}
+                        width={lg / 3}
                         sizes={[
                           `(min-width: ${lg}px) ${Math.round((4 / 12) * lg)}px`,
                           `(min-width: ${md}px) ${Math.round((4 / 12) * 100)}vw`,
                           `(min-width: ${sm}px) ${Math.round((6 / 12) * 100)}vw`,
                           '100vw',
                         ].join(',')}
-                        src={coverPhoto}
                         sx={{
                           width: '100%',
                           height: 'auto',
@@ -83,28 +83,31 @@ const Blogs: FC = async () => {
                     ) : null}
                     <Stack direction="row" flexWrap="wrap" spacing={1}>
                       {categories?.map((category) => (
-                        <Chip color="primary" key={category}>
+                        <Chip key={category} color="primary">
                           {category}
                         </Chip>
                       ))}
                     </Stack>
                     <CardContent>
                       <Link
+                        overlay
                         color="neutral"
                         component={NextLink}
                         display="-webkit-box"
                         href={`${blog.pathname}/${slug}`}
                         overflow="hidden"
-                        overlay
                         sx={{ WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
                         typography="title-lg"
                       >
                         {title}
                       </Link>
                       <Typography
-                        display="-webkit-box"
-                        overflow="hidden"
-                        sx={{ WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}
+                        sx={{
+                          display: '-webkit-box',
+                          overflow: 'hidden',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
+                        }}
                       >
                         {description}
                       </Typography>
@@ -116,10 +119,10 @@ const Blogs: FC = async () => {
                       <Divider orientation="vertical" />
                       <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
                         <Views
+                          readOnly
                           blogId={id}
                           blogIds={blogIds}
                           level="body-sm"
-                          readOnly
                         />
                       </Suspense>
                     </CardContent>

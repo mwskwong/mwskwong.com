@@ -56,11 +56,12 @@ const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
       <ListItemButton component="a" href={href} sx={{ gap: 2 }} target="_blank">
         {thumbnailSrc ? (
           <Image
+            height={56}
+            src={thumbnailSrc}
+            width={80}
             alt={
               typeof children === 'string' ? `Thumbnail for ${children}` : ''
             }
-            height={56}
-            src={thumbnailSrc}
             sx={mergeSx(
               {
                 flexShrink: 0,
@@ -71,7 +72,6 @@ const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
               },
               thumbnailSx,
             )}
-            width={80}
             {...thumbnailProps}
           />
         ) : null}
@@ -120,9 +120,9 @@ export const TimelineItem: FC<TimelineItemProps> = ({
     : `${dateFormatter.format(from)} - Present`;
 
   return (
-    <Grid columnSpacing={2} container rowSpacing={0} xs={12} {...props}>
+    <Grid container columnSpacing={2} rowSpacing={0} xs={12} {...props}>
       <Grid sm={3} xs={12}>
-        <Typography level="body-sm" mb={1} mt="2px">
+        <Typography level="body-sm" sx={{ mb: 1, mt: '2px' }}>
           {duration}
         </Typography>
       </Grid>
@@ -171,8 +171,8 @@ export const TimelineItem: FC<TimelineItemProps> = ({
             >
               {projects.map(({ name, thumbnail, url }) => (
                 <ListItemWithThumbnail
-                  href={url}
                   key={name}
+                  href={url}
                   thumbnailSrc={thumbnail}
                 >
                   {name}
@@ -180,8 +180,8 @@ export const TimelineItem: FC<TimelineItemProps> = ({
               ))}
               {supportingDocuments.map(({ title, url }) => (
                 <ListItemWithThumbnail
-                  href={url}
                   key={title}
+                  href={url}
                   slotProps={{ thumbnail: { sx: { objectPosition: 'top' } } }}
                   // to support for 4x dpi
                   thumbnailSrc={
@@ -199,8 +199,8 @@ export const TimelineItem: FC<TimelineItemProps> = ({
             <Stack direction="row" flexWrap="wrap" spacing={1}>
               {tags.map(({ label, url }) => (
                 <Chip
-                  color="primary"
                   key={label}
+                  color="primary"
                   slotProps={{
                     action: url
                       ? { component: 'a', href: url, target: '_blank' }

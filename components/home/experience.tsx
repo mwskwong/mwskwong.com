@@ -49,7 +49,11 @@ export const Experience: FC<ExperienceProps> = async (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={8}>
-          <Typography id={experience.id} level="h2" textAlign="center">
+          <Typography
+            id={experience.id}
+            level="h2"
+            sx={{ textAlign: 'center' }}
+          >
             Experience
           </Typography>
           <Timeline>
@@ -62,7 +66,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               <Typography level="h3">
                 Contribution To Open Source Projects
               </Typography>
-              <Typography maxWidth="sm">
+              <Typography sx={{ maxWidth: 'sm' }}>
                 Periodically, I engage in open-source contributions. Below are
                 the projects I&apos;ve contributed to thus far.
               </Typography>

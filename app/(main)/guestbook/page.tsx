@@ -29,13 +29,13 @@ const Guestbook: FC = () => (
         </Stack>
         <Button
           component={Link}
+          size="lg"
+          sx={{ alignSelf: { sm: 'center' } }}
           href={{
             pathname: contactForm.pathname,
             hash: contactForm.id,
             query: { showInGuestbook: true },
           }}
-          size="lg"
-          sx={{ alignSelf: { sm: 'center' } }}
         >
           Leave A Message
         </Button>

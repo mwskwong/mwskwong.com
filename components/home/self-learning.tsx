@@ -53,12 +53,10 @@ export const SelfLearning: FC<SelfLearningProps> = ({
 
   return (
     <Stack spacing={6} {...props}>
-      <Stack alignItems="center" spacing={2} textAlign="center">
-        <Typography level="h3" textAlign="center">
-          Self-learning
-        </Typography>
-        <Box component="figure" maxWidth="sm">
-          <Typography component="blockquote" fontStyle="italic">
+      <Stack alignItems="center" spacing={2} sx={{ textAlign: 'center' }}>
+        <Typography level="h3">Self-learning</Typography>
+        <Box component="figure" sx={{ maxWidth: 'sm' }}>
+          <Typography component="blockquote" sx={{ fontStyle: 'italic' }}>
             “Stay hungry. Stay foolish. Never let go of your appetite to go
             after new ideas, new experiences, and new adventures.”
           </Typography>
@@ -67,6 +65,13 @@ export const SelfLearning: FC<SelfLearningProps> = ({
       </Stack>
       <Stack component="search" spacing={2}>
         <Input
+          fullWidth
+          placeholder="Search courses..."
+          size="lg"
+          startDecorator={<Search />}
+          sx={{ maxWidth: 400, mx: 'auto' }}
+          type="search"
+          value={search}
           endDecorator={
             search.length > 0 && (
               <IconButton onClick={() => setSearch('')}>
@@ -74,14 +79,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
               </IconButton>
             )
           }
-          fullWidth
           onChange={(event) => setSearch(event.target.value)}
-          placeholder="Search courses..."
-          size="lg"
-          startDecorator={<Search />}
-          sx={{ maxWidth: 400, mx: 'auto' }}
-          type="search"
-          value={search}
         />
         <Grid container spacing={2}>
           {filteredCourses.map(
@@ -95,9 +93,9 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                     <CardContent>
                       {certificate ? (
                         <Link
+                          overlay
                           color="neutral"
                           href={certificate}
-                          overlay
                           target="_blank"
                           typography="title-md"
                         >

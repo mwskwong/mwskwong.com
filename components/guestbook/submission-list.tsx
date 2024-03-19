@@ -48,12 +48,16 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
           <ListItemContent>
             <Typography level="title-md">
               {name}
-              <Typography fontWeight="normal" level="body-sm">
+              <Typography level="body-sm" sx={{ fontWeight: 'normal' }}>
                 {' · '}
                 {dayjs(submittedAt).fromNow()}
               </Typography>
             </Typography>
-            <Typography component="pre" level="body-md" whiteSpace="pre-wrap">
+            <Typography
+              component="pre"
+              level="body-md"
+              sx={{ whiteSpace: 'pre-wrap' }}
+            >
               {message}
             </Typography>
           </ListItemContent>
