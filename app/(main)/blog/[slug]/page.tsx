@@ -119,9 +119,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
         </Container>
         <SectionDivider bgcolor={contactMeBgColor} />
         <Box
-          bgcolor={contactMeBgColor}
           component="section"
           data-joy-color-scheme="dark"
+          sx={{ bgcolor: contactMeBgColor }}
         >
           <Container>
             <Stack alignItems={{ sm: 'center' }} spacing={8} textAlign="center">

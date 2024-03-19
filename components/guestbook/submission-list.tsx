@@ -79,7 +79,7 @@ export const SubmissionListSkeleton: FC<SubmissionListProps> = ({
             <Skeleton height={32} variant="circular" width={32} />
           </ListItemDecorator>
           <ListItemContent>
-            <Box alignItems="center" display="flex">
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Skeleton level="title-md" variant="text" width={120} />
               <Typography component="span" level="body-sm">
                 &nbsp;·&nbsp;

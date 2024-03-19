@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/joy';
 import { ArrowRight } from 'lucide-react';
+import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -18,7 +19,7 @@ import { blog } from '@/constants/nav';
 import { getCv, getPlatformProfiles } from '@/lib/queries';
 
 export type HeroProps = Omit<BoxProps<'section'>, 'children'>;
-export const Hero: FC<HeroProps> = async (props) => {
+export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
   const [cv, linkedinProfile] = await Promise.all([
     getCv(),
     getPlatformProfiles().then((platformProfiles) =>
@@ -27,7 +28,7 @@ export const Hero: FC<HeroProps> = async (props) => {
   ]);
 
   return (
-    <Box component="section" pt={{ sm: 16 }} {...props}>
+    <Box component="section" sx={mergeSx({ pt: { sm: 16 } }, sx)} {...props}>
       <Container sx={{ textAlign: 'center' }}>
         <Stack alignItems="center" spacing={2}>
           <Chip

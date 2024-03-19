@@ -9,6 +9,7 @@ import {
   ListItemButton,
   Stack,
 } from '@mui/joy';
+import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
@@ -22,22 +23,27 @@ import { ModeToggleButton } from './mode-toggle-button';
 import { NavDrawer } from './nav-drawer';
 
 export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
-export const Header: FC<HeaderProps> = async (props) => {
+export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
   const platformProfiles = (await getPlatformProfiles()).filter(
     ({ platform }) => platform?.id === linkedin || platform?.id === github,
   );
 
   return (
     <Box
-      alignItems="center"
-      bgcolor="background.body"
-      boxShadow="inset 0 -1px var(--joy-palette-neutral-outlinedBorder)"
       component="header"
-      display="flex"
-      height="var(--Header-height)"
-      position="sticky"
-      top={0}
-      zIndex="header"
+      sx={mergeSx(
+        {
+          alignItems: 'center',
+          bgcolor: 'background.body',
+          boxShadow: 'inset 0 -1px var(--joy-palette-neutral-outlinedBorder)',
+          display: 'flex',
+          height: 'var(--Header-height)',
+          position: 'sticky',
+          top: 0,
+          zIndex: 'header',
+        },
+        sx,
+      )}
       {...props}
     >
       <Container>

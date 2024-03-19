@@ -1,11 +1,12 @@
 import { Box, BoxProps } from '@mui/joy';
+import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 
 export type SectionDividerProps = Omit<BoxProps<'svg'>, 'children'>;
-export const SectionDivider: FC<SectionDividerProps> = (props) => (
+export const SectionDivider: FC<SectionDividerProps> = ({ sx, ...props }) => (
   <Box
-    color="background.body"
     component="svg"
+    sx={mergeSx({ color: 'background.body' }, sx)}
     viewBox="0 0 1200 120"
     xmlns="http://www.w3.org/2000/svg"
     {...props}

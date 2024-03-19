@@ -209,9 +209,7 @@ export const components = {
     <Box
       ref={ref as RefObject<HTMLPreElement>}
       component="pre"
-      m={0}
-      overflow="auto"
-      py={2}
+      sx={{ m: 0, overflow: 'auto', py: 2 }}
       {...props}
     />
   ),
