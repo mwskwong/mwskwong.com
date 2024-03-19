@@ -22,10 +22,10 @@
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
     "@icons-pack/react-simple-icons": "^9.4.0",
-    "@mui/base": "5.0.0-beta.39",
-    "@mui/joy": "5.0.0-beta.31",
+    "@mui/base": "5.0.0-beta.40",
+    "@mui/joy": "5.0.0-beta.32",
     "@mui/material-nextjs": "^5.15.11",
-    "@mui/styled-engine": "^5.15.11",
+    "@mui/styled-engine": "^5.15.14",
     "@prisma/client": "^5.11.0",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
@@ -52,7 +52,7 @@
     "@next/eslint-plugin-next": "canary",
     "@svgr/webpack": "^8.1.0",
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.11.29",
+    "@types/node": "^20.11.30",
     "@types/react": "^18.2.67",
     "@types/react-dom": "^18.2.22",
     "@vercel/style-guide": "^6.0.0",
@@ -62,7 +62,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-prisma": "^5.0.0",
     "prisma": "^5.11.0",
-    "type-fest": "^4.12.0",
+    "type-fest": "^4.13.0",
     "typescript": "^5.4.2"
   }
 }
