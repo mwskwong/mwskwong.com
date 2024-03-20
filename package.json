@@ -64,5 +64,9 @@
     "prisma": "^5.11.0",
     "type-fest": "^4.13.0",
     "typescript": "^5.4.2"
+  },
+  "overrides": {
+    "next": "canary",
+    "@next/eslint-plugin-next": "canary"
   }
 }
