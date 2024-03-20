@@ -1,4 +1,4 @@
-import type { SatoriOptions } from 'next/dist/compiled/@vercel/og/satori';
+import { SatoriOptions } from 'next/dist/compiled/@vercel/og/satori';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
