@@ -250,6 +250,8 @@ export const components = {
             bgcolor: 'neutral.softBg',
           },
         },
+        // if code block doesn't have a title, increase padding-right
+        // to prevent the copy button from covering the code
         '[data-rehype-pretty-code-figure] :not([data-rehype-pretty-code-title]) + pre &':
           {
             '&[data-line]': { pr: `${8 + 32 + 10.5}px` },

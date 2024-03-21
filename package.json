@@ -30,7 +30,7 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "clsx": "^2.1.0",
-    "contentful": "^10.8.3",
+    "contentful": "^10.8.5",
     "dayjs": "^1.11.10",
     "geist": "^1.2.2",
     "lodash-es": "^4.17.21",
@@ -62,7 +62,11 @@
     "prettier": "^3.2.5",
     "prettier-plugin-prisma": "^5.0.0",
     "prisma": "^5.11.0",
-    "type-fest": "^4.13.0",
-    "typescript": "^5.4.2"
+    "type-fest": "^4.13.1",
+    "typescript": "^5.4.3"
+  },
+  "overrides": {
+    "next": "canary",
+    "@next/eslint-plugin-next": "canary"
   }
 }
