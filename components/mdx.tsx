@@ -175,6 +175,7 @@ export const components = {
         >
           <CopyCodeButton
             size="sm"
+            variant="outlined"
             sx={{
               position: 'absolute',
               top: 10.5,
