@@ -18,7 +18,7 @@ export const CopyCodeButton: FC<CopyCodeButtonProps> = (props) => {
       color={copied ? 'success' : undefined}
       onClick={async (event) => {
         const figure = event.currentTarget.closest(
-          'figure[data-rehype-pretty-code-figure]',
+          '[data-rehype-pretty-code-figure]',
         );
         const code = figure?.querySelector('code');
 
