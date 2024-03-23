@@ -44,7 +44,7 @@ const Guestbook: FC = () => (
         </Suspense>
       </Stack>
     </Container>
-    <SectionDivider bgcolor="var(--Footer-bg)" />
+    <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
     <Suspense>
       <JsonLd discussionForumPosting={{ text: description }} />
     </Suspense>
