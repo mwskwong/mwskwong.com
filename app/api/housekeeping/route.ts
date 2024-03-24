@@ -1,6 +1,6 @@
 import { db } from '@/lib/clients';
 
-export const POST = async () => {
+export const GET = async () => {
   const tables = await db.$queryRaw<
     {
       tablename: string;
