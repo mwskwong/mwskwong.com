@@ -3,10 +3,10 @@ import { headers } from 'next/headers';
 import { db } from '@/lib/clients';
 
 export const GET = async () => {
-  const requestHeaders = headers();
+  const headersList = headers();
   if (
     process.env.CRON_SECRET &&
-    requestHeaders.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`
+    headersList.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`
   ) {
     return Response.json({ status: 1 }, { status: 401 });
   }
