@@ -140,7 +140,7 @@ const Blogs: FC = async () => {
           </Grid>
         </Stack>
       </Container>
-      <SectionDivider bgcolor="var(--Footer-bg)" />
+      <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
       <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({

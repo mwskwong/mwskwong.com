@@ -43,7 +43,7 @@ const PrivacyPolicy: FC = async () => {
           </Typography>
         </Container>
       </main>
-      <SectionDivider bgcolor="var(--Footer-bg)" />
+      <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
       <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
