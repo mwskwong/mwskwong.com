@@ -1,6 +1,16 @@
+import { headers } from 'next/headers';
+
 import { db } from '@/lib/clients';
 
 export const GET = async () => {
+  const requestHeaders = headers();
+  if (
+    process.env.CRON_SECRET &&
+    requestHeaders.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`
+  ) {
+    return Response.json({ status: 1 }, { status: 401 });
+  }
+
   const tables = await db.$queryRaw<
     {
       tablename: string;
