@@ -12,7 +12,7 @@ import {
 } from '@mui/joy';
 import { mergeSx } from 'merge-sx';
 import { StaticImageData } from 'next/image';
-import { FC, Fragment } from 'react';
+import { FC } from 'react';
 
 import { Image, ImageProps } from '../image';
 
@@ -85,11 +85,10 @@ export interface TimelineItemProps extends Omit<GridProps, 'children'> {
   from?: Date;
   to?: Date;
   title?: string;
-  organizations?: {
+  organization?: {
     name?: string;
     url?: string;
-  }[];
-  organizationsRelationship?: string;
+  };
   descriptions?: string[];
   projects?: {
     name?: string;
@@ -107,8 +106,7 @@ export const TimelineItem: FC<TimelineItemProps> = ({
   from = new Date(),
   to,
   title,
-  organizations = [],
-  organizationsRelationship,
+  organization,
   descriptions = [],
   projects = [],
   supportingDocuments = [],
@@ -134,21 +132,9 @@ export const TimelineItem: FC<TimelineItemProps> = ({
             spacing={1}
             sx={{ alignItems: 'center', flexWrap: 'wrap' }}
           >
-            <Typography>
-              {organizations.map(({ name, url }, index) => (
-                <Fragment key={name}>
-                  {index !== 0 && ' · '}
-                  <Link href={url} target="_blank">
-                    {name}
-                  </Link>
-                </Fragment>
-              ))}
-            </Typography>
-            {organizationsRelationship ? (
-              <Chip color="warning" size="sm" variant="outlined">
-                {organizationsRelationship}
-              </Chip>
-            ) : null}
+            <Link href={organization?.url} target="_blank">
+              {organization?.name}
+            </Link>
           </Stack>
           {descriptions.length > 0 && (
             <List

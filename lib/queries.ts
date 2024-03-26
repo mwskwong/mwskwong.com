@@ -14,7 +14,6 @@ import {
   CourseSkeleton,
   EducationSkeleton,
   ExperienceSkeleton,
-  OrganizationSkeleton,
   PlatformProfileSkeleton,
   PrivacyPolicy,
   ProjectSkeleton,
@@ -167,19 +166,12 @@ export const getExperiences = cache(async () => {
 
   return items.map((item) => ({
     ...item.fields,
-    companies: item.fields.companies
-      .filter(
-        (
-          elem,
-        ): elem is Entry<OrganizationSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> =>
-          Boolean(elem),
-      )
-      .map((company) => ({
-        ...company.fields,
-        logo:
-          company.fields.logo?.fields.file &&
-          `https:${company.fields.logo.fields.file.url}`,
-      })),
+    company: item.fields.company && {
+      ...item.fields.company.fields,
+      logo:
+        item.fields.company.fields.logo?.fields.file &&
+        `https:${item.fields.company.fields.logo.fields.file.url}`,
+    },
     projects: item.fields.projects?.map((project) => ({
       ...project?.fields,
       thumbnail:

@@ -51,10 +51,7 @@ export interface ExperienceSkeleton {
     from: EntryFieldTypes.Date;
     to?: EntryFieldTypes.Date;
     jobTitle: EntryFieldTypes.Symbol;
-    companies: EntryFieldTypes.Array<
-      EntryFieldTypes.EntryLink<OrganizationSkeleton>
-    >;
-    companiesRelationship?: EntryFieldTypes.Symbol;
+    company: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     jobDuties?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     projects?: EntryFieldTypes.Array<
       EntryFieldTypes.EntryLink<ProjectSkeleton>
