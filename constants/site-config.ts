@@ -6,4 +6,5 @@ export const baseUrl = `https://${
     ? process.env.NEXT_PUBLIC_VERCEL_URL
     : process.env.NEXT_PUBLIC_PROD_URL) ?? 'localhost:3000'
 }`;
+
 export const websiteDisplayName = capitalize(process.env.NEXT_PUBLIC_PROD_URL);

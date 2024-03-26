@@ -41,7 +41,8 @@ export const Views: FC<ViewsProps> = async ({
   );
 };
 
-export const ViewsSkeleton: FC<Omit<TypographyProps, 'children'>> = (props) => (
+export type ViewsSkeletonProps = Omit<TypographyProps, 'children'>;
+export const ViewsSkeleton: FC<ViewsSkeletonProps> = (props) => (
   <Typography startDecorator={<Eye />} {...props}>
     <Skeleton level={props.level} variant="text" width="3ch" />
     &nbsp;views
