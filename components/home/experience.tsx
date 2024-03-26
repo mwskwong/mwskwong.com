@@ -21,21 +21,11 @@ export const Experience: FC<ExperienceProps> = async (props) => {
   const [experiences, contributedProjects] = await Promise.all([
     getExperiences().then((experiences) =>
       experiences.map(
-        ({
-          from,
-          to,
-          jobTitle,
-          companies,
-          companiesRelationship,
-          jobDuties,
-          skills,
-          ...rest
-        }) => ({
+        ({ from, to, jobTitle, company, jobDuties, skills, ...rest }) => ({
           from: new Date(from),
           to: to && new Date(to),
           title: jobTitle,
-          organizations: companies,
-          organizationsRelationship: companiesRelationship,
+          organization: company,
           descriptions: jobDuties,
           tags: skills.map(({ name, url }) => ({ label: name, url })),
           ...rest,

@@ -16,7 +16,7 @@ export const Education: FC<EducationProps> = async (props) => {
           from: new Date(from),
           to: to && new Date(to),
           title: program,
-          organizations: school && [school],
+          organization: school,
           descriptions: grade ? [grade] : undefined,
           supportingDocuments,
         }),
