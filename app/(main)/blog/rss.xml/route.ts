@@ -29,7 +29,7 @@ export const GET = async () => {
     updatedAt,
   } of blogs) {
     blogFeed.addItem({
-      guid: `${blog.pathname}/${slug}`,
+      guid: `${baseUrl}${blog.pathname}/${slug}`,
       title,
       link: `${baseUrl}${blog.pathname}/${slug}`,
       description,
