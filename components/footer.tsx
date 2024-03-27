@@ -23,7 +23,6 @@ import { Icon } from './contentful';
 export type FooterProps = Omit<BoxProps<'footer'>, 'children'>;
 export const Footer: FC<FooterProps> = async (props) => {
   const platformProfiles = await getPlatformProfiles();
-  const currYear = new Date().getFullYear();
 
   return (
     <Box component="footer" {...props}>
@@ -58,7 +57,8 @@ export const Footer: FC<FooterProps> = async (props) => {
         </Stack>
 
         <Typography level="body-sm" sx={{ mt: 2 }}>
-          © {currYear} {lastName.toUpperCase()}, {firstName} {middleName}
+          © {new Date().getFullYear()} {lastName.toUpperCase()}, {firstName}{' '}
+          {middleName}
         </Typography>
         <Typography level="body-sm">
           Branding logo designed by{' '}

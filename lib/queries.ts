@@ -67,6 +67,7 @@ export const getBlogs = cache(
       title: item.fields.title,
       slug: item.fields.slug,
       description: item.fields.description,
+      content: item.fields.content,
     }));
   },
 );
