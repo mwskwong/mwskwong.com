@@ -1,5 +1,6 @@
 import { Skeleton, Typography, TypographyProps } from '@mui/joy';
 import { Eye } from 'lucide-react';
+import { mergeSx } from 'merge-sx';
 import { FC } from 'react';
 
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
@@ -50,9 +51,14 @@ export type ViewsSkeletonProps = Omit<
 
 export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
   hideIcon,
+  sx,
   ...props
 }) => (
-  <Typography startDecorator={!hideIcon && <Eye />} {...props}>
+  <Typography
+    startDecorator={!hideIcon && <Eye />}
+    sx={mergeSx({ display: 'flex' }, sx)}
+    {...props}
+  >
     <Skeleton level={props.level} variant="text" width="3ch" />
     &nbsp;views
   </Typography>
