@@ -17,6 +17,7 @@ export interface ViewsProps extends Omit<TypographyProps, 'children'> {
   blogIds?: string[];
   blogId: string;
   readOnly?: boolean;
+  hideIcon?: boolean;
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
@@ -25,6 +26,7 @@ export const Views: FC<ViewsProps> = async ({
   blogIds,
   blogId,
   readOnly = false,
+  hideIcon = false,
   ...props
 }) => {
   const metadata = blogIds
@@ -34,16 +36,28 @@ export const Views: FC<ViewsProps> = async ({
   return (
     <>
       {!readOnly && <IncrBlogView blogId={blogId} />}
-      <Typography startDecorator={<Eye />} {...props}>
+      <Typography startDecorator={!hideIcon && <Eye />} {...props}>
         {numberFormatter.format(metadata?.view ?? 0)} views
       </Typography>
     </>
   );
 };
 
-export type ViewsSkeletonProps = Omit<TypographyProps, 'children'>;
-export const ViewsSkeleton: FC<ViewsSkeletonProps> = (props) => (
-  <Typography startDecorator={<Eye />} {...props}>
+export type ViewsSkeletonProps = Omit<
+  ViewsProps,
+  'blogIds' | 'blogId' | 'readOnly'
+>;
+
+export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
+  hideIcon,
+  ...props
+}) => (
+  <Typography
+    // FIXME: not using sx prop here to prevent CLS
+    display={hideIcon ? 'flex' : undefined}
+    startDecorator={!hideIcon && <Eye />}
+    {...props}
+  >
     <Skeleton level={props.level} variant="text" width="3ch" />
     &nbsp;views
   </Typography>

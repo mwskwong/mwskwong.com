@@ -124,8 +124,11 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
+                      <Suspense
+                        fallback={<ViewsSkeleton hideIcon level="body-sm" />}
+                      >
                         <Views
+                          hideIcon
                           readOnly
                           blogId={id}
                           blogIds={blogIds}
