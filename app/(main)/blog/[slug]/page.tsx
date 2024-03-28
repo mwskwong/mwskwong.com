@@ -9,7 +9,6 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import { BookOpen } from 'lucide-react';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
@@ -88,12 +87,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 spacing={1}
                 sx={{ alignItems: 'center', justifyContent: 'space-around' }}
               >
-                <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
-                  <Views blogId={blog.id} sx={{ mx: 0.75 }} />
+                <Suspense fallback={<ViewsSkeleton mr={0.75} />}>
+                  <Views blogId={blog.id} mr={0.75} />
                 </Suspense>
-                <Typography startDecorator={<BookOpen />} sx={{ mx: 0.75 }}>
-                  {blog.readingTime?.text}
-                </Typography>
                 <CopyUrlButton />
                 <ShareDropdown blog={blog} />
               </Stack>

@@ -5,7 +5,6 @@ import {
   unstable_noStore as noStore,
 } from 'next/cache';
 import { cache as reactCache } from 'react';
-import readingTime from 'reading-time';
 
 import { cv, privacyPolicy } from '@/constants/contentful-ids';
 
@@ -43,9 +42,6 @@ export const getBlogBySlug = cache(async (slug: string) => {
       slug: item.fields.slug,
       description: item.fields.description,
       content: item.fields.content,
-      readingTime: item.fields.content
-        ? readingTime(item.fields.content)
-        : undefined,
     }
   );
 });
@@ -72,9 +68,6 @@ export const getBlogs = cache(
       slug: item.fields.slug,
       description: item.fields.description,
       content: item.fields.content,
-      readingTime: item.fields.content
-        ? readingTime(item.fields.content)
-        : undefined,
     }));
   },
 );
