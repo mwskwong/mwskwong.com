@@ -17,6 +17,7 @@ export interface ViewsProps extends Omit<TypographyProps, 'children'> {
   blogIds?: string[];
   blogId: string;
   readOnly?: boolean;
+  hideIcon?: boolean;
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
@@ -25,6 +26,7 @@ export const Views: FC<ViewsProps> = async ({
   blogIds,
   blogId,
   readOnly = false,
+  hideIcon = false,
   ...props
 }) => {
   const metadata = blogIds
@@ -34,7 +36,7 @@ export const Views: FC<ViewsProps> = async ({
   return (
     <>
       {!readOnly && <IncrBlogView blogId={blogId} />}
-      <Typography startDecorator={<Eye />} {...props}>
+      <Typography startDecorator={!hideIcon && <Eye />} {...props}>
         {numberFormatter.format(metadata?.view ?? 0)} views
       </Typography>
     </>

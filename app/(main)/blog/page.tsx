@@ -54,6 +54,7 @@ const Blogs: FC = async () => {
                   title,
                   description,
                   categories,
+                  readingTime,
                 },
                 index,
               ) => (
@@ -126,12 +127,17 @@ const Blogs: FC = async () => {
                       <Divider orientation="vertical" />
                       <Suspense fallback={<ViewsSkeleton level="body-sm" />}>
                         <Views
+                          hideIcon
                           readOnly
                           blogId={id}
                           blogIds={blogIds}
                           level="body-sm"
                         />
                       </Suspense>
+                      <Divider orientation="vertical" />
+                      <Typography level="body-sm">
+                        {readingTime?.text}
+                      </Typography>
                     </CardContent>
                   </Card>
                 </Grid>
