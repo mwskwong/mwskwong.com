@@ -47,6 +47,7 @@ export type ViewsSkeletonProps = Omit<
   ViewsProps,
   'blogIds' | 'blogId' | 'readOnly'
 >;
+
 export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
   hideIcon,
   ...props
