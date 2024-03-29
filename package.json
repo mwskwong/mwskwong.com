@@ -22,10 +22,10 @@
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.4",
     "@icons-pack/react-simple-icons": "^9.4.0",
-    "@mui/base": "5.0.0-beta.40",
-    "@mui/joy": "5.0.0-beta.32",
-    "@mui/material-nextjs": "^5.15.11",
-    "@mui/styled-engine": "^5.15.14",
+    "@mui/base": "next",
+    "@mui/joy": "next",
+    "@mui/material-nextjs": "next",
+    "@mui/styled-engine": "next",
     "@prisma/client": "^5.11.0",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
@@ -65,9 +65,5 @@
     "prisma": "^5.11.0",
     "type-fest": "^4.14.0",
     "typescript": "^5.4.3"
-  },
-  "overrides": {
-    "next": "canary",
-    "@next/eslint-plugin-next": "canary"
   }
 }
