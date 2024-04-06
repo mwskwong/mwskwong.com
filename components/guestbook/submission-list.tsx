@@ -21,7 +21,7 @@ extend(relativeTime);
 
 const submissionListSx = {
   '--List-gap': 'calc(2 * var(--joy-spacing))',
-  '--ListItemDecorator-size': '48px',
+  '--ListItemDecorator-size': 'calc(2rem + 2 * var(--joy-spacing))',
   '--ListItem-paddingX': '0px',
   '& > li': { alignItems: 'flex-start' },
 } satisfies SxProps;
