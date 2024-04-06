@@ -115,7 +115,7 @@ export const TimelineItem: FC<TimelineItemProps> = ({
 }) => {
   const duration = to
     ? dateFormatter.formatRange(from, to)
-    : `${dateFormatter.format(from)} - Present`;
+    : `${dateFormatter.format(from)} – Present`;
 
   return (
     <Grid container columnSpacing={2} rowSpacing={0} xs={12} {...props}>
