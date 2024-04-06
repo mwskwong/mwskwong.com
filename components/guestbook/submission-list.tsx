@@ -20,7 +20,7 @@ import { getGuestbookSubmissions } from '@/lib/queries';
 extend(relativeTime);
 
 const submissionListSx = {
-  '--List-gap': '16px',
+  '--List-gap': 'calc(2 * var(--joy-spacing))',
   '--ListItemDecorator-size': '48px',
   '--ListItem-paddingX': '0px',
   '& > li': { alignItems: 'flex-start' },

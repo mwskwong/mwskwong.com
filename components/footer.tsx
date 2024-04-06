@@ -75,7 +75,7 @@ export const Footer: FC<FooterProps> = async (props) => {
             mt: 8,
             '--List-radius': 'var(--joy-radius-sm)',
             '--List-padding': '0px',
-            '--List-gap': '8px',
+            '--List-gap': 'var(--joy-spacing)',
           }}
         >
           <ListItem>

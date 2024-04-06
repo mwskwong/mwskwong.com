@@ -1,6 +1,6 @@
 import { Theme, extendTheme } from '@mui/joy';
 import { PaletteOptions } from '@mui/joy/styles/types';
-import { CSSObject, Interpolation } from '@mui/styled-engine';
+import { Interpolation } from '@mui/styled-engine';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import { PartialDeep } from 'type-fest';
@@ -80,8 +80,12 @@ export const globalStyles = (theme: Theme) =>
       fontFamily: theme.vars.fontFamily.code,
       color: 'inherit',
       '&[data-theme*=" "], &[data-theme*=" "] span': {
-        ...generateCodeStyle('light'),
-        [theme.getColorSchemeSelector('dark')]: generateCodeStyle('dark'),
+        color: 'var(--shiki-light)',
+        backgroundColor: 'var(--shiki-light-bg)',
+        [theme.getColorSchemeSelector('dark')]: {
+          color: 'var(--shiki-dark)',
+          backgroundColor: 'var(--shiki-dark-bg)',
+        },
       },
     },
     figure: { margin: 0 },
@@ -114,11 +118,3 @@ export const globalStyles = (theme: Theme) =>
       },
     },
   }) satisfies Interpolation<Theme>;
-
-const generateCodeStyle = (mode: 'light' | 'dark') =>
-  ({
-    color: `var(--shiki-${mode})`,
-    fontStyle: `var(--shiki-${mode}-font-style)`,
-    fontWeight: `var(--shiki-${mode}-font-weight)`,
-    textDecoration: `var(--shiki-${mode}-text-decoration)`,
-  }) satisfies CSSObject;
