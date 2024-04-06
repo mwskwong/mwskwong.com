@@ -67,7 +67,7 @@ export const components = {
         mb: 3,
         mt: 6,
         color,
-        scrollMarginTop: 'calc(var(--Header-height) + 8px * 6)',
+        scrollMarginTop: 'calc(var(--Header-height) + 6 * var(--joy-spacing))',
       }}
       {...props}
     />
@@ -80,7 +80,7 @@ export const components = {
         mb: 1.5,
         mt: 4,
         color,
-        scrollMarginTop: 'calc(var(--Header-height) + 8px * 4)',
+        scrollMarginTop: 'calc(var(--Header-height) + 4 * var(--joy-spacing))',
       }}
       {...props}
     />
@@ -93,7 +93,7 @@ export const components = {
         mb: 1,
         mt: 3,
         color,
-        scrollMarginTop: 'calc(var(--Header-height) + 8px * 3)',
+        scrollMarginTop: 'calc(var(--Header-height) + 3 * var(--joy-spacing))',
       }}
       {...props}
     />
@@ -254,7 +254,7 @@ export const components = {
         // to prevent the copy button from covering the code
         '[data-rehype-pretty-code-figure] :not([data-rehype-pretty-code-title]) + pre &':
           {
-            '&[data-line]': { pr: `${8 + 32 + 10.5}px` },
+            '&[data-line]': { pr: `calc(var(--joy-spacing) + ${32 + 10.5}px)` },
           },
       }}
       {...props}

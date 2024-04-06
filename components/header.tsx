@@ -65,7 +65,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
               sx={{
                 '--List-radius': 'var(--joy-radius-sm)',
                 '--List-padding': '0px',
-                '--List-gap': '8px',
+                '--List-gap': 'var(--joy-spacing)',
                 display: { xs: 'none', md: 'flex' },
               }}
             >

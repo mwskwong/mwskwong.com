@@ -215,7 +215,8 @@ export const Contact: FC<ContactProps> = (props) => {
                   unstable_level={1} // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
                   xs={12}
                   sx={{
-                    scrollMarginTop: 'calc(var(--Header-height) - 8px * 6)',
+                    scrollMarginTop:
+                      'calc(var(--Header-height) - 6 * var(--joy-spacing))',
                   }}
                 >
                   <Grid sm={6} xs={12}>
