@@ -4,6 +4,7 @@ import { send } from '@emailjs/nodejs';
 import { unstable_noStore as noStore } from 'next/cache';
 import { parse } from 'valibot';
 
+import { env } from '@/env';
 import { db } from '@/lib/clients';
 
 import { ContactForm, contactForm } from './validation-schema';
@@ -22,12 +23,9 @@ export const submitContactForm = async (data: ContactForm) => {
   parse(contactForm, data);
   await db.contactFormSubmission.create({ data });
   await send(
-    process.env.EMAILJS_SERVICE_ID ?? '',
-    process.env.EMAILJS_CONTACT_FORM_TEMPLATE_ID ?? '',
+    env.EMAILJS_SERVICE_ID,
+    env.EMAILJS_CONTACT_FORM_TEMPLATE_ID,
     data,
-    {
-      publicKey: process.env.EMAILJS_PUBLIC_KEY ?? '',
-      privateKey: process.env.EMAILJS_PRIVATE_KEY,
-    },
+    { publicKey: env.EMAILJS_PUBLIC_KEY, privateKey: env.EMAILJS_PRIVATE_KEY },
   );
 };

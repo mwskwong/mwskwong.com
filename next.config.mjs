@@ -1,6 +1,12 @@
 // @ts-check
 
+import { fileURLToPath } from 'node:url';
+
 import NextBundleAnalyzer from '@next/bundle-analyzer';
+import createJiti from 'jiti';
+
+const jiti = createJiti(fileURLToPath(import.meta.url));
+jiti('./env');
 
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',

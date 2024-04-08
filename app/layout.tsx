@@ -10,6 +10,7 @@ import {
   selfIntroduction,
 } from '@/constants/content';
 import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env';
 
 import { Providers } from './providers';
 
@@ -19,9 +20,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
     <body>
       <Providers>{children}</Providers>
       <Analytics
-        mode={
-          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
-        }
+        mode={env.VERCEL_ENV === 'production' ? 'production' : 'development'}
       />
       <SpeedInsights />
     </body>
