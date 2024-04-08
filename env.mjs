@@ -24,7 +24,7 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_PROD_URL: z.string(),
-    // FIXME: workaround: vercel preset doesn't provide NEXT_PUBLIC_ env by default
+    // vercel preset doesn't provide NEXT_PUBLIC_ env by default
     NEXT_PUBLIC_VERCEL_ENV: z
       .enum(['development', 'preview', 'production'])
       .optional(),
@@ -35,4 +35,5 @@ export const env = createEnv({
     NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
     NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
   },
+  skipValidation: process.env.npm_lifecycle_event === 'lint',
 });

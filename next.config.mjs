@@ -1,15 +1,11 @@
 // @ts-check
 
-import { fileURLToPath } from 'node:url';
-
 import NextBundleAnalyzer from '@next/bundle-analyzer';
-import createJiti from 'jiti';
 
-const jiti = createJiti(fileURLToPath(import.meta.url));
-jiti('./env');
+import { env } from './env.mjs';
 
 const withBundleAnalyzer = NextBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
+  enabled: env.ANALYZE === 'true',
 });
 
 const sharedSvgoPlugins = [
@@ -26,7 +22,7 @@ const sharedSvgoPlugins = [
 const config = {
   compiler: {
     emotion: true,
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: env.NODE_ENV === 'production',
   },
   eslint: { dirs: ['app', 'components', 'constants', 'lib', 'og-images'] },
   images: {
