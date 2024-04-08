@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 import { baseUrl } from '@/constants/site-config';
-import { env } from '@/env';
+import { env } from '@/env.mjs';
 
 const robots = () =>
   ({

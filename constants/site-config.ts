@@ -1,6 +1,6 @@
 import { capitalize } from 'lodash-es';
 
-import { env } from '@/env';
+import { env } from '@/env.mjs';
 
 export const baseUrl = env.NEXT_PUBLIC_VERCEL_ENV
   ? `https://${

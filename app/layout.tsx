@@ -10,7 +10,7 @@ import {
   selfIntroduction,
 } from '@/constants/content';
 import { baseUrl } from '@/constants/site-config';
-import { env } from '@/env';
+import { env } from '@/env.mjs';
 
 import { Providers } from './providers';
 

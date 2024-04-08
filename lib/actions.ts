@@ -4,7 +4,7 @@ import { send } from '@emailjs/nodejs';
 import { unstable_noStore as noStore } from 'next/cache';
 import { parse } from 'valibot';
 
-import { env } from '@/env';
+import { env } from '@/env.mjs';
 import { db } from '@/lib/clients';
 
 import { ContactForm, contactForm } from './validation-schema';

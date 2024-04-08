@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { createClient } from 'contentful';
 
-import { env } from '@/env';
+import { env } from '@/env.mjs';
 
 export const cms = createClient({
   space: env.CONTENTFUL_SPACE_ID,
