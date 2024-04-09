@@ -14,7 +14,7 @@
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:migrate:dev": "dotenv -e .env.local -- prisma migrate dev",
     "start": "next start",
-    "upgrade": "npm update && npm run postinstall && npm run format && tsc --noEmit && npm run lint -- --fix"
+    "upgrade": "npm update && npm run postinstall && npm run prettier:write && tsc --noEmit && npm run lint -- --fix"
   },
   "dependencies": {
     "@emailjs/nodejs": "^2.2.0",
