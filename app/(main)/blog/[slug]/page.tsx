@@ -9,7 +9,6 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import dayjs from 'dayjs';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
@@ -34,6 +33,13 @@ import {
   getPlatformProfiles,
 } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
+
+const dateFormatter = new Intl.DateTimeFormat('en', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 
 const contactMeBgColor = 'primary.900';
 
@@ -60,7 +66,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           sx={{ py: 'var(--Section-paddingY)' }}
         >
           <Typography level="body-sm">
-            {dayjs(blog.createdAt).format('dddd, MMM D, YYYY')}
+            {dateFormatter.format(new Date(blog.createdAt))}
           </Typography>
           <Typography level="h1" sx={{ mb: 3, mt: 1 }}>
             {blog.title}

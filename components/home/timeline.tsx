@@ -10,12 +10,16 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import dayjs from 'dayjs';
 import { mergeSx } from 'merge-sx';
 import { StaticImageData } from 'next/image';
 import { FC } from 'react';
 
 import { Image, ImageProps } from '../image';
+
+const dateFormatter = new Intl.DateTimeFormat('en', {
+  month: 'short',
+  year: 'numeric',
+});
 
 type ListItemWithThumbnailProps = ListItemProps & {
   href?: string;
@@ -109,7 +113,9 @@ export const TimelineItem: FC<TimelineItemProps> = ({
   tags = [],
   ...props
 }) => {
-  const duration = `${dayjs(from).format('MMM YYYY')} – ${to ? dayjs(to).format('MMM YYYY') : 'Present'}`;
+  const duration = to
+    ? dateFormatter.formatRange(from, to)
+    : `${dateFormatter.format(from)} – Present`;
 
   return (
     <Grid container columnSpacing={2} rowSpacing={0} xs={12} {...props}>

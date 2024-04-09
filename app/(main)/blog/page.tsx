@@ -9,7 +9,6 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import dayjs from 'dayjs';
 import { Metadata } from 'next';
 import NextLink from 'next/link';
 import { FC, Suspense } from 'react';
@@ -22,6 +21,12 @@ import { breakpoints } from '@/constants/mui-joy';
 import { blog, blogRssFeed } from '@/constants/nav';
 import { baseUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
+
+const dateFormatter = new Intl.DateTimeFormat('en', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
 
 const description = 'Personal perspectives on a broad range of topics.';
 
@@ -116,7 +121,7 @@ const Blogs: FC = async () => {
                     </CardContent>
                     <CardContent orientation="horizontal" sx={{ flex: 0 }}>
                       <Typography level="body-sm">
-                        {dayjs(createdAt).format('MMM D, YYYY')}
+                        {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
                       <Suspense

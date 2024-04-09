@@ -1,5 +1,4 @@
 import { Container, Typography } from '@mui/joy';
-import dayjs from 'dayjs';
 import { Metadata } from 'next';
 import { FC } from 'react';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
@@ -10,6 +9,13 @@ import { privacyPolicy } from '@/constants/nav';
 import { baseUrl, websiteDisplayName } from '@/constants/site-config';
 import { getPrivacyPolicy } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
+
+const dateFormatter = new Intl.DateTimeFormat('en', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 
 const description = `${privacyPolicy.label} for ${websiteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
 
@@ -32,8 +38,8 @@ const PrivacyPolicy: FC = async () => {
           {content ? <Mdx source={content} /> : null}
           <Typography sx={{ my: 2 }}>
             This Privacy Policy is subject to updates. The last revision was
-            made on {dayjs(updatedAt).format('dddd, MMMM D, YYYY')}. Please
-            review periodically for changes.
+            made on {dateFormatter.format(new Date(updatedAt))}. Please review
+            periodically for changes.
           </Typography>
         </Container>
       </main>
