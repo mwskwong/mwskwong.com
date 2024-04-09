@@ -31,7 +31,9 @@ export const env = createEnv({
   },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_VERCEL_ENV
-      ? `https://${
+      ? process.env.NEXT_PUBLIC_PROD_URL &&
+        process.env.NEXT_PUBLIC_VERCEL_URL &&
+        `https://${
           process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
             ? process.env.NEXT_PUBLIC_PROD_URL
             : process.env.NEXT_PUBLIC_VERCEL_URL
