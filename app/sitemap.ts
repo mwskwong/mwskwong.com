@@ -6,7 +6,7 @@ import {
   home,
   privacyPolicy as privacyPolicyNav,
 } from '@/constants/nav';
-import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 import { getBlogs, getPrivacyPolicy } from '@/lib/queries';
 
 const sitemap = async () => {
@@ -17,15 +17,15 @@ const sitemap = async () => {
 
   return [
     ...[home.pathname, blog.pathname, guestbook.pathname].map((route) => ({
-      url: `${baseUrl}${route}`,
+      url: env.NEXT_PUBLIC_SITE_URL + route,
       lastModified: new Date(),
     })),
     {
-      url: baseUrl + privacyPolicyNav.pathname,
+      url: env.NEXT_PUBLIC_SITE_URL + privacyPolicyNav.pathname,
       lastModified: privacyPolicy.updatedAt,
     },
     ...blogs.map(({ slug, updatedAt }) => ({
-      url: `${baseUrl}${blog.pathname}/${slug}`,
+      url: `${env.NEXT_PUBLIC_SITE_URL}${blog.pathname}/${slug}`,
       lastModified: updatedAt,
     })),
   ] satisfies MetadataRoute.Sitemap;

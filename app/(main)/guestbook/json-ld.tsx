@@ -7,7 +7,7 @@ import {
 } from 'schema-dts';
 
 import { guestbook } from '@/constants/nav';
-import { baseUrl, websiteDisplayName } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 import { getGuestbookSubmissions } from '@/lib/queries';
 import { encodeHtmlEntities, getJsonLdPerson } from '@/lib/utils';
 
@@ -45,13 +45,13 @@ export const JsonLd: FC<JsonLdProps> = async ({
                     text: encodeHtmlEntities(message),
                   }) satisfies Comment,
               ),
-              headline: `${websiteDisplayName} ${guestbook.label}`,
+              headline: `${env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${guestbook.label}`,
               interactionStatistic: {
                 '@type': 'InteractionCounter',
                 interactionType: { '@type': 'CommentAction' },
                 userInteractionCount: comments.length,
               },
-              url: baseUrl + guestbook.pathname,
+              url: env.NEXT_PUBLIC_SITE_URL + guestbook.pathname,
             } satisfies DiscussionForumPosting,
             {
               '@type': 'BreadcrumbList',
@@ -59,7 +59,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                 {
                   '@type': 'ListItem',
                   name: 'Home',
-                  item: baseUrl,
+                  item: env.NEXT_PUBLIC_SITE_URL,
                   position: 1,
                 },
                 {

@@ -6,7 +6,7 @@ import { Article, BreadcrumbList, Graph } from 'schema-dts';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { privacyPolicy } from '@/constants/nav';
-import { baseUrl, websiteDisplayName } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 import { getPrivacyPolicy } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
@@ -17,7 +17,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', {
   day: 'numeric',
 });
 
-const description = `${privacyPolicy.label} for ${websiteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
+const description = `${privacyPolicy.label} for ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
 
 const PrivacyPolicy: FC = async () => {
   const [{ createdAt, updatedAt, content }, person] = await Promise.all([
@@ -51,12 +51,12 @@ const PrivacyPolicy: FC = async () => {
             '@graph': [
               {
                 '@type': 'Article',
-                headline: `${websiteDisplayName} ${privacyPolicy.label}`,
+                headline: `${env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${privacyPolicy.label}`,
                 description,
-                image: `${baseUrl}/privacy-policy/opengraph-image`,
+                image: `${env.NEXT_PUBLIC_SITE_URL}/privacy-policy/opengraph-image`,
                 datePublished: createdAt,
                 dateModified: updatedAt,
-                url: `${baseUrl}/privacy-policy`,
+                url: `${env.NEXT_PUBLIC_SITE_URL}/privacy-policy`,
                 author: { '@id': person['@id'] },
               } satisfies Article,
               {
@@ -65,7 +65,7 @@ const PrivacyPolicy: FC = async () => {
                   {
                     '@type': 'ListItem',
                     name: 'Home',
-                    item: baseUrl,
+                    item: env.NEXT_PUBLIC_SITE_URL,
                     position: 1,
                   },
                   {
@@ -94,7 +94,7 @@ export const generateMetadata = async () => {
     description,
     openGraph: {
       type: 'article',
-      authors: baseUrl,
+      authors: env.NEXT_PUBLIC_SITE_URL,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       url: privacyPolicy.pathname,

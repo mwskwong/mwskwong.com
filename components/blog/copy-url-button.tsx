@@ -5,14 +5,14 @@ import { Check, Copy } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { FC, useEffect, useRef, useState } from 'react';
 
-import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 
 export type CopyUrlButtonProps = Omit<IconButtonProps, 'children'>;
 
 export const CopyUrlButton: FC<CopyUrlButtonProps> = (props) => {
   const [copied, setCopied] = useState(false);
   const pathname = usePathname();
-  const url = `${baseUrl}${pathname}`;
+  const url = env.NEXT_PUBLIC_SITE_URL + pathname;
   const timeout = useRef<NodeJS.Timeout>();
 
   useEffect(() => () => clearTimeout(timeout.current), []);

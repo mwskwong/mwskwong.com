@@ -24,8 +24,8 @@ import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
 import { breakpoints } from '@/constants/mui-joy';
-import { blog as blogPage, blogRssFeed, home } from '@/constants/nav';
-import { baseUrl } from '@/constants/site-config';
+import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
+import { env } from '@/env.mjs';
 import {
   getBlogBySlug,
   getBlogs,
@@ -186,7 +186,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 <Button
                   color="neutral"
                   component={NextLink}
-                  href={blogPage.pathname}
+                  href={blogNav.pathname}
                   size="lg"
                   variant="outlined"
                 >
@@ -212,7 +212,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
-                url: `${baseUrl}/blog/${slug}`,
+                url: `${env.NEXT_PUBLIC_SITE_URL}${blogNav.pathname}/${slug}`,
                 author: { '@id': person['@id'] },
                 keywords: blog.categories,
               } satisfies BlogPosting,
@@ -222,13 +222,13 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   {
                     '@type': 'ListItem',
                     name: 'Home',
-                    item: baseUrl,
+                    item: env.NEXT_PUBLIC_SITE_URL,
                     position: 1,
                   },
                   {
                     '@type': 'ListItem',
-                    name: blogPage.label,
-                    item: `${baseUrl}/blog`,
+                    name: blogNav.label,
+                    item: env.NEXT_PUBLIC_SITE_URL + blogNav.pathname,
                     position: 2,
                   },
                   {
@@ -266,16 +266,18 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
     description,
     openGraph: {
       type: 'article',
-      authors: baseUrl,
+      authors: env.NEXT_PUBLIC_SITE_URL,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       tags: categories,
-      url: `${blogPage.pathname}/${slug}`,
+      url: `${blogNav.pathname}/${slug}`,
       images: coverPhoto,
     },
     alternates: {
-      canonical: `${blogPage.pathname}/${slug}`,
-      types: { 'application/rss+xml': `${baseUrl}${blogRssFeed.pathname}` },
+      canonical: `${blogNav.pathname}/${slug}`,
+      types: {
+        'application/rss+xml': `${env.NEXT_PUBLIC_SITE_URL}${blogRssFeed.pathname}`,
+      },
     },
   } satisfies Metadata;
 };

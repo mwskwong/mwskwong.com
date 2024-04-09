@@ -8,7 +8,7 @@ import {
   phone,
   selfIntroduction,
 } from '@/constants/content';
-import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 
 import {
   getExperiences,
@@ -32,7 +32,7 @@ export const getJsonLdPerson = async () => {
     jobTitle: latestJobTitle,
     email,
     address,
-    url: baseUrl,
+    url: env.NEXT_PUBLIC_SITE_URL,
     image: personalPhoto,
     sameAs: platformProfiles.map(({ url }) => url),
     description: selfIntroduction,

@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
 
-import { baseUrl } from '@/constants/site-config';
 import { env } from '@/env.mjs';
 
 const robots = () =>
@@ -9,7 +8,7 @@ const robots = () =>
       userAgent: '*',
       disallow: env.VERCEL_ENV === 'production' ? undefined : '/',
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`,
   }) satisfies MetadataRoute.Robots;
 
 export default robots;

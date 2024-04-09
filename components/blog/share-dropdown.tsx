@@ -21,7 +21,7 @@ import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 
 import { firstName, lastName } from '@/constants/content';
-import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 
 export interface ShareDropdownProps extends Omit<DropdownProps, 'children'> {
   blog: {
@@ -33,8 +33,7 @@ export interface ShareDropdownProps extends Omit<DropdownProps, 'children'> {
 
 export const ShareDropdown: FC<ShareDropdownProps> = ({ blog, ...props }) => {
   const pathname = usePathname();
-
-  const url = `${baseUrl}${pathname}`;
+  const url = env.NEXT_PUBLIC_SITE_URL + pathname;
   const text = `"${blog.title}" by ${firstName} ${lastName}`;
   const socialMediaOptions = [
     {

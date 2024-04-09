@@ -19,7 +19,7 @@ import { Image } from '@/components/image';
 import { SectionDivider } from '@/components/section-divider';
 import { breakpoints } from '@/constants/mui-joy';
 import { blog, blogRssFeed } from '@/constants/nav';
-import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 import { getBlogs } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
@@ -153,7 +153,7 @@ const Blogs: FC = async () => {
               {
                 '@type': 'ListItem',
                 name: 'Home',
-                item: baseUrl,
+                item: env.NEXT_PUBLIC_SITE_URL,
                 position: 1,
               },
               {
@@ -177,7 +177,9 @@ export const metadata = {
   openGraph: { type: 'website', url: blog.pathname },
   alternates: {
     canonical: blog.pathname,
-    types: { 'application/rss+xml': `${baseUrl}${blogRssFeed.pathname}` },
+    types: {
+      'application/rss+xml': env.NEXT_PUBLIC_SITE_URL + blogRssFeed.pathname,
+    },
   },
 } satisfies Metadata;
 
