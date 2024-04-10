@@ -45,7 +45,7 @@
     "rehype-pretty-code": "^0.13.1",
     "rehype-slug": "^6.0.0",
     "schema-dts": "^1.1.2",
-    "shiki": "^1.2.4",
+    "shiki": "^1.3.0",
     "valibot": "^0.30.0"
   },
   "devDependencies": {
@@ -53,7 +53,7 @@
     "@next/eslint-plugin-next": "canary",
     "@svgr/webpack": "^8.1.0",
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^20.12.6",
+    "@types/node": "^20.12.7",
     "@types/react": "^18.2.75",
     "@types/react-dom": "^18.2.24",
     "@vercel/style-guide": "^6.0.0",
