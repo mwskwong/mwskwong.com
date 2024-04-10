@@ -5,7 +5,7 @@ import NextBundleAnalyzer from '@next/bundle-analyzer';
 import { env } from './env.mjs';
 
 const withBundleAnalyzer = NextBundleAnalyzer({
-  enabled: env.ANALYZE === 'true',
+  enabled: env.ANALYZE,
 });
 
 const sharedSvgoPlugins = [

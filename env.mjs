@@ -22,8 +22,12 @@ export const env = createEnv({
     EMAILJS_PRIVATE_KEY: z.string(),
     EMAILJS_SERVICE_ID: z.string().startsWith('service_'),
     EMAILJS_CONTACT_FORM_TEMPLATE_ID: z.string().startsWith('template_'),
-    ANALYZE: z.enum(['true', 'false']).optional(),
-    CRON_SECRET: z.string().optional(),
+    ANALYZE: z
+      .enum(['true', 'false'])
+      .transform((analyze) => analyze === 'true')
+      .optional(),
+    CRON_SECRET:
+      process.env.VERCEL === '1' ? z.string() : z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().url(),
