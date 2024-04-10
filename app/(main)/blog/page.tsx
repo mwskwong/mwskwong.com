@@ -18,7 +18,7 @@ import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { Image } from '@/components/image';
 import { SectionDivider } from '@/components/section-divider';
 import { breakpoints } from '@/constants/mui-joy';
-import { blog, blogRssFeed } from '@/constants/nav';
+import { blog, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
 import { getBlogs } from '@/lib/queries';
 
@@ -152,7 +152,7 @@ const Blogs: FC = async () => {
             itemListElement: [
               {
                 '@type': 'ListItem',
-                name: 'Home',
+                name: home.label,
                 item: env.NEXT_PUBLIC_SITE_URL,
                 position: 1,
               },

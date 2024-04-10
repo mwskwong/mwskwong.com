@@ -5,7 +5,7 @@ import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
-import { privacyPolicy } from '@/constants/nav';
+import { home, privacyPolicy } from '@/constants/nav';
 import { env } from '@/env.mjs';
 import { getPrivacyPolicy } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
@@ -64,7 +64,7 @@ const PrivacyPolicy: FC = async () => {
                 itemListElement: [
                   {
                     '@type': 'ListItem',
-                    name: 'Home',
+                    name: home.label,
                     item: env.NEXT_PUBLIC_SITE_URL,
                     position: 1,
                   },

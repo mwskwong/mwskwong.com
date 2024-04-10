@@ -9,6 +9,7 @@ import { Experience } from '@/components/home/experience';
 import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
+import { home } from '@/constants/nav';
 
 const bgcolors = {
   hero: 'background.body',
@@ -67,7 +68,7 @@ const Home: FC = () => (
           itemListElement: [
             {
               '@type': 'ListItem',
-              name: 'Home',
+              name: home.label,
               position: 1,
             },
           ],
