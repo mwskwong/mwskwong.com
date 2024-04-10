@@ -11,11 +11,18 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(['development', 'test', 'production']),
     DATABASE_URL: z.string().url(),
-    CONTENTFUL_ENVIRONMENT: z.union([
-      z.literal('master'),
-      z.string().regex(/^canary_\d{4}-\d{2}-\d{2}T\d{2}\.\d{2}\.\d{2}\.\d{4}$/),
-      z.literal('development'),
-    ]),
+    CONTENTFUL_ENVIRONMENT: (() => {
+      switch (process.env.VERCEL_ENV) {
+        case 'production':
+          return z.literal('master');
+        case 'preview':
+          return z
+            .string()
+            .regex(/^canary_\d{4}-\d{2}-\d{2}T\d{2}\.\d{2}\.\d{2}\.\d{4}$/);
+        default:
+          return z.literal('development');
+      }
+    })(),
     CONTENTFUL_SPACE_ID: z.string(),
     CONTENTFUL_ACCESS_TOKEN: z.string(),
     EMAILJS_PUBLIC_KEY: z.string(),
