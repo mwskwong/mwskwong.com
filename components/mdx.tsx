@@ -223,12 +223,10 @@ export const components = {
           noWrap
           color="warning"
           component="code"
-          variant="plain"
           sx={{
             display: 'inline',
             fontFamily: 'code',
             fontSize: '0.875em',
-            mx: 0,
             color,
           }}
           {...rest}
