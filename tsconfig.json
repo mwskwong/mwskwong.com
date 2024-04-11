@@ -15,7 +15,7 @@
     "paths": { "@/*": ["./*"] }
   },
   "include": [
-    "image.d.ts",
+    "svgr.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
