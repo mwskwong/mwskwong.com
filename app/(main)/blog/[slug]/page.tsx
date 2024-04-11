@@ -34,12 +34,7 @@ import {
 } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
-const dateFormatter = new Intl.DateTimeFormat('en', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
+const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
 const contactMeBgColor = 'primary.900';
 
