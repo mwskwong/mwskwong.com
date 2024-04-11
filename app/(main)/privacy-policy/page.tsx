@@ -10,12 +10,7 @@ import { baseUrl, websiteDisplayName } from '@/constants/site-config';
 import { getPrivacyPolicy } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
 
-const dateFormatter = new Intl.DateTimeFormat('en', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
+const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
 const description = `${privacyPolicy.label} for ${websiteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
 
