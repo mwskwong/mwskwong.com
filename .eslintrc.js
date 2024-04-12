@@ -113,7 +113,7 @@ module.exports = {
     {
       files: [
         '*.config.{mjs,ts}',
-        'src/app/**/{page,layout,not-found,*error,opengraph-image,apple-icon,sitemap,robots}.tsx',
+        'src/app/**/{page,layout,not-found,*error,opengraph-image,apple-icon}.tsx',
         'src/app/**/{sitemap,robots}.ts',
       ],
       rules: {
