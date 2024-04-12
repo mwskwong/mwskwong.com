@@ -112,17 +112,9 @@ module.exports = {
     // Must use default export
     {
       files: [
-        'next.config.mjs',
-        'prettier.config.mjs',
-        'unlighthouse.config.ts',
-        'app/**/page.tsx',
-        'app/**/layout.tsx',
-        'app/**/not-found.tsx',
-        'app/**/*error.tsx',
-        'app/apple-icon.tsx',
-        'app/**/opengraph-image.tsx',
-        'app/sitemap.ts',
-        'app/robots.ts',
+        '*.config.{mjs,ts}',
+        'src/app/**/{page,layout,not-found,*error,opengraph-image,apple-icon,sitemap,robots}.tsx',
+        'src/app/**/{sitemap,robots}.ts',
       ],
       rules: {
         'import/no-default-export': 'off',

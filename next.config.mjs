@@ -24,7 +24,6 @@ const config = {
     emotion: true,
     removeConsole: env.NODE_ENV === 'production',
   },
-  eslint: { dirs: ['app', 'components', 'constants', 'lib', 'og-images'] },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
