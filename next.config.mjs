@@ -2,7 +2,7 @@
 
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 
-import { env } from './env.mjs';
+import { env } from './src/env.mjs';
 
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: env.ANALYZE,
