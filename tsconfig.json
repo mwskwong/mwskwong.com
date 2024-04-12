@@ -12,10 +12,10 @@
     "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],
-    "paths": { "@/*": ["./*"] }
+    "paths": { "@/*": ["./src/*"] }
   },
   "include": [
-    "image.d.ts",
+    "svgr.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

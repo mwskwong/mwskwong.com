@@ -22,11 +22,7 @@ import { blog, blogRssFeed } from '@/constants/nav';
 import { baseUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 
-const dateFormatter = new Intl.DateTimeFormat('en', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-});
+const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
 
 const description = 'Personal perspectives on a broad range of topics.';
 

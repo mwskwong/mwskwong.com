@@ -22,7 +22,6 @@ const config = {
     emotion: true,
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  eslint: { dirs: ['app', 'components', 'constants', 'lib', 'og-images'] },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -118,6 +117,10 @@ const config = {
           value: 'SAMEORIGIN',
         },
         {
+          key: 'Permissions-Policy',
+          value: 'camera=(), microphone=(), geolocation=()',
+        },
+        {
           key: 'X-Content-Type-Options',
           value: 'nosniff',
         },
@@ -125,13 +128,24 @@ const config = {
           key: 'Referrer-Policy',
           value: 'strict-origin-when-cross-origin',
         },
+        {
+          key: 'Content-Security-Policy',
+          value: `
+            default-src 'self';
+            script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com;
+            style-src 'self' 'unsafe-inline';
+            img-src 'self' blob: data:;
+            font-src 'self';
+            object-src 'none';
+            base-uri 'self';
+            form-action 'self';
+            frame-ancestors 'none';
+            upgrade-insecure-requests;
+          `.replace(/\n/g, ''),
+        },
       ],
     },
   ],
-  /**
-   * only works for `fetch` for now
-   * @see {@link https://nextjs.org/docs/app/api-reference/next-config-js/logging}
-   */
   logging: { fetches: { fullUrl: true } },
   experimental: {
     ppr: true,
