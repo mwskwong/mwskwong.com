@@ -3,10 +3,8 @@
 import { unstable_noStore as noStore } from 'next/cache';
 import { parse } from 'valibot';
 
-import {
-  ContactFormSubmissionAcknowledgement,
-  ContactFormSubmissionNotification,
-} from '@/components/email';
+import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
+import { ContactFormNotification } from '@/components/emails/contact-form-notification';
 import { email, firstName, lastName } from '@/constants/content';
 import { websiteDisplayName } from '@/constants/site-config';
 import { prisma, resend } from '@/lib/clients';
@@ -35,13 +33,15 @@ export const submitContactForm = async (data: ContactForm) => {
         to: data.email,
         reply_to: email,
         subject: `Got Your Message From ${websiteDisplayName}!`,
-        react: <ContactFormSubmissionAcknowledgement {...data} />,
+        react: <ContactFormAcknowledgement {...data} />,
       }),
     resend.emails.send({
       from,
       to: email,
-      subject: data.subject ?? `You got a message from ${websiteDisplayName}`,
-      react: <ContactFormSubmissionNotification {...data} />,
+      subject: data.subject
+        ? `[${websiteDisplayName}] ${data.subject}`
+        : `You got a message from ${websiteDisplayName}`,
+      react: <ContactFormNotification {...data} />,
     }),
   ]);
 };
