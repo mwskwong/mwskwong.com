@@ -1,6 +1,7 @@
 'use server';
 
 import { unstable_noStore as noStore } from 'next/cache';
+import { ErrorResponse } from 'resend';
 import { parse } from 'valibot';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -10,6 +11,15 @@ import { websiteDisplayName } from '@/constants/site-config';
 import { prisma, resend } from '@/lib/clients';
 
 import { ContactForm, contactForm } from './validation-schema';
+
+class CreateEmailError extends Error {
+  error: ErrorResponse;
+
+  constructor(message: string, error: ErrorResponse) {
+    super(message);
+    this.error = error;
+  }
+}
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
@@ -28,20 +38,38 @@ export const submitContactForm = async (data: ContactForm) => {
   const from = `${firstName} ${lastName} <contact@mwskwong.com>`;
   await Promise.all([
     data.email &&
-      resend.emails.send({
+      resend.emails
+        .send({
+          from,
+          to: data.email,
+          reply_to: email,
+          subject: `Got Your Message From ${websiteDisplayName}!`,
+          react: <ContactFormAcknowledgement {...data} />,
+        })
+        .then(({ error }) => {
+          if (error) {
+            throw new CreateEmailError(
+              'Failed to auto reply user through email on contact form submission',
+              error,
+            );
+          }
+        }),
+    resend.emails
+      .send({
         from,
-        to: data.email,
-        reply_to: email,
-        subject: `Got Your Message From ${websiteDisplayName}!`,
-        react: <ContactFormAcknowledgement {...data} />,
+        to: email,
+        subject: data.subject
+          ? `[${websiteDisplayName}] ${data.subject}`
+          : `You got a message from ${websiteDisplayName}`,
+        react: <ContactFormNotification {...data} />,
+      })
+      .then(({ error }) => {
+        if (error) {
+          throw new CreateEmailError(
+            'Failed to send email to notify site owner on contact form submission',
+            error,
+          );
+        }
       }),
-    resend.emails.send({
-      from,
-      to: email,
-      subject: data.subject
-        ? `[${websiteDisplayName}] ${data.subject}`
-        : `You got a message from ${websiteDisplayName}`,
-      react: <ContactFormNotification {...data} />,
-    }),
   ]);
 };
