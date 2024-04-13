@@ -5,7 +5,7 @@ export const contentType = 'image/png';
 export const getFonts = async () =>
   [
     {
-      name: 'Geist',
+      name: 'Geist Sans',
       data: await fetch(
         new URL(
           'geist/assets/fonts/geist-sans/Geist-Bold.ttf',
