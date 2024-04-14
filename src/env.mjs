@@ -26,10 +26,7 @@ export const env = createEnv({
     })(),
     CONTENTFUL_SPACE_ID: z.string(),
     CONTENTFUL_ACCESS_TOKEN: z.string(),
-    EMAILJS_PUBLIC_KEY: z.string(),
-    EMAILJS_PRIVATE_KEY: z.string(),
-    EMAILJS_SERVICE_ID: z.string().startsWith('service_'),
-    EMAILJS_CONTACT_FORM_TEMPLATE_ID: z.string().startsWith('template_'),
+    RESEND_API_KEY: z.string().startsWith('re_'),
     ANALYZE: z
       .enum(['true', 'false'])
       .transform((analyze) => analyze === 'true')
