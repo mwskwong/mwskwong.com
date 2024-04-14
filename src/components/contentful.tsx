@@ -31,7 +31,6 @@ import { LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
 import ContentfulLight from '@/logos/contentful-light.svg';
-import EmailJs from '@/logos/emailjs.svg';
 import ImprovMx from '@/logos/improvmx.svg';
 import Mui from '@/logos/mui.svg';
 import Neon from '@/logos/neon-light.svg';
@@ -40,6 +39,7 @@ import PrismaDark from '@/logos/prisma-dark.svg';
 import PrismaLight from '@/logos/prisma-light.svg';
 import ReactHookForm from '@/logos/react-hook-form.svg';
 import ReactLight from '@/logos/react-light.svg';
+import ResendLight from '@/logos/resend-light.svg';
 import TypeScript from '@/logos/typescript.svg';
 import Valibot from '@/logos/valibot.svg';
 import VercelDark from '@/logos/vercel-dark.svg';
@@ -99,7 +99,7 @@ const Logos = {
   [contentfulIds.typescript]: TypeScript,
   [contentfulIds.valibot]: Valibot,
   [contentfulIds.contentful]: { light: ContentfulLight, dark: undefined },
-  [contentfulIds.emailjs]: EmailJs,
+  [contentfulIds.resend]: { light: ResendLight, dark: undefined },
   [contentfulIds.improvMx]: ImprovMx,
   [contentfulIds.prisma]: { light: PrismaLight, dark: PrismaDark },
   [contentfulIds.vercel]: { light: VercelLight, dark: VercelDark },
