@@ -17,7 +17,7 @@ import { FC, PropsWithChildren } from 'react';
 import { baseUrl, websiteDisplayName } from '@/constants/site-config';
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <Html>
+  <Html lang="en">
     <Head />
     <Body
       style={{
