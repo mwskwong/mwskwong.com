@@ -1,4 +1,5 @@
 import { Link } from '@react-email/components';
+import dedent from 'dedent';
 
 import { firstName } from '@/constants/content';
 
@@ -39,10 +40,12 @@ export const ContactFormNotification = ({
 ContactFormNotification.PreviewProps = {
   name: 'John Doe',
   email: 'john@example.com',
-  message: `Hello world! 👋
-<script>
-  alert("Hello\\nHow are you?");
-</script>`,
+  message: dedent(`
+    Hello world! 👋
+    <script>
+      alert("Hello\\nHow are you?");
+    </script>
+  `),
 } satisfies ContactFormNotificationProps;
 
 export default ContactFormNotification;
