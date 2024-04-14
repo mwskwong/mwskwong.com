@@ -6,7 +6,7 @@
     "prebuild": "dotenv -e .env.local -- npm run prisma:migrate:deploy",
     "build": "next build",
     "dev": "next dev",
-    "email:dev": "dotenv -e .env -- email dev --dir src/components/emails --port 3001",
+    "email:dev": "dotenv -e .env -e .env.local -- email dev --dir src/components/emails --port 3001",
     "postinstall": "patch-package && npm run prisma:generate",
     "lint": "next lint",
     "prettier:check": "prettier --check .",
