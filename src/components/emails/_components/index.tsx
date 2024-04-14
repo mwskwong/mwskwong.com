@@ -14,7 +14,7 @@ import {
 } from '@react-email/components';
 import { FC, PropsWithChildren } from 'react';
 
-import { baseUrl, websiteDisplayName } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
   <Html lang="en">
@@ -28,9 +28,9 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
     >
       <Container style={{ paddingTop: 8 * 3, paddingBottom: 8 * 6 }}>
         <Img
-          alt={websiteDisplayName}
+          alt={env.NEXT_PUBLIC_SITE_DISPLAY_NAME}
           height={50}
-          src={`${baseUrl}/apple-icon`}
+          src={`${env.NEXT_PUBLIC_SITE_URL}/apple-icon`}
           width={50}
           style={{
             margin: 'auto',
