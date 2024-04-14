@@ -22,16 +22,16 @@ export const ContactFormNotification = ({
       {email ? <Link href={`mailto:${email}`}>{name}</Link> : name}:
     </Text>
     <pre style={{ fontFamily: 'sans-serif' }}>
-      <Text
+      <blockquote
         style={{
-          padding: '0.75rem',
-          borderRadius: 6,
-          fontSize: '0.875rem',
-          backgroundColor: '#F0F4F8',
+          paddingLeft: 8,
+          paddingRight: 8,
+          borderLeft: `3px solid #CDD7E1`,
+          margin: 0,
         }}
       >
-        {message}
-      </Text>
+        <Text>{message}</Text>
+      </blockquote>
     </pre>
   </Layout>
 );
