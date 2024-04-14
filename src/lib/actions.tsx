@@ -35,14 +35,13 @@ export const submitContactForm = async (data: ContactForm) => {
   parse(contactForm, data);
   await prisma.contactFormSubmission.create({ data });
 
-  const from = `${firstName} ${lastName} <contact@mwskwong.com>`;
+  const from = `${firstName} ${lastName} <${email}>`;
   await Promise.all([
     data.email &&
       resend.emails
         .send({
           from,
           to: data.email,
-          reply_to: email,
           subject: `Got Your Message From ${websiteDisplayName}!`,
           react: <ContactFormAcknowledgement {...data} />,
         })
@@ -66,7 +65,7 @@ export const submitContactForm = async (data: ContactForm) => {
       .then(({ error }) => {
         if (error) {
           throw new CreateEmailError(
-            'Failed to send email to notify site owner on contact form submission',
+            'Failed to notify site owner through email on contact form submission',
             error,
           );
         }
