@@ -8,7 +8,7 @@ import { cache as reactCache } from 'react';
 
 import { cv, privacyPolicy } from '@/constants/contentful-ids';
 
-import { cms, db } from './clients';
+import { contentful, prisma } from './clients';
 import {
   BlogSkeleton,
   CourseSkeleton,
@@ -22,7 +22,7 @@ import {
 } from './types';
 
 export const getBlogBySlug = cache(async (slug: string) => {
-  const { items } = await cms.getEntries<BlogSkeleton>({
+  const { items } = await contentful.getEntries<BlogSkeleton>({
     content_type: 'blog',
     'fields.slug[in]': [slug],
     limit: 1,
@@ -49,7 +49,7 @@ export const getBlogBySlug = cache(async (slug: string) => {
 export const getBlogs = cache(
   async (pagination?: { page: number; pageSize?: number }) => {
     const { page = 1, pageSize = 9 } = pagination ?? {};
-    const { items } = await cms.getEntries<BlogSkeleton>({
+    const { items } = await contentful.getEntries<BlogSkeleton>({
       content_type: 'blog',
       order: ['-sys.createdAt'],
       skip: pagination && (page - 1) * pageSize,
@@ -73,7 +73,7 @@ export const getBlogs = cache(
 );
 
 export const getContributedProjects = cache(async () => {
-  const { items } = await cms.getEntries<ProjectSkeleton>({
+  const { items } = await contentful.getEntries<ProjectSkeleton>({
     content_type: 'project',
     'metadata.tags.sys.id[in]': ['contributed'],
     order: ['fields.name'],
@@ -87,7 +87,7 @@ export const getContributedProjects = cache(async () => {
 });
 
 export const getCourses = cache(async () => {
-  const { items } = await cms.getEntries<CourseSkeleton>({
+  const { items } = await contentful.getEntries<CourseSkeleton>({
     content_type: 'course',
     order: ['fields.name'],
   });
@@ -106,7 +106,7 @@ export const getCourses = cache(async () => {
 });
 
 export const getCv = cache(async () => {
-  const asset = await cms.getAsset(cv);
+  const asset = await contentful.getAsset(cv);
   return asset.fields.file && `https:${asset.fields.file.url}`;
 });
 
@@ -117,7 +117,7 @@ export const getEducations = cache(async () => {
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
-  const { items } = await cms.getEntries<EducationSkeleton>({
+  const { items } = await contentful.getEntries<EducationSkeleton>({
     content_type: 'education',
     order: ['fields.to'],
   });
@@ -151,7 +151,7 @@ export const getExperiences = cache(async () => {
   // Contentful always place undefined fields at the bottom,
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
-  const { items } = await cms.getEntries<ExperienceSkeleton>({
+  const { items } = await contentful.getEntries<ExperienceSkeleton>({
     content_type: 'experience',
     order: ['fields.to'],
   });
@@ -197,12 +197,12 @@ export const getExperiences = cache(async () => {
 });
 
 export const getPersonalPhoto = cache(async () => {
-  const asset = await cms.getAsset('6MPuamYCrTMaP2hJu4t6WM');
+  const asset = await contentful.getAsset('6MPuamYCrTMaP2hJu4t6WM');
   return asset.fields.file && `https:${asset.fields.file.url}`;
 });
 
 export const getPlatformProfiles = cache(async () => {
-  const { items } = await cms.getEntries<PlatformProfileSkeleton>({
+  const { items } = await contentful.getEntries<PlatformProfileSkeleton>({
     content_type: 'platformProfile',
   });
 
@@ -219,12 +219,12 @@ export const getPlatformProfiles = cache(async () => {
 
 export const getSkillSet = cache(async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
-    cms.getEntries<SkillSkeleton>({
+    contentful.getEntries<SkillSkeleton>({
       content_type: 'skill',
       'fields.category[exists]': true,
       order: ['-fields.proficiency', 'fields.name'],
     }),
-    cms.getEntries<SkillCategorySkeleton>({
+    contentful.getEntries<SkillCategorySkeleton>({
       content_type: 'skillCategory',
       order: ['-fields.proficiency', 'fields.name'],
     }),
@@ -244,7 +244,7 @@ export const getSkillSet = cache(async () => {
 });
 
 export const getTechStack = cache(async () => {
-  const { items } = await cms.getEntries<ProjectSkeleton>({
+  const { items } = await contentful.getEntries<ProjectSkeleton>({
     content_type: 'project',
     'metadata.tags.sys.id[in]': ['techStack'],
     order: ['fields.type', 'fields.name'],
@@ -258,7 +258,7 @@ export const getTechStack = cache(async () => {
 });
 
 export const getPrivacyPolicy = cache(async () => {
-  const entry = await cms.getEntry<PrivacyPolicy>(privacyPolicy);
+  const entry = await contentful.getEntry<PrivacyPolicy>(privacyPolicy);
 
   return {
     createdAt: entry.sys.createdAt,
@@ -268,7 +268,7 @@ export const getPrivacyPolicy = cache(async () => {
 });
 
 // Use React.cache here, because we want to achieve the following
-//   1. DB is queried only once in the blog listing page
+//   1. prisma is queried only once in the blog listing page
 //   2. The result of getBlogsMetadataByIds is NOT cached in other server requests
 //      i.e. when the user refreshes the page or other users visit the same page,
 //      it should see the metadata updated
@@ -276,20 +276,20 @@ export const getPrivacyPolicy = cache(async () => {
 // See https://react.dev/reference/react/cache#caveats
 export const getBlogsMetadataByIds = reactCache((ids: string[]) => {
   noStore();
-  return db.blogMetadata.findMany({ where: { id: { in: ids } } });
+  return prisma.blogMetadata.findMany({ where: { id: { in: ids } } });
 });
 
 export const getBlogMetadataById = (id: string) => {
   noStore();
-  return db.blogMetadata.findUnique({ where: { id } });
+  return prisma.blogMetadata.findUnique({ where: { id } });
 };
 
 // prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
-// this allows moderation on PROD by directly updating the DB
+// this allows moderation on PROD by directly updating the prisma
 // Also using React.cache here because both JSON+LD and the UI needs this data
 export const getGuestbookSubmissions = reactCache(() => {
   noStore();
-  return db.contactFormSubmission.findMany({
+  return prisma.contactFormSubmission.findMany({
     where: { showInGuestbook: true },
     orderBy: { submittedAt: 'desc' },
   });

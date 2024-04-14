@@ -1,7 +1,7 @@
 import { headers } from 'next/headers';
 
 import { env } from '@/env.mjs';
-import { db } from '@/lib/clients';
+import { prisma } from '@/lib/clients';
 
 export const GET = async () => {
   const authorization = headers().get('Authorization');
@@ -9,10 +9,10 @@ export const GET = async () => {
     return Response.json({ status: 1 }, { status: 401 });
   }
 
-  const tables = await db.$queryRaw<
+  const tables = await prisma.$queryRaw<
     { tablename: string }[]
   >`SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND tablename <> '_prisma_migrations'`;
-  await db.$executeRawUnsafe(
+  await prisma.$executeRawUnsafe(
     `VACUUM ANALYZE ${tables.map(({ tablename }) => tablename).join(', ')}`,
   );
 

@@ -115,7 +115,10 @@ module.exports = {
         '*.config.{mjs,ts}',
         'src/app/**/{page,layout,not-found,*error,opengraph-image,apple-icon}.tsx',
         'src/app/**/{sitemap,robots}.ts',
+        'src/components/emails/*.tsx',
       ],
+      // non email templates should not have default export
+      excludedFiles: ['src/components/emails/_*/**'],
       rules: {
         'import/no-default-export': 'off',
         'import/prefer-default-export': ['error', { target: 'any' }],
