@@ -1,5 +1,5 @@
 import { Link } from '@react-email/components';
-import dedent from "dedent";
+import dedent from 'dedent';
 
 import { firstName } from '@/constants/content';
 
