@@ -28,11 +28,19 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
       }}
     >
       <Container style={{ paddingTop: 8 * 3, paddingBottom: 8 * 6 }}>
+<<<<<<< HEAD
         <Link href={env.NEXT_PUBLIC_SITE_URL}>
           <Img
             alt={env.NEXT_PUBLIC_SITE_DISPLAY_NAME}
             height={50}
             src={`${env.NEXT_PUBLIC_SITE_URL}/apple-icon`}
+=======
+        <Link href={baseUrl}>
+          <Img
+            alt={websiteDisplayName}
+            height={50}
+            src={`${baseUrl}/apple-icon`}
+>>>>>>> canary
             width={50}
             style={{
               margin: 'auto',
