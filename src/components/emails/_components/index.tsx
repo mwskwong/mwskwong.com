@@ -10,6 +10,7 @@ import {
   Head,
   Html,
   Img,
+  Link,
   TextProps,
 } from '@react-email/components';
 import { FC, PropsWithChildren } from 'react';
@@ -27,17 +28,19 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
       }}
     >
       <Container style={{ paddingTop: 8 * 3, paddingBottom: 8 * 6 }}>
-        <Img
-          alt={websiteDisplayName}
-          height={50}
-          src={`${baseUrl}/apple-icon`}
-          width={50}
-          style={{
-            margin: 'auto',
-            border: `1px solid #CDD7E1`,
-            borderRadius: '25%',
-          }}
-        />
+        <Link href={baseUrl}>
+          <Img
+            alt={websiteDisplayName}
+            height={50}
+            src={`${baseUrl}/apple-icon`}
+            width={50}
+            style={{
+              margin: 'auto',
+              border: `1px solid #CDD7E1`,
+              borderRadius: '25%',
+            }}
+          />
+        </Link>
         {children}
       </Container>
     </Body>
