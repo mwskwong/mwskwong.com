@@ -17,9 +17,12 @@ export const env = createEnv({
         case 'production':
           return z.literal('master');
         case 'preview':
-          return z
-            .string()
-            .regex(/^canary_\d{4}-\d{2}-\d{2}T\d{2}\.\d{2}\.\d{2}\.\d{4}$/);
+          return (
+            z
+              .string()
+              // matching canary_YYYY-MM-DDTHH.mm.ss.SSSS
+              .regex(/^canary_\d{4}-\d{2}-\d{2}T\d{2}\.\d{2}\.\d{2}\.\d{4}$/)
+          );
         default:
           return z.literal('development');
       }
