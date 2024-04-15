@@ -48,10 +48,10 @@ const PrivacyPolicy: FC = async () => {
                 '@type': 'Article',
                 headline: `${env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${privacyPolicy.label}`,
                 description,
-                image: `${env.NEXT_PUBLIC_SITE_URL}/privacy-policy/opengraph-image`,
+                image: `${env.NEXT_PUBLIC_SITE_URL}${privacyPolicy.pathname}/opengraph-image`,
                 datePublished: createdAt,
                 dateModified: updatedAt,
-                url: `${env.NEXT_PUBLIC_SITE_URL}/privacy-policy`,
+                url: `${env.NEXT_PUBLIC_SITE_URL}${privacyPolicy.pathname}`,
                 author: { '@id': person['@id'] },
               } satisfies Article,
               {
