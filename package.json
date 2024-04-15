@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "private": true,
   "scripts": {
-    "prebuild": "dotenv -e .env.local -- npm run prisma:migrate:deploy",
+    "prebuild": "npm run prisma:migrate:deploy",
     "build": "next build",
     "dev": "next dev",
     "email:dev": "dotenv -e .env -- email dev --dir src/components/emails --port 3001",
@@ -11,7 +11,7 @@
     "postinstall": "patch-package && npm run prisma:generate",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
-    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:migrate:deploy": "dotenv -e .env.local -- prisma migrate deploy",
     "prisma:migrate:dev": "dotenv -e .env.local -- prisma migrate dev",
     "start": "next start",
     "upgrade": "npm update && npm run postinstall && npm run format && tsc --noEmit && npm run lint -- --fix"
