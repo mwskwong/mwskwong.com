@@ -1,7 +1,6 @@
 'use server';
 
 import { unstable_noStore as noStore } from 'next/cache';
-import { ErrorResponse } from 'resend';
 import { parse } from 'valibot';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -10,16 +9,8 @@ import { email, firstName, lastName } from '@/constants/content';
 import { env } from '@/env.mjs';
 import { prisma, resend } from '@/lib/clients';
 
+import { CreateEmailError } from './utils';
 import { ContactForm, contactForm } from './validation-schema';
-
-class CreateEmailError extends Error {
-  error: ErrorResponse;
-
-  constructor(message: string, error: ErrorResponse) {
-    super(message);
-    this.error = error;
-  }
-}
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
@@ -32,43 +23,36 @@ export const incrBlogViewById = async (id: string) => {
 
 export const submitContactForm = async (data: ContactForm) => {
   noStore();
+
   parse(contactForm, data);
   await prisma.contactFormSubmission.create({ data });
 
   const from = `${firstName} ${lastName} <${email}>`;
-  await Promise.all([
-    data.email &&
-      resend.emails
-        .send({
-          from,
-          to: data.email,
-          subject: `Got Your Message From ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}!`,
-          react: <ContactFormAcknowledgement {...data} />,
-        })
-        .then(({ error }) => {
-          if (error) {
-            throw new CreateEmailError(
-              'Failed to auto reply user through email on contact form submission',
-              error,
-            );
-          }
-        }),
-    resend.emails
-      .send({
-        from,
-        to: email,
-        subject: data.subject
-          ? `[${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}] ${data.subject}`
-          : `You got a message from ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}`,
-        react: <ContactFormNotification {...data} />,
-      })
-      .then(({ error }) => {
-        if (error) {
-          throw new CreateEmailError(
-            'Failed to notify site owner through email on contact form submission',
-            error,
-          );
-        }
-      }),
-  ]);
+  const emails = [
+    {
+      from,
+      to: email,
+      subject: data.subject
+        ? `[${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}] ${data.subject}`
+        : `You got a message from ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}`,
+      react: <ContactFormNotification {...data} />,
+    },
+  ];
+
+  if (data.email) {
+    emails.push({
+      from,
+      to: data.email,
+      subject: `Got Your Message From ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}!`,
+      react: <ContactFormAcknowledgement {...data} />,
+    });
+  }
+
+  const { error } = await resend.batch.send(emails);
+  if (error) {
+    throw new CreateEmailError(
+      'Failed to send emails on contact form submission',
+      error,
+    );
+  }
 };
