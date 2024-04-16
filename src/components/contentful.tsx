@@ -31,6 +31,8 @@ import { LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
 import ContentfulLight from '@/logos/contentful-light.svg';
+import GeistDark from '@/logos/geist-dark.svg';
+import GeistLight from '@/logos/geist-light.svg';
 import ImprovMx from '@/logos/improvmx.svg';
 import Mui from '@/logos/mui.svg';
 import Neon from '@/logos/neon-light.svg';
@@ -108,6 +110,7 @@ const Logos = {
     light: PrismaLight,
     dark: PrismaDark,
   },
+  [contentfulIds.geist]: { light: GeistLight, dark: GeistDark },
 };
 
 export interface LogoProps extends SVGProps<SVGSVGElement> {
