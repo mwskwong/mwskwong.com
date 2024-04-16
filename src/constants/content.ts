@@ -32,6 +32,6 @@ export const contactInfo = {
     Icon: MapPin,
     title: 'Find Me At',
     value: address,
-    url: 'https://www.google.com.hk/maps/place/Sha+Tin',
+    url: 'https://www.google.com/maps/place/Sha+Tin',
   },
 };
