@@ -41,16 +41,16 @@ export const ContactFormNotification = ({
       :
     </Text>
     <pre style={{ fontFamily: 'sans-serif' }}>
-      <blockquote
+      <Text
         style={{
-          paddingLeft: 8,
-          paddingRight: 8,
-          borderLeft: `3px solid #CDD7E1`,
-          margin: 0,
+          padding: '1rem',
+          borderRadius: 8,
+          border: '1px solid #CDD7E1',
+          backgroundColor: '#FBFCFE',
         }}
       >
-        <Text>{message}</Text>
-      </blockquote>
+        {message}
+      </Text>
     </pre>
   </Layout>
 );
