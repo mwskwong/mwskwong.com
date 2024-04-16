@@ -1,4 +1,3 @@
-import { ErrorResponse } from 'resend';
 import { Person } from 'schema-dts';
 
 import {
@@ -43,12 +42,3 @@ export const getJsonLdPerson = async () => {
 
 export const encodeHtmlEntities = (str: string) =>
   str.replace(/[\u00A0-\u9999<>&]/gim, (i) => `&#${i.charCodeAt(0)};`);
-
-export class CreateEmailError extends Error {
-  error: ErrorResponse;
-
-  constructor(message: string, error: ErrorResponse) {
-    super(message);
-    this.error = error;
-  }
-}
