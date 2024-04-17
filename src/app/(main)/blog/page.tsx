@@ -179,7 +179,7 @@ export const generateMetadata = async (
     openGraph: { ...openGraph, url: blog.pathname },
     alternates: {
       canonical: blog.pathname,
-      types: { 'application/rss+xml': `${baseUrl}${blogRssFeed.pathname}` },
+      types: { 'application/rss+xml': blogRssFeed.pathname },
     },
   } satisfies Metadata;
 };
