@@ -1,5 +1,5 @@
 import { Button, Container, Stack, Typography } from '@mui/joy';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { FC, Suspense } from 'react';
 
@@ -51,11 +51,18 @@ const Guestbook: FC = () => (
   </>
 );
 
-export const metadata = {
-  title: guestbook.label,
-  description,
-  openGraph: { type: 'website', url: guestbook.pathname },
-  alternates: { canonical: guestbook.pathname },
-} satisfies Metadata;
+export const generateMetadata = async (
+  _: unknown,
+  parent: ResolvingMetadata,
+) => {
+  const { openGraph } = await parent;
+
+  return {
+    title: guestbook.label,
+    description,
+    openGraph: { ...openGraph, url: guestbook.pathname },
+    alternates: { canonical: guestbook.pathname },
+  } satisfies Metadata;
+};
 
 export default Guestbook;
