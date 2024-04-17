@@ -1,5 +1,5 @@
 import { Container, Typography } from '@mui/joy';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { FC } from 'react';
 import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
@@ -81,13 +81,20 @@ const PrivacyPolicy: FC = async () => {
   );
 };
 
-export const generateMetadata = async () => {
-  const { createdAt, updatedAt } = await getPrivacyPolicy();
+export const generateMetadata = async (
+  _: unknown,
+  parent: ResolvingMetadata,
+) => {
+  const [{ openGraph }, { createdAt, updatedAt }] = await Promise.all([
+    parent,
+    getPrivacyPolicy(),
+  ]);
 
   return {
     title: privacyPolicy.label,
     description,
     openGraph: {
+      ...openGraph,
       type: 'article',
       authors: baseUrl,
       publishedTime: createdAt,

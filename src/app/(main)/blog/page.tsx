@@ -9,7 +9,7 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
 import { FC, Suspense } from 'react';
 import { BreadcrumbList, WithContext } from 'schema-dts';
@@ -167,14 +167,21 @@ const Blogs: FC = async () => {
   );
 };
 
-export const metadata = {
-  title: blog.label,
-  description,
-  openGraph: { type: 'website', url: blog.pathname },
-  alternates: {
-    canonical: blog.pathname,
-    types: { 'application/rss+xml': `${baseUrl}${blogRssFeed.pathname}` },
-  },
-} satisfies Metadata;
+export const generateMetadata = async (
+  _: unknown,
+  parent: ResolvingMetadata,
+) => {
+  const { openGraph } = await parent;
+
+  return {
+    title: blog.label,
+    description,
+    openGraph: { ...openGraph, url: blog.pathname },
+    alternates: {
+      canonical: blog.pathname,
+      types: { 'application/rss+xml': blogRssFeed.pathname },
+    },
+  } satisfies Metadata;
+};
 
 export default Blogs;
