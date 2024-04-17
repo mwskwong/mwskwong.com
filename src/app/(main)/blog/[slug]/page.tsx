@@ -270,9 +270,7 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
     },
     alternates: {
       canonical: `${blogNav.pathname}/${slug}`,
-      types: {
-        'application/rss+xml': `${env.NEXT_PUBLIC_SITE_URL}${blogRssFeed.pathname}`,
-      },
+      types: { 'application/rss+xml': blogRssFeed.pathname },
     },
   } satisfies Metadata;
 };
