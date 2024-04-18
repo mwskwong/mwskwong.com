@@ -106,8 +106,9 @@ export const components = {
     />
   ),
   a: ({ ref, color, children, ...props }) => {
-    const external =
-      props.href?.startsWith('http://') ?? props.href?.startsWith('https://');
+    const external = props.href
+      ? props.href.startsWith('http://') || props.href.startsWith('https://')
+      : false;
     return (
       <Link
         ref={ref as RefObject<HTMLAnchorElement>}
