@@ -1,7 +1,7 @@
 'use server';
 
 import { unstable_noStore as noStore } from 'next/cache';
-import { ErrorResponse } from 'resend';
+import { type ErrorResponse } from 'resend';
 import { parse } from 'valibot';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -10,7 +10,7 @@ import { email, firstName, lastName } from '@/constants/content';
 import { env } from '@/env.mjs';
 import { prisma, resend } from '@/lib/clients';
 
-import { ContactForm, contactForm } from './validation';
+import { type ContactForm, contactForm } from './validation';
 
 export const incrBlogViewById = async (id: string) => {
   noStore();

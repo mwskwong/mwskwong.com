@@ -1,5 +1,5 @@
-import { Box, BoxProps, Container, Stack, Typography } from '@mui/joy';
-import { FC } from 'react';
+import { Box, type BoxProps, Container, Stack, Typography } from '@mui/joy';
+import { type FC } from 'react';
 
 import { education } from '@/constants/nav';
 import { getCourses, getEducations } from '@/lib/queries';

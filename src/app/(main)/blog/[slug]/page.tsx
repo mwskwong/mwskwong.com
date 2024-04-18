@@ -9,11 +9,11 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
-import { FC, Suspense } from 'react';
-import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
+import { type FC, Suspense } from 'react';
+import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { BlogCoverImage } from '@/components/blog/blog-cover-image';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';

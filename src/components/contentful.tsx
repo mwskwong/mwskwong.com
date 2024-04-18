@@ -1,5 +1,5 @@
 import {
-  IconType,
+  type IconType,
   SiDatacamp,
   SiEnterprisedb,
   SiGithub,
@@ -19,15 +19,15 @@ import {
   Bug,
   Database,
   LayoutDashboard,
-  LucideProps,
+  type LucideProps,
   MonitorDot,
   Shapes,
   TabletSmartphone,
   Terminal,
   Workflow,
 } from 'lucide-react';
-import { ComponentProps, FC, SVGProps, forwardRef } from 'react';
-import { LiteralUnion } from 'type-fest';
+import { type ComponentProps, type FC, type SVGProps, forwardRef } from 'react';
+import { type LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
 import ContentfulLight from '@/logos/contentful-light.svg';

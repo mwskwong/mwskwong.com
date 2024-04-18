@@ -8,10 +8,10 @@ import {
   Sheet,
   Slider,
   Stack,
-  StackProps,
+  type StackProps,
   Typography,
 } from '@mui/joy';
-import { FC, useDeferredValue, useMemo, useState } from 'react';
+import { type FC, useDeferredValue, useMemo, useState } from 'react';
 
 import { Icon } from '../contentful';
 

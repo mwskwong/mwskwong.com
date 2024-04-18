@@ -1,10 +1,10 @@
 import { escape } from 'lodash-es';
-import { FC } from 'react';
+import { type FC } from 'react';
 import {
-  BreadcrumbList,
-  Comment,
-  DiscussionForumPosting,
-  Graph,
+  type BreadcrumbList,
+  type Comment,
+  type DiscussionForumPosting,
+  type Graph,
 } from 'schema-dts';
 
 import { guestbook, home } from '@/constants/nav';

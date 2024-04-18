@@ -1,9 +1,9 @@
-import { Theme, extendTheme } from '@mui/joy';
-import { PaletteOptions } from '@mui/joy/styles/types';
-import { Interpolation } from '@mui/styled-engine';
+import { type Theme, extendTheme } from '@mui/joy';
+import { type PaletteOptions } from '@mui/joy/styles/types';
+import { type Interpolation } from '@mui/styled-engine';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
-import { PartialDeep } from 'type-fest';
+import { type PartialDeep } from 'type-fest';
 
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {

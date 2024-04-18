@@ -10,9 +10,9 @@ import {
   Head,
   Html,
   Img,
-  TextProps,
+  type TextProps,
 } from '@react-email/components';
-import { FC, PropsWithChildren } from 'react';
+import { type FC, type PropsWithChildren } from 'react';
 
 import { env } from '@/env.mjs';
 

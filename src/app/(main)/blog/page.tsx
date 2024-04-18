@@ -9,10 +9,10 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import { Metadata, ResolvingMetadata } from 'next';
+import { type Metadata, type ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
-import { FC, Suspense } from 'react';
-import { BreadcrumbList, WithContext } from 'schema-dts';
+import { type FC, Suspense } from 'react';
+import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsSkeleton } from '@/components/blog/views';

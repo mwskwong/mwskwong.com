@@ -1,4 +1,4 @@
-import { Entry } from 'contentful';
+import { type Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
 import {
   unstable_cache as cache,
@@ -10,15 +10,15 @@ import { cv, privacyPolicy } from '@/constants/contentful-ids';
 
 import { contentful, prisma } from './clients';
 import {
-  BlogSkeleton,
-  CourseSkeleton,
-  EducationSkeleton,
-  ExperienceSkeleton,
-  PlatformProfileSkeleton,
-  PrivacyPolicy,
-  ProjectSkeleton,
-  SkillCategorySkeleton,
-  SkillSkeleton,
+  type BlogSkeleton,
+  type CourseSkeleton,
+  type EducationSkeleton,
+  type ExperienceSkeleton,
+  type PlatformProfileSkeleton,
+  type PrivacyPolicy,
+  type ProjectSkeleton,
+  type SkillCategorySkeleton,
+  type SkillSkeleton,
 } from './types';
 
 export const getBlogBySlug = cache(async (slug: string) => {

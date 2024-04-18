@@ -5,15 +5,15 @@ import {
   ListItem,
   Sheet,
   Typography,
-  TypographyProps,
+  type TypographyProps,
 } from '@mui/joy';
 import { merge } from 'lodash-es';
 import { LinkIcon } from 'lucide-react';
-import { MDXComponents } from 'mdx/types';
+import { type MDXComponents } from 'mdx/types';
 import NextLink from 'next/link';
-import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
-import { FC, RefObject } from 'react';
-import rehypePrettyCode, { Options } from 'rehype-pretty-code';
+import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
+import { type FC, type RefObject } from 'react';
+import rehypePrettyCode, { type Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
 import { CopyCodeButton } from './copy-code-button';

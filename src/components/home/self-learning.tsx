@@ -10,11 +10,11 @@ import {
   Input,
   Link,
   Stack,
-  StackProps,
+  type StackProps,
   Typography,
 } from '@mui/joy';
 import { Search, X } from 'lucide-react';
-import { FC, useDeferredValue, useMemo, useState } from 'react';
+import { type FC, useDeferredValue, useMemo, useState } from 'react';
 
 import { Icon } from '../contentful';
 

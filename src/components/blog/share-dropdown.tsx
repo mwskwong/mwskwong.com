@@ -8,7 +8,7 @@ import {
 } from '@icons-pack/react-simple-icons';
 import {
   Dropdown,
-  DropdownProps,
+  type DropdownProps,
   IconButton,
   ListDivider,
   ListItemDecorator,
@@ -18,7 +18,7 @@ import {
 } from '@mui/joy';
 import { Share2 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { firstName, lastName } from '@/constants/content';
 import { env } from '@/env.mjs';

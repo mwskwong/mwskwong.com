@@ -1,20 +1,20 @@
 import {
   Chip,
   Grid,
-  GridProps,
+  type GridProps,
   Link,
   List,
   ListItem,
   ListItemButton,
-  ListItemProps,
+  type ListItemProps,
   Stack,
   Typography,
 } from '@mui/joy';
 import { mergeSx } from 'merge-sx';
-import { StaticImageData } from 'next/image';
-import { FC } from 'react';
+import { type StaticImageData } from 'next/image';
+import { type FC } from 'react';
 
-import { Image, ImageProps } from '../image';
+import { Image, type ImageProps } from '../image';
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
   month: 'short',

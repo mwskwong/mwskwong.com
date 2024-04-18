@@ -1,4 +1,4 @@
-import { Person } from 'schema-dts';
+import { type Person } from 'schema-dts';
 
 import {
   address,

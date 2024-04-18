@@ -1,7 +1,7 @@
 import { Button, Container, Stack, Typography } from '@mui/joy';
-import { Metadata, ResolvingMetadata } from 'next';
+import { type Metadata, type ResolvingMetadata } from 'next';
 import Link from 'next/link';
-import { FC, Suspense } from 'react';
+import { type FC, Suspense } from 'react';
 
 import {
   SubmissionList,

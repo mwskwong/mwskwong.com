@@ -1,6 +1,6 @@
-import { Skeleton, Typography, TypographyProps } from '@mui/joy';
+import { Skeleton, Typography, type TypographyProps } from '@mui/joy';
 import { Eye } from 'lucide-react';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 

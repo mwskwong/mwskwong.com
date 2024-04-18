@@ -1,13 +1,13 @@
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Container,
   Link,
   Stack,
   Tooltip,
   Typography,
 } from '@mui/joy';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { experience } from '@/constants/nav';
 import { getContributedProjects, getExperiences } from '@/lib/queries';

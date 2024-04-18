@@ -1,6 +1,6 @@
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Container,
   IconButton,
   Link,
@@ -11,7 +11,7 @@ import {
 } from '@mui/joy';
 import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import Logo from '@/app/icon.svg?monochrome';
 import { github, linkedin } from '@/constants/contentful-ids';

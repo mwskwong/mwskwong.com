@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/joy';
-import { Metadata, ResolvingMetadata } from 'next';
-import { FC } from 'react';
-import { Article, BreadcrumbList, Graph } from 'schema-dts';
+import { type Metadata, type ResolvingMetadata } from 'next';
+import { type FC } from 'react';
+import { type Article, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';

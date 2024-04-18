@@ -8,7 +8,7 @@ import {
 } from '@mui/joy';
 // FIXME: switch to @mui/joy-nextjs when ready
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import { FC, PropsWithChildren } from 'react';
+import { type FC, type PropsWithChildren } from 'react';
 
 import { globalStyles, theme } from '@/theme';
 

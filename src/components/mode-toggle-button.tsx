@@ -1,9 +1,9 @@
 'use client';
 
 import { NoSsr } from '@mui/base';
-import { IconButton, IconButtonProps, useColorScheme } from '@mui/joy';
+import { IconButton, type IconButtonProps, useColorScheme } from '@mui/joy';
 import { Moon, Sun } from 'lucide-react';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 export type ModeToggleButtonProps = Omit<IconButtonProps, 'children'>;
 export const ModeToggleButton: FC<ModeToggleButtonProps> = (props) => {
