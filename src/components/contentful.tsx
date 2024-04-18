@@ -46,6 +46,7 @@ import TypeScript from '@/logos/typescript.svg';
 import Valibot from '@/logos/valibot.svg';
 import VercelDark from '@/logos/vercel-dark.svg';
 import VercelLight from '@/logos/vercel-light.svg';
+import Zod from '@/logos/zod.svg';
 
 const generateSimpleIcon = (SiIcon: IconType) => {
   const Icon: IconType = forwardRef((props, ref) => (
@@ -111,6 +112,7 @@ const Logos = {
     dark: PrismaDark,
   },
   [contentfulIds.geist]: { light: GeistLight, dark: GeistDark },
+  [contentfulIds.zod]: Zod,
 };
 
 export interface LogoProps extends SVGProps<SVGSVGElement> {
