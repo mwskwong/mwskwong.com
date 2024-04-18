@@ -1,43 +1,21 @@
-import {
-  type Output,
-  literal,
-  merge,
-  minLength,
-  object,
-  optional,
-  string,
-  union,
-  email as vEmail,
-  variant,
-} from 'valibot';
+import { z } from 'zod';
 
-const baseContactForm = object({
-  name: string([minLength(1, 'Name is required')]),
-  message: string([minLength(1, 'Message is required')]),
+const baseContactForm = z.object({
+  name: z.string().min(1, 'Name is required'),
+  message: z.string().min(1, 'Message is required'),
 });
 
-export const contactForm = variant('showInGuestbook', [
-  merge([
-    baseContactForm,
-    object({
-      email: string([
-        minLength(1, 'Email is required'),
-        vEmail('Not a valid email'),
-      ]),
-      subject: string([minLength(1, 'Subject is required')]),
-      showInGuestbook: literal(false),
-    }),
-  ]),
-  merge([
-    baseContactForm,
-    object({
-      email: optional(
-        union([string([vEmail('Not a valid email')]), literal('')]),
-      ),
-      subject: optional(string()),
-      showInGuestbook: literal(true),
-    }),
-  ]),
+export const contactForm = z.discriminatedUnion('showInGuestbook', [
+  baseContactForm.extend({
+    email: z.string().min(1, 'Email is required').email('Not a valid email'),
+    subject: z.string().min(1, 'Subject is required'),
+    showInGuestbook: z.literal(false),
+  }),
+  baseContactForm.extend({
+    email: z.string().email('Not a valid email').optional().or(z.literal('')),
+    subject: z.string().optional(),
+    showInGuestbook: z.literal(true),
+  }),
 ]);
 
-export type ContactForm = Output<typeof contactForm>;
+export type ContactForm = z.infer<typeof contactForm>;

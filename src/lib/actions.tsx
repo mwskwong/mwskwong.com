@@ -2,7 +2,6 @@
 
 import { unstable_noStore as noStore } from 'next/cache';
 import { type ErrorResponse } from 'resend';
-import { parse } from 'valibot';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
 import { ContactFormNotification } from '@/components/emails/contact-form-notification';
@@ -24,7 +23,7 @@ export const incrBlogViewById = async (id: string) => {
 export const submitContactForm = async (data: ContactForm) => {
   noStore();
 
-  parse(contactForm, data);
+  contactForm.parse(data);
   await prisma.contactFormSubmission.create({ data });
 
   const from = `${firstName} ${lastName} <${email}>`;
