@@ -14,10 +14,9 @@ import NextLink from 'next/link';
 import { FC, Suspense } from 'react';
 import { BreadcrumbList, WithContext } from 'schema-dts';
 
+import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
-import { Image } from '@/components/image';
 import { SectionDivider } from '@/components/section-divider';
-import { breakpoints } from '@/constants/mui-joy';
 import { blog, blogRssFeed } from '@/constants/nav';
 import { baseUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
@@ -29,7 +28,6 @@ const description = 'Personal perspectives on a broad range of topics.';
 const Blogs: FC = async () => {
   const blogs = await getBlogs({ page: 1 });
   const blogIds = blogs.map(({ id }) => id);
-  const { sm, md, lg } = breakpoints.values;
 
   return (
     <>
@@ -56,25 +54,10 @@ const Blogs: FC = async () => {
                 <Grid key={id} md={4} sm={6} xs={12}>
                   <Card component="article" sx={{ height: { sm: '100%' } }}>
                     {coverPhoto ? (
-                      <Image
+                      <BlogCardImage
                         alt={`Thumbnail for ${title}`}
-                        height={(lg / 3 / 1200) * 630}
                         priority={index === 0}
                         src={coverPhoto}
-                        width={lg / 3}
-                        sizes={[
-                          `(min-width: ${lg}px) ${Math.round((4 / 12) * lg)}px`,
-                          `(min-width: ${md}px) ${Math.round((4 / 12) * 100)}vw`,
-                          `(min-width: ${sm}px) ${Math.round((6 / 12) * 100)}vw`,
-                          '100vw',
-                        ].join(',')}
-                        sx={{
-                          width: '100%',
-                          height: 'auto',
-                          border: 1,
-                          borderColor: 'neutral.outlinedBorder',
-                          borderRadius: 'var(--Card-childRadius)',
-                        }}
                       />
                     ) : null}
                     <Stack

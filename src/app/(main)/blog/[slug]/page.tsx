@@ -15,6 +15,7 @@ import { notFound } from 'next/navigation';
 import { FC, Suspense } from 'react';
 import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
 
+import { BlogCoverImage } from '@/components/blog/blog-cover-image';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
@@ -23,7 +24,6 @@ import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
-import { breakpoints } from '@/constants/mui-joy';
 import { blog as blogPage, blogRssFeed, home } from '@/constants/nav';
 import { baseUrl } from '@/constants/site-config';
 import {
@@ -50,7 +50,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     getJsonLdPerson(),
   ]);
   if (!blog) notFound();
-  const { md } = breakpoints.values;
 
   return (
     <>
@@ -91,22 +90,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             </Grid>
           </Grid>
           {blog.coverPhoto ? (
-            //  eslint-disable-next-line jsx-a11y/img-redundant-alt -- cover photo is a valid word
-            <Image
+            <BlogCoverImage
               priority
               alt={`Cover photo for ${blog.title}`}
-              height={(md / 1200) * 630}
-              sizes={[`(min-width: ${md}px) ${md}px`, '100vw'].join(',')}
               src={blog.coverPhoto}
-              width={md}
-              sx={{
-                display: 'block',
-                width: '100%',
-                height: 'auto',
-                border: 1,
-                borderColor: 'neutral.outlinedBorder',
-                borderRadius: 'md',
-              }}
             />
           ) : null}
           {blog.content ? <Mdx source={blog.content} /> : null}
