@@ -56,4 +56,5 @@ export const env = createEnv({
       capitalize(process.env.NEXT_PUBLIC_PROD_URL),
   },
   skipValidation: process.env.npm_lifecycle_event === 'lint',
+  emptyStringAsUndefined: true,
 });
