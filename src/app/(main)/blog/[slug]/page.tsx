@@ -24,7 +24,7 @@ import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
-import { blog as blogPage, blogRssFeed, home } from '@/constants/nav';
+import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
 import { baseUrl } from '@/constants/site-config';
 import {
   getBlogBySlug,
@@ -168,7 +168,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 <Button
                   color="neutral"
                   component={NextLink}
-                  href={blogPage.pathname}
+                  href={blogNav.pathname}
                   size="lg"
                   variant="outlined"
                 >
@@ -194,7 +194,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
-                url: `${baseUrl}/blog/${slug}`,
+                url: `${baseUrl}${blogNav.pathname}/${slug}`,
                 author: { '@id': person['@id'] },
                 keywords: blog.categories,
               } satisfies BlogPosting,
@@ -203,14 +203,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 itemListElement: [
                   {
                     '@type': 'ListItem',
-                    name: 'Home',
+                    name: home.label,
                     item: baseUrl,
                     position: 1,
                   },
                   {
                     '@type': 'ListItem',
-                    name: blogPage.label,
-                    item: `${baseUrl}/blog`,
+                    name: blogNav.label,
+                    item: baseUrl + blogNav.pathname,
                     position: 2,
                   },
                   {
@@ -252,11 +252,11 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       tags: categories,
-      url: `${blogPage.pathname}/${slug}`,
+      url: `${blogNav.pathname}/${slug}`,
       images: coverPhoto,
     },
     alternates: {
-      canonical: `${blogPage.pathname}/${slug}`,
+      canonical: `${blogNav.pathname}/${slug}`,
       types: { 'application/rss+xml': blogRssFeed.pathname },
     },
   } satisfies Metadata;

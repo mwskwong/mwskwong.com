@@ -17,7 +17,7 @@ import { BreadcrumbList, WithContext } from 'schema-dts';
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { SectionDivider } from '@/components/section-divider';
-import { blog, blogRssFeed } from '@/constants/nav';
+import { blog, blogRssFeed, home } from '@/constants/nav';
 import { baseUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 
@@ -131,7 +131,7 @@ const Blogs: FC = async () => {
             itemListElement: [
               {
                 '@type': 'ListItem',
-                name: 'Home',
+                name: home.label,
                 item: baseUrl,
                 position: 1,
               },
