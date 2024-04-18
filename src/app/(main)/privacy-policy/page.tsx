@@ -5,7 +5,7 @@ import { Article, BreadcrumbList, Graph } from 'schema-dts';
 
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
-import { privacyPolicy } from '@/constants/nav';
+import { home, privacyPolicy } from '@/constants/nav';
 import { baseUrl, websiteDisplayName } from '@/constants/site-config';
 import { getPrivacyPolicy } from '@/lib/queries';
 import { getJsonLdPerson } from '@/lib/utils';
@@ -48,10 +48,10 @@ const PrivacyPolicy: FC = async () => {
                 '@type': 'Article',
                 headline: `${websiteDisplayName} ${privacyPolicy.label}`,
                 description,
-                image: `${baseUrl}/privacy-policy/opengraph-image`,
+                image: `${baseUrl}/opengraph-image`,
                 datePublished: createdAt,
                 dateModified: updatedAt,
-                url: `${baseUrl}/privacy-policy`,
+                url: baseUrl + privacyPolicy.pathname,
                 author: { '@id': person['@id'] },
               } satisfies Article,
               {
@@ -59,7 +59,7 @@ const PrivacyPolicy: FC = async () => {
                 itemListElement: [
                   {
                     '@type': 'ListItem',
-                    name: 'Home',
+                    name: home.label,
                     item: baseUrl,
                     position: 1,
                   },

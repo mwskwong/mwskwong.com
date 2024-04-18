@@ -6,7 +6,7 @@ import {
   Graph,
 } from 'schema-dts';
 
-import { guestbook } from '@/constants/nav';
+import { guestbook, home } from '@/constants/nav';
 import { baseUrl, websiteDisplayName } from '@/constants/site-config';
 import { getGuestbookSubmissions } from '@/lib/queries';
 import { encodeHtmlEntities, getJsonLdPerson } from '@/lib/utils';
@@ -58,7 +58,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
               itemListElement: [
                 {
                   '@type': 'ListItem',
-                  name: 'Home',
+                  name: home.label,
                   item: baseUrl,
                   position: 1,
                 },
