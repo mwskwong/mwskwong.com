@@ -32,8 +32,8 @@ export const env = createEnv({
     RESEND_API_KEY: z.string().startsWith('re_'),
     ANALYZE: z
       .enum(['true', 'false'])
-      .transform((analyze) => analyze === 'true')
-      .optional(),
+      .optional()
+      .transform((analyze) => analyze === 'true'),
     CRON_SECRET:
       process.env.VERCEL === '1' ? z.string() : z.string().optional(),
   },
