@@ -1,6 +1,5 @@
 import { Entry } from 'contentful';
-// FIXME: workaround - prevent barrel optimization error when utils (which imports queries) is being used in server actions
-import orderBy from 'lodash-es/orderBy';
+import { orderBy } from 'lodash-es';
 import {
   unstable_cache as cache,
   unstable_noStore as noStore,

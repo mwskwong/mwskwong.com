@@ -1,3 +1,4 @@
+import { escape } from 'lodash-es';
 import { FC } from 'react';
 import {
   BreadcrumbList,
@@ -8,8 +9,8 @@ import {
 
 import { guestbook, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
+import { getPerson } from '@/lib/json-ld';
 import { getGuestbookSubmissions } from '@/lib/queries';
-import { encodeHtmlEntities, getJsonLdPerson } from '@/lib/utils';
 
 export interface JsonLdProps {
   discussionForumPosting: {
@@ -22,7 +23,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
 }) => {
   const [comments, person] = await Promise.all([
     getGuestbookSubmissions(),
-    getJsonLdPerson(),
+    getPerson(),
   ]);
 
   return (
@@ -42,7 +43,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                     '@type': 'Comment',
                     author: { '@type': 'Person', name },
                     datePublished: submittedAt.toISOString(),
-                    text: encodeHtmlEntities(message),
+                    text: escape(message),
                   }) satisfies Comment,
               ),
               headline: `${env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${guestbook.label}`,

@@ -26,13 +26,13 @@ import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
 import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
+import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,
   getBlogs,
   getPersonalPhoto,
   getPlatformProfiles,
 } from '@/lib/queries';
-import { getJsonLdPerson } from '@/lib/utils';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
@@ -47,7 +47,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     getBlogBySlug(slug),
     getPersonalPhoto(),
     getPlatformProfiles(),
-    getJsonLdPerson(),
+    getPerson(),
   ]);
   if (!blog) notFound();
 

@@ -32,7 +32,7 @@ import {
   home,
 } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
-import { ContactForm, contactForm } from '@/lib/validation-schema';
+import { ContactForm, contactForm } from '@/lib/validation';
 
 export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 export const Contact: FC<ContactProps> = (props) => {

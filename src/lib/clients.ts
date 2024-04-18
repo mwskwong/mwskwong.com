@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { PrismaClient } from '@prisma/client';
 import { createClient } from 'contentful';
 import { Resend } from 'resend';

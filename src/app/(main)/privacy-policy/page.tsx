@@ -7,8 +7,8 @@ import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { home, privacyPolicy } from '@/constants/nav';
 import { env } from '@/env.mjs';
+import { getPerson } from '@/lib/json-ld';
 import { getPrivacyPolicy } from '@/lib/queries';
-import { getJsonLdPerson } from '@/lib/utils';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
@@ -17,7 +17,7 @@ const description = `${privacyPolicy.label} for ${env.NEXT_PUBLIC_SITE_DISPLAY_N
 const PrivacyPolicy: FC = async () => {
   const [{ createdAt, updatedAt, content }, person] = await Promise.all([
     getPrivacyPolicy(),
-    getJsonLdPerson(),
+    getPerson(),
   ]);
   return (
     <>

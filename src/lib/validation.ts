@@ -1,6 +1,5 @@
 import {
   Output,
-  email,
   literal,
   merge,
   minLength,
@@ -8,6 +7,7 @@ import {
   optional,
   string,
   union,
+  email as vEmail,
   variant,
 } from 'valibot';
 
@@ -22,7 +22,7 @@ export const contactForm = variant('showInGuestbook', [
     object({
       email: string([
         minLength(1, 'Email is required'),
-        email('Not a valid email'),
+        vEmail('Not a valid email'),
       ]),
       subject: string([minLength(1, 'Subject is required')]),
       showInGuestbook: literal(false),
@@ -32,7 +32,7 @@ export const contactForm = variant('showInGuestbook', [
     baseContactForm,
     object({
       email: optional(
-        union([string([email('Not a valid email')]), literal('')]),
+        union([string([vEmail('Not a valid email')]), literal('')]),
       ),
       subject: optional(string()),
       showInGuestbook: literal(true),
