@@ -1,6 +1,6 @@
 'use client';
 
-import { valibotResolver } from '@hookform/resolvers/valibot';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Alert,
   Box,
@@ -45,7 +45,7 @@ export const Contact: FC<ContactProps> = (props) => {
     trigger,
     watch,
   } = useForm<ContactForm>({
-    resolver: valibotResolver(contactForm),
+    resolver: zodResolver(contactForm),
     mode: 'onTouched',
     defaultValues: {
       name: '',
