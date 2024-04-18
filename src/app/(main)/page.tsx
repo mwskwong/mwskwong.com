@@ -1,6 +1,6 @@
 import { Box } from '@mui/joy';
-import { FC } from 'react';
-import { BreadcrumbList, WithContext } from 'schema-dts';
+import { type FC } from 'react';
+import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
 import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';

@@ -1,15 +1,16 @@
-import { FC } from 'react';
+import { escape } from 'lodash-es';
+import { type FC } from 'react';
 import {
-  BreadcrumbList,
-  Comment,
-  DiscussionForumPosting,
-  Graph,
+  type BreadcrumbList,
+  type Comment,
+  type DiscussionForumPosting,
+  type Graph,
 } from 'schema-dts';
 
 import { guestbook, home } from '@/constants/nav';
-import { baseUrl, websiteDisplayName } from '@/constants/site-config';
+import { env } from '@/env.mjs';
+import { getPerson } from '@/lib/json-ld';
 import { getGuestbookSubmissions } from '@/lib/queries';
-import { encodeHtmlEntities, getJsonLdPerson } from '@/lib/utils';
 
 export interface JsonLdProps {
   discussionForumPosting: {
@@ -22,7 +23,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
 }) => {
   const [comments, person] = await Promise.all([
     getGuestbookSubmissions(),
-    getJsonLdPerson(),
+    getPerson(),
   ]);
 
   return (
@@ -42,16 +43,16 @@ export const JsonLd: FC<JsonLdProps> = async ({
                     '@type': 'Comment',
                     author: { '@type': 'Person', name },
                     datePublished: submittedAt.toISOString(),
-                    text: encodeHtmlEntities(message),
+                    text: escape(message),
                   }) satisfies Comment,
               ),
-              headline: `${websiteDisplayName} ${guestbook.label}`,
+              headline: `${env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${guestbook.label}`,
               interactionStatistic: {
                 '@type': 'InteractionCounter',
                 interactionType: { '@type': 'CommentAction' },
                 userInteractionCount: comments.length,
               },
-              url: baseUrl + guestbook.pathname,
+              url: env.NEXT_PUBLIC_SITE_URL + guestbook.pathname,
             } satisfies DiscussionForumPosting,
             {
               '@type': 'BreadcrumbList',
@@ -59,7 +60,7 @@ export const JsonLd: FC<JsonLdProps> = async ({
                 {
                   '@type': 'ListItem',
                   name: home.label,
-                  item: baseUrl,
+                  item: env.NEXT_PUBLIC_SITE_URL,
                   position: 1,
                 },
                 {

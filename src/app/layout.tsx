@@ -1,7 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Metadata } from 'next';
-import { FC, PropsWithChildren } from 'react';
+import { type Metadata } from 'next';
+import { type FC, type PropsWithChildren } from 'react';
 
 import {
   firstName,
@@ -9,7 +9,7 @@ import {
   lastName,
   selfIntroduction,
 } from '@/constants/content';
-import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 
 import { Providers } from './providers';
 
@@ -19,9 +19,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
     <body>
       <Providers>{children}</Providers>
       <Analytics
-        mode={
-          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
-        }
+        mode={env.VERCEL_ENV === 'production' ? 'production' : 'development'}
       />
       <SpeedInsights />
     </body>
@@ -35,8 +33,8 @@ export const metadata = {
     template: `%s | ${name}`,
   },
   description: selfIntroduction,
-  authors: { name, url: baseUrl },
-  metadataBase: new URL(baseUrl),
+  authors: { name, url: env.NEXT_PUBLIC_SITE_URL },
+  metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   openGraph: { url: '/', type: 'website' },
   robots: { 'max-image-preview': 'large' },
   archives: ['https://v2.mwskwong.com'],

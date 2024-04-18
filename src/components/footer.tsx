@@ -1,7 +1,7 @@
 import { SiRss } from '@icons-pack/react-simple-icons';
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Container,
   IconButton,
   Link,
@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@mui/joy';
 import NextLink from 'next/link';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
 import { blogRssFeed, privacyPolicy } from '@/constants/nav';

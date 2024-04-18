@@ -5,15 +5,15 @@ import {
   ListItem,
   ListItemContent,
   ListItemDecorator,
-  ListProps,
+  type ListProps,
   Skeleton,
   Typography,
 } from '@mui/joy';
-import { SxProps } from '@mui/joy/styles/types';
+import { type SxProps } from '@mui/joy/styles/types';
 import dayjs, { extend } from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { mergeSx } from 'merge-sx';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { getGuestbookSubmissions } from '@/lib/queries';
 

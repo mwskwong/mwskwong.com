@@ -1,6 +1,6 @@
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   Container,
   Link,
@@ -8,7 +8,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/joy';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';
 

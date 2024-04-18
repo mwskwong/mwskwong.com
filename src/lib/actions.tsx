@@ -1,16 +1,15 @@
 'use server';
 
 import { unstable_noStore as noStore } from 'next/cache';
-import { ErrorResponse } from 'resend';
-import { parse } from 'valibot';
+import { type ErrorResponse } from 'resend';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
 import { ContactFormNotification } from '@/components/emails/contact-form-notification';
 import { email, firstName, lastName } from '@/constants/content';
-import { websiteDisplayName } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 import { prisma, resend } from '@/lib/clients';
 
-import { ContactForm, contactForm } from './validation-schema';
+import { type ContactForm, contactForm } from './validation';
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
@@ -24,7 +23,7 @@ export const incrBlogViewById = async (id: string) => {
 export const submitContactForm = async (data: ContactForm) => {
   noStore();
 
-  parse(contactForm, data);
+  contactForm.parse(data);
   await prisma.contactFormSubmission.create({ data });
 
   const from = `${firstName} ${lastName} <${email}>`;
@@ -33,8 +32,8 @@ export const submitContactForm = async (data: ContactForm) => {
       from,
       to: email,
       subject: data.subject
-        ? `[${websiteDisplayName}] ${data.subject}`
-        : `You got a message from ${websiteDisplayName}`,
+        ? `[${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}] ${data.subject}`
+        : `You got a message from ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}`,
       react: <ContactFormNotification {...data} />,
     },
   ];
@@ -43,7 +42,7 @@ export const submitContactForm = async (data: ContactForm) => {
     emails.push({
       from,
       to: data.email,
-      subject: `Got Your Message From ${websiteDisplayName}!`,
+      subject: `Got Your Message From ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}!`,
       react: <ContactFormAcknowledgement {...data} />,
     });
   }

@@ -1,10 +1,10 @@
 'use client';
 
-import { valibotResolver } from '@hookform/resolvers/valibot';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Alert,
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   Checkbox,
   Container,
@@ -21,7 +21,7 @@ import {
 } from '@mui/joy';
 import { AlertTriangle, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
-import { FC, useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
@@ -32,7 +32,7 @@ import {
   home,
 } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
-import { ContactForm, contactForm } from '@/lib/validation-schema';
+import { type ContactForm, contactForm } from '@/lib/validation';
 
 export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 export const Contact: FC<ContactProps> = (props) => {
@@ -45,7 +45,7 @@ export const Contact: FC<ContactProps> = (props) => {
     trigger,
     watch,
   } = useForm<ContactForm>({
-    resolver: valibotResolver(contactForm),
+    resolver: zodResolver(contactForm),
     mode: 'onTouched',
     defaultValues: {
       name: '',

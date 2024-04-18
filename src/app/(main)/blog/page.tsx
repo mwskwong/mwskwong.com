@@ -9,16 +9,16 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import { Metadata, ResolvingMetadata } from 'next';
+import { type Metadata, type ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
-import { FC, Suspense } from 'react';
-import { BreadcrumbList, WithContext } from 'schema-dts';
+import { type FC, Suspense } from 'react';
+import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsSkeleton } from '@/components/blog/views';
 import { SectionDivider } from '@/components/section-divider';
 import { blog, blogRssFeed, home } from '@/constants/nav';
-import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env.mjs';
 import { getBlogs } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
@@ -132,7 +132,7 @@ const Blogs: FC = async () => {
               {
                 '@type': 'ListItem',
                 name: home.label,
-                item: baseUrl,
+                item: env.NEXT_PUBLIC_SITE_URL,
                 position: 1,
               },
               {

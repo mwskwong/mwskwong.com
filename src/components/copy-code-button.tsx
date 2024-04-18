@@ -1,8 +1,8 @@
 'use client';
 
-import { IconButton, IconButtonProps } from '@mui/joy';
+import { IconButton, type IconButtonProps } from '@mui/joy';
 import { Check, Copy } from 'lucide-react';
-import { FC, useEffect, useRef, useState } from 'react';
+import { type FC, useEffect, useRef, useState } from 'react';
 
 export type CopyCodeButtonProps = Omit<IconButtonProps, 'children'>;
 

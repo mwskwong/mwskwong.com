@@ -1,11 +1,15 @@
+import 'server-only';
+
 import { PrismaClient } from '@prisma/client';
 import { createClient } from 'contentful';
 import { Resend } from 'resend';
 
+import { env } from '@/env.mjs';
+
 export const contentful = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID ?? '',
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN ?? '',
-  environment: process.env.CONTENTFUL_ENVIRONMENT,
+  space: env.CONTENTFUL_SPACE_ID,
+  accessToken: env.CONTENTFUL_ACCESS_TOKEN,
+  environment: env.CONTENTFUL_ENVIRONMENT,
 }).withoutUnresolvableLinks;
 
 /**
@@ -15,9 +19,9 @@ export const contentful = createClient({
 const prismaClientSingleton = () =>
   new PrismaClient({
     log:
-      process.env.NODE_ENV === 'development'
-        ? ['query', 'info', 'warn', 'error']
-        : undefined,
+      env.NODE_ENV === 'production'
+        ? undefined
+        : ['query', 'info', 'warn', 'error'],
   });
 
 declare global {
@@ -27,8 +31,8 @@ declare global {
 
 export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
 
-if (process.env.NODE_ENV !== 'production') {
+if (env.NODE_ENV !== 'production') {
   globalThis.prismaGlobal = prisma;
 }
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
+export const resend = new Resend(env.RESEND_API_KEY);

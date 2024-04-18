@@ -2,9 +2,9 @@
 
 import { useTheme } from '@mui/joy';
 import { mergeSx } from 'merge-sx';
-import { FC } from 'react';
+import { type FC } from 'react';
 
-import { Image, ImageProps } from '../image';
+import { Image, type ImageProps } from '../image';
 
 export type BlogCoverImageProps = ImageProps;
 export const BlogCoverImage: FC<BlogCoverImageProps> = ({

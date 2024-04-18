@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { type FC, type PropsWithChildren } from 'react';
 
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';

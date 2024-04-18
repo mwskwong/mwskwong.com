@@ -41,7 +41,6 @@ module.exports = {
     },
   },
   rules: {
-    '@typescript-eslint/consistent-type-imports': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-confusing-void-expression': [
       'error',
@@ -117,8 +116,6 @@ module.exports = {
         'src/app/**/{sitemap,robots}.ts',
         'src/components/emails/*.tsx',
       ],
-      // non email templates should not have default export
-      excludedFiles: ['src/components/emails/_*/**'],
       rules: {
         'import/no-default-export': 'off',
         'import/prefer-default-export': ['error', { target: 'any' }],

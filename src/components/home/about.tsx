@@ -1,5 +1,5 @@
-import { Box, BoxProps, Container, Stack, Typography } from '@mui/joy';
-import { FC } from 'react';
+import { Box, type BoxProps, Container, Stack, Typography } from '@mui/joy';
+import { type FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
 import { about } from '@/constants/nav';
