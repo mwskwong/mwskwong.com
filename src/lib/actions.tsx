@@ -1,7 +1,6 @@
 'use server';
 
 import { unstable_noStore as noStore } from 'next/cache';
-import { ErrorResponse } from 'resend';
 import { parse } from 'valibot';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -10,6 +9,7 @@ import { email, firstName, lastName } from '@/constants/content';
 import { env } from '@/env.mjs';
 import { prisma, resend } from '@/lib/clients';
 
+import { CreateEmailError } from './utils';
 import { ContactForm, contactForm } from './validation-schema';
 
 export const incrBlogViewById = async (id: string) => {
@@ -56,12 +56,3 @@ export const submitContactForm = async (data: ContactForm) => {
     );
   }
 };
-
-class CreateEmailError extends Error {
-  error: ErrorResponse;
-
-  constructor(message: string, error: ErrorResponse) {
-    super(message);
-    this.error = error;
-  }
-}
