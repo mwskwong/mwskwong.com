@@ -1,6 +1,7 @@
 // @ts-check
 
 import NextBundleAnalyzer from '@next/bundle-analyzer';
+import dedent from 'dedent';
 
 import { env } from './src/env.mjs';
 
@@ -132,7 +133,7 @@ const config = {
         },
         {
           key: 'Content-Security-Policy',
-          value: `
+          value: dedent`
             default-src 'self';
             script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com;
             style-src 'self' 'unsafe-inline';
@@ -152,6 +153,7 @@ const config = {
   experimental: {
     ppr: true,
     webpackBuildWorker: true,
+    optimizePackageImports: ['@mui/joy'],
   },
 };
 
