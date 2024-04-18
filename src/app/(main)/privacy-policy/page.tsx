@@ -51,7 +51,7 @@ const PrivacyPolicy: FC = async () => {
                 image: `${env.NEXT_PUBLIC_SITE_URL}/opengraph-image`,
                 datePublished: createdAt,
                 dateModified: updatedAt,
-                url: `${env.NEXT_PUBLIC_SITE_URL}${privacyPolicy.pathname}`,
+                url: env.NEXT_PUBLIC_SITE_URL + privacyPolicy.pathname,
                 author: { '@id': person['@id'] },
               } satisfies Article,
               {
