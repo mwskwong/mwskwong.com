@@ -2,9 +2,6 @@
 
 import { Component, type PropsWithChildren, type ReactNode } from 'react';
 
-import { env } from '@/env.mjs';
-import { sendAlertEmail } from '@/lib/actions';
-
 export interface ErrorBoundaryProps extends PropsWithChildren {
   fallback?: ReactNode;
 }
@@ -21,16 +18,6 @@ export class ErrorBoundary extends Component<
 
   static getDerivedStateFromError(error: Error) {
     return { error };
-  }
-
-  componentDidCatch(error: Error & { digest?: string }) {
-    if (env.NODE_ENV === 'production') {
-      void sendAlertEmail({
-        digest: error.digest,
-        message: error.message,
-        stack: error.stack,
-      });
-    }
   }
 
   render() {
