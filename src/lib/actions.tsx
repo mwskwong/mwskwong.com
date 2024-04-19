@@ -1,6 +1,7 @@
 'use server';
 
 import { unstable_noStore as noStore } from 'next/cache';
+import { headers } from 'next/headers';
 import { type ErrorResponse } from 'resend';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -10,6 +11,8 @@ import { env } from '@/env.mjs';
 import { prisma, resend } from '@/lib/clients';
 
 import { type ContactForm, contactForm } from './validation';
+import Alert from '@/components/emails/alert';
+import { userAgent } from 'next/server';
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
@@ -26,7 +29,6 @@ export const submitContactForm = async (data: ContactForm) => {
   contactForm.parse(data);
   await prisma.contactFormSubmission.create({ data });
 
-  const from = `${firstName} ${lastName} <${email}>`;
   const emails = [
     {
       from,
@@ -56,11 +58,40 @@ export const submitContactForm = async (data: ContactForm) => {
   }
 };
 
+export const sendAlertEmail = async (error: {
+  digest?: string;
+  message: string;
+  stack?: string;
+}) => {
+  const severity = env.VERCEL_ENV === 'production' ? 'Major' : 'Minor';
+  const ua = userAgent({ headers: headers() });
+
+  const { error: errorResponse } = await resend.emails.send({
+    from,
+    to: email,
+    subject:
+      `[${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}] [Alert] [${severity}] ${error.message}`
+        .replaceAll('\n', ' ')
+        .replace(/\s+/g, ' '),
+    react: <Alert {...error} userAgent={ua} />,
+  });
+
+  if (errorResponse) {
+    throw new CreateEmailError(
+      'Failed to send alert email when application error happened',
+      errorResponse,
+    );
+  }
+};
+
 class CreateEmailError extends Error {
   error: ErrorResponse;
 
   constructor(message: string, error: ErrorResponse) {
-    super(message);
+    super(message + '\n' + JSON.stringify(error, null, 2));
+    this.name = 'CreateEmailError';
     this.error = error;
   }
 }
+
+const from = `${firstName} ${lastName} <${email}>`;

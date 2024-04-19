@@ -1,11 +1,9 @@
 'use client';
 
-import {
-  Component,
-  type ErrorInfo,
-  type PropsWithChildren,
-  type ReactNode,
-} from 'react';
+import { Component, type PropsWithChildren, type ReactNode } from 'react';
+
+import { sendAlertEmail } from '@/lib/actions';
+import { env } from '@/env.mjs';
 
 export interface ErrorBoundaryProps extends PropsWithChildren {
   fallback?: ReactNode;
@@ -25,15 +23,14 @@ export class ErrorBoundary extends Component<
     return { error };
   }
 
-  componentDidCatch(error: Error & { digest?: string }, errorInfo: ErrorInfo) {
-    // console.log({ error, errorInfo });
-    // console.error(error, errorInfo);
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
-    // logErrorToMyService(error, info.componentStack);
+  componentDidCatch(error: Error & { digest?: string }) {
+    if (env.NODE_ENV === 'production') {
+      void sendAlertEmail({
+        digest: error.digest,
+        message: error.message,
+        stack: error.stack,
+      });
+    }
   }
 
   render() {

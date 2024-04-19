@@ -5,12 +5,15 @@
 
 import {
   Body,
+  CodeBlockProps,
   Container,
   Text as EmailText,
   Head,
   Html,
   Img,
   type TextProps,
+  CodeBlock as EmailCodeBlock,
+  vs,
 } from '@react-email/components';
 import { type FC, type PropsWithChildren } from 'react';
 
@@ -49,6 +52,25 @@ export const Text: FC<TextProps> = ({ style, ...props }) => (
     style={{
       fontSize: '1rem',
       lineHeight: 1.5,
+      ...style,
+    }}
+    {...props}
+  />
+);
+
+export const CodeBlock: FC<Omit<CodeBlockProps, 'theme'>> = ({
+  style,
+  ...props
+}) => (
+  <EmailCodeBlock
+    theme={vs}
+    style={{
+      padding: '1rem',
+      borderRadius: 8,
+      border: '1px solid #CDD7E1',
+      backgroundColor: '#FBFCFE',
+      fontSize: '0.875rem',
+      margin: 0,
       ...style,
     }}
     {...props}
