@@ -2,7 +2,7 @@
 
 import { Button, Container, Link, Stack, Typography } from '@mui/joy';
 import { RefreshCw } from 'lucide-react';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { email } from '@/constants/content';
 

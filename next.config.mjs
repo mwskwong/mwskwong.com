@@ -3,8 +3,10 @@
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 import dedent from 'dedent';
 
+import { env } from './src/env.mjs';
+
 const withBundleAnalyzer = NextBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
+  enabled: env.ANALYZE,
 });
 
 const sharedSvgoPlugins = [
@@ -21,7 +23,7 @@ const sharedSvgoPlugins = [
 const config = {
   compiler: {
     emotion: true,
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: env.NODE_ENV === 'production',
   },
   images: {
     formats: ['image/avif', 'image/webp'],

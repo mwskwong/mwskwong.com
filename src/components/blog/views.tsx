@@ -1,6 +1,6 @@
-import { Skeleton, Typography, TypographyProps } from '@mui/joy';
+import { Skeleton, Typography, type TypographyProps } from '@mui/joy';
 import { Eye } from 'lucide-react';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
 
@@ -60,5 +60,17 @@ export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
   >
     <Skeleton level={props.level} variant="text" width="3ch" />
     &nbsp;views
+  </Typography>
+);
+
+export type ViewsErrorProps = ViewsSkeletonProps;
+export const ViewsError: FC<ViewsErrorProps> = ({ hideIcon, ...props }) => (
+  <Typography
+    // FIXME: not using sx prop here to prevent CLS
+    display={hideIcon ? 'flex' : undefined}
+    startDecorator={!hideIcon && <Eye />}
+    {...props}
+  >
+    –– views
   </Typography>
 );

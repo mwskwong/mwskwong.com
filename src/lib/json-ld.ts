@@ -1,4 +1,4 @@
-import { Person } from 'schema-dts';
+import { type Person } from 'schema-dts';
 
 import {
   address,
@@ -8,6 +8,7 @@ import {
   phone,
   selfIntroduction,
 } from '@/constants/content';
+import { env } from '@/env.mjs';
 
 import {
   getExperiences,
@@ -15,7 +16,7 @@ import {
   getPlatformProfiles,
 } from './queries';
 
-export const getJsonLdPerson = async () => {
+export const getPerson = async () => {
   const [latestJobTitle, personalPhoto, platformProfiles] = await Promise.all([
     getExperiences().then((experience) => experience[0]?.jobTitle),
     getPersonalPhoto(),
@@ -31,14 +32,9 @@ export const getJsonLdPerson = async () => {
     jobTitle: latestJobTitle,
     email,
     address,
-    url:
-      process.env.NEXT_PUBLIC_PROD_URL &&
-      `https://${process.env.NEXT_PUBLIC_PROD_URL}`,
+    url: env.NEXT_PUBLIC_SITE_URL,
     image: personalPhoto,
     sameAs: platformProfiles.map(({ url }) => url),
     description: selfIntroduction,
   } satisfies Person;
 };
-
-export const encodeHtmlEntities = (str: string) =>
-  str.replace(/[\u00A0-\u9999<>&]/gim, (i) => `&#${i.charCodeAt(0)};`);

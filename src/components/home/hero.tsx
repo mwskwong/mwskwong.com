@@ -1,7 +1,7 @@
 import { SiLinkedin } from '@icons-pack/react-simple-icons';
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   Chip,
   Container,
@@ -11,7 +11,7 @@ import {
 import { ArrowRight } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { firstName, headline, lastName } from '@/constants/content';
 import { linkedin } from '@/constants/contentful-ids';

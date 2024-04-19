@@ -1,8 +1,8 @@
 import { Button, Container, Stack, Typography } from '@mui/joy';
 import { ArrowLeft } from 'lucide-react';
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import Link from 'next/link';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 const NotFound: FC = () => (
   <Container

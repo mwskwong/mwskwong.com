@@ -9,30 +9,31 @@ import {
   Stack,
   Typography,
 } from '@mui/joy';
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
-import { FC, Suspense } from 'react';
-import { BlogPosting, BreadcrumbList, Graph } from 'schema-dts';
+import { type FC, Suspense } from 'react';
+import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { BlogCoverImage } from '@/components/blog/blog-cover-image';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
-import { Views, ViewsSkeleton } from '@/components/blog/views';
+import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { Icon } from '@/components/contentful';
+import { ErrorBoundary } from '@/components/error-boundary';
 import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
 import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
-import { baseUrl } from '@/constants/site-config';
+import { env } from '@/env.mjs';
+import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,
   getBlogs,
   getPersonalPhoto,
   getPlatformProfiles,
 } from '@/lib/queries';
-import { getJsonLdPerson } from '@/lib/utils';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
@@ -47,7 +48,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     getBlogBySlug(slug),
     getPersonalPhoto(),
     getPlatformProfiles(),
-    getJsonLdPerson(),
+    getPerson(),
   ]);
   if (!blog) notFound();
 
@@ -81,9 +82,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 spacing={1}
                 sx={{ alignItems: 'center', justifyContent: 'space-around' }}
               >
-                <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
-                  <Views blogId={blog.id} sx={{ mx: 0.75 }} />
-                </Suspense>
+                <ErrorBoundary fallback={<ViewsError sx={{ mx: 0.75 }} />}>
+                  <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
+                    <Views blogId={blog.id} sx={{ mx: 0.75 }} />
+                  </Suspense>
+                </ErrorBoundary>
                 <CopyUrlButton />
                 <ShareDropdown blog={blog} />
               </Stack>
@@ -194,7 +197,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
-                url: `${baseUrl}${blogNav.pathname}/${slug}`,
+                url: `${env.NEXT_PUBLIC_SITE_URL}${blogNav.pathname}/${slug}`,
                 author: { '@id': person['@id'] },
                 keywords: blog.categories,
               } satisfies BlogPosting,
@@ -204,13 +207,13 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   {
                     '@type': 'ListItem',
                     name: home.label,
-                    item: baseUrl,
+                    item: env.NEXT_PUBLIC_SITE_URL,
                     position: 1,
                   },
                   {
                     '@type': 'ListItem',
                     name: blogNav.label,
-                    item: baseUrl + blogNav.pathname,
+                    item: env.NEXT_PUBLIC_SITE_URL + blogNav.pathname,
                     position: 2,
                   },
                   {
@@ -248,7 +251,7 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
     description,
     openGraph: {
       type: 'article',
-      authors: baseUrl,
+      authors: env.NEXT_PUBLIC_SITE_URL,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       tags: categories,

@@ -5,15 +5,18 @@ import {
   ListItem,
   ListItemContent,
   ListItemDecorator,
-  ListProps,
+  type ListProps,
   Skeleton,
+  Stack,
+  type StackProps,
   Typography,
 } from '@mui/joy';
-import { SxProps } from '@mui/joy/styles/types';
+import { type SxProps } from '@mui/joy/styles/types';
 import dayjs, { extend } from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { Frown } from 'lucide-react';
 import { mergeSx } from 'merge-sx';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import { getGuestbookSubmissions } from '@/lib/queries';
 
@@ -67,7 +70,8 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
   );
 };
 
-export const SubmissionListSkeleton: FC<SubmissionListProps> = ({
+export type SubmissionListSkeletonProps = SubmissionListProps;
+export const SubmissionListSkeleton: FC<SubmissionListSkeletonProps> = ({
   sx,
   ...props
 }) => {
@@ -92,5 +96,22 @@ export const SubmissionListSkeleton: FC<SubmissionListProps> = ({
         </ListItem>
       ))}
     </List>
+  );
+};
+
+export type SubmissionListErrorProps = Omit<StackProps, 'children'>;
+export const SubmissionListError: FC<SubmissionListErrorProps> = ({
+  sx,
+  ...props
+}) => {
+  return (
+    <Stack
+      spacing={2}
+      sx={mergeSx({ '--Icon-fontSize': '4rem', alignItems: 'center' }, sx)}
+      {...props}
+    >
+      <Frown absoluteStrokeWidth size={4 * 16} />
+      <Typography>Something went wrong. Please try again later.</Typography>
+    </Stack>
   );
 };

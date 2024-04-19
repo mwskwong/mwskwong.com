@@ -1,5 +1,5 @@
 import {
-  IconType,
+  type IconType,
   SiDatacamp,
   SiEnterprisedb,
   SiGithub,
@@ -19,15 +19,15 @@ import {
   Bug,
   Database,
   LayoutDashboard,
-  LucideProps,
+  type LucideProps,
   MonitorDot,
   Shapes,
   TabletSmartphone,
   Terminal,
   Workflow,
 } from 'lucide-react';
-import { ComponentProps, FC, SVGProps, forwardRef } from 'react';
-import { LiteralUnion } from 'type-fest';
+import { type ComponentProps, type FC, type SVGProps, forwardRef } from 'react';
+import { type LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
 import ContentfulLight from '@/logos/contentful-light.svg';
@@ -46,6 +46,7 @@ import TypeScript from '@/logos/typescript.svg';
 import Valibot from '@/logos/valibot.svg';
 import VercelDark from '@/logos/vercel-dark.svg';
 import VercelLight from '@/logos/vercel-light.svg';
+import Zod from '@/logos/zod.svg';
 
 const generateSimpleIcon = (SiIcon: IconType) => {
   const Icon: IconType = forwardRef((props, ref) => (
@@ -111,6 +112,7 @@ const Logos = {
     dark: PrismaDark,
   },
   [contentfulIds.geist]: { light: GeistLight, dark: GeistDark },
+  [contentfulIds.zod]: Zod,
 };
 
 export interface LogoProps extends SVGProps<SVGSVGElement> {

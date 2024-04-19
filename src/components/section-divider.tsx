@@ -1,6 +1,6 @@
-import { Box, BoxProps } from '@mui/joy';
+import { Box, type BoxProps } from '@mui/joy';
 import { mergeSx } from 'merge-sx';
-import { FC } from 'react';
+import { type FC } from 'react';
 
 export type SectionDividerProps = Omit<BoxProps<'svg'>, 'children'>;
 export const SectionDivider: FC<SectionDividerProps> = ({ sx, ...props }) => (

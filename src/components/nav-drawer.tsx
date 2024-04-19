@@ -4,14 +4,14 @@ import {
   Box,
   Drawer,
   IconButton,
-  IconButtonProps,
+  type IconButtonProps,
   List,
   ListItem,
   ListItemButton,
 } from '@mui/joy';
 import { Menu } from 'lucide-react';
 import NextLink from 'next/link';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 
 import { nav } from '@/constants/nav';
 

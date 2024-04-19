@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 
 import { incrBlogViewById } from '@/lib/actions';
 
