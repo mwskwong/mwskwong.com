@@ -9,7 +9,7 @@ import { email, firstName, lastName } from '@/constants/content';
 import { env } from '@/env.mjs';
 import { prisma, resend } from '@/lib/clients';
 
-import { type ContactForm, contactForm } from './validation';
+import { type ContactForm, contactForm } from './validators';
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
