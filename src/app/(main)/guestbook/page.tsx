@@ -3,8 +3,10 @@ import { type Metadata, type ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { type FC, Suspense } from 'react';
 
+import { ErrorBoundary } from '@/components/error-boundary';
 import {
   SubmissionList,
+  SubmissionListError,
   SubmissionListSkeleton,
 } from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
@@ -39,15 +41,19 @@ const Guestbook: FC = () => (
         >
           Leave A Message
         </Button>
-        <Suspense fallback={<SubmissionListSkeleton />}>
-          <SubmissionList />
-        </Suspense>
+        <ErrorBoundary fallback={<SubmissionListError />}>
+          <Suspense fallback={<SubmissionListSkeleton />}>
+            <SubmissionList />
+          </Suspense>
+        </ErrorBoundary>
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
-    <Suspense>
-      <JsonLd discussionForumPosting={{ text: description }} />
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense>
+        <JsonLd discussionForumPosting={{ text: description }} />
+      </Suspense>
+    </ErrorBoundary>
   </>
 );
 

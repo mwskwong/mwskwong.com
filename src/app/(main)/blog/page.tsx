@@ -15,7 +15,8 @@ import { type FC, Suspense } from 'react';
 import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
-import { Views, ViewsSkeleton } from '@/components/blog/views';
+import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
+import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
 import { blog, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
@@ -103,17 +104,21 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <Suspense
-                        fallback={<ViewsSkeleton hideIcon level="body-sm" />}
+                      <ErrorBoundary
+                        fallback={<ViewsError hideIcon level="body-sm" />}
                       >
-                        <Views
-                          hideIcon
-                          readOnly
-                          blogId={id}
-                          blogIds={blogIds}
-                          level="body-sm"
-                        />
-                      </Suspense>
+                        <Suspense
+                          fallback={<ViewsSkeleton hideIcon level="body-sm" />}
+                        >
+                          <Views
+                            hideIcon
+                            readOnly
+                            blogId={id}
+                            blogIds={blogIds}
+                            level="body-sm"
+                          />
+                        </Suspense>
+                      </ErrorBoundary>
                     </CardContent>
                   </Card>
                 </Grid>

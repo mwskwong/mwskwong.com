@@ -18,8 +18,9 @@ import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
 import { BlogCoverImage } from '@/components/blog/blog-cover-image';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
-import { Views, ViewsSkeleton } from '@/components/blog/views';
+import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { Icon } from '@/components/contentful';
+import { ErrorBoundary } from '@/components/error-boundary';
 import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
@@ -81,9 +82,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 spacing={1}
                 sx={{ alignItems: 'center', justifyContent: 'space-around' }}
               >
-                <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
-                  <Views blogId={blog.id} sx={{ mx: 0.75 }} />
-                </Suspense>
+                <ErrorBoundary fallback={<ViewsError sx={{ mx: 0.75 }} />}>
+                  <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
+                    <Views blogId={blog.id} sx={{ mx: 0.75 }} />
+                  </Suspense>
+                </ErrorBoundary>
                 <CopyUrlButton />
                 <ShareDropdown blog={blog} />
               </Stack>

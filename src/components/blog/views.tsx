@@ -62,3 +62,15 @@ export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
     &nbsp;views
   </Typography>
 );
+
+export type ViewsErrorProps = ViewsSkeletonProps;
+export const ViewsError: FC<ViewsErrorProps> = ({ hideIcon, ...props }) => (
+  <Typography
+    // FIXME: not using sx prop here to prevent CLS
+    display={hideIcon ? 'flex' : undefined}
+    startDecorator={!hideIcon && <Eye />}
+    {...props}
+  >
+    –– views
+  </Typography>
+);
