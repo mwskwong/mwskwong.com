@@ -156,24 +156,11 @@ export const Contact: FC<ContactProps> = (props) => {
                     height: '100%',
                     mb: 6,
                     textAlign: 'center',
+                    '--Icon-fontSize': '4rem',
+                    '--Icon-color': 'var(--joy-palette-success-plainColor)',
                   }}
                 >
-                  <Sheet
-                    color="success"
-                    variant="outlined"
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      boxShadow: 'sm',
-                      borderRadius: '50%',
-                      width: 100,
-                      height: 100,
-                      '--Icon-fontSize': '2.5rem',
-                    }}
-                  >
-                    <ThumbsUp absoluteStrokeWidth size={2.5 * 16} />
-                  </Sheet>
+                  <ThumbsUp absoluteStrokeWidth size={4 * 16} />
                   <Typography level="title-lg">Thank You!</Typography>
                   <Typography sx={{ maxWidth: 'sm' }}>
                     Thank you for reaching out! I have received your message and
