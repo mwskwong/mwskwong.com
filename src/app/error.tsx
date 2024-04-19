@@ -5,8 +5,8 @@ import { RefreshCw } from 'lucide-react';
 import { type FC, useEffect } from 'react';
 
 import { email } from '@/constants/content';
-import { sendAlertEmail } from '@/lib/actions';
 import { env } from '@/env.mjs';
+import { sendAlertEmail } from '@/lib/actions';
 
 const Error: FC<{
   error: Error & { digest?: string };
@@ -14,7 +14,7 @@ const Error: FC<{
 }> = ({ error, reset }) => {
   useEffect(() => {
     if (env.NODE_ENV === 'production') {
-      sendAlertEmail({
+      void sendAlertEmail({
         digest: error.digest,
         message: error.message,
         stack: error.stack,

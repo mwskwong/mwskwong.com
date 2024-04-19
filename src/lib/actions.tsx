@@ -2,8 +2,10 @@
 
 import { unstable_noStore as noStore } from 'next/cache';
 import { headers } from 'next/headers';
+import { userAgent } from 'next/server';
 import { type ErrorResponse } from 'resend';
 
+import { Alert } from '@/components/emails/alert';
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
 import { ContactFormNotification } from '@/components/emails/contact-form-notification';
 import { email, firstName, lastName } from '@/constants/content';
@@ -11,8 +13,6 @@ import { env } from '@/env.mjs';
 import { prisma, resend } from '@/lib/clients';
 
 import { type ContactForm, contactForm } from './validation';
-import Alert from '@/components/emails/alert';
-import { userAgent } from 'next/server';
 
 export const incrBlogViewById = async (id: string) => {
   noStore();
@@ -88,7 +88,7 @@ class CreateEmailError extends Error {
   error: ErrorResponse;
 
   constructor(message: string, error: ErrorResponse) {
-    super(message + '\n' + JSON.stringify(error, null, 2));
+    super(`${message}\n${JSON.stringify(error, null, 2)}`);
     this.name = 'CreateEmailError';
     this.error = error;
   }

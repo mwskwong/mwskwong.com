@@ -5,14 +5,14 @@
 
 import {
   Body,
-  CodeBlockProps,
+  type CodeBlockProps,
   Container,
+  CodeBlock as EmailCodeBlock,
   Text as EmailText,
   Head,
   Html,
   Img,
   type TextProps,
-  CodeBlock as EmailCodeBlock,
   vs,
 } from '@react-email/components';
 import { type FC, type PropsWithChildren } from 'react';

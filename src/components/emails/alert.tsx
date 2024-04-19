@@ -1,10 +1,10 @@
 import { CodeInline, Link } from '@react-email/components';
+import { type userAgent } from 'next/server';
 
 import { firstName } from '@/constants/content';
 import { env } from '@/env.mjs';
 
-import { Layout, Text, CodeBlock } from './_components';
-import { userAgent } from 'next/server';
+import { CodeBlock, Layout, Text } from './_components';
 
 export interface AlertProps {
   digest?: string;

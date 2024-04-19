@@ -2,8 +2,8 @@
 
 import { Component, type PropsWithChildren, type ReactNode } from 'react';
 
-import { sendAlertEmail } from '@/lib/actions';
 import { env } from '@/env.mjs';
+import { sendAlertEmail } from '@/lib/actions';
 
 export interface ErrorBoundaryProps extends PropsWithChildren {
   fallback?: ReactNode;
