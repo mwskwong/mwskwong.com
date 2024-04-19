@@ -9,8 +9,10 @@ import { z } from 'zod';
 
 export const env = createEnv({
   extends: [vercel],
-  server: {
+  shared: {
     NODE_ENV: z.enum(['development', 'test', 'production']),
+  },
+  server: {
     DATABASE_URL: z.string().url(),
     CONTENTFUL_ENVIRONMENT: (() => {
       switch (process.env.VERCEL_ENV) {
@@ -42,6 +44,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SITE_DISPLAY_NAME: z.string(),
   },
   experimental__runtimeEnv: {
+    NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_VERCEL_ENV
       ? process.env.NEXT_PUBLIC_PROD_URL &&
         process.env.NEXT_PUBLIC_VERCEL_URL &&
