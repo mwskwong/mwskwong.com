@@ -14,7 +14,6 @@ const sharedSvgoPlugins = [
   'removeRasterImages',
   'removeScriptElement',
   'removeOffCanvasPaths',
-  'reusePaths',
   'removeXlink',
   'removeXMLNS',
 ];

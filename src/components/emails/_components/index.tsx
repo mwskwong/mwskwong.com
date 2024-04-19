@@ -17,7 +17,7 @@ import { type FC, type PropsWithChildren } from 'react';
 import { env } from '@/env.mjs';
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <Html lang="en">
+  <Html>
     <Head />
     <Body
       style={{
