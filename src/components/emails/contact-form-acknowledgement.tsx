@@ -1,8 +1,6 @@
-import { Hr } from '@react-email/components';
-
 import { firstName } from '@/constants/content';
 
-import { Layout, Text } from './_components';
+import { Hr, Layout, Text } from './_components';
 
 export interface ContactFormAcknowledgementProps {
   name: string;
@@ -23,7 +21,7 @@ export const ContactFormAcknowledgement = ({
       <br />
       {firstName}
     </Text>
-    <Hr style={{ borderColor: '#636b7433' }} />
+    <Hr />
     <Text style={{ fontSize: '0.875rem', color: '#555E68' }}>
       **Please note: This is an automated response. Your email has not been read
       yet, but it will be soon!**
