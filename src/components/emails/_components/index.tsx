@@ -6,8 +6,10 @@
 import {
   Body,
   Container,
+  Hr as EmailHr,
   Text as EmailText,
   Head,
+  type HrProps,
   Html,
   Img,
   type TextProps,
@@ -49,6 +51,16 @@ export const Text: FC<TextProps> = ({ style, ...props }) => (
     style={{
       fontSize: '1rem',
       lineHeight: 1.5,
+      ...style,
+    }}
+    {...props}
+  />
+);
+
+export const Hr: FC<HrProps> = ({ style, ...props }) => (
+  <EmailHr
+    style={{
+      borderColor: '#636b7433',
       ...style,
     }}
     {...props}
