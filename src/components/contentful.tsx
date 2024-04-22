@@ -26,27 +26,29 @@ import {
   Terminal,
   Workflow,
 } from 'lucide-react';
-import { type ComponentProps, type FC, type SVGProps, forwardRef } from 'react';
+import { type ComponentProps, type FC, forwardRef } from 'react';
 import { type LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
-import ContentfulLight from '@/logos/contentful-light.svg';
-import GeistDark from '@/logos/geist-dark.svg';
-import GeistLight from '@/logos/geist-light.svg';
-import ImprovMx from '@/logos/improvmx.svg';
-import Mui from '@/logos/mui.svg';
-import Neon from '@/logos/neon-light.svg';
-import NextJsLight from '@/logos/nextjs-light.svg';
-import PrismaDark from '@/logos/prisma-dark.svg';
-import PrismaLight from '@/logos/prisma-light.svg';
-import ReactHookForm from '@/logos/react-hook-form.svg';
-import ReactLight from '@/logos/react-light.svg';
-import ResendLight from '@/logos/resend-light.svg';
-import TypeScript from '@/logos/typescript.svg';
-import Valibot from '@/logos/valibot.svg';
-import VercelDark from '@/logos/vercel-dark.svg';
-import VercelLight from '@/logos/vercel-light.svg';
-import Zod from '@/logos/zod.svg';
+import contentfulLight from '@/logos/contentful-light.svg?url';
+import geistDark from '@/logos/geist-dark.svg?url';
+import geistLight from '@/logos/geist-light.svg?url';
+import improvMx from '@/logos/improvmx.svg?url';
+import mui from '@/logos/mui.svg?url';
+import neon from '@/logos/neon-light.svg?url';
+import nextJsLight from '@/logos/nextjs-light.svg?url';
+import prismaDark from '@/logos/prisma-dark.svg?url';
+import prismaLight from '@/logos/prisma-light.svg?url';
+import reactHookForm from '@/logos/react-hook-form.svg?url';
+import reactLight from '@/logos/react-light.svg?url';
+import resendLight from '@/logos/resend-light.svg?url';
+import typescript from '@/logos/typescript.svg?url';
+import valibot from '@/logos/valibot.svg?url';
+import vercelDark from '@/logos/vercel-dark.svg?url';
+import vercelLight from '@/logos/vercel-light.svg?url';
+import zod from '@/logos/zod.svg?url';
+
+import { Image, type ImageProps } from './image';
 
 const generateSimpleIcon = (SiIcon: IconType) => {
   const Icon: IconType = forwardRef((props, ref) => (
@@ -92,31 +94,31 @@ export const Icon: FC<IconProps> = ({ contentfulId, ...props }) => {
   return <Icon {...props} />;
 };
 
-const Logos = {
-  [contentfulIds.muiCore]: Mui,
-  [contentfulIds.joyUi]: Mui,
-  [contentfulIds.nextJs]: { light: NextJsLight, dark: undefined },
-  [contentfulIds.neon]: { light: Neon, dark: undefined },
-  [contentfulIds.react]: { light: ReactLight, dark: undefined },
-  [contentfulIds.reactHookForm]: ReactHookForm,
-  [contentfulIds.typescript]: TypeScript,
-  [contentfulIds.valibot]: Valibot,
-  [contentfulIds.contentful]: { light: ContentfulLight, dark: undefined },
-  [contentfulIds.resend]: { light: ResendLight, dark: undefined },
-  [contentfulIds.improvMx]: ImprovMx,
-  [contentfulIds.prisma]: { light: PrismaLight, dark: PrismaDark },
-  [contentfulIds.vercel]: { light: VercelLight, dark: VercelDark },
-  [contentfulIds.vercelStyleGuide]: { light: VercelLight, dark: VercelDark },
+const logoSrc = {
+  [contentfulIds.muiCore]: mui,
+  [contentfulIds.joyUi]: mui,
+  [contentfulIds.nextJs]: { light: nextJsLight, dark: undefined },
+  [contentfulIds.neon]: { light: neon, dark: undefined },
+  [contentfulIds.react]: { light: reactLight, dark: undefined },
+  [contentfulIds.reactHookForm]: reactHookForm,
+  [contentfulIds.typescript]: typescript,
+  [contentfulIds.valibot]: valibot,
+  [contentfulIds.contentful]: { light: contentfulLight, dark: undefined },
+  [contentfulIds.resend]: { light: resendLight, dark: undefined },
+  [contentfulIds.improvMx]: improvMx,
+  [contentfulIds.prisma]: { light: prismaLight, dark: prismaDark },
+  [contentfulIds.vercel]: { light: vercelLight, dark: vercelDark },
+  [contentfulIds.vercelStyleGuide]: { light: vercelLight, dark: vercelDark },
   [contentfulIds.prismaReadReplicasExtension]: {
-    light: PrismaLight,
-    dark: PrismaDark,
+    light: prismaLight,
+    dark: prismaDark,
   },
-  [contentfulIds.geist]: { light: GeistLight, dark: GeistDark },
-  [contentfulIds.zod]: Zod,
+  [contentfulIds.geist]: { light: geistLight, dark: geistDark },
+  [contentfulIds.zod]: zod,
 };
 
-export interface LogoProps extends SVGProps<SVGSVGElement> {
-  contentfulId: LiteralUnion<keyof typeof Logos, string>;
+export interface LogoProps extends Omit<ImageProps, 'src'> {
+  contentfulId: LiteralUnion<keyof typeof logoSrc, string>;
   colorScheme?: 'light' | 'dark' | 'auto';
 }
 
@@ -128,42 +130,49 @@ export const logoClasses = {
 export const Logo: FC<LogoProps> = ({
   contentfulId,
   colorScheme = 'auto',
+  alt,
   className,
   ...props
 }) => {
-  if (!(contentfulId in Logos)) return null;
+  if (!(contentfulId in logoSrc)) return null;
 
-  const MaybeLogo = Logos[contentfulId as keyof typeof Logos];
-  const universal = typeof MaybeLogo === 'function';
-
-  if (colorScheme === 'auto') {
-    if (universal) return <MaybeLogo {...props} />;
-
-    const { light: LightLogo, dark: DarkLogo } = MaybeLogo;
-    return (
-      <>
-        <LightLogo className={logoClasses.colorSchemeLight} {...props} />
-        {DarkLogo ? (
-          <DarkLogo className={logoClasses.colorSchemeDark} {...props} />
-        ) : null}
-      </>
-    );
-  }
-
-  const Logo = universal ? MaybeLogo : MaybeLogo[colorScheme];
+  const src = logoSrc[contentfulId as keyof typeof logoSrc];
   return (
-    Logo && (
-      <Logo
-        className={clsx(
-          {
-            [logoClasses.colorSchemeLight]:
-              !universal && colorScheme === 'light',
-            [logoClasses.colorSchemeDark]: !universal && colorScheme === 'dark',
-          },
-          className,
+    <>
+      {'light' in src &&
+        (colorScheme === 'auto' || colorScheme === 'light') && (
+          <Image
+            alt={alt}
+            className={logoClasses.colorSchemeLight}
+            src={src.light}
+            {...props}
+          />
         )}
-        {...props}
-      />
-    )
+      {'dark' in src &&
+      (colorScheme === 'auto' || colorScheme === 'dark') &&
+      src.dark ? (
+        <Image
+          alt={alt}
+          className={logoClasses.colorSchemeDark}
+          src={src.dark}
+        />
+      ) : null}
+      {!('light' in src) && (
+        <Image
+          alt={alt}
+          src={src}
+          className={clsx(
+            {
+              [logoClasses.colorSchemeLight]:
+                colorScheme === 'auto' || colorScheme === 'light',
+              [logoClasses.colorSchemeDark]:
+                colorScheme === 'auto' || colorScheme === 'dark',
+            },
+            className,
+          )}
+          {...props}
+        />
+      )}
+    </>
   );
 };

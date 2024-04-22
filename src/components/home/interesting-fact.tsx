@@ -41,9 +41,11 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
               <Tooltip key={id} title={name}>
                 <Link href={url} target="_blank">
                   <Logo
+                    alt={name}
                     colorScheme="light"
                     contentfulId={id}
                     height={36}
+                    sx={{ objectFit: 'scale-down' }}
                     width={36}
                   />
                 </Link>
