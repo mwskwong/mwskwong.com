@@ -21,23 +21,5 @@ export const qa = '119H1LBXMmT8xLTdnAq1PS';
 export const monitoring = '632XHEYS6JH9L1l61PHQLx';
 export const toolsAndPlatforms = '49VijdvfwgdRLADfqZ3vTk';
 
-export const react = '6AvNh3tmHsqkj6hsPjDYFq';
-export const reactHookForm = '65juthZmgU0hNCkWDxC7iG';
-export const nextJs = 'NbXE4EvJWCDiNb7eKrafg';
-export const joyUi = '2rMi7Lv3slZk6lLkgx1pSJ';
-export const typescript = '2SVIu6dyBbuT2JCunSq5op';
-export const vercel = '5OzQi3jbmYpxkPx7dxtuGi';
-export const contentful = '7A13OO92u9GI3ZyZOcyTQT';
-export const prisma = '6nLGbLCselNANTZ4uefEW9';
-export const neon = '3N5jJwexRkYr1cUtQrGN3h';
-export const improvMx = '5gYyqZjbbjiWn8pYNsGEpq';
-export const resend = '783P61teOzS14QIHCL0HUQ';
-export const prismaReadReplicasExtension = '6myzHQnxgEBbUt9RMvHx5g';
-export const muiCore = '34jdGzLYPeSdsX8ufmmtnX';
-export const vercelStyleGuide = '6scCFCr3pGATuvQEFnpkC7';
-export const valibot = 'ULFnAQDuQIweV6ehX8od0';
-export const geist = '28J0t6Cjj7Jib2DddMB9ar';
-export const zod = '1i3absegU7fEWjXw7xAxd8';
-
 export const cv = '6mTh13ou7wM2Cs7ZC1tcdn';
 export const privacyPolicy = '13hUvxPc7WtvdUSAJK5WAm';
