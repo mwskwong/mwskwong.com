@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-import Logo from '@/app/icon.svg?monochrome';
+import Icon from '@/app/icon.svg?monochrome';
 import { firstName, lastName } from '@/constants/content';
 
 export const size = { width: 1200, height: 630 };
@@ -22,7 +22,7 @@ const OpengraphImage = async () =>
         }}
       >
         {/* --joy-palette-primary-plainColor */}
-        <Logo fill="#0B6BCB" width={200} />
+        <Icon fill="#0B6BCB" width={200} />
         <h1
           // https://mui.com/joy-ui/customization/default-theme-viewer/
           style={{

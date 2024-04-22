@@ -85,6 +85,9 @@ export interface ProjectSkeleton {
     type: EntryFieldTypes.Symbol<'Library' | 'Platform' | 'Website'>;
     url: EntryFieldTypes.Symbol;
     thumbnail?: EntryFieldTypes.AssetLink;
+    logoUniversal?: EntryFieldTypes.AssetLink;
+    logoLight?: EntryFieldTypes.AssetLink;
+    logoDark?: EntryFieldTypes.AssetLink;
   };
 }
 

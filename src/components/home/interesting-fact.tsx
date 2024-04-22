@@ -12,7 +12,7 @@ import { type FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';
 
-import { Logo } from '../contentful';
+import { Image } from '../image';
 
 export type InterestingFactProps = Omit<BoxProps<'section'>, 'children'>;
 export const InterestingFact: FC<InterestingFactProps> = async (props) => {
@@ -37,18 +37,26 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
             spacing={2}
             sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
           >
-            {techStack.map(({ id, name, url }) => (
-              <Tooltip key={id} title={name}>
-                <Link href={url} target="_blank">
-                  <Logo
-                    colorScheme="light"
-                    contentfulId={id}
-                    height={36}
-                    width={36}
-                  />
-                </Link>
-              </Tooltip>
-            ))}
+            {techStack.map(({ id, name, url, logo }) => {
+              const logoProps = {
+                height: 36,
+                width: 36,
+                sx: { objectFit: 'scale-down' },
+              };
+
+              return (
+                <Tooltip key={id} title={name}>
+                  <Link href={url} target="_blank">
+                    {logo.universal ? (
+                      <Image alt={name} src={logo.universal} {...logoProps} />
+                    ) : null}
+                    {logo.light ? (
+                      <Image alt={name} src={logo.light} {...logoProps} />
+                    ) : null}
+                  </Link>
+                </Tooltip>
+              );
+            })}
           </Stack>
           <Typography>...and more</Typography>
           <Button

@@ -83,6 +83,17 @@ export const getContributedProjects = cache(async () => {
     id: item.sys.id,
     name: item.fields.name,
     url: item.fields.url,
+    logo: {
+      universal:
+        item.fields.logoUniversal?.fields.file &&
+        `https:${item.fields.logoUniversal.fields.file.url}`,
+      light:
+        item.fields.logoLight?.fields.file &&
+        `https:${item.fields.logoLight.fields.file.url}`,
+      dark:
+        item.fields.logoDark?.fields.file &&
+        `https:${item.fields.logoDark.fields.file.url}`,
+    },
   }));
 });
 
@@ -254,6 +265,17 @@ export const getTechStack = cache(async () => {
     id: item.sys.id,
     name: item.fields.name,
     url: item.fields.url,
+    logo: {
+      universal:
+        item.fields.logoUniversal?.fields.file &&
+        `https:${item.fields.logoUniversal.fields.file.url}`,
+      light:
+        item.fields.logoLight?.fields.file &&
+        `https:${item.fields.logoLight.fields.file.url}`,
+      dark:
+        item.fields.logoDark?.fields.file &&
+        `https:${item.fields.logoDark.fields.file.url}`,
+    },
   }));
 });
 

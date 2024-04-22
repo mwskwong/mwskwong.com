@@ -12,9 +12,14 @@ import { type FC } from 'react';
 import { experience } from '@/constants/nav';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
-import { Logo, logoClasses } from '../contentful';
+import { Image } from '../image';
 
 import { Timeline, TimelineItem } from './timeline';
+
+const logoClassNames = {
+  light: 'Logo-colorSchemeLight',
+  dark: 'Logo-colorSchemeDark',
+};
 
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
 export const Experience: FC<ExperienceProps> = async (props) => {
@@ -67,26 +72,52 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               sx={{
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                [`& .${logoClasses.colorSchemeLight}`]: {
+                [`& .${logoClassNames.light}`]: {
                   display: 'none',
                 },
                 '[data-joy-color-scheme="dark"] &': {
-                  [`& .${logoClasses.colorSchemeDark}`]: {
+                  [`& .${logoClassNames.dark}`]: {
                     display: 'none',
                   },
-                  [`& .${logoClasses.colorSchemeLight}`]: {
+                  [`& .${logoClassNames.light}`]: {
                     display: 'block',
                   },
                 },
               }}
             >
-              {contributedProjects.map(({ id, name, url }) => (
-                <Tooltip key={id} title={name}>
-                  <Link href={url} target="_blank">
-                    <Logo contentfulId={id} height={36} width={36} />
-                  </Link>
-                </Tooltip>
-              ))}
+              {contributedProjects.map(({ id, name, url, logo }) => {
+                const logoProps = {
+                  height: 36,
+                  width: 36,
+                  sx: { objectFit: 'scale-down' },
+                };
+
+                return (
+                  <Tooltip key={id} title={name}>
+                    <Link href={url} target="_blank">
+                      {logo.universal ? (
+                        <Image alt={name} src={logo.universal} {...logoProps} />
+                      ) : null}
+                      {logo.light ? (
+                        <Image
+                          alt={name}
+                          className={logoClassNames.light}
+                          src={logo.light}
+                          {...logoProps}
+                        />
+                      ) : null}
+                      {logo.dark ? (
+                        <Image
+                          alt={name}
+                          className={logoClassNames.dark}
+                          src={logo.dark}
+                          {...logoProps}
+                        />
+                      ) : null}
+                    </Link>
+                  </Tooltip>
+                );
+              })}
             </Stack>
             <Typography>...and more to come</Typography>
           </Stack>
