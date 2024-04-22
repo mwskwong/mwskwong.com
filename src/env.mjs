@@ -8,7 +8,7 @@ import { capitalize } from 'lodash-es';
 import { z } from 'zod';
 
 export const env = createEnv({
-  extends: [vercel],
+  extends: [vercel()],
   shared: {
     NODE_ENV: z.enum(['development', 'test', 'production']),
   },
