@@ -1,6 +1,6 @@
 import { Box } from '@mui/joy';
 import { type FC } from 'react';
-import { type BreadcrumbList, type WithContext } from 'schema-dts';
+import { type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';
@@ -10,6 +10,7 @@ import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
 import { home } from '@/constants/nav';
+import { webSite } from '@/lib/json-ld';
 
 const bgcolors = {
   hero: 'background.body',
@@ -64,16 +65,21 @@ const Home: FC = () => (
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
+          '@graph': [
+            webSite,
             {
-              '@type': 'ListItem',
-              name: home.label,
-              position: 1,
-            },
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  name: home.label,
+                  position: 1,
+                },
+              ],
+              name: 'Breadcrumbs',
+            } satisfies BreadcrumbList,
           ],
-          name: 'Breadcrumbs',
-        } satisfies WithContext<BreadcrumbList>),
+        } satisfies Graph),
       }}
       type="application/ld+json"
     />
