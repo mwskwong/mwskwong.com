@@ -19,6 +19,7 @@ import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
 import { blog, blogRssFeed, home } from '@/constants/nav';
+import { env } from '@/env.mjs';
 import { webSite } from '@/lib/json-ld';
 import { getBlogs } from '@/lib/queries';
 
@@ -140,7 +141,13 @@ const Blogs: FC = async () => {
                   {
                     '@type': 'ListItem',
                     name: home.label,
+                    item: env.NEXT_PUBLIC_SITE_URL,
                     position: 1,
+                  },
+                  {
+                    '@type': 'ListItem',
+                    name: blog.label,
+                    position: 2,
                   },
                 ],
                 name: 'Breadcrumbs',
