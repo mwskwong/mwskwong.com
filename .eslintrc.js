@@ -49,7 +49,7 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
-      { checksVoidReturn: false },
+      { checksVoidReturn: { attributes: false } },
     ],
     '@typescript-eslint/restrict-template-expressions': [
       'error',
@@ -57,7 +57,6 @@ module.exports = {
         allowAny: false,
         allowBoolean: false,
         allowNullish: false,
-        allowNumber: true,
         allowRegExp: false,
         allowNever: false,
       },
