@@ -13,6 +13,7 @@ import { experience } from '@/constants/nav';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
 import { Image } from '../image';
+import { ThemeImage } from '../theme-image';
 
 import { Timeline, TimelineItem } from './timeline';
 
@@ -97,23 +98,17 @@ export const Experience: FC<ExperienceProps> = async (props) => {
                     <Link href={url} target="_blank">
                       {logo.universal ? (
                         <Image alt={name} src={logo.universal} {...logoProps} />
-                      ) : null}
-                      {logo.light ? (
-                        <Image
-                          alt={name}
-                          className={logoClassNames.light}
-                          src={logo.light}
-                          {...logoProps}
-                        />
-                      ) : null}
-                      {logo.dark ? (
-                        <Image
-                          alt={name}
-                          className={logoClassNames.dark}
-                          src={logo.dark}
-                          {...logoProps}
-                        />
-                      ) : null}
+                      ) : (
+                        logo.light &&
+                        logo.dark && (
+                          <ThemeImage
+                            alt={name}
+                            srcDark={logo.light}
+                            srcLight={logo.dark}
+                            {...logoProps}
+                          />
+                        )
+                      )}
                     </Link>
                   </Tooltip>
                 );

@@ -49,10 +49,11 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
                   <Link href={url} target="_blank">
                     {logo.universal ? (
                       <Image alt={name} src={logo.universal} {...logoProps} />
-                    ) : null}
-                    {logo.light ? (
-                      <Image alt={name} src={logo.light} {...logoProps} />
-                    ) : null}
+                    ) : (
+                      logo.light && (
+                        <Image alt={name} src={logo.light} {...logoProps} />
+                      )
+                    )}
                   </Link>
                 </Tooltip>
               );
