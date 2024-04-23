@@ -17,11 +17,6 @@ import { ThemeImage } from '../theme-image';
 
 import { Timeline, TimelineItem } from './timeline';
 
-const logoClassNames = {
-  light: 'Logo-colorSchemeLight',
-  dark: 'Logo-colorSchemeDark',
-};
-
 export type ExperienceProps = Omit<BoxProps<'section'>, 'children'>;
 export const Experience: FC<ExperienceProps> = async (props) => {
   const [experiences, contributedProjects] = await Promise.all([
@@ -70,21 +65,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
             <Stack
               direction="row"
               spacing={2}
-              sx={{
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                [`& .${logoClassNames.light}`]: {
-                  display: 'none',
-                },
-                '[data-joy-color-scheme="dark"] &': {
-                  [`& .${logoClassNames.dark}`]: {
-                    display: 'none',
-                  },
-                  [`& .${logoClassNames.light}`]: {
-                    display: 'block',
-                  },
-                },
-              }}
+              sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
             >
               {contributedProjects.map(({ id, name, url, logo }) => {
                 const logoProps = {
