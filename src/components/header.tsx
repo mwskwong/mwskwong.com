@@ -13,12 +13,12 @@ import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { type FC } from 'react';
 
-import Logo from '@/app/icon.svg?monochrome';
+import Icon from '@/app/icon.svg?monochrome';
 import { github, linkedin } from '@/constants/contentful-ids';
 import { home, nav } from '@/constants/nav';
 import { getPlatformProfiles } from '@/lib/queries';
 
-import { Icon } from './contentful';
+import { Icon as ContentfulIcon } from './contentful';
 import { ModeToggleButton } from './mode-toggle-button';
 import { NavDrawer } from './nav-drawer';
 
@@ -58,7 +58,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
               component={NextLink}
               href={{ pathname: home.pathname, hash: home.id }}
             >
-              <Logo width={30} />
+              <Icon width={30} />
             </Link>
             <List
               orientation="horizontal"
@@ -96,7 +96,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
                     target="_blank"
                     variant="outlined"
                   >
-                    <Icon contentfulId={platform.id} />
+                    <ContentfulIcon contentfulId={platform.id} />
                   </IconButton>
                 ),
             )}

@@ -12,7 +12,7 @@ import { type FC } from 'react';
 import { experience } from '@/constants/nav';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
-import { Logo, logoClasses } from '../contentful';
+import { Image, ThemeImage } from '../image';
 
 import { Timeline, TimelineItem } from './timeline';
 
@@ -64,29 +64,35 @@ export const Experience: FC<ExperienceProps> = async (props) => {
             <Stack
               direction="row"
               spacing={2}
-              sx={{
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                [`& .${logoClasses.colorSchemeLight}`]: {
-                  display: 'none',
-                },
-                '[data-joy-color-scheme="dark"] &': {
-                  [`& .${logoClasses.colorSchemeDark}`]: {
-                    display: 'none',
-                  },
-                  [`& .${logoClasses.colorSchemeLight}`]: {
-                    display: 'block',
-                  },
-                },
-              }}
+              sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
             >
-              {contributedProjects.map(({ id, name, url }) => (
-                <Tooltip key={id} title={name}>
-                  <Link href={url} target="_blank">
-                    <Logo contentfulId={id} height={36} width={36} />
-                  </Link>
-                </Tooltip>
-              ))}
+              {contributedProjects.map(({ id, name, url, logo }) => {
+                const logoProps = {
+                  height: 36,
+                  width: 36,
+                  sx: { objectFit: 'scale-down' },
+                };
+
+                return (
+                  <Tooltip key={id} title={name}>
+                    <Link href={url} target="_blank">
+                      {logo.universal ? (
+                        <Image alt={name} src={logo.universal} {...logoProps} />
+                      ) : (
+                        logo.light &&
+                        logo.dark && (
+                          <ThemeImage
+                            alt={name}
+                            srcDark={logo.light}
+                            srcLight={logo.dark}
+                            {...logoProps}
+                          />
+                        )
+                      )}
+                    </Link>
+                  </Tooltip>
+                );
+              })}
             </Stack>
             <Typography>...and more to come</Typography>
           </Stack>

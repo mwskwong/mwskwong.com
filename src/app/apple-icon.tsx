@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-import Logo from '@/app/icon.svg?monochrome';
+import Icon from '@/app/icon.svg?monochrome';
 
 export const runtime = 'edge';
 export const size = { width: 180, height: 180 };
@@ -21,7 +21,7 @@ const appleIcon = () =>
         }}
       >
         {/* --joy-palette-primary-plainColor */}
-        <Logo fill="#0B6BCB" width="100%" />
+        <Icon fill="#0B6BCB" width="100%" />
       </div>
     ),
     size,

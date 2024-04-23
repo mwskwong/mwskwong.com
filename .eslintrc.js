@@ -9,9 +9,9 @@ module.exports = {
   root: true,
   extends: [
     require.resolve('@vercel/style-guide/eslint/browser'),
+    require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/react'),
     require.resolve('@vercel/style-guide/eslint/next'),
-    require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/typescript'),
   ],
   parserOptions: { project },
@@ -31,9 +31,9 @@ module.exports = {
         Input: 'input',
         Link: 'a',
         List: 'ul',
+        ListDivider: 'li',
         ListItem: 'li',
         ListItemButton: 'button',
-        ListDivider: 'li',
         NextImage: 'img',
         NextLink: 'a',
         Textarea: 'textarea',
@@ -49,7 +49,7 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
-      { checksVoidReturn: false },
+      { checksVoidReturn: { attributes: false } },
     ],
     '@typescript-eslint/restrict-template-expressions': [
       'error',
@@ -57,7 +57,6 @@ module.exports = {
         allowAny: false,
         allowBoolean: false,
         allowNullish: false,
-        allowNumber: true,
         allowRegExp: false,
         allowNever: false,
       },

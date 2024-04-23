@@ -12,7 +12,6 @@ import {
   SiUdemy,
   SiYoutube,
 } from '@icons-pack/react-simple-icons';
-import { clsx } from 'clsx';
 import {
   Activity,
   BrainCircuit,
@@ -26,27 +25,10 @@ import {
   Terminal,
   Workflow,
 } from 'lucide-react';
-import { type ComponentProps, type FC, type SVGProps, forwardRef } from 'react';
+import { type ComponentProps, type FC, forwardRef } from 'react';
 import { type LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
-import ContentfulLight from '@/logos/contentful-light.svg';
-import GeistDark from '@/logos/geist-dark.svg';
-import GeistLight from '@/logos/geist-light.svg';
-import ImprovMx from '@/logos/improvmx.svg';
-import Mui from '@/logos/mui.svg';
-import Neon from '@/logos/neon-light.svg';
-import NextJsLight from '@/logos/nextjs-light.svg';
-import PrismaDark from '@/logos/prisma-dark.svg';
-import PrismaLight from '@/logos/prisma-light.svg';
-import ReactHookForm from '@/logos/react-hook-form.svg';
-import ReactLight from '@/logos/react-light.svg';
-import ResendLight from '@/logos/resend-light.svg';
-import TypeScript from '@/logos/typescript.svg';
-import Valibot from '@/logos/valibot.svg';
-import VercelDark from '@/logos/vercel-dark.svg';
-import VercelLight from '@/logos/vercel-light.svg';
-import Zod from '@/logos/zod.svg';
 
 const generateSimpleIcon = (SiIcon: IconType) => {
   const Icon: IconType = forwardRef((props, ref) => (
@@ -90,80 +72,4 @@ export const Icon: FC<IconProps> = ({ contentfulId, ...props }) => {
 
   const Icon = Icons[contentfulId as keyof typeof Icons];
   return <Icon {...props} />;
-};
-
-const Logos = {
-  [contentfulIds.muiCore]: Mui,
-  [contentfulIds.joyUi]: Mui,
-  [contentfulIds.nextJs]: { light: NextJsLight, dark: undefined },
-  [contentfulIds.neon]: { light: Neon, dark: undefined },
-  [contentfulIds.react]: { light: ReactLight, dark: undefined },
-  [contentfulIds.reactHookForm]: ReactHookForm,
-  [contentfulIds.typescript]: TypeScript,
-  [contentfulIds.valibot]: Valibot,
-  [contentfulIds.contentful]: { light: ContentfulLight, dark: undefined },
-  [contentfulIds.resend]: { light: ResendLight, dark: undefined },
-  [contentfulIds.improvMx]: ImprovMx,
-  [contentfulIds.prisma]: { light: PrismaLight, dark: PrismaDark },
-  [contentfulIds.vercel]: { light: VercelLight, dark: VercelDark },
-  [contentfulIds.vercelStyleGuide]: { light: VercelLight, dark: VercelDark },
-  [contentfulIds.prismaReadReplicasExtension]: {
-    light: PrismaLight,
-    dark: PrismaDark,
-  },
-  [contentfulIds.geist]: { light: GeistLight, dark: GeistDark },
-  [contentfulIds.zod]: Zod,
-};
-
-export interface LogoProps extends SVGProps<SVGSVGElement> {
-  contentfulId: LiteralUnion<keyof typeof Logos, string>;
-  colorScheme?: 'light' | 'dark' | 'auto';
-}
-
-export const logoClasses = {
-  colorSchemeLight: 'ContentfulLogo-colorSchemeLight',
-  colorSchemeDark: 'ContentfulLogo-colorSchemeDark',
-};
-
-export const Logo: FC<LogoProps> = ({
-  contentfulId,
-  colorScheme = 'auto',
-  className,
-  ...props
-}) => {
-  if (!(contentfulId in Logos)) return null;
-
-  const MaybeLogo = Logos[contentfulId as keyof typeof Logos];
-  const universal = typeof MaybeLogo === 'function';
-
-  if (colorScheme === 'auto') {
-    if (universal) return <MaybeLogo {...props} />;
-
-    const { light: LightLogo, dark: DarkLogo } = MaybeLogo;
-    return (
-      <>
-        <LightLogo className={logoClasses.colorSchemeLight} {...props} />
-        {DarkLogo ? (
-          <DarkLogo className={logoClasses.colorSchemeDark} {...props} />
-        ) : null}
-      </>
-    );
-  }
-
-  const Logo = universal ? MaybeLogo : MaybeLogo[colorScheme];
-  return (
-    Logo && (
-      <Logo
-        className={clsx(
-          {
-            [logoClasses.colorSchemeLight]:
-              !universal && colorScheme === 'light',
-            [logoClasses.colorSchemeDark]: !universal && colorScheme === 'dark',
-          },
-          className,
-        )}
-        {...props}
-      />
-    )
-  );
 };

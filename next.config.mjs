@@ -136,7 +136,7 @@ const config = {
             default-src 'self';
             script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com;
             style-src 'self' 'unsafe-inline';
-            img-src 'self' blob: data:;
+            img-src 'self' images.ctfassets.net blob: data:;
             font-src 'self';
             object-src 'none';
             base-uri 'self';
