@@ -12,8 +12,7 @@ import { type FC } from 'react';
 import { experience } from '@/constants/nav';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
-import { Image } from '../image';
-import { ThemeImage } from '../theme-image';
+import { Image, ThemeImage } from '../image';
 
 import { Timeline, TimelineItem } from './timeline';
 
