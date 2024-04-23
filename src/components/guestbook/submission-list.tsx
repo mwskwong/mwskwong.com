@@ -25,13 +25,14 @@ const submissionListSx = {
   '& > li': { alignItems: 'flex-start' },
 } satisfies SxProps;
 
-const today = new Date();
 const relativeTimeFormatter = new Intl.RelativeTimeFormat('en', {
   numeric: 'auto',
 });
 
 const fromNow = (date: Date) => {
   // logic: https://day.js.org/docs/en/display/from-now
+
+  const today = new Date();
   const diffInSec = Math.round((today.getTime() - date.getTime()) / 1000);
   const diffInMin = Math.round(diffInSec / 60);
   const diffInHour = Math.round(diffInMin / 60);
