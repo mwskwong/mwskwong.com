@@ -27,11 +27,11 @@ export const ThemeImage: FC<ThemeImageProps> = ({
         alt={alt}
         src={srcLight}
         sx={mergeSx(
-          {
-            '[data-joy-color-scheme="dark"] &': {
+          (theme) => ({
+            [theme.getColorSchemeSelector('dark')]: {
               display: 'none',
             },
-          },
+          }),
           sx,
         )}
         {...props}
@@ -40,12 +40,12 @@ export const ThemeImage: FC<ThemeImageProps> = ({
         alt={alt}
         src={srcDark}
         sx={mergeSx(
-          {
+          (theme) => ({
             display: 'none',
-            '[data-joy-color-scheme="dark"] &': {
+            [theme.getColorSchemeSelector('dark')]: {
               display: 'unset',
             },
-          },
+          }),
           sx,
         )}
         {...props}
