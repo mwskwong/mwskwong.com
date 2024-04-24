@@ -135,7 +135,7 @@ export const Contact: FC<ContactProps> = (props) => {
                   >
                     <Icon />
                   </Sheet>
-                  <Typography level="title-md">{title}</Typography>
+                  <Typography level="title-lg">{title}</Typography>
                   <Link
                     color="neutral"
                     href={url}
