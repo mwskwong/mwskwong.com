@@ -9,7 +9,7 @@ import {
 
 import { guestbook, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
-import { getPerson, webSite } from '@/lib/json-ld';
+import { getPerson } from '@/lib/json-ld';
 import { getGuestbookSubmissions } from '@/lib/queries';
 
 export interface JsonLdProps {
@@ -32,7 +32,6 @@ export const JsonLd: FC<JsonLdProps> = async ({
         __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@graph': [
-            webSite,
             {
               '@type': 'DiscussionForumPosting',
               author: { '@id': person['@id'] },

@@ -7,7 +7,7 @@ import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { home, privacyPolicy } from '@/constants/nav';
 import { env } from '@/env.mjs';
-import { getPerson, webSite } from '@/lib/json-ld';
+import { getPerson } from '@/lib/json-ld';
 import { getPrivacyPolicy } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
@@ -44,7 +44,6 @@ const PrivacyPolicy: FC = async () => {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@graph': [
-              webSite,
               {
                 '@type': 'Article',
                 headline: `${env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${privacyPolicy.label}`,

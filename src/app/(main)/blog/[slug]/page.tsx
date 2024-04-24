@@ -27,7 +27,7 @@ import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
 import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
-import { getPerson, webSite } from '@/lib/json-ld';
+import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,
   getBlogs,
@@ -190,7 +190,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@graph': [
-              webSite,
               {
                 '@type': 'BlogPosting',
                 headline: blog.title,
