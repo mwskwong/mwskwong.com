@@ -12,7 +12,7 @@ import { LinkIcon } from 'lucide-react';
 import { type MDXComponents } from 'mdx/types';
 import NextLink from 'next/link';
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
-import { type FC, type RefObject } from 'react';
+import { type FC, type Ref } from 'react';
 import rehypePrettyCode, { type Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
@@ -61,7 +61,7 @@ const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
 export const components = {
   h2: ({ ref, color, ...props }) => (
     <Heading
-      ref={ref as RefObject<HTMLHeadingElement>}
+      ref={ref as Ref<HTMLHeadingElement>}
       level="h2"
       sx={{
         mb: 3,
@@ -74,7 +74,7 @@ export const components = {
   ),
   h3: ({ ref, color, ...props }) => (
     <Heading
-      ref={ref as RefObject<HTMLHeadingElement>}
+      ref={ref as Ref<HTMLHeadingElement>}
       level="h3"
       sx={{
         mb: 1.5,
@@ -87,7 +87,7 @@ export const components = {
   ),
   h4: ({ ref, color, ...props }) => (
     <Heading
-      ref={ref as RefObject<HTMLHeadingElement>}
+      ref={ref as Ref<HTMLHeadingElement>}
       level="h4"
       sx={{
         mb: 1,
@@ -100,7 +100,7 @@ export const components = {
   ),
   p: ({ ref, color, ...props }) => (
     <Typography
-      ref={ref as RefObject<HTMLParagraphElement>}
+      ref={ref as Ref<HTMLParagraphElement>}
       sx={{ my: 2, color }}
       {...props}
     />
@@ -111,7 +111,7 @@ export const components = {
       : false;
     return (
       <Link
-        ref={ref as RefObject<HTMLAnchorElement>}
+        ref={ref as Ref<HTMLAnchorElement>}
         component={external ? 'a' : NextLink}
         sx={{ color, '& > code': { color: 'inherit' } }}
         target={external ? '_blank' : undefined}
@@ -123,7 +123,7 @@ export const components = {
   },
   ul: ({ ref, color, ...props }) => (
     <List
-      ref={ref as RefObject<HTMLUListElement>}
+      ref={ref as Ref<HTMLUListElement>}
       component="ul"
       marker="disc"
       sx={{
@@ -139,7 +139,7 @@ export const components = {
   ),
   ol: ({ ref, color, ...props }) => (
     <List
-      ref={ref as RefObject<HTMLOListElement>}
+      ref={ref as Ref<HTMLOListElement>}
       component="ol"
       marker="decimal"
       sx={{ color, my: 2, '--List-padding': '0px' }}
@@ -148,7 +148,7 @@ export const components = {
   ),
   li: ({ ref, color, ...props }) => (
     <ListItem
-      ref={ref as RefObject<HTMLLIElement>}
+      ref={ref as Ref<HTMLLIElement>}
       sx={{
         color,
         // handle <p>, which has margin by default, nested in <li>
@@ -163,7 +163,7 @@ export const components = {
       const { ref, color, children, ...rest } = props;
       return (
         <Sheet
-          ref={ref as RefObject<HTMLElement>}
+          ref={ref as Ref<HTMLElement>}
           component="figure"
           variant="outlined"
           sx={{
@@ -195,7 +195,7 @@ export const components = {
       const { ref, color, ...rest } = props;
       return (
         <Typography
-          ref={ref as RefObject<HTMLElement>}
+          ref={ref as Ref<HTMLElement>}
           component="figcaption"
           level="body-sm"
           sx={{ pt: 2, textAlign: 'center', color }}
@@ -207,7 +207,7 @@ export const components = {
   },
   pre: ({ ref, ...props }) => (
     <Box
-      ref={ref as RefObject<HTMLPreElement>}
+      ref={ref as Ref<HTMLPreElement>}
       component="pre"
       sx={{ m: 0, overflow: 'auto', py: 2 }}
       {...props}
@@ -220,7 +220,7 @@ export const components = {
       const { ref, color, ...rest } = props;
       return (
         <Typography
-          ref={ref as RefObject<HTMLElement>}
+          ref={ref as Ref<HTMLElement>}
           noWrap
           color="warning"
           component="code"
@@ -239,7 +239,7 @@ export const components = {
   },
   span: ({ ref, ...props }) => (
     <Box
-      ref={ref as RefObject<HTMLSpanElement>}
+      ref={ref as Ref<HTMLSpanElement>}
       component="span"
       sx={{
         // match code block
@@ -264,7 +264,7 @@ export const components = {
       const { ref, color, ...rest } = props;
       return (
         <Typography
-          ref={ref as RefObject<HTMLElement>}
+          ref={ref as Ref<HTMLElement>}
           component="mark"
           sx={{ color }}
           variant="soft"
