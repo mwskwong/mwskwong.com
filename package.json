@@ -28,7 +28,7 @@
     "@mui/material-nextjs": "next",
     "@mui/styled-engine": "next",
     "@prisma/client": "^5.13.0",
-    "@react-email/components": "0.0.16",
+    "@react-email/components": "^0.0.16",
     "@t3-oss/env-core": "^0.10.1",
     "@t3-oss/env-nextjs": "^0.10.1",
     "@vercel/analytics": "^1.2.2",
