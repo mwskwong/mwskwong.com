@@ -23,3 +23,4 @@ export const toolsAndPlatforms = '49VijdvfwgdRLADfqZ3vTk';
 
 export const cv = '6mTh13ou7wM2Cs7ZC1tcdn';
 export const privacyPolicy = '13hUvxPc7WtvdUSAJK5WAm';
+export const personalPhoto = '6MPuamYCrTMaP2hJu4t6WM';

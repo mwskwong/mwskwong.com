@@ -27,7 +27,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
 const description = 'Personal perspectives on a broad range of topics.';
 
 const Blogs: FC = async () => {
-  const blogs = await getBlogs({ page: 1 });
+  const blogs = await getBlogs();
   const blogIds = blogs.map(({ id }) => id);
 
   return (
