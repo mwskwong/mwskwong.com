@@ -83,7 +83,7 @@ const Blogs: FC = async () => {
                           overflow: 'hidden',
                           WebkitLineClamp: 2,
                           WebkitBoxOrient: 'vertical',
-                          typography: 'title-lg',
+                          font: 'title-lg',
                         }}
                       >
                         {title}

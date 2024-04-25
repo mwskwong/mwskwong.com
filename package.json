@@ -24,7 +24,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@icons-pack/react-simple-icons": "^9.4.1",
     "@mui/base": "next",
-    "@mui/joy": "5.0.0-beta.36",
+    "@mui/joy": "next",
     "@mui/material-nextjs": "next",
     "@mui/styled-engine": "next",
     "@prisma/client": "^5.13.0",
