@@ -3,24 +3,18 @@
  * @see {@link https://react.email/docs/cli#how-to-make-the-preview-server-ignore-directories}
  */
 
-import {
-  Body,
-  Container,
-  Hr as EmailHr,
-  Text as EmailText,
-  Head,
-  type HrProps,
-  Html,
-  Img,
-  type TextProps,
-} from '@react-email/components';
+import { Img } from '@react-email/Img';
+import { Body } from '@react-email/body';
+import { Container } from '@react-email/container';
+import { Hr as EmailHr, type HrProps } from '@react-email/hr';
+import { Html } from '@react-email/html';
+import { Text as EmailText, type TextProps } from '@react-email/text';
 import { type FC, type PropsWithChildren } from 'react';
 
 import { env } from '@/env.mjs';
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
   <Html>
-    <Head />
     <Body
       style={{
         color: '#32383E',
