@@ -15,7 +15,7 @@
     "prisma:migrate:deploy": "dotenv -e .env.local -- prisma migrate deploy",
     "prisma:migrate:dev": "dotenv -e .env.local -- prisma migrate dev",
     "start": "next start",
-    "upgrade": "npm update && npm run postinstall && npm run prettier:write && tsc --noEmit && npm run lint -- --fix"
+    "upgrade": "npm update && npm run postinstall && npm run prettier:write && tsc && npm run lint -- --fix"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -33,12 +33,12 @@
     "@t3-oss/env-nextjs": "^0.10.1",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "contentful": "^10.8.9",
+    "contentful": "^10.8.10",
     "dedent": "^1.5.3",
     "feed": "^4.2.2",
     "geist": "^1.3.0",
     "lodash-es": "^4.17.21",
-    "lucide-react": "^0.372.0",
+    "lucide-react": "^0.373.0",
     "merge-sx": "^2.0.0",
     "next": "canary",
     "next-mdx-remote": "^4.4.1",
@@ -69,7 +69,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-prisma": "^5.0.0",
     "prisma": "^5.13.0",
-    "type-fest": "^4.16.0",
+    "type-fest": "^4.17.0",
     "typescript": "^5.4.5"
   }
 }
