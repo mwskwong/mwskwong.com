@@ -3,11 +3,11 @@
  * @see {@link https://react.email/docs/cli#how-to-make-the-preview-server-ignore-directories}
  */
 
-import { Img } from '@react-email/Img';
 import { Body } from '@react-email/body';
 import { Container } from '@react-email/container';
 import { Hr as EmailHr, type HrProps } from '@react-email/hr';
 import { Html } from '@react-email/html';
+import { Img } from '@react-email/img';
 import { Text as EmailText, type TextProps } from '@react-email/text';
 import { type FC, type PropsWithChildren } from 'react';
 
