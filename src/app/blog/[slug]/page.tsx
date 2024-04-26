@@ -30,7 +30,6 @@ import { env } from '@/env.mjs';
 import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,
-  getBlogMetadataById,
   getBlogs,
   getPersonalPhoto,
   getPlatformProfiles,
@@ -52,8 +51,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     getPerson(),
   ]);
   if (!blog) notFound();
-
-  const blogMetadataPromise = getBlogMetadataById(blog.id);
 
   return (
     <>
@@ -87,10 +84,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               >
                 <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
                   <ErrorBoundary fallback={<ViewsError sx={{ mx: 0.75 }} />}>
-                    <Views
-                      blogMetadataPromise={blogMetadataPromise}
-                      sx={{ mx: 0.75 }}
-                    />
+                    <Views blogId={blog.id} sx={{ mx: 0.75 }} />
                   </ErrorBoundary>
                 </Suspense>
                 <CopyUrlButton />
