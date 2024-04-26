@@ -1,4 +1,4 @@
-import { type Person, type WebSite } from 'schema-dts';
+import { type Person } from 'schema-dts';
 
 import {
   address,
@@ -38,10 +38,3 @@ export const getPerson = async () => {
     description: selfIntroduction,
   } satisfies Person;
 };
-
-export const webSite = {
-  '@type': 'WebSite',
-  name: `${firstName} ${lastName}`,
-  alternateName: ['mwskwong', 'MK'],
-  url: env.NEXT_PUBLIC_SITE_URL,
-} satisfies WebSite;

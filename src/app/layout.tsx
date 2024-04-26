@@ -3,6 +3,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { type Metadata } from 'next';
 import { type FC, type PropsWithChildren } from 'react';
 
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 import {
   firstName,
   headline,
@@ -17,7 +19,11 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   // data-joy-color-scheme is dynamically injected, suppressing the hydration warning in this case
   <html suppressHydrationWarning lang="en">
     <body>
-      <Providers>{children}</Providers>
+      <Providers>
+        <Header />
+        {children}
+        <Footer />
+      </Providers>
       <Analytics
         mode={env.VERCEL_ENV === 'production' ? 'production' : 'development'}
       />

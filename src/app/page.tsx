@@ -1,6 +1,6 @@
 import { Box } from '@mui/joy';
 import { type FC } from 'react';
-import { type BreadcrumbList, type Graph } from 'schema-dts';
+import { type BreadcrumbList, type Graph, type WebSite } from 'schema-dts';
 
 import { About } from '@/components/home/about';
 import { Contact } from '@/components/home/contact';
@@ -9,8 +9,9 @@ import { Experience } from '@/components/home/experience';
 import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
+import { firstName, lastName } from '@/constants/content';
 import { home } from '@/constants/nav';
-import { webSite } from '@/lib/json-ld';
+import { env } from '@/env.mjs';
 
 const bgcolors = {
   hero: 'background.body',
@@ -66,7 +67,12 @@ const Home: FC = () => (
         __html: JSON.stringify({
           '@context': 'https://schema.org',
           '@graph': [
-            webSite,
+            {
+              '@type': 'WebSite',
+              name: `${firstName} ${lastName}`,
+              alternateName: ['mwskwong', 'MK'],
+              url: env.NEXT_PUBLIC_SITE_URL,
+            } satisfies WebSite,
             {
               '@type': 'BreadcrumbList',
               itemListElement: [

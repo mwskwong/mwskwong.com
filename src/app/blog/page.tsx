@@ -12,7 +12,7 @@ import {
 import { type Metadata, type ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
 import { type FC, Suspense } from 'react';
-import { type BreadcrumbList, type Graph } from 'schema-dts';
+import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
@@ -20,7 +20,6 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
 import { blog, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
-import { webSite } from '@/lib/json-ld';
 import { getBlogs } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
@@ -28,7 +27,7 @@ const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
 const description = 'Personal perspectives on a broad range of topics.';
 
 const Blogs: FC = async () => {
-  const blogs = await getBlogs({ page: 1 });
+  const blogs = await getBlogs();
   const blogIds = blogs.map(({ id }) => id);
 
   return (
@@ -84,7 +83,7 @@ const Blogs: FC = async () => {
                           overflow: 'hidden',
                           WebkitLineClamp: 2,
                           WebkitBoxOrient: 'vertical',
-                          typography: 'title-lg',
+                          font: 'title-lg',
                         }}
                       >
                         {title}
@@ -133,27 +132,22 @@ const Blogs: FC = async () => {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@graph': [
-              webSite,
+            '@type': 'BreadcrumbList',
+            itemListElement: [
               {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                  {
-                    '@type': 'ListItem',
-                    name: home.label,
-                    item: env.NEXT_PUBLIC_SITE_URL,
-                    position: 1,
-                  },
-                  {
-                    '@type': 'ListItem',
-                    name: blog.label,
-                    position: 2,
-                  },
-                ],
-                name: 'Breadcrumbs',
-              } satisfies BreadcrumbList,
+                '@type': 'ListItem',
+                name: home.label,
+                item: env.NEXT_PUBLIC_SITE_URL,
+                position: 1,
+              },
+              {
+                '@type': 'ListItem',
+                name: blog.label,
+                position: 2,
+              },
             ],
-          } satisfies Graph),
+            name: 'Breadcrumbs',
+          } satisfies WithContext<BreadcrumbList>),
         }}
         type="application/ld+json"
       />

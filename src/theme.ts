@@ -76,7 +76,7 @@ export const globalStyles = (theme: Theme) =>
       minHeight: '100svh',
     },
     code: {
-      ...theme.typography['body-sm'],
+      font: theme.vars.font['body-sm'],
       fontFamily: theme.vars.fontFamily.code,
       color: 'inherit',
       '&[data-theme*=" "], &[data-theme*=" "] span': {

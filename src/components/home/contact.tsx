@@ -135,11 +135,11 @@ export const Contact: FC<ContactProps> = (props) => {
                   >
                     <Icon />
                   </Sheet>
-                  <Typography level="title-md">{title}</Typography>
+                  <Typography level="title-lg">{title}</Typography>
                   <Link
                     color="neutral"
                     href={url}
-                    sx={{ typography: 'body-md' }}
+                    sx={{ font: 'body-md' }}
                     target={url.startsWith('http') ? '_blank' : undefined}
                   >
                     {value}
