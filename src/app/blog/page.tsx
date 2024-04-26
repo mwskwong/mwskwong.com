@@ -102,11 +102,11 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <ErrorBoundary
-                        fallback={<ViewsError hideIcon level="body-sm" />}
+                      <Suspense
+                        fallback={<ViewsSkeleton hideIcon level="body-sm" />}
                       >
-                        <Suspense
-                          fallback={<ViewsSkeleton hideIcon level="body-sm" />}
+                        <ErrorBoundary
+                          fallback={<ViewsError hideIcon level="body-sm" />}
                         >
                           <Views
                             hideIcon
@@ -119,8 +119,8 @@ const Blogs: FC = async () => {
                                 ),
                             )}
                           />
-                        </Suspense>
-                      </ErrorBoundary>
+                        </ErrorBoundary>
+                      </Suspense>
                     </CardContent>
                   </Card>
                 </Grid>

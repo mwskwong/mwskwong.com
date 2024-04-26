@@ -41,19 +41,19 @@ const Guestbook: FC = () => (
         >
           Leave A Message
         </Button>
-        <ErrorBoundary fallback={<SubmissionListError />}>
-          <Suspense fallback={<SubmissionListSkeleton />}>
+        <Suspense fallback={<SubmissionListSkeleton />}>
+          <ErrorBoundary fallback={<SubmissionListError />}>
             <SubmissionList />
-          </Suspense>
-        </ErrorBoundary>
+          </ErrorBoundary>
+        </Suspense>
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
-    <ErrorBoundary>
-      <Suspense>
+    <Suspense>
+      <ErrorBoundary>
         <JsonLd discussionForumPosting={{ text: description }} />
-      </Suspense>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </Suspense>
   </>
 );
 
