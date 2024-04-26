@@ -296,9 +296,16 @@ export const getPrivacyPolicy = cache(
   }),
 );
 
-export const getBlogsMetadata = cache(() => {
+// Use React.cache here, because we want to achieve the following
+//   1. prisma is queried only once in the blog listing page
+//   2. The result of getBlogsMetadataByIds is NOT cached in other server requests
+//      i.e. when the user refreshes the page or other users visit the same page,
+//      it should see the metadata updated
+// It works, because React will invalidate the cache for all memoized functions for each server request.
+// See https://react.dev/reference/react/cache#caveats
+export const getBlogsMetadataByIds = cache((ids: string[]) => {
   noStore();
-  return prisma.blogMetadata.findMany();
+  return prisma.blogMetadata.findMany({ where: { id: { in: ids } } });
 });
 
 export const getBlogMetadataById = (id: string) => {
@@ -306,6 +313,9 @@ export const getBlogMetadataById = (id: string) => {
   return prisma.blogMetadata.findUnique({ where: { id } });
 };
 
+// prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
+// this allows moderation on PROD by directly updating the prisma
+// Also using React.cache here because both JSON+LD and the UI needs this data
 export const getGuestbookSubmissions = cache(() => {
   noStore();
   return prisma.contactFormSubmission.findMany({
