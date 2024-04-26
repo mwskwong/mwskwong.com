@@ -1,51 +1,50 @@
+'use client';
+
 import { Skeleton, Typography, type TypographyProps } from '@mui/joy';
 import { Eye } from 'lucide-react';
-import { type FC } from 'react';
+import { type FC, use, useEffect } from 'react';
 
-import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
-
-import { IncrBlogView } from './incr-blog-view';
+import { incrBlogViewById } from '@/lib/actions';
 
 export interface ViewsProps extends Omit<TypographyProps, 'children'> {
-  /**
-   * Expected to be used when there are multiple Views mounted in the same page.
-   * When blogIds is specified, ViewCount will fetch multiple blog metadata by IDs at once,
-   * cache the response, and do arr.find() on the cached response
-   * The cache will only be valid with in the current server request.
-   * This allows me to avoid running multiple DB queries in the listing page
-   */
-  blogIds?: string[];
-  blogId: string;
+  blogMetadataPromise: Promise<
+    | {
+        id: string;
+        view: number;
+      }
+    | null
+    | undefined
+  >;
   readOnly?: boolean;
   hideIcon?: boolean;
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
-export const Views: FC<ViewsProps> = async ({
-  blogIds,
-  blogId,
+export const Views: FC<ViewsProps> = ({
+  blogMetadataPromise,
   readOnly = false,
   hideIcon = false,
   ...props
 }) => {
-  const metadata = blogIds
-    ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
-    : await getBlogMetadataById(blogId);
+  const metadata = use(blogMetadataPromise);
+
+  useEffect(() => {
+    if (metadata?.id && !readOnly) {
+      void incrBlogViewById(metadata.id);
+    }
+  }, [metadata?.id, readOnly]);
 
   return (
-    <>
-      {!readOnly && <IncrBlogView blogId={blogId} />}
-      <Typography startDecorator={!hideIcon && <Eye />} {...props}>
-        {numberFormatter.format(metadata?.view ?? 0)} views
-      </Typography>
-    </>
+    <Typography startDecorator={!hideIcon && <Eye />} {...props}>
+      {numberFormatter.format(metadata?.view ?? 0)} views
+    </Typography>
   );
 };
 
 export type ViewsSkeletonProps = Omit<
   ViewsProps,
-  'blogIds' | 'blogId' | 'readOnly'
+  'blogMetadataPromise' | 'readOnly'
 >;
 
 export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({

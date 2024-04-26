@@ -20,7 +20,7 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
 import { blog, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
-import { getBlogs } from '@/lib/queries';
+import { getBlogs, getBlogsMetadata } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
 
@@ -28,7 +28,6 @@ const description = 'Personal perspectives on a broad range of topics.';
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs();
-  const blogIds = blogs.map(({ id }) => id);
 
   return (
     <>
@@ -51,79 +50,87 @@ const Blogs: FC = async () => {
                   categories,
                 },
                 index,
-              ) => (
-                <Grid key={id} md={4} sm={6} xs={12}>
-                  <Card component="article" sx={{ height: { sm: '100%' } }}>
-                    {coverPhoto ? (
-                      <BlogCardImage
-                        alt={`Thumbnail for ${title}`}
-                        priority={index === 0}
-                        src={coverPhoto}
-                      />
-                    ) : null}
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      sx={{ flexWrap: 'wrap' }}
-                    >
-                      {categories?.map((category) => (
-                        <Chip key={category} color="primary">
-                          {category}
-                        </Chip>
-                      ))}
-                    </Stack>
-                    <CardContent>
-                      <Link
-                        overlay
-                        color="neutral"
-                        component={NextLink}
-                        href={`${blog.pathname}/${slug}`}
-                        level="title-lg"
-                        sx={{
-                          display: '-webkit-box',
-                          overflow: 'hidden',
-                          WebkitLineClamp: 2,
-                          WebkitBoxOrient: 'vertical',
-                          color: 'text.primary',
-                        }}
+              ) => {
+                const blogMetadataPromise = getBlogsMetadata().then(
+                  (blogMetadata) =>
+                    blogMetadata.find(({ id: blogId }) => blogId === id),
+                );
+
+                return (
+                  <Grid key={id} md={4} sm={6} xs={12}>
+                    <Card component="article" sx={{ height: { sm: '100%' } }}>
+                      {coverPhoto ? (
+                        <BlogCardImage
+                          alt={`Thumbnail for ${title}`}
+                          priority={index === 0}
+                          src={coverPhoto}
+                        />
+                      ) : null}
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{ flexWrap: 'wrap' }}
                       >
-                        {title}
-                      </Link>
-                      <Typography
-                        sx={{
-                          display: '-webkit-box',
-                          overflow: 'hidden',
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: 'vertical',
-                        }}
-                      >
-                        {description}
-                      </Typography>
-                    </CardContent>
-                    <CardContent orientation="horizontal" sx={{ flex: 0 }}>
-                      <Typography level="body-sm">
-                        {dateFormatter.format(new Date(createdAt))}
-                      </Typography>
-                      <Divider orientation="vertical" />
-                      <ErrorBoundary
-                        fallback={<ViewsError hideIcon level="body-sm" />}
-                      >
-                        <Suspense
-                          fallback={<ViewsSkeleton hideIcon level="body-sm" />}
+                        {categories?.map((category) => (
+                          <Chip key={category} color="primary">
+                            {category}
+                          </Chip>
+                        ))}
+                      </Stack>
+                      <CardContent>
+                        <Link
+                          overlay
+                          color="neutral"
+                          component={NextLink}
+                          href={`${blog.pathname}/${slug}`}
+                          level="title-lg"
+                          sx={{
+                            display: '-webkit-box',
+                            overflow: 'hidden',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            color: 'text.primary',
+                          }}
                         >
-                          <Views
-                            hideIcon
-                            readOnly
-                            blogId={id}
-                            blogIds={blogIds}
-                            level="body-sm"
-                          />
-                        </Suspense>
-                      </ErrorBoundary>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ),
+                          {title}
+                        </Link>
+                        <Typography
+                          sx={{
+                            display: '-webkit-box',
+                            overflow: 'hidden',
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: 'vertical',
+                          }}
+                        >
+                          {description}
+                        </Typography>
+                      </CardContent>
+                      <CardContent orientation="horizontal" sx={{ flex: 0 }}>
+                        <Typography level="body-sm">
+                          {dateFormatter.format(new Date(createdAt))}
+                        </Typography>
+                        <Divider orientation="vertical" />
+                        <ErrorBoundary
+                          fallback={<ViewsError hideIcon level="body-sm" />}
+                        >
+                          <Suspense
+                            fallback={
+                              <ViewsSkeleton hideIcon level="body-sm" />
+                            }
+                          >
+                            <Views
+                              hideIcon
+                              readOnly
+                              blogMetadataPromise={blogMetadataPromise}
+                              level="body-sm"
+                            />
+                          </Suspense>
+                        </ErrorBoundary>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                );
+              },
             )}
           </Grid>
         </Stack>
