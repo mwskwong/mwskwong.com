@@ -30,6 +30,7 @@ import { env } from '@/env.mjs';
 import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,
+  getBlogMetadataById,
   getBlogs,
   getPersonalPhoto,
   getPlatformProfiles,
@@ -51,6 +52,8 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
     getPerson(),
   ]);
   if (!blog) notFound();
+
+  const blogMetadataPromise = getBlogMetadataById(blog.id);
 
   return (
     <>
@@ -84,7 +87,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               >
                 <ErrorBoundary fallback={<ViewsError sx={{ mx: 0.75 }} />}>
                   <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
-                    <Views blogId={blog.id} sx={{ mx: 0.75 }} />
+                    <Views
+                      blogMetadataPromise={blogMetadataPromise}
+                      sx={{ mx: 0.75 }}
+                    />
                   </Suspense>
                 </ErrorBoundary>
                 <CopyUrlButton />
@@ -92,13 +98,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
             </Grid>
           </Grid>
-          {blog.coverPhoto ? (
-            <BlogCoverImage
-              priority
-              alt={`Cover photo for ${blog.title}`}
-              src={blog.coverPhoto}
-            />
-          ) : null}
+          <BlogCoverImage
+            priority
+            alt={`Cover photo for ${blog.title}`}
+            src={blog.coverPhoto}
+          />
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
         <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
