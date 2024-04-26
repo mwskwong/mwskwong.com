@@ -37,27 +37,20 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
             spacing={2}
             sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
           >
-            {techStack.map(({ id, name, url, logo }) => {
-              const logoProps = {
-                height: 36,
-                width: 36,
-                sx: { objectFit: 'scale-down' },
-              };
-
-              return (
-                <Tooltip key={id} title={name}>
-                  <Link href={url} target="_blank">
-                    {logo.universal ? (
-                      <Image alt={name} src={logo.universal} {...logoProps} />
-                    ) : (
-                      logo.light && (
-                        <Image alt={name} src={logo.light} {...logoProps} />
-                      )
-                    )}
-                  </Link>
-                </Tooltip>
-              );
-            })}
+            {techStack.map(({ id, name, url, logo }) => (
+              <Tooltip key={id} title={name}>
+                <Link href={url} target="_blank">
+                  <Image
+                    alt={name}
+                    height={36}
+                    src={logo.universal}
+                    srcDark={logo.light}
+                    sx={{ objectFit: 'scale-down' }}
+                    width={36}
+                  />
+                </Link>
+              </Tooltip>
+            ))}
           </Stack>
           <Typography>...and more</Typography>
           <Button

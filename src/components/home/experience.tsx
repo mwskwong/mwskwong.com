@@ -12,7 +12,7 @@ import { type FC } from 'react';
 import { experience } from '@/constants/nav';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
-import { Image, ThemeImage } from '../image';
+import { Image } from '../image';
 
 import { Timeline, TimelineItem } from './timeline';
 
@@ -66,33 +66,21 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               spacing={2}
               sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
             >
-              {contributedProjects.map(({ id, name, url, logo }) => {
-                const logoProps = {
-                  height: 36,
-                  width: 36,
-                  sx: { objectFit: 'scale-down' },
-                };
-
-                return (
-                  <Tooltip key={id} title={name}>
-                    <Link href={url} target="_blank">
-                      {logo.universal ? (
-                        <Image alt={name} src={logo.universal} {...logoProps} />
-                      ) : (
-                        logo.light &&
-                        logo.dark && (
-                          <ThemeImage
-                            alt={name}
-                            srcDark={logo.light}
-                            srcLight={logo.dark}
-                            {...logoProps}
-                          />
-                        )
-                      )}
-                    </Link>
-                  </Tooltip>
-                );
-              })}
+              {contributedProjects.map(({ id, name, url, logo }) => (
+                <Tooltip key={id} title={name}>
+                  <Link href={url} target="_blank">
+                    <Image
+                      alt={name}
+                      height={36}
+                      src={logo.universal}
+                      srcDark={logo.light}
+                      srcLight={logo.dark}
+                      sx={{ objectFit: 'scale-down' }}
+                      width={36}
+                    />
+                  </Link>
+                </Tooltip>
+              ))}
             </Stack>
             <Typography>...and more to come</Typography>
           </Stack>

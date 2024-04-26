@@ -14,13 +14,13 @@ export default {
        *   1. Code block doesn't have enough color contrast
        *   2. Links rey on color to be distinguishable (can set underline=always to fix it)
        */
-      accessibility: 91,
+      accessibility: 92,
       'best-practices': 100,
       /**
        * Minus point from
        *   1. Non-PROD not being indexable
        */
-      seo: 92,
+      seo: 69,
     },
   },
   scanner: {

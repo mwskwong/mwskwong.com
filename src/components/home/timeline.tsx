@@ -54,27 +54,23 @@ const ListItemWithThumbnail: FC<ListItemWithThumbnailProps> = ({
       {...props}
     >
       <ListItemButton component="a" href={href} sx={{ gap: 2 }} target="_blank">
-        {thumbnailSrc ? (
-          <Image
-            height={56}
-            src={thumbnailSrc}
-            width={80}
-            alt={
-              typeof children === 'string' ? `Thumbnail for ${children}` : ''
-            }
-            sx={mergeSx(
-              {
-                flexShrink: 0,
-                borderRadius: 'var(--ListItem-radius)',
-                border: 1,
-                borderColor: 'neutral.outlinedBorder',
-                ml: 'calc(var(--ListItem-paddingX) * -1)',
-              },
-              thumbnailSx,
-            )}
-            {...thumbnailProps}
-          />
-        ) : null}
+        <Image
+          alt={typeof children === 'string' ? `Thumbnail for ${children}` : ''}
+          height={56}
+          src={thumbnailSrc}
+          width={80}
+          sx={mergeSx(
+            {
+              flexShrink: 0,
+              borderRadius: 'var(--ListItem-radius)',
+              border: 1,
+              borderColor: 'neutral.outlinedBorder',
+              ml: 'calc(var(--ListItem-paddingX) * -1)',
+            },
+            thumbnailSx,
+          )}
+          {...thumbnailProps}
+        />
         {children}
       </ListItemButton>
     </ListItem>

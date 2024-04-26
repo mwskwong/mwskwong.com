@@ -5,51 +5,57 @@ import { mergeSx } from 'merge-sx';
 import NextImage from 'next/image';
 import { type ComponentProps, type FC } from 'react';
 
-export const Image = styled(NextImage)``;
-export type ImageProps = ComponentProps<typeof Image>;
+const StyledImage = styled(NextImage)``;
+type StyledImageProps = ComponentProps<typeof StyledImage>;
 
-export interface ThemeImageProps
-  extends Omit<ImageProps, 'src' | 'priority' | 'loading'> {
-  srcLight: string;
-  srcDark: string;
+export interface ImageProps extends Omit<StyledImageProps, 'src'> {
+  src?: StyledImageProps['src'];
+  srcLight?: StyledImageProps['src'];
+  srcDark?: StyledImageProps['src'];
 }
 
-export const ThemeImage: FC<ThemeImageProps> = ({
+export const Image: FC<ImageProps> = ({
+  src,
   srcLight,
   srcDark,
-  alt,
   sx,
   ...props
 }) => {
+  if (src) {
+    return <StyledImage src={src} sx={sx} {...props} />;
+  }
+
   return (
     <>
-      <Image
-        alt={alt}
-        src={srcLight}
-        sx={mergeSx(
-          (theme) => ({
-            [theme.getColorSchemeSelector('dark')]: {
+      {srcLight ? (
+        <StyledImage
+          src={srcLight}
+          sx={mergeSx(
+            (theme) => ({
+              [theme.getColorSchemeSelector('dark')]: {
+                display: 'none',
+              },
+            }),
+            sx,
+          )}
+          {...props}
+        />
+      ) : null}
+      {srcDark ? (
+        <StyledImage
+          src={srcDark}
+          sx={mergeSx(
+            (theme) => ({
               display: 'none',
-            },
-          }),
-          sx,
-        )}
-        {...props}
-      />
-      <Image
-        alt={alt}
-        src={srcDark}
-        sx={mergeSx(
-          (theme) => ({
-            display: 'none',
-            [theme.getColorSchemeSelector('dark')]: {
-              display: 'unset',
-            },
-          }),
-          sx,
-        )}
-        {...props}
-      />
+              [theme.getColorSchemeSelector('dark')]: {
+                display: 'unset',
+              },
+            }),
+            sx,
+          )}
+          {...props}
+        />
+      ) : null}
     </>
   );
 };

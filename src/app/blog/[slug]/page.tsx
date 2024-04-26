@@ -114,19 +114,17 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             >
               <Typography level="h2">Written By</Typography>
               <Stack spacing={2} sx={{ alignItems: 'center' }}>
-                {personalPhoto ? (
-                  <Image
-                    alt={`${firstName} ${lastName}`}
-                    height={100}
-                    src={personalPhoto}
-                    width={100}
-                    sx={{
-                      borderRadius: '50%',
-                      border: 1,
-                      borderColor: 'neutral.outlinedBorder',
-                    }}
-                  />
-                ) : null}
+                <Image
+                  alt={`${firstName} ${lastName}`}
+                  height={100}
+                  src={personalPhoto}
+                  width={100}
+                  sx={{
+                    borderRadius: '50%',
+                    border: 1,
+                    borderColor: 'neutral.outlinedBorder',
+                  }}
+                />
                 <div>
                   <Typography level="title-lg">
                     {firstName} {lastName}
