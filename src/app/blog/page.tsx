@@ -78,12 +78,13 @@ const Blogs: FC = async () => {
                         color="neutral"
                         component={NextLink}
                         href={`${blog.pathname}/${slug}`}
+                        level="title-lg"
                         sx={{
                           display: '-webkit-box',
                           overflow: 'hidden',
                           WebkitLineClamp: 2,
                           WebkitBoxOrient: 'vertical',
-                          font: 'title-lg',
+                          color: 'text.primary',
                         }}
                       >
                         {title}
