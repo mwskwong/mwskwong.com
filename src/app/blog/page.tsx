@@ -50,87 +50,81 @@ const Blogs: FC = async () => {
                   categories,
                 },
                 index,
-              ) => {
-                const blogMetadataPromise = getBlogsMetadata().then(
-                  (blogMetadata) =>
-                    blogMetadata.find(({ id: blogId }) => blogId === id),
-                );
-
-                return (
-                  <Grid key={id} md={4} sm={6} xs={12}>
-                    <Card component="article" sx={{ height: { sm: '100%' } }}>
-                      {coverPhoto ? (
-                        <BlogCardImage
-                          alt={`Thumbnail for ${title}`}
-                          priority={index === 0}
-                          src={coverPhoto}
-                        />
-                      ) : null}
-                      <Stack
-                        direction="row"
-                        spacing={1}
-                        sx={{ flexWrap: 'wrap' }}
+              ) => (
+                <Grid key={id} md={4} sm={6} xs={12}>
+                  <Card component="article" sx={{ height: { sm: '100%' } }}>
+                    <BlogCardImage
+                      alt={`Thumbnail for ${title}`}
+                      priority={index === 0}
+                      src={coverPhoto}
+                    />
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      sx={{ flexWrap: 'wrap' }}
+                    >
+                      {categories?.map((category) => (
+                        <Chip key={category} color="primary">
+                          {category}
+                        </Chip>
+                      ))}
+                    </Stack>
+                    <CardContent>
+                      <Link
+                        overlay
+                        color="neutral"
+                        component={NextLink}
+                        href={`${blog.pathname}/${slug}`}
+                        level="title-lg"
+                        sx={{
+                          display: '-webkit-box',
+                          overflow: 'hidden',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          color: 'text.primary',
+                        }}
                       >
-                        {categories?.map((category) => (
-                          <Chip key={category} color="primary">
-                            {category}
-                          </Chip>
-                        ))}
-                      </Stack>
-                      <CardContent>
-                        <Link
-                          overlay
-                          color="neutral"
-                          component={NextLink}
-                          href={`${blog.pathname}/${slug}`}
-                          level="title-lg"
-                          sx={{
-                            display: '-webkit-box',
-                            overflow: 'hidden',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            color: 'text.primary',
-                          }}
+                        {title}
+                      </Link>
+                      <Typography
+                        sx={{
+                          display: '-webkit-box',
+                          overflow: 'hidden',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
+                        }}
+                      >
+                        {description}
+                      </Typography>
+                    </CardContent>
+                    <CardContent orientation="horizontal" sx={{ flex: 0 }}>
+                      <Typography level="body-sm">
+                        {dateFormatter.format(new Date(createdAt))}
+                      </Typography>
+                      <Divider orientation="vertical" />
+                      <ErrorBoundary
+                        fallback={<ViewsError hideIcon level="body-sm" />}
+                      >
+                        <Suspense
+                          fallback={<ViewsSkeleton hideIcon level="body-sm" />}
                         >
-                          {title}
-                        </Link>
-                        <Typography
-                          sx={{
-                            display: '-webkit-box',
-                            overflow: 'hidden',
-                            WebkitLineClamp: 3,
-                            WebkitBoxOrient: 'vertical',
-                          }}
-                        >
-                          {description}
-                        </Typography>
-                      </CardContent>
-                      <CardContent orientation="horizontal" sx={{ flex: 0 }}>
-                        <Typography level="body-sm">
-                          {dateFormatter.format(new Date(createdAt))}
-                        </Typography>
-                        <Divider orientation="vertical" />
-                        <ErrorBoundary
-                          fallback={<ViewsError hideIcon level="body-sm" />}
-                        >
-                          <Suspense
-                            fallback={
-                              <ViewsSkeleton hideIcon level="body-sm" />
-                            }
-                          >
-                            <Views
-                              hideIcon
-                              readOnly
-                              blogMetadataPromise={blogMetadataPromise}
-                              level="body-sm"
-                            />
-                          </Suspense>
-                        </ErrorBoundary>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                );
-              },
+                          <Views
+                            hideIcon
+                            readOnly
+                            level="body-sm"
+                            blogMetadataPromise={getBlogsMetadata().then(
+                              (blogMetadata) =>
+                                blogMetadata.find(
+                                  ({ id: blogId }) => blogId === id,
+                                ),
+                            )}
+                          />
+                        </Suspense>
+                      </ErrorBoundary>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ),
             )}
           </Grid>
         </Stack>

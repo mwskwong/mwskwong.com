@@ -98,13 +98,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
             </Grid>
           </Grid>
-          {blog.coverPhoto ? (
-            <BlogCoverImage
-              priority
-              alt={`Cover photo for ${blog.title}`}
-              src={blog.coverPhoto}
-            />
-          ) : null}
+          <BlogCoverImage
+            priority
+            alt={`Cover photo for ${blog.title}`}
+            src={blog.coverPhoto}
+          />
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
         <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
