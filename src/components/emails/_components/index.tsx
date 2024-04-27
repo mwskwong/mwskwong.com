@@ -1,5 +1,5 @@
 /**
- * For the details of the reason of this file's naming convention:
+ * For the reason of this file's naming convention:
  * @see {@link https://react.email/docs/cli#how-to-make-the-preview-server-ignore-directories}
  */
 
