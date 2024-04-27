@@ -2,42 +2,45 @@ import { Skeleton, Typography, type TypographyProps } from '@mui/joy';
 import { Eye } from 'lucide-react';
 import { type FC } from 'react';
 
-import { getBlogMetadataById, getBlogsMetadataByIds } from '@/lib/queries';
+import { getBlogMetadataById, getBlogsMetadata } from '@/lib/queries';
 
 import { IncrBlogView } from './incr-blog-view';
 
 export interface ViewsProps extends Omit<TypographyProps, 'children'> {
   /**
    * Expected to be used when there are multiple Views mounted in the same page.
-   * When blogIds is specified, ViewCount will fetch multiple blog metadata by IDs at once,
-   * cache the response, and do arr.find() on the cached response
+   * When fetchAll = true, it will fetch all the metadata at once,
+   * cache the response, and do arr.find() on the cached response.
    * The cache will only be valid with in the current server request.
-   * This allows me to avoid running multiple DB queries in the listing page
+   * This avoids running multiple DB queries in the listing page
    */
-  blogIds?: string[];
-  blogId: string;
+  fetchAll?: boolean;
   readOnly?: boolean;
   hideIcon?: boolean;
+  blogId: string;
 }
 
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 export const Views: FC<ViewsProps> = async ({
-  blogIds,
-  blogId,
+  fetchAll = false,
   readOnly = false,
   hideIcon = false,
+  blogId,
   ...props
 }) => {
-  const metadata = blogIds
-    ? (await getBlogsMetadataByIds(blogIds)).find(({ id }) => id === blogId)
+  const metadata = fetchAll
+    ? (await getBlogsMetadata()).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
 
   return (
     <>
       {!readOnly && <IncrBlogView blogId={blogId} />}
       <Typography startDecorator={!hideIcon && <Eye />} {...props}>
-        {numberFormatter.format(metadata?.view ?? 0)} views
+        {typeof metadata?.view === 'number'
+          ? numberFormatter.format(metadata.view)
+          : '––'}{' '}
+        views
       </Typography>
     </>
   );

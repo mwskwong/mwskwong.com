@@ -28,7 +28,6 @@ const description = 'Personal perspectives on a broad range of topics.';
 
 const Blogs: FC = async () => {
   const blogs = await getBlogs();
-  const blogIds = blogs.map(({ id }) => id);
 
   return (
     <>
@@ -110,10 +109,10 @@ const Blogs: FC = async () => {
                           fallback={<ViewsError hideIcon level="body-sm" />}
                         >
                           <Views
+                            fetchAll
                             hideIcon
                             readOnly
                             blogId={id}
-                            blogIds={blogIds}
                             level="body-sm"
                           />
                         </ErrorBoundary>
