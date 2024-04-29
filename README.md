@@ -30,6 +30,6 @@ Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see 
 
    3. Update the **Environments** of the `canary` API key, check the newly added canary environment
 
-3. In [Vercel](https://vercel.com), update the value of environment variable `CONTENTFUL_ENVIRONMENT` of the **Preview** environment to the Environment ID defined in step 2.2.
+3. In [Vercel](https://vercel.com), replace the value of environment variable `CONTENTFUL_ENVIRONMENT` of the **Preview** environment to the Contentful Environment ID defined in step 2.2.
 
 4. Merge/enable auto merge for the PR.
