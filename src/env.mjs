@@ -23,7 +23,7 @@ export const env = createEnv({
             z
               .string()
               // matching canary_YYYY-MM-DDTHH.mm.ss.SSSS
-              .regex(/^canary_\d{4}-\d{2}-\d{2}T\d{2}\.\d{2}\.\d{2}\.\d{4}$/)
+              .regex(/^canary_\d{4}-\d{2}-\d{2}T\d{2}\.\d{2}\.\d{2}\.\d{3}Z$/)
           );
         default:
           return z.literal('development');
