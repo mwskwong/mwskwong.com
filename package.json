@@ -77,8 +77,5 @@
     "prisma": "^5.13.0",
     "type-fest": "^4.17.0",
     "typescript": "^5.4.5"
-  },
-  "overrides": {
-    "next": "canary"
   }
 }
