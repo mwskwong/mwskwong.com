@@ -23,7 +23,7 @@ export const env = createEnv({
             z
               .string()
               // matching canary_YYYY-MM-DDTHH.mm.ss.SSSS
-              .regex(/^canary_\d{4}-\d{2}-\d{2}T\d{2}\.\d{2}\.\d{2}\.\d{4}$/)
+              .regex(/^canary_\d{4}-\d{2}-\d{2}T\d{2}\.\d{2}\.\d{2}\.\d{3}Z$/)
           );
         default:
           return z.literal('development');
@@ -47,11 +47,11 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_VERCEL_ENV
       ? process.env.NEXT_PUBLIC_PROD_URL &&
-        process.env.NEXT_PUBLIC_VERCEL_URL &&
+        process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL &&
         `https://${
           process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
             ? process.env.NEXT_PUBLIC_PROD_URL
-            : process.env.NEXT_PUBLIC_VERCEL_URL
+            : process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL
         }`
       : 'http://localhost:3000',
     NEXT_PUBLIC_SITE_DISPLAY_NAME:
