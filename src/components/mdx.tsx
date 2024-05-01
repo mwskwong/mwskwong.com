@@ -297,7 +297,7 @@ export const Mdx: FC<MdxProps> = ({
                   light: 'github-light-default',
                 },
                 keepBackground: false,
-                defaultLang: { block: 'ansi' },
+                defaultLang: { block: 'txt' },
               } satisfies Options,
             ],
             rehypeSlug,
