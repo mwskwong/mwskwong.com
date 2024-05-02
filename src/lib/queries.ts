@@ -14,11 +14,11 @@ import {
   type CourseSkeleton,
   type EducationSkeleton,
   type ExperienceSkeleton,
-  type PlatformProfileSkeleton,
   type PrivacyPolicy,
   type ProjectSkeleton,
   type SkillCategorySkeleton,
   type SkillSkeleton,
+  type SocialMediaProfileSkeleton,
 } from './types';
 
 export const getBlogBySlug = cache(
@@ -215,21 +215,21 @@ export const getPersonalPhoto = cache(
   }),
 );
 
-export const getPlatformProfiles = cache(
+export const getSocialMediaProfiles = cache(
   nextCache(async () => {
-    const { items } = await contentful.getEntries<PlatformProfileSkeleton>({
-      content_type: 'platformProfile',
+    const { items } = await contentful.getEntries<SocialMediaProfileSkeleton>({
+      content_type: 'socialMediaProfile',
     });
 
-    const platformProfiles = items.map((item) => ({
+    const socialMediaProfiles = items.map((item) => ({
       ...item.fields,
-      platform: item.fields.platform && {
-        id: item.fields.platform.sys.id,
-        name: item.fields.platform.fields.name,
+      socialMedia: item.fields.socialMedia && {
+        id: item.fields.socialMedia.sys.id,
+        name: item.fields.socialMedia.fields.name,
       },
     }));
 
-    return orderBy(platformProfiles, 'platform.name');
+    return orderBy(socialMediaProfiles, 'socialMedia.name');
   }),
 );
 

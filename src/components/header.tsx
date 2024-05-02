@@ -16,7 +16,7 @@ import { type FC } from 'react';
 import Icon from '@/app/icon.svg?monochrome';
 import { github, linkedin } from '@/constants/contentful-ids';
 import { home, nav } from '@/constants/nav';
-import { getPlatformProfiles } from '@/lib/queries';
+import { getSocialMediaProfiles } from '@/lib/queries';
 
 import { Icon as ContentfulIcon } from './contentful';
 import { ModeToggleButton } from './mode-toggle-button';
@@ -24,8 +24,9 @@ import { NavDrawer } from './nav-drawer';
 
 export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
 export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
-  const platformProfiles = (await getPlatformProfiles()).filter(
-    ({ platform }) => platform?.id === linkedin || platform?.id === github,
+  const socialMediaProfiles = (await getSocialMediaProfiles()).filter(
+    ({ socialMedia }) =>
+      socialMedia?.id === linkedin || socialMedia?.id === github,
   );
 
   return (
@@ -84,19 +85,19 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
             </List>
           </Stack>
           <Stack direction="row" spacing={1}>
-            {platformProfiles.map(
-              ({ platform, url }) =>
-                platform && (
+            {socialMediaProfiles.map(
+              ({ socialMedia, url }) =>
+                socialMedia && (
                   <IconButton
-                    key={platform.id}
-                    aria-label={`${platform.name} profile`}
+                    key={socialMedia.id}
+                    aria-label={`${socialMedia.name} profile`}
                     component="a"
                     href={url}
                     size="sm"
                     target="_blank"
                     variant="outlined"
                   >
-                    <ContentfulIcon contentfulId={platform.id} />
+                    <ContentfulIcon contentfulId={socialMedia.id} />
                   </IconButton>
                 ),
             )}

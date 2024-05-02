@@ -16,14 +16,16 @@ import { type FC } from 'react';
 import { firstName, headline, lastName } from '@/constants/content';
 import { linkedin } from '@/constants/contentful-ids';
 import { blog } from '@/constants/nav';
-import { getCv, getPlatformProfiles } from '@/lib/queries';
+import { getCv, getSocialMediaProfiles } from '@/lib/queries';
 
 export type HeroProps = Omit<BoxProps<'section'>, 'children'>;
 export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
   const [cv, linkedinProfile] = await Promise.all([
     getCv(),
-    getPlatformProfiles().then((platformProfiles) =>
-      platformProfiles.find(({ platform }) => platform?.id === linkedin),
+    getSocialMediaProfiles().then((socialMediaProfiles) =>
+      socialMediaProfiles.find(
+        ({ socialMedia }) => socialMedia?.id === linkedin,
+      ),
     ),
   ]);
 
@@ -88,7 +90,7 @@ export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
             target="_blank"
             variant="outlined"
           >
-            {linkedinProfile?.platform?.name}
+            {linkedinProfile?.socialMedia?.name}
           </Button>
         </Stack>
       </Container>
