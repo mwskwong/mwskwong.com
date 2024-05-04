@@ -13,15 +13,16 @@ import { env } from '@/env.mjs';
 import {
   getExperiences,
   getPersonalPhoto,
-  getPlatformProfiles,
+  getSocialMediaProfiles,
 } from './queries';
 
 export const getPerson = async () => {
-  const [latestJobTitle, personalPhoto, platformProfiles] = await Promise.all([
-    getExperiences().then((experience) => experience[0]?.jobTitle),
-    getPersonalPhoto(),
-    getPlatformProfiles(),
-  ]);
+  const [latestJobTitle, personalPhoto, socialMediaProfiles] =
+    await Promise.all([
+      getExperiences().then((experience) => experience[0]?.jobTitle),
+      getPersonalPhoto(),
+      getSocialMediaProfiles(),
+    ]);
 
   return {
     '@id': 'mwskwong',
@@ -34,7 +35,7 @@ export const getPerson = async () => {
     address,
     url: env.NEXT_PUBLIC_SITE_URL,
     image: personalPhoto,
-    sameAs: platformProfiles.map(({ url }) => url),
+    sameAs: socialMediaProfiles.map(({ url }) => url),
     description: selfIntroduction,
   } satisfies Person;
 };

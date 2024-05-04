@@ -70,10 +70,10 @@ export interface OrganizationSkeleton {
   };
 }
 
-export interface PlatformProfileSkeleton {
-  contentTypeId: 'platformProfile';
+export interface SocialMediaProfileSkeleton {
+  contentTypeId: 'socialMediaProfile';
   fields: {
-    platform: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
+    socialMedia: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     url: EntryFieldTypes.Symbol;
   };
 }
