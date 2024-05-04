@@ -44,7 +44,7 @@
     "feed": "^4.2.2",
     "geist": "^1.3.0",
     "lodash-es": "^4.17.21",
-    "lucide-react": "^0.377.0",
+    "lucide-react": "^0.378.0",
     "merge-sx": "^2.0.0",
     "next": "canary",
     "next-mdx-remote": "^4.4.1",
@@ -58,7 +58,7 @@
     "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
     "shiki": "^1.4.0",
-    "zod": "^3.23.5"
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "canary",
