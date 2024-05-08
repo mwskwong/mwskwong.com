@@ -39,7 +39,7 @@
     "@t3-oss/env-nextjs": "^0.10.1",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "contentful": "^10.9.2",
+    "contentful": "^10.9.3",
     "dedent": "^1.5.3",
     "feed": "^4.2.2",
     "geist": "^1.3.0",
@@ -58,7 +58,7 @@
     "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
     "shiki": "^1.4.0",
-    "zod": "^3.23.6"
+    "zod": "^3.23.7"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "canary",
@@ -69,7 +69,7 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@vercel/style-guide": "^6.0.0",
-    "dotenv-cli": "^7.4.1",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8.57.0",
     "patch-package": "^8.0.0",
     "prettier": "^3.2.5",
