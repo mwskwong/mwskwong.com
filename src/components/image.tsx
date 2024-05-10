@@ -1,11 +1,16 @@
 'use client';
 
 import { styled } from '@mui/joy';
+import { type Theme } from '@mui/joy/styles/types';
+import { type StyledComponent } from '@mui/styled-engine';
+import { type MUIStyledCommonProps } from '@mui/system';
 import { mergeSx } from 'merge-sx';
 import NextImage from 'next/image';
 import { type ComponentProps, type FC } from 'react';
 
-const StyledImage = styled(NextImage)``;
+const StyledImage = styled(NextImage)() as StyledComponent<
+  ComponentProps<typeof NextImage> & MUIStyledCommonProps<Theme>
+>; // FIXME: React 19 workaround: force casting styled()() return type to the correct type
 type StyledImageProps = ComponentProps<typeof StyledImage>;
 
 export interface ImageProps extends Omit<StyledImageProps, 'src'> {
