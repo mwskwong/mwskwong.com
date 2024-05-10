@@ -12,7 +12,7 @@ import { LinkIcon } from 'lucide-react';
 import { type MDXComponents } from 'mdx/types';
 import NextLink from 'next/link';
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
-import { type FC, type Ref } from 'react';
+import { type FC } from 'react';
 import rehypePrettyCode, { type Options } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
@@ -59,9 +59,8 @@ const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
 );
 
 export const components = {
-  h2: ({ ref, color, ...props }) => (
+  h2: ({ color, ...props }) => (
     <Heading
-      ref={ref as Ref<HTMLHeadingElement>}
       level="h2"
       sx={{
         mb: 3,
@@ -72,9 +71,8 @@ export const components = {
       {...props}
     />
   ),
-  h3: ({ ref, color, ...props }) => (
+  h3: ({ color, ...props }) => (
     <Heading
-      ref={ref as Ref<HTMLHeadingElement>}
       level="h3"
       sx={{
         mb: 1.5,
@@ -85,9 +83,8 @@ export const components = {
       {...props}
     />
   ),
-  h4: ({ ref, color, ...props }) => (
+  h4: ({ color, ...props }) => (
     <Heading
-      ref={ref as Ref<HTMLHeadingElement>}
       level="h4"
       sx={{
         mb: 1,
@@ -98,20 +95,13 @@ export const components = {
       {...props}
     />
   ),
-  p: ({ ref, color, ...props }) => (
-    <Typography
-      ref={ref as Ref<HTMLParagraphElement>}
-      sx={{ my: 2, color }}
-      {...props}
-    />
-  ),
-  a: ({ ref, color, children, ...props }) => {
+  p: ({ color, ...props }) => <Typography sx={{ my: 2, color }} {...props} />,
+  a: ({ color, children, ...props }) => {
     const external = props.href
       ? props.href.startsWith('http://') || props.href.startsWith('https://')
       : false;
     return (
       <Link
-        ref={ref as Ref<HTMLAnchorElement>}
         component={external ? 'a' : NextLink}
         sx={{ color, '& > code': { color: 'inherit' } }}
         target={external ? '_blank' : undefined}
@@ -121,9 +111,8 @@ export const components = {
       </Link>
     );
   },
-  ul: ({ ref, color, ...props }) => (
+  ul: ({ color, ...props }) => (
     <List
-      ref={ref as Ref<HTMLUListElement>}
       component="ul"
       marker="disc"
       sx={{
@@ -137,33 +126,29 @@ export const components = {
       {...props}
     />
   ),
-  ol: ({ ref, color, ...props }) => (
+  ol: ({ color, ...props }) => (
     <List
-      ref={ref as Ref<HTMLOListElement>}
       component="ol"
       marker="decimal"
       sx={{ color, my: 2, '--List-padding': '0px' }}
       {...props}
     />
   ),
-  li: ({ ref, color, ...props }) => (
+  li: ({ color, ...props }) => (
     <ListItem
-      ref={ref as Ref<HTMLLIElement>}
       sx={{
         color,
-        // handle <p>, which has margin by default, nested in <li>
-        '& :first-child': { mt: 0 },
-        '& :last-child': { mb: 0 },
+        '& p:first-child': { mt: 0 },
+        '& p:last-child': { mb: 0 },
       }}
       {...props}
     />
   ),
   figure: (props) => {
     if (props['data-rehype-pretty-code-figure'] === '') {
-      const { ref, color, children, ...rest } = props;
+      const { color, children, ...rest } = props;
       return (
         <Sheet
-          ref={ref as Ref<HTMLElement>}
           component="figure"
           variant="outlined"
           sx={{
@@ -192,10 +177,9 @@ export const components = {
   },
   figcaption: (props) => {
     if (props['data-rehype-pretty-code-title'] === '') {
-      const { ref, color, ...rest } = props;
+      const { color, ...rest } = props;
       return (
         <Typography
-          ref={ref as Ref<HTMLElement>}
           component="figcaption"
           level="body-sm"
           sx={{ pt: 2, textAlign: 'center', color }}
@@ -205,22 +189,16 @@ export const components = {
     }
     return <figcaption {...props} />;
   },
-  pre: ({ ref, ...props }) => (
-    <Box
-      ref={ref as Ref<HTMLPreElement>}
-      component="pre"
-      sx={{ m: 0, overflow: 'auto', py: 2 }}
-      {...props}
-    />
+  pre: ({ ...props }) => (
+    <Box component="pre" sx={{ m: 0, overflow: 'auto', py: 2 }} {...props} />
   ),
   code: (props) => {
     const inlineCode = props.style === undefined;
 
     if (inlineCode) {
-      const { ref, color, ...rest } = props;
+      const { color, ...rest } = props;
       return (
         <Typography
-          ref={ref as Ref<HTMLElement>}
           noWrap
           color="warning"
           component="code"
@@ -237,9 +215,8 @@ export const components = {
 
     return <code {...props} />;
   },
-  span: ({ ref, ...props }) => (
+  span: ({ ...props }) => (
     <Box
-      ref={ref as Ref<HTMLSpanElement>}
       component="span"
       sx={{
         // match code block
@@ -261,15 +238,9 @@ export const components = {
   ),
   mark: (props) => {
     if (props['data-highlighted-chars'] === '') {
-      const { ref, color, ...rest } = props;
+      const { color, ...rest } = props;
       return (
-        <Typography
-          ref={ref as Ref<HTMLElement>}
-          component="mark"
-          sx={{ color }}
-          variant="soft"
-          {...rest}
-        />
+        <Typography component="mark" sx={{ color }} variant="soft" {...rest} />
       );
     }
 
