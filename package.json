@@ -27,7 +27,7 @@
     "@mui/joy": "next",
     "@mui/material-nextjs": "next",
     "@mui/styled-engine": "next",
-    "@mui/system": "^6.0.0-alpha.5",
+    "@mui/system": "next",
     "@prisma/client": "^5.13.0",
     "@react-email/body": "^0.0.8",
     "@react-email/container": "^0.0.12",
