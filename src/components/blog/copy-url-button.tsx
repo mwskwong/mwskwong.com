@@ -13,9 +13,15 @@ export const CopyUrlButton: FC<CopyUrlButtonProps> = (props) => {
   const [copied, setCopied] = useState(false);
   const pathname = usePathname();
   const url = env.NEXT_PUBLIC_SITE_URL + pathname;
-  const timeout = useRef<NodeJS.Timeout>();
+  const timeout = useRef<NodeJS.Timeout>(null);
 
-  useEffect(() => () => clearTimeout(timeout.current), []);
+  useEffect(() => {
+    return () => {
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
+    };
+  }, []);
 
   return (
     <IconButton
