@@ -11,7 +11,7 @@ import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
-import { home, rssFeed } from '@/constants/nav';
+import { blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
 
 const bgcolors = {
@@ -94,7 +94,7 @@ const Home: FC = () => (
 );
 
 export const metadata = {
-  alternates: { types: { 'application/rss+xml': rssFeed.pathname } },
+  alternates: { types: { 'application/rss+xml': blogRssFeed.pathname } },
 } satisfies Metadata;
 
 export default Home;

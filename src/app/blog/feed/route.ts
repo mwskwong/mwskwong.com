@@ -1,13 +1,7 @@
 import { Feed } from 'feed';
 
-import {
-  email,
-  firstName,
-  headline,
-  lastName,
-  middleName,
-} from '@/constants/content';
-import { blog, rssFeed } from '@/constants/nav';
+import { email, firstName, lastName, middleName } from '@/constants/content';
+import { blog, blogRssFeed } from '@/constants/nav';
 import { env } from '@/env.mjs';
 import { getBlogs } from '@/lib/queries';
 
@@ -16,14 +10,14 @@ const name = `${firstName} ${lastName}`;
 export const GET = async () => {
   const blogs = await getBlogs();
   const blogFeed = new Feed({
-    title: `${name} - ${headline}`,
+    title: `${name} Blog`,
     description: 'Personal perspectives on a broad range of topics.',
-    id: env.NEXT_PUBLIC_SITE_URL + rssFeed.pathname,
+    id: env.NEXT_PUBLIC_SITE_URL + blogRssFeed.pathname,
     link: env.NEXT_PUBLIC_SITE_URL,
     language: 'en',
     copyright: `© ${new Date().getFullYear()} ${lastName.toUpperCase()}, ${firstName} ${middleName}`,
     feedLinks: {
-      rss: env.NEXT_PUBLIC_SITE_URL + rssFeed.pathname,
+      rss: env.NEXT_PUBLIC_SITE_URL + blogRssFeed.pathname,
       atom: 'self',
     },
   });

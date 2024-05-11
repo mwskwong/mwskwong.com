@@ -15,7 +15,7 @@ import NextLink from 'next/link';
 import { type FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
-import { privacyPolicy, rssFeed } from '@/constants/nav';
+import { blogRssFeed, privacyPolicy } from '@/constants/nav';
 import { getSocialMediaProfiles } from '@/lib/queries';
 
 import { Icon } from './contentful';
@@ -48,7 +48,7 @@ export const Footer: FC<FooterProps> = async (props) => {
           <IconButton
             aria-label="RSS Feed"
             component="a"
-            href={rssFeed.pathname}
+            href={blogRssFeed.pathname}
             size="sm"
             target="_blank"
           >

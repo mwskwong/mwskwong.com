@@ -25,7 +25,7 @@ import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
-import { blog as blogNav, home, rssFeed } from '@/constants/nav';
+import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
 import { getPerson } from '@/lib/json-ld';
 import {
@@ -148,7 +148,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   <IconButton
                     aria-label="RSS Feed"
                     component="a"
-                    href={rssFeed.pathname}
+                    href={blogRssFeed.pathname}
                     size="sm"
                     target="_blank"
                   >
@@ -256,7 +256,7 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
     },
     alternates: {
       canonical: `${blogNav.pathname}/${slug}`,
-      types: { 'application/rss+xml': rssFeed.pathname },
+      types: { 'application/rss+xml': blogRssFeed.pathname },
     },
   } satisfies Metadata;
 };
