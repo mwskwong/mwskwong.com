@@ -1,4 +1,5 @@
 import { Box } from '@mui/joy';
+import { type Metadata } from 'next';
 import { type FC } from 'react';
 import { type BreadcrumbList, type Graph, type WebSite } from 'schema-dts';
 
@@ -10,7 +11,7 @@ import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
-import { home } from '@/constants/nav';
+import { home, rssFeed } from '@/constants/nav';
 import { env } from '@/env.mjs';
 
 const bgcolors = {
@@ -91,5 +92,9 @@ const Home: FC = () => (
     />
   </>
 );
+
+export const metadata = {
+  alternates: { types: { 'application/rss+xml': rssFeed.pathname } },
+} satisfies Metadata;
 
 export default Home;
