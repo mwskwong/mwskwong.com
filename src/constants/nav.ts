@@ -40,5 +40,3 @@ export const privacyPolicy = {
   label: 'Privacy Policy',
   pathname: '/privacy-policy',
 } as const;
-
-export const nav = [about, experience, education, contact, blog, guestbook];
