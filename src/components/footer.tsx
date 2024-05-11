@@ -46,7 +46,7 @@ export const Footer: FC<FooterProps> = async (props) => {
               ),
           )}
           <IconButton
-            aria-label="RSS Feed"
+            aria-label="Blog RSS Feed"
             component="a"
             href={blogRssFeed.pathname}
             size="sm"
