@@ -30,6 +30,28 @@ Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see 
 
    3. Update the **Environments** of the `canary` API key, check the newly added canary environment
 
-3. In [Vercel](https://vercel.com), replace the value of environment variable `CONTENTFUL_ENVIRONMENT` of the **Preview** environment to the Contentful Environment ID defined in step 2.2.
+3. In [Vercel](https://vercel.com), replace the value of environment variable `CONTENTFUL_ENVIRONMENT` of the **Preview** environment to the Contentful Environment ID defined in step 2.ii.
 
 4. Merge/enable auto merge for the PR.
+
+## Preview Deployment
+
+1. Create a PR to `canary` (optional)
+
+2. In [Contentful](https://app.contentful.com/)
+
+   1. Delete the latest canary environment and add a new one.
+
+      - Environment ID naming: `canary_YYYY-MM-DDTHH.mm.ss.SSSZ`
+
+        ```js
+        `canary_${new Date().toISOString().replaceAll(':', '.')}`;
+        ```
+
+      - Cloned from: `development` environment
+
+   2. Update the **Environments** of the `canary` API key, check the newly added canary environment
+
+3. Perform step 3 of [PROD Deployment](#prod-deployment)
+
+4. Merge the PR or push code changes to `canary` directly

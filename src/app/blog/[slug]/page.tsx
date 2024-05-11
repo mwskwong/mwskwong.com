@@ -32,7 +32,7 @@ import {
   getBlogBySlug,
   getBlogs,
   getPersonalPhoto,
-  getPlatformProfiles,
+  getSocialMediaProfiles,
 } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
@@ -44,10 +44,10 @@ interface BlogProps {
 }
 
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
-  const [blog, personalPhoto, platformProfiles, person] = await Promise.all([
+  const [blog, personalPhoto, socialMediaProfiles, person] = await Promise.all([
     getBlogBySlug(slug),
     getPersonalPhoto(),
-    getPlatformProfiles(),
+    getSocialMediaProfiles(),
     getPerson(),
   ]);
   if (!blog) notFound();
@@ -130,18 +130,18 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   <Typography>{headline}</Typography>
                 </div>
                 <Stack direction="row" spacing={1}>
-                  {platformProfiles.map(
-                    ({ platform, url }) =>
-                      platform && (
+                  {socialMediaProfiles.map(
+                    ({ socialMedia, url }) =>
+                      socialMedia && (
                         <IconButton
-                          key={platform.id}
-                          aria-label={`${platform.name} profile`}
+                          key={socialMedia.id}
+                          aria-label={`${socialMedia.name} profile`}
                           component="a"
                           href={url}
                           size="sm"
                           target="_blank"
                         >
-                          <Icon contentfulId={platform.id} />
+                          <Icon contentfulId={socialMedia.id} />
                         </IconButton>
                       ),
                   )}

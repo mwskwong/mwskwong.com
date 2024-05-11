@@ -16,13 +16,13 @@ import { type FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
 import { blogRssFeed, privacyPolicy } from '@/constants/nav';
-import { getPlatformProfiles } from '@/lib/queries';
+import { getSocialMediaProfiles } from '@/lib/queries';
 
 import { Icon } from './contentful';
 
 export type FooterProps = Omit<BoxProps<'footer'>, 'children'>;
 export const Footer: FC<FooterProps> = async (props) => {
-  const platformProfiles = await getPlatformProfiles();
+  const socialMediaProfiles = await getSocialMediaProfiles();
 
   return (
     <Box component="footer" {...props}>
@@ -30,18 +30,18 @@ export const Footer: FC<FooterProps> = async (props) => {
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       >
         <Stack direction="row" spacing={1}>
-          {platformProfiles.map(
-            ({ platform, url }) =>
-              platform && (
+          {socialMediaProfiles.map(
+            ({ socialMedia, url }) =>
+              socialMedia && (
                 <IconButton
-                  key={platform.id}
-                  aria-label={`${platform.name} profile`}
+                  key={socialMedia.id}
+                  aria-label={`${socialMedia.name} profile`}
                   component="a"
                   href={url}
                   size="sm"
                   target="_blank"
                 >
-                  <Icon contentfulId={platform.id} />
+                  <Icon contentfulId={socialMedia.id} />
                 </IconButton>
               ),
           )}
