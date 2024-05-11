@@ -1,5 +1,6 @@
 import { Skeleton, Typography, type TypographyProps } from '@mui/joy';
 import { Eye } from 'lucide-react';
+import { mergeSx } from 'merge-sx';
 import { type FC } from 'react';
 
 import { getBlogMetadataById, getBlogsMetadata } from '@/lib/queries';
@@ -67,11 +68,10 @@ export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
 );
 
 export type ViewsErrorProps = ViewsSkeletonProps;
-export const ViewsError: FC<ViewsErrorProps> = ({ hideIcon, ...props }) => (
+export const ViewsError: FC<ViewsErrorProps> = ({ hideIcon, sx, ...props }) => (
   <Typography
-    // FIXME: not using sx prop here to prevent CLS
-    display={hideIcon ? 'flex' : undefined}
     startDecorator={!hideIcon && <Eye />}
+    sx={mergeSx({ display: hideIcon ? 'flex' : undefined }, sx)}
     {...props}
   >
     –– views
