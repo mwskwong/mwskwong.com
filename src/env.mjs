@@ -53,7 +53,7 @@ export const env = createEnv({
             ? process.env.NEXT_PUBLIC_PROD_URL
             : process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL
         }`
-      : 'http://localhost:3000',
+      : `http://localhost:${process.env.PORT ?? 3000}`,
     NEXT_PUBLIC_SITE_DISPLAY_NAME:
       process.env.NEXT_PUBLIC_PROD_URL &&
       capitalize(process.env.NEXT_PUBLIC_PROD_URL),
