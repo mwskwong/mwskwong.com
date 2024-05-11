@@ -10,10 +10,10 @@ const name = `${firstName} ${lastName}`;
 export const GET = async () => {
   const blogs = await getBlogs();
   const blogFeed = new Feed({
-    title: `${name} Blog`,
+    title: `${name} ${blog.label}`,
     description: 'Personal perspectives on a broad range of topics.',
     id: env.NEXT_PUBLIC_SITE_URL + blogRssFeed.pathname,
-    link: env.NEXT_PUBLIC_SITE_URL,
+    link: env.NEXT_PUBLIC_SITE_URL + blog.pathname,
     language: 'en',
     copyright: `© ${new Date().getFullYear()} ${lastName.toUpperCase()}, ${firstName} ${middleName}`,
     feedLinks: {

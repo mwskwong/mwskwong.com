@@ -18,7 +18,7 @@ import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
-import { blog, home } from '@/constants/nav';
+import { blog, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
 import { getBlogs } from '@/lib/queries';
 
@@ -163,7 +163,10 @@ export const generateMetadata = async (
     title: blog.label,
     description,
     openGraph: { ...openGraph, url: blog.pathname },
-    alternates: { canonical: blog.pathname },
+    alternates: {
+      canonical: blog.pathname,
+      types: { 'application/rss+xml': blogRssFeed.pathname },
+    },
   } satisfies Metadata;
 };
 
