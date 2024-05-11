@@ -13,15 +13,14 @@ import { Menu } from 'lucide-react';
 import NextLink from 'next/link';
 import { type FC, useState } from 'react';
 
-import { nav } from '@/constants/nav';
-
 export interface NavDrawerProps {
+  nav?: { id?: string; label: string; pathname: string }[];
   slotProps?: {
     drawerButton?: IconButtonProps;
   };
 }
 
-export const NavDrawer: FC<NavDrawerProps> = ({ slotProps }) => {
+export const NavDrawer: FC<NavDrawerProps> = ({ nav = [], slotProps }) => {
   const [open, setOpen] = useState(false);
   return (
     <>

@@ -1,11 +1,6 @@
 import { type MetadataRoute } from 'next';
 
-import {
-  blog,
-  guestbook,
-  home,
-  privacyPolicy as privacyPolicyNav,
-} from '@/constants/nav';
+import * as nav from '@/constants/nav';
 import { env } from '@/env.mjs';
 import { getBlogs, getPrivacyPolicy } from '@/lib/queries';
 
@@ -16,16 +11,17 @@ const sitemap = async () => {
   ]);
 
   return [
-    ...[home.pathname, blog.pathname, guestbook.pathname].map((route) => ({
-      url: env.NEXT_PUBLIC_SITE_URL + route,
-      lastModified: new Date(),
-    })),
-    {
-      url: env.NEXT_PUBLIC_SITE_URL + privacyPolicyNav.pathname,
-      lastModified: privacyPolicy.updatedAt,
-    },
+    ...Object.values(nav)
+      .filter(({ id }) => !id)
+      .map(({ pathname }) => ({
+        url: env.NEXT_PUBLIC_SITE_URL + pathname,
+        lastModified:
+          pathname === nav.privacyPolicy.pathname
+            ? privacyPolicy.updatedAt
+            : new Date(),
+      })),
     ...blogs.map(({ slug, updatedAt }) => ({
-      url: `${env.NEXT_PUBLIC_SITE_URL}${blog.pathname}/${slug}`,
+      url: `${env.NEXT_PUBLIC_SITE_URL}${nav.blog.pathname}/${slug}`,
       lastModified: updatedAt,
     })),
   ] satisfies MetadataRoute.Sitemap;
