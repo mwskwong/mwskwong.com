@@ -1,0 +1,95 @@
+diff --git a/node_modules/@mui/joy/Autocomplete/Autocomplete.d.ts b/node_modules/@mui/joy/Autocomplete/Autocomplete.d.ts
+index d01217a..9da6f0a 100644
+--- a/node_modules/@mui/joy/Autocomplete/Autocomplete.d.ts
++++ b/node_modules/@mui/joy/Autocomplete/Autocomplete.d.ts
+@@ -1,5 +1,6 @@
+ /// <reference types="react" />
+ import { AutocompleteProps } from './AutocompleteProps';
++import type { JSX } from "react";
+ /**
+  *
+  * Demos:
+diff --git a/node_modules/@mui/joy/Button/ButtonProps.d.ts b/node_modules/@mui/joy/Button/ButtonProps.d.ts
+index ab2faae..425d325 100644
+--- a/node_modules/@mui/joy/Button/ButtonProps.d.ts
++++ b/node_modules/@mui/joy/Button/ButtonProps.d.ts
+@@ -2,6 +2,7 @@ import * as React from 'react';
+ import { OverridableComponent, OverridableStringUnion, OverridableTypeMap, OverrideProps } from '@mui/types';
+ import { ColorPaletteProp, SxProps, VariantProp, ApplyColorInversion } from '../styles/types';
+ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
++import type { JSX } from "react";
+ export type ButtonSlot = 'root' | 'startDecorator' | 'endDecorator' | 'loadingIndicatorCenter';
+ export interface ButtonSlots {
+     /**
+diff --git a/node_modules/@mui/joy/IconButton/IconButtonProps.d.ts b/node_modules/@mui/joy/IconButton/IconButtonProps.d.ts
+index 1b3fdc9..352c0c7 100644
+--- a/node_modules/@mui/joy/IconButton/IconButtonProps.d.ts
++++ b/node_modules/@mui/joy/IconButton/IconButtonProps.d.ts
+@@ -2,6 +2,7 @@ import * as React from 'react';
+ import { OverridableComponent, OverridableStringUnion, OverridableTypeMap, OverrideProps } from '@mui/types';
+ import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
++import type { JSX } from "react";
+ export type IconButtonSlot = 'root' | 'loadingIndicator';
+ export interface IconButtonSlots {
+     /**
+diff --git a/node_modules/@mui/joy/ListItemButton/ListItemButtonProps.d.ts b/node_modules/@mui/joy/ListItemButton/ListItemButtonProps.d.ts
+index 422f2c6..dda34f4 100644
+--- a/node_modules/@mui/joy/ListItemButton/ListItemButtonProps.d.ts
++++ b/node_modules/@mui/joy/ListItemButton/ListItemButtonProps.d.ts
+@@ -2,6 +2,7 @@ import * as React from 'react';
+ import { OverridableComponent, OverridableStringUnion, OverridableTypeMap, OverrideProps } from '@mui/types';
+ import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
++import type { JSX } from "react";
+ export type ListItemButtonSlot = 'root';
+ export interface ListItemButtonSlots {
+     /**
+diff --git a/node_modules/@mui/joy/MenuItem/MenuItemProps.d.ts b/node_modules/@mui/joy/MenuItem/MenuItemProps.d.ts
+index 757989a..f16a4ac 100644
+--- a/node_modules/@mui/joy/MenuItem/MenuItemProps.d.ts
++++ b/node_modules/@mui/joy/MenuItem/MenuItemProps.d.ts
+@@ -3,6 +3,7 @@ import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/ty
+ import { ApplyColorInversion } from '../styles/types';
+ import { ListItemButtonProps } from '../ListItemButton/ListItemButtonProps';
+ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
++import type { JSX } from "react";
+ export type MenuItemSlot = 'root';
+ export interface MenuItemSlots {
+     /**
+diff --git a/node_modules/@mui/joy/Option/OptionProps.d.ts b/node_modules/@mui/joy/Option/OptionProps.d.ts
+index f719f63..39cff74 100644
+--- a/node_modules/@mui/joy/Option/OptionProps.d.ts
++++ b/node_modules/@mui/joy/Option/OptionProps.d.ts
+@@ -2,6 +2,7 @@ import * as React from 'react';
+ import { OverridableComponent, OverridableStringUnion, OverridableTypeMap, OverrideProps } from '@mui/types';
+ import { ColorPaletteProp, VariantProp, SxProps, ApplyColorInversion } from '../styles/types';
+ import { SlotProps, CreateSlotsAndSlotProps } from '../utils/types';
++import type { JSX } from "react";
+ export type OptionSlot = 'root';
+ export interface OptionSlots {
+     /**
+diff --git a/node_modules/@mui/joy/Select/Select.d.ts b/node_modules/@mui/joy/Select/Select.d.ts
+index 7ef08b7..1a75325 100644
+--- a/node_modules/@mui/joy/Select/Select.d.ts
++++ b/node_modules/@mui/joy/Select/Select.d.ts
+@@ -1,6 +1,7 @@
+ import * as React from 'react';
+ import { OverrideProps, DefaultComponentProps } from '@mui/types';
+ import { SelectTypeMap } from './SelectProps';
++import type { JSX } from "react";
+ /**
+  *
+  * Demos:
+diff --git a/node_modules/@mui/joy/ToggleButtonGroup/ToggleButtonGroup.d.ts b/node_modules/@mui/joy/ToggleButtonGroup/ToggleButtonGroup.d.ts
+index 3ac7fa3..f3bd82d 100644
+--- a/node_modules/@mui/joy/ToggleButtonGroup/ToggleButtonGroup.d.ts
++++ b/node_modules/@mui/joy/ToggleButtonGroup/ToggleButtonGroup.d.ts
+@@ -1,6 +1,7 @@
+ import * as React from 'react';
+ import { OverrideProps, DefaultComponentProps } from '@mui/types';
+ import { ToggleButtonGroupTypeMap, SupportedValue } from './ToggleButtonGroupProps';
++import type { JSX } from "react";
+ /**
+  * ⚠️ ToggleButtonGroup must have Button and/or IconButton as direct children.
+  *

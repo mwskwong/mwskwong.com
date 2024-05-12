@@ -1,0 +1,189 @@
+diff --git a/node_modules/@mui/base/ClickAwayListener/ClickAwayListener.d.ts b/node_modules/@mui/base/ClickAwayListener/ClickAwayListener.d.ts
+index 477ee12..7bc9c5f 100644
+--- a/node_modules/@mui/base/ClickAwayListener/ClickAwayListener.d.ts
++++ b/node_modules/@mui/base/ClickAwayListener/ClickAwayListener.d.ts
+@@ -1,4 +1,5 @@
+ import * as React from 'react';
++import type { JSX } from "react";
+ type ClickAwayMouseEventHandler = 'onClick' | 'onMouseDown' | 'onMouseUp' | 'onPointerDown' | 'onPointerUp';
+ type ClickAwayTouchEventHandler = 'onTouchStart' | 'onTouchEnd';
+ export interface ClickAwayListenerProps {
+diff --git a/node_modules/@mui/base/FocusTrap/FocusTrap.d.ts b/node_modules/@mui/base/FocusTrap/FocusTrap.d.ts
+index d2ea3a4..adf826b 100644
+--- a/node_modules/@mui/base/FocusTrap/FocusTrap.d.ts
++++ b/node_modules/@mui/base/FocusTrap/FocusTrap.d.ts
+@@ -1,5 +1,6 @@
+ /// <reference types="react" />
+ import { FocusTrapProps } from './FocusTrap.types';
++import type { JSX } from "react";
+ /**
+  * Utility component that locks focus inside the component.
+  *
+diff --git a/node_modules/@mui/base/NoSsr/NoSsr.d.ts b/node_modules/@mui/base/NoSsr/NoSsr.d.ts
+index 164aef5..4ba79a9 100644
+--- a/node_modules/@mui/base/NoSsr/NoSsr.d.ts
++++ b/node_modules/@mui/base/NoSsr/NoSsr.d.ts
+@@ -1,5 +1,6 @@
+ /// <reference types="react" />
+ import { NoSsrProps } from './NoSsr.types';
++import type { JSX } from "react";
+ /**
+  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).
+  *
+diff --git a/node_modules/@mui/base/Option/Option.types.d.ts b/node_modules/@mui/base/Option/Option.types.d.ts
+index 62b7cdf..618a1c7 100644
+--- a/node_modules/@mui/base/Option/Option.types.d.ts
++++ b/node_modules/@mui/base/Option/Option.types.d.ts
+@@ -2,6 +2,7 @@ import * as React from 'react';
+ import { Simplify } from '@mui/types';
+ import { UseOptionRootSlotProps } from '../useOption';
+ import { PolymorphicProps, SlotComponentProps } from '../utils';
++import type { JSX } from "react";
+ export interface OptionRootSlotPropsOverrides {
+ }
+ export interface OptionOwnProps<OptionValue> {
+diff --git a/node_modules/@mui/base/Select/Select.types.d.ts b/node_modules/@mui/base/Select/Select.types.d.ts
+index c9d6ebd..b3d9523 100644
+--- a/node_modules/@mui/base/Select/Select.types.d.ts
++++ b/node_modules/@mui/base/Select/Select.types.d.ts
+@@ -4,6 +4,7 @@ import { SelectValue, UseSelectButtonSlotProps, UseSelectListboxSlotProps } from
+ import { SelectOption } from '../useOption';
+ import { PopupProps } from '../Unstable_Popup';
+ import { PolymorphicProps, SlotComponentProps } from '../utils';
++import type { JSX } from "react";
+ export interface SelectRootSlotPropsOverrides {
+ }
+ export interface SelectListboxSlotPropsOverrides {
+diff --git a/node_modules/@mui/base/useAutocomplete/useAutocomplete.d.ts b/node_modules/@mui/base/useAutocomplete/useAutocomplete.d.ts
+index d2c3776..c8a4a8b 100644
+--- a/node_modules/@mui/base/useAutocomplete/useAutocomplete.d.ts
++++ b/node_modules/@mui/base/useAutocomplete/useAutocomplete.d.ts
+@@ -49,7 +49,7 @@ export interface UseAutocompleteProps<
+    * Temporary for Joy UI because the parent listbox is the document object
+    * TODO v6: Normalize the logic and remove this param.
+    */
+-  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement>) => boolean;
++  unstable_isActiveElementInListbox?: (listbox: React.RefObject<HTMLElement | null>) => boolean;
+   /**
+    * If `true`, the portion of the selected suggestion that the user hasn't typed,
+    * known as the completion string, appears inline after the input cursor in the textbox.
+diff --git a/node_modules/@mui/base/useCompound/useCompoundParent.d.ts b/node_modules/@mui/base/useCompound/useCompoundParent.d.ts
+index 3ddc718..4b54979 100644
+--- a/node_modules/@mui/base/useCompound/useCompoundParent.d.ts
++++ b/node_modules/@mui/base/useCompound/useCompoundParent.d.ts
+@@ -35,7 +35,7 @@ export type CompoundComponentContextValue<Key, Subitem> = {
+ };
+ export declare const CompoundComponentContext: React.Context<CompoundComponentContextValue<any, any> | null>;
+ export interface UseCompoundParentReturnValue<Key, Subitem extends {
+-    ref: React.RefObject<Node>;
++    ref: React.RefObject<Node | null>;
+ }> {
+     /**
+      * The value for the CompoundComponentContext provider.
+@@ -61,6 +61,6 @@ export interface UseCompoundParentReturnValue<Key, Subitem extends {
+  * @ignore - internal hook.
+  */
+ export declare function useCompoundParent<Key, Subitem extends {
+-    ref: React.RefObject<Node>;
++    ref: React.RefObject<Node | null>;
+ }>(): UseCompoundParentReturnValue<Key, Subitem>;
+ export {};
+diff --git a/node_modules/@mui/base/useMenu/menuReducer.d.ts b/node_modules/@mui/base/useMenu/menuReducer.d.ts
+index 1b1ea16..ad238f1 100644
+--- a/node_modules/@mui/base/useMenu/menuReducer.d.ts
++++ b/node_modules/@mui/base/useMenu/menuReducer.d.ts
+@@ -3,7 +3,7 @@ import { ListAction, ListActionContext } from '../useList';
+ import { ActionWithContext } from '../utils/useControllableReducer.types';
+ import { MenuInternalState } from './useMenu.types';
+ export type MenuActionContext = ListActionContext<string> & {
+-    listboxRef: React.RefObject<HTMLElement>;
++    listboxRef: React.RefObject<HTMLElement | null>;
+ };
+ export declare function menuReducer(state: MenuInternalState, action: ActionWithContext<ListAction<string>, MenuActionContext>): MenuInternalState | {
+     open: boolean;
+diff --git a/node_modules/@mui/base/useMenuItem/useMenuItem.types.d.ts b/node_modules/@mui/base/useMenuItem/useMenuItem.types.d.ts
+index 2b8d9dc..393076e 100644
+--- a/node_modules/@mui/base/useMenuItem/useMenuItem.types.d.ts
++++ b/node_modules/@mui/base/useMenuItem/useMenuItem.types.d.ts
+@@ -10,7 +10,7 @@ export interface MenuItemMetadata {
+     id: string;
+     disabled: boolean;
+     label?: string;
+-    ref: React.RefObject<HTMLElement>;
++    ref: React.RefObject<HTMLElement | null>;
+ }
+ export type UseMenuItemRootSlotProps<ExternalProps = {}> = ExternalProps & UseMenuItemRootSlotOwnProps & UseButtonRootSlotProps<ExternalProps> & {
+     onClick: MuiCancellableEventHandler<React.MouseEvent>;
+diff --git a/node_modules/@mui/base/useOption/useOption.types.d.ts b/node_modules/@mui/base/useOption/useOption.types.d.ts
+index b807bf8..c2e8aa3 100644
+--- a/node_modules/@mui/base/useOption/useOption.types.d.ts
++++ b/node_modules/@mui/base/useOption/useOption.types.d.ts
+@@ -4,7 +4,7 @@ export interface SelectOption<Value> {
+     value: Value;
+     label: React.ReactNode;
+     disabled?: boolean;
+-    ref: React.RefObject<HTMLElement>;
++    ref: React.RefObject<HTMLElement | null>;
+     id?: string;
+ }
+ export interface UseOptionParameters<Value> {
+diff --git a/node_modules/@mui/base/useTabs/TabsProvider.d.ts b/node_modules/@mui/base/useTabs/TabsProvider.d.ts
+index 5c3017d..2f1656d 100644
+--- a/node_modules/@mui/base/useTabs/TabsProvider.d.ts
++++ b/node_modules/@mui/base/useTabs/TabsProvider.d.ts
+@@ -3,7 +3,7 @@ import { TabsContextValue } from '../Tabs/TabsContext';
+ import { CompoundComponentContextValue } from '../useCompound';
+ export type TabPanelMetadata = {
+     id: string | undefined;
+-    ref: React.RefObject<HTMLElement>;
++    ref: React.RefObject<HTMLElement | null>;
+ };
+ export type TabsProviderValue = CompoundComponentContextValue<string | number, TabPanelMetadata> & TabsContextValue;
+ export interface TabsProviderProps {
+diff --git a/node_modules/@mui/base/useTabs/useTabs.d.ts b/node_modules/@mui/base/useTabs/useTabs.d.ts
+index b865be5..3e99f52 100644
+--- a/node_modules/@mui/base/useTabs/useTabs.d.ts
++++ b/node_modules/@mui/base/useTabs/useTabs.d.ts
+@@ -3,7 +3,7 @@ import { UseTabsParameters, UseTabsReturnValue } from './useTabs.types';
+ export interface TabMetadata {
+     disabled: boolean;
+     id: string | undefined;
+-    ref: React.RefObject<HTMLElement>;
++    ref: React.RefObject<HTMLElement | null>;
+ }
+ /**
+  *
+diff --git a/node_modules/@mui/base/utils/PolymorphicComponent.d.ts b/node_modules/@mui/base/utils/PolymorphicComponent.d.ts
+index dd63363..44760cd 100644
+--- a/node_modules/@mui/base/utils/PolymorphicComponent.d.ts
++++ b/node_modules/@mui/base/utils/PolymorphicComponent.d.ts
+@@ -1,5 +1,6 @@
+ import * as React from 'react';
+ import { DistributiveOmit, OverridableTypeMap } from '@mui/types';
++import type { JSX } from "react";
+ /**
+  * A component whose root component can be controlled explicitly with a generic type parameter.
+  * Adjusts valid props based on the type of `RootComponent`.
+diff --git a/node_modules/@mui/base/utils/appendOwnerState.d.ts b/node_modules/@mui/base/utils/appendOwnerState.d.ts
+index ad5d9ec..161df34 100644
+--- a/node_modules/@mui/base/utils/appendOwnerState.d.ts
++++ b/node_modules/@mui/base/utils/appendOwnerState.d.ts
+@@ -1,5 +1,6 @@
+ import * as React from 'react';
+ import { Simplify } from '@mui/types';
++import type { JSX } from "react";
+ /**
+  * Type of the ownerState based on the type of an element it applies to.
+  * This resolves to the provided OwnerState for React components and `undefined` for host components.
+diff --git a/node_modules/@mui/base/utils/useSlotProps.d.ts b/node_modules/@mui/base/utils/useSlotProps.d.ts
+index 570346b..45d5ee0 100644
+--- a/node_modules/@mui/base/utils/useSlotProps.d.ts
++++ b/node_modules/@mui/base/utils/useSlotProps.d.ts
+@@ -1,6 +1,7 @@
+ import * as React from 'react';
+ import { AppendOwnerStateReturnType } from './appendOwnerState';
+ import { MergeSlotPropsParameters, MergeSlotPropsResult, WithCommonProps } from './mergeSlotProps';
++import type { JSX } from "react";
+ export type UseSlotPropsParameters<ElementType extends React.ElementType, SlotProps, ExternalForwardedProps, ExternalSlotProps, AdditionalProps, OwnerState> = Omit<MergeSlotPropsParameters<SlotProps, ExternalForwardedProps, ExternalSlotProps, AdditionalProps>, 'externalSlotProps'> & {
+     /**
+      * The type of the component used in the slot.

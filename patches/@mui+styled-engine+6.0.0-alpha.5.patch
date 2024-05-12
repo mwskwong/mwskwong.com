@@ -1,0 +1,47 @@
+diff --git a/node_modules/@mui/styled-engine/StyledEngineProvider/StyledEngineProvider.d.ts b/node_modules/@mui/styled-engine/StyledEngineProvider/StyledEngineProvider.d.ts
+index 64288e4..fa8cd1f 100644
+--- a/node_modules/@mui/styled-engine/StyledEngineProvider/StyledEngineProvider.d.ts
++++ b/node_modules/@mui/styled-engine/StyledEngineProvider/StyledEngineProvider.d.ts
+@@ -1,5 +1,7 @@
+ import * as React from 'react';
+ 
++import type { JSX } from "react";
++
+ export interface StyledEngineProviderProps {
+   children?: React.ReactNode;
+   injectFirst?: boolean;
+diff --git a/node_modules/@mui/styled-engine/index.d.ts b/node_modules/@mui/styled-engine/index.d.ts
+index 4bc50bc..00c3375 100644
+--- a/node_modules/@mui/styled-engine/index.d.ts
++++ b/node_modules/@mui/styled-engine/index.d.ts
+@@ -2,6 +2,8 @@ import * as CSS from 'csstype';
+ import { StyledComponent, StyledOptions } from '@emotion/styled';
+ import { PropsOf } from '@emotion/react';
+ 
++import type { JSX } from "react";
++
+ export * from '@emotion/styled';
+ export { default } from '@emotion/styled';
+ export { ThemeContext, keyframes, css } from '@emotion/react';
+@@ -200,8 +202,8 @@ export interface CreateMUIStyled<
+   ): CreateStyledComponent<PropsOf<C> & MUIStyledCommonProps, {}, {}, Theme>;
+ 
+   <
+-    Tag extends keyof JSX.IntrinsicElements,
+-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
++    Tag extends keyof React.JSX.IntrinsicElements,
++    ForwardedProps extends keyof React.JSX.IntrinsicElements[Tag] = keyof React.JSX.IntrinsicElements[Tag],
+   >(
+     tag: Tag,
+     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
+@@ -212,8 +214,8 @@ export interface CreateMUIStyled<
+     Theme
+   >;
+ 
+-  <Tag extends keyof JSX.IntrinsicElements>(
++  <Tag extends keyof React.JSX.IntrinsicElements>(
+     tag: Tag,
+     options?: StyledOptions<MUIStyledCommonProps> & MuiStyledOptions,
+-  ): CreateStyledComponent<MUIStyledCommonProps, JSX.IntrinsicElements[Tag], {}, Theme>;
++  ): CreateStyledComponent<MUIStyledCommonProps, React.JSX.IntrinsicElements[Tag], {}, Theme>;
+ }

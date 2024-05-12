@@ -1,0 +1,20 @@
+diff --git a/node_modules/@mui/material-nextjs/v13-pagesRouter/pagesRouterV13Document.d.ts b/node_modules/@mui/material-nextjs/v13-pagesRouter/pagesRouterV13Document.d.ts
+index a3dda93..a3ce53b 100644
+--- a/node_modules/@mui/material-nextjs/v13-pagesRouter/pagesRouterV13Document.d.ts
++++ b/node_modules/@mui/material-nextjs/v13-pagesRouter/pagesRouterV13Document.d.ts
+@@ -2,6 +2,7 @@ import * as React from 'react';
+ import { AppType } from 'next/app';
+ import { EmotionCache } from '@emotion/react';
+ import { DocumentContext, DocumentInitialProps } from 'next/document';
++import type { JSX } from "react";
+ interface Plugin {
+     enhanceApp: (App: React.ComponentType<React.ComponentProps<AppType>>) => (props: any) => JSX.Element;
+     resolveProps: (initialProps: DocumentInitialProps) => Promise<DocumentInitialProps>;
+@@ -18,6 +19,6 @@ export declare function documentGetInitialProps(ctx: DocumentContext, options?:
+     emotionCache?: EmotionCache;
+     plugins?: Plugin[];
+ }): Promise<import("next/dist/shared/lib/utils").RenderPageResult & {
+-    styles?: React.ReactFragment | JSX.Element | React.ReactElement<any, string | React.JSXElementConstructor<any>>[] | undefined;
++    styles?: Iterable<React.ReactNode> | JSX.Element | React.ReactElement<any, string | React.JSXElementConstructor<any>>[] | undefined;
+ } & DocumentHeadTagsProps>;
+ export {};

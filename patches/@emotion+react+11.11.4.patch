@@ -13,3 +13,35 @@ index a2fc9b4..1c5ea25 100644
  
  // We need to use this version of Omit as it's distributive (Will preserve unions)
  export type DistributiveOmit<T, U> = T extends any
+diff --git a/node_modules/@emotion/react/dist/declarations/types/jsx-namespace.d.ts b/node_modules/@emotion/react/dist/declarations/types/jsx-namespace.d.ts
+index f054601..541ed49 100644
+--- a/node_modules/@emotion/react/dist/declarations/types/jsx-namespace.d.ts
++++ b/node_modules/@emotion/react/dist/declarations/types/jsx-namespace.d.ts
+@@ -1,4 +1,4 @@
+-import 'react'
++import { type JSX } from 'react';
+ import { Interpolation } from '@emotion/serialize'
+ import { Theme } from '@emotion/react'
+ 
+diff --git a/node_modules/@emotion/react/types/helper.d.ts b/node_modules/@emotion/react/types/helper.d.ts
+index a2fc9b4..055f316 100644
+--- a/node_modules/@emotion/react/types/helper.d.ts
++++ b/node_modules/@emotion/react/types/helper.d.ts
+@@ -1,5 +1,7 @@
+ import * as React from 'react'
+ 
++import type { JSX } from "react";
++
+ /**
+  * @desc Utility type for getting props type of React component.
+  * It takes `defaultProps` into an account - making props with defaults optional.
+diff --git a/node_modules/@emotion/react/types/jsx-namespace.d.ts b/node_modules/@emotion/react/types/jsx-namespace.d.ts
+index f054601..541ed49 100644
+--- a/node_modules/@emotion/react/types/jsx-namespace.d.ts
++++ b/node_modules/@emotion/react/types/jsx-namespace.d.ts
+@@ -1,4 +1,4 @@
+-import 'react'
++import { type JSX } from 'react';
+ import { Interpolation } from '@emotion/serialize'
+ import { Theme } from '@emotion/react'
+ 
