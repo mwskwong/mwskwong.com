@@ -42,6 +42,9 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().url(),
     NEXT_PUBLIC_SITE_DISPLAY_NAME: z.string(),
+    NEXT_PUBLIC_VERCEL_ENV: z
+      .enum(['development', 'preview', 'production'])
+      .optional(),
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -57,6 +60,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SITE_DISPLAY_NAME:
       process.env.NEXT_PUBLIC_PROD_URL &&
       capitalize(process.env.NEXT_PUBLIC_PROD_URL),
+    NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
   },
   skipValidation: process.env.npm_lifecycle_event === 'lint',
   emptyStringAsUndefined: true,

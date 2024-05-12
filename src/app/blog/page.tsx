@@ -14,6 +14,7 @@ import NextLink from 'next/link';
 import { type FC, Suspense } from 'react';
 import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
+import { DisplayAd } from '@/components/ads';
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { ErrorBoundary } from '@/components/error-boundary';
@@ -37,6 +38,7 @@ const Blogs: FC = async () => {
             <Typography level="h1">{blog.label}</Typography>
             <Typography>{description}</Typography>
           </Stack>
+          <DisplayAd />
           <Grid container spacing={2}>
             {blogs.map(
               (

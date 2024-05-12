@@ -39,6 +39,7 @@
     "@t3-oss/env-nextjs": "^0.10.1",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
+    "clsx": "^2.1.1",
     "contentful": "^10.10.0",
     "dedent": "^1.5.3",
     "feed": "^4.2.2",
