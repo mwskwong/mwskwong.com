@@ -123,7 +123,7 @@ const Blogs: FC = async () => {
                       </CardContent>
                     </Card>
                   </Grid>
-                  {index % 3 === 0 && (
+                  {(index + 1) % 3 === 0 && (
                     <Grid md={4} sm={6} xs={12}>
                       <BlogCardAd sx={{ height: { sm: '100%' } }} />
                     </Grid>
