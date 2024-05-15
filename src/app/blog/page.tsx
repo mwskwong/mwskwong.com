@@ -132,6 +132,7 @@ const Blogs: FC = async () => {
               ),
             )}
           </Grid>
+          <DisplayAd />
         </Stack>
       </Container>
       <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
