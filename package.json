@@ -81,6 +81,7 @@
     "typescript": "^5.4.5"
   },
   "overrides": {
+    "@react-email/render": "canary",
     "@types/react": "npm:types-react@beta",
     "@types/react-dom": "npm:types-react-dom@beta"
   }
