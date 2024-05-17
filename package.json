@@ -21,7 +21,7 @@
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@hookform/resolvers": "^3.3.4",
+    "@hookform/resolvers": "^3.4.0",
     "@icons-pack/react-simple-icons": "^9.5.0",
     "@mui/base": "next",
     "@mui/joy": "next",
@@ -80,6 +80,7 @@
     "typescript": "^5.4.5"
   },
   "overrides": {
+    "@react-email/render": "canary",
     "@types/react": "npm:types-react@beta",
     "@types/react-dom": "npm:types-react-dom@beta"
   }

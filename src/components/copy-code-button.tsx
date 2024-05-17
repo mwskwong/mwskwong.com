@@ -8,15 +8,9 @@ export type CopyCodeButtonProps = Omit<IconButtonProps, 'children'>;
 
 export const CopyCodeButton: FC<CopyCodeButtonProps> = (props) => {
   const [copied, setCopied] = useState(false);
-  const timeout = useRef<NodeJS.Timeout>(null);
+  const timeout = useRef<NodeJS.Timeout>(undefined);
 
-  useEffect(() => {
-    return () => {
-      if (timeout.current) {
-        clearTimeout(timeout.current);
-      }
-    };
-  }, []);
+  useEffect(() => () => clearTimeout(timeout.current), []);
 
   return (
     <IconButton
