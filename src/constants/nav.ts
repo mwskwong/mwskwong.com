@@ -28,7 +28,7 @@ export const blog = {
 export const blogRssFeed = {
   id: undefined,
   label: undefined,
-  pathname: `${blog.pathname}/rss.xml`,
+  pathname: `${blog.pathname}/feed`,
 } as const;
 export const guestbook = {
   id: undefined,
@@ -40,5 +40,3 @@ export const privacyPolicy = {
   label: 'Privacy Policy',
   pathname: '/privacy-policy',
 } as const;
-
-export const nav = [about, experience, education, contact, blog, guestbook];

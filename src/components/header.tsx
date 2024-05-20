@@ -15,12 +15,22 @@ import { type FC } from 'react';
 
 import Icon from '@/app/icon.svg?monochrome';
 import { github, linkedin } from '@/constants/contentful-ids';
-import { home, nav } from '@/constants/nav';
+import {
+  about,
+  blog,
+  contact,
+  education,
+  experience,
+  guestbook,
+  home,
+} from '@/constants/nav';
 import { getSocialMediaProfiles } from '@/lib/queries';
 
 import { Icon as ContentfulIcon } from './contentful';
 import { ModeToggleButton } from './mode-toggle-button';
 import { NavDrawer } from './nav-drawer';
+
+export const nav = [about, experience, education, contact, blog, guestbook];
 
 export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
 export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
@@ -103,6 +113,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
             )}
             <ModeToggleButton size="sm" variant="outlined" />
             <NavDrawer
+              nav={nav}
               slotProps={{
                 drawerButton: {
                   size: 'sm',

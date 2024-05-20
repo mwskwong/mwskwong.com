@@ -25,16 +25,15 @@ import {
   Terminal,
   Workflow,
 } from 'lucide-react';
-import { type ComponentProps, type FC, forwardRef } from 'react';
+import { type ComponentProps, type FC } from 'react';
 import { type LiteralUnion } from 'type-fest';
 
 import * as contentfulIds from '@/constants/contentful-ids';
 
 const generateSimpleIcon = (SiIcon: IconType) => {
-  // FIXME: forwardRef to be removed
-  const Icon: IconType = forwardRef((props, ref) => (
-    <SiIcon ref={ref} viewBox="-2 -2 28 28" {...props} />
-  ));
+  const Icon: FC<ComponentProps<IconType>> = (props) => (
+    <SiIcon viewBox="-2 -2 28 28" {...props} />
+  );
   Icon.displayName = SiIcon.displayName;
   return Icon;
 };

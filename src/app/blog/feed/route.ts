@@ -5,13 +5,15 @@ import { blog, blogRssFeed } from '@/constants/nav';
 import { env } from '@/env.mjs';
 import { getBlogs } from '@/lib/queries';
 
+const name = `${firstName} ${lastName}`;
+
 export const GET = async () => {
   const blogs = await getBlogs();
   const blogFeed = new Feed({
-    title: `${firstName} ${lastName} ${blog.label}`,
+    title: `${name} ${blog.label}`,
     description: 'Personal perspectives on a broad range of topics.',
     id: env.NEXT_PUBLIC_SITE_URL + blogRssFeed.pathname,
-    link: env.NEXT_PUBLIC_SITE_URL + blogRssFeed.pathname,
+    link: env.NEXT_PUBLIC_SITE_URL + blog.pathname,
     language: 'en',
     copyright: `© ${new Date().getFullYear()} ${lastName.toUpperCase()}, ${firstName} ${middleName}`,
     feedLinks: {
@@ -33,12 +35,7 @@ export const GET = async () => {
       title,
       link: `${env.NEXT_PUBLIC_SITE_URL}${blog.pathname}/${slug}`,
       description,
-      author: [
-        {
-          name: `${firstName} ${lastName}`,
-          email,
-        },
-      ],
+      author: [{ name, email }],
       published: new Date(createdAt),
       date: new Date(updatedAt),
       category: categories.map((category) => ({ name: category })),

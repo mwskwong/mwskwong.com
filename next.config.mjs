@@ -1,7 +1,6 @@
 // @ts-check
 
 import NextBundleAnalyzer from '@next/bundle-analyzer';
-import dedent from 'dedent';
 
 import { env } from './src/env.mjs';
 
@@ -130,21 +129,6 @@ const config = {
           key: 'Referrer-Policy',
           value: 'strict-origin-when-cross-origin',
         },
-        {
-          key: 'Content-Security-Policy',
-          value: dedent`
-            default-src 'self';
-            script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com;
-            style-src 'self' 'unsafe-inline';
-            img-src 'self' images.ctfassets.net blob: data:;
-            font-src 'self';
-            object-src 'none';
-            base-uri 'self';
-            form-action 'self';
-            frame-ancestors 'none';
-            upgrade-insecure-requests;
-          `.replace(/\n/g, ''),
-        },
       ],
     },
   ],
@@ -153,6 +137,7 @@ const config = {
     ppr: true,
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
+    // reactCompiler: true, // disabling for now since watch() from React Hook Form isn't returning the updated form value
   },
 };
 

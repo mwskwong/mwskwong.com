@@ -13,7 +13,7 @@ import { type MDXComponents } from 'mdx/types';
 import NextLink from 'next/link';
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
 import { type FC } from 'react';
-import rehypePrettyCode, { type Options } from 'rehype-pretty-code';
+import { type Options, rehypePrettyCode } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 
 import { CopyCodeButton } from './copy-code-button';
