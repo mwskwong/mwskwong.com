@@ -45,18 +45,21 @@ export const env = createEnv({
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_VERCEL_ENV
-      ? process.env.NEXT_PUBLIC_PROD_URL &&
-        process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL &&
-        `https://${
-          process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
-            ? process.env.NEXT_PUBLIC_PROD_URL
-            : process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL
-        }`
-      : `http://localhost:${process.env.PORT ?? 3000}`,
+    NEXT_PUBLIC_SITE_URL:
+      process.env.NEXT_PUBLIC_VERCEL_ENV &&
+      process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL &&
+      process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL &&
+      process.env.NEXT_PUBLIC_VERCEL_URL
+        ? `https://${
+            process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
+              ? process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+              : process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
+                process.env.NEXT_PUBLIC_VERCEL_URL
+          }`
+        : `http://localhost:${process.env.PORT ?? 3000}`,
     NEXT_PUBLIC_SITE_DISPLAY_NAME:
-      process.env.NEXT_PUBLIC_PROD_URL &&
-      capitalize(process.env.NEXT_PUBLIC_PROD_URL),
+      process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL &&
+      capitalize(process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL),
   },
   skipValidation: process.env.npm_lifecycle_event === 'lint',
   emptyStringAsUndefined: true,
