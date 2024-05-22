@@ -109,7 +109,7 @@ const Blogs: FC = async () => {
                           fallback={<ViewsSkeleton hideIcon level="body-sm" />}
                         >
                           <Views
-                            fetchAll
+                            batch
                             hideIcon
                             readOnly
                             blogId={id}
