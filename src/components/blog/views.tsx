@@ -10,12 +10,12 @@ import { IncrBlogView } from './incr-blog-view';
 export interface ViewsProps extends Omit<TypographyProps, 'children'> {
   /**
    * Expected to be used when there are multiple Views mounted in the same page.
-   * When fetchAll = true, it will fetch all the metadata at once,
+   * When batch = true, it will fetch all the metadata at once,
    * cache the response, and do arr.find() on the cached response.
    * The cache will only be valid with in the current server request.
    * This avoids running multiple DB queries in the listing page
    */
-  fetchAll?: boolean;
+  batch?: boolean;
   readOnly?: boolean;
   hideIcon?: boolean;
   blogId: string;
@@ -24,13 +24,13 @@ export interface ViewsProps extends Omit<TypographyProps, 'children'> {
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 export const Views: FC<ViewsProps> = async ({
-  fetchAll = false,
+  batch = false,
   readOnly = false,
   hideIcon = false,
   blogId,
   ...props
 }) => {
-  const metadata = fetchAll
+  const metadata = batch
     ? (await getBlogsMetadata()).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
 

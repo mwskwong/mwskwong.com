@@ -82,11 +82,11 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 spacing={1}
                 sx={{ alignItems: 'center', justifyContent: 'space-around' }}
               >
-                <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
-                  <ErrorBoundary fallback={<ViewsError sx={{ mx: 0.75 }} />}>
+                <ErrorBoundary fallback={<ViewsError sx={{ mx: 0.75 }} />}>
+                  <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
                     <Views blogId={blog.id} sx={{ mx: 0.75 }} />
-                  </ErrorBoundary>
-                </Suspense>
+                  </Suspense>
+                </ErrorBoundary>
                 <CopyUrlButton />
                 <ShareDropdown blog={blog} />
               </Stack>

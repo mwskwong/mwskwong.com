@@ -137,7 +137,7 @@ const config = {
     ppr: true,
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
-    // reactCompiler: true, // disabling for now since watch() from React Hook Form isn't returning the updated form value
+    reactCompiler: false, // disabling for now since watch() from React Hook Form isn't returning the updated form value
   },
 };
 

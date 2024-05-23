@@ -102,21 +102,21 @@ const Blogs: FC = async () => {
                         {dateFormatter.format(new Date(createdAt))}
                       </Typography>
                       <Divider orientation="vertical" />
-                      <Suspense
-                        fallback={<ViewsSkeleton hideIcon level="body-sm" />}
+                      <ErrorBoundary
+                        fallback={<ViewsError hideIcon level="body-sm" />}
                       >
-                        <ErrorBoundary
-                          fallback={<ViewsError hideIcon level="body-sm" />}
+                        <Suspense
+                          fallback={<ViewsSkeleton hideIcon level="body-sm" />}
                         >
                           <Views
-                            fetchAll
+                            batch
                             hideIcon
                             readOnly
                             blogId={id}
                             level="body-sm"
                           />
-                        </ErrorBoundary>
-                      </Suspense>
+                        </Suspense>
+                      </ErrorBoundary>
                     </CardContent>
                   </Card>
                 </Grid>
