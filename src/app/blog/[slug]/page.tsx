@@ -17,6 +17,7 @@ import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { BlogCoverImage } from '@/components/blog/blog-cover-image';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
+import { IncrBlogView } from '@/components/blog/incr-blog-view';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { Icon } from '@/components/contentful';
@@ -54,6 +55,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
   return (
     <>
+      <ErrorBoundary>
+        <IncrBlogView blogId={blog.id} />
+      </ErrorBoundary>
       <main>
         <Container
           component="article"

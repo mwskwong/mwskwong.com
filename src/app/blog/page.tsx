@@ -108,13 +108,7 @@ const Blogs: FC = async () => {
                         <Suspense
                           fallback={<ViewsSkeleton hideIcon level="body-sm" />}
                         >
-                          <Views
-                            batch
-                            hideIcon
-                            readOnly
-                            blogId={id}
-                            level="body-sm"
-                          />
+                          <Views batch hideIcon blogId={id} level="body-sm" />
                         </Suspense>
                       </ErrorBoundary>
                     </CardContent>

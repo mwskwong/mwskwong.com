@@ -1,6 +1,5 @@
 'use server';
 
-import { unstable_noStore as noStore } from 'next/cache';
 import { type ErrorResponse } from 'resend';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -11,18 +10,14 @@ import { prisma, resend } from '@/lib/clients';
 
 import { type ContactForm, contactForm } from './validators';
 
-export const incrBlogViewById = async (id: string) => {
-  noStore();
-  await prisma.blogMetadata.upsert({
+export const incrBlogViewById = (id: string) =>
+  prisma.blogMetadata.upsert({
     where: { id },
     update: { view: { increment: 1 } },
     create: { id },
   });
-};
 
 export const submitContactForm = async (data: ContactForm) => {
-  noStore();
-
   contactForm.parse(data);
   await prisma.contactFormSubmission.create({ data });
 
