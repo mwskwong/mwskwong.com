@@ -35,9 +35,9 @@ export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
       sx={mergeSx(
         {
           // 10% --> height of the SVG divider
-          // divided by 2 --> half of the height, since the 1st half visually belongs to the previous section and the 2nd half visually belongs to the next section
-          // further divided 2 --> half of the height again, since the divider shape is a till
-          pt: 'calc(10 * var(--joy-spacing) + 10% / 2 / 2)',
+          // divided by 2 --> half of the height,
+          // since the 1st half visually belongs to the previous section and the 2nd half visually belongs to the next section
+          pt: 'calc(10 * var(--joy-spacing) + 10% / 2)',
         },
         sx,
       )}
