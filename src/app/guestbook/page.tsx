@@ -49,11 +49,11 @@ const Guestbook: FC = () => (
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
-    <Suspense>
-      <ErrorBoundary>
+    <ErrorBoundary>
+      <Suspense>
         <JsonLd discussionForumPosting={{ text: description }} />
-      </ErrorBoundary>
-    </Suspense>
+      </Suspense>
+    </ErrorBoundary>
   </>
 );
 
