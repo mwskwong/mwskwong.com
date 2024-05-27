@@ -1,11 +1,11 @@
 import { SiRss } from '@icons-pack/react-simple-icons';
 import {
+  Box,
   Button,
   Chip,
   Container,
   Grid,
   IconButton,
-  Sheet,
   Stack,
   Typography,
 } from '@mui/joy';
@@ -119,13 +119,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
         <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
-        <Sheet
-          invertedColors
-          color="primary"
+        <Box
           component="section"
           data-joy-color-scheme="dark"
           sx={{ bgcolor: contactMeBgColor }}
-          variant="solid"
         >
           <Container>
             <Stack
@@ -198,7 +195,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
               </Stack>
             </Stack>
           </Container>
-        </Sheet>
+        </Box>
       </main>
       <SectionDivider
         sx={{ color: contactMeBgColor, bgcolor: 'var(--Footer-bg)' }}

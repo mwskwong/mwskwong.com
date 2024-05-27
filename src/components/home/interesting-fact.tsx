@@ -1,9 +1,9 @@
 import {
+  Box,
+  type BoxProps,
   Button,
   Container,
   Link,
-  Sheet,
-  type SheetProps,
   Stack,
   Tooltip,
   Typography,
@@ -14,18 +14,12 @@ import { getTechStack } from '@/lib/queries';
 
 import { Image } from '../image';
 
-export type InterestingFactProps = Omit<SheetProps<'section'>, 'children'>;
+export type InterestingFactProps = Omit<BoxProps<'section'>, 'children'>;
 export const InterestingFact: FC<InterestingFactProps> = async (props) => {
   const techStack = await getTechStack();
 
   return (
-    <Sheet
-      invertedColors
-      color="primary"
-      component="section"
-      variant="solid"
-      {...props}
-    >
+    <Box component="section" {...props}>
       <Container>
         <Stack
           spacing={8}
@@ -69,6 +63,6 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
           </Button>
         </Stack>
       </Container>
-    </Sheet>
+    </Box>
   );
 };
