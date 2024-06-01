@@ -19,12 +19,13 @@ export const submitContactForm = async (data: ContactForm) => {
     {
       from,
       to: email,
+      reply_to: data.email,
       subject: data.subject
         ? `[${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}] ${data.subject}`
         : `You got a message from ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}`,
       react: <ContactFormNotification {...data} />,
     },
-  ];
+  ] as Parameters<typeof resend.batch.send>[0];
 
   if (data.email) {
     emails.push({
