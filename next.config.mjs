@@ -21,7 +21,6 @@ const sharedSvgoPlugins = [
 const config = {
   compiler: {
     emotion: true,
-    removeConsole: env.NODE_ENV === 'production',
   },
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -134,10 +133,11 @@ const config = {
   ],
   logging: { fetches: { fullUrl: true } },
   experimental: {
+    reactCompiler: false, // disabling for now since watch() from React Hook Form isn't returning the updated form value
     ppr: true,
+    after: true,
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
-    // reactCompiler: true, // disabling for now since watch() from React Hook Form isn't returning the updated form value
   },
 };
 

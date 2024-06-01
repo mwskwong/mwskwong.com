@@ -39,7 +39,7 @@ export const Error: FC<ErrorProps> = ({
           columnGap: 2,
         }}
       >
-        <Typography component="h1" level="h3">
+        <Typography component="h1" level="h2">
           {statusCode}
         </Typography>
         <Divider

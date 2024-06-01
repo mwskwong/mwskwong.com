@@ -1,6 +1,5 @@
 'use server';
 
-import { unstable_noStore as noStore } from 'next/cache';
 import { type ErrorResponse } from 'resend';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -11,18 +10,7 @@ import { prisma, resend } from '@/lib/clients';
 
 import { type ContactForm, contactForm } from './validators';
 
-export const incrBlogViewById = async (id: string) => {
-  noStore();
-  await prisma.blogMetadata.upsert({
-    where: { id },
-    update: { view: { increment: 1 } },
-    create: { id },
-  });
-};
-
 export const submitContactForm = async (data: ContactForm) => {
-  noStore();
-
   contactForm.parse(data);
   await prisma.contactFormSubmission.create({ data });
 
@@ -31,12 +19,13 @@ export const submitContactForm = async (data: ContactForm) => {
     {
       from,
       to: email,
+      reply_to: data.email,
       subject: data.subject
         ? `[${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}] ${data.subject}`
         : `You got a message from ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}`,
       react: <ContactFormNotification {...data} />,
     },
-  ];
+  ] as Parameters<typeof resend.batch.send>[0];
 
   if (data.email) {
     emails.push({
