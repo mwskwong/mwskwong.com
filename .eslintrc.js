@@ -15,6 +15,7 @@ module.exports = {
     require.resolve('@vercel/style-guide/eslint/typescript'),
   ],
   parserOptions: { project },
+  plugins: ['react-compiler'],
   settings: {
     'import/resolver': { typescript: { project } },
     /**
@@ -77,6 +78,7 @@ module.exports = {
         reservedFirst: true,
       },
     ],
+    'react-compiler/react-compiler': 'error',
     // sort import statements
     'import/order': [
       'warn',

@@ -200,13 +200,14 @@ export const components = {
       return (
         <Typography
           noWrap
-          color="warning"
           component="code"
+          variant="soft"
           sx={{
             display: 'inline',
             fontFamily: 'code',
             fontSize: '0.875em',
             color,
+            marginInline: 'unset',
           }}
           {...rest}
         />

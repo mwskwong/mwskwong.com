@@ -5,18 +5,15 @@ import { type FC } from 'react';
 
 import { getBlogMetadataById, getBlogsMetadata } from '@/lib/queries';
 
-import { IncrBlogView } from './incr-blog-view';
-
 export interface ViewsProps extends Omit<TypographyProps, 'children'> {
   /**
    * Expected to be used when there are multiple Views mounted in the same page.
-   * When fetchAll = true, it will fetch all the metadata at once,
+   * When batch = true, it will fetch all the metadata at once,
    * cache the response, and do arr.find() on the cached response.
    * The cache will only be valid with in the current server request.
    * This avoids running multiple DB queries in the listing page
    */
-  fetchAll?: boolean;
-  readOnly?: boolean;
+  batch?: boolean;
   hideIcon?: boolean;
   blogId: string;
 }
@@ -24,34 +21,26 @@ export interface ViewsProps extends Omit<TypographyProps, 'children'> {
 const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 export const Views: FC<ViewsProps> = async ({
-  fetchAll = false,
-  readOnly = false,
+  batch = false,
   hideIcon = false,
   blogId,
   ...props
 }) => {
-  const metadata = fetchAll
+  const metadata = batch
     ? (await getBlogsMetadata()).find(({ id }) => id === blogId)
     : await getBlogMetadataById(blogId);
 
   return (
-    <>
-      {!readOnly && <IncrBlogView blogId={blogId} />}
-      <Typography startDecorator={!hideIcon && <Eye />} {...props}>
-        {typeof metadata?.view === 'number'
-          ? numberFormatter.format(metadata.view)
-          : '––'}{' '}
-        views
-      </Typography>
-    </>
+    <Typography startDecorator={!hideIcon && <Eye />} {...props}>
+      {typeof metadata?.view === 'number'
+        ? numberFormatter.format(metadata.view)
+        : '––'}{' '}
+      views
+    </Typography>
   );
 };
 
-export type ViewsSkeletonProps = Omit<
-  ViewsProps,
-  'blogIds' | 'blogId' | 'readOnly'
->;
-
+export type ViewsSkeletonProps = Omit<ViewsProps, 'blogIds' | 'blogId'>;
 export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
   hideIcon,
   ...props

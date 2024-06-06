@@ -1,7 +1,14 @@
 import { Button, Container, Stack, Typography } from '@mui/joy';
+import { escape } from 'lodash-es';
 import { type Metadata, type ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { type FC, Suspense } from 'react';
+import {
+  type BreadcrumbList,
+  type Comment,
+  type DiscussionForumPosting,
+  type Graph,
+} from 'schema-dts';
 
 import { ErrorBoundary } from '@/components/error-boundary';
 import {
@@ -10,12 +17,73 @@ import {
   SubmissionListSkeleton,
 } from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
-import { contactForm, guestbook } from '@/constants/nav';
-
-import { JsonLd } from './json-ld';
+import { contactForm, guestbook, home } from '@/constants/nav';
+import { env } from '@/env.mjs';
+import { getPerson } from '@/lib/json-ld';
+import { getGuestbookSubmissions } from '@/lib/queries';
 
 const description =
   'Drop a line in my guestbook. Share your thoughts, stories, or a simple hello.';
+
+const JsonLd: FC = async () => {
+  const [comments, person] = await Promise.all([
+    getGuestbookSubmissions(),
+    getPerson(),
+  ]);
+
+  return (
+    <script
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'DiscussionForumPosting',
+              author: { '@id': person['@id'] },
+              datePublished: new Date(2024, 0, 10).toISOString(),
+              text: description,
+              comment: comments.map(
+                ({ name, submittedAt, message }) =>
+                  ({
+                    '@type': 'Comment',
+                    author: { '@type': 'Person', name },
+                    datePublished: submittedAt.toISOString(),
+                    text: escape(message),
+                  }) satisfies Comment,
+              ),
+              headline: `${env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${guestbook.label}`,
+              interactionStatistic: {
+                '@type': 'InteractionCounter',
+                interactionType: { '@type': 'CommentAction' },
+                userInteractionCount: comments.length,
+              },
+              url: env.NEXT_PUBLIC_SITE_URL + guestbook.pathname,
+            } satisfies DiscussionForumPosting,
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  name: home.label,
+                  item: env.NEXT_PUBLIC_SITE_URL,
+                  position: 1,
+                },
+                {
+                  '@type': 'ListItem',
+                  name: guestbook.label,
+                  position: 2,
+                },
+              ],
+              name: 'Breadcrumbs',
+            } satisfies BreadcrumbList,
+            person,
+          ],
+        } satisfies Graph),
+      }}
+      type="application/ld+json"
+    />
+  );
+};
 
 const Guestbook: FC = () => (
   <>
@@ -41,19 +109,19 @@ const Guestbook: FC = () => (
         >
           Leave A Message
         </Button>
-        <Suspense fallback={<SubmissionListSkeleton />}>
-          <ErrorBoundary fallback={<SubmissionListError />}>
+        <ErrorBoundary fallback={<SubmissionListError />}>
+          <Suspense fallback={<SubmissionListSkeleton />}>
             <SubmissionList />
-          </ErrorBoundary>
-        </Suspense>
+          </Suspense>
+        </ErrorBoundary>
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
-    <Suspense>
-      <ErrorBoundary>
-        <JsonLd discussionForumPosting={{ text: description }} />
-      </ErrorBoundary>
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense>
+        <JsonLd />
+      </Suspense>
+    </ErrorBoundary>
   </>
 );
 
