@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { type Metadata } from 'next';
+import Script from 'next/script';
 import { type FC, type PropsWithChildren } from 'react';
 
 import { Footer } from '@/components/footer';
@@ -24,6 +25,11 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
         {children}
         <Footer />
       </Providers>
+      <Script
+        async
+        crossOrigin="anonymous"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4359361226572500"
+      />
       <Analytics
         mode={env.VERCEL_ENV === 'production' ? 'production' : 'development'}
       />
