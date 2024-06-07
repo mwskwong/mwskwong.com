@@ -25,7 +25,7 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
     if (window.adsbygoogle?.loaded) {
       window.adsbygoogle.push({});
     }
-  }, [window.adsbygoogle?.loaded]);
+  }, []);
 
   return (
     <Ins
