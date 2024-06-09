@@ -79,14 +79,6 @@ export const globalStyles = (theme: Theme) =>
       font: theme.vars.font['body-sm'],
       fontFamily: theme.vars.fontFamily.code,
       color: 'inherit',
-      '&[data-theme*=" "], &[data-theme*=" "] span': {
-        color: 'var(--shiki-light)',
-        backgroundColor: 'var(--shiki-light-bg)',
-        [theme.getColorSchemeSelector('dark')]: {
-          color: 'var(--shiki-dark)',
-          backgroundColor: 'var(--shiki-dark-bg)',
-        },
-      },
     },
     figure: { margin: 0 },
     footer: {
