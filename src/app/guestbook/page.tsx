@@ -98,7 +98,6 @@ const Guestbook: FC = () => (
           <Typography level="h1">{guestbook.label}</Typography>
           <Typography>{description}</Typography>
         </Stack>
-        <DisplayAd />
         <Button
           component={Link}
           size="lg"
@@ -111,6 +110,7 @@ const Guestbook: FC = () => (
         >
           Leave A Message
         </Button>
+        <DisplayAd />
         <ErrorBoundary fallback={<SubmissionListError />}>
           <Suspense fallback={<SubmissionListSkeleton />}>
             <SubmissionList />
