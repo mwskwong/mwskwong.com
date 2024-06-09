@@ -36,7 +36,12 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
       data-ad-slot="5863003404"
       data-full-width-responsive="true"
       sx={mergeSx(
-        { display: 'inline-block', mx: 'auto', width: '100%', maxWidth: 'lg' },
+        {
+          display: 'inline-block',
+          mx: 'auto',
+          width: '100%',
+          height: { md: 120 },
+        },
         sx,
       )}
       {...props}
