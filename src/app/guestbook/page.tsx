@@ -10,6 +10,7 @@ import {
   type Graph,
 } from 'schema-dts';
 
+import { DisplayAd } from '@/components/ads';
 import { ErrorBoundary } from '@/components/error-boundary';
 import {
   SubmissionList,
@@ -97,6 +98,7 @@ const Guestbook: FC = () => (
           <Typography level="h1">{guestbook.label}</Typography>
           <Typography>{description}</Typography>
         </Stack>
+        <DisplayAd />
         <Button
           component={Link}
           size="lg"
@@ -114,6 +116,7 @@ const Guestbook: FC = () => (
             <SubmissionList />
           </Suspense>
         </ErrorBoundary>
+        <DisplayAd />
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
