@@ -60,7 +60,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
         data-ad-format="fluid"
         data-ad-layout-key="-5l+by-1h-32+t7"
         data-ad-slot="4179721808"
-        sx={{ minHeight: 360, width: '100%' }}
+        sx={{ height: 360, width: '100%' }}
       />
     </Card>
   );
