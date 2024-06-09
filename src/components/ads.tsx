@@ -34,7 +34,7 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
       data-ad-client="ca-pub-4359361226572500"
       data-ad-slot="5863003404"
       data-full-width-responsive="false"
-      sx={mergeSx({ mx: 'auto', width: '100%', height: { sm: 120 } }, sx)}
+      sx={mergeSx({ mx: 'auto', width: '100%', height: 120 }, sx)}
       {...props}
     />
   );
@@ -51,10 +51,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
 
   return (
     <Card
-      sx={mergeSx(
-        { '--Card-padding': '0px', minHeight: 360, overflow: 'hidden' },
-        sx,
-      )}
+      sx={mergeSx({ '--Card-padding': '0px', overflow: 'hidden' }, sx)}
       {...props}
     >
       <Ins
@@ -63,7 +60,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
         data-ad-format="fluid"
         data-ad-layout-key="-5l+by-1h-32+t7"
         data-ad-slot="4179721808"
-        sx={{ height: '100%', width: '100%' }}
+        sx={{ minHeight: 360, width: '100%' }}
       />
     </Card>
   );
