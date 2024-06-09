@@ -11,6 +11,11 @@ export const env = createEnv({
   extends: [vercel()],
   shared: {
     NODE_ENV: z.enum(['development', 'test', 'production']),
+    NEXT_PUBLIC_SITE_URL: z.string().url(),
+    NEXT_PUBLIC_SITE_DISPLAY_NAME: z.string(),
+    NEXT_PUBLIC_VERCEL_ENV: z
+      .enum(['development', 'preview', 'production'])
+      .optional(),
   },
   server: {
     DATABASE_URL: z.string().url(),
@@ -38,13 +43,6 @@ export const env = createEnv({
       .transform((analyze) => analyze === 'true'),
     CRON_SECRET:
       process.env.VERCEL === '1' ? z.string() : z.string().optional(),
-  },
-  client: {
-    NEXT_PUBLIC_SITE_URL: z.string().url(),
-    NEXT_PUBLIC_SITE_DISPLAY_NAME: z.string(),
-    NEXT_PUBLIC_VERCEL_ENV: z
-      .enum(['development', 'preview', 'production'])
-      .optional(),
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
