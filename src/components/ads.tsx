@@ -35,7 +35,7 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
       data-ad-client={env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID}
       data-ad-slot="5863003404"
       data-full-width-responsive="false"
-      sx={mergeSx({ mx: 'auto', width: '100%', height: 120 }, sx)}
+      sx={mergeSx({ width: '100%', height: 120 }, sx)}
       {...props}
     />
   );
@@ -87,7 +87,32 @@ export const InArticleAd: FC<InArticleAdProps> = ({
       data-ad-format="fluid"
       data-ad-layout="in-article"
       data-ad-slot="6207205061"
-      sx={mergeSx({ textAlign: 'center', mx: 'auto', width: '100%' }, sx)}
+      sx={mergeSx({ textAlign: 'center', width: '100%' }, sx)}
+      {...props}
+    />
+  );
+};
+
+export type MultiplexAdProps = InsProps;
+export const MultiplexAd: FC<MultiplexAdProps> = ({
+  className,
+  sx,
+  ...props
+}) => {
+  const { loaded } = use(AdsContext);
+  useEffect(() => {
+    if (loaded) {
+      window.adsbygoogle?.push({});
+    }
+  }, [loaded]);
+
+  return (
+    <Ins
+      className={clsx('adsbygoogle', className)}
+      data-ad-client={env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID}
+      data-ad-format="autorelaxed"
+      data-ad-slot="1224961804"
+      sx={mergeSx({ width: '100%' }, sx)}
       {...props}
     />
   );

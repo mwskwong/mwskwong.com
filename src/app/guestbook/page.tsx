@@ -10,7 +10,7 @@ import {
   type Graph,
 } from 'schema-dts';
 
-import { DisplayAd } from '@/components/ads';
+import { DisplayAd, MultiplexAd } from '@/components/ads';
 import { ErrorBoundary } from '@/components/error-boundary';
 import {
   SubmissionList,
@@ -110,7 +110,7 @@ const Guestbook: FC = () => (
         >
           Leave A Message
         </Button>
-        <DisplayAd />
+        <MultiplexAd />
         <ErrorBoundary fallback={<SubmissionListError />}>
           <Suspense fallback={<SubmissionListSkeleton />}>
             <SubmissionList />

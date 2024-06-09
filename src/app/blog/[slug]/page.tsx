@@ -16,7 +16,7 @@ import { unstable_after as after } from 'next/server';
 import { type FC, Suspense } from 'react';
 import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
 
-import { DisplayAd } from '@/components/ads';
+import { DisplayAd, MultiplexAd } from '@/components/ads';
 import { BlogCoverImage } from '@/components/blog/blog-cover-image';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
@@ -121,7 +121,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           {blog.content ? (
             <Mdx enableInArticleAds source={blog.content} />
           ) : null}
-          <DisplayAd sx={{ mt: 3 }} />
+          <MultiplexAd sx={{ mt: 3 }} />
         </Container>
         <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
         <Box
