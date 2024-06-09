@@ -250,7 +250,7 @@ export const components = {
 
     return <mark {...props} />;
   },
-  InArticleAd,
+  InArticleAd: (props) => <InArticleAd sx={{ my: 3 }} {...props} />,
 } satisfies MDXComponents;
 
 export interface MdxProps extends MDXRemoteProps {
