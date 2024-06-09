@@ -7,6 +7,7 @@ import {
   Typography,
   type TypographyProps,
 } from '@mui/joy';
+import { type Parent, type Root } from 'hast';
 import { merge } from 'lodash-es';
 import { LinkIcon } from 'lucide-react';
 import { type MDXComponents } from 'mdx/types';
@@ -15,6 +16,7 @@ import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
 import { type FC } from 'react';
 import { type Options, rehypePrettyCode } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
+import { visit } from 'unist-util-visit';
 
 import { CopyCodeButton } from './copy-code-button';
 
@@ -261,6 +263,34 @@ export const Mdx: FC<MdxProps> = ({
       {
         mdxOptions: {
           rehypePlugins: [
+            () => {
+              let headingCount = 0;
+              const inArticleAds: { parent: Parent; index: number }[] = [];
+
+              return (tree: Root) => {
+                visit(tree, 'element', (node, index, parent) => {
+                  if (/^h[1-6]$/.exec(node.tagName)) {
+                    headingCount++;
+                    if (
+                      headingCount % 4 === 0 &&
+                      index !== undefined &&
+                      parent
+                    ) {
+                      inArticleAds.push({ parent, index });
+                    }
+                  }
+                });
+
+                for (const { parent, index } of inArticleAds) {
+                  parent.children.splice(index, 0, {
+                    type: 'element',
+                    tagName: 'ins',
+                    properties: {},
+                    children: [{ type: 'text', value: 'test ads' }],
+                  });
+                }
+              };
+            },
             [
               rehypePrettyCode,
               {
