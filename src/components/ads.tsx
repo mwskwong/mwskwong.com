@@ -63,7 +63,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({
       component="ins"
       data-ad-client="ca-pub-4359361226572500"
       data-ad-format="fluid"
-      data-ad-layout-key="-65+bw+q+5+eo"
+      data-ad-layout-key="-5l+by-1h-32+t7"
       data-ad-slot="4179721808"
       sx={mergeSx({ '--Card-padding': '0px', minHeight: 50 }, sx)}
       {...props}
