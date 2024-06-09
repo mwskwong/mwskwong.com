@@ -51,10 +51,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
 
   return (
     <Card
-      sx={mergeSx(
-        { '--Card-padding': '0px', minHeight: 360, overflow: 'hidden' },
-        sx,
-      )}
+      sx={mergeSx({ '--Card-padding': '0px', overflow: 'hidden' }, sx)}
       {...props}
     >
       <Ins
@@ -63,7 +60,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
         data-ad-format="fluid"
         data-ad-layout-key="-5l+by-1h-32+t7"
         data-ad-slot="4179721808"
-        sx={{ height: '100%', width: '100%' }}
+        sx={{ minHeight: 360, width: '100%' }}
       />
     </Card>
   );
