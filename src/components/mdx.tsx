@@ -18,6 +18,7 @@ import { type Options, rehypePrettyCode } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import { visit } from 'unist-util-visit';
 
+import { InArticleAd } from './ads';
 import { CopyCodeButton } from './copy-code-button';
 
 // data attribute auto injected by rehype-pretty-code
@@ -249,10 +250,14 @@ export const components = {
 
     return <mark {...props} />;
   },
+  InArticleAd,
 } satisfies MDXComponents;
 
-export type MdxProps = MDXRemoteProps;
+export interface MdxProps extends MDXRemoteProps {
+  enableInArticleAds?: boolean;
+}
 export const Mdx: FC<MdxProps> = ({
+  enableInArticleAds = false,
   components: componentsProp,
   options,
   ...props
@@ -263,34 +268,42 @@ export const Mdx: FC<MdxProps> = ({
       {
         mdxOptions: {
           rehypePlugins: [
-            () => {
-              let headingCount = 0;
-              const inArticleAds: { parent: Parent; index: number }[] = [];
+            enableInArticleAds &&
+              (() => {
+                let headingCount = 0;
+                const inArticleAdInsertionPoints: {
+                  parent: Parent;
+                  index: number;
+                }[] = [];
 
-              return (tree: Root) => {
-                visit(tree, 'element', (node, index, parent) => {
-                  if (/^h[1-6]$/.exec(node.tagName)) {
-                    headingCount++;
-                    if (
-                      headingCount % 4 === 0 &&
-                      index !== undefined &&
-                      parent
-                    ) {
-                      inArticleAds.push({ parent, index });
+                return (tree: Root) => {
+                  visit(tree, 'element', (node, index, parent) => {
+                    if (/^h[1-6]$/.exec(node.tagName)) {
+                      headingCount++;
+                      if (
+                        headingCount % 4 === 0 &&
+                        index !== undefined &&
+                        parent
+                      ) {
+                        inArticleAdInsertionPoints.push({ parent, index });
+                      }
                     }
-                  }
-                });
-
-                for (const { parent, index } of inArticleAds) {
-                  parent.children.splice(index, 0, {
-                    type: 'element',
-                    tagName: 'ins',
-                    properties: {},
-                    children: [{ type: 'text', value: 'test ads' }],
                   });
-                }
-              };
-            },
+
+                  // Insert ads in reverse order to avoid index shift
+                  for (const {
+                    parent,
+                    index,
+                  } of inArticleAdInsertionPoints.toReversed()) {
+                    parent.children.splice(index, 0, {
+                      type: 'element',
+                      tagName: 'InArticleAd',
+                      properties: {},
+                      children: [],
+                    });
+                  }
+                };
+              }),
             [
               rehypePrettyCode,
               {
@@ -300,7 +313,7 @@ export const Mdx: FC<MdxProps> = ({
               } satisfies Options,
             ],
             rehypeSlug,
-          ],
+          ].filter(Boolean),
         },
       },
       options,

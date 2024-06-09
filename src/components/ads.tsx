@@ -66,3 +66,29 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
     </Card>
   );
 };
+
+export type InArticleAdProps = InsProps;
+export const InArticleAd: FC<InArticleAdProps> = ({
+  className,
+  sx,
+  ...props
+}) => {
+  const { loaded } = use(AdsContext);
+  useEffect(() => {
+    if (loaded) {
+      window.adsbygoogle?.push({});
+    }
+  }, [loaded]);
+
+  return (
+    <Ins
+      className={clsx('adsbygoogle', className)}
+      data-ad-client={env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID}
+      data-ad-format="fluid"
+      data-ad-layout="in-article"
+      data-ad-slot="6207205061"
+      sx={mergeSx({ textAlign: 'center', mx: 'auto', width: '100%' }, sx)}
+      {...props}
+    />
+  );
+};
