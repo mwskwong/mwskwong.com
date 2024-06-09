@@ -110,13 +110,13 @@ const Guestbook: FC = () => (
         >
           Leave A Message
         </Button>
-        <MultiplexAd />
+        <DisplayAd />
         <ErrorBoundary fallback={<SubmissionListError />}>
           <Suspense fallback={<SubmissionListSkeleton />}>
             <SubmissionList />
           </Suspense>
         </ErrorBoundary>
-        <DisplayAd />
+        <MultiplexAd />
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
