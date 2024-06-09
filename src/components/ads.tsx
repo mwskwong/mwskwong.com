@@ -60,7 +60,27 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
         data-ad-format="fluid"
         data-ad-layout-key="-5l+by-1h-32+t7"
         data-ad-slot="4179721808"
-        sx={{ height: 360, width: '100%' }}
+        sx={(theme) => ({
+          height: 360,
+          width: '100%',
+          [theme.getColorSchemeSelector('dark')]: {
+            display: 'none',
+          },
+        })}
+      />
+      <Ins
+        className="adsbygoogle"
+        data-ad-client="ca-pub-4359361226572500"
+        data-ad-format="fluid"
+        data-ad-layout-key="-5l+by-1h-32+t7"
+        data-ad-slot="3821089578"
+        sx={(theme) => ({
+          height: 360,
+          width: '100%',
+          [theme.getColorSchemeSelector('light')]: {
+            display: 'none',
+          },
+        })}
       />
     </Card>
   );
