@@ -118,7 +118,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             alt={`Cover photo for ${blog.title}`}
             src={blog.coverPhoto}
           />
-          {blog.content ? <Mdx source={blog.content} /> : null}
+          {blog.content ? (
+            <Mdx enableInArticleAds source={blog.content} />
+          ) : null}
           <DisplayAd sx={{ mt: 3 }} />
         </Container>
         <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
