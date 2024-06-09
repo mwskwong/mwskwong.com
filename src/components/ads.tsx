@@ -50,11 +50,7 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
 };
 
 export type BlogCardAdProps = CardProps;
-export const BlogCardAd: FC<BlogCardAdProps> = ({
-  className,
-  sx,
-  ...props
-}) => {
+export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
   const { loaded } = use(AdsContext);
   useEffect(() => {
     if (loaded) {
@@ -64,17 +60,20 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({
 
   return (
     <Card
-      className={clsx('adsbygoogle', className)}
-      component="ins"
-      data-ad-client="ca-pub-4359361226572500"
-      data-ad-format="fluid"
-      data-ad-layout-key="-5l+by-1h-32+t7"
-      data-ad-slot="4179721808"
       sx={mergeSx(
-        { '--Card-padding': '0px', minHeight: 50, overflow: 'hidden' },
+        { '--Card-padding': '0px', minHeight: 377, overflow: 'hidden' },
         sx,
       )}
       {...props}
-    />
+    >
+      <Ins
+        className="adsbygoogle"
+        data-ad-client="ca-pub-4359361226572500"
+        data-ad-format="fluid"
+        data-ad-layout-key="-5l+by-1h-32+t7"
+        data-ad-slot="4179721808"
+        sx={{ display: 'block', height: '100%', width: '100%' }}
+      />
+    </Card>
   );
 };
