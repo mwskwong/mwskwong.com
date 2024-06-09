@@ -74,7 +74,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
       <Ins
         data-ad-slot="3821089578"
         sx={mergeSx(insSx, (theme) => ({
-          [theme.getColorSchemeSelector('dark')]: {
+          [theme.getColorSchemeSelector('light')]: {
             display: 'none',
           },
         }))}
