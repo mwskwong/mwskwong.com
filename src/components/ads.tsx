@@ -49,38 +49,36 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
     }
   }, [loaded]);
 
+  const { sx: insSx, ...insProps } = {
+    className: 'adsbygoogle',
+    'data-ad-client': 'ca-pub-4359361226572500',
+    'data-ad-format': 'fluid',
+    'data-ad-layout-key': '-5l+by-1h-32+t7',
+    sx: { height: 360, width: '100%' },
+  };
+
   return (
     <Card
       sx={mergeSx({ '--Card-padding': '0px', overflow: 'hidden' }, sx)}
       {...props}
     >
       <Ins
-        className="adsbygoogle"
-        data-ad-client="ca-pub-4359361226572500"
-        data-ad-format="fluid"
-        data-ad-layout-key="-5l+by-1h-32+t7"
         data-ad-slot="4179721808"
-        sx={(theme) => ({
-          height: 360,
-          width: '100%',
+        sx={mergeSx(insSx, (theme) => ({
           [theme.getColorSchemeSelector('dark')]: {
             display: 'none',
           },
-        })}
+        }))}
+        {...insProps}
       />
       <Ins
-        className="adsbygoogle"
-        data-ad-client="ca-pub-4359361226572500"
-        data-ad-format="fluid"
-        data-ad-layout-key="-5l+by-1h-32+t7"
         data-ad-slot="3821089578"
-        sx={(theme) => ({
-          height: 360,
-          width: '100%',
-          [theme.getColorSchemeSelector('light')]: {
+        sx={mergeSx(insSx, (theme) => ({
+          [theme.getColorSchemeSelector('dark')]: {
             display: 'none',
           },
-        })}
+        }))}
+        {...insProps}
       />
     </Card>
   );
