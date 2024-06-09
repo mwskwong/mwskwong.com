@@ -16,7 +16,7 @@ declare global {
   }
 }
 
-const Ins = styled('ins')();
+const Ins = styled('ins')({ display: 'block' });
 type InsProps = ComponentProps<typeof Ins>;
 
 export type DisplayAdProps = InsProps;
@@ -34,16 +34,8 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
       data-ad-client="ca-pub-4359361226572500"
       // data-ad-format="auto"
       data-ad-slot="5863003404"
-      // data-full-width-responsive="true"
-      sx={mergeSx(
-        {
-          display: 'block',
-          mx: 'auto',
-          width: '100%',
-          height: { sm: 120 },
-        },
-        sx,
-      )}
+      data-full-width-responsive="true"
+      sx={mergeSx({ mx: 'auto', width: '100%', height: { sm: 120 } }, sx)}
       {...props}
     />
   );
@@ -72,7 +64,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
         data-ad-format="fluid"
         data-ad-layout-key="-5l+by-1h-32+t7"
         data-ad-slot="4179721808"
-        sx={{ display: 'block', height: '100%', width: '100%' }}
+        sx={{ height: '100%', width: '100%' }}
       />
     </Card>
   );
