@@ -11,6 +11,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import Script from 'next/script';
 import { type FC, type PropsWithChildren, useState } from 'react';
 
+import { env } from '@/env.mjs';
 import { AdsContext } from '@/lib/contexts';
 import { globalStyles, theme } from '@/theme';
 
@@ -31,7 +32,7 @@ export const Providers: FC<ProvidersProps> = ({ children }) => {
       <Script
         async
         crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4359361226572500"
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID}`}
         strategy="lazyOnload"
         onLoad={() => setAdsLoaded(true)}
       />

@@ -1,10 +1,12 @@
 'use client';
 
-import { Card, type CardProps, styled } from '@mui/joy';
+import { NoSsr } from '@mui/base';
+import { Card, type CardProps, styled, useColorScheme } from '@mui/joy';
 import { clsx } from 'clsx';
 import { mergeSx } from 'merge-sx';
 import { type ComponentProps, type FC, use, useEffect } from 'react';
 
+import { env } from '@/env.mjs';
 import { AdsContext } from '@/lib/contexts';
 
 declare global {
@@ -31,7 +33,7 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
   return (
     <Ins
       className={clsx('adsbygoogle', className)}
-      data-ad-client="ca-pub-4359361226572500"
+      data-ad-client={env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID}
       data-ad-slot="5863003404"
       data-full-width-responsive="false"
       sx={mergeSx({ mx: 'auto', width: '100%', height: 120 }, sx)}
@@ -43,43 +45,28 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
 export type BlogCardAdProps = CardProps;
 export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
   const { loaded } = use(AdsContext);
+  const { mode } = useColorScheme();
   useEffect(() => {
-    if (loaded) {
+    if (loaded && mode) {
       window.adsbygoogle?.push({});
     }
-  }, [loaded]);
-
-  const { sx: insSx, ...insProps } = {
-    className: 'adsbygoogle',
-    'data-ad-client': 'ca-pub-4359361226572500',
-    'data-ad-format': 'fluid',
-    'data-ad-layout-key': '-5l+by-1h-32+t7',
-    sx: { height: 360, width: '100%' },
-  };
+  }, [loaded, mode]);
 
   return (
     <Card
       sx={mergeSx({ '--Card-padding': '0px', overflow: 'hidden' }, sx)}
       {...props}
     >
-      <Ins
-        data-ad-slot="4179721808"
-        sx={mergeSx(insSx, (theme) => ({
-          [theme.getColorSchemeSelector('dark')]: {
-            display: 'none',
-          },
-        }))}
-        {...insProps}
-      />
-      <Ins
-        data-ad-slot="3821089578"
-        sx={mergeSx(insSx, (theme) => ({
-          [theme.getColorSchemeSelector('light')]: {
-            display: 'none',
-          },
-        }))}
-        {...insProps}
-      />
+      <NoSsr>
+        <Ins
+          className="adsbygoogle"
+          data-ad-client={env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID}
+          data-ad-format="fluid"
+          data-ad-layout-key="-5l+by-1h-32+t7"
+          data-ad-slot={mode === 'dark' ? '3821089578' : '4179721808'}
+          sx={{ height: 360, width: '100%' }}
+        />
+      </NoSsr>
     </Card>
   );
 };
