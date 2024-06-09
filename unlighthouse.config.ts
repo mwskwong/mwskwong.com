@@ -15,7 +15,8 @@ export default {
        *   2. Links rey on color to be distinguishable (can set underline=always to fix it)
        */
       accessibility: 92,
-      'best-practices': 100,
+      // AdSense uses 3rd party cookies
+      'best-practices': 79,
       /**
        * Minus point from
        *   1. Non-PROD not being indexable
