@@ -53,7 +53,7 @@ export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
   return (
     <Card
       sx={mergeSx(
-        { '--Card-padding': '0px', minHeight: 377, overflow: 'hidden' },
+        { '--Card-padding': '0px', minHeight: 360, overflow: 'hidden' },
         sx,
       )}
       {...props}
