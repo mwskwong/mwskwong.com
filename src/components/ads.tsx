@@ -32,15 +32,15 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
     <Ins
       className={clsx('adsbygoogle', className)}
       data-ad-client="ca-pub-4359361226572500"
-      data-ad-format="auto"
+      // data-ad-format="auto"
       data-ad-slot="5863003404"
-      data-full-width-responsive="true"
+      // data-full-width-responsive="true"
       sx={mergeSx(
         {
-          display: 'inline-block',
+          display: 'block',
           mx: 'auto',
           width: '100%',
-          height: { md: 120 },
+          height: { sm: 120 },
         },
         sx,
       )}
