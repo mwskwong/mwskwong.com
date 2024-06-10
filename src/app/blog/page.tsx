@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  Chip,
   Container,
   Divider,
   Grid,
@@ -42,15 +41,7 @@ const Blogs: FC = async () => {
           <Grid container spacing={2}>
             {blogs.map(
               (
-                {
-                  id,
-                  createdAt,
-                  coverPhoto,
-                  slug,
-                  title,
-                  description,
-                  categories,
-                },
+                { id, createdAt, coverPhoto, slug, title, description },
                 index,
               ) => (
                 <Fragment key={id}>
@@ -61,17 +52,6 @@ const Blogs: FC = async () => {
                         priority={index === 0}
                         src={coverPhoto}
                       />
-                      <Stack
-                        direction="row"
-                        spacing={1}
-                        sx={{ flexWrap: 'wrap' }}
-                      >
-                        {categories?.map((category) => (
-                          <Chip key={category} color="primary">
-                            {category}
-                          </Chip>
-                        ))}
-                      </Stack>
                       <CardContent>
                         <Link
                           overlay
