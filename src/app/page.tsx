@@ -16,7 +16,7 @@ import { env } from '@/env.mjs';
 const bgcolors = {
   hero: 'background.body',
   about: 'background.surface',
-  interestingFact: 'common.black',
+  interestingFact: 'primary.900',
   experience: 'background.body',
   education: 'background.surface',
   contact: 'background.body',

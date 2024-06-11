@@ -40,7 +40,7 @@ import {
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
-const contactMeBgColor = 'common.black';
+const contactMeBgColor = 'primary.900';
 
 interface BlogProps {
   params: { slug: string };

@@ -307,7 +307,10 @@ export const Mdx: FC<MdxProps> = ({
             [
               rehypePrettyCode,
               {
-                theme: 'github-light-default',
+                theme: {
+                  dark: 'github-dark-default',
+                  light: 'github-light-default',
+                },
                 keepBackground: false,
                 defaultLang: { block: 'txt' },
               } satisfies Options,

@@ -27,6 +27,7 @@ import {
 import { getSocialMediaProfiles } from '@/lib/queries';
 
 import { Icon as ContentfulIcon } from './contentful';
+import { ModeToggleButton } from './mode-toggle-button';
 import { NavDrawer } from './nav-drawer';
 
 export const nav = [about, experience, education, contact, blog, guestbook];
@@ -110,6 +111,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
                   </IconButton>
                 ),
             )}
+            <ModeToggleButton size="sm" variant="outlined" />
             <NavDrawer
               nav={nav}
               slotProps={{

@@ -1,6 +1,11 @@
 'use client';
 
-import { CssBaseline, CssVarsProvider, GlobalStyles } from '@mui/joy';
+import {
+  CssBaseline,
+  CssVarsProvider,
+  GlobalStyles,
+  getInitColorSchemeScript,
+} from '@mui/joy';
 // FIXME: switch to @mui/joy-nextjs when ready
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import Script from 'next/script';
@@ -16,6 +21,7 @@ export const Providers: FC<ProvidersProps> = ({ children }) => {
 
   return (
     <>
+      {getInitColorSchemeScript()}
       <AppRouterCacheProvider options={{ key: 'joy' }}>
         <CssVarsProvider theme={theme}>
           <CssBaseline />

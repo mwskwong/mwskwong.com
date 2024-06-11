@@ -1,6 +1,7 @@
 'use client';
 
-import { Card, type CardProps, styled } from '@mui/joy';
+import { NoSsr } from '@mui/base';
+import { Card, type CardProps, styled, useColorScheme } from '@mui/joy';
 import { clsx } from 'clsx';
 import { mergeSx } from 'merge-sx';
 import { type ComponentProps, type FC, use, useEffect } from 'react';
@@ -44,25 +45,28 @@ export const DisplayAd: FC<DisplayAdProps> = ({ className, sx, ...props }) => {
 export type BlogCardAdProps = CardProps;
 export const BlogCardAd: FC<BlogCardAdProps> = ({ sx, ...props }) => {
   const { loaded } = use(AdsContext);
+  const { mode } = useColorScheme();
   useEffect(() => {
-    if (loaded) {
+    if (loaded && mode) {
       window.adsbygoogle?.push({});
     }
-  }, [loaded]);
+  }, [loaded, mode]);
 
   return (
     <Card
       sx={mergeSx({ '--Card-padding': '0px', overflow: 'hidden' }, sx)}
       {...props}
     >
-      <Ins
-        className="adsbygoogle"
-        data-ad-client={env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID}
-        data-ad-format="fluid"
-        data-ad-layout-key="-5l+by-1h-32+t7"
-        data-ad-slot="4179721808"
-        sx={{ height: 360, width: '100%' }}
-      />
+      <NoSsr>
+        <Ins
+          className="adsbygoogle"
+          data-ad-client={env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID}
+          data-ad-format="fluid"
+          data-ad-layout-key="-5l+by-1h-32+t7"
+          data-ad-slot={mode === 'dark' ? '3821089578' : '4179721808'}
+          sx={{ height: 360, width: '100%' }}
+        />
+      </NoSsr>
     </Card>
   );
 };
