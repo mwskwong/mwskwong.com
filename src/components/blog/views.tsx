@@ -5,8 +5,6 @@ import { type FC } from 'react';
 
 import { getBlogMetadataById, getBlogsMetadata } from '@/lib/queries';
 
-import { IncrBlogView } from './incr-blog-view';
-
 export interface ViewsProps extends Omit<TypographyProps, 'children'> {
   /**
    * Expected to be used when there are multiple Views mounted in the same page.
@@ -16,7 +14,6 @@ export interface ViewsProps extends Omit<TypographyProps, 'children'> {
    * This avoids running multiple DB queries in the listing page
    */
   batch?: boolean;
-  readOnly?: boolean;
   hideIcon?: boolean;
   blogId: string;
 }
@@ -25,7 +22,6 @@ const numberFormatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
 export const Views: FC<ViewsProps> = async ({
   batch = false,
-  readOnly = false,
   hideIcon = false,
   blogId,
   ...props
@@ -35,23 +31,16 @@ export const Views: FC<ViewsProps> = async ({
     : await getBlogMetadataById(blogId);
 
   return (
-    <>
-      {!readOnly && <IncrBlogView blogId={blogId} />}
-      <Typography startDecorator={!hideIcon && <Eye />} {...props}>
-        {typeof metadata?.view === 'number'
-          ? numberFormatter.format(metadata.view)
-          : '––'}{' '}
-        views
-      </Typography>
-    </>
+    <Typography startDecorator={!hideIcon && <Eye />} {...props}>
+      {typeof metadata?.view === 'number'
+        ? numberFormatter.format(metadata.view)
+        : '––'}{' '}
+      views
+    </Typography>
   );
 };
 
-export type ViewsSkeletonProps = Omit<
-  ViewsProps,
-  'blogIds' | 'blogId' | 'readOnly'
->;
-
+export type ViewsSkeletonProps = Omit<ViewsProps, 'blogIds' | 'blogId'>;
 export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
   hideIcon,
   ...props

@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  Chip,
   Container,
   Divider,
   Grid,
@@ -11,7 +10,7 @@ import {
 } from '@mui/joy';
 import { type Metadata, type ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
-import { type FC, Suspense } from 'react';
+import { type FC, Fragment, Suspense } from 'react';
 import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
@@ -37,18 +36,11 @@ const Blogs: FC = async () => {
             <Typography level="h1">{blog.label}</Typography>
             <Typography>{description}</Typography>
           </Stack>
+
           <Grid container spacing={2}>
             {blogs.map(
               (
-                {
-                  id,
-                  createdAt,
-                  coverPhoto,
-                  slug,
-                  title,
-                  description,
-                  categories,
-                },
+                { id, createdAt, coverPhoto, slug, title, description },
                 index,
               ) => (
                 <Grid key={id} md={4} sm={6} xs={12}>
@@ -58,17 +50,6 @@ const Blogs: FC = async () => {
                       priority={index === 0}
                       src={coverPhoto}
                     />
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      sx={{ flexWrap: 'wrap' }}
-                    >
-                      {categories?.map((category) => (
-                        <Chip key={category} color="primary">
-                          {category}
-                        </Chip>
-                      ))}
-                    </Stack>
                     <CardContent>
                       <Link
                         overlay
@@ -108,13 +89,7 @@ const Blogs: FC = async () => {
                         <Suspense
                           fallback={<ViewsSkeleton hideIcon level="body-sm" />}
                         >
-                          <Views
-                            batch
-                            hideIcon
-                            readOnly
-                            blogId={id}
-                            level="body-sm"
-                          />
+                          <Views batch hideIcon blogId={id} level="body-sm" />
                         </Suspense>
                       </ErrorBoundary>
                     </CardContent>
