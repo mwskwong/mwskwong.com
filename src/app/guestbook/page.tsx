@@ -10,7 +10,6 @@ import {
   type Graph,
 } from 'schema-dts';
 
-import { DisplayAd, MultiplexAd } from '@/components/ads';
 import { ErrorBoundary } from '@/components/error-boundary';
 import {
   SubmissionList,
@@ -110,13 +109,11 @@ const Guestbook: FC = () => (
         >
           Leave A Message
         </Button>
-        <DisplayAd />
         <ErrorBoundary fallback={<SubmissionListError />}>
           <Suspense fallback={<SubmissionListSkeleton />}>
             <SubmissionList />
           </Suspense>
         </ErrorBoundary>
-        <MultiplexAd />
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />

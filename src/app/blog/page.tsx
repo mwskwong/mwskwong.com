@@ -13,7 +13,6 @@ import NextLink from 'next/link';
 import { type FC, Fragment, Suspense } from 'react';
 import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
-import { BlogCardAd, DisplayAd } from '@/components/ads';
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { ErrorBoundary } from '@/components/error-boundary';
@@ -37,78 +36,68 @@ const Blogs: FC = async () => {
             <Typography level="h1">{blog.label}</Typography>
             <Typography>{description}</Typography>
           </Stack>
-          <DisplayAd />
+
           <Grid container spacing={2}>
             {blogs.map(
               (
                 { id, createdAt, coverPhoto, slug, title, description },
                 index,
               ) => (
-                <Fragment key={id}>
-                  <Grid md={4} sm={6} xs={12}>
-                    <Card component="article" sx={{ height: { sm: '100%' } }}>
-                      <BlogCardImage
-                        alt={`Thumbnail for ${title}`}
-                        priority={index === 0}
-                        src={coverPhoto}
-                      />
-                      <CardContent>
-                        <Link
-                          overlay
-                          color="neutral"
-                          component={NextLink}
-                          href={`${blog.pathname}/${slug}`}
-                          level="title-lg"
-                          sx={{
-                            display: '-webkit-box',
-                            overflow: 'hidden',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            color: 'text.primary',
-                          }}
+                <Grid key={id} md={4} sm={6} xs={12}>
+                  <Card component="article" sx={{ height: { sm: '100%' } }}>
+                    <BlogCardImage
+                      alt={`Thumbnail for ${title}`}
+                      priority={index === 0}
+                      src={coverPhoto}
+                    />
+                    <CardContent>
+                      <Link
+                        overlay
+                        color="neutral"
+                        component={NextLink}
+                        href={`${blog.pathname}/${slug}`}
+                        level="title-lg"
+                        sx={{
+                          display: '-webkit-box',
+                          overflow: 'hidden',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          color: 'text.primary',
+                        }}
+                      >
+                        {title}
+                      </Link>
+                      <Typography
+                        sx={{
+                          display: '-webkit-box',
+                          overflow: 'hidden',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
+                        }}
+                      >
+                        {description}
+                      </Typography>
+                    </CardContent>
+                    <CardContent orientation="horizontal" sx={{ flex: 0 }}>
+                      <Typography level="body-sm">
+                        {dateFormatter.format(new Date(createdAt))}
+                      </Typography>
+                      <Divider orientation="vertical" />
+                      <ErrorBoundary
+                        fallback={<ViewsError hideIcon level="body-sm" />}
+                      >
+                        <Suspense
+                          fallback={<ViewsSkeleton hideIcon level="body-sm" />}
                         >
-                          {title}
-                        </Link>
-                        <Typography
-                          sx={{
-                            display: '-webkit-box',
-                            overflow: 'hidden',
-                            WebkitLineClamp: 3,
-                            WebkitBoxOrient: 'vertical',
-                          }}
-                        >
-                          {description}
-                        </Typography>
-                      </CardContent>
-                      <CardContent orientation="horizontal" sx={{ flex: 0 }}>
-                        <Typography level="body-sm">
-                          {dateFormatter.format(new Date(createdAt))}
-                        </Typography>
-                        <Divider orientation="vertical" />
-                        <ErrorBoundary
-                          fallback={<ViewsError hideIcon level="body-sm" />}
-                        >
-                          <Suspense
-                            fallback={
-                              <ViewsSkeleton hideIcon level="body-sm" />
-                            }
-                          >
-                            <Views batch hideIcon blogId={id} level="body-sm" />
-                          </Suspense>
-                        </ErrorBoundary>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                  {(index + 1) % 3 === 0 && (
-                    <Grid md={4} sm={6} xs={12}>
-                      <BlogCardAd sx={{ height: { sm: '100%' } }} />
-                    </Grid>
-                  )}
-                </Fragment>
+                          <Views batch hideIcon blogId={id} level="body-sm" />
+                        </Suspense>
+                      </ErrorBoundary>
+                    </CardContent>
+                  </Card>
+                </Grid>
               ),
             )}
           </Grid>
-          <DisplayAd />
         </Stack>
       </Container>
       <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />

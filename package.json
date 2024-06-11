@@ -59,7 +59,6 @@
     "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
     "shiki": "^1.6.3",
-    "unist-util-visit": "^5.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -76,7 +75,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-compiler": "latest",
     "patch-package": "^8.0.0",
-    "prettier": "^3.3.1",
+    "prettier": "^3.3.2",
     "prettier-plugin-prisma": "^5.0.0",
     "prisma": "^5.15.0",
     "type-fest": "^4.20.0",
