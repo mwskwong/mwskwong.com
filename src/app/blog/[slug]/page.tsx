@@ -16,7 +16,6 @@ import { unstable_after as after } from 'next/server';
 import { type FC, Suspense } from 'react';
 import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
 
-import { DisplayAd, MultiplexAd } from '@/components/ads';
 import { BlogCoverImage } from '@/components/blog/blog-cover-image';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
@@ -40,7 +39,7 @@ import {
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
-const contactMeBgColor = 'common.black';
+const contactMeBgColor = 'primary.900';
 
 interface BlogProps {
   params: { slug: string };
@@ -86,7 +85,6 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
           <Typography level="h1" sx={{ mb: 3, mt: 1 }}>
             {blog.title}
           </Typography>
-          <DisplayAd sx={{ mb: 3 }} />
           <Grid container spacing={2} sx={{ alignItems: 'center', mb: 2 }}>
             <Grid sm xs={12}>
               <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
@@ -118,10 +116,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
             alt={`Cover photo for ${blog.title}`}
             src={blog.coverPhoto}
           />
-          {blog.content ? (
-            <Mdx enableInArticleAds source={blog.content} />
-          ) : null}
-          <MultiplexAd sx={{ mt: 3 }} />
+          {blog.content ? <Mdx source={blog.content} /> : null}
         </Container>
         <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
         <Box
