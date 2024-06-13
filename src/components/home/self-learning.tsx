@@ -16,13 +16,18 @@ import {
 import { Search, X } from 'lucide-react';
 import { type FC, useDeferredValue, useMemo, useState } from 'react';
 
-import { Icon } from '../contentful';
+import { Image } from '../image';
 
 export interface SelfLearningProps extends Omit<StackProps, 'children'> {
   courses?: {
     institution?: {
       id: string;
       name?: string;
+      logo?: {
+        universal?: string;
+        light?: string;
+        dark?: string;
+      };
     };
     certificate?: string;
     name?: string;
@@ -86,9 +91,15 @@ export const SelfLearning: FC<SelfLearningProps> = ({
             ({ name, institution, certificate, categories }) => (
               <Grid key={name} md={6} xs={12}>
                 <Card orientation="horizontal" sx={{ height: { sm: '100%' } }}>
-                  {institution ? (
-                    <Icon color="default" contentfulId={institution.id} />
-                  ) : null}
+                  <Image
+                    alt={institution?.name ?? ''}
+                    height={36}
+                    src={institution?.logo?.universal}
+                    srcDark={institution?.logo?.light}
+                    srcLight={institution?.logo?.dark}
+                    sx={{ objectFit: 'scale-down', flexShrink: 0 }}
+                    width={36}
+                  />
                   <Stack spacing="inherit">
                     <CardContent>
                       {certificate ? (
