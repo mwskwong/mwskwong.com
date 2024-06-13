@@ -40,7 +40,7 @@
     "@vercel/analytics": "^1.3.1",
     "@vercel/speed-insights": "^1.0.12",
     "clsx": "^2.1.1",
-    "contentful": "^10.11.11",
+    "contentful": "^10.11.12",
     "dedent": "^1.5.3",
     "feed": "^4.2.2",
     "geist": "^1.3.0",
@@ -82,6 +82,7 @@
     "typescript": "^5.4.5"
   },
   "overrides": {
+    "@mui/system": "next",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc"
   }

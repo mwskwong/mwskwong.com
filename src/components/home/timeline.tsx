@@ -204,7 +204,7 @@ TimelineItem.muiName = 'Grid';
 
 export type TimelineProps = GridProps;
 export const Timeline: FC<TimelineProps> = ({ children, ...props }) => (
-  <Grid container disableEqualOverflow spacing={6} {...props}>
+  <Grid container spacing={6} {...props}>
     {children}
   </Grid>
 );
