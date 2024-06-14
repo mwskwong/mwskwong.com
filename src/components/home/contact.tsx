@@ -86,7 +86,6 @@ export const Contact: FC<ContactProps> = (props) => {
           </Typography>
           <Grid
             container
-            disableEqualOverflow
             component="form"
             spacing={6}
             sx={{ alignItems: 'center' }}

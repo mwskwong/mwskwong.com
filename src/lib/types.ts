@@ -66,7 +66,9 @@ export interface OrganizationSkeleton {
   fields: {
     name: EntryFieldTypes.Symbol;
     url?: EntryFieldTypes.Symbol;
-    logo?: EntryFieldTypes.AssetLink;
+    logoUniversal?: EntryFieldTypes.AssetLink;
+    logoLight?: EntryFieldTypes.AssetLink;
+    logoDark?: EntryFieldTypes.AssetLink;
   };
 }
 

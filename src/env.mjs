@@ -16,7 +16,6 @@ export const env = createEnv({
     NEXT_PUBLIC_VERCEL_ENV: z
       .enum(['development', 'preview', 'production'])
       .optional(),
-    NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID: z.string(),
   },
   server: {
     DATABASE_URL: z.string().url(),
@@ -63,8 +62,6 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL &&
       capitalize(process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL),
     NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
-    NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID:
-      process.env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID,
   },
   skipValidation: process.env.npm_lifecycle_event === 'lint',
   emptyStringAsUndefined: true,

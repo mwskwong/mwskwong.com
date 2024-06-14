@@ -1,16 +1,8 @@
 import {
   type IconType,
-  SiDatacamp,
-  SiEnterprisedb,
   SiGithub,
-  SiGoogle,
   SiLinkedin,
-  SiMicrosoft,
-  SiMongodb,
-  SiOracle,
   SiStackoverflow,
-  SiUdemy,
-  SiYoutube,
 } from '@icons-pack/react-simple-icons';
 import {
   Activity,
@@ -39,17 +31,9 @@ const generateSimpleIcon = (SiIcon: IconType) => {
 };
 
 const Icons = {
-  [contentfulIds.dataCamp]: generateSimpleIcon(SiDatacamp),
-  [contentfulIds.enterpriseDb]: generateSimpleIcon(SiEnterprisedb),
   [contentfulIds.github]: generateSimpleIcon(SiGithub),
-  [contentfulIds.google]: generateSimpleIcon(SiGoogle),
   [contentfulIds.linkedin]: generateSimpleIcon(SiLinkedin),
-  [contentfulIds.microsoft]: generateSimpleIcon(SiMicrosoft),
-  [contentfulIds.mongodb]: generateSimpleIcon(SiMongodb),
-  [contentfulIds.oracle]: generateSimpleIcon(SiOracle),
   [contentfulIds.stackOverflow]: generateSimpleIcon(SiStackoverflow),
-  [contentfulIds.udemy]: generateSimpleIcon(SiUdemy),
-  [contentfulIds.youtube]: generateSimpleIcon(SiYoutube),
   [contentfulIds.backend]: Terminal,
   [contentfulIds.cms]: MonitorDot,
   [contentfulIds.database]: Database,

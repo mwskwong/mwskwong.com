@@ -14,14 +14,12 @@ import { globalStyles, theme } from '@/theme';
 
 export type ProvidersProps = PropsWithChildren;
 export const Providers: FC<ProvidersProps> = ({ children }) => (
-  <>
-    {getInitColorSchemeScript()}
-    <AppRouterCacheProvider options={{ key: 'joy' }}>
-      <CssVarsProvider theme={theme}>
-        <CssBaseline />
-        <GlobalStyles styles={globalStyles} />
-        {children}
-      </CssVarsProvider>
-    </AppRouterCacheProvider>
-  </>
+  <AppRouterCacheProvider options={{ key: 'joy' }}>
+    <CssVarsProvider theme={theme}>
+      <CssBaseline />
+      <GlobalStyles styles={globalStyles} />
+      {getInitColorSchemeScript()}
+      {children}
+    </CssVarsProvider>
+  </AppRouterCacheProvider>
 );
