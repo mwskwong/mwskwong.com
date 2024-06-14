@@ -93,12 +93,12 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                 <Card orientation="horizontal" sx={{ height: { sm: '100%' } }}>
                   <Image
                     alt={institution?.name ?? ''}
-                    height={36}
+                    height={30}
                     src={institution?.logo?.universal}
                     srcDark={institution?.logo?.light}
                     srcLight={institution?.logo?.dark}
                     sx={{ objectFit: 'scale-down', flexShrink: 0 }}
-                    width={36}
+                    width={30}
                   />
                   <Stack spacing="inherit">
                     <CardContent>
