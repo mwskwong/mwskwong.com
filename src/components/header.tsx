@@ -69,7 +69,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
               component={NextLink}
               href={{ pathname: home.pathname, hash: home.id }}
             >
-              <Icon width={30} />
+              <Icon width={32} />
             </Link>
             <List
               orientation="horizontal"

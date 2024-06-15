@@ -17,8 +17,8 @@ export const BlogCoverImage: FC<BlogCoverImageProps> = ({
   return (
     <Image
       alt={alt}
-      height={(theme.breakpoints.values.md / 1200) * 630}
-      width={theme.breakpoints.values.md}
+      height={1280}
+      width={2560}
       sizes={[
         `(min-width: ${theme.breakpoints.values.md}px) ${theme.breakpoints.values.md}px`,
         '100vw',
