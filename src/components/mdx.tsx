@@ -199,7 +199,6 @@ export const components = {
       const { color, ...rest } = props;
       return (
         <Typography
-          noWrap
           component="code"
           variant="soft"
           sx={{
