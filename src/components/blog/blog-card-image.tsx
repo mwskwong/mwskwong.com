@@ -17,8 +17,8 @@ export const BlogCardImage: FC<BlogCardImageProps> = ({
   return (
     <Image
       alt={alt}
-      height={(theme.breakpoints.values.lg / 3 / 1200) * 630}
-      width={theme.breakpoints.values.lg / 3}
+      height={1280}
+      width={2560}
       sizes={[
         `(min-width: ${theme.breakpoints.values.lg}px) ${Math.round((4 / 12) * theme.breakpoints.values.lg)}px`,
         `(min-width: ${theme.breakpoints.values.md}px) ${Math.round((4 / 12) * 100)}vw`,
