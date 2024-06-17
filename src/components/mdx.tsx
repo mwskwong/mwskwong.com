@@ -8,7 +8,6 @@ import {
   type TypographyProps,
 } from '@mui/joy';
 import { merge } from 'lodash-es';
-import { LinkIcon } from 'lucide-react';
 import { type MDXComponents } from 'mdx/types';
 import NextLink from 'next/link';
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
@@ -32,26 +31,8 @@ const Heading: FC<TypographyProps> = ({ id, children, ...props }) => (
   <Typography id={id} {...props}>
     <Link
       color="neutral"
-      endDecorator={<LinkIcon />}
       href={id ? `#${id}` : undefined}
-      slotProps={{
-        endDecorator: {
-          sx: {
-            display: { xs: 'none', md: 'unset' },
-            visibility: 'hidden',
-            '--Icon-fontSize': 'var(--joy-fontSize-xl)',
-            '--Icon-color': 'var(--joy-palette-text-icon)',
-          },
-        },
-      }}
-      sx={{
-        color: 'inherit',
-        '&:hover': {
-          '& .MuiLink-endDecorator': {
-            visibility: 'unset',
-          },
-        },
-      }}
+      sx={{ color: 'inherit' }}
     >
       {children}
     </Link>
