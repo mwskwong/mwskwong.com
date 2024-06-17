@@ -10,6 +10,13 @@ import { prisma, resend } from '@/lib/clients';
 
 import { type ContactForm, contactForm } from './validators';
 
+export const incrBlogViewById = async (id: string) =>
+  prisma.blogMetadata.upsert({
+    where: { id },
+    update: { view: { increment: 1 } },
+    create: { id },
+  });
+
 export const submitContactForm = async (data: ContactForm) => {
   contactForm.parse(data);
   await prisma.contactFormSubmission.create({ data });

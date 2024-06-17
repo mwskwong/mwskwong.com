@@ -12,12 +12,12 @@ import {
 import { type Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
-import { unstable_after as after } from 'next/server';
 import { type FC, Suspense } from 'react';
 import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { BlogCoverImage } from '@/components/blog/blog-cover-image';
 import { CopyUrlButton } from '@/components/blog/copy-url-button';
+import { IncrBlogView } from '@/components/blog/incr-blog-view';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { Icon } from '@/components/contentful';
@@ -28,7 +28,6 @@ import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
 import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
 import { env } from '@/env.mjs';
-import { prisma } from '@/lib/clients';
 import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,
@@ -45,18 +44,6 @@ interface BlogProps {
   params: { slug: string };
 }
 
-const IncrBlogView: FC<{ blogId: string }> = ({ blogId }) => {
-  after(
-    prisma.blogMetadata.upsert({
-      where: { id: blogId },
-      update: { view: { increment: 1 } },
-      create: { id: blogId },
-    }),
-  );
-
-  return null;
-};
-
 const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
   const [blog, personalPhoto, socialMediaProfiles, person] = await Promise.all([
     getBlogBySlug(slug),
@@ -68,11 +55,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 
   return (
     <>
-      <ErrorBoundary>
-        <Suspense>
-          <IncrBlogView blogId={blog.id} />
-        </Suspense>
-      </ErrorBoundary>
+      <IncrBlogView blogId={blog.id} />
       <main>
         <Container
           component="article"
