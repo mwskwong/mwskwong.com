@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/joy';
 import { Search, X } from 'lucide-react';
-import { type FC, useDeferredValue, useMemo, useState } from 'react';
+import { type FC, useDeferredValue, useState } from 'react';
 
 import { Image } from '../image';
 
@@ -41,19 +41,17 @@ export const SelfLearning: FC<SelfLearningProps> = ({
 }) => {
   const [search, setSearch] = useState('');
   const deferredSearch = useDeferredValue(search);
-  const filteredCourses = useMemo(
-    () =>
-      courses.filter(({ name, institution, categories }) => {
-        const searchStr = deferredSearch.toLowerCase();
-        return (
-          Boolean(name?.toLowerCase().includes(searchStr)) ||
-          Boolean(institution?.name?.toLowerCase().includes(searchStr)) ||
-          categories?.some((category) =>
-            category.toLowerCase().includes(searchStr),
-          )
-        );
-      }),
-    [courses, deferredSearch],
+  const filteredCourses = courses.filter(
+    ({ name, institution, categories }) => {
+      const searchStr = deferredSearch.toLowerCase();
+      return (
+        Boolean(name?.toLowerCase().includes(searchStr)) ||
+        Boolean(institution?.name?.toLowerCase().includes(searchStr)) ||
+        categories?.some((category) =>
+          category.toLowerCase().includes(searchStr),
+        )
+      );
+    },
   );
 
   return (
