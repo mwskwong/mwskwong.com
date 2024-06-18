@@ -1,13 +1,5 @@
 declare module '*.svg' {
-  import { FC, SVGProps } from 'react';
-
-  const content: FC<SVGProps<SVGSVGElement>>;
-
-  export default content;
-}
-
-declare module '*.svg?monochrome' {
-  import { FC, SVGProps } from 'react';
+  import { type FC, type SVGProps } from 'react';
 
   const content: FC<SVGProps<SVGSVGElement>>;
 
@@ -15,7 +7,7 @@ declare module '*.svg?monochrome' {
 }
 
 declare module '*.svg?url' {
-  import { StaticImageData } from 'next/image';
+  import { type StaticImageData } from 'next/image';
 
   const content: StaticImageData;
 

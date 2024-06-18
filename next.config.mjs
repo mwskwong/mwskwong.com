@@ -9,15 +9,6 @@ const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: env.ANALYZE,
 });
 
-const sharedSvgoPlugins = [
-  'prefixIds',
-  'removeRasterImages',
-  'removeScriptElement',
-  'removeOffCanvasPaths',
-  'removeXlink',
-  'removeXMLNS',
-];
-
 /** @type {import('next').NextConfig} */
 const config = {
   compiler: {
@@ -53,7 +44,7 @@ const config = {
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
-        resourceQuery: /monochrome/, // *.svg?monochrome
+        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
         use: [
           {
             loader: '@svgr/webpack',
@@ -64,27 +55,9 @@ const config = {
                     name: 'preset-default',
                     params: { overrides: { inlineStyles: false } },
                   },
+                  'prefixIds',
                   'removeStyleElement',
-                  ...sharedSvgoPlugins,
                 ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.svg$/i,
-        issuer: fileLoaderRule.issuer,
-        resourceQuery: {
-          // exclude if *.svg?url and *.svg?monochrome
-          not: [...fileLoaderRule.resourceQuery.not, /monochrome/, /url/],
-        },
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              svgoConfig: {
-                plugins: ['preset-default', ...sharedSvgoPlugins],
               },
             },
           },

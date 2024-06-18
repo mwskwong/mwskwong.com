@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-import Icon from '@/app/icon.svg?monochrome';
+import Icon from '@/app/icon.svg';
 import { firstName, lastName } from '@/constants/content';
 
 export const size = { width: 2560, height: 1280 };
