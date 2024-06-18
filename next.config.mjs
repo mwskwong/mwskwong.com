@@ -135,7 +135,6 @@ const config = {
   experimental: {
     reactCompiler: false, // disabling for now since watch() from React Hook Form isn't returning the updated form value
     ppr: true,
-    after: true,
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
   },
