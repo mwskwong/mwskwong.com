@@ -29,7 +29,6 @@ const config = {
         protocol: 'https',
         hostname: 'images.ctfassets.net',
         port: '',
-        pathname: '/**',
       },
       {
         protocol: 'https',
