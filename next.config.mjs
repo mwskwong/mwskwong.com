@@ -121,7 +121,7 @@ const config = {
   ],
   logging: { fetches: { fullUrl: true } },
   experimental: {
-    reactCompiler: false, // disabling for now since watch() from React Hook Form isn't returning the updated form value
+    reactCompiler: true,
     ppr: true,
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
