@@ -11,7 +11,7 @@ import {
   type StackProps,
   Typography,
 } from '@mui/joy';
-import { type FC, useDeferredValue, useMemo, useState } from 'react';
+import { type FC, useDeferredValue, useState } from 'react';
 
 import { Icon } from '../contentful';
 
@@ -26,20 +26,16 @@ export interface SkillSetProps extends Omit<StackProps, 'children'> {
 export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
   const [proficiency, setProficiency] = useState<[number, number]>([1, 5]);
   const deferredProficiency = useDeferredValue(proficiency);
-  const filteredSkillSet = useMemo(
-    () =>
-      skillSet
-        .map(({ skills, ...category }) => ({
-          ...category,
-          skills: skills.filter(
-            ({ proficiency = 0 }) =>
-              proficiency >= deferredProficiency[0] &&
-              proficiency <= deferredProficiency[1],
-          ),
-        }))
-        .filter(({ skills }) => skills.length > 0),
-    [deferredProficiency, skillSet],
-  );
+  const filteredSkillSet = skillSet
+    .map(({ skills, ...category }) => ({
+      ...category,
+      skills: skills.filter(
+        ({ proficiency = 0 }) =>
+          proficiency >= deferredProficiency[0] &&
+          proficiency <= deferredProficiency[1],
+      ),
+    }))
+    .filter(({ skills }) => skills.length > 0);
 
   return (
     <Stack spacing={2} {...props}>

@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-import Icon from '@/app/icon.svg?monochrome';
+import Icon from '@/app/icon.svg';
 
 export const runtime = 'edge';
 export const size = { width: 180, height: 180 };

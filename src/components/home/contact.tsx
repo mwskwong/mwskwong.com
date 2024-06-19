@@ -22,7 +22,7 @@ import {
 import { AlertTriangle, Send, ThumbsUp } from 'lucide-react';
 import NextLink from 'next/link';
 import { type FC, useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
 import {
@@ -43,7 +43,6 @@ export const Contact: FC<ContactProps> = (props) => {
     setError,
     setValue,
     trigger,
-    watch,
   } = useForm<ContactForm>({
     resolver: zodResolver(contactForm),
     mode: 'onTouched',
@@ -57,7 +56,7 @@ export const Contact: FC<ContactProps> = (props) => {
     progressive: true,
   });
 
-  const showInGuestbook = watch('showInGuestbook');
+  const showInGuestbook = useWatch({ name: 'showInGuestbook', control }); // WORKAROUND: watch() is not compatible with React Compiler
 
   useEffect(() => {
     /**

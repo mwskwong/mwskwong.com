@@ -1,21 +1,13 @@
 // @ts-check
 
 import NextBundleAnalyzer from '@next/bundle-analyzer';
+import dedent from 'dedent';
 
 import { env } from './src/env.mjs';
 
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: env.ANALYZE,
 });
-
-const sharedSvgoPlugins = [
-  'prefixIds',
-  'removeRasterImages',
-  'removeScriptElement',
-  'removeOffCanvasPaths',
-  'removeXlink',
-  'removeXMLNS',
-];
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -29,7 +21,6 @@ const config = {
         protocol: 'https',
         hostname: 'images.ctfassets.net',
         port: '',
-        pathname: '/**',
       },
       {
         protocol: 'https',
@@ -53,7 +44,7 @@ const config = {
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
-        resourceQuery: /monochrome/, // *.svg?monochrome
+        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
         use: [
           {
             loader: '@svgr/webpack',
@@ -64,27 +55,9 @@ const config = {
                     name: 'preset-default',
                     params: { overrides: { inlineStyles: false } },
                   },
+                  'prefixIds',
                   'removeStyleElement',
-                  ...sharedSvgoPlugins,
                 ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.svg$/i,
-        issuer: fileLoaderRule.issuer,
-        resourceQuery: {
-          // exclude if *.svg?url and *.svg?monochrome
-          not: [...fileLoaderRule.resourceQuery.not, /monochrome/, /url/],
-        },
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              svgoConfig: {
-                plugins: ['preset-default', ...sharedSvgoPlugins],
               },
             },
           },
@@ -128,12 +101,27 @@ const config = {
           key: 'Referrer-Policy',
           value: 'strict-origin-when-cross-origin',
         },
+        {
+          key: 'Content-Security-Policy',
+          value: dedent`
+            default-src 'self';
+            script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com;
+            style-src 'self' 'unsafe-inline';
+            img-src 'self' images.ctfassets.net blob: data:;
+            font-src 'self';
+            object-src 'none';
+            base-uri 'self';
+            form-action 'self';
+            frame-ancestors 'none';
+            upgrade-insecure-requests;
+          `.replace(/\n/g, ''),
+        },
       ],
     },
   ],
   logging: { fetches: { fullUrl: true } },
   experimental: {
-    reactCompiler: false, // disabling for now since watch() from React Hook Form isn't returning the updated form value
+    reactCompiler: true,
     ppr: true,
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],

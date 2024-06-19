@@ -145,7 +145,9 @@ export const SubmissionListError: FC<SubmissionListErrorProps> = ({
       {...props}
     >
       <Frown absoluteStrokeWidth size={4 * 16} />
-      <Typography>Something went wrong. Please try again later.</Typography>
+      <Typography sx={{ textAlign: 'center' }}>
+        Something went wrong. Please try again later.
+      </Typography>
     </Stack>
   );
 };

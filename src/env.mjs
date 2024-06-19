@@ -1,8 +1,8 @@
 // @ts-check
 // Using .mjs because this will be used in next.config.mjs
 
-import { vercel } from '@t3-oss/env-core/presets';
 import { createEnv } from '@t3-oss/env-nextjs';
+import { vercel } from '@t3-oss/env-nextjs/presets';
 import { capitalize } from 'lodash-es';
 // FIXME: switch to Valibot when @t3-oss/env-nextjs has it implemented
 import { z } from 'zod';
