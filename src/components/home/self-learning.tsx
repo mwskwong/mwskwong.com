@@ -93,8 +93,8 @@ export const SelfLearning: FC<SelfLearningProps> = ({
                     alt={institution?.name ?? ''}
                     height={28}
                     src={institution?.logo?.universal}
-                    srcDark={institution?.logo?.light}
-                    srcLight={institution?.logo?.dark}
+                    srcDark={institution?.logo?.dark}
+                    srcLight={institution?.logo?.light}
                     sx={{ objectFit: 'scale-down', flexShrink: 0 }}
                     width={28}
                   />

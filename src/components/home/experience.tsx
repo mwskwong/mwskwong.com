@@ -73,8 +73,8 @@ export const Experience: FC<ExperienceProps> = async (props) => {
                       alt={name}
                       height={36}
                       src={logo.universal}
-                      srcDark={logo.light}
-                      srcLight={logo.dark}
+                      srcDark={logo.dark}
+                      srcLight={logo.light}
                       sx={{ objectFit: 'scale-down' }}
                       width={36}
                     />
