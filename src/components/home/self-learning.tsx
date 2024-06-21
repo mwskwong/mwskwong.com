@@ -14,15 +14,20 @@ import {
   Typography,
 } from '@mui/joy';
 import { Search, X } from 'lucide-react';
-import { type FC, useDeferredValue, useMemo, useState } from 'react';
+import { type FC, useDeferredValue, useState } from 'react';
 
-import { Icon } from '../contentful';
+import { Image } from '../image';
 
 export interface SelfLearningProps extends Omit<StackProps, 'children'> {
   courses?: {
     institution?: {
       id: string;
       name?: string;
+      logo?: {
+        universal?: string;
+        light?: string;
+        dark?: string;
+      };
     };
     certificate?: string;
     name?: string;
@@ -36,19 +41,17 @@ export const SelfLearning: FC<SelfLearningProps> = ({
 }) => {
   const [search, setSearch] = useState('');
   const deferredSearch = useDeferredValue(search);
-  const filteredCourses = useMemo(
-    () =>
-      courses.filter(({ name, institution, categories }) => {
-        const searchStr = deferredSearch.toLowerCase();
-        return (
-          Boolean(name?.toLowerCase().includes(searchStr)) ||
-          Boolean(institution?.name?.toLowerCase().includes(searchStr)) ||
-          categories?.some((category) =>
-            category.toLowerCase().includes(searchStr),
-          )
-        );
-      }),
-    [courses, deferredSearch],
+  const filteredCourses = courses.filter(
+    ({ name, institution, categories }) => {
+      const searchStr = deferredSearch.toLowerCase();
+      return (
+        Boolean(name?.toLowerCase().includes(searchStr)) ||
+        Boolean(institution?.name?.toLowerCase().includes(searchStr)) ||
+        categories?.some((category) =>
+          category.toLowerCase().includes(searchStr),
+        )
+      );
+    },
   );
 
   return (
@@ -86,9 +89,15 @@ export const SelfLearning: FC<SelfLearningProps> = ({
             ({ name, institution, certificate, categories }) => (
               <Grid key={name} md={6} xs={12}>
                 <Card orientation="horizontal" sx={{ height: { sm: '100%' } }}>
-                  {institution ? (
-                    <Icon color="default" contentfulId={institution.id} />
-                  ) : null}
+                  <Image
+                    alt={institution?.name ?? ''}
+                    height={28}
+                    src={institution?.logo?.universal}
+                    srcDark={institution?.logo?.dark}
+                    srcLight={institution?.logo?.light}
+                    sx={{ objectFit: 'scale-down', flexShrink: 0 }}
+                    width={28}
+                  />
                   <Stack spacing="inherit">
                     <CardContent>
                       {certificate ? (

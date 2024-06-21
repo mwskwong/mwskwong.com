@@ -13,7 +13,7 @@ import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { type FC } from 'react';
 
-import Icon from '@/app/icon.svg?monochrome';
+import Icon from '@/app/icon.svg';
 import { github, linkedin } from '@/constants/contentful-ids';
 import {
   about,
@@ -69,7 +69,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
               component={NextLink}
               href={{ pathname: home.pathname, hash: home.id }}
             >
-              <Icon width={30} />
+              <Icon width={32} />
             </Link>
             <List
               orientation="horizontal"

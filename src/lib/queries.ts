@@ -1,4 +1,3 @@
-import { type Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
 import {
   unstable_cache as nextCache,
@@ -107,6 +106,17 @@ export const getCourses = nextCache(async () => {
     institution: item.fields.institution && {
       id: item.fields.institution.sys.id,
       name: item.fields.institution.fields.name,
+      logo: {
+        universal:
+          item.fields.institution.fields.logoUniversal?.fields.file &&
+          `https:${item.fields.institution.fields.logoUniversal.fields.file.url}`,
+        light:
+          item.fields.institution.fields.logoLight?.fields.file &&
+          `https:${item.fields.institution.fields.logoLight.fields.file.url}`,
+        dark:
+          item.fields.institution.fields.logoDark?.fields.file &&
+          `https:${item.fields.institution.fields.logoDark.fields.file.url}`,
+      },
     },
     certificate:
       item.fields.certificate?.fields.file &&
@@ -138,9 +148,17 @@ export const getEducations = nextCache(async () => {
     ...item.fields,
     school: item.fields.school && {
       ...item.fields.school.fields,
-      logo:
-        item.fields.school.fields.logo?.fields.file &&
-        `https:${item.fields.school.fields.logo.fields.file.url}`,
+      logo: {
+        universal:
+          item.fields.school.fields.logoUniversal?.fields.file &&
+          `https:${item.fields.school.fields.logoUniversal.fields.file.url}`,
+        light:
+          item.fields.school.fields.logoLight?.fields.file &&
+          `https:${item.fields.school.fields.logoLight.fields.file.url}`,
+        dark:
+          item.fields.school.fields.logoDark?.fields.file &&
+          `https:${item.fields.school.fields.logoDark.fields.file.url}`,
+      },
     },
     grade: item.fields.grade,
     supportingDocuments: item.fields.supportingDocuments?.map(
@@ -180,9 +198,17 @@ export const getExperiences = cache(
       ...item.fields,
       company: item.fields.company && {
         ...item.fields.company.fields,
-        logo:
-          item.fields.company.fields.logo?.fields.file &&
-          `https:${item.fields.company.fields.logo.fields.file.url}`,
+        logo: {
+          universal:
+            item.fields.company.fields.logoUniversal?.fields.file &&
+            `https:${item.fields.company.fields.logoUniversal.fields.file.url}`,
+          light:
+            item.fields.company.fields.logoLight?.fields.file &&
+            `https:${item.fields.company.fields.logoLight.fields.file.url}`,
+          dark:
+            item.fields.company.fields.logoDark?.fields.file &&
+            `https:${item.fields.company.fields.logoDark.fields.file.url}`,
+        },
       },
       projects: item.fields.projects?.map((project) => ({
         ...project?.fields,
@@ -199,10 +225,7 @@ export const getExperiences = cache(
         }),
       ),
       skills: item.fields.skills
-        .filter(
-          (elem): elem is Entry<SkillSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> =>
-            Boolean(elem),
-        )
+        .filter(Boolean)
         .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
     }));
   }),

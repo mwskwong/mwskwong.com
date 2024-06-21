@@ -2,6 +2,7 @@
 
 import {
   SiFacebook,
+  SiHatenabookmark,
   SiLinkedin,
   SiReddit,
   SiX,
@@ -55,6 +56,11 @@ export const ShareDropdown: FC<ShareDropdownProps> = ({ blog, ...props }) => {
       Icon: SiReddit,
       name: 'Reddit',
       url: `http://www.reddit.com/submit/?url=${url}&title=${blog.title}`,
+    },
+    {
+      Icon: SiHatenabookmark,
+      name: 'Hatena',
+      url: `http://b.hatena.ne.jp/add?mode=confirm&url=${url}&title=${blog.title}`,
     },
   ];
 

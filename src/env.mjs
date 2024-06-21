@@ -1,8 +1,8 @@
 // @ts-check
 // Using .mjs because this will be used in next.config.mjs
 
-import { vercel } from '@t3-oss/env-core/presets';
 import { createEnv } from '@t3-oss/env-nextjs';
+import { vercel } from '@t3-oss/env-nextjs/presets';
 import { capitalize } from 'lodash-es';
 // FIXME: switch to Valibot when @t3-oss/env-nextjs has it implemented
 import { z } from 'zod';
@@ -11,12 +11,6 @@ export const env = createEnv({
   extends: [vercel()],
   shared: {
     NODE_ENV: z.enum(['development', 'test', 'production']),
-    NEXT_PUBLIC_SITE_URL: z.string().url(),
-    NEXT_PUBLIC_SITE_DISPLAY_NAME: z.string(),
-    NEXT_PUBLIC_VERCEL_ENV: z
-      .enum(['development', 'preview', 'production'])
-      .optional(),
-    NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID: z.string(),
   },
   server: {
     DATABASE_URL: z.string().url(),
@@ -45,6 +39,13 @@ export const env = createEnv({
     CRON_SECRET:
       process.env.VERCEL === '1' ? z.string() : z.string().optional(),
   },
+  client: {
+    NEXT_PUBLIC_SITE_URL: z.string().url(),
+    NEXT_PUBLIC_SITE_DISPLAY_NAME: z.string(),
+    NEXT_PUBLIC_VERCEL_ENV: z
+      .enum(['development', 'preview', 'production'])
+      .optional(),
+  },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_SITE_URL:
@@ -63,8 +64,6 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL &&
       capitalize(process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL),
     NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
-    NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID:
-      process.env.NEXT_PUBLIC_AD_SENSE_PUBLISHER_ID,
   },
   skipValidation: process.env.npm_lifecycle_event === 'lint',
   emptyStringAsUndefined: true,

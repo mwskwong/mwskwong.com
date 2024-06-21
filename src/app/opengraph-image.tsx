@@ -1,9 +1,9 @@
 import { ImageResponse } from 'next/og';
 
-import Icon from '@/app/icon.svg?monochrome';
+import Icon from '@/app/icon.svg';
 import { firstName, lastName } from '@/constants/content';
 
-export const size = { width: 1200, height: 630 };
+export const size = { width: 2560, height: 1280 };
 export const contentType = 'image/png';
 export const runtime = 'edge';
 
@@ -22,15 +22,15 @@ const OpengraphImage = async () =>
         }}
       >
         {/* --joy-palette-primary-plainColor */}
-        <Icon fill="#0B6BCB" width={200} />
+        <Icon fill="#0B6BCB" width={400} />
         <h1
           // https://mui.com/joy-ui/customization/default-theme-viewer/
           style={{
             fontWeight: 700,
-            fontSize: '7rem',
+            fontSize: '14rem',
             letterSpacing: '0.025em',
             textTransform: 'uppercase',
-            marginTop: 32,
+            marginTop: 64,
             marginBottom: 0,
           }}
         >
@@ -40,7 +40,7 @@ const OpengraphImage = async () =>
           // https://mui.com/joy-ui/customization/default-theme-viewer/
           style={{
             fontWeight: 700,
-            fontSize: '3.75rem',
+            fontSize: '7.5rem',
             letterSpacing: '0.6667em',
             textTransform: 'uppercase',
             margin: 0,

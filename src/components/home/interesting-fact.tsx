@@ -44,7 +44,7 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
                     alt={name}
                     height={36}
                     src={logo.universal}
-                    srcDark={logo.light}
+                    srcDark={logo.dark}
                     sx={{ objectFit: 'scale-down' }}
                     width={36}
                   />
