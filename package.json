@@ -43,7 +43,7 @@
     "feed": "^4.2.2",
     "geist": "^1.3.0",
     "lodash-es": "^4.17.21",
-    "lucide-react": "^0.397.0",
+    "lucide-react": "^0.399.0",
     "merge-sx": "^2.0.2",
     "next": "canary",
     "next-mdx-remote": "^5.0.0",
@@ -56,7 +56,7 @@
     "resend": "^3.4.0",
     "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
-    "shiki": "^1.9.1",
+    "shiki": "^1.10.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
