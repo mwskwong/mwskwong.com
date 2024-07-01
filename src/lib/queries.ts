@@ -1,4 +1,3 @@
-import { type Entry } from 'contentful';
 import { orderBy } from 'lodash-es';
 import {
   unstable_cache as nextCache,
@@ -226,10 +225,7 @@ export const getExperiences = cache(
         }),
       ),
       skills: item.fields.skills
-        .filter(
-          (elem): elem is Entry<SkillSkeleton, 'WITHOUT_UNRESOLVABLE_LINKS'> =>
-            Boolean(elem),
-        )
+        .filter(Boolean)
         .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
     }));
   }),
