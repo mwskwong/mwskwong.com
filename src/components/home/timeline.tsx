@@ -114,13 +114,13 @@ export const TimelineItem: FC<TimelineItemProps> = ({
     : `${dateFormatter.format(from)} – Present`;
 
   return (
-    <Grid container columnSpacing={2} rowSpacing={0} xs={12} {...props}>
-      <Grid sm={3} xs={12}>
+    <Grid container columnSpacing={2} rowSpacing={0} size={12} {...props}>
+      <Grid size={{ sm: 3, xs: 12 }}>
         <Typography level="body-sm" sx={{ mb: 1, mt: '2px' }}>
           {duration}
         </Typography>
       </Grid>
-      <Grid sm xs={12}>
+      <Grid size={{ sm: 'grow', xs: 12 }}>
         <Typography level="title-lg">{title}</Typography>
         <Stack spacing={1}>
           <Stack
