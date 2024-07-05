@@ -101,17 +101,14 @@ export const Contact: FC<ContactProps> = (props) => {
             <Grid
               container
               component="address"
-              md={4}
+              size={{ md: 4, xs: 12 }}
               spacing={4}
               sx={{ fontStyle: 'initial' }}
-              xs={12}
             >
               {Object.values(contactInfo).map(({ Icon, title, value, url }) => (
                 <Grid
                   key={title}
-                  md={12}
-                  sm={4}
-                  xs={12}
+                  size={{ md: 12, sm: 4, xs: 12 }}
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -147,7 +144,7 @@ export const Contact: FC<ContactProps> = (props) => {
               ))}
             </Grid>
             {isSubmitSuccessful ? (
-              <Grid md={8} xs={12}>
+              <Grid size={{ md: 8, xs: 12 }}>
                 <Stack
                   spacing={2}
                   sx={{
@@ -196,16 +193,16 @@ export const Contact: FC<ContactProps> = (props) => {
                   container
                   columnSpacing={2}
                   id={contactFormNav.id}
-                  md={8}
                   rowSpacing={1}
-                  unstable_level={1} // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
-                  xs={12}
+                  size={{ md: 8, xs: 12 }}
+                  // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
+                  unstable_level={1}
                   sx={{
                     scrollMarginTop:
                       'calc(var(--Header-height) - 6 * var(--joy-spacing))',
                   }}
                 >
-                  <Grid sm={6} xs={12}>
+                  <Grid size={{ sm: 6, xs: 12 }}>
                     <Controller
                       control={control}
                       name="name"
@@ -224,7 +221,7 @@ export const Contact: FC<ContactProps> = (props) => {
                       )}
                     />
                   </Grid>
-                  <Grid sm={6} xs={12}>
+                  <Grid size={{ sm: 6, xs: 12 }}>
                     <Controller
                       control={control}
                       name="email"
@@ -245,7 +242,7 @@ export const Contact: FC<ContactProps> = (props) => {
                       )}
                     />
                   </Grid>
-                  <Grid xs={12}>
+                  <Grid size={12}>
                     <Controller
                       control={control}
                       name="subject"
@@ -266,7 +263,7 @@ export const Contact: FC<ContactProps> = (props) => {
                       )}
                     />
                   </Grid>
-                  <Grid xs={12}>
+                  <Grid size={12}>
                     <Controller
                       control={control}
                       name="message"
@@ -290,7 +287,7 @@ export const Contact: FC<ContactProps> = (props) => {
                       )}
                     />
                   </Grid>
-                  <Grid xs={12}>
+                  <Grid size={12}>
                     <Controller
                       control={control}
                       name="showInGuestbook"
@@ -347,13 +344,13 @@ export const Contact: FC<ContactProps> = (props) => {
                   </Grid>
                 </Grid>
                 {errors.root ? (
-                  <Grid md={8} mdOffset={4} xs={12}>
+                  <Grid offset={{ md: 4 }} size={{ md: 8, xs: 12 }}>
                     <Alert color="danger" startDecorator={<AlertTriangle />}>
                       {errors.root.message}
                     </Alert>
                   </Grid>
                 ) : null}
-                <Grid sm="auto" smOffset="auto" xs={12}>
+                <Grid offset={{ sm: 'auto' }} size={{ sm: 'auto', xs: 12 }}>
                   <Button
                     fullWidth
                     loading={isSubmitting}
