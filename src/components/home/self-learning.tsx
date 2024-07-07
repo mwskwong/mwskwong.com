@@ -87,7 +87,7 @@ export const SelfLearning: FC<SelfLearningProps> = ({
         <Grid container spacing={2}>
           {filteredCourses.map(
             ({ name, institution, certificate, categories }) => (
-              <Grid key={name} md={6} xs={12}>
+              <Grid key={name} size={{ md: 6, xs: 12 }}>
                 <Card orientation="horizontal" sx={{ height: { sm: '100%' } }}>
                   <Image
                     alt={institution?.name ?? ''}

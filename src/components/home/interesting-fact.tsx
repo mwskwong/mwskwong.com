@@ -55,7 +55,7 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
           <Typography>...and more</Typography>
           <Button
             component="a"
-            href="https://github.com/mwskwong/resume"
+            href="https://github.com/mwskwong/mwskwong.com"
             size="lg"
             target="_blank"
           >
