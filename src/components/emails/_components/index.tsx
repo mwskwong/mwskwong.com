@@ -11,7 +11,7 @@ import { Img } from '@react-email/img';
 import { Text as EmailText, type TextProps } from '@react-email/text';
 import { type FC, type PropsWithChildren } from 'react';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
   <Html>

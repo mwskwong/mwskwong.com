@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { prisma } from '@/lib/clients';
 
 export const GET = async () => {

@@ -27,7 +27,7 @@ import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
 import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,

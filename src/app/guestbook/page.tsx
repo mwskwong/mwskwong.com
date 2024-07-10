@@ -18,7 +18,7 @@ import {
 } from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
 import { contactForm, guestbook, home } from '@/constants/nav';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { getPerson } from '@/lib/json-ld';
 import { getGuestbookSubmissions } from '@/lib/queries';
 

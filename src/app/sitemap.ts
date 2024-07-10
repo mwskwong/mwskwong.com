@@ -1,7 +1,7 @@
 import { type MetadataRoute } from 'next';
 
 import * as nav from '@/constants/nav';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { getBlogs, getPrivacyPolicy } from '@/lib/queries';
 
 const sitemap = async () => {
