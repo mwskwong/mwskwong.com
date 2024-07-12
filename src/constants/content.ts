@@ -13,7 +13,7 @@ export const lastName = 'Kwong';
 export const name = { firstName, middleName, lastName };
 
 export const selfIntroduction =
-  'Assistant Technical Manager at HKJC. Expert in web development. Skilled in React, Next.js, and various web technologies. Passionate about innovative tech. MSc from HKUST, BEng from HKU. Constantly exploring new technologies and contributing to open-source projects.';
+  'Assistant Technical Manager at HKJC. Expert in web development. Skilled in React, Next.js, and various web technologies. MSc from HKUST, BEng from HKU. Open-source contributor. Passionate about innovative tech.';
 
 export const contactInfo = {
   phone: {
