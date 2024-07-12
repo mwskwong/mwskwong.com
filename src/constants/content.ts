@@ -5,7 +5,7 @@ export const email = 'contact@mwskwong.com';
 export const address = 'Sha Tin, Hong Kong';
 export const contact = { phone, email, address };
 
-export const headline = 'Senior Web Engineer @ Viu';
+export const headline = 'Assistant Technical Manager @ HKJC';
 
 export const firstName = 'Matthew';
 export const middleName = 'Wang Shun';
@@ -13,7 +13,7 @@ export const lastName = 'Kwong';
 export const name = { firstName, middleName, lastName };
 
 export const selfIntroduction =
-  'Dynamic and experienced Web Engineer. Skilled in web development, database management, analytical thinking, and creative problem-solving. Adaptable team player with the ability to work independently and an eagerness to succeed.';
+  'Assistant Technical Manager at HKJC. Expert in web development. Skilled in React, Next.js, and various web technologies. Passionate about innovative tech. MSc from HKUST, BEng from HKU. Constantly exploring new technologies and contributing to open-source projects.';
 
 export const contactInfo = {
   phone: {
