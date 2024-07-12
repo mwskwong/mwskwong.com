@@ -11,7 +11,7 @@ import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
 import { home } from '@/constants/nav';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 
 const bgcolors = {
   hero: 'background.body',

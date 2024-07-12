@@ -1,6 +1,6 @@
 import { type MetadataRoute } from 'next';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 
 const robots = () =>
   ({

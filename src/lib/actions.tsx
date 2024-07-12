@@ -5,7 +5,7 @@ import { type ErrorResponse } from 'resend';
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
 import { ContactFormNotification } from '@/components/emails/contact-form-notification';
 import { email, firstName, lastName } from '@/constants/content';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { prisma, resend } from '@/lib/clients';
 
 import { type ContactForm, contactForm } from './validators';

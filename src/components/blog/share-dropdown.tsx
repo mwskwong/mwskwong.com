@@ -22,7 +22,7 @@ import { usePathname } from 'next/navigation';
 import { type FC } from 'react';
 
 import { firstName, lastName } from '@/constants/content';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 
 export interface ShareDropdownProps extends Omit<DropdownProps, 'children'> {
   blog: {

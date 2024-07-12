@@ -6,7 +6,7 @@ import { type Article, type BreadcrumbList, type Graph } from 'schema-dts';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { home, privacyPolicy } from '@/constants/nav';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { getPerson } from '@/lib/json-ld';
 import { getPrivacyPolicy } from '@/lib/queries';
 
