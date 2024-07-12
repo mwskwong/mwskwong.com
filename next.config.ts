@@ -1,15 +1,13 @@
-// @ts-check
-
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 import dedent from 'dedent';
+import { type NextConfig } from 'next';
 
-import { env } from './src/env.mjs';
+import { env } from './src/env';
 
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: env.ANALYZE,
 });
 
-/** @type {import('next').NextConfig} */
 const config = {
   compiler: {
     emotion: true,
@@ -30,7 +28,12 @@ const config = {
       },
     ],
   },
+  /* eslint-disable @typescript-eslint/no-unsafe-assignment -- config is any type */
+  /* eslint-disable @typescript-eslint/no-unsafe-call -- config is any type */
+  /* eslint-disable @typescript-eslint/no-unsafe-member-access -- config is any type */
+  /* eslint-disable @typescript-eslint/no-unsafe-return -- config is any type */
   webpack: (config) => {
+    // @ts-expect-error rule is any type since config is any type
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.('.svg'),
     );
@@ -69,6 +72,8 @@ const config = {
 
     return config;
   },
+  /* eslint-enable -- reenable all eslint rules */
+  // eslint-disable-next-line @typescript-eslint/require-await -- headers must be async
   headers: async () => [
     {
       source: '/:path*',
@@ -126,6 +131,6 @@ const config = {
     webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
   },
-};
+} satisfies NextConfig;
 
 export default withBundleAnalyzer(config);

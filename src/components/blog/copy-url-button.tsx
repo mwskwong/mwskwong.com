@@ -5,7 +5,7 @@ import { Check, Copy } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { type FC, useEffect, useRef, useState } from 'react';
 
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 
 export type CopyUrlButtonProps = Omit<IconButtonProps, 'children'>;
 

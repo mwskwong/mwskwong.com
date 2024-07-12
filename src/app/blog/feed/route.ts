@@ -2,7 +2,7 @@ import { Feed } from 'feed';
 
 import { email, firstName, lastName, middleName } from '@/constants/content';
 import { blog, blogRssFeed } from '@/constants/nav';
-import { env } from '@/env.mjs';
+import { env } from '@/env';
 import { getBlogs } from '@/lib/queries';
 
 const name = `${firstName} ${lastName}`;

@@ -9,13 +9,13 @@ index 1798789..ab421c7 100644
 +  preload: false,
  });
 diff --git a/node_modules/geist/package.json b/node_modules/geist/package.json
-index d855dff..95e37e5 100644
+index a6b6e80..84c64ff 100644
 --- a/node_modules/geist/package.json
 +++ b/node_modules/geist/package.json
-@@ -49,7 +49,8 @@
-       "import": "./dist/sans-non-variable.js",
-       "require": "./dist/sans-non-variable.js",
-       "default": "./dist/index.d.ts"
+@@ -44,7 +44,8 @@
+     "./font/sans-non-variable": {
+       "types": "./dist/index.d.ts",
+       "default": "./dist/sans-non-variable.js"
 -    }
 +    },
 +    "./assets/fonts/*": "./dist/fonts/*"
