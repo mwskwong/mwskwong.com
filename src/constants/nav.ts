@@ -28,7 +28,7 @@ export const blog = {
 export const blogRssFeed = {
   id: undefined,
   label: undefined,
-  pathname: `${blog.pathname}/feed`,
+  pathname: `${blog.pathname}/rss.xml`,
 } as const;
 export const guestbook = {
   id: undefined,
