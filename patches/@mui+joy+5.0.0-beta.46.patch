@@ -1,0 +1,13 @@
+diff --git a/node_modules/@mui/joy/Grid/Grid.js b/node_modules/@mui/joy/Grid/Grid.js
+index c6df562..2dbe403 100644
+--- a/node_modules/@mui/joy/Grid/Grid.js
++++ b/node_modules/@mui/joy/Grid/Grid.js
+@@ -1,7 +1,7 @@
+ 'use client';
+ 
+ import PropTypes from 'prop-types';
+-import { createGrid } from '@mui/system/Unstable_Grid';
++import { createGrid } from '@mui/system/Grid';
+ import { styled, useThemeProps } from '../styles';
+ /**
+  *
