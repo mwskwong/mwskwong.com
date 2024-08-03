@@ -26,7 +26,7 @@ export const theme = extendTheme({
     code: GeistMono.style.fontFamily,
   },
   zIndex: {
-    header: 900,
+    header: 1100,
   },
   components: {
     JoyCheckbox: {
