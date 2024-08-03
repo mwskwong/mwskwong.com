@@ -16,7 +16,7 @@ export const ModeToggleButton: FC<ModeToggleButtonProps> = (props) => {
       onClick={() => setMode(resolvedMode === 'dark' ? 'light' : 'dark')}
       {...props}
     >
-      <NoSsr>{resolvedMode === 'light' ? <Sun /> : <Moon />}</NoSsr>
+      <NoSsr>{resolvedMode === 'dark' ? <Moon /> : <Sun />}</NoSsr>
     </IconButton>
   );
 };
