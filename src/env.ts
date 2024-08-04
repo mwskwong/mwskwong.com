@@ -45,15 +45,31 @@ export const env = createEnv({
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_VERCEL_ENV
-      ? process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL &&
-        process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL &&
-        `https://${
-          process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
-            ? process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
-            : process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL
-        }`
-      : `http://localhost:${process.env.PORT ?? 3000}`,
+    // Ref: https://github.com/vercel/next.js/blob/677c9b372faef680d17e9ba224743f44e1107661/packages/next/src/lib/metadata/resolvers/resolve-url.ts#L24
+    NEXT_PUBLIC_SITE_URL: (() => {
+      const localUrl = `http://localhost:${process.env.PORT ?? 3000}`;
+      if (process.env.NODE_ENV === 'development') return localUrl;
+
+      const previewDeploymentOrigin =
+        process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
+        process.env.NEXT_PUBLIC_VERCEL_URL;
+      const previewDeploymentUrl = previewDeploymentOrigin
+        ? `https://${previewDeploymentOrigin}`
+        : undefined;
+      if (
+        process.env.NODE_ENV === 'production' &&
+        previewDeploymentUrl &&
+        process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
+      ) {
+        return previewDeploymentUrl;
+      }
+
+      const productionDeploymentUrl = process.env
+        .NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+        : undefined;
+      return productionDeploymentUrl ?? localUrl;
+    })(),
     NEXT_PUBLIC_SITE_DISPLAY_NAME:
       process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL &&
       capitalize(process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL),
