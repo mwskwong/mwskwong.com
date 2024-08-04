@@ -43,12 +43,12 @@ export const Views: FC<ViewsProps> = async ({
 export type ViewsSkeletonProps = Omit<ViewsProps, 'blogIds' | 'blogId'>;
 export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
   hideIcon,
+  sx,
   ...props
 }) => (
   <Typography
-    // FIXME: not using sx prop here to prevent CLS
-    display={hideIcon ? 'flex' : undefined}
     startDecorator={!hideIcon && <Eye />}
+    sx={mergeSx({ display: hideIcon ? 'flex' : undefined }, sx)}
     {...props}
   >
     <Skeleton level={props.level} variant="text" width="3ch" />
