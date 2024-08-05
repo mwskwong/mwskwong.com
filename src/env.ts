@@ -2,7 +2,6 @@ import {
   type InferOutput,
   custom,
   literal,
-  minLength,
   object,
   optional,
   parse,
@@ -47,8 +46,6 @@ const EnvSchema = object({
 
     return optional(string());
   })(),
-  NEXT_PUBLIC_SITE_URL: pipe(string(), url()),
-  NEXT_PUBLIC_SITE_DISPLAY_NAME: pipe(string(), minLength(1)),
   NEXT_PUBLIC_VERCEL_ENV: VercelEnvSchema,
   PORT: optional(
     pipe(
