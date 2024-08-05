@@ -81,7 +81,9 @@ process.env.NEXT_PUBLIC_SITE_DISPLAY_NAME = capitalize(
   process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL,
 );
 
-parse(EnvSchema, process.env);
+if (process.env.npm_lifecycle_event !== 'lint') {
+  parse(EnvSchema, process.env);
+}
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace -- this is a valid namespace form @types/node
