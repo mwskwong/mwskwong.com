@@ -1,7 +1,7 @@
 import { type MetadataRoute } from 'next';
 
 import * as nav from '@/constants/nav';
-import { env } from '@/env';
+import { siteUrl } from '@/constants/site-config';
 import { getBlogs, getPrivacyPolicy } from '@/lib/queries';
 
 const sitemap = async () => {
@@ -14,14 +14,14 @@ const sitemap = async () => {
     ...Object.values(nav)
       .filter(({ id }) => !id)
       .map(({ pathname }) => ({
-        url: env.NEXT_PUBLIC_SITE_URL + pathname,
+        url: siteUrl + pathname,
         lastModified:
           pathname === nav.privacyPolicy.pathname
             ? privacyPolicy.updatedAt
             : new Date(),
       })),
     ...blogs.map(({ slug, updatedAt }) => ({
-      url: `${env.NEXT_PUBLIC_SITE_URL}${nav.blog.pathname}/${slug}`,
+      url: `${siteUrl}${nav.blog.pathname}/${slug}`,
       lastModified: updatedAt,
     })),
   ] satisfies MetadataRoute.Sitemap;

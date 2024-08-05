@@ -1,11 +1,11 @@
+import './src/env';
+
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 import dedent from 'dedent';
 import { type NextConfig } from 'next';
 
-import { env } from './src/env';
-
 const withBundleAnalyzer = NextBundleAnalyzer({
-  enabled: env.ANALYZE,
+  enabled: process.env.ANALYZE === 'true',
 });
 
 const config = {

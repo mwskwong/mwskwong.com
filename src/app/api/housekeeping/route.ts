@@ -1,11 +1,13 @@
 import { headers } from 'next/headers';
 
-import { env } from '@/env';
 import { prisma } from '@/lib/clients';
 
 export const GET = async () => {
   const authorization = headers().get('Authorization');
-  if (env.CRON_SECRET && authorization !== `Bearer ${env.CRON_SECRET}`) {
+  if (
+    process.env.CRON_SECRET &&
+    authorization !== `Bearer ${process.env.CRON_SECRET}`
+  ) {
     return Response.json({ status: 1 }, { status: 401 });
   }
 

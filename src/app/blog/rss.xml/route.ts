@@ -2,7 +2,7 @@ import { Feed } from 'feed';
 
 import { email, firstName, lastName, middleName } from '@/constants/content';
 import { blog, blogRssFeed } from '@/constants/nav';
-import { env } from '@/env';
+import { siteUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 
 const name = `${firstName} ${lastName}`;
@@ -12,12 +12,12 @@ export const GET = async () => {
   const blogFeed = new Feed({
     title: `${name} ${blog.label}`,
     description: 'Personal perspectives on a broad range of topics.',
-    id: env.NEXT_PUBLIC_SITE_URL + blogRssFeed.pathname,
-    link: env.NEXT_PUBLIC_SITE_URL + blog.pathname,
+    id: siteUrl + blogRssFeed.pathname,
+    link: siteUrl + blog.pathname,
     language: 'en',
     copyright: `© ${new Date().getFullYear()} ${lastName.toUpperCase()}, ${firstName} ${middleName}`,
     feedLinks: {
-      rss: env.NEXT_PUBLIC_SITE_URL + blogRssFeed.pathname,
+      rss: siteUrl + blogRssFeed.pathname,
       atom: 'self',
     },
   });
@@ -31,9 +31,9 @@ export const GET = async () => {
     updatedAt,
   } of blogs) {
     blogFeed.addItem({
-      guid: `${env.NEXT_PUBLIC_SITE_URL}${blog.pathname}/${slug}`,
+      guid: `${siteUrl}${blog.pathname}/${slug}`,
       title,
-      link: `${env.NEXT_PUBLIC_SITE_URL}${blog.pathname}/${slug}`,
+      link: `${siteUrl}${blog.pathname}/${slug}`,
       description,
       author: [{ name, email }],
       published: new Date(createdAt),

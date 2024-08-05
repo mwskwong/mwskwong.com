@@ -1,6 +1,6 @@
 'use client';
 
-import { zodResolver } from '@hookform/resolvers/zod';
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import {
   Alert,
   Box,
@@ -32,7 +32,7 @@ import {
   home,
 } from '@/constants/nav';
 import { submitContactForm } from '@/lib/actions';
-import { type ContactForm, contactForm } from '@/lib/validators';
+import { type ContactFormData, ContactFormSchema } from '@/lib/validators';
 
 export type ContactProps = Omit<BoxProps<'section'>, 'children'>;
 export const Contact: FC<ContactProps> = (props) => {
@@ -43,8 +43,8 @@ export const Contact: FC<ContactProps> = (props) => {
     setError,
     setValue,
     trigger,
-  } = useForm<ContactForm>({
-    resolver: zodResolver(contactForm),
+  } = useForm<ContactFormData>({
+    resolver: valibotResolver(ContactFormSchema),
     mode: 'onTouched',
     defaultValues: {
       name: '',

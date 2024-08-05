@@ -10,7 +10,7 @@ import {
 } from '@mui/joy';
 import { type Metadata, type ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
-import { type FC, Fragment, Suspense } from 'react';
+import { type FC, Suspense } from 'react';
 import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
@@ -18,7 +18,7 @@ import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
 import { blog, blogRssFeed, home } from '@/constants/nav';
-import { env } from '@/env';
+import { siteUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
@@ -110,7 +110,7 @@ const Blogs: FC = async () => {
               {
                 '@type': 'ListItem',
                 name: home.label,
-                item: env.NEXT_PUBLIC_SITE_URL,
+                item: siteUrl,
                 position: 1,
               },
               {
