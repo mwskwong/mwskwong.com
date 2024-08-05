@@ -1,6 +1,7 @@
 'use server';
 
 import { type ErrorResponse } from 'resend';
+import { parse } from 'valibot';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
 import { ContactFormNotification } from '@/components/emails/contact-form-notification';
@@ -8,7 +9,7 @@ import { email, firstName, lastName } from '@/constants/content';
 import { env } from '@/env';
 import { prisma, resend } from '@/lib/clients';
 
-import { type ContactForm, contactForm } from './validators';
+import { type ContactFormData, ContactFormSchema } from './validators';
 
 export const incrBlogViewById = async (id: string) =>
   prisma.blogMetadata.upsert({
@@ -17,8 +18,8 @@ export const incrBlogViewById = async (id: string) =>
     create: { id },
   });
 
-export const submitContactForm = async (data: ContactForm) => {
-  contactForm.parse(data);
+export const submitContactForm = async (data: ContactFormData) => {
+  parse(ContactFormSchema, data);
   await prisma.contactFormSubmission.create({ data });
 
   const from = `${firstName} ${lastName} <${email}>`;
