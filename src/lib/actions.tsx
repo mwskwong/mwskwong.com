@@ -6,7 +6,6 @@ import { parse } from 'valibot';
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
 import { ContactFormNotification } from '@/components/emails/contact-form-notification';
 import { email, firstName, lastName } from '@/constants/content';
-import { env } from '@/env';
 import { prisma, resend } from '@/lib/clients';
 
 import { type ContactFormData, ContactFormSchema } from './validators';
@@ -29,8 +28,8 @@ export const submitContactForm = async (data: ContactFormData) => {
       to: email,
       reply_to: data.email,
       subject: data.subject
-        ? `[${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}] ${data.subject}`
-        : `You got a message from ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}`,
+        ? `[${process.env.NEXT_PUBLIC_SITE_DISPLAY_NAME}] ${data.subject}`
+        : `You got a message from ${process.env.NEXT_PUBLIC_SITE_DISPLAY_NAME}`,
       react: <ContactFormNotification {...data} />,
     },
   ] as Parameters<typeof resend.batch.send>[0];
@@ -39,7 +38,7 @@ export const submitContactForm = async (data: ContactFormData) => {
     emails.push({
       from,
       to: data.email,
-      subject: `Got Your Message From ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}!`,
+      subject: `Got Your Message From ${process.env.NEXT_PUBLIC_SITE_DISPLAY_NAME}!`,
       react: <ContactFormAcknowledgement {...data} />,
     });
   }

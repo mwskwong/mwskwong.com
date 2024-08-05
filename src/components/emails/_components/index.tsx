@@ -11,8 +11,6 @@ import { Img } from '@react-email/img';
 import { Text as EmailText, type TextProps } from '@react-email/text';
 import { type FC, type PropsWithChildren } from 'react';
 
-import { env } from '@/env';
-
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
   <Html>
     <Body
@@ -24,9 +22,9 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
     >
       <Container style={{ paddingTop: 8 * 3, paddingBottom: 8 * 6 }}>
         <Img
-          alt={env.NEXT_PUBLIC_SITE_DISPLAY_NAME}
+          alt={process.env.NEXT_PUBLIC_SITE_DISPLAY_NAME}
           height={50}
-          src={`${env.NEXT_PUBLIC_SITE_URL}/apple-icon`}
+          src={`${process.env.NEXT_PUBLIC_SITE_URL}/apple-icon`}
           width={50}
           style={{
             margin: 'auto',

@@ -22,7 +22,6 @@ import { usePathname } from 'next/navigation';
 import { type FC } from 'react';
 
 import { firstName, lastName } from '@/constants/content';
-import { env } from '@/env';
 
 export interface ShareDropdownProps extends Omit<DropdownProps, 'children'> {
   blog: {
@@ -34,7 +33,7 @@ export interface ShareDropdownProps extends Omit<DropdownProps, 'children'> {
 
 export const ShareDropdown: FC<ShareDropdownProps> = ({ blog, ...props }) => {
   const pathname = usePathname();
-  const url = env.NEXT_PUBLIC_SITE_URL + pathname;
+  const url = process.env.NEXT_PUBLIC_SITE_URL + pathname;
   const text = `"${blog.title}" by ${firstName} ${lastName}`;
   const socialMediaOptions = [
     {

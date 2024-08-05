@@ -27,7 +27,6 @@ import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
 import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
-import { env } from '@/env';
 import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,
@@ -195,7 +194,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
-                url: `${env.NEXT_PUBLIC_SITE_URL}${blogNav.pathname}/${slug}`,
+                url: `${process.env.NEXT_PUBLIC_SITE_URL}${blogNav.pathname}/${slug}`,
                 author: { '@id': person['@id'] },
                 keywords: blog.categories,
               } satisfies BlogPosting,
@@ -205,13 +204,13 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                   {
                     '@type': 'ListItem',
                     name: home.label,
-                    item: env.NEXT_PUBLIC_SITE_URL,
+                    item: process.env.NEXT_PUBLIC_SITE_URL,
                     position: 1,
                   },
                   {
                     '@type': 'ListItem',
                     name: blogNav.label,
-                    item: env.NEXT_PUBLIC_SITE_URL + blogNav.pathname,
+                    item: process.env.NEXT_PUBLIC_SITE_URL + blogNav.pathname,
                     position: 2,
                   },
                   {
@@ -249,7 +248,7 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
     description,
     openGraph: {
       type: 'article',
-      authors: env.NEXT_PUBLIC_SITE_URL,
+      authors: process.env.NEXT_PUBLIC_SITE_URL,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       tags: categories,

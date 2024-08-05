@@ -8,7 +8,6 @@ import {
   phone,
   selfIntroduction,
 } from '@/constants/content';
-import { env } from '@/env';
 
 import {
   getExperiences,
@@ -33,7 +32,7 @@ export const getPerson = async () => {
     jobTitle: latestJobTitle,
     email,
     address,
-    url: env.NEXT_PUBLIC_SITE_URL,
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     image: personalPhoto,
     sameAs: socialMediaProfiles.map(({ url }) => url),
     description: selfIntroduction,
