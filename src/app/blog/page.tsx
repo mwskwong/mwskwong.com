@@ -18,6 +18,7 @@ import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
 import { blog, blogRssFeed, home } from '@/constants/nav';
+import { siteUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
@@ -109,7 +110,7 @@ const Blogs: FC = async () => {
               {
                 '@type': 'ListItem',
                 name: home.label,
-                item: process.env.NEXT_PUBLIC_SITE_URL,
+                item: siteUrl,
                 position: 1,
               },
               {

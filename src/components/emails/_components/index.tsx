@@ -11,6 +11,8 @@ import { Img } from '@react-email/img';
 import { Text as EmailText, type TextProps } from '@react-email/text';
 import { type FC, type PropsWithChildren } from 'react';
 
+import { siteDisplayName, siteUrl } from '@/constants/site-config';
+
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
   <Html>
     <Body
@@ -22,9 +24,9 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => (
     >
       <Container style={{ paddingTop: 8 * 3, paddingBottom: 8 * 6 }}>
         <Img
-          alt={process.env.NEXT_PUBLIC_SITE_DISPLAY_NAME}
+          alt={siteDisplayName}
           height={50}
-          src={`${process.env.NEXT_PUBLIC_SITE_URL}/apple-icon`}
+          src={`${siteUrl}/apple-icon`}
           width={50}
           style={{
             margin: 'auto',

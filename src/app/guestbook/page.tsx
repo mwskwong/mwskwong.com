@@ -18,6 +18,7 @@ import {
 } from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
 import { contactForm, guestbook, home } from '@/constants/nav';
+import { siteDisplayName, siteUrl } from '@/constants/site-config';
 import { getPerson } from '@/lib/json-ld';
 import { getGuestbookSubmissions } from '@/lib/queries';
 
@@ -50,13 +51,13 @@ const JsonLd: FC = async () => {
                     text: escape(message),
                   }) satisfies Comment,
               ),
-              headline: `${process.env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${guestbook.label}`,
+              headline: `${siteDisplayName} ${guestbook.label}`,
               interactionStatistic: {
                 '@type': 'InteractionCounter',
                 interactionType: { '@type': 'CommentAction' },
                 userInteractionCount: comments.length,
               },
-              url: process.env.NEXT_PUBLIC_SITE_URL + guestbook.pathname,
+              url: siteUrl + guestbook.pathname,
             } satisfies DiscussionForumPosting,
             {
               '@type': 'BreadcrumbList',
@@ -64,7 +65,7 @@ const JsonLd: FC = async () => {
                 {
                   '@type': 'ListItem',
                   name: home.label,
-                  item: process.env.NEXT_PUBLIC_SITE_URL,
+                  item: siteUrl,
                   position: 1,
                 },
                 {

@@ -11,6 +11,7 @@ import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
 import { home } from '@/constants/nav';
+import { siteUrl } from '@/constants/site-config';
 
 const bgcolors = {
   hero: 'background.body',
@@ -70,7 +71,7 @@ const Home: FC = () => (
               '@type': 'WebSite',
               name: `${firstName} ${lastName}`,
               alternateName: ['mwskwong', 'MK'],
-              url: process.env.NEXT_PUBLIC_SITE_URL,
+              url: siteUrl,
             } satisfies WebSite,
             {
               '@type': 'BreadcrumbList',

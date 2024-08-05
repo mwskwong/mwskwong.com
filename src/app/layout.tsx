@@ -11,6 +11,7 @@ import {
   lastName,
   selfIntroduction,
 } from '@/constants/content';
+import { siteUrl } from '@/constants/site-config';
 
 import { Providers } from './providers';
 
@@ -39,8 +40,8 @@ export const metadata = {
     template: `%s | ${name}`,
   },
   description: selfIntroduction,
-  authors: { name, url: process.env.NEXT_PUBLIC_SITE_URL },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
+  authors: { name, url: siteUrl },
+  metadataBase: new URL(siteUrl),
   openGraph: { url: '/', type: 'website' },
   robots: { 'max-image-preview': 'large' },
   archives: ['https://v2.mwskwong.com'],

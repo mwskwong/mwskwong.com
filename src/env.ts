@@ -1,6 +1,6 @@
-import { capitalize } from 'lodash-es';
 import {
   type InferOutput,
+  custom,
   literal,
   minLength,
   object,
@@ -50,36 +50,16 @@ const EnvSchema = object({
   NEXT_PUBLIC_SITE_URL: pipe(string(), url()),
   NEXT_PUBLIC_SITE_DISPLAY_NAME: pipe(string(), minLength(1)),
   NEXT_PUBLIC_VERCEL_ENV: VercelEnvSchema,
+  PORT: optional(
+    pipe(
+      string(),
+      custom((input) => !isNaN(Number(input)), 'Should be a `{number}`'),
+    ),
+  ),
+  NEXT_PUBLIC_VERCEL_BRANCH_URL: optional(string()),
+  NEXT_PUBLIC_VERCEL_URL: optional(string()),
+  NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL: string(),
 });
-
-process.env.NEXT_PUBLIC_SITE_URL = (() => {
-  const localUrl = `http://localhost:${process.env.PORT ?? 3000}`;
-  if (process.env.NODE_ENV === 'development') return localUrl;
-
-  const previewDeploymentOrigin =
-    process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
-    process.env.NEXT_PUBLIC_VERCEL_URL;
-  const previewDeploymentUrl = previewDeploymentOrigin
-    ? `https://${previewDeploymentOrigin}`
-    : undefined;
-  if (
-    process.env.NODE_ENV === 'production' &&
-    previewDeploymentUrl &&
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-  ) {
-    return previewDeploymentUrl;
-  }
-
-  const productionDeploymentUrl = process.env
-    .NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
-    : undefined;
-  return productionDeploymentUrl ?? localUrl;
-})();
-
-process.env.NEXT_PUBLIC_SITE_DISPLAY_NAME = capitalize(
-  process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL,
-);
 
 if (process.env.npm_lifecycle_event !== 'lint') {
   parse(EnvSchema, process.env);
