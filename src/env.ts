@@ -17,6 +17,17 @@ const VercelEnvSchema = optional(
   picklist(['development', 'preview', 'production']),
 );
 
+const VercelUrlSchema = pipe(
+  string(),
+  custom((input) => {
+    try {
+      return Boolean(new URL(`https://${input as string}`).hostname);
+    } catch {
+      return false;
+    }
+  }, 'Should be a hostname'),
+);
+
 const EnvSchema = object({
   DATABASE_URL: pipe(string(), url()),
   VERCEL_ENV: VercelEnvSchema,
@@ -53,9 +64,9 @@ const EnvSchema = object({
       custom((input) => !isNaN(Number(input)), 'Should be a `{number}`'),
     ),
   ),
-  NEXT_PUBLIC_VERCEL_BRANCH_URL: optional(string()),
-  NEXT_PUBLIC_VERCEL_URL: optional(string()),
-  NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL: string(),
+  NEXT_PUBLIC_VERCEL_BRANCH_URL: optional(VercelUrlSchema),
+  NEXT_PUBLIC_VERCEL_URL: optional(VercelUrlSchema),
+  NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL: VercelUrlSchema,
 });
 
 if (process.env.npm_lifecycle_event !== 'lint') {
