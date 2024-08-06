@@ -4,11 +4,11 @@ export const siteUrl = (() => {
   const localUrl = `http://localhost:${process.env.PORT ?? 3000}`;
   if (process.env.NODE_ENV === 'development') return localUrl;
 
-  const previewDeploymentOrigin =
+  const previewDeploymentHostname =
     process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
     process.env.NEXT_PUBLIC_VERCEL_URL;
-  const previewDeploymentUrl = previewDeploymentOrigin
-    ? `https://${previewDeploymentOrigin}`
+  const previewDeploymentUrl = previewDeploymentHostname
+    ? `https://${previewDeploymentHostname}`
     : undefined;
   if (
     process.env.NODE_ENV === 'production' &&
