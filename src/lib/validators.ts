@@ -2,7 +2,7 @@ import {
   type InferOutput,
   email,
   literal,
-  minLength,
+  nonEmpty,
   object,
   optional,
   pipe,
@@ -12,8 +12,8 @@ import {
 } from 'valibot';
 
 const BaseContactFormSchema = object({
-  name: pipe(string(), minLength(1, 'Name is required')),
-  message: pipe(string(), minLength(1, 'Message is required')),
+  name: pipe(string(), nonEmpty('Name is required')),
+  message: pipe(string(), nonEmpty('Message is required')),
 });
 
 export const ContactFormSchema = variant('showInGuestbook', [
@@ -21,10 +21,10 @@ export const ContactFormSchema = variant('showInGuestbook', [
     ...BaseContactFormSchema.entries,
     email: pipe(
       string(),
-      minLength(1, 'Email is required'),
+      nonEmpty('Email is required'),
       email('Not a valid email'),
     ),
-    subject: pipe(string(), minLength(1, 'Subject is required')),
+    subject: pipe(string(), nonEmpty('Subject is required')),
     showInGuestbook: literal(false),
   }),
   object({
