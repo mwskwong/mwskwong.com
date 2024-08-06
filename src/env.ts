@@ -1,6 +1,7 @@
 import {
   type InferOutput,
   custom,
+  lazy,
   literal,
   object,
   optional,
@@ -31,7 +32,7 @@ const VercelUrlSchema = pipe(
 const EnvSchema = object({
   DATABASE_URL: pipe(string(), url()),
   VERCEL_ENV: VercelEnvSchema,
-  CONTENTFUL_ENVIRONMENT: (() => {
+  CONTENTFUL_ENVIRONMENT: lazy(() => {
     switch (process.env.VERCEL_ENV) {
       case 'production':
         return literal('master');
@@ -44,19 +45,19 @@ const EnvSchema = object({
       default:
         return literal('development');
     }
-  })(),
+  }),
   CONTENTFUL_SPACE_ID: string(),
   CONTENTFUL_ACCESS_TOKEN: string(),
   RESEND_API_KEY: pipe(string(), startsWith('re_')),
   ANALYZE: optional(picklist(['true', 'false'])),
-  // WORKAROUND: self invoke a function here to avoid circular dependency between EnvSchema and process.env
-  CRON_SECRET: (() => {
+  CRON_SECRET: lazy(() => {
+    // WORKAROUND: don't use ternary operator here to avoid circular dependency between EnvSchema and process.env
     if (process.env.VERCEL === '1') {
       return string();
     }
 
     return optional(string());
-  })(),
+  }),
   NEXT_PUBLIC_VERCEL_ENV: VercelEnvSchema,
   PORT: optional(
     pipe(
