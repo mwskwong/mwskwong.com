@@ -1,6 +1,6 @@
 import { firstName } from '@/constants/content';
 
-import { Hr, Layout, Text } from './_components';
+import { Hr, Layout, Text } from './components';
 
 export interface ContactFormAcknowledgementProps {
   name: string;

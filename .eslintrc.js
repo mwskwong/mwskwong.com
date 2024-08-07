@@ -115,16 +115,14 @@ module.exports = {
         '*.config.{mjs,ts}',
         'src/app/**/{page,layout,not-found,*error,opengraph-image,apple-icon}.tsx',
         'src/app/**/{sitemap,robots}.ts',
-        'src/components/emails/*.tsx',
       ],
       rules: {
         'import/no-default-export': 'off',
         'import/prefer-default-export': ['error', { target: 'any' }],
       },
     },
-    // module declarations
     {
-      files: ['**/*.d.ts'],
+      files: ['**/*.d.ts', 'src/components/emails/*.tsx'],
       rules: { 'import/no-default-export': 'off' },
     },
   ],

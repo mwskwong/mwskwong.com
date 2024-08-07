@@ -3,7 +3,7 @@ import dedent from 'dedent';
 
 import { firstName } from '@/constants/content';
 
-import { Layout, Text } from './_components';
+import { Layout, Text } from './components';
 
 export interface ContactFormNotificationProps {
   name: string;
