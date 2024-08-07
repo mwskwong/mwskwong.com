@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 
 import { prisma } from '@/lib/clients';
 
+// Vercel Cron Jobs need to be GET requests
 export const GET = async () => {
   const authorization = headers().get('Authorization');
   if (
