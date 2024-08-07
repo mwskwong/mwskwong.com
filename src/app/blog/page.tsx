@@ -17,8 +17,7 @@ import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
-import { blog, blogRssFeed, home } from '@/constants/nav';
-import { siteUrl } from '@/constants/site-config';
+import { routes, siteUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
@@ -33,7 +32,7 @@ const Blogs: FC = async () => {
       <Container component="main" sx={{ py: 'var(--Section-paddingY)' }}>
         <Stack spacing={8}>
           <Stack spacing={2} sx={{ textAlign: 'center' }}>
-            <Typography level="h1">{blog.label}</Typography>
+            <Typography level="h1">{routes.blog.name}</Typography>
             <Typography>{description}</Typography>
           </Stack>
 
@@ -55,7 +54,7 @@ const Blogs: FC = async () => {
                         overlay
                         color="neutral"
                         component={NextLink}
-                        href={`${blog.pathname}/${slug}`}
+                        href={`${routes.blog.pathname}/${slug}`}
                         level="title-lg"
                         sx={{
                           display: '-webkit-box',
@@ -109,13 +108,13 @@ const Blogs: FC = async () => {
             itemListElement: [
               {
                 '@type': 'ListItem',
-                name: home.label,
+                name: routes.home.name,
                 item: siteUrl,
                 position: 1,
               },
               {
                 '@type': 'ListItem',
-                name: blog.label,
+                name: routes.blog.name,
                 position: 2,
               },
             ],
@@ -135,12 +134,12 @@ export const generateMetadata = async (
   const { openGraph } = await parent;
 
   return {
-    title: blog.label,
+    title: routes.blog.name,
     description,
-    openGraph: { ...openGraph, url: blog.pathname },
+    openGraph: { ...openGraph, url: routes.blog.pathname },
     alternates: {
-      canonical: blog.pathname,
-      types: { 'application/rss+xml': blogRssFeed.pathname },
+      canonical: routes.blog.pathname,
+      types: { 'application/rss+xml': routes.blogRssFeed.pathname },
     },
   } satisfies Metadata;
 };

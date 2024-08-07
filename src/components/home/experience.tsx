@@ -9,7 +9,7 @@ import {
 } from '@mui/joy';
 import { type FC } from 'react';
 
-import { experience } from '@/constants/nav';
+import { routes } from '@/constants/site-config';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
 import { Image } from '../image';
@@ -40,7 +40,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
       <Container>
         <Stack spacing={8}>
           <Typography
-            id={experience.id}
+            id={routes.experience.hash}
             level="h2"
             sx={{ textAlign: 'center' }}
           >

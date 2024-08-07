@@ -17,8 +17,7 @@ import {
   SubmissionListSkeleton,
 } from '@/components/guestbook/submission-list';
 import { SectionDivider } from '@/components/section-divider';
-import { contactForm, guestbook, home } from '@/constants/nav';
-import { siteDisplayName, siteUrl } from '@/constants/site-config';
+import { routes, siteDisplayName, siteUrl } from '@/constants/site-config';
 import { getPerson } from '@/lib/json-ld';
 import { getGuestbookSubmissions } from '@/lib/queries';
 
@@ -51,26 +50,26 @@ const JsonLd: FC = async () => {
                     text: escape(message),
                   }) satisfies Comment,
               ),
-              headline: `${siteDisplayName} ${guestbook.label}`,
+              headline: `${siteDisplayName} ${routes.guestbook.name}`,
               interactionStatistic: {
                 '@type': 'InteractionCounter',
                 interactionType: { '@type': 'CommentAction' },
                 userInteractionCount: comments.length,
               },
-              url: siteUrl + guestbook.pathname,
+              url: siteUrl + routes.guestbook.pathname,
             } satisfies DiscussionForumPosting,
             {
               '@type': 'BreadcrumbList',
               itemListElement: [
                 {
                   '@type': 'ListItem',
-                  name: home.label,
+                  name: routes.home.name,
                   item: siteUrl,
                   position: 1,
                 },
                 {
                   '@type': 'ListItem',
-                  name: guestbook.label,
+                  name: routes.guestbook.name,
                   position: 2,
                 },
               ],
@@ -94,18 +93,14 @@ const Guestbook: FC = () => (
     >
       <Stack spacing={8}>
         <Stack spacing={2} sx={{ textAlign: 'center' }}>
-          <Typography level="h1">{guestbook.label}</Typography>
+          <Typography level="h1">{routes.guestbook.name}</Typography>
           <Typography>{description}</Typography>
         </Stack>
         <Button
           component={Link}
+          href={{ ...routes.contactForm, query: { showInGuestbook: true } }}
           size="lg"
           sx={{ alignSelf: { sm: 'center' } }}
-          href={{
-            pathname: contactForm.pathname,
-            hash: contactForm.id,
-            query: { showInGuestbook: true },
-          }}
         >
           Leave A Message
         </Button>
@@ -132,10 +127,10 @@ export const generateMetadata = async (
   const { openGraph } = await parent;
 
   return {
-    title: guestbook.label,
+    title: routes.guestbook.name,
     description,
-    openGraph: { ...openGraph, url: guestbook.pathname },
-    alternates: { canonical: guestbook.pathname },
+    openGraph: { ...openGraph, url: routes.guestbook.pathname },
+    alternates: { canonical: routes.guestbook.pathname },
   } satisfies Metadata;
 };
 

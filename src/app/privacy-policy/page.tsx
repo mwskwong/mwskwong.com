@@ -5,14 +5,13 @@ import { type Article, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
-import { home, privacyPolicy } from '@/constants/nav';
-import { siteDisplayName, siteUrl } from '@/constants/site-config';
+import { routes, siteDisplayName, siteUrl } from '@/constants/site-config';
 import { getPerson } from '@/lib/json-ld';
 import { getPrivacyPolicy } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
-const description = `${privacyPolicy.label} for ${siteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
+const description = `${routes.privacyPolicy.name} for ${siteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
 
 const PrivacyPolicy: FC = async () => {
   const [{ createdAt, updatedAt, content }, person] = await Promise.all([
@@ -28,7 +27,7 @@ const PrivacyPolicy: FC = async () => {
           sx={{ py: 'var(--Section-paddingY)' }}
         >
           <Typography level="h1" sx={{ mb: 3, mt: 1 }}>
-            {privacyPolicy.label}
+            {routes.privacyPolicy.name}
           </Typography>
           <Typography level="title-md" sx={{ my: 2 }}>
             This Privacy Policy is subject to updates. The last revision was
@@ -46,12 +45,12 @@ const PrivacyPolicy: FC = async () => {
             '@graph': [
               {
                 '@type': 'Article',
-                headline: `${siteDisplayName} ${privacyPolicy.label}`,
+                headline: `${siteDisplayName} ${routes.privacyPolicy.name}`,
                 description,
                 image: `${siteUrl}/opengraph-image`,
                 datePublished: createdAt,
                 dateModified: updatedAt,
-                url: siteUrl + privacyPolicy.pathname,
+                url: siteUrl + routes.privacyPolicy.pathname,
                 author: { '@id': person['@id'] },
               } satisfies Article,
               {
@@ -59,13 +58,13 @@ const PrivacyPolicy: FC = async () => {
                 itemListElement: [
                   {
                     '@type': 'ListItem',
-                    name: home.label,
+                    name: routes.home.name,
                     item: siteUrl,
                     position: 1,
                   },
                   {
                     '@type': 'ListItem',
-                    name: privacyPolicy.label,
+                    name: routes.privacyPolicy.name,
                     position: 2,
                   },
                 ],
@@ -91,7 +90,7 @@ export const generateMetadata = async (
   ]);
 
   return {
-    title: privacyPolicy.label,
+    title: routes.privacyPolicy.name,
     description,
     openGraph: {
       ...openGraph,
@@ -99,9 +98,9 @@ export const generateMetadata = async (
       authors: siteUrl,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
-      url: privacyPolicy.pathname,
+      url: routes.privacyPolicy.pathname,
     },
-    alternates: { canonical: privacyPolicy.pathname },
+    alternates: { canonical: routes.privacyPolicy.pathname },
   } satisfies Metadata;
 };
 

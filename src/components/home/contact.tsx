@@ -25,12 +25,7 @@ import { type FC, useEffect } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
 
 import { contactInfo } from '@/constants/content';
-import {
-  contact,
-  contactForm as contactFormNav,
-  guestbook,
-  home,
-} from '@/constants/nav';
+import { routes } from '@/constants/site-config';
 import { submitContactForm } from '@/lib/actions';
 import { type ContactFormData, ContactFormSchema } from '@/lib/validators';
 
@@ -80,7 +75,11 @@ export const Contact: FC<ContactProps> = (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={8}>
-          <Typography id={contact.id} level="h2" sx={{ textAlign: 'center' }}>
+          <Typography
+            id={routes.contact.hash}
+            level="h2"
+            sx={{ textAlign: 'center' }}
+          >
             Contact
           </Typography>
           <Grid
@@ -171,15 +170,15 @@ export const Contact: FC<ContactProps> = (props) => {
                 >
                   <Button
                     component={NextLink}
-                    href={guestbook.pathname}
+                    href={routes.guestbook}
                     size="lg"
                   >
-                    {guestbook.label}
+                    {routes.guestbook.name}
                   </Button>
                   <Button
                     color="neutral"
                     component={NextLink}
-                    href={{ pathname: home.pathname, hash: home.id }}
+                    href={routes.home}
                     size="lg"
                     variant="outlined"
                   >
@@ -192,7 +191,7 @@ export const Contact: FC<ContactProps> = (props) => {
                 <Grid
                   container
                   columnSpacing={2}
-                  id={contactFormNav.id}
+                  id={routes.contactForm.hash}
                   rowSpacing={1}
                   size={{ md: 8, xs: 12 }}
                   // WORKAROUND: nested grid container needs to be a direct child of the parent Grid container to be identified
@@ -330,9 +329,9 @@ export const Contact: FC<ContactProps> = (props) => {
                                 will appear in the{' '}
                                 <Link
                                   component={NextLink}
-                                  href={guestbook.pathname}
+                                  href={routes.guestbook}
                                 >
-                                  {guestbook.label}
+                                  {routes.guestbook.name}
                                 </Link>
                                 .
                               </Typography>
