@@ -5,13 +5,14 @@ import { type Article, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
+import { firstName, lastName } from '@/constants/content';
 import { routes, siteDisplayName, siteUrl } from '@/constants/site-config';
 import { getPerson } from '@/lib/json-ld';
 import { getPrivacyPolicy } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
-const description = `${routes.privacyPolicy.name} for ${siteDisplayName}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
+const description = `Learn about ${firstName} ${lastName}'s privacy practices, including data collection, usage, and protection. Understand your rights and how we ensure the security of your information on ${siteDisplayName}.`;
 
 const PrivacyPolicy: FC = async () => {
   const [{ createdAt, updatedAt, content }, person] = await Promise.all([
