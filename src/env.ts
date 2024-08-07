@@ -1,7 +1,7 @@
 import {
   type InferOutput,
-  custom,
   literal,
+  nonEmpty,
   object,
   optional,
   parse,
@@ -17,16 +17,7 @@ const VercelEnvSchema = optional(
   picklist(['development', 'preview', 'production']),
 );
 
-const VercelUrlSchema = pipe(
-  string(),
-  custom((input) => {
-    try {
-      return Boolean(new URL(`https://${input as string}`).hostname);
-    } catch {
-      return false;
-    }
-  }, 'Should be a hostname'),
-);
+const VercelUrlSchema = pipe(string(), nonEmpty());
 
 const EnvSchema = object({
   DATABASE_URL: pipe(string(), url()),
@@ -58,12 +49,7 @@ const EnvSchema = object({
     return optional(string());
   })(),
   NEXT_PUBLIC_VERCEL_ENV: VercelEnvSchema,
-  PORT: optional(
-    pipe(
-      string(),
-      custom((input) => !isNaN(Number(input)), 'Should be a `{number}`'),
-    ),
-  ),
+  PORT: optional(pipe(string(), regex(/^\d+$/))),
   NEXT_PUBLIC_VERCEL_BRANCH_URL: optional(VercelUrlSchema),
   NEXT_PUBLIC_VERCEL_URL: optional(VercelUrlSchema),
   NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL: VercelUrlSchema,
