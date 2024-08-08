@@ -19,6 +19,7 @@ import { routes } from '@/constants/site-config';
 import { getSocialMediaProfiles } from '@/lib/queries';
 
 import { Icon as ContentfulIcon } from './contentful';
+import { Logo } from './logo';
 import { ModeToggleButton } from './mode-toggle-button';
 import { NavDrawer } from './nav-drawer';
 
@@ -68,7 +69,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
               component={NextLink}
               href={routes.home}
             >
-              {/* <Icon width={32} /> */}
+              <Logo priority alt="" src="icon-light.svg" />
             </Link>
             <List
               orientation="horizontal"
