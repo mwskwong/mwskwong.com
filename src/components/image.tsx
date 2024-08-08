@@ -48,7 +48,7 @@ export const Image: FC<ImageProps> = ({
             (theme) => ({
               display: 'none',
               [theme.getColorSchemeSelector('dark')]: {
-                display: 'unset',
+                display: 'block',
               },
             }),
             sx,
