@@ -2,7 +2,7 @@ import { capitalize } from 'lodash-es';
 
 export const siteUrl = (() => {
   const localUrl = `http://localhost:${process.env.PORT ?? 3000}`;
-  if (process.env.NODE_ENV === 'development') return localUrl;
+  if (!process.env.VERCEL) return localUrl;
 
   const previewDeploymentHostname =
     process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
@@ -18,11 +18,7 @@ export const siteUrl = (() => {
     return previewDeploymentUrl;
   }
 
-  const productionDeploymentUrl = process.env
-    .NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
-    : undefined;
-  return productionDeploymentUrl ?? localUrl;
+  return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
 })();
 
 export const siteDisplayName = capitalize(
