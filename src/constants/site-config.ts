@@ -1,5 +1,3 @@
-import { type UrlObject } from 'node:url';
-
 import { capitalize } from 'lodash-es';
 
 export const siteUrl = (() => {
@@ -31,7 +29,7 @@ export const siteDisplayName = capitalize(
   process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL,
 );
 
-export interface Route extends UrlObject {
+export interface Route {
   name: string;
   pathname: string;
   hash?: string;
