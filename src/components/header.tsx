@@ -13,7 +13,7 @@ import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { type FC } from 'react';
 
-import Icon from '@/app/icon.svg';
+// import Icon from '@/app/icon.svg';
 import { github, linkedin } from '@/constants/contentful-ids';
 import { routes } from '@/constants/site-config';
 import { getSocialMediaProfiles } from '@/lib/queries';
@@ -68,7 +68,7 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
               component={NextLink}
               href={routes.home}
             >
-              <Icon width={32} />
+              {/* <Icon width={32} /> */}
             </Link>
             <List
               orientation="horizontal"

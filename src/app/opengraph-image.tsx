@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-import Icon from '@/app/icon.svg';
 import { firstName, lastName } from '@/constants/content';
+import { siteUrl } from '@/constants/site-config';
 
 export const size = { width: 2560, height: 1280 };
 export const contentType = 'image/png';
@@ -21,8 +21,12 @@ const OpengraphImage = async () =>
           justifyContent: 'center',
         }}
       >
-        {/* --joy-palette-primary-plainColor */}
-        <Icon fill="#0B6BCB" width={400} />
+        <img
+          height={400}
+          src={`${siteUrl}/icon-light.svg`}
+          style={{ objectFit: 'contain' }}
+          width={400}
+        />
         <h1
           // https://mui.com/joy-ui/customization/default-theme-viewer/
           style={{

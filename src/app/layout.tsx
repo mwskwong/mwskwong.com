@@ -44,6 +44,12 @@ export const metadata = {
   metadataBase: new URL(siteUrl),
   openGraph: { url: '/', type: 'website' },
   robots: { 'max-image-preview': 'large' },
+  icons: {
+    icon: [
+      { url: '/icon-light.svg' },
+      { url: '/icon-dark.svg', media: '(prefers-color-scheme: dark)' },
+    ],
+  },
   archives: ['https://v2.mwskwong.com'],
   alternates: { canonical: '/' },
 } satisfies Metadata;

@@ -125,5 +125,9 @@ module.exports = {
       files: ['**/*.d.ts', 'src/components/emails/*.tsx'],
       rules: { 'import/no-default-export': 'off' },
     },
+    {
+      files: ['src/app/**/apple-icon.tsx', 'src/app/**/opengraph-image.tsx'],
+      rules: { '@next/next/no-img-element': 'off', 'jsx-a11y/alt-text': 'off' },
+    },
   ],
 };

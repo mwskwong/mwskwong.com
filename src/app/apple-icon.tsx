@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-import Icon from '@/app/icon.svg';
+import { siteUrl } from '@/constants/site-config';
 
 export const runtime = 'edge';
 export const size = { width: 180, height: 180 };
@@ -20,8 +20,12 @@ const appleIcon = () =>
           background: '#FFF', // --joy-palette-background-body
         }}
       >
-        {/* --joy-palette-primary-plainColor */}
-        <Icon fill="#0B6BCB" width="100%" />
+        <img
+          height="100%"
+          src={`${siteUrl}/icon-light.svg`}
+          style={{ objectFit: 'contain' }}
+          width="100%"
+        />
       </div>
     ),
     size,
