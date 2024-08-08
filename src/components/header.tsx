@@ -69,7 +69,12 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
               component={NextLink}
               href={routes.home}
             >
-              <Logo priority alt="" src="icon-light.svg" />
+              <Logo
+                priority
+                alt=""
+                srcLight="icon-light.svg"
+                srcDark="icon-dark.svg"
+              />
             </Link>
             <List
               orientation="horizontal"
