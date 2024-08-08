@@ -1,3 +1,5 @@
+import { readFile } from 'node:fs/promises';
+
 import { ImageResponse } from 'next/og';
 
 import { firstName, lastName } from '@/constants/content';
@@ -5,7 +7,6 @@ import { siteUrl } from '@/constants/site-config';
 
 export const size = { width: 2560, height: 1280 };
 export const contentType = 'image/png';
-export const runtime = 'edge';
 
 const OpengraphImage = async () =>
   new ImageResponse(
@@ -59,12 +60,9 @@ const OpengraphImage = async () =>
       fonts: [
         {
           name: 'Geist Sans',
-          data: await fetch(
-            new URL(
-              'geist/assets/fonts/geist-sans/Geist-Bold.ttf',
-              import.meta.url,
-            ),
-          ).then((res) => res.arrayBuffer()),
+          data: await readFile(
+            'node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf',
+          ),
           weight: 700,
           style: 'normal',
         },
