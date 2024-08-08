@@ -28,52 +28,7 @@ const config = {
       },
     ],
   },
-  /* eslint-disable @typescript-eslint/no-unsafe-assignment -- config is any type */
-  /* eslint-disable @typescript-eslint/no-unsafe-call -- config is any type */
-  /* eslint-disable @typescript-eslint/no-unsafe-member-access -- config is any type */
-  /* eslint-disable @typescript-eslint/no-unsafe-return -- config is any type */
-  webpack: (config) => {
-    // @ts-expect-error rule is any type since config is any type
-    const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.('.svg'),
-    );
-
-    config.module.rules.push(
-      {
-        ...fileLoaderRule,
-        test: /\.svg$/i,
-        resourceQuery: /url/, // *.svg?url
-      },
-      {
-        test: /\.svg$/i,
-        issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              svgoConfig: {
-                plugins: [
-                  {
-                    name: 'preset-default',
-                    params: { overrides: { inlineStyles: false } },
-                  },
-                  'prefixIds',
-                  'removeStyleElement',
-                ],
-              },
-            },
-          },
-        ],
-      },
-    );
-
-    fileLoaderRule.exclude = /\.svg$/i;
-
-    return config;
-  },
-  /* eslint-enable -- reenable all eslint rules */
-  // eslint-disable-next-line @typescript-eslint/require-await -- headers must be async
+  // eslint-disable-next-line @typescript-eslint/require-await -- headers must return a promise
   headers: async () => [
     {
       source: '/:path*',
@@ -128,7 +83,6 @@ const config = {
   experimental: {
     reactCompiler: true,
     ppr: true,
-    webpackBuildWorker: true,
     optimizePackageImports: ['@mui/joy'],
   },
 } satisfies NextConfig;
