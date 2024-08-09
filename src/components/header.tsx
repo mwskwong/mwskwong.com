@@ -72,8 +72,8 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
               <Logo
                 priority
                 alt=""
-                srcDark="icon-dark.svg"
-                srcLight="icon-light.svg"
+                srcDark="/icon-dark.svg"
+                srcLight="/icon-light.svg"
               />
             </Link>
             <List
