@@ -9,10 +9,10 @@ import {
 } from '@mui/joy';
 import { type FC } from 'react';
 
-import { experience } from '@/constants/nav';
+import { routes } from '@/constants/site-config';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
-import { Image } from '../image';
+import { Logo } from '../logo';
 
 import { Timeline, TimelineItem } from './timeline';
 
@@ -40,7 +40,7 @@ export const Experience: FC<ExperienceProps> = async (props) => {
       <Container>
         <Stack spacing={8}>
           <Typography
-            id={experience.id}
+            id={routes.experience.hash}
             level="h2"
             sx={{ textAlign: 'center' }}
           >
@@ -69,14 +69,12 @@ export const Experience: FC<ExperienceProps> = async (props) => {
               {contributedProjects.map(({ id, name, url, logo }) => (
                 <Tooltip key={id} title={name}>
                   <Link href={url} target="_blank">
-                    <Image
+                    <Logo
                       alt={name}
-                      height={36}
+                      size="lg"
                       src={logo.universal}
                       srcDark={logo.dark}
                       srcLight={logo.light}
-                      sx={{ objectFit: 'scale-down' }}
-                      width={36}
                     />
                   </Link>
                 </Tooltip>

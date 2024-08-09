@@ -1,13 +1,14 @@
+import { readFile } from 'node:fs/promises';
+
 import { ImageResponse } from 'next/og';
 
-import Icon from '@/app/icon.svg';
-
-export const runtime = 'edge';
 export const size = { width: 180, height: 180 };
 export const contentType = 'image/png';
 
-const appleIcon = () =>
-  new ImageResponse(
+const appleIcon = async () => {
+  const icon = await readFile('public/icon-light.svg');
+  const paddingInPercentage = 22.5 / 100;
+  return new ImageResponse(
     (
       <div
         style={{
@@ -16,15 +17,19 @@ const appleIcon = () =>
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '22.5%',
           background: '#FFF', // --joy-palette-background-body
         }}
       >
-        {/* --joy-palette-primary-plainColor */}
-        <Icon fill="#0B6BCB" width="100%" />
+        <img
+          height={size.height * (1 - paddingInPercentage * 2)}
+          src={`data:image/svg+xml;base64,${Buffer.from(icon).toString('base64')}`}
+          style={{ objectFit: 'contain' }}
+          width={size.width * (1 - paddingInPercentage * 2)}
+        />
       </div>
     ),
     size,
   );
+};
 
 export default appleIcon;

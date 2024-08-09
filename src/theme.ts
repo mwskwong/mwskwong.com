@@ -93,7 +93,7 @@ export const globalStyles = (theme: Theme) =>
       paddingBlock: 'var(--Footer-paddingY)',
       backgroundColor: 'var(--Footer-bg)',
     },
-    img: { objectFit: 'cover' },
+    img: { objectFit: 'cover', display: 'block' },
     input: {
       '&[type="search"]': {
         '&::-webkit-search-decoration, ::-webkit-search-cancel-button, ::-webkit-search-results-button, ::-webkit-search-results-decoration':

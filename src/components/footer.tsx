@@ -15,7 +15,7 @@ import NextLink from 'next/link';
 import { type FC } from 'react';
 
 import { firstName, lastName, middleName } from '@/constants/content';
-import { blogRssFeed, privacyPolicy } from '@/constants/nav';
+import { routes } from '@/constants/site-config';
 import { getSocialMediaProfiles } from '@/lib/queries';
 
 import { Icon } from './contentful';
@@ -46,9 +46,9 @@ export const Footer: FC<FooterProps> = async (props) => {
               ),
           )}
           <IconButton
-            aria-label="Blog RSS Feed"
+            aria-label={routes.blogRssFeed.name}
             component="a"
-            href={blogRssFeed.pathname}
+            href={routes.blogRssFeed.pathname}
             size="sm"
             target="_blank"
           >
@@ -79,8 +79,8 @@ export const Footer: FC<FooterProps> = async (props) => {
           }}
         >
           <ListItem>
-            <ListItemButton component={NextLink} href={privacyPolicy.pathname}>
-              {privacyPolicy.label}
+            <ListItemButton component={NextLink} href={routes.privacyPolicy}>
+              {routes.privacyPolicy.name}
             </ListItemButton>
           </ListItem>
         </List>

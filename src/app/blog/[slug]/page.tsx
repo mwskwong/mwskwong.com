@@ -26,8 +26,7 @@ import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, headline, lastName } from '@/constants/content';
-import { blog as blogNav, blogRssFeed, home } from '@/constants/nav';
-import { env } from '@/env';
+import { routes, siteUrl } from '@/constants/site-config';
 import { getPerson } from '@/lib/json-ld';
 import {
   getBlogBySlug,
@@ -148,9 +147,9 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                       ),
                   )}
                   <IconButton
-                    aria-label="Blog RSS Feed"
+                    aria-label={routes.blogRssFeed.name}
                     component="a"
-                    href={blogRssFeed.pathname}
+                    href={routes.blogRssFeed.pathname}
                     size="sm"
                     target="_blank"
                   >
@@ -163,13 +162,13 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 spacing={2}
                 sx={{ justifyContent: 'center' }}
               >
-                <Button component={NextLink} href={home.pathname} size="lg">
+                <Button component={NextLink} href={routes.home} size="lg">
                   More About Me
                 </Button>
                 <Button
                   color="neutral"
                   component={NextLink}
-                  href={blogNav.pathname}
+                  href={routes.blog}
                   size="lg"
                   variant="outlined"
                 >
@@ -195,7 +194,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
-                url: `${env.NEXT_PUBLIC_SITE_URL}${blogNav.pathname}/${slug}`,
+                url: `${siteUrl}${routes.blog.pathname}/${slug}`,
                 author: { '@id': person['@id'] },
                 keywords: blog.categories,
               } satisfies BlogPosting,
@@ -204,14 +203,14 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 itemListElement: [
                   {
                     '@type': 'ListItem',
-                    name: home.label,
-                    item: env.NEXT_PUBLIC_SITE_URL,
+                    name: routes.home.name,
+                    item: siteUrl,
                     position: 1,
                   },
                   {
                     '@type': 'ListItem',
-                    name: blogNav.label,
-                    item: env.NEXT_PUBLIC_SITE_URL + blogNav.pathname,
+                    name: routes.blog.name,
+                    item: siteUrl + routes.blog.pathname,
                     position: 2,
                   },
                   {
@@ -249,16 +248,16 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
     description,
     openGraph: {
       type: 'article',
-      authors: env.NEXT_PUBLIC_SITE_URL,
+      authors: siteUrl,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       tags: categories,
-      url: `${blogNav.pathname}/${slug}`,
+      url: `${routes.blog.pathname}/${slug}`,
       images: coverPhoto,
     },
     alternates: {
-      canonical: `${blogNav.pathname}/${slug}`,
-      types: { 'application/rss+xml': blogRssFeed.pathname },
+      canonical: `${routes.blog.pathname}/${slug}`,
+      types: { 'application/rss+xml': routes.blogRssFeed.pathname },
     },
   } satisfies Metadata;
 };

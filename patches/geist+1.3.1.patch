@@ -8,17 +8,3 @@ index 1798789..ab421c7 100644
    weight: "100 900",
 +  preload: false,
  });
-diff --git a/node_modules/geist/package.json b/node_modules/geist/package.json
-index a6b6e80..84c64ff 100644
---- a/node_modules/geist/package.json
-+++ b/node_modules/geist/package.json
-@@ -44,7 +44,8 @@
-     "./font/sans-non-variable": {
-       "types": "./dist/index.d.ts",
-       "default": "./dist/sans-non-variable.js"
--    }
-+    },
-+    "./assets/fonts/*": "./dist/fonts/*"
-   },
-   "license": "SIL OPEN FONT LICENSE",
-   "peerDependencies": {

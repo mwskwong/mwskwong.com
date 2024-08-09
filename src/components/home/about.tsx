@@ -2,7 +2,7 @@ import { Box, type BoxProps, Container, Stack, Typography } from '@mui/joy';
 import { type FC } from 'react';
 
 import { firstName, lastName, selfIntroduction } from '@/constants/content';
-import { about } from '@/constants/nav';
+import { routes } from '@/constants/site-config';
 import { getPersonalPhoto, getSkillSet } from '@/lib/queries';
 
 import { Image } from '../image';
@@ -20,7 +20,7 @@ export const About: FC<AboutProps> = async (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={8} sx={{ alignItems: 'center' }}>
-          <Typography id={about.id} level="h2">
+          <Typography id={routes.about.hash} level="h2">
             About
           </Typography>
           <Stack spacing={4} sx={{ alignItems: 'center' }}>

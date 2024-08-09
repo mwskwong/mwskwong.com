@@ -15,7 +15,7 @@ import { type FC } from 'react';
 
 import { firstName, headline, lastName } from '@/constants/content';
 import { linkedin } from '@/constants/contentful-ids';
-import { blog } from '@/constants/nav';
+import { routes } from '@/constants/site-config';
 import { getCv, getSocialMediaProfiles } from '@/lib/queries';
 
 export type HeroProps = Omit<BoxProps<'section'>, 'children'>;
@@ -49,7 +49,7 @@ export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
             endDecorator={<ArrowRight />}
             variant="outlined"
             slotProps={{
-              action: { component: NextLink, href: blog.pathname },
+              action: { component: NextLink, href: routes.blog.pathname },
               endDecorator: {
                 sx: {
                   '--Icon-color':

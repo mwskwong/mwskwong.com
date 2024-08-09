@@ -5,14 +5,14 @@ import { type Article, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
-import { home, privacyPolicy } from '@/constants/nav';
-import { env } from '@/env';
+import { firstName, lastName } from '@/constants/content';
+import { routes, siteDisplayName, siteUrl } from '@/constants/site-config';
 import { getPerson } from '@/lib/json-ld';
 import { getPrivacyPolicy } from '@/lib/queries';
 
 const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 
-const description = `${privacyPolicy.label} for ${env.NEXT_PUBLIC_SITE_DISPLAY_NAME}, detailing data handling, user consent, and compliance with PDPO and GDPR.`;
+const description = `Learn about ${firstName} ${lastName}'s privacy practices, including data collection, usage, and protection. Understand your rights and how we ensure the security of your information on ${siteDisplayName}.`;
 
 const PrivacyPolicy: FC = async () => {
   const [{ createdAt, updatedAt, content }, person] = await Promise.all([
@@ -28,7 +28,7 @@ const PrivacyPolicy: FC = async () => {
           sx={{ py: 'var(--Section-paddingY)' }}
         >
           <Typography level="h1" sx={{ mb: 3, mt: 1 }}>
-            {privacyPolicy.label}
+            {routes.privacyPolicy.name}
           </Typography>
           <Typography level="title-md" sx={{ my: 2 }}>
             This Privacy Policy is subject to updates. The last revision was
@@ -46,12 +46,12 @@ const PrivacyPolicy: FC = async () => {
             '@graph': [
               {
                 '@type': 'Article',
-                headline: `${env.NEXT_PUBLIC_SITE_DISPLAY_NAME} ${privacyPolicy.label}`,
+                headline: `${siteDisplayName} ${routes.privacyPolicy.name}`,
                 description,
-                image: `${env.NEXT_PUBLIC_SITE_URL}/opengraph-image`,
+                image: `${siteUrl}/opengraph-image`,
                 datePublished: createdAt,
                 dateModified: updatedAt,
-                url: env.NEXT_PUBLIC_SITE_URL + privacyPolicy.pathname,
+                url: siteUrl + routes.privacyPolicy.pathname,
                 author: { '@id': person['@id'] },
               } satisfies Article,
               {
@@ -59,13 +59,13 @@ const PrivacyPolicy: FC = async () => {
                 itemListElement: [
                   {
                     '@type': 'ListItem',
-                    name: home.label,
-                    item: env.NEXT_PUBLIC_SITE_URL,
+                    name: routes.home.name,
+                    item: siteUrl,
                     position: 1,
                   },
                   {
                     '@type': 'ListItem',
-                    name: privacyPolicy.label,
+                    name: routes.privacyPolicy.name,
                     position: 2,
                   },
                 ],
@@ -91,17 +91,17 @@ export const generateMetadata = async (
   ]);
 
   return {
-    title: privacyPolicy.label,
+    title: routes.privacyPolicy.name,
     description,
     openGraph: {
       ...openGraph,
       type: 'article',
-      authors: env.NEXT_PUBLIC_SITE_URL,
+      authors: siteUrl,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
-      url: privacyPolicy.pathname,
+      url: routes.privacyPolicy.pathname,
     },
-    alternates: { canonical: privacyPolicy.pathname },
+    alternates: { canonical: routes.privacyPolicy.pathname },
   } satisfies Metadata;
 };
 

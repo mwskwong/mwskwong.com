@@ -7,15 +7,16 @@ import { type FC } from 'react';
 
 export type ModeToggleButtonProps = Omit<IconButtonProps, 'children'>;
 export const ModeToggleButton: FC<ModeToggleButtonProps> = (props) => {
-  const { mode, setMode } = useColorScheme();
+  const { mode, systemMode, setMode } = useColorScheme();
+  const resolvedMode = mode === 'system' ? systemMode : mode;
 
   return (
     <IconButton
       aria-label="Toggle color mode"
-      onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+      onClick={() => setMode(resolvedMode === 'dark' ? 'light' : 'dark')}
       {...props}
     >
-      <NoSsr>{mode === 'dark' ? <Sun /> : <Moon />}</NoSsr>
+      <NoSsr>{resolvedMode === 'dark' ? <Moon /> : <Sun />}</NoSsr>
     </IconButton>
   );
 };

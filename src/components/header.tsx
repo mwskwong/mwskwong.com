@@ -13,24 +13,24 @@ import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { type FC } from 'react';
 
-import Icon from '@/app/icon.svg';
+// import Icon from '@/app/icon.svg';
 import { github, linkedin } from '@/constants/contentful-ids';
-import {
-  about,
-  blog,
-  contact,
-  education,
-  experience,
-  guestbook,
-  home,
-} from '@/constants/nav';
+import { routes } from '@/constants/site-config';
 import { getSocialMediaProfiles } from '@/lib/queries';
 
 import { Icon as ContentfulIcon } from './contentful';
+import { Logo } from './logo';
 import { ModeToggleButton } from './mode-toggle-button';
 import { NavDrawer } from './nav-drawer';
 
-export const nav = [about, experience, education, contact, blog, guestbook];
+export const nav = [
+  routes.about,
+  routes.experience,
+  routes.education,
+  routes.contact,
+  routes.blog,
+  routes.guestbook,
+];
 
 export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
 export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
@@ -67,9 +67,14 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
             <Link
               aria-label="Go to home page"
               component={NextLink}
-              href={{ pathname: home.pathname, hash: home.id }}
+              href={routes.home}
             >
-              <Icon width={32} />
+              <Logo
+                priority
+                alt=""
+                srcDark="/icon-dark.svg"
+                srcLight="/icon-light.svg"
+              />
             </Link>
             <List
               orientation="horizontal"
@@ -80,15 +85,14 @@ export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
                 display: { xs: 'none', md: 'flex' },
               }}
             >
-              {nav.map(({ label, id = '', pathname }) => (
+              {nav.map((route) => (
                 // prevent keys from starting from "/".
                 // The key is being embedded in the HTML and Google thinks that's a path and try to crawl it
-                <ListItem key={`${pathname}-${id}`.slice(1)}>
-                  <ListItemButton
-                    component={NextLink}
-                    href={{ pathname, hash: id }}
-                  >
-                    {label}
+                <ListItem
+                  key={`${route.pathname}-${route.hash ?? ''}`.slice(1)}
+                >
+                  <ListItemButton component={NextLink} href={route}>
+                    {route.name}
                   </ListItemButton>
                 </ListItem>
               ))}

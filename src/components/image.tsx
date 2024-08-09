@@ -5,7 +5,7 @@ import { mergeSx } from 'merge-sx';
 import NextImage from 'next/image';
 import { type ComponentProps, type FC } from 'react';
 
-const StyledImage = styled(NextImage)();
+const StyledImage = styled(NextImage)``;
 type StyledImageProps = ComponentProps<typeof StyledImage>;
 
 export interface ImageProps extends Omit<StyledImageProps, 'src'> {
@@ -48,7 +48,7 @@ export const Image: FC<ImageProps> = ({
             (theme) => ({
               display: 'none',
               [theme.getColorSchemeSelector('dark')]: {
-                display: 'unset',
+                display: 'block',
               },
             }),
             sx,

@@ -1,7 +1,7 @@
 import { Box, type BoxProps, Container, Stack, Typography } from '@mui/joy';
 import { type FC } from 'react';
 
-import { education } from '@/constants/nav';
+import { routes } from '@/constants/site-config';
 import { getCourses, getEducations } from '@/lib/queries';
 
 import { SelfLearning } from './self-learning';
@@ -29,7 +29,11 @@ export const Education: FC<EducationProps> = async (props) => {
     <Box component="section" {...props}>
       <Container>
         <Stack spacing={8}>
-          <Typography id={education.id} level="h2" sx={{ textAlign: 'center' }}>
+          <Typography
+            id={routes.education.hash}
+            level="h2"
+            sx={{ textAlign: 'center' }}
+          >
             Education
           </Typography>
           <Timeline>

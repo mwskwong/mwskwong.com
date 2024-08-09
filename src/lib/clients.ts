@@ -4,35 +4,17 @@ import { PrismaClient } from '@prisma/client';
 import { createClient } from 'contentful';
 import { Resend } from 'resend';
 
-import { env } from '@/env';
-
 export const contentful = createClient({
-  space: env.CONTENTFUL_SPACE_ID,
-  accessToken: env.CONTENTFUL_ACCESS_TOKEN,
-  environment: env.CONTENTFUL_ENVIRONMENT,
+  space: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  environment: process.env.CONTENTFUL_ENVIRONMENT,
 }).withoutUnresolvableLinks;
 
-/**
- * @see {@link https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution}
- */
+export const prisma = new PrismaClient({
+  log:
+    process.env.NODE_ENV === 'production'
+      ? undefined
+      : ['query', 'info', 'warn', 'error'],
+});
 
-const prismaClientSingleton = () =>
-  new PrismaClient({
-    log:
-      env.NODE_ENV === 'production'
-        ? undefined
-        : ['query', 'info', 'warn', 'error'],
-  });
-
-declare global {
-  // eslint-disable-next-line no-var -- needed for defining globalThis.prismaGlobal
-  var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>;
-}
-
-export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
-
-if (env.NODE_ENV !== 'production') {
-  globalThis.prismaGlobal = prisma;
-}
-
-export const resend = new Resend(env.RESEND_API_KEY);
+export const resend = new Resend(process.env.RESEND_API_KEY);

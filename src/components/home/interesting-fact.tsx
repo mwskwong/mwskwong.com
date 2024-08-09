@@ -12,7 +12,7 @@ import { type FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';
 
-import { Image } from '../image';
+import { Logo } from '../logo';
 
 export type InterestingFactProps = Omit<BoxProps<'section'>, 'children'>;
 export const InterestingFact: FC<InterestingFactProps> = async (props) => {
@@ -40,13 +40,11 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
             {techStack.map(({ id, name, url, logo }) => (
               <Tooltip key={id} title={name}>
                 <Link href={url} target="_blank">
-                  <Image
+                  <Logo
                     alt={name}
-                    height={36}
+                    size="lg"
                     src={logo.universal}
                     srcDark={logo.dark}
-                    sx={{ objectFit: 'scale-down' }}
-                    width={36}
                   />
                 </Link>
               </Tooltip>

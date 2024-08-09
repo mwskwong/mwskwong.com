@@ -11,7 +11,7 @@ import {
   lastName,
   selfIntroduction,
 } from '@/constants/content';
-import { env } from '@/env';
+import { siteUrl } from '@/constants/site-config';
 
 import { Providers } from './providers';
 
@@ -24,7 +24,9 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
         <Footer />
       </Providers>
       <Analytics
-        mode={env.VERCEL_ENV === 'production' ? 'production' : 'development'}
+        mode={
+          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
+        }
       />
       <SpeedInsights />
     </body>
@@ -38,10 +40,16 @@ export const metadata = {
     template: `%s | ${name}`,
   },
   description: selfIntroduction,
-  authors: { name, url: env.NEXT_PUBLIC_SITE_URL },
-  metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
+  authors: { name, url: siteUrl },
+  metadataBase: new URL(siteUrl),
   openGraph: { url: '/', type: 'website' },
   robots: { 'max-image-preview': 'large' },
+  icons: {
+    icon: [
+      { url: '/icon-light.svg' },
+      { url: '/icon-dark.svg', media: '(prefers-color-scheme: dark)' },
+    ],
+  },
   archives: ['https://v2.mwskwong.com'],
   alternates: { canonical: '/' },
 } satisfies Metadata;

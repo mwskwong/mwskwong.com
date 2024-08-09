@@ -10,8 +10,7 @@ import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
 import { SectionDivider } from '@/components/section-divider';
 import { firstName, lastName } from '@/constants/content';
-import { home } from '@/constants/nav';
-import { env } from '@/env';
+import { routes, siteUrl } from '@/constants/site-config';
 
 const bgcolors = {
   hero: 'background.body',
@@ -71,14 +70,14 @@ const Home: FC = () => (
               '@type': 'WebSite',
               name: `${firstName} ${lastName}`,
               alternateName: ['mwskwong', 'MK'],
-              url: env.NEXT_PUBLIC_SITE_URL,
+              url: siteUrl,
             } satisfies WebSite,
             {
               '@type': 'BreadcrumbList',
               itemListElement: [
                 {
                   '@type': 'ListItem',
-                  name: home.label,
+                  name: routes.home.name,
                   position: 1,
                 },
               ],

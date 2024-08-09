@@ -13,8 +13,10 @@ import { Menu } from 'lucide-react';
 import NextLink from 'next/link';
 import { type FC, useState } from 'react';
 
+import { type Route } from '@/constants/site-config';
+
 export interface NavDrawerProps {
-  nav?: { id?: string; label: string; pathname: string }[];
+  nav?: Route[];
   slotProps?: {
     drawerButton?: IconButtonProps;
   };
@@ -42,16 +44,16 @@ export const NavDrawer: FC<NavDrawerProps> = ({ nav = [], slotProps }) => {
               '--ListItem-paddingX': (theme) => theme.spacing(8),
             }}
           >
-            {nav.map(({ id = '', label, pathname }) => (
+            {nav.map((route) => (
               // prevent keys from starting from "/".
               // The key is being embedded in the HTML and Google thinks that's a path and try to crawl it
-              <ListItem key={`${pathname}-${id}`.slice(1)}>
+              <ListItem key={`${route.pathname}-${route.hash ?? ''}`.slice(1)}>
                 <ListItemButton
                   component={NextLink}
-                  href={{ pathname, hash: id }}
+                  href={route}
                   onClick={() => setOpen(false)}
                 >
-                  {label}
+                  {route.name}
                 </ListItemButton>
               </ListItem>
             ))}

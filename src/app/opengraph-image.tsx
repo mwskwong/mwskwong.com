@@ -1,14 +1,19 @@
+import { readFile } from 'node:fs/promises';
+
 import { ImageResponse } from 'next/og';
 
-import Icon from '@/app/icon.svg';
 import { firstName, lastName } from '@/constants/content';
 
 export const size = { width: 2560, height: 1280 };
 export const contentType = 'image/png';
-export const runtime = 'edge';
 
-const OpengraphImage = async () =>
-  new ImageResponse(
+const OpengraphImage = async () => {
+  const icon = await readFile('public/icon-light.svg');
+  const font = await readFile(
+    'node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf',
+  );
+
+  return new ImageResponse(
     (
       <div
         style={{
@@ -21,8 +26,12 @@ const OpengraphImage = async () =>
           justifyContent: 'center',
         }}
       >
-        {/* --joy-palette-primary-plainColor */}
-        <Icon fill="#0B6BCB" width={400} />
+        <img
+          height={400}
+          src={`data:image/svg+xml;base64,${Buffer.from(icon).toString('base64')}`}
+          style={{ objectFit: 'contain' }}
+          width={400}
+        />
         <h1
           // https://mui.com/joy-ui/customization/default-theme-viewer/
           style={{
@@ -55,17 +64,13 @@ const OpengraphImage = async () =>
       fonts: [
         {
           name: 'Geist Sans',
-          data: await fetch(
-            new URL(
-              'geist/assets/fonts/geist-sans/Geist-Bold.ttf',
-              import.meta.url,
-            ),
-          ).then((res) => res.arrayBuffer()),
+          data: font,
           weight: 700,
           style: 'normal',
         },
       ],
     },
   );
+};
 
 export default OpengraphImage;
