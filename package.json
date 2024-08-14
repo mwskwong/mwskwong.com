@@ -81,6 +81,7 @@
   "overrides": {
     "@mui/system": "next",
     "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "axios": "^1.7.4"
   }
 }
