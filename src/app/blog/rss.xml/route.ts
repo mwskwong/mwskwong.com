@@ -4,6 +4,8 @@ import { email, firstName, lastName, middleName } from '@/constants/content';
 import { routes, siteUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';
 
+export const dynamic = 'force-static';
+
 const name = `${firstName} ${lastName}`;
 
 export const GET = async () => {
