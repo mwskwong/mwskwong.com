@@ -198,7 +198,7 @@ export const Contact: FC<ContactProps> = (props) => {
                   unstable_level={1}
                   sx={{
                     scrollMarginTop:
-                      'calc(var(--Header-height) - 6 * var(--joy-spacing))',
+                      'calc(var(--Header-height) + 2 * var(--joy-spacing))',
                   }}
                 >
                   <Grid size={{ sm: 6, xs: 12 }}>
