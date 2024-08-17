@@ -178,7 +178,7 @@ export const Contact: FC<ContactProps> = (props) => {
                   <Button
                     color="neutral"
                     component="a"
-                    href={routes.home.pathname}
+                    href="/#"
                     size="lg"
                     variant="outlined"
                   >
