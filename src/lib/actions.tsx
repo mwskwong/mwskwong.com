@@ -1,6 +1,6 @@
 'use server';
 
-import { type ErrorResponse } from 'resend';
+import { type CreateBatchOptions, type ErrorResponse } from 'resend';
 import { parse } from 'valibot';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -27,13 +27,13 @@ export const submitContactForm = async (data: ContactFormData) => {
     {
       from,
       to: email,
-      reply_to: data.email,
+      replyTo: data.email,
       subject: data.subject
         ? `[${siteDisplayName}] ${data.subject}`
         : `You got a message from ${siteDisplayName}`,
       react: <ContactFormNotification {...data} />,
     },
-  ] as Parameters<typeof resend.batch.send>[0];
+  ] as CreateBatchOptions;
 
   if (data.email) {
     emails.push({
