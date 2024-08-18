@@ -162,15 +162,13 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
         </Box>
       </Stack>
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-        <ModalDialog sx={{ overflow: 'hidden' }}>
+        <ModalDialog>
           <DialogTitle>Skill Proficiencies</DialogTitle>
           <ModalClose />
           <DialogContent
             sx={{
               marginInline: 'calc(-1 * var(--Card-padding))',
-              marginBottom: 'calc(-1 * var(--Card-padding))',
               paddingInline: 'var(--Card-padding)',
-              paddingBottom: 'var(--Card-padding)',
             }}
           >
             {skillProficiencies.map(({ name, value, description }) => (
