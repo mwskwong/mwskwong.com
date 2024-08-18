@@ -7,6 +7,7 @@ import {
   Chip,
   DialogContent,
   DialogTitle,
+  IconButton,
   Modal,
   ModalClose,
   ModalDialog,
@@ -92,14 +93,16 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
           }}
         >
           <Typography
-            endDecorator={<Info />}
             level="title-md"
-            sx={{
-              '--Icon-fontSize': '1.125em',
-              cursor: 'pointer',
-              '-webkit-tap-highlight-color': 'transparent',
-            }}
-            onClick={() => setModalOpen(true)}
+            endDecorator={
+              <IconButton
+                aria-label="skill proficiency details"
+                sx={{ '--IconButton-size': '24px', ml: -0.5 }}
+                onClick={() => setModalOpen(true)}
+              >
+                <Info />
+              </IconButton>
+            }
           >
             Skill Proficiency
           </Typography>
@@ -158,7 +161,7 @@ export const SkillSet: FC<SkillSetProps> = ({ skillSet = [], ...props }) => {
           ))}
         </Box>
       </Stack>
-      <Modal keepMounted open={modalOpen} onClose={() => setModalOpen(false)}>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         <ModalDialog>
           <DialogTitle>Skill Proficiencies</DialogTitle>
           <ModalClose />
