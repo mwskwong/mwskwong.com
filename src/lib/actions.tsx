@@ -27,7 +27,7 @@ export const submitContactForm = async (data: ContactFormData) => {
     {
       from,
       to: email,
-      replyTo: data.email,
+      reply_to: data.email,
       subject: data.subject
         ? `[${siteDisplayName}] ${data.subject}`
         : `You got a message from ${siteDisplayName}`,

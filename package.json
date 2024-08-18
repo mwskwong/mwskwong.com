@@ -52,10 +52,10 @@
     "react-hook-form": "^7.52.2",
     "rehype-pretty-code": "^0.13.2",
     "rehype-slug": "^6.0.0",
-    "resend": "^4.0.0",
+    "resend": "^3.5.0",
     "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
-    "shiki": "^1.13.0",
+    "shiki": "^1.14.1",
     "valibot": "^0.37.0"
   },
   "devDependencies": {
