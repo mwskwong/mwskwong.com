@@ -13,6 +13,7 @@ import {
 } from '@/constants/content';
 import { siteUrl } from '@/constants/site-config';
 
+import { contentType, size } from './apple-icon';
 import { Providers } from './providers';
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
@@ -46,9 +47,19 @@ export const metadata = {
   robots: { 'max-image-preview': 'large' },
   icons: {
     icon: [
-      { url: '/icon-light.svg' },
-      { url: '/icon-dark.svg', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon-light.svg', type: 'image/svg+xml', sizes: 'any' },
+      {
+        url: '/icon-dark.svg',
+        type: 'image/svg+xml',
+        sizes: 'any',
+        media: '(prefers-color-scheme: dark)',
+      },
     ],
+    apple: {
+      url: '/apple-icon',
+      type: contentType,
+      sizes: `${size.width}x${size.height}`,
+    },
   },
   archives: ['https://v2.mwskwong.com'],
   alternates: { canonical: '/' },
