@@ -1,8 +1,3 @@
-/**
- * For the reason of this file's naming convention:
- * @see {@link https://react.email/docs/cli#how-to-make-the-preview-server-ignore-directories}
- */
-
 import { Body } from '@react-email/body';
 import { Container } from '@react-email/container';
 import { Hr as EmailHr, type HrProps } from '@react-email/hr';
