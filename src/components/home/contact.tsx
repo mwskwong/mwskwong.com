@@ -155,7 +155,7 @@ export const Contact: FC<ContactProps> = (props) => {
                     '--Icon-color': 'var(--joy-palette-success-plainColor)',
                   }}
                 >
-                  <ThumbsUp absoluteStrokeWidth size={4 * 16} />
+                  <ThumbsUp strokeWidth={1} />
                   <Typography level="title-lg">Thank You!</Typography>
                   <Typography sx={{ maxWidth: 'sm' }}>
                     Thank you for reaching out! I have received your message and
