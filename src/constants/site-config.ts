@@ -2,7 +2,7 @@ import { capitalize } from 'lodash-es';
 
 export const siteUrl = (() => {
   const localUrl = `http://localhost:${process.env.PORT ?? 3000}`;
-  if (!process.env.VERCEL) return localUrl;
+  if (!process.env.NEXT_PUBLIC_VERCEL_ENV) return localUrl;
 
   const previewDeploymentHostname =
     process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
