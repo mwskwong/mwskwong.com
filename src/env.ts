@@ -21,7 +21,6 @@ const VercelUrlSchema = pipe(string(), nonEmpty());
 
 const EnvSchema = object({
   DATABASE_URL: pipe(string(), url()),
-  VERCEL: optional(literal('1')),
   VERCEL_ENV: VercelEnvSchema,
   CONTENTFUL_ENVIRONMENT: (() => {
     switch (process.env.VERCEL_ENV) {
@@ -61,7 +60,7 @@ if (process.env.npm_lifecycle_event !== 'lint') {
 }
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace -- this is a valid namespace form @types/node
+  // eslint-disable-next-line @typescript-eslint/no-namespace -- this is a valid namespace from @types/node
   namespace NodeJS {
     // eslint-disable-next-line @typescript-eslint/no-empty-interface -- ProcessEnv is an interface, extending it here
     interface ProcessEnv extends InferOutput<typeof EnvSchema> {}
