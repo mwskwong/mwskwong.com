@@ -21,7 +21,6 @@ const VercelUrlSchema = pipe(string(), nonEmpty());
 
 const EnvSchema = object({
   DATABASE_URL: pipe(string(), url()),
-  VERCEL: optional(literal('1')),
   VERCEL_ENV: VercelEnvSchema,
   CONTENTFUL_ENVIRONMENT: (() => {
     switch (process.env.VERCEL_ENV) {
