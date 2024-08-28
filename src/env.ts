@@ -40,14 +40,6 @@ const EnvSchema = object({
   CONTENTFUL_ACCESS_TOKEN: string(),
   RESEND_API_KEY: pipe(string(), startsWith('re_')),
   ANALYZE: optional(picklist(['true', 'false'])),
-  // WORKAROUND: avoid circular dependency between EnvSchema and process.env
-  CRON_SECRET: (() => {
-    if (process.env.VERCEL === '1') {
-      return string();
-    }
-
-    return optional(string());
-  })(),
   NEXT_PUBLIC_VERCEL_ENV: VercelEnvSchema,
   PORT: optional(pipe(string(), regex(/^\d+$/))),
   NEXT_PUBLIC_VERCEL_BRANCH_URL: optional(VercelUrlSchema),
