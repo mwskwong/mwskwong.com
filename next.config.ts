@@ -83,6 +83,7 @@ const config = {
   experimental: {
     reactCompiler: true,
     ppr: true,
+    pprFallbacks: true,
     optimizePackageImports: ['@mui/joy'],
   },
 } satisfies NextConfig;
