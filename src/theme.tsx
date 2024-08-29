@@ -3,6 +3,7 @@ import { type PaletteOptions } from '@mui/joy/styles/types';
 import { type Interpolation } from '@mui/styled-engine';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
+import { Check } from 'lucide-react';
 import { type PartialDeep } from 'type-fest';
 
 declare module '@mui/joy/styles/types/zIndex' {
@@ -30,6 +31,9 @@ export const theme = extendTheme({
   },
   components: {
     JoyCheckbox: {
+      defaultProps: {
+        checkedIcon: <Check />,
+      },
       styleOverrides: {
         root: {
           WebkitTapHighlightColor: 'transparent',
