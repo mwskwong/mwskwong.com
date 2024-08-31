@@ -24,7 +24,7 @@ import * as contentfulIds from '@/constants/contentful-ids';
 
 const generateSimpleIcon = (SiIcon: IconType) => {
   const Icon: FC<ComponentProps<IconType>> = (props) => (
-    <SiIcon viewBox="-2 -2 28 28" {...props} />
+    <SiIcon className="si" {...props} />
   );
   Icon.displayName = SiIcon.displayName;
   return Icon;

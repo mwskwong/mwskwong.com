@@ -86,7 +86,7 @@ export const Hero: FC<HeroProps> = async ({ sx, ...props }) => {
             component="a"
             href={linkedinProfile?.url}
             size="lg"
-            startDecorator={<SiLinkedin viewBox="-2 -2 28 28" />}
+            startDecorator={<SiLinkedin className="si" />}
             target="_blank"
             variant="outlined"
           >

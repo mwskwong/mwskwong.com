@@ -63,8 +63,16 @@ export const theme = extendTheme({
   },
 });
 
-export const globalStyles = (theme: Theme) =>
-  ({
+export const globalStyles = (theme: Theme) => {
+  const iconStyle = {
+    color: 'var(--Icon-color, var(--joy-palette-text-icon))',
+    margin: 'var(--Icon-margin)',
+    fontSize: 'var(--Icon-fontSize, 1.5rem)',
+    width: '1em',
+    height: '1em',
+  };
+
+  return {
     ':root': {
       '--Section-paddingY': theme.spacing(10),
       '--Footer-paddingY': theme.spacing(6),
@@ -108,17 +116,8 @@ export const globalStyles = (theme: Theme) =>
     },
     main: { flex: 1 },
     section: { paddingBlock: 'var(--Section-paddingY)' },
-    svg: {
-      display: 'block',
-      // match icons, the 2nd one is for Simple Icons with modified view box
-      // such that the icon will appears to have the same size as Lucide icons
-      '&[viewBox="0 0 24 24"], &[viewBox="-2 -2 28 28"]': {
-        color: 'var(--Icon-color, var(--joy-palette-text-icon))',
-        margin: 'var(--Icon-margin)',
-        fontSize: 'var(--Icon-fontSize, 1.5rem)',
-        width: '1em',
-        height: '1em',
-        flexShrink: 0,
-      },
-    },
-  }) satisfies Interpolation<Theme>;
+    svg: { display: 'block' },
+    '.lucide': iconStyle,
+    '.si': { ...iconStyle, padding: '0.083em' },
+  } satisfies Interpolation<Theme>;
+};
