@@ -144,7 +144,7 @@ export const SubmissionListError: FC<SubmissionListErrorProps> = ({
       sx={mergeSx({ '--Icon-fontSize': '4rem', alignItems: 'center' }, sx)}
       {...props}
     >
-      <Frown absoluteStrokeWidth size={4 * 16} />
+      <Frown strokeWidth={1} />
       <Typography sx={{ textAlign: 'center' }}>
         Something went wrong. Please try again later.
       </Typography>
