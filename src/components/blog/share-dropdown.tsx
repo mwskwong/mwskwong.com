@@ -76,7 +76,7 @@ export const ShareDropdown: FC<ShareDropdownProps> = ({ blog, ...props }) => {
         {socialMediaOptions.map(({ Icon, name, url }) => (
           <MenuItem key={name} component="a" href={url} target="_blank">
             <ListItemDecorator>
-              <Icon viewBox="-2 -2 28 28" />
+              <Icon className="si" />
             </ListItemDecorator>
             Share on {name}
           </MenuItem>
