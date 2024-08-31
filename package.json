@@ -55,7 +55,7 @@
     "resend": "^4.0.0",
     "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
-    "shiki": "^1.14.1",
+    "shiki": "^1.15.1",
     "valibot": "^0.40.0"
   },
   "devDependencies": {
