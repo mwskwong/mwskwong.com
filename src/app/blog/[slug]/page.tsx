@@ -40,12 +40,12 @@ const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
 const contactMeBgColor = 'primary.900';
 
 interface BlogProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
+const Blog: FC<BlogProps> = async ({ params }) => {
   const [blog, personalPhoto, socialMediaProfiles, person] = await Promise.all([
-    getBlogBySlug(slug),
+    getBlogBySlug((await params).slug),
     getPersonalPhoto(),
     getSocialMediaProfiles(),
     getPerson(),
@@ -194,7 +194,7 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
                 image: blog.coverPhoto,
                 datePublished: blog.createdAt,
                 dateModified: blog.updatedAt,
-                url: `${siteUrl}${routes.blog.pathname}/${slug}`,
+                url: `${siteUrl}${routes.blog.pathname}/${(await params).slug}`,
                 author: { '@id': person['@id'] },
                 keywords: blog.categories,
               } satisfies BlogPosting,
@@ -234,10 +234,10 @@ const Blog: FC<BlogProps> = async ({ params: { slug } }) => {
 export const generateStaticParams = () =>
   getBlogs().then((blogs) =>
     blogs.map(({ slug }) => ({ slug })),
-  ) satisfies Promise<BlogProps['params'][]>;
+  ) satisfies Promise<Awaited<BlogProps['params']>[]>;
 
-export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
-  const blog = await getBlogBySlug(slug);
+export const generateMetadata = async ({ params }: BlogProps) => {
+  const blog = await getBlogBySlug((await params).slug);
   if (!blog) return;
 
   const { title, description, coverPhoto, createdAt, updatedAt, categories } =
@@ -252,11 +252,11 @@ export const generateMetadata = async ({ params: { slug } }: BlogProps) => {
       publishedTime: createdAt,
       modifiedTime: updatedAt,
       tags: categories,
-      url: `${routes.blog.pathname}/${slug}`,
+      url: `${routes.blog.pathname}/${(await params).slug}`,
       images: coverPhoto,
     },
     alternates: {
-      canonical: `${routes.blog.pathname}/${slug}`,
+      canonical: `${routes.blog.pathname}/${(await params).slug}`,
       types: { 'application/rss+xml': routes.blogRssFeed.pathname },
     },
   } satisfies Metadata;
