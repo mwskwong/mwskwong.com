@@ -1,8 +1,6 @@
 import { orderBy } from 'lodash-es';
-import {
-  unstable_cache as nextCache,
-  unstable_noStore as noStore,
-} from 'next/cache';
+import { unstable_cache as nextCache } from 'next/cache';
+import { connection } from 'next/server';
 import { cache } from 'react';
 
 import { cv, personalPhoto, privacyPolicy } from '@/constants/contentful-ids';
@@ -319,22 +317,22 @@ export const getPrivacyPolicy = cache(
   }),
 );
 
-export const getBlogsMetadata = cache(() => {
-  noStore();
-  return prisma.blogMetadata.findMany();
+export const getBlogsMetadata = cache(async () => {
+  await connection();
+  return await prisma.blogMetadata.findMany();
 });
 
-export const getBlogMetadataById = (id: string) => {
-  noStore();
-  return prisma.blogMetadata.findUnique({ where: { id } });
+export const getBlogMetadataById = async (id: string) => {
+  await connection();
+  return await prisma.blogMetadata.findUnique({ where: { id } });
 };
 
 // prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
 // this allows moderation on PROD by directly updating the prisma
 // Also using React.cache here because both JSON+LD and the UI needs this data
-export const getGuestbookSubmissions = cache(() => {
-  noStore();
-  return prisma.contactFormSubmission.findMany({
+export const getGuestbookSubmissions = cache(async () => {
+  await connection();
+  return await prisma.contactFormSubmission.findMany({
     where: { showInGuestbook: true },
     orderBy: { submittedAt: 'desc' },
   });
