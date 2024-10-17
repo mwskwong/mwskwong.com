@@ -83,7 +83,6 @@ const config = {
   experimental: {
     reactCompiler: true,
     ppr: true,
-    pprFallbacks: true,
     // dynamicIO: true,
     optimizePackageImports: ['@mui/joy'],
   },
