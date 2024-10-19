@@ -49,7 +49,7 @@
     "react": "rc",
     "react-dom": "rc",
     "react-email": "^3.0.1",
-    "react-hook-form": "^7.53.0",
+    "react-hook-form": "^7.53.1",
     "rehype-pretty-code": "^0.14.0",
     "rehype-slug": "^6.0.0",
     "resend": "^4.0.0",
