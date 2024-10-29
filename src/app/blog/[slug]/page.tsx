@@ -68,7 +68,7 @@ const Blog: FC<BlogProps> = async ({ params }) => {
             {blog.title}
           </Typography>
           <Grid container spacing={2} sx={{ alignItems: 'center', mb: 2 }}>
-            <Grid size={{ sm: 'grow', xs: 12 }}>
+            <Grid sm xs={12}>
               <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
                 {blog.categories?.map((category) => (
                   <Chip key={category} color="primary">
@@ -77,7 +77,7 @@ const Blog: FC<BlogProps> = async ({ params }) => {
                 ))}
               </Stack>
             </Grid>
-            <Grid size={{ sm: 'auto', xs: 12 }}>
+            <Grid sm="auto" xs={12}>
               <Stack
                 direction="row"
                 spacing={1}
