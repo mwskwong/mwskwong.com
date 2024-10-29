@@ -22,6 +22,7 @@ import { Icon } from './contentful';
 
 export type FooterProps = Omit<BoxProps<'footer'>, 'children'>;
 export const Footer: FC<FooterProps> = async (props) => {
+  'use cache';
   const socialMediaProfiles = await getSocialMediaProfiles();
 
   return (

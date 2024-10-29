@@ -83,7 +83,7 @@ const config = {
   experimental: {
     reactCompiler: true,
     ppr: true,
-    // dynamicIO: true,
+    dynamicIO: true,
     optimizePackageImports: ['@mui/joy'],
   },
 } satisfies NextConfig;
