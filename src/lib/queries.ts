@@ -314,7 +314,7 @@ export const getPrivacyPolicy = async () => {
   };
 };
 
-export const getBlogsMetadata = () => prisma.blogMetadata.findMany();
+export const getBlogsMetadata = async () => prisma.blogMetadata.findMany();
 
 export const getBlogMetadataById = async (id: string) =>
   prisma.blogMetadata.findUnique({ where: { id } });
