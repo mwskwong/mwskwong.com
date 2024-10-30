@@ -2,7 +2,7 @@
 
 import { CssBaseline, CssVarsProvider, GlobalStyles } from '@mui/joy';
 import InitColorSchemeScript from '@mui/joy/InitColorSchemeScript';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { type FC, type PropsWithChildren } from 'react';
 
 import { globalStyles, theme } from '@/theme';
