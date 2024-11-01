@@ -20,7 +20,7 @@ export default {
        * Minus point from
        *   1. Non-PROD not being indexable
        */
-      seo: 66,
+      seo: 69,
     },
   },
   scanner: {
