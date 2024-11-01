@@ -42,7 +42,7 @@ const Blogs: FC = async () => {
                 { id, createdAt, coverPhoto, slug, title, description },
                 index,
               ) => (
-                <Grid key={id} size={{ md: 4, sm: 6, xs: 12 }}>
+                <Grid key={id} md={4} sm={6} xs={12}>
                   <Card component="article" sx={{ height: { sm: '100%' } }}>
                     <BlogCardImage
                       alt={`Thumbnail for ${title}`}
