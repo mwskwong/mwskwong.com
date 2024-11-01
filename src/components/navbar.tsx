@@ -32,8 +32,8 @@ export const nav = [
   routes.guestbook,
 ];
 
-export type HeaderProps = Omit<BoxProps<'header'>, 'children'>;
-export const Header: FC<HeaderProps> = async ({ sx, ...props }) => {
+export type NavbarProps = Omit<BoxProps<'header'>, 'children'>;
+export const Navbar: FC<NavbarProps> = async ({ sx, ...props }) => {
   const socialMediaProfiles = (await getSocialMediaProfiles()).filter(
     ({ socialMedia }) =>
       socialMedia?.id === linkedin || socialMedia?.id === github,
