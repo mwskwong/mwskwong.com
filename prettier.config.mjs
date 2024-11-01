@@ -1,12 +1,13 @@
-import vercelPrettierConfig from '@vercel/style-guide/prettier';
+// @ts-check
 
 /** @type {import('prettier').Config} */
 const config = {
-  ...vercelPrettierConfig,
+  importOrderSeparation: true,
   plugins: [
-    ...vercelPrettierConfig.plugins,
-    'prettier-plugin-prisma',
-    'prettier-plugin-tailwindcss',
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-packagejson",
+    "prettier-plugin-prisma",
+    "prettier-plugin-tailwindcss",
   ],
 };
 

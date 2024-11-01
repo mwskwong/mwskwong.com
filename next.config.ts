@@ -1,47 +1,47 @@
-import NextBundleAnalyzer from '@next/bundle-analyzer';
-import dedent from 'dedent';
-import type { NextConfig } from 'next';
+import NextBundleAnalyzer from "@next/bundle-analyzer";
+import dedent from "dedent";
+import type { NextConfig } from "next";
 
 const withBundleAnalyzer = NextBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
+  enabled: process.env.ANALYZE === "true",
 });
 
 const nextConfig: NextConfig = {
   // eslint-disable-next-line @typescript-eslint/require-await -- headers must return a promise
   headers: async () => [
     {
-      source: '/:path*',
+      source: "/:path*",
       headers: [
         {
-          key: 'X-DNS-Prefetch-Control',
-          value: 'on',
+          key: "X-DNS-Prefetch-Control",
+          value: "on",
         },
         {
-          key: 'Strict-Transport-Security',
-          value: 'max-age=63072000; includeSubDomains; preload',
+          key: "Strict-Transport-Security",
+          value: "max-age=63072000; includeSubDomains; preload",
         },
         {
-          key: 'X-XSS-Protection',
-          value: '1; mode=block',
+          key: "X-XSS-Protection",
+          value: "1; mode=block",
         },
         {
-          key: 'X-Frame-Options',
-          value: 'SAMEORIGIN',
+          key: "X-Frame-Options",
+          value: "SAMEORIGIN",
         },
         {
-          key: 'Permissions-Policy',
-          value: 'camera=(), microphone=(), geolocation=()',
+          key: "Permissions-Policy",
+          value: "camera=(), microphone=(), geolocation=()",
         },
         {
-          key: 'X-Content-Type-Options',
-          value: 'nosniff',
+          key: "X-Content-Type-Options",
+          value: "nosniff",
         },
         {
-          key: 'Referrer-Policy',
-          value: 'strict-origin-when-cross-origin',
+          key: "Referrer-Policy",
+          value: "strict-origin-when-cross-origin",
         },
         {
-          key: 'Content-Security-Policy',
+          key: "Content-Security-Policy",
           value: dedent`
             default-src 'self';
             script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com;
@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
             form-action 'self';
             frame-ancestors 'none';
             upgrade-insecure-requests;
-          `.replace(/\n/g, ''),
+          `.replace(/\n/g, ""),
         },
       ],
     },
