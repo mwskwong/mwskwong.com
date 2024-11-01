@@ -19,3 +19,4 @@ jobs:
         if: always()
         with:
           path: ./.unlighthouse/
+          include-hidden-files: true
