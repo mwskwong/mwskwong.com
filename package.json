@@ -22,6 +22,7 @@
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vercel/style-guide": "^6.0.0",
+    "autoprefixer": "^10.4.20",
     "babel-plugin-react-compiler": "beta",
     "eslint": "^8.57.1",
     "eslint-plugin-react-compiler": "beta",

@@ -68,7 +68,6 @@ const nextConfig: NextConfig = {
     reactCompiler: true,
     ppr: true,
     dynamicIO: true,
-    useLightningcss: true,
     typedRoutes: true,
   },
 };
