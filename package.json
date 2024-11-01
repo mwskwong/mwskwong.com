@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "dedent": "^1.5.3",
-    "next": "15.0.3-canary.3",
+    "next": "canary",
     "react": "rc",
     "react-dom": "rc"
   },
