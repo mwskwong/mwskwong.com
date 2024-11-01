@@ -4,14 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { type FC } from "react";
 
-const nav = [
-  routes.about,
-  routes.experience,
-  routes.education,
-  routes.contact,
-  routes.blog,
-  routes.guestbook,
-];
+const nav = [routes.blog, routes.guestbook];
 
 const Navbar: FC = () => {
   return (
@@ -29,12 +22,14 @@ const Navbar: FC = () => {
         ))}
       </ul>
       <div className="dropdown dropdown-end md:hidden">
-        <button
+        <div
           aria-label="toggle nav drawer"
           className="btn btn-square btn-ghost"
+          role="button"
+          tabIndex={0}
         >
           <Menu size={24} />
-        </button>
+        </div>
         <ul className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 shadow">
           {nav.map((route) => (
             <li key={`${route.pathname}-${route.hash ?? ""}`}>
