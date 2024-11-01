@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
             form-action 'self';
             frame-ancestors 'none';
             upgrade-insecure-requests;
-          `.replace(/\n/g, ""),
+          `.replaceAll("\n", ""),
         },
       ],
     },

@@ -1,6 +1,7 @@
 // @ts-check
 import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
+import eslintConfigPrettier from "eslint-config-prettier";
 import reactCompiler from "eslint-plugin-react-compiler";
 import unicorn from "eslint-plugin-unicorn";
 import tseslint from "typescript-eslint";
@@ -15,6 +16,7 @@ export default tseslint.config(
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
   unicorn.configs["flat/recommended"],
+  eslintConfigPrettier,
   {
     plugins: {
       "react-compiler": reactCompiler,
@@ -28,5 +30,9 @@ export default tseslint.config(
     rules: {
       "react-compiler/react-compiler": "error",
     },
+  },
+  {
+    files: ["**/*.js", "**/*.mjs"],
+    ...tseslint.configs.disableTypeChecked,
   },
 );
