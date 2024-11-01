@@ -1,14 +1,16 @@
 import { routes } from "@/constants/site-config";
+import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { type FC } from "react";
+import { type ComponentProps, type FC } from "react";
 
 const nav = [routes.blog, routes.guestbook];
 
-const Navbar: FC = () => {
+export type NavbarProps = Omit<ComponentProps<"div">, "children">;
+export const Navbar: FC<NavbarProps> = ({ className, ...props }) => {
   return (
-    <div className="navbar bg-base-100">
+    <div className={cn("navbar bg-base-100", className)} {...props}>
       <div className="flex-1">
         <Link className="btn btn-square btn-ghost" href={routes.home}>
           <Image priority alt="" height={32} src="/icon-light.svg" width={32} />
@@ -41,5 +43,3 @@ const Navbar: FC = () => {
     </div>
   );
 };
-
-export default Navbar;
