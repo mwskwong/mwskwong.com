@@ -15,6 +15,9 @@ jobs:
       - run: npm install -g @unlighthouse/cli puppeteer
       - run: npm list -g @unlighthouse/cli
       - run: unlighthouse-ci --site ${{ github.event.deployment_status.environment_url }}
+      - run: pwd
+      - run: ls -al
+      - run: ls -al .unlighthouse
       - uses: actions/upload-artifact@v4
         if: always()
         with:
