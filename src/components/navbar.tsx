@@ -28,7 +28,7 @@ const Navbar: FC = () => {
           role="button"
           tabIndex={0}
         >
-          <Menu size={24} />
+          <Menu size={20} />
         </div>
         <ul className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 shadow">
           {nav.map((route) => (
