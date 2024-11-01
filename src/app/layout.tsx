@@ -4,7 +4,7 @@ import { type Metadata } from 'next';
 import { type FC, type PropsWithChildren } from 'react';
 
 import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
+import { Navbar } from '@/components/navbar';
 import {
   firstName,
   headline,
@@ -20,7 +20,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html suppressHydrationWarning lang="en">
     <body>
       <Providers>
-        <Header />
+        <Navbar />
         {children}
         <Footer />
       </Providers>
