@@ -1,18 +1,9 @@
 import "./globals.css";
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+import Navbar from "@/components/navbar";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import { type Metadata } from "next";
 import { type FC, type PropsWithChildren } from "react";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,8 +11,9 @@ export const metadata: Metadata = {
 };
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-  <html lang="en">
-    <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+  <html className={`${GeistSans.variable} ${GeistMono.variable}`} lang="en">
+    <body className="font-sans antialiased">
+      <Navbar />
       {children}
     </body>
   </html>

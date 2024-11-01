@@ -1,3 +1,4 @@
+import "./src/env";
 import NextBundleAnalyzer from "@next/bundle-analyzer";
 import dedent from "dedent";
 import type { NextConfig } from "next";

@@ -46,6 +46,16 @@ export default tseslint.config(
         "error",
         { ignoreArrowShorthand: true },
       ],
+      "unicorn/prevent-abbreviations": "off",
+      "react/jsx-sort-props": [
+        "warn",
+        {
+          callbacksLast: true,
+          shorthandFirst: true,
+          multiline: "last",
+          reservedFirst: true,
+        },
+      ],
       "react-compiler/react-compiler": "error",
     },
     settings: {
