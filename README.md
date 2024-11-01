@@ -1,60 +1,36 @@
-<p align="center">
-  <a href="https://mwskwong.com" rel="noopener" target="_blank">
-    <picture>
-      <source srcset="https://mwskwong.com/icon-dark.svg" media="(prefers-color-scheme: dark)" />
-      <img src="https://mwskwong.com/icon-light.svg" alt="mwskwomg.com logo" width="150" />
-    </picture>
-  </a>
-</p>
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-<h1 align="center">mwskwong.com</h1>
+## Getting Started
 
-## Greetings 👋.
+First, run the development server:
 
-Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see how I created my site here.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## PROD Deployment
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-1. Create a PR from `canary` to `main`. Let the GitHub Actions run automatically.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-2. In [Contentful](https://app.contentful.com/)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-   1. Update the `master` alias target to the untargeted canary environment (check the **Created** date, it should be newer than the currently targeted environment).
+## Learn More
 
-   2. Delete the untargeted canary environment (i.e. the one previously targeted by `master`) and add a new one.
+To learn more about Next.js, take a look at the following resources:
 
-      - Environment ID naming: `canary_YYYY-MM-DDTHH.mm.ss.SSSZ`
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-        ```js
-        `canary_${new Date().toISOString().replaceAll(':', '.')}`;
-        ```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-      - Cloned from: `development` environment
+## Deploy on Vercel
 
-   3. Update the **Environments** of the `canary` API key, check the newly added canary environment
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-3. In [Vercel](https://vercel.com), replace the value of environment variable `CONTENTFUL_ENVIRONMENT` of the **Preview** environment to the Contentful Environment ID defined in step 2.ii.
-
-4. Merge/enable auto merge for the PR.
-
-## Preview Deployment
-
-1. Create a PR to `canary` (optional)
-
-2. In [Contentful](https://app.contentful.com/)
-
-   1. Delete the latest canary environment and add a new one.
-
-      - Environment ID naming: `canary_YYYY-MM-DDTHH.mm.ss.SSSZ`
-
-        ```js
-        `canary_${new Date().toISOString().replaceAll(':', '.')}`;
-        ```
-
-      - Cloned from: `development` environment
-
-   2. Update the **Environments** of the `canary` API key, check the newly added canary environment
-
-3. Perform step 3 of [PROD Deployment](#prod-deployment)
-
-4. Merge the PR or push code changes to `canary` directly
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
