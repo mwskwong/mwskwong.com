@@ -112,7 +112,13 @@ export const SubmissionListSkeleton: FC<SubmissionListSkeletonProps> = ({
   <List sx={mergeSx(submissionListSx, sx)} {...props}>
     {Array.from({ length: 10 }, (_, index) => (
       <ListItem key={index}>
-        <ListItemContent>
+        <ListItemContent
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: index === 0 ? 'flex-end' : undefined,
+          }}
+        >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Skeleton
               level="title-sm"
