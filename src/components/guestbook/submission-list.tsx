@@ -90,6 +90,8 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
                 px: 2,
                 py: 1,
                 borderRadius: 'sm',
+                borderTopLeftRadius: siteOwner ? undefined : 0,
+                borderTopRightRadius: siteOwner ? 0 : undefined,
                 width: 'fit-content',
                 maxWidth: '80%',
                 whiteSpace: 'pre-wrap',
@@ -136,9 +138,13 @@ export const SubmissionListSkeleton: FC<SubmissionListSkeletonProps> = ({
           </Box>
           <Skeleton
             height={40}
-            sx={{ borderRadius: 'sm' }}
             variant="rectangular"
             width={`${Math.round(Math.random() * (90 - 20 + 1) + 20)}%`}
+            sx={{
+              borderRadius: 'sm',
+              borderTopLeftRadius: index === 0 ? undefined : 0,
+              borderTopRightRadius: index === 0 ? 0 : undefined,
+            }}
           />
         </ListItemContent>
       </ListItem>
