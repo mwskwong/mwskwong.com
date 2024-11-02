@@ -1,11 +1,10 @@
 import {
-  Avatar,
   Box,
   List,
   ListItem,
   ListItemContent,
-  ListItemDecorator,
   type ListProps,
+  Sheet,
   Skeleton,
   Stack,
   type StackProps,
@@ -19,10 +18,8 @@ import { type FC } from 'react';
 import { getGuestbookSubmissions } from '@/lib/queries';
 
 const submissionListSx = {
-  '--List-gap': 'calc(2 * var(--joy-spacing))',
-  '--ListItemDecorator-size': 'calc(2rem + 2 * var(--joy-spacing))',
   '--ListItem-paddingX': '0px',
-  '& > li': { alignItems: 'flex-start' },
+  '& > li': { alignItems: 'flex-end' },
 } satisfies SxProps;
 
 const relativeTimeFormatter = new Intl.RelativeTimeFormat('en', {
@@ -71,32 +68,35 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
   const submissions = await getGuestbookSubmissions();
   return (
     <List sx={mergeSx(submissionListSx, sx)} {...props}>
-      {submissions.map(({ id, name, message, submittedAt }) => (
+      {submissions.map(({ id, name, message, submittedAt, siteOwner }) => (
         <ListItem key={id}>
-          <ListItemDecorator>
-            <Avatar size="sm" sx={{ textTransform: 'uppercase' }}>
-              {name
-                .split(' ')
-                .slice(0, 2)
-                .map((text) => text[0])
-                .join('')}
-            </Avatar>
-          </ListItemDecorator>
-          <ListItemContent>
-            <Typography level="title-md">
-              {name}
-              <Typography level="body-sm" sx={{ fontWeight: 'normal' }}>
-                {' · '}
+          <ListItemContent
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: siteOwner ? 'flex-end' : undefined,
+            }}
+          >
+            <Typography level="body-sm" sx={{ color: 'text.secondary' }}>
+              {name}{' '}
+              <Typography level="body-xs" sx={{ fontWeight: 'normal' }}>
                 {fromNow(submittedAt)}
               </Typography>
             </Typography>
-            <Typography
-              component="pre"
-              level="body-md"
-              sx={{ whiteSpace: 'pre-wrap' }}
+            <Sheet
+              color={siteOwner ? 'primary' : undefined}
+              variant={siteOwner ? 'solid' : 'soft'}
+              sx={{
+                px: 2,
+                py: 1,
+                borderRadius: 'sm',
+                width: 'fit-content',
+                maxWidth: '80%',
+                whiteSpace: 'pre-wrap',
+              }}
             >
               {message}
-            </Typography>
+            </Sheet>
           </ListItemContent>
         </ListItem>
       ))}
@@ -108,30 +108,37 @@ export type SubmissionListSkeletonProps = SubmissionListProps;
 export const SubmissionListSkeleton: FC<SubmissionListSkeletonProps> = ({
   sx,
   ...props
-}) => {
-  return (
-    <List sx={mergeSx(submissionListSx, sx)} {...props}>
-      {Array.from({ length: 5 }, (_, index) => (
-        <ListItem key={index}>
-          <ListItemDecorator>
-            <Skeleton height={32} variant="circular" width={32} />
-          </ListItemDecorator>
-          <ListItemContent>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Skeleton level="title-md" variant="text" width={120} />
-              <Typography component="span" level="body-sm">
-                &nbsp;·&nbsp;
-              </Typography>
-              <Skeleton level="body-sm" variant="text" width={70} />
-            </Box>
-            <Skeleton variant="text" width="92%" />
-            <Skeleton variant="text" width="70%" />
-          </ListItemContent>
-        </ListItem>
-      ))}
-    </List>
-  );
-};
+}) => (
+  <List sx={mergeSx(submissionListSx, sx)} {...props}>
+    {Array.from({ length: 10 }, (_, index) => (
+      <ListItem key={index}>
+        <ListItemContent>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Skeleton
+              level="title-sm"
+              variant="text"
+              width={Math.round(Math.random() * (120 - 40 + 1) + 40)}
+            />
+            <Typography component="span" level="body-sm">
+              &nbsp;
+            </Typography>
+            <Skeleton
+              level="body-xs"
+              variant="text"
+              width={Math.round(Math.random() * (80 - 50 + 1) + 50)}
+            />
+          </Box>
+          <Skeleton
+            height={40}
+            sx={{ borderRadius: 'sm' }}
+            variant="rectangular"
+            width={`${Math.round(Math.random() * (90 - 20 + 1) + 20)}%`}
+          />
+        </ListItemContent>
+      </ListItem>
+    ))}
+  </List>
+);
 
 export type SubmissionListErrorProps = Omit<StackProps, 'children'>;
 export const SubmissionListError: FC<SubmissionListErrorProps> = ({

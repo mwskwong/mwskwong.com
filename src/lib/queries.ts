@@ -334,6 +334,6 @@ export const getGuestbookSubmissions = cache(async () => {
   await connection();
   return await prisma.contactFormSubmission.findMany({
     where: { showInGuestbook: true },
-    orderBy: { submittedAt: 'desc' },
+    orderBy: { submittedAt: 'asc' },
   });
 });
