@@ -4,7 +4,7 @@ import { type FC } from 'react';
 import { Image, type ImageProps } from './image';
 
 export interface LogoProps extends ImageProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 const getSize = (size: LogoProps['size'] = 'md') => {
@@ -15,6 +15,8 @@ const getSize = (size: LogoProps['size'] = 'md') => {
       return 32;
     case 'lg':
       return 36;
+    case 'xl':
+      return 48;
   }
 };
 
