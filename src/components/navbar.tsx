@@ -13,7 +13,6 @@ import { mergeSx } from 'merge-sx';
 import NextLink from 'next/link';
 import { type FC } from 'react';
 
-// import Icon from '@/app/icon.svg';
 import { github, linkedin } from '@/constants/contentful-ids';
 import { routes } from '@/constants/site-config';
 import { getSocialMediaProfiles } from '@/lib/queries';
