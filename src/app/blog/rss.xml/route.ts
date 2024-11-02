@@ -16,7 +16,7 @@ export const GET = async () => {
     id: siteUrl + routes.blogRssFeed.pathname,
     link: siteUrl + routes.blog.pathname,
     language: 'en',
-    copyright: `© ${new Date().getFullYear()} ${lastName.toUpperCase()}, ${firstName} ${middleName}`,
+    copyright: `Copyright © ${new Date().getFullYear()} ${lastName.toUpperCase()}, ${firstName} ${middleName}`,
     feedLinks: {
       rss: siteUrl + routes.blogRssFeed.pathname,
       atom: 'self',
