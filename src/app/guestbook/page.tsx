@@ -96,6 +96,11 @@ const Guestbook: FC = () => (
           <Typography level="h1">{routes.guestbook.name}</Typography>
           <Typography>{description}</Typography>
         </Stack>
+        <ErrorBoundary fallback={<SubmissionListError />}>
+          <Suspense fallback={<SubmissionListSkeleton />}>
+            <SubmissionList />
+          </Suspense>
+        </ErrorBoundary>
         <Button
           component={Link}
           href={{ ...routes.contactForm, query: { showInGuestbook: true } }}
@@ -104,11 +109,6 @@ const Guestbook: FC = () => (
         >
           Leave A Message
         </Button>
-        <ErrorBoundary fallback={<SubmissionListError />}>
-          <Suspense fallback={<SubmissionListSkeleton />}>
-            <SubmissionList />
-          </Suspense>
-        </ErrorBoundary>
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />

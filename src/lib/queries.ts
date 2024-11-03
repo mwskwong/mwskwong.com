@@ -325,5 +325,5 @@ export const getBlogMetadataById = async (id: string) =>
 export const getGuestbookSubmissions = async () =>
   prisma.contactFormSubmission.findMany({
     where: { showInGuestbook: true },
-    orderBy: { submittedAt: 'desc' },
+    orderBy: { submittedAt: 'asc' },
   });
