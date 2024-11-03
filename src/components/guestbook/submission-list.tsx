@@ -106,6 +106,16 @@ export const SubmissionList: FC<SubmissionListProps> = async ({
   );
 };
 
+const generateDeterministicRandomNumber = (
+  index: number,
+  min: number,
+  max: number,
+) => {
+  const phi = 1.618033988749895; // Golden ratio
+  const value = ((index * phi) % 1) * (max - min + 1) + min;
+  return Math.floor(value);
+};
+
 export type SubmissionListSkeletonProps = SubmissionListProps;
 export const SubmissionListSkeleton: FC<SubmissionListSkeletonProps> = ({
   sx,
@@ -125,7 +135,7 @@ export const SubmissionListSkeleton: FC<SubmissionListSkeletonProps> = ({
             <Skeleton
               level="title-sm"
               variant="text"
-              width={Math.round(Math.random() * (120 - 40 + 1) + 40)}
+              width={generateDeterministicRandomNumber(index, 40, 120)}
             />
             <Typography component="span" level="body-sm">
               &nbsp;
@@ -133,13 +143,13 @@ export const SubmissionListSkeleton: FC<SubmissionListSkeletonProps> = ({
             <Skeleton
               level="body-xs"
               variant="text"
-              width={Math.round(Math.random() * (80 - 50 + 1) + 50)}
+              width={generateDeterministicRandomNumber(index, 50, 80)}
             />
           </Box>
           <Skeleton
             height={40}
             variant="rectangular"
-            width={`${Math.round(Math.random() * (90 - 20 + 1) + 20)}%`}
+            width={`${generateDeterministicRandomNumber(index, 20, 90)}%`}
             sx={{
               borderRadius: 'sm',
               borderTopLeftRadius: index === 0 ? undefined : 0,
