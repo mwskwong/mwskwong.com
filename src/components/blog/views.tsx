@@ -1,6 +1,5 @@
 import { Skeleton, Typography, type TypographyProps } from '@mui/joy';
 import { Eye } from 'lucide-react';
-import { mergeSx } from 'merge-sx';
 import { type FC } from 'react';
 
 import { getBlogMetadataById, getBlogsMetadata } from '@/lib/queries';
@@ -43,12 +42,11 @@ export const Views: FC<ViewsProps> = async ({
 export type ViewsSkeletonProps = Omit<ViewsProps, 'blogIds' | 'blogId'>;
 export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
   hideIcon,
-  sx,
   ...props
 }) => (
   <Typography
+    display={hideIcon ? 'flex' : undefined} // WORKAROUND: when using sx props, it will causes layout shift when start switching from skeleton -> views
     startDecorator={!hideIcon && <Eye />}
-    sx={mergeSx({ display: hideIcon ? 'flex' : undefined }, sx)}
     {...props}
   >
     <Skeleton level={props.level} variant="text" width="3ch" />
@@ -57,10 +55,10 @@ export const ViewsSkeleton: FC<ViewsSkeletonProps> = ({
 );
 
 export type ViewsErrorProps = ViewsSkeletonProps;
-export const ViewsError: FC<ViewsErrorProps> = ({ hideIcon, sx, ...props }) => (
+export const ViewsError: FC<ViewsErrorProps> = ({ hideIcon, ...props }) => (
   <Typography
+    display={hideIcon ? 'flex' : undefined} // WORKAROUND: when using sx props, it will causes layout shift when start switching from skeleton -> error
     startDecorator={!hideIcon && <Eye />}
-    sx={mergeSx({ display: hideIcon ? 'flex' : undefined }, sx)}
     {...props}
   >
     –– views
