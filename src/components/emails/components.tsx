@@ -1,9 +1,13 @@
-import { Body } from '@react-email/body';
-import { Container } from '@react-email/container';
-import { Hr as EmailHr, type HrProps } from '@react-email/hr';
-import { Html } from '@react-email/html';
-import { Img } from '@react-email/img';
-import { Text as EmailText, type TextProps } from '@react-email/text';
+import {
+  Body,
+  Container,
+  Hr as EmailHr,
+  Text as EmailText,
+  type HrProps,
+  Html,
+  Img,
+  type TextProps,
+} from '@react-email/components';
 import { type FC, type PropsWithChildren } from 'react';
 
 import { siteDisplayName, siteUrl } from '@/constants/site-config';
