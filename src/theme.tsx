@@ -1,10 +1,12 @@
 import { type Theme, extendTheme } from '@mui/joy';
 import { type PaletteOptions } from '@mui/joy/styles/types';
 import { type Interpolation } from '@mui/styled-engine';
-import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
 import { Check } from 'lucide-react';
+import { Geist, Geist_Mono as GeistMono } from 'next/font/google';
 import { type PartialDeep } from 'type-fest';
+
+const geist = Geist({ subsets: ['latin'] });
+const geistMono = GeistMono({ subsets: ['latin'], preload: false });
 
 declare module '@mui/joy/styles/types/zIndex' {
   interface ZIndexOverrides {
@@ -22,9 +24,9 @@ export const theme = extendTheme({
     dark: { palette },
   },
   fontFamily: {
-    body: GeistSans.style.fontFamily,
-    display: GeistSans.style.fontFamily,
-    code: GeistMono.style.fontFamily,
+    body: geist.style.fontFamily,
+    display: geist.style.fontFamily,
+    code: geistMono.style.fontFamily,
   },
   zIndex: {
     header: 1100,
