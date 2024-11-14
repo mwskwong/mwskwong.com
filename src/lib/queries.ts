@@ -321,7 +321,6 @@ export const getBlogMetadataById = async (id: string) =>
 
 // prevent using Next.js cache to for this despite technically we can + revalidate when new submission happened.
 // this allows moderation on PROD by directly updating the prisma
-// Also using React.cache here because both JSON+LD and the UI needs this data
 export const getGuestbookSubmissions = async () =>
   prisma.contactFormSubmission.findMany({
     where: { showInGuestbook: true },
