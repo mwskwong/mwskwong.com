@@ -26,7 +26,6 @@ module.exports = {
       polymorphicPropName: 'component',
       components: {
         Button: 'button',
-        Icon: 'svg',
         IconButton: 'button',
         Image: 'img',
         Input: 'input',
