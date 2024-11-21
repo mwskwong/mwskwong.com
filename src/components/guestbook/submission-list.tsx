@@ -30,12 +30,12 @@ const fromNow = (date: Date) => {
   // logic: https://day.js.org/docs/en/display/from-now
 
   const today = new Date();
-  const diffInSec = Math.round((today.getTime() - date.getTime()) / 1000);
-  const diffInMin = Math.round(diffInSec / 60);
-  const diffInHour = Math.round(diffInMin / 60);
-  const diffInDay = Math.round(diffInHour / 24);
-  const diffInMonth = Math.round(diffInDay / 30);
-  const diffInYear = Math.round(diffInMonth / 12);
+  const diffInSec = Math.floor((today.getTime() - date.getTime()) / 1000);
+  const diffInMin = Math.floor(diffInSec / 60);
+  const diffInHour = Math.floor(diffInMin / 60);
+  const diffInDay = Math.floor(diffInHour / 24);
+  const diffInMonth = Math.floor(diffInDay / 30);
+  const diffInYear = Math.floor(diffInMonth / 12);
 
   if (diffInSec >= 0 && diffInSec <= 44) {
     return relativeTimeFormatter.format(-diffInSec, 'second');
