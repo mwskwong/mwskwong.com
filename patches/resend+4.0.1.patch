@@ -11,3 +11,16 @@ index 78d6846..90755f2 100644
        }
        const data = yield this.resend.post(
          "/emails/batch",
+diff --git a/node_modules/resend/dist/index.mjs b/node_modules/resend/dist/index.mjs
+index 9ee6648..3ac4c00 100644
+--- a/node_modules/resend/dist/index.mjs
++++ b/node_modules/resend/dist/index.mjs
+@@ -138,6 +138,8 @@ var Batch = class {
+           email.html = yield this.renderAsync(email.react);
+           email.react = void 0;
+         }
++        email.reply_to = email.replyTo;
++        delete email.replyTo;
+       }
+       const data = yield this.resend.post(
+         "/emails/batch",
