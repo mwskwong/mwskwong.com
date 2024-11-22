@@ -15,7 +15,7 @@ module.exports = {
     require.resolve('@vercel/style-guide/eslint/typescript'),
   ],
   parserOptions: { project },
-  plugins: ['react-compiler'],
+  plugins: ['eslint-plugin-react-compiler'],
   settings: {
     'import/resolver': { typescript: { project } },
     /**
