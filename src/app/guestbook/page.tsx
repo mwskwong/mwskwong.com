@@ -3,6 +3,7 @@ import { escape } from 'lodash-es';
 import { type Metadata, type ResolvingMetadata } from 'next';
 import Link from 'next/link';
 import { type FC, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import {
   type BreadcrumbList,
   type Comment,
@@ -10,7 +11,6 @@ import {
   type Graph,
 } from 'schema-dts';
 
-import { ErrorBoundary } from '@/components/error-boundary';
 import {
   SubmissionList,
   SubmissionListError,
@@ -112,7 +112,7 @@ const Guestbook: FC = () => (
       </Stack>
     </Container>
     <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
-    <ErrorBoundary>
+    <ErrorBoundary fallback={null}>
       <Suspense>
         <JsonLd />
       </Suspense>

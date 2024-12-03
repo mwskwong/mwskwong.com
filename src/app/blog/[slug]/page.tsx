@@ -13,6 +13,7 @@ import { type Metadata } from 'next';
 import NextLink from 'next/link';
 import { notFound } from 'next/navigation';
 import { type FC, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
 
 import { BlogCoverImage } from '@/components/blog/blog-cover-image';
@@ -21,7 +22,6 @@ import { IncrBlogView } from '@/components/blog/incr-blog-view';
 import { ShareDropdown } from '@/components/blog/share-dropdown';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
 import { Icon } from '@/components/contentful';
-import { ErrorBoundary } from '@/components/error-boundary';
 import { Image } from '@/components/image';
 import { Mdx } from '@/components/mdx';
 import { SectionDivider } from '@/components/section-divider';
