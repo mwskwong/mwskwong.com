@@ -11,11 +11,11 @@ import {
 import { type Metadata, type ResolvingMetadata } from 'next';
 import NextLink from 'next/link';
 import { type FC, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { type BreadcrumbList, type WithContext } from 'schema-dts';
 
 import { BlogCardImage } from '@/components/blog/blog-card-image';
 import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
-import { ErrorBoundary } from '@/components/error-boundary';
 import { SectionDivider } from '@/components/section-divider';
 import { routes, siteUrl } from '@/constants/site-config';
 import { getBlogs } from '@/lib/queries';

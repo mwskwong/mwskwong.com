@@ -1,6 +1,6 @@
 'use server';
 
-import { type CreateBatchOptions, type ErrorResponse } from 'resend';
+import { type CreateBatchOptions } from 'resend';
 import { parse } from 'valibot';
 
 import { ContactFormAcknowledgement } from '@/components/emails/contact-form-acknowledgement';
@@ -46,19 +46,8 @@ export const submitContactForm = async (data: ContactFormData) => {
 
   const { error } = await resend.batch.send(emails);
   if (error) {
-    throw new CreateEmailError(
-      'Failed to send emails on contact form submission',
-      error,
+    throw new Error(
+      `Failed to send emails on contact form submission\n${JSON.stringify(error, null, 2)}`,
     );
   }
 };
-
-class CreateEmailError extends Error {
-  error: ErrorResponse;
-
-  constructor(message: string, error: ErrorResponse) {
-    super(`${message}\n${JSON.stringify(error, null, 2)}`);
-    this.name = 'CreateEmailError';
-    this.error = error;
-  }
-}
