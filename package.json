@@ -27,7 +27,7 @@
     "@mui/joy": "next",
     "@mui/material-nextjs": "^6.1.9",
     "@mui/styled-engine": "^6.1.9",
-    "@prisma/client": "^6.0.0",
+    "@prisma/client": "^6.0.1",
     "@react-email/components": "^0.0.28",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
@@ -67,7 +67,7 @@
     "patch-package": "^8.0.0",
     "prettier": "^3.4.1",
     "prettier-plugin-prisma": "^5.0.0",
-    "prisma": "^6.0.0",
+    "prisma": "^6.0.1",
     "schema-dts": "^1.1.2",
     "type-fest": "^4.29.0",
     "typescript": "^5.7.2"
