@@ -74,7 +74,6 @@
     "typescript": "^5.7.2"
   },
   "overrides": {
-    "@mui/utils": "^6.1.10",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc"
   }
