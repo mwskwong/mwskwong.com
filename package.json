@@ -8,10 +8,18 @@
     "lint": "next lint --no-cache",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
-    "start": "next start"
+    "start": "next start",
+    "stylelint": "stylelint **/*.css",
+    "upgrade": "npm update && npm run lint -- --fix && npm run stylelint -- --fix"
   },
   "dependencies": {
+    "@mantine/core": "^7.14.3",
+    "@mantine/hooks": "^7.14.3",
+    "dedent": "^1.5.3",
     "next": "canary",
+    "postcss": "^8.4.49",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -23,11 +31,14 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vercel/style-guide": "^6.0.0",
-    "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
+    "autoprefixer": "^10.4.20",
+    "babel-plugin-react-compiler": "latest",
     "eslint": "^8.57.1",
-    "eslint-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
+    "eslint-plugin-react-compiler": "latest",
     "prettier": "^3.4.2",
     "prettier-plugin-prisma": "^5.0.0",
+    "stylelint": "^16.11.0",
+    "stylelint-config-standard": "^36.0.1",
     "typescript": "^5.7.2"
   }
 }
