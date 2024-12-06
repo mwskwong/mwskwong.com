@@ -5,6 +5,8 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono as GeistMono } from 'next/font/google';
 import { type FC, type PropsWithChildren } from 'react';
 
+import { Header } from '@/components/header';
+
 const geist = Geist({ subsets: ['latin'] });
 const geistMono = GeistMono({ subsets: ['latin'], preload: false });
 
@@ -39,7 +41,10 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
       <ColorSchemeScript />
     </head>
     <body>
-      <MantineProvider theme={theme}>{children}</MantineProvider>
+      <MantineProvider theme={theme}>
+        <Header />
+        {children}
+      </MantineProvider>
     </body>
   </html>
 );

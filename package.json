@@ -15,6 +15,8 @@
   "dependencies": {
     "@mantine/core": "^7.14.3",
     "@mantine/hooks": "^7.14.3",
+    "@tabler/icons-react": "^3.24.0",
+    "clsx": "^2.1.1",
     "dedent": "^1.5.3",
     "next": "canary",
     "postcss": "^8.4.49",

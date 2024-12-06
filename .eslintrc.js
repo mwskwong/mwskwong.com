@@ -18,25 +18,11 @@ module.exports = {
   plugins: ['eslint-plugin-react-compiler'],
   settings: {
     'import/resolver': { typescript: { project } },
-    /**
-     * enable MUI Joy components to be checked
-     * @see {@link https://github.com/jsx-eslint/eslint-plugin-jsx-a11y?tab=readme-ov-file#configurations}
-     */
     'jsx-a11y': {
       polymorphicPropName: 'component',
       components: {
-        Button: 'button',
-        IconButton: 'button',
+        // TODO: Mantine components and Next.js components
         Image: 'img',
-        Input: 'input',
-        Link: 'a',
-        List: 'ul',
-        ListDivider: 'li',
-        ListItem: 'li',
-        ListItemButton: 'button',
-        NextImage: 'img',
-        NextLink: 'a',
-        Textarea: 'textarea',
       },
     },
   },
