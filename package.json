@@ -3,22 +3,31 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint --no-cache"
+    "dev": "next dev",
+    "lint": "next lint --no-cache",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "start": "next start"
   },
   "dependencies": {
+    "next": "canary",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "^15.0.4"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.7.2",
+    "@next/bundle-analyzer": "canary",
+    "@next/eslint-plugin-next": "canary",
+    "@total-typescript/ts-reset": "^0.6.1",
     "@types/node": "^22.10.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@vercel/style-guide": "^6.0.0",
+    "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
     "eslint": "^8.57.1",
-    "eslint-config-next": "15.0.4"
+    "eslint-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
+    "prettier": "^3.4.2",
+    "prettier-plugin-prisma": "^5.0.0",
+    "typescript": "^5.7.2"
   }
 }
