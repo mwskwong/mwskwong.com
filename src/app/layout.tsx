@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css'; // TODO: consider import individual CSS files instead
+import './global.css';
 
 import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
 import type { Metadata } from 'next';
@@ -13,19 +14,19 @@ const geistMono = GeistMono({ subsets: ['latin'], preload: false });
 const theme = createTheme({
   fontFamily: geist.style.fontFamily,
   fontFamilyMonospace: geistMono.style.fontFamily,
-  primaryColor: 'deep-blue',
+  primaryColor: 'bright-blue',
   colors: {
-    'deep-blue': [
-      '#ecefff',
-      '#d5dafb',
-      '#a9b1f1',
-      '#7a87e9',
-      '#5362e1',
-      '#3a4bdd',
-      '#2c40dc',
-      '#1f32c4',
-      '#182cb0',
-      '#0a259c',
+    'bright-blue': [
+      '#e5f3ff',
+      '#cde2ff',
+      '#9ac2ff',
+      '#64a0ff',
+      '#3884fe',
+      '#1d72fe',
+      '#0969ff',
+      '#0058e4',
+      '#004ecd',
+      '#0043b5',
     ],
   },
 });

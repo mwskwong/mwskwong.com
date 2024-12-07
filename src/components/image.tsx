@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import { type FC } from 'react';
 
-import classes from './styles.module.css';
+import classes from './image.module.css';
 
 export type ImageProps =
   | (NextImageProps & {
