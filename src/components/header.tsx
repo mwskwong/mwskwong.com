@@ -1,4 +1,4 @@
-import { ActionIcon, Burger, Container, Group } from '@mantine/core';
+import { ActionIcon, Burger, Button, Container, Group } from '@mantine/core';
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -11,6 +11,15 @@ import { routes } from '@/constants/site-config';
 
 import classes from './header.module.css';
 import { Image } from './image';
+
+const nav = [
+  routes.about,
+  routes.experience,
+  routes.education,
+  routes.contact,
+  routes.blog,
+  routes.guestbook,
+];
 
 export const Header: FC = () => {
   return (
@@ -27,18 +36,28 @@ export const Header: FC = () => {
               width={28}
             />
           </Link>
-          <Group gap="md" visibleFrom="sm">
-            {/* {items} */}
+          <Group gap={0} visibleFrom="sm">
+            {nav.map((route) => (
+              <Button
+                key={route.name}
+                color="dark"
+                component={Link}
+                href={route}
+                variant="subtle"
+              >
+                {route.name}
+              </Button>
+            ))}
           </Group>
           <Group gap="xs">
-            <ActionIcon size="lg" variant="default">
-              <IconBrandGithub />
+            <ActionIcon variant="default">
+              <IconBrandGithub size={18} />
             </ActionIcon>
-            <ActionIcon size="lg" variant="default">
-              <IconBrandLinkedin />
+            <ActionIcon variant="default">
+              <IconBrandLinkedin size={18} />
             </ActionIcon>
-            <ActionIcon size="lg" variant="default">
-              <IconMoon />
+            <ActionIcon variant="default">
+              <IconMoon size={18} />
             </ActionIcon>
           </Group>
         </Group>
