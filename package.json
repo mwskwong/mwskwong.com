@@ -18,9 +18,9 @@
     "upgrade": "npm update && npm run postinstall && npm run prettier:write && tsc && npm run lint -- --fix"
   },
   "dependencies": {
-    "@emotion/cache": "^11.13.5",
-    "@emotion/react": "^11.13.5",
-    "@emotion/styled": "^11.13.5",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@hookform/resolvers": "^3.9.1",
     "@icons-pack/react-simple-icons": "^10.2.0",
     "@mui/base": "latest",
@@ -49,7 +49,7 @@
     "rehype-slug": "^6.0.0",
     "resend": "^4.0.1",
     "server-only": "^0.0.1",
-    "shiki": "^1.24.0",
+    "shiki": "^1.24.1",
     "valibot": "latest"
   },
   "devDependencies": {
