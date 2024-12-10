@@ -6,7 +6,7 @@ const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
-const config: NextConfig = {
+const config = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -80,6 +80,6 @@ const config: NextConfig = {
     ppr: true,
     // dynamicIO: true,
   },
-};
+} satisfies NextConfig;
 
 export default withBundleAnalyzer(config);
