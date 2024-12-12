@@ -76,7 +76,7 @@ const config = {
   ],
   logging: { fetches: { fullUrl: true } },
   experimental: {
-    // reactCompiler: true,
+    reactCompiler: true,
     ppr: true,
     dynamicIO: true,
     optimizePackageImports: ['@radix-ui/themes'],
