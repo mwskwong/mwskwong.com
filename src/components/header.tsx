@@ -18,8 +18,6 @@ const socialMedia = [
 
 export const Header: FC = () => {
   const pathname = usePathname();
-  // eslint-disable-next-line no-console -- debug
-  console.log({ pathname });
 
   return (
     <Container asChild height="56px" px="4">
@@ -33,7 +31,7 @@ export const Header: FC = () => {
               <Link
                 key={`${route.pathname}-${route.hash ?? ''}`}
                 color="gray"
-                highContrast={pathname === route.pathname}
+                highContrast={pathname.startsWith(route.pathname)}
                 href={route}
                 size="2"
               >
