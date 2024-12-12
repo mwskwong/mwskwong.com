@@ -20,13 +20,14 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^15.0.4",
-    "@next/eslint-plugin-next": "^15.0.4",
+    "@next/bundle-analyzer": "canary",
+    "@next/eslint-plugin-next": "canary",
     "@total-typescript/ts-reset": "^0.6.1",
-    "@types/node": "^22.10.1",
+    "@types/node": "^22.10.2",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.2",
     "@vercel/style-guide": "^6.0.0",
+    "autoprefixer": "^10.4.20",
     "babel-plugin-react-compiler": "latest",
     "eslint": "^8.57.1",
     "eslint-plugin-react-compiler": "latest",

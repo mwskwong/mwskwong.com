@@ -78,7 +78,7 @@ const config = {
   experimental: {
     reactCompiler: true,
     ppr: true,
-    // dynamicIO: true,
+    dynamicIO: true,
   },
 } satisfies NextConfig;
 
