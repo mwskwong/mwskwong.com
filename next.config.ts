@@ -79,6 +79,7 @@ const config = {
     reactCompiler: true,
     ppr: true,
     dynamicIO: true,
+    optimizePackageImports: ['@radix-ui/themes'],
   },
 } satisfies NextConfig;
 

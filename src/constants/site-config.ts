@@ -1,7 +1,8 @@
-export interface Route {
+import { type UrlObject } from 'node:url';
+
+export interface Route extends UrlObject {
   name: string;
   pathname: string;
-  hash?: string;
 }
 
 export const routes = {
@@ -34,3 +35,6 @@ export const routes = {
     pathname: '/privacy-policy',
   } as Route,
 };
+
+export const github = 'https://github.com/mwskwong';
+export const linkedin = 'https://www.linkedin.com/in/mwskwong/';
