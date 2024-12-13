@@ -12,8 +12,8 @@ import { Link } from './link';
 const nav = [routes.blog, routes.guestbook];
 
 const socialMedia = [
-  { Icon: IconBrandGithub, href: github },
-  { Icon: IconBrandLinkedin, href: linkedin },
+  { Icon: IconBrandGithub, href: github, name: 'GitHub' },
+  { Icon: IconBrandLinkedin, href: linkedin, name: 'LinkedIn' },
 ];
 
 export const Header: FC = () => {
@@ -23,8 +23,14 @@ export const Header: FC = () => {
     <Container asChild height="56px" px="4">
       <header>
         <Flex align="center" gap="6" height="56px">
-          <Link href={routes.home}>
-            <Box className="rounded-3 bg-accent-6" height="32px" width="32px" />
+          <Link aria-label={routes.home.name} href={routes.home}>
+            <Box
+              className="rounded-full border-2 border-accentA-8 bg-accent-2"
+              height="32px"
+              width="32px"
+            >
+              {/* my profile pic */}
+            </Box>
           </Link>
           <Flex align="center" flexGrow="1" gap="5" justify="end">
             {nav.map((route) => (
@@ -38,9 +44,14 @@ export const Header: FC = () => {
                 {route.name}
               </Link>
             ))}
-            {socialMedia.map(({ Icon, href }) => (
+            {socialMedia.map(({ Icon, href, name }) => (
               <IconButton key={href} asChild variant="ghost">
-                <Link color="gray" href={href} target="_blank">
+                <Link
+                  aria-label={name}
+                  color="gray"
+                  href={href}
+                  target="_blank"
+                >
                   <Icon size={18} />
                 </Link>
               </IconButton>
