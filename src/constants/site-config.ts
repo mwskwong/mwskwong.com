@@ -7,22 +7,13 @@ export interface Route extends UrlObject {
 
 export const routes = {
   home: { name: 'Home', pathname: '/' } as Route,
-  about: { name: 'About', pathname: '/', hash: 'about' } as Route,
   experience: {
     name: 'Experience',
-    pathname: '/',
-    hash: 'experience',
+    pathname: '/experience',
   } as Route,
   education: {
     name: 'Education',
-    pathname: '/',
-    hash: 'education',
-  } as Route,
-  contact: { name: 'Contact', pathname: '/', hash: 'contact' } as Route,
-  contactForm: {
-    name: 'Contact Form',
-    pathname: '/',
-    hash: 'contactForm',
+    pathname: '/education',
   } as Route,
   blog: { name: 'Blog', pathname: '/blog' } as Route,
   blogRssFeed: {
