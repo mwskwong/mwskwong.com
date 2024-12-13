@@ -4,6 +4,10 @@ import { contentful } from './clients';
 
 export const getPersonalPortrait = async () => {
   'use cache';
+
   const asset = await contentful.getAsset(personalPortrait);
-  return asset.fields.file && `https:${asset.fields.file.url}`;
+  return {
+    url: asset.fields.file && `https:${asset.fields.file.url}`,
+    contentType: asset.fields.file?.contentType,
+  };
 };

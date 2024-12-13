@@ -3,7 +3,8 @@ import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
 import Image from 'next/image';
 import { type FC } from 'react';
 
-import { github, linkedin, routes } from '@/constants/site-config';
+import { github, linkedin } from '@/constants/me';
+import { routes } from '@/constants/site-config';
 import { getPersonalPortrait } from '@/lib/queries';
 
 import { Link } from './link';
@@ -22,7 +23,7 @@ const socialMedia = [
 ];
 
 export const Header: FC = async () => {
-  const personalPortrait = await getPersonalPortrait();
+  const { url: personalPortrait } = await getPersonalPortrait();
 
   return (
     <Container asChild height="56px" px="4">

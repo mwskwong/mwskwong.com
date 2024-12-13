@@ -27,5 +27,22 @@ export const routes = {
   } as Route,
 };
 
-export const github = 'https://github.com/mwskwong';
-export const linkedin = 'https://www.linkedin.com/in/mwskwong/';
+const getSiteUrl = () => {
+  if (
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' &&
+    process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+  ) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+
+  if (
+    process.env.NEXT_PUBLIC_VERCEL_ENV &&
+    process.env.NEXT_PUBLIC_VERCEL_URL
+  ) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  }
+
+  return `http://localhost:${process.env.PORT ?? 3000}`;
+};
+
+export const siteUrl = getSiteUrl();
