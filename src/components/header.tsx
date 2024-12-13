@@ -1,13 +1,17 @@
-import { Container, Flex, IconButton } from '@radix-ui/themes';
-import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
+import { Container, DropdownMenu, Flex, IconButton } from '@radix-ui/themes';
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconMenu,
+} from '@tabler/icons-react';
 import Image from 'next/image';
+import { Link } from 'next-view-transitions';
 import { type FC } from 'react';
 
 import { github, linkedin } from '@/constants/me';
 import { routes } from '@/constants/site-config';
 import { getPersonalPortrait } from '@/lib/queries';
 
-import { Link } from './link';
 import { NavLink } from './nav-link';
 
 const nav = [
@@ -29,7 +33,7 @@ export const Header: FC = async () => {
     <Container asChild height="56px" px="4">
       <header>
         <Flex align="center" gap="6" height="56px">
-          <Link aria-label={routes.home.name} href={routes.home}>
+          <Link aria-label={routes.home.name} href={routes.home.pathname}>
             {personalPortrait ? (
               <Image
                 alt="personal portrait"
@@ -41,28 +45,38 @@ export const Header: FC = async () => {
             ) : null}
           </Link>
           <Flex align="center" flexGrow="1" gap="5" justify="end">
-            {nav.map((route) => (
+            {nav.map(({ name, pathname }) => (
               <NavLink
-                key={`${route.pathname}-${route.hash ?? ''}`}
+                key={name}
+                className="hidden sm:block"
                 color="gray"
-                href={route}
+                href={pathname}
                 size="2"
               >
-                {route.name}
+                {name}
               </NavLink>
             ))}
             {socialMedia.map(({ Icon, href, name }) => (
-              <IconButton key={href} asChild variant="ghost">
-                <Link
-                  aria-label={name}
-                  color="gray"
-                  href={href}
-                  target="_blank"
-                >
+              <IconButton key={href} asChild color="gray" variant="ghost">
+                <a aria-label={name} href={href} rel="noopener" target="_blank">
                   <Icon size={18} />
-                </Link>
+                </a>
               </IconButton>
             ))}
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger className="sm:hidden">
+                <IconButton color="gray" variant="ghost">
+                  <IconMenu size={18} />
+                </IconButton>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content align="end" color="gray">
+                {nav.map(({ name, pathname }) => (
+                  <DropdownMenu.Item key={pathname} asChild>
+                    <Link href={pathname}>{name}</Link>
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
           </Flex>
         </Flex>
       </header>

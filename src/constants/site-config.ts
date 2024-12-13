@@ -6,26 +6,14 @@ export interface Route extends UrlObject {
 }
 
 export const routes = {
-  home: { name: 'Home', pathname: '/' } as Route,
-  experience: {
-    name: 'Experience',
-    pathname: '/experience',
-  } as Route,
-  education: {
-    name: 'Education',
-    pathname: '/education',
-  } as Route,
-  blog: { name: 'Blog', pathname: '/blog' } as Route,
-  blogRssFeed: {
-    name: 'Blog RSS Feed',
-    pathname: '/blog/rss.xml',
-  } as Route,
-  guestbook: { name: 'Guestbook', pathname: '/guestbook' } as Route,
-  privacyPolicy: {
-    name: 'Privacy Policy',
-    pathname: '/privacy-policy',
-  } as Route,
-};
+  home: { name: 'Home', pathname: '/' },
+  experience: { name: 'Experience', pathname: '/experience' },
+  education: { name: 'Education', pathname: '/education' },
+  blog: { name: 'Blog', pathname: '/blog' },
+  blogRssFeed: { name: 'Blog RSS Feed', pathname: '/blog/rss.xml' },
+  guestbook: { name: 'Guestbook', pathname: '/guestbook' },
+  privacyPolicy: { name: 'Privacy Policy', pathname: '/privacy-policy' },
+} satisfies Record<string, Route>;
 
 const getSiteUrl = () => {
   if (

@@ -3,6 +3,7 @@ import './globals.css';
 import { Theme } from '@radix-ui/themes';
 import { type Metadata } from 'next';
 import { Geist, Geist_Mono as GeistMono } from 'next/font/google';
+import { ViewTransitions } from 'next-view-transitions';
 import { type FC, type PropsWithChildren } from 'react';
 
 import { Header } from '@/components/header';
@@ -28,14 +29,16 @@ const geistMono = GeistMono({
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Theme>
-          <Header />
-          {children}
-        </Theme>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <Theme>
+            <Header />
+            {children}
+          </Theme>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 };
 
