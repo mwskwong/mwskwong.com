@@ -37,9 +37,9 @@ export const Header: FC<HeaderProps> = async (props) => {
   const { url: personalPortrait } = await getPersonalPortrait();
 
   return (
-    <Container asChild height="56px" {...props}>
+    <Container asChild py="5" {...props}>
       <header>
-        <Flex align="center" gap="6" height="56px">
+        <Flex align="center" gap="6">
           <Link aria-label={routes.home.name} href={routes.home.pathname}>
             {personalPortrait ? (
               <Image

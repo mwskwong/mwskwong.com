@@ -16,7 +16,13 @@ import {
 } from '@tabler/icons-react';
 import { type FC } from 'react';
 
-import { github, legalName, linkedin, stackoverflow } from '@/constants/me';
+import {
+  firstName,
+  github,
+  lastName,
+  linkedin,
+  stackoverflow,
+} from '@/constants/me';
 import { routes } from '@/constants/site-config';
 
 const links = [
@@ -33,7 +39,9 @@ export const Footer: FC<FooterProps> = (props) => (
       <Separator size="4" />
       <Section>
         <Flex direction="column" gap="6">
-          <Heading size="7">{legalName}</Heading>
+          <Heading size="7">
+            {firstName} {lastName}
+          </Heading>
           <Flex gap="5">
             {links.map(({ Icon, href, name }) => (
               <IconButton key={href} asChild color="gray" variant="ghost">

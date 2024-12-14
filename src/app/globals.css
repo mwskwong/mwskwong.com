@@ -9,10 +9,14 @@
   --code-font-family: var(--font-geist-mono);
 }
 
-.rt-Link {
-  @apply outline-none;
+@media (pointer: coarse) {
+  .rt-Link:where(:any-link, button):where(
+      :active:not(:focus-visible, [data-state='open'])
+    ) {
+    @apply outline-none;
+  }
 }
 
 .rt-Container {
-  @apply px-rx-4;
+  @apply px-rx-5;
 }
