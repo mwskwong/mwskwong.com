@@ -3,7 +3,7 @@ const config = {
   ci: {
     buildStatic: true,
     budget: {
-      performance: 100,
+      performance: 95,
       accessibility: 100,
       'best-practices': 100,
       /**

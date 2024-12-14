@@ -6,6 +6,7 @@ import { Geist, Geist_Mono as GeistMono } from 'next/font/google';
 import { ViewTransitions } from 'next-view-transitions';
 import { type FC, type PropsWithChildren } from 'react';
 
+import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import {
   firstName,
@@ -35,6 +36,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => {
           <Theme>
             <Header />
             {children}
+            <Footer />
           </Theme>
         </body>
       </html>
@@ -80,7 +82,6 @@ export const generateMetadata = async () => {
       apple: { url: appleIcon.toString(), type: contentType, sizes: '180x180' },
     },
     archives: ['https://v2.mwskwong.com', 'https://v3.mwskwong.com'],
-    alternates: { canonical: '/' },
   } satisfies Metadata;
 };
 

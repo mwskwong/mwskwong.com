@@ -16,6 +16,7 @@ const config = {
       },
     ],
     'import-notation': 'string',
+    'selector-class-pattern': null,
   },
 };
 

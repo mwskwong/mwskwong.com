@@ -1,4 +1,10 @@
-import { Container, Flex, IconButton, Popover } from '@radix-ui/themes';
+import {
+  Container,
+  type ContainerProps,
+  Flex,
+  IconButton,
+  Popover,
+} from '@radix-ui/themes';
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -26,11 +32,12 @@ const socialMedia = [
   { Icon: IconBrandLinkedin, href: linkedin, name: 'LinkedIn' },
 ];
 
-export const Header: FC = async () => {
+export type HeaderProps = Omit<ContainerProps, 'asChild' | 'children'>;
+export const Header: FC<HeaderProps> = async (props) => {
   const { url: personalPortrait } = await getPersonalPortrait();
 
   return (
-    <Container asChild height="56px" px="4">
+    <Container asChild height="56px" {...props}>
       <header>
         <Flex align="center" gap="6" height="56px">
           <Link aria-label={routes.home.name} href={routes.home.pathname}>
@@ -65,7 +72,7 @@ export const Header: FC = async () => {
             ))}
             <Popover.Root>
               <Popover.Trigger className="sm:hidden">
-                <IconButton color="gray" variant="ghost">
+                <IconButton aria-label="nav menu" color="gray" variant="ghost">
                   <IconMenu size={18} />
                 </IconButton>
               </Popover.Trigger>

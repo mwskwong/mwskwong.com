@@ -14,3 +14,5 @@ export const selfIntroduction =
 
 export const github = 'https://github.com/mwskwong';
 export const linkedin = 'https://www.linkedin.com/in/mwskwong/';
+export const stackoverflow =
+  'https://stackoverflow.com/users/10579013/matthew-kwong';

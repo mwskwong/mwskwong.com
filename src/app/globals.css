@@ -12,3 +12,7 @@
 .rt-Link {
   @apply outline-none;
 }
+
+.rt-Container {
+  @apply px-rx-4;
+}
