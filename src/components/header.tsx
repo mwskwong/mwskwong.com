@@ -1,4 +1,4 @@
-import { Container, DropdownMenu, Flex, IconButton } from '@radix-ui/themes';
+import { Container, Flex, IconButton, Popover } from '@radix-ui/themes';
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -63,20 +63,29 @@ export const Header: FC = async () => {
                 </a>
               </IconButton>
             ))}
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger className="sm:hidden">
+            <Popover.Root>
+              <Popover.Trigger className="sm:hidden">
                 <IconButton color="gray" variant="ghost">
                   <IconMenu size={18} />
                 </IconButton>
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Content align="end" color="gray">
-                {nav.map(({ name, pathname }) => (
-                  <DropdownMenu.Item key={pathname} asChild>
-                    <Link href={pathname}>{name}</Link>
-                  </DropdownMenu.Item>
-                ))}
-              </DropdownMenu.Content>
-            </DropdownMenu.Root>
+              </Popover.Trigger>
+              <Popover.Content asChild align="end">
+                <Flex direction="column" minWidth="270px">
+                  {nav.map(({ name, pathname }) => (
+                    <Popover.Close key={pathname}>
+                      <NavLink
+                        className="py-rx-3"
+                        color="gray"
+                        href={pathname}
+                        size="3"
+                      >
+                        {name}
+                      </NavLink>
+                    </Popover.Close>
+                  ))}
+                </Flex>
+              </Popover.Content>
+            </Popover.Root>
           </Flex>
         </Flex>
       </header>

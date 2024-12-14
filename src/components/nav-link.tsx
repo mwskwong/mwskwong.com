@@ -4,8 +4,9 @@ import {
   Link as RadixLink,
   type LinkProps as RadixLinkProps,
 } from '@radix-ui/themes';
-import NextLink, { type LinkProps as NextLinkProps } from 'next/link';
+import { type LinkProps as NextLinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Link as NextLink } from 'next-view-transitions';
 import { type FC } from 'react';
 
 export interface LinkProps extends Omit<RadixLinkProps, 'href'> {
