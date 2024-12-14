@@ -8,3 +8,7 @@
   --default-font-family: var(--font-geist-sans);
   --code-font-family: var(--font-geist-mono);
 }
+
+.rt-Link {
+  @apply outline-none;
+}
