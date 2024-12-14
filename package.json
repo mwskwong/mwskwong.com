@@ -8,7 +8,8 @@
     "lint": "next lint --no-cache",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
-    "start": "next start"
+    "start": "next start",
+    "stylelint": "stylelint **/*.css"
   },
   "dependencies": {
     "@radix-ui/themes": "^3.1.6",
@@ -39,6 +40,8 @@
     "prettier": "^3.4.2",
     "prettier-plugin-prisma": "^5.0.0",
     "prettier-plugin-tailwindcss": "^0.6.9",
+    "stylelint": "^16.11.0",
+    "stylelint-config-standard": "^36.0.1",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2"
   }
