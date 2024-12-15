@@ -16,9 +16,9 @@ export const Hero: FC = async () => {
       <Heading as="h2" color="indigo" size="7">
         {headline}
       </Heading>
-      <Text as="p" className="max-w-prose" mt="8">
-        I&apos;m passionate about 🎨 design systems, ♿️ accessibility, ⚙️ state
-        machines, and 😍 user experience web. (dummy text)
+      <Text as="p" className="max-w-xl" mt="8">
+        I&apos;m passionate about 🧠 innovative technologies, 😍 user experience
+        web, and ♿️ accessibility.
       </Text>
       <Flex direction={{ initial: 'column', sm: 'row' }} gap="4" mt="8">
         <Button asChild highContrast color="gray" size="4">

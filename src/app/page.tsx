@@ -1,7 +1,7 @@
 import { Container, Section } from '@radix-ui/themes';
 import { type FC } from 'react';
 
-import { Hero } from '@/components/hero';
+import { Hero } from '@/components/home/hero';
 
 const Home: FC = () => {
   return (
