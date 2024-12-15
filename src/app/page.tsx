@@ -1,10 +1,12 @@
 import { Container, Section } from '@radix-ui/themes';
 import { type FC } from 'react';
 
+import { Hero } from '@/components/hero';
+
 const Home: FC = () => {
   return (
     <Container>
-      <Section>Hero</Section>
+      <Hero />
       <Section>About</Section>
       <Section>Tech Stack of this website, aka interesting facts</Section>
       <Section>Recent Experience -&gt; view all experiences </Section>
