@@ -9,14 +9,20 @@
   --code-font-family: var(--font-geist-mono);
 }
 
+.rt-Container {
+  @apply px-rx-5;
+}
+
 @media (pointer: coarse) {
+  .rt-BaseButton:where(.rt-variant-solid):where(
+      :active:not([data-state='open'])
+    ) {
+    @apply outline-none;
+  }
+
   .rt-Link:where(:any-link, button):where(
       :active:not(:focus-visible, [data-state='open'])
     ) {
     @apply outline-none;
   }
-}
-
-.rt-Container {
-  @apply px-rx-5;
 }
