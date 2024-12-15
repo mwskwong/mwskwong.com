@@ -20,7 +20,7 @@ export const Hero: FC = async () => {
         I&apos;m passionate about 🎨 design systems, ♿️ accessibility, ⚙️ state
         machines, and 😍 user experience web. (dummy text)
       </Text>
-      <Flex direction={{ initial: 'column', sm: 'row' }} gap="5" mt="8">
+      <Flex direction={{ initial: 'column', sm: 'row' }} gap="4" mt="8">
         <Button asChild highContrast color="gray" size="4">
           <a href={cv} rel="noopener" target="_blank">
             Download CV
