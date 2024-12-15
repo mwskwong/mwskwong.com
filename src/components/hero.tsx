@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Section } from '@radix-ui/themes';
+import { Button, Flex, Heading, Section, Text } from '@radix-ui/themes';
 import { IconBrandLinkedin } from '@tabler/icons-react';
 import { type FC } from 'react';
 
@@ -13,11 +13,15 @@ export const Hero: FC = async () => {
       <Heading mb="4" size="9">
         {firstName} {lastName}
       </Heading>
-      <Heading as="h2" color="indigo" size="8">
+      <Heading as="h2" color="indigo" size="7">
         {headline}
       </Heading>
+      <Text as="p" className="max-w-prose" mt="8">
+        I&apos;m passionate about 🎨 design systems, ♿️ accessibility, ⚙️ state
+        machines, and 😍 user experience web. (dummy text)
+      </Text>
       <Flex direction={{ initial: 'column', sm: 'row' }} gap="5" mt="8">
-        <Button highContrast color="gray" size="4">
+        <Button asChild highContrast color="gray" size="4">
           <a href={cv} rel="noopener" target="_blank">
             Download CV
           </a>
