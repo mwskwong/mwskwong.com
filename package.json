@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@radix-ui/themes": "^3.1.6",
-    "@tabler/icons-react": "^3.24.0",
+    "@tabler/icons-react": "^3.26.0",
     "clsx": "^2.1.1",
     "contentful": "^11.3.2",
     "dedent": "^1.5.3",
@@ -43,7 +43,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-prisma": "^5.0.0",
     "prettier-plugin-tailwindcss": "^0.6.9",
-    "stylelint": "^16.11.0",
+    "stylelint": "^16.12.0",
     "stylelint-config-standard": "^36.0.1",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2"
