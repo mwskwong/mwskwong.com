@@ -1,16 +1,24 @@
-import { Button, Flex, Heading, Section, Text } from '@radix-ui/themes';
+import {
+  Button,
+  Flex,
+  type FlexProps,
+  Heading,
+  Section,
+  Text,
+} from '@radix-ui/themes';
 import { IconBrandLinkedin } from '@tabler/icons-react';
 import { type FC } from 'react';
 
 import { firstName, headline, lastName, linkedin } from '@/constants/me';
 import { getCv } from '@/lib/queries';
 
-export const Hero: FC = async () => {
+export type HeroProps = Omit<FlexProps, 'asChild' | 'children'>;
+export const Hero: FC<HeroProps> = async (props) => {
   const cv = await getCv();
 
   return (
-    <Section asChild>
-      <Flex align={{ sm: 'center' }} direction="column">
+    <Flex asChild align={{ sm: 'center' }} direction="column" {...props}>
+      <Section>
         <Heading size="9">
           {firstName} {lastName}
         </Heading>
@@ -34,7 +42,7 @@ export const Hero: FC = async () => {
             </a>
           </Button>
         </Flex>
-      </Flex>
-    </Section>
+      </Section>
+    </Flex>
   );
 };
