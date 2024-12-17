@@ -55,20 +55,13 @@ export const About: FC = async (props) => {
               width={60}
             />
           ) : null}
-          I develop <Text color="indigo">web applications</Text>
+          I develop <Text color="indigo">full stack web apps</Text>
         </Heading>
         <Flex className="flex-1" direction="column" gap="8">
           <Text as="p">{selfIntroduction}</Text>
           <Flex gap="4" wrap="wrap">
             {links.map(({ Icon, href, name }) => (
-              <Flex
-                key={href}
-                asChild
-                align="center"
-                flexBasis="1"
-                flexGrow="1"
-                gap="3"
-              >
+              <Flex key={href} asChild align="center" gap="3">
                 <Link href={href} target="_blank">
                   <Icon size={18} />
                   {name}
