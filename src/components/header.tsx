@@ -20,12 +20,7 @@ import { getPersonalPortrait } from '@/lib/queries';
 
 import { NavLink } from './nav-link';
 
-const nav = [
-  routes.experience,
-  routes.education,
-  routes.blog,
-  routes.guestbook,
-];
+const nav = [routes.experience, routes.education, routes.blog];
 
 const socialMedia = [
   { Icon: IconBrandGithub, href: github, name: 'GitHub' },
