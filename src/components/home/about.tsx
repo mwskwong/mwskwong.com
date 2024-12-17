@@ -37,6 +37,7 @@ const links = [
 export type AboutProps = Omit<FlexProps, 'asChild' | 'children'>;
 export const About: FC = async (props) => {
   const { url: personalPortrait } = await getPersonalPortrait();
+
   return (
     <Flex
       asChild
