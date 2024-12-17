@@ -45,7 +45,7 @@ export const About: FC = async (props) => {
       {...props}
     >
       <Section>
-        <Heading className="flex-1" size="9">
+        <Heading as="h2" className="flex-1" size="9">
           {personalPortrait ? (
             <Image
               alt="personal portrait"
