@@ -61,14 +61,14 @@ export const Header: FC<HeaderProps> = async (props) => {
             {socialMedia.map(({ Icon, href, name }) => (
               <IconButton key={href} asChild color="gray" variant="ghost">
                 <a aria-label={name} href={href} rel="noopener" target="_blank">
-                  <Icon size={18} />
+                  <Icon size={20} />
                 </a>
               </IconButton>
             ))}
             <Popover.Root>
               <Popover.Trigger className="sm:hidden">
                 <IconButton aria-label="nav menu" color="gray" variant="ghost">
-                  <IconMenu size={18} />
+                  <IconMenu size={20} />
                 </IconButton>
               </Popover.Trigger>
               <Popover.Content asChild align="end">

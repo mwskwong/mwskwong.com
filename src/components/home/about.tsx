@@ -60,7 +60,7 @@ export const About: FC = async (props) => {
             {links.map(({ Icon, href, name }) => (
               <Flex key={href} asChild align="center" gap="3">
                 <Link href={href} target="_blank">
-                  <Icon size={18} />
+                  <Icon size={20} />
                   {name}
                 </Link>
               </Flex>

@@ -55,7 +55,7 @@ export const Footer: FC<FooterProps> = async (props) => {
                     rel="noopener"
                     target="_blank"
                   >
-                    <Icon size={18} />
+                    <Icon size={20} />
                   </a>
                 </IconButton>
               ))}

@@ -37,7 +37,7 @@ export const Hero: FC<HeroProps> = async (props) => {
           </Button>
           <Button asChild highContrast size="4" variant="soft">
             <a href={linkedin} rel="noopener" target="_blank">
-              <IconBrandLinkedin size={18} />
+              <IconBrandLinkedin size={20} />
               LinkedIn
             </a>
           </Button>
