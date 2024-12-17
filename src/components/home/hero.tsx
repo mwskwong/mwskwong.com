@@ -22,7 +22,7 @@ export const Hero: FC<HeroProps> = async (props) => {
         <Heading size="9">
           {firstName} {lastName}
         </Heading>
-        <Heading asChild color="indigo" mt="4" size="7">
+        <Heading asChild data-accent-color="" mt="4" size="7">
           <p>{headline}</p>
         </Heading>
         <Text align={{ sm: 'center' }} as="p" className="max-w-xl" mt="8">

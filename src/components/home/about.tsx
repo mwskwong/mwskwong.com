@@ -52,7 +52,7 @@ export const About: FC = async (props) => {
               width={60}
             />
           ) : null}
-          I develop <Text color="indigo">full stack web apps</Text>
+          I develop <Text data-accent-color="">full stack web apps</Text>
         </Heading>
         <Flex className="flex-1" direction="column" gap="8">
           <Text as="p">{selfIntroduction}</Text>
