@@ -25,7 +25,7 @@ import {
 import { getPersonalPortrait } from '@/lib/queries';
 
 const links = [
-  { Icon: IconMail, href: email, name: 'Email' },
+  { Icon: IconMail, href: `mailto:${email}`, name: 'Email' },
   { Icon: IconBrandLinkedin, href: linkedin, name: 'LinkedIn' },
   { Icon: IconBrandGithub, href: github, name: 'GitHub' },
   { Icon: IconBrandStackoverflow, href: stackoverflow, name: 'Stack Overflow' },
