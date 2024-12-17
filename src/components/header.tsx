@@ -23,8 +23,8 @@ import { NavLink } from './nav-link';
 const nav = [routes.experience, routes.education, routes.blog];
 
 const socialMedia = [
-  { Icon: IconBrandGithub, href: github, name: 'GitHub' },
   { Icon: IconBrandLinkedin, href: linkedin, name: 'LinkedIn' },
+  { Icon: IconBrandGithub, href: github, name: 'GitHub' },
 ];
 
 export type HeaderProps = Omit<ContainerProps, 'asChild' | 'children'>;

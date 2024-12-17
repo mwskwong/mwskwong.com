@@ -1,6 +1,4 @@
-export const phone = '+852 6095 4241';
 export const email = 'contact@mwskwong.com';
-export const address = 'Sha Tin, Hong Kong';
 
 export const headline = 'Assistant Technical Manager @ HKJC';
 

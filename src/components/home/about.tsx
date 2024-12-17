@@ -10,29 +10,25 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandStackoverflow,
-  IconRss,
+  IconMail,
 } from '@tabler/icons-react';
 import Image from 'next/image';
 import { type FC } from 'react';
 
 import {
+  email,
   github,
   linkedin,
   selfIntroduction,
   stackoverflow,
 } from '@/constants/me';
-import { routes } from '@/constants/site-config';
 import { getPersonalPortrait } from '@/lib/queries';
 
 const links = [
-  { Icon: IconBrandGithub, href: github, name: 'GitHub' },
+  { Icon: IconMail, href: email, name: 'Email' },
   { Icon: IconBrandLinkedin, href: linkedin, name: 'LinkedIn' },
+  { Icon: IconBrandGithub, href: github, name: 'GitHub' },
   { Icon: IconBrandStackoverflow, href: stackoverflow, name: 'Stack Overflow' },
-  {
-    Icon: IconRss,
-    href: routes.blogRssFeed.pathname,
-    name: routes.blogRssFeed.name,
-  },
 ];
 export type AboutProps = Omit<FlexProps, 'asChild' | 'children'>;
 export const About: FC = async (props) => {
