@@ -3,8 +3,8 @@ import {
   type ContainerProps,
   Flex,
   IconButton,
-  Popover,
 } from '@radix-ui/themes';
+import * as Popover from '@radix-ui/themes/dist/esm/components/popover.js'; // WORKAROUND: if importing compound components from @radix-ui/themes, it will not be tree-shaken
 import {
   IconBrandGithub,
   IconBrandLinkedin,
