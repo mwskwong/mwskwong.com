@@ -12,11 +12,13 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandStackoverflow,
+  IconMail,
   IconRss,
 } from '@tabler/icons-react';
 import { type FC } from 'react';
 
 import {
+  email,
   firstName,
   github,
   lastName,
@@ -26,10 +28,15 @@ import {
 import { routes } from '@/constants/site-config';
 
 const links = [
-  { Icon: IconBrandGithub, href: github, name: 'GitHub' },
+  { Icon: IconMail, href: `mailto:${email}`, name: 'Email' },
   { Icon: IconBrandLinkedin, href: linkedin, name: 'LinkedIn' },
+  { Icon: IconBrandGithub, href: github, name: 'GitHub' },
   { Icon: IconBrandStackoverflow, href: stackoverflow, name: 'Stack Overflow' },
-  { Icon: IconRss, href: routes.blogRssFeed.pathname, name: 'blog rss ' },
+  {
+    Icon: IconRss,
+    href: routes.blogRssFeed.pathname,
+    name: routes.blogRssFeed.name,
+  },
 ];
 
 export type FooterProps = Omit<ContainerProps, 'asChild' | 'children'>;
