@@ -27,6 +27,7 @@ const config = {
         Link: 'a',
       },
     },
+    linkComponents: ['Link', 'NavLink'],
   },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
