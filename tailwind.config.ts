@@ -1,7 +1,7 @@
 import { radixThemePreset } from 'radix-themes-tw';
 import type { Config } from 'tailwindcss';
 
-export default {
+const config = {
   presets: [radixThemePreset],
   content: [
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,3 +9,5 @@ export default {
   ],
   plugins: [],
 } satisfies Config;
+
+export default config;
