@@ -25,7 +25,7 @@ const config = {
         IconButton: 'button',
         Image: 'img',
         Link: 'a',
-        NavLink:'a'
+        NavLink: 'a',
       },
     },
     linkComponents: ['Link', 'NavLink'],
