@@ -76,7 +76,7 @@ export const Header: FC<HeaderProps> = async (props) => {
                   {nav.map(({ name, pathname }) => (
                     <Popover.Close key={pathname}>
                       <NavLink
-                        className="py-rx-3"
+                        className="p-rx-3"
                         color="gray"
                         href={pathname}
                         size="3"
