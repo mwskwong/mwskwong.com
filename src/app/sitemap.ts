@@ -1,4 +1,4 @@
-// "use cache"; // TODO: there is currently a bug causing sitemap can;t be cached
+// "use cache"; // TODO: there is currently a bug causing sitemap can't be cached, when using dynamicIO
 
 import { type MetadataRoute } from 'next';
 
