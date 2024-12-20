@@ -1,15 +1,23 @@
-import { Avatar, Card, Flex, Heading, Section, Text } from '@radix-ui/themes';
+import {
+  Avatar,
+  Badge,
+  Card,
+  Flex,
+  Heading,
+  Section,
+  type SectionProps,
+} from '@radix-ui/themes';
 import {
   type Icon,
   IconActivity,
-  IconAi,
-  IconBugOff,
+  IconBrain,
   IconDatabase,
   IconDeviceDesktopCog,
   IconDevices,
-  IconInfinity,
   IconLayout,
   IconServer,
+  IconSettings,
+  IconTestPipe,
   IconTools,
 } from '@tabler/icons-react';
 import { type FC } from 'react';
@@ -33,36 +41,57 @@ const SkillCategoryIcons = {
   [backend]: IconServer,
   [cms]: IconDeviceDesktopCog,
   [database]: IconDatabase,
-  [devOps]: IconInfinity,
+  [devOps]: IconSettings,
   [frontend]: IconLayout,
-  [machineLearning]: IconAi,
+  [machineLearning]: IconBrain,
   [mobile]: IconDevices,
-  [qa]: IconBugOff,
+  [qa]: IconTestPipe,
   [monitoring]: IconActivity,
   [toolsAndPlatforms]: IconTools,
 } as Record<string, Icon>;
 
-export const SkillSet: FC = async () => {
+export type SkillSetProps = Omit<SectionProps, 'children'>;
+export const SkillSet: FC<SkillSetProps> = async ({ className, ...props }) => {
   const skillSet = await getSkillSet();
 
   return (
     <Section
       className={cn(
-        'columns-1 gap-rx-5 sm:columns-2 md:columns-3 [&>*]:mb-rx-5 [&>*]:break-inside-avoid',
+        'columns-1 gap-rx-5 sm:columns-2 md:columns-3 [&>*:not(:last-child)]:mb-rx-5',
+        className,
       )}
+      {...props}
     >
       {skillSet.map(({ id, name, skills }) => {
         const Icon = SkillCategoryIcons[id];
 
         return (
           <Card key={id}>
-            {Icon ? <Avatar fallback={<Icon />} mb="8" size="4" /> : null}
-            <Flex direction="column" gap="2">
+            <Flex align="center" gap="3" mb="5">
+              {Icon ? <Avatar fallback={<Icon />} size="4" /> : null}
               <Heading as="h3" size="5">
                 {name}
               </Heading>
-              <Text>{skills.map(({ name }) => `${name}, `)}</Text>
             </Flex>
+            <Flex gap="3" wrap="wrap">
+              {skills.map(({ name, url }) => (
+                <Badge key={name} asChild={Boolean(url)} color="gray" size="2">
+                  {url ? (
+                    <a href={url} rel="noopener" target="_blank">
+                      {name}
+                    </a>
+                  ) : (
+                    name
+                  )}
+                </Badge>
+              ))}
+            </Flex>
+            {Icon ? (
+              <Icon
+                className="absolute -bottom-rx-9 -right-rx-9 -z-[1] -rotate-12 text-accent-2"
+                size={200}
+              />
+            ) : null}
           </Card>
         );
       })}
