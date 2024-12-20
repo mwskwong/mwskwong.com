@@ -75,7 +75,7 @@ export const SkillSet: FC<SkillSetProps> = async ({ className, ...props }) => {
             </Flex>
             <Flex gap="3" wrap="wrap">
               {skills.map(({ name, url }) => (
-                <Badge key={name} asChild={Boolean(url)} color="gray" size="2">
+                <Badge key={name} asChild={Boolean(url)} color="gray" size="3">
                   {url ? (
                     <a href={url} rel="noopener" target="_blank">
                       {name}
