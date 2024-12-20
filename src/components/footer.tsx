@@ -24,6 +24,7 @@ import {
   lastName,
   linkedin,
   stackoverflow,
+  techFocus,
 } from '@/constants/me';
 import { routes } from '@/constants/site-config';
 
@@ -53,6 +54,9 @@ export const Footer: FC<FooterProps> = async (props) => {
             <Heading size="7">
               {firstName} {lastName}
             </Heading>
+            <Text as="p" className="max-w-xl">
+              {techFocus}
+            </Text>
             <Flex gap="5">
               {links.map(({ Icon, href, name }) => (
                 <IconButton key={href} asChild color="gray" variant="ghost">
@@ -68,7 +72,7 @@ export const Footer: FC<FooterProps> = async (props) => {
               ))}
             </Flex>
           </Flex>
-          <Text as="p" color="gray" mt="9">
+          <Text as="p" color="gray" mt="9" size="2">
             Copyright © {new Date().getFullYear()} – All right reserved
           </Text>
         </Section>

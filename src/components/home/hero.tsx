@@ -9,7 +9,13 @@ import {
 import { IconBrandLinkedin } from '@tabler/icons-react';
 import { type FC } from 'react';
 
-import { firstName, headline, lastName, linkedin } from '@/constants/me';
+import {
+  firstName,
+  headline,
+  lastName,
+  linkedin,
+  techFocus,
+} from '@/constants/me';
 import { getCv } from '@/lib/queries';
 
 export type HeroProps = Omit<FlexProps, 'asChild' | 'children'>;
@@ -26,8 +32,7 @@ export const Hero: FC<HeroProps> = async (props) => {
           <p>{headline}</p>
         </Heading>
         <Text align={{ sm: 'center' }} as="p" className="max-w-xl" mt="8">
-          I&apos;m passionate about 🧠 innovative technologies, 😍 user
-          experience web, and ♿️ accessibility.
+          {techFocus}
         </Text>
         <Flex direction={{ initial: 'column', sm: 'row' }} gap="4" mt="8">
           <Button asChild highContrast color="gray" size="4">
