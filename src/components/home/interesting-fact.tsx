@@ -12,7 +12,7 @@ export const InterestingFact: FC = async () => {
     <Flex asChild align="center" direction="column" gap="8">
       <Section>
         <Flex direction="column" gap="5">
-          <Heading align="center" as="h2" size="9">
+          <Heading align="center" as="h2" size="8">
             Interesting Fact
           </Heading>
           <Text align="center" as="p" className="max-w-xl">
