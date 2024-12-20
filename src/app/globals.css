@@ -5,8 +5,10 @@
 @tailwind utilities;
 
 .radix-themes {
-  --default-font-family: var(--font-geist-sans);
-  --code-font-family: var(--font-geist-mono);
+  --default-font-family: var(--font-noto-sans);
+  --code-font-family: var(--font-noto-sans-mono);
+  --em-font-family: var(--font-noto-serif);
+  --quote-font-family: var(--font-noto-serif);
 }
 
 .rt-Container {

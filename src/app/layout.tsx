@@ -2,7 +2,11 @@ import './globals.css';
 
 import { Theme } from '@radix-ui/themes';
 import { type Metadata } from 'next';
-import { Geist, Geist_Mono as GeistMono } from 'next/font/google';
+import {
+  Noto_Sans as NotoSans,
+  Noto_Sans_Mono as NotoSansMono,
+  Noto_Serif as NotoSerif,
+} from 'next/font/google';
 import { ViewTransitions } from 'next-view-transitions';
 import { type FC, type PropsWithChildren } from 'react';
 
@@ -16,14 +20,21 @@ import {
 } from '@/constants/me';
 import { siteUrl } from '@/constants/site-config';
 import { getPersonalPortrait } from '@/lib/queries';
+import { cn } from '@/lib/utils';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const notoSans = NotoSans({
+  variable: '--font-noto-sans',
   subsets: ['latin'],
 });
 
-const geistMono = GeistMono({
-  variable: '--font-geist-mono',
+const notoSansMono = NotoSansMono({
+  variable: '--font-noto-sans-mono',
+  subsets: ['latin'],
+  preload: false,
+});
+
+const notoSerif = NotoSerif({
+  variable: '--font-noto-serif',
   subsets: ['latin'],
   preload: false,
 });
@@ -32,7 +43,13 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ViewTransitions>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <body
+          className={cn(
+            notoSans.variable,
+            notoSerif.variable,
+            notoSansMono.variable,
+          )}
+        >
           <Theme>
             <Header />
             {children}
