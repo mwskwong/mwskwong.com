@@ -1,15 +1,24 @@
-import { Flex, Heading, Link, Section, Text, Tooltip } from '@radix-ui/themes';
+import {
+  Flex,
+  type FlexProps,
+  Heading,
+  Link,
+  Section,
+  Text,
+  Tooltip,
+} from '@radix-ui/themes';
 import { IconArrowRight } from '@tabler/icons-react';
 import Image from 'next/image';
 import { type FC } from 'react';
 
 import { getTechStack } from '@/lib/queries';
 
-export const InterestingFact: FC = async () => {
+export type InterestingFactProps = Omit<FlexProps, 'asChild' | 'children'>;
+export const InterestingFact: FC<InterestingFactProps> = async (props) => {
   const techStack = await getTechStack();
 
   return (
-    <Flex asChild align="center" direction="column" gap="8">
+    <Flex asChild align="center" direction="column" gap="8" {...props}>
       <Section>
         <Flex direction="column" gap="5">
           <Heading align="center" as="h2" size="8">
