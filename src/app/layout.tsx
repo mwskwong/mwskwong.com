@@ -7,7 +7,6 @@ import {
   Noto_Sans_Mono as NotoSansMono,
   Noto_Serif as NotoSerif,
 } from 'next/font/google';
-import { ViewTransitions } from 'next-view-transitions';
 import { type FC, type PropsWithChildren } from 'react';
 
 import { Footer } from '@/components/footer';
@@ -39,27 +38,23 @@ const notoSerif = NotoSerif({
   preload: false,
 });
 
-const RootLayout: FC<PropsWithChildren> = ({ children }) => {
-  return (
-    <ViewTransitions>
-      <html lang="en">
-        <body
-          className={cn(
-            notoSans.variable,
-            notoSerif.variable,
-            notoSansMono.variable,
-          )}
-        >
-          <Theme>
-            <Header />
-            {children}
-            <Footer />
-          </Theme>
-        </body>
-      </html>
-    </ViewTransitions>
-  );
-};
+const RootLayout: FC<PropsWithChildren> = ({ children }) => (
+  <html lang="en">
+    <body
+      className={cn(
+        notoSans.variable,
+        notoSerif.variable,
+        notoSansMono.variable,
+      )}
+    >
+      <Theme>
+        <Header />
+        {children}
+        <Footer />
+      </Theme>
+    </body>
+  </html>
+);
 
 const name = `${firstName} ${lastName}`;
 export const generateMetadata = async () => {
