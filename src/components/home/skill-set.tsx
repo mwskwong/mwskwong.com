@@ -88,7 +88,7 @@ export const SkillSet: FC<SkillSetProps> = async ({ className, ...props }) => {
             </Flex>
             {Icon ? (
               <Icon
-                className="absolute -bottom-rx-9 -right-rx-9 -z-[1] -rotate-12 text-accent-2"
+                className="absolute -bottom-rx-8 -right-rx-8 -z-[1] -rotate-12 text-accent-2"
                 size={200}
               />
             ) : null}
