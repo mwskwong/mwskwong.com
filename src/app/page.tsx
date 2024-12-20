@@ -3,6 +3,7 @@ import { type FC } from 'react';
 
 import { About } from '@/components/home/about';
 import { Hero } from '@/components/home/hero';
+import { InterestingFact } from '@/components/home/interesting-fact';
 
 const Home: FC = () => {
   return (
@@ -10,7 +11,7 @@ const Home: FC = () => {
       <Hero />
       <About />
       <Section>Skill set</Section>
-      <Section>Tech Stack of this website, aka interesting facts</Section>
+      <InterestingFact />
       <Section>Recent Experience -&gt; view all experiences </Section>
       <Section>Recent Education -&gt; view all educations </Section>
     </Container>
