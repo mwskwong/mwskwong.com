@@ -16,7 +16,7 @@ export const InterestingFact: FC = async () => {
             Interesting Fact
           </Heading>
           <Text align="center" as="p" className="max-w-xl">
-            This website also serves as a testing ground for 🩸 bleeding-edge
+            This website also serves as my testing ground for 🩸 bleeding-edge
             techs and design patterns. Check out the libraries and platforms I
             use to build it.
           </Text>
