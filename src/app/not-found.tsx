@@ -1,8 +1,16 @@
-import { Container, Flex, Heading, Section, Text } from '@radix-ui/themes';
+import {
+  Container,
+  Flex,
+  Heading,
+  Link,
+  Section,
+  Text,
+} from '@radix-ui/themes';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { type FC } from 'react';
 
 import { BackButton } from '@/components/back-button';
+import { email } from '@/constants/me';
 
 const NotFound: FC = () => (
   <Container>
@@ -272,7 +280,9 @@ const NotFound: FC = () => (
           </Heading>
           <Text>
             Un oh, we can&apos;t seem to find the page you&apos;re looking for.
-            Try going back to previous page or Contact us for more information.
+            Try going back to previous page or{' '}
+            <Link href={`mailto:${email}`}>contact me</Link> for more
+            information.
           </Text>
           <BackButton highContrast color="gray" size="4">
             <IconArrowLeft size={20} />
