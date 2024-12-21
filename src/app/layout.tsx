@@ -1,6 +1,8 @@
 import './globals.css';
 
 import { Theme } from '@radix-ui/themes';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { type Metadata } from 'next';
 import {
   Noto_Sans as NotoSans,
@@ -52,6 +54,12 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
         {children}
         <Footer />
       </Theme>
+      <Analytics
+        mode={
+          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
+        }
+      />
+      <SpeedInsights />
     </body>
   </html>
 );
