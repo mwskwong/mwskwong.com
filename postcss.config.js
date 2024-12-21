@@ -5,7 +5,7 @@ const config = {
     'tailwindcss',
     'autoprefixer',
     [
-      require.resolve('./postcss-remove-selectors'),
+      require.resolve('./postcss-purge-selectors'),
       {
         selectors: [
           '.dark',
