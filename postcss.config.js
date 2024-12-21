@@ -33,6 +33,7 @@ const config = {
           '.rt-TabNav',
           '.rt-TextArea',
           '.rt-TextField',
+          '.rt-ThemePanel',
         ],
         fontFamilies: [
           'Segoe UI (Custom)',
