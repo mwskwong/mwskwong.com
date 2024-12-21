@@ -1,4 +1,5 @@
 import { Container, Flex, Heading, Section, Text } from '@radix-ui/themes';
+import { IconArrowLeft } from '@tabler/icons-react';
 import { type FC } from 'react';
 
 import { BackButton } from '@/components/back-button';
@@ -274,6 +275,7 @@ const NotFound: FC = () => (
             Try going back to previous page or Contact us for more information.
           </Text>
           <BackButton highContrast color="gray" size="4">
+            <IconArrowLeft size={20} />
             Go Back
           </BackButton>
         </Flex>
