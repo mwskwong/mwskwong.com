@@ -51,8 +51,10 @@ export const Footer: FC<FooterProps> = async (props) => {
         <Separator size="4" />
         <Section>
           <Flex direction="column" gap="6">
-            <Heading size="7">
-              {firstName} {lastName}
+            <Heading asChild size="7">
+              <p>
+                {firstName} {lastName}
+              </p>
             </Heading>
             <Text as="p" className="max-w-xl">
               {techFocus}
