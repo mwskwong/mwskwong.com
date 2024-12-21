@@ -10,8 +10,8 @@ module.exports = (options = { selectors: [], fontFamilies: [] }) => {
         rule.remove();
       }
     },
-    AtRule: {
-      fontFace: (atRule) => {
+    AtRule: (atRule) => {
+      if (atRule.name === 'font-face') {
         const fontFamilyNode = atRule.nodes.find(
           (node) => node.prop === 'font-family',
         );
@@ -26,7 +26,7 @@ module.exports = (options = { selectors: [], fontFamilies: [] }) => {
             atRule.remove();
           }
         }
-      },
+      }
     },
   };
 };
