@@ -81,6 +81,7 @@ export const generateMetadata = async () => {
   icon32.searchParams.set('r', 'max');
 
   const appleIcon = new URL(PersonalPortrait ?? '');
+  icon32.searchParams.set('fm', 'png');
   appleIcon.searchParams.set('w', '180');
   appleIcon.searchParams.set('h', '180');
 
