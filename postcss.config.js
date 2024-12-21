@@ -5,7 +5,7 @@ const config = {
     'tailwindcss',
     'autoprefixer',
     [
-      require.resolve('./postcss-purge-selectors'),
+      require.resolve('./postcss-radix-theme-purge'),
       {
         selectors: [
           '.dark',
@@ -33,6 +33,11 @@ const config = {
           '.rt-TabNav',
           '.rt-TextArea',
           '.rt-TextField',
+        ],
+        fontFamilies: [
+          'Segoe UI (Custom)',
+          'Open Sans (Custom)',
+          'Consolas (Custom)',
         ],
       },
     ],
