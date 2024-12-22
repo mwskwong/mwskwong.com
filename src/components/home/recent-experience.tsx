@@ -12,7 +12,7 @@ export const RecentExperience: FC = async () => {
   const recentExperiences = (await getExperiences()).slice(0, 2);
 
   return (
-    <Flex asChild direction="column" gap="8">
+    <Flex asChild align="start" direction="column" gap="8">
       <Section>
         <Heading as="h2" size="8">
           Recent Experience

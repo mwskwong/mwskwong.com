@@ -54,26 +54,30 @@ export const Item: FC<ItemProps> = ({
     : `${dateFormatter.format(from)} – Present`;
 
   return (
-    <Grid columns={{ sm: '8' }} gap={{ sm: '4' }} {...props}>
+    <Grid columns={{ sm: '4' }} gap={{ sm: '4' }} {...props}>
       <Text
         as="div"
-        className="leading-[var(--heading-line-height-4)] sm:col-span-2"
+        className="leading-[var(--heading-line-height-4)]"
         color="gray"
         size="2"
       >
         {duration}
       </Text>
-      <Flex className="sm:col-span-6" direction="column" gap="2">
-        <Heading as="h3" size="4">
-          {title}
-        </Heading>
-        <Link href={organization?.url}>{organization?.name}</Link>
-        <ul className="list-disc pl-[20px] [&>*]:py-1">
-          {descriptions.map((description) => (
-            <li key={description}>{description}</li>
-          ))}
-        </ul>
-        <Flex gap="3" mt="2" wrap="wrap">
+      <Flex className="sm:col-span-3" direction="column" gap="4">
+        <Flex align="start" direction="column" gap="2">
+          <Heading as="h3" size="4">
+            {title}
+          </Heading>
+          <Link href={organization?.url} rel="noopener" target="_blank">
+            {organization?.name}
+          </Link>
+          <ul className="list-disc pl-[20px] [&>*]:py-1">
+            {descriptions.map((description) => (
+              <li key={description}>{description}</li>
+            ))}
+          </ul>
+        </Flex>
+        <Flex gap="3" wrap="wrap">
           {tags.map(({ name, url }) => (
             <Badge key={name} data-accent-color asChild={Boolean(url)} size="3">
               {url ? (
