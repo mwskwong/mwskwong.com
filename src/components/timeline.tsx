@@ -75,43 +75,52 @@ export const Item: FC<ItemProps> = ({
             ))}
           </ul>
         </Flex>
-        <Flex gap="3">
-          {media.map(({ name = '', url, thumbnail }) => (
-            <Flex key={name} asChild align="center" gap="3">
-              <Link
-                highContrast
-                color="gray"
-                href={url}
-                rel="noopener"
-                target="_blank"
-              >
-                {thumbnail ? (
-                  <Image
-                    alt={name}
-                    className="h-[revert-layer] rounded-4 border-[1px] border-indigoA-8 object-cover"
-                    height={56}
-                    src={thumbnail}
-                    width={80}
-                  />
-                ) : null}
-                {name}
-              </Link>
-            </Flex>
-          ))}
-        </Flex>
-        <Flex gap="3" wrap="wrap">
-          {tags.map(({ name, url }) => (
-            <Badge key={name} data-accent-color asChild={Boolean(url)} size="3">
-              {url ? (
-                <a href={url} rel="noopener" target="_blank">
+        {media.length > 0 && (
+          <Flex gap="3">
+            {media.map(({ name = '', url, thumbnail }) => (
+              <Flex key={name} asChild align="center" gap="3">
+                <Link
+                  highContrast
+                  color="gray"
+                  href={url}
+                  rel="noopener"
+                  target="_blank"
+                >
+                  {thumbnail ? (
+                    <Image
+                      alt={name}
+                      className="h-[revert-layer] rounded-4 border-[1px] border-indigoA-8 object-cover"
+                      height={56}
+                      src={thumbnail}
+                      width={80}
+                    />
+                  ) : null}
                   {name}
-                </a>
-              ) : (
-                name
-              )}
-            </Badge>
-          ))}
-        </Flex>
+                </Link>
+              </Flex>
+            ))}
+          </Flex>
+        )}
+        {tags.length > 0 && (
+          <Flex gap="3" wrap="wrap">
+            {tags.map(({ name, url }) => (
+              <Badge
+                key={name}
+                data-accent-color
+                asChild={Boolean(url)}
+                size="3"
+              >
+                {url ? (
+                  <a href={url} rel="noopener" target="_blank">
+                    {name}
+                  </a>
+                ) : (
+                  name
+                )}
+              </Badge>
+            ))}
+          </Flex>
+        )}
       </Flex>
     </Grid>
   );
