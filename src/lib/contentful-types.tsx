@@ -45,6 +45,18 @@ export interface ExperienceSkeleton {
   };
 }
 
+export interface EducationSkeleton {
+  contentTypeId: 'education';
+  fields: {
+    from: EntryFieldTypes.Date;
+    to?: EntryFieldTypes.Date;
+    program: EntryFieldTypes.Symbol;
+    school: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
+    grade?: EntryFieldTypes.Symbol;
+    supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+  };
+}
+
 export interface OrganizationSkeleton {
   contentTypeId: 'organization';
   fields: {

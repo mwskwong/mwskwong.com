@@ -1,10 +1,11 @@
-import { Container, Section } from '@radix-ui/themes';
+import { Container } from '@radix-ui/themes';
 import { type FC } from 'react';
 import { type BreadcrumbList, type Graph, type WebSite } from 'schema-dts';
 
 import { About } from '@/components/home/about';
 import { Hero } from '@/components/home/hero';
 import { InterestingFact } from '@/components/home/interesting-fact';
+import { RecentEducation } from '@/components/home/recent-education';
 import { RecentExperience } from '@/components/home/recent-experience';
 import { SkillSet } from '@/components/home/skill-set';
 import { firstName, lastName } from '@/constants/me';
@@ -19,7 +20,7 @@ const Home: FC = () => {
         <SkillSet />
         <InterestingFact />
         <RecentExperience />
-        <Section>Recent Education -&gt; view all educations </Section>
+        <RecentEducation />
       </Container>
       <script
         dangerouslySetInnerHTML={{

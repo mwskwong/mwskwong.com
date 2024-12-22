@@ -13,7 +13,7 @@ import { type FC } from 'react';
 
 export type RootProps = FlexProps;
 export const Root: FC<RootProps> = (props) => {
-  return <Flex direction="column" gap="8" {...props} />;
+  return <Flex direction="column" gap="8" width="100%" {...props} />;
 };
 
 const dateFormatter = new Intl.DateTimeFormat('en', {
@@ -69,7 +69,7 @@ export const Item: FC<ItemProps> = ({
           <Link href={organization?.url} rel="noopener" target="_blank">
             {organization?.name}
           </Link>
-          <ul className="list-disc pl-[20px] [&>*]:py-1">
+          <ul className="list-disc pl-[20px] [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1">
             {descriptions.map((description) => (
               <li key={description}>{description}</li>
             ))}

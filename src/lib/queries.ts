@@ -4,6 +4,7 @@ import { cv, personalPortrait } from '@/constants/contentful-ids';
 
 import { contentful } from './clients';
 import {
+  type EducationSkeleton,
   type ExperienceSkeleton,
   type ProjectSkeleton,
   type SkillCategorySkeleton,
@@ -110,7 +111,7 @@ export const getExperiences = async () => {
     })),
     supportingDocuments: item.fields.supportingDocuments?.map(
       (supportingDocument) => ({
-        title: supportingDocument?.fields.title,
+        name: supportingDocument?.fields.title,
         url:
           supportingDocument?.fields.file &&
           `https:${supportingDocument.fields.file.url}`,
@@ -122,5 +123,43 @@ export const getExperiences = async () => {
     skills: item.fields.skills
       .filter(Boolean)
       .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
+  }));
+};
+
+export const getEducations = async () => {
+  'use cache';
+
+  // Goal: sort educations in DESC order by `to` date,
+  // while having records with `to = undefined` (denote "Present") sorted at the top
+
+  // Contentful always place undefined fields at the bottom,
+  // so we first sort in ASC and then reverse it
+  // such that it's in DESC order while undefined values are at the top
+  const { items } = await contentful.getEntries<EducationSkeleton>({
+    content_type: 'education',
+    order: ['fields.to'],
+  });
+
+  items.reverse();
+
+  return items.map((item) => ({
+    id: item.sys.id,
+    ...item.fields,
+    school: item.fields.school && {
+      name: item.fields.school.fields.name,
+      url: item.fields.school.fields.url,
+    },
+    grade: item.fields.grade,
+    supportingDocuments: item.fields.supportingDocuments?.map(
+      (supportingDocument) => ({
+        name: supportingDocument?.fields.title,
+        url:
+          supportingDocument?.fields.file &&
+          `https:${supportingDocument.fields.file.url}`,
+        thumbnail:
+          supportingDocument?.fields.file &&
+          generatePdfThumbnail(`https:${supportingDocument.fields.file.url}`),
+      }),
+    ),
   }));
 };
