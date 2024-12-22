@@ -69,11 +69,13 @@ export const Item: FC<ItemProps> = ({
           <Link href={organization?.url} rel="noopener" target="_blank">
             {organization?.name}
           </Link>
-          <ul className="list-disc pl-[20px] [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1">
-            {descriptions.map((description) => (
-              <li key={description}>{description}</li>
-            ))}
-          </ul>
+          {descriptions.length > 0 && (
+            <ul className="list-disc pl-[20px] [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1">
+              {descriptions.map((description) => (
+                <li key={description}>{description}</li>
+              ))}
+            </ul>
+          )}
         </Flex>
         {media.length > 0 && (
           <Flex gap="3">
