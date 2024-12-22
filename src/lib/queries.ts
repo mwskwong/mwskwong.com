@@ -1,7 +1,10 @@
+import { orderBy } from 'lodash-es';
+
 import { cv, personalPortrait } from '@/constants/contentful-ids';
 
 import { contentful } from './clients';
 import {
+  type ExperienceSkeleton,
   type ProjectSkeleton,
   type SkillCategorySkeleton,
   type SkillSkeleton,
@@ -68,5 +71,37 @@ export const getTechStack = async () => {
     logo:
       item.fields.logo?.fields.file &&
       `https:${item.fields.logo.fields.file.url}`,
+  }));
+};
+
+export const getExperiences = async () => {
+  'use cache';
+
+  // Goal: sort experience in DESC order by `to` date,
+  // while having records with `to = undefined` (denote "Present") sorted at the top
+
+  // Contentful always place undefined fields at the bottom,
+  // so we first sort in ASC and then reverse it
+  // such that it's in DESC order while undefined values are at the top
+  const { items } = await contentful.getEntries<ExperienceSkeleton>({
+    content_type: 'experience',
+    order: ['fields.to'],
+  });
+
+  items.reverse();
+  for (const item of items) {
+    item.fields.skills = orderBy(item.fields.skills, 'fields.name');
+  }
+
+  return items.map((item) => ({
+    id: item.sys.id,
+    ...item.fields,
+    company: item.fields.company && {
+      name: item.fields.company.fields.name,
+      url: item.fields.company.fields.url,
+    },
+    skills: item.fields.skills
+      .filter(Boolean)
+      .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
   }));
 };

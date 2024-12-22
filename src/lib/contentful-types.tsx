@@ -28,3 +28,30 @@ export interface ProjectSkeleton {
     logo?: EntryFieldTypes.AssetLink;
   };
 }
+
+export interface ExperienceSkeleton {
+  contentTypeId: 'experience';
+  fields: {
+    from: EntryFieldTypes.Date;
+    to?: EntryFieldTypes.Date;
+    jobTitle: EntryFieldTypes.Symbol;
+    company: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
+    jobDuties?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    projects?: EntryFieldTypes.Array<
+      EntryFieldTypes.EntryLink<ProjectSkeleton>
+    >;
+    supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+    skills: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<SkillSkeleton>>;
+  };
+}
+
+export interface OrganizationSkeleton {
+  contentTypeId: 'organization';
+  fields: {
+    name: EntryFieldTypes.Symbol;
+    url?: EntryFieldTypes.Symbol;
+    logoUniversal?: EntryFieldTypes.AssetLink;
+    logoLight?: EntryFieldTypes.AssetLink;
+    logoDark?: EntryFieldTypes.AssetLink;
+  };
+}
