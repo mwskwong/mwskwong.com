@@ -1,13 +1,12 @@
 import {
+  Button,
   Flex,
   type FlexProps,
   Heading,
-  Link,
   Section,
   Text,
   Tooltip,
 } from '@radix-ui/themes';
-import { IconArrowRight } from '@tabler/icons-react';
 import Image from 'next/image';
 import { type FC } from 'react';
 
@@ -18,7 +17,13 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
   const techStack = await getTechStack();
 
   return (
-    <Flex asChild align="center" direction="column" gap="8" {...props}>
+    <Flex
+      asChild
+      align={{ sm: 'center' }}
+      direction="column"
+      gap="8"
+      {...props}
+    >
       <Section>
         <Flex direction="column" gap="5">
           <Heading align="center" as="h2" size="8">
@@ -48,16 +53,16 @@ export const InterestingFact: FC<InterestingFactProps> = async (props) => {
               ),
           )}
         </Flex>
-        <Flex asChild align="center" gap="3">
-          <Link
+        <Text align="center">And more...</Text>
+        <Button asChild highContrast color="gray" size="4">
+          <a
             href="https://github.com/mwskwong/mwskwong.com"
             rel="noopener"
             target="_blank"
           >
             View the source code
-            <IconArrowRight size={20} />
-          </Link>
-        </Flex>
+          </a>
+        </Button>
       </Section>
     </Flex>
   );

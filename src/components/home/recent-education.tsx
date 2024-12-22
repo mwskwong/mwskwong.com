@@ -1,6 +1,6 @@
-import { Flex, Heading, Link, Section } from '@radix-ui/themes';
-import { IconArrowRight } from '@tabler/icons-react';
-import NextLink from 'next/link';
+import { Button, Flex, Heading, Section } from '@radix-ui/themes';
+import { IconChevronRight } from '@tabler/icons-react';
+import Link from 'next/link';
 import { type FC } from 'react';
 
 import { routes } from '@/constants/site-config';
@@ -12,7 +12,7 @@ export const RecentEducation: FC = async () => {
   const recentEducations = (await getEducations()).slice(0, 2);
 
   return (
-    <Flex asChild align="start" direction="column" gap="8">
+    <Flex asChild align={{ sm: 'center' }} direction="column" gap="8">
       <Section>
         <Heading as="h2" size="8">
           Recent Education
@@ -31,14 +31,11 @@ export const RecentEducation: FC = async () => {
             ),
           )}
         </Timeline.Root>
-        <Flex asChild align="center" gap="3">
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- wrapping next/link */}
-          <Link asChild>
-            <NextLink href={routes.education.pathname}>
-              View all Educations <IconArrowRight size={20} />
-            </NextLink>
+        <Button asChild highContrast variant="soft">
+          <Link href={routes.education.pathname}>
+            View all Educations <IconChevronRight size={16} />
           </Link>
-        </Flex>
+        </Button>
       </Section>
     </Flex>
   );
