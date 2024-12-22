@@ -88,7 +88,7 @@ export const Item: FC<ItemProps> = ({
                 {thumbnail ? (
                   <Image
                     alt={name}
-                    className="h-[revert-layer] rounded-4 border-[1px] border-accentA-8 object-cover"
+                    className="h-[revert-layer] rounded-4 border-[1px] border-indigoA-8 object-cover"
                     height={56}
                     src={thumbnail}
                     width={80}
