@@ -34,8 +34,8 @@ export const RecentEducation: FC = async () => {
         <Flex asChild align="center" gap="3">
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- wrapping next/link */}
           <Link asChild>
-            <NextLink href={routes.experience.pathname}>
-              View all Experiences <IconArrowRight size={20} />
+            <NextLink href={routes.education.pathname}>
+              View all Educations <IconArrowRight size={20} />
             </NextLink>
           </Link>
         </Flex>
