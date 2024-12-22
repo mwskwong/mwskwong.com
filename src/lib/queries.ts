@@ -9,6 +9,7 @@ import {
   type SkillCategorySkeleton,
   type SkillSkeleton,
 } from './contentful-types';
+import { generatePdfThumbnail } from './utils';
 
 export const getPersonalPortrait = async () => {
   'use cache';
@@ -100,6 +101,24 @@ export const getExperiences = async () => {
       name: item.fields.company.fields.name,
       url: item.fields.company.fields.url,
     },
+    projects: item.fields.projects?.map((project) => ({
+      name: project?.fields.name,
+      url: project?.fields.url,
+      thumbnail:
+        project?.fields.thumbnail?.fields.file &&
+        `https:${project.fields.thumbnail.fields.file.url}`,
+    })),
+    supportingDocuments: item.fields.supportingDocuments?.map(
+      (supportingDocument) => ({
+        title: supportingDocument?.fields.title,
+        url:
+          supportingDocument?.fields.file &&
+          `https:${supportingDocument.fields.file.url}`,
+        thumbnail:
+          supportingDocument?.fields.file &&
+          generatePdfThumbnail(`https:${supportingDocument.fields.file.url}`),
+      }),
+    ),
     skills: item.fields.skills
       .filter(Boolean)
       .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),

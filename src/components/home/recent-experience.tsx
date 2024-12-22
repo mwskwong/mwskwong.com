@@ -19,11 +19,22 @@ export const RecentExperience: FC = async () => {
         </Heading>
         <Timeline.Root>
           {recentExperiences.map(
-            ({ id, from, to, jobTitle, company, jobDuties, skills }) => (
+            ({
+              id,
+              from,
+              to,
+              jobTitle,
+              company,
+              jobDuties,
+              skills,
+              projects = [],
+              supportingDocuments = [],
+            }) => (
               <Timeline.Item
                 key={id}
                 descriptions={jobDuties}
                 from={new Date(from)}
+                media={[...projects, ...supportingDocuments]}
                 organization={company}
                 tags={skills}
                 title={jobTitle}

@@ -8,6 +8,7 @@ import {
   Link,
   Text,
 } from '@radix-ui/themes';
+import Image, { type StaticImageData } from 'next/image';
 import { type FC } from 'react';
 
 export type RootProps = FlexProps;
@@ -29,15 +30,11 @@ export interface ItemProps extends Omit<GridProps, 'children'> {
     url?: string;
   };
   descriptions?: string[];
-  // projects?: {
-  //   name?: string;
-  //   url?: string;
-  //   thumbnail?: string | StaticImageData;
-  // }[];
-  // supportingDocuments?: {
-  //   title?: string;
-  //   url?: string;
-  // }[];
+  media?: {
+    name?: string;
+    url?: string;
+    thumbnail?: string | StaticImageData;
+  }[];
   tags?: { name: string; url?: string }[];
 }
 export const Item: FC<ItemProps> = ({
@@ -46,6 +43,7 @@ export const Item: FC<ItemProps> = ({
   title,
   organization,
   descriptions = [],
+  media = [],
   tags = [],
   ...props
 }) => {
@@ -76,6 +74,30 @@ export const Item: FC<ItemProps> = ({
               <li key={description}>{description}</li>
             ))}
           </ul>
+        </Flex>
+        <Flex gap="3">
+          {media.map(({ name = '', url, thumbnail }) => (
+            <Flex key={name} asChild align="center" gap="3">
+              <Link
+                highContrast
+                color="gray"
+                href={url}
+                rel="noopener"
+                target="_blank"
+              >
+                {thumbnail ? (
+                  <Image
+                    alt={name}
+                    className="h-[revert-layer] rounded-4 border-[1px] border-accentA-8 object-cover"
+                    height={56}
+                    src={thumbnail}
+                    width={80}
+                  />
+                ) : null}
+                {name}
+              </Link>
+            </Flex>
+          ))}
         </Flex>
         <Flex gap="3" wrap="wrap">
           {tags.map(({ name, url }) => (
