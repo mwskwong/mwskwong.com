@@ -6,7 +6,6 @@ import {
   Section,
   Text,
 } from '@radix-ui/themes';
-import { IconChevronLeft } from '@tabler/icons-react';
 import { type FC } from 'react';
 
 import { BackButton } from '@/components/back-button';
@@ -285,7 +284,6 @@ const NotFound: FC = () => (
             information.
           </Text>
           <BackButton highContrast color="gray" size="4">
-            <IconChevronLeft size={20} />
             Go Back
           </BackButton>
         </Flex>
