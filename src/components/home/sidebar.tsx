@@ -55,7 +55,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
         <Heading as="h2" data-accent-color="" mt="3" size="7">
           {headline}
         </Heading>
-        <Text as="p" mt="4">
+        <Text as="p" className="max-w-screen-xs" mt="4">
           {techFocus}
         </Text>
         <Box asChild display={{ initial: 'none', md: 'block' }} mt="9">

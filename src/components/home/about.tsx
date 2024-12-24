@@ -27,7 +27,14 @@ export const About: FC = async () => {
       <Text as="p" mt="5">
         {selfIntroduction}
       </Text>
-      <Button asChild highContrast color="gray" mt="6" size="4">
+      <Button
+        asChild
+        highContrast
+        className="w-full sm:w-fit"
+        color="gray"
+        mt="6"
+        size="4"
+      >
         <a href={resume} rel="noopener" target="_blank">
           Download Resume
         </a>
