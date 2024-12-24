@@ -30,7 +30,7 @@ export const About: FC = async () => {
       <Button
         asChild
         highContrast
-        className="w-full sm:w-fit"
+        className="w-full xs:w-fit"
         color="gray"
         mt="6"
         size="4"
