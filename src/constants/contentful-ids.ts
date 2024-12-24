@@ -1,5 +1,5 @@
 export const personalPortrait = '6MPuamYCrTMaP2hJu4t6WM';
-export const cv = '6mTh13ou7wM2Cs7ZC1tcdn';
+export const resume = '6mTh13ou7wM2Cs7ZC1tcdn';
 
 export const backend = '2FtEFXEYpFad3n0eE4CNyF';
 export const cms = '6RuL6dXWQqCMYjaLuA14A4';

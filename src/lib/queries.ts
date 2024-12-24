@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash-es';
 
-import { cv, personalPortrait } from '@/constants/contentful-ids';
+import { personalPortrait, resume } from '@/constants/contentful-ids';
 
 import { contentful } from './clients';
 import {
@@ -22,10 +22,10 @@ export const getPersonalPortrait = async () => {
   };
 };
 
-export const getCv = async () => {
+export const getResume = async () => {
   'use cache';
 
-  const asset = await contentful.getAsset(cv);
+  const asset = await contentful.getAsset(resume);
   return asset.fields.file && `https:${asset.fields.file.url}`;
 };
 

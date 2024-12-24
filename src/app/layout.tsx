@@ -11,8 +11,6 @@ import {
 } from 'next/font/google';
 import { type FC, type PropsWithChildren } from 'react';
 
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
 import {
   firstName,
   headline,
@@ -49,11 +47,7 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
         notoSansMono.variable,
       )}
     >
-      <Theme>
-        <Header />
-        {children}
-        <Footer />
-      </Theme>
+      <Theme>{children}</Theme>
       <Analytics
         mode={
           process.env.VERCEL_ENV === 'production' ? 'production' : 'development'

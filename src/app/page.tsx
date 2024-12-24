@@ -1,13 +1,9 @@
-import { Container } from '@radix-ui/themes';
+import { Box, Container, Flex } from '@radix-ui/themes';
 import { type FC } from 'react';
 import { type BreadcrumbList, type Graph, type WebSite } from 'schema-dts';
 
 import { About } from '@/components/home/about';
-import { Hero } from '@/components/home/hero';
-import { InterestingFact } from '@/components/home/interesting-fact';
-import { RecentEducation } from '@/components/home/recent-education';
-import { RecentExperience } from '@/components/home/recent-experience';
-import { SkillSet } from '@/components/home/skill-set';
+import { Sidebar } from '@/components/home/sidebar';
 import { firstName, lastName } from '@/constants/me';
 import { routes, siteUrl } from '@/constants/site-config';
 
@@ -15,12 +11,18 @@ const Home: FC = () => {
   return (
     <>
       <Container>
-        <Hero />
-        <About />
-        <SkillSet />
-        <InterestingFact />
-        <RecentExperience />
-        <RecentEducation />
+        <Flex direction={{ initial: 'column', md: 'row' }} gapX="160px">
+          <Sidebar
+            position={{ md: 'sticky' }}
+            top="0"
+            width={{ md: '350px' }}
+          />
+          <Box asChild className="flex-1">
+            <main style={{ minHeight: 3000 }}>
+              <About />
+            </main>
+          </Box>
+        </Flex>
       </Container>
       <script
         dangerouslySetInnerHTML={{
