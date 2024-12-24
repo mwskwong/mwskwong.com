@@ -12,14 +12,14 @@ export const About: FC = async () => {
   ]);
   return (
     <Section>
-      <Heading size="9">
+      <Heading as="h2" size="9">
         {personalPortrait ? (
           <Image
             alt="personal portrait"
             className="mr-rx-4 inline-block rounded-full border-2 border-accentA-8 align-top"
-            height={64}
+            height={60}
             src={personalPortrait}
-            width={64}
+            width={60}
           />
         ) : null}
         I develop <Text data-accent-color="">full stack web apps</Text>
@@ -27,7 +27,7 @@ export const About: FC = async () => {
       <Text as="p" mt="4">
         {selfIntroduction}
       </Text>
-      <Button asChild highContrast color="gray" mt="6" size="4">
+      <Button asChild highContrast color="gray" mt="5" size="4">
         <a href={resume} rel="noopener" target="_blank">
           Download Resume
         </a>
