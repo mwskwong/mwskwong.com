@@ -45,7 +45,7 @@ export const RecentExperience: FC = async () => {
         </Timeline.Root>
         <Button asChild highContrast size="3" variant="ghost">
           <Link href={routes.experience.pathname}>
-            View all Experiences <IconArrowRight size={16} />
+            View all Experiences <IconArrowRight size={20} />
           </Link>
         </Button>
       </Section>

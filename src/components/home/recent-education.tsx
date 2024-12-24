@@ -33,7 +33,7 @@ export const RecentEducation: FC = async () => {
         </Timeline.Root>
         <Button asChild highContrast size="3" variant="ghost">
           <Link href={routes.education.pathname}>
-            View all Educations <IconArrowRight size={16} />
+            View all Educations <IconArrowRight size={20} />
           </Link>
         </Button>
       </Section>
