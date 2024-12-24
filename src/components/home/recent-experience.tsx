@@ -1,5 +1,5 @@
 import { Button, Flex, Heading, Section } from '@radix-ui/themes';
-import { IconChevronRight } from '@tabler/icons-react';
+import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import { type FC } from 'react';
 
@@ -45,7 +45,7 @@ export const RecentExperience: FC = async () => {
         </Timeline.Root>
         <Button asChild highContrast size="3" variant="ghost">
           <Link href={routes.experience.pathname}>
-            View all Experiences <IconChevronRight size={16} />
+            View all Experiences <IconArrowRight size={16} />
           </Link>
         </Button>
       </Section>
