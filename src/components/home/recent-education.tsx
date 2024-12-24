@@ -12,7 +12,7 @@ export const RecentEducation: FC = async () => {
   const recentEducations = (await getEducations()).slice(0, 2);
 
   return (
-    <Flex asChild align={{ sm: 'center' }} direction="column" gap="8">
+    <Flex asChild align={{ sm: 'start' }} direction="column" gap="8">
       <Section>
         <Heading as="h2" size="8">
           Recent Education
@@ -31,7 +31,7 @@ export const RecentEducation: FC = async () => {
             ),
           )}
         </Timeline.Root>
-        <Button asChild highContrast size="3" variant="soft">
+        <Button asChild highContrast size="3" variant="ghost">
           <Link href={routes.education.pathname}>
             View all Educations <IconChevronRight size={16} />
           </Link>

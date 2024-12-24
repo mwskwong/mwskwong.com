@@ -12,7 +12,7 @@ export const RecentExperience: FC = async () => {
   const recentExperiences = (await getExperiences()).slice(0, 2);
 
   return (
-    <Flex asChild align={{ sm: 'center' }} direction="column" gap="8">
+    <Flex asChild align={{ sm: 'start' }} direction="column" gap="8">
       <Section>
         <Heading as="h2" size="8">
           Recent Experience
@@ -43,7 +43,7 @@ export const RecentExperience: FC = async () => {
             ),
           )}
         </Timeline.Root>
-        <Button asChild highContrast size="3" variant="soft">
+        <Button asChild highContrast size="3" variant="ghost">
           <Link href={routes.experience.pathname}>
             View all Experiences <IconChevronRight size={16} />
           </Link>
