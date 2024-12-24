@@ -24,10 +24,10 @@ export const About: FC = async () => {
         ) : null}
         I develop <Text data-accent-color="">full stack web apps</Text>
       </Heading>
-      <Text as="p" mt="4">
+      <Text as="p" mt="5">
         {selfIntroduction}
       </Text>
-      <Button asChild highContrast color="gray" mt="5" size="4">
+      <Button asChild highContrast color="gray" mt="6" size="4">
         <a href={resume} rel="noopener" target="_blank">
           Download Resume
         </a>
