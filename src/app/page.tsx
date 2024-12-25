@@ -3,6 +3,7 @@ import { type FC } from 'react';
 import { type BreadcrumbList, type Graph, type WebSite } from 'schema-dts';
 
 import { About } from '@/components/home/about';
+import { RecentExperience } from '@/components/home/recent-experience';
 import { Sidebar } from '@/components/home/sidebar';
 import { firstName, lastName } from '@/constants/me';
 import { routes, siteUrl } from '@/constants/site-config';
@@ -17,9 +18,10 @@ const Home: FC = () => {
             top="0"
             width={{ md: '350px' }}
           />
-          <Box asChild className="flex-1">
-            <main style={{ minHeight: 3000 }}>
+          <Box asChild flexBasis="1" flexGrow="1">
+            <main>
               <About />
+              <RecentExperience />
             </main>
           </Box>
         </Flex>
