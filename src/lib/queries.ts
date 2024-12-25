@@ -1,12 +1,9 @@
-import { orderBy } from 'lodash-es';
-
 import { personalPortrait, resume } from '@/constants/contentful-ids';
 
 import { contentful } from './clients';
 import {
   type EducationSkeleton,
   type ExperienceSkeleton,
-  type ProjectSkeleton,
   type SkillCategorySkeleton,
   type SkillSkeleton,
 } from './contentful-types';
@@ -36,7 +33,7 @@ export const getSkillSet = async () => {
     contentful.getEntries<SkillSkeleton>({
       content_type: 'skill',
       'fields.category[exists]': true,
-      order: ['-fields.proficiency', 'fields.name'],
+      order: ['fields.name'],
     }),
     contentful.getEntries<SkillCategorySkeleton>({
       content_type: 'skillCategory',
@@ -58,25 +55,6 @@ export const getSkillSet = async () => {
   }));
 };
 
-export const getTechStack = async () => {
-  'use cache';
-
-  const { items } = await contentful.getEntries<ProjectSkeleton>({
-    content_type: 'project',
-    'metadata.tags.sys.id[in]': ['techStack'],
-    order: ['fields.name'],
-  });
-
-  return items.map((item) => ({
-    id: item.sys.id,
-    name: item.fields.name,
-    url: item.fields.url,
-    logo:
-      item.fields.logo?.fields.file &&
-      `https:${item.fields.logo.fields.file.url}`,
-  }));
-};
-
 export const getExperiences = async () => {
   'use cache';
 
@@ -93,7 +71,15 @@ export const getExperiences = async () => {
 
   items.reverse();
   for (const item of items) {
-    item.fields.skills = orderBy(item.fields.skills, 'fields.name');
+    item.fields.skills.sort((a, b) => {
+      if (a && b) {
+        return a.fields.name.localeCompare(b.fields.name, undefined, {
+          sensitivity: 'base',
+        });
+      }
+
+      return -1;
+    });
   }
 
   return items.map((item) => ({
