@@ -37,9 +37,9 @@ export const RecentEducation: FC<RecentEducationProps> = async (props) => {
             }) => (
               <Timeline.Item
                 key={id}
-                columns={{ sm: '4', md: '', lg: '4' }}
+                columns={{ sm: '4', md: '' }}
                 from={new Date(from)}
-                gap={{ sm: '4', md: '', lg: '4' }}
+                gap={{ sm: '4', md: '' }}
                 media={supportingDocuments}
                 organization={school}
                 title={program}
