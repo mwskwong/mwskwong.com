@@ -90,9 +90,9 @@ export const Item: FC<ItemProps> = ({
                       <Image
                         alt={name}
                         className="h-[revert-layer] object-cover"
-                        height={71}
+                        height={9 * 12}
                         src={thumbnail}
-                        width={127}
+                        width={16 * 12}
                       />
                     ) : null}
                   </Inset>
