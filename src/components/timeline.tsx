@@ -104,12 +104,7 @@ export const Item: FC<ItemProps> = ({
         {tags.length > 0 && (
           <Flex gap="3" wrap="wrap">
             {tags.map(({ name, url }) => (
-              <Badge
-                key={name}
-                data-accent-color
-                asChild={Boolean(url)}
-                size="3"
-              >
+              <Badge key={name} asChild={Boolean(url)} size="3">
                 {url ? (
                   <a href={url} rel="noopener" target="_blank">
                     {name}

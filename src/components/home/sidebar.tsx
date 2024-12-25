@@ -42,7 +42,7 @@ const links = [
   },
 ];
 
-const nav = [routes.experience, routes.education, routes.blog];
+const nav = [routes.experience, routes.education, routes.skills, routes.blog];
 
 export type SidebarProps = Omit<FlexProps, 'asChild' | 'children'>;
 export const Sidebar: FC<SidebarProps> = (props) => {

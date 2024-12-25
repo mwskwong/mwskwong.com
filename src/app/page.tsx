@@ -3,6 +3,7 @@ import { type FC } from 'react';
 import { type BreadcrumbList, type Graph, type WebSite } from 'schema-dts';
 
 import { About } from '@/components/home/about';
+import { FeaturedSkills } from '@/components/home/featured-skills';
 import { Footer } from '@/components/home/footer';
 import { RecentEducation } from '@/components/home/recent-education';
 import { RecentExperience } from '@/components/home/recent-experience';
@@ -25,6 +26,7 @@ const Home: FC = () => {
               <About />
               <RecentExperience />
               <RecentEducation />
+              <FeaturedSkills />
               <Footer />
             </main>
           </Box>

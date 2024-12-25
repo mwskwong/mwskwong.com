@@ -50,6 +50,7 @@ export const getSkillSet = async () => {
     skills: skills
       .filter((skill) => skill.fields.category?.sys.id === skillCategory.sys.id)
       .map((skill) => ({
+        id: skill.sys.id,
         name: skill.fields.name,
         proficiency: skill.fields.proficiency,
         url: skill.fields.url,

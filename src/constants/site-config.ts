@@ -9,6 +9,7 @@ export const routes = {
   home: { name: 'Home', pathname: '/' },
   experience: { name: 'Experience', pathname: '/experience' },
   education: { name: 'Education', pathname: '/education' },
+  skills: { name: 'Skills', pathname: '/skills' },
   blog: { name: 'Blog', pathname: '/blog' },
   blogRssFeed: { name: 'Blog RSS Feed', pathname: '/blog/rss.xml' },
 } satisfies Record<string, Route>;
