@@ -54,13 +54,11 @@ export const FeaturedArticles: FC<FeaturedArticlesProps> = async (props) => {
                     </Inset>
                   </Card>
                   <Flex direction="column" gap="2">
-                    <Heading as="h3" size="3">
+                    <Heading as="h3" size="4">
                       {title}
                     </Heading>
-                    <Text as="p" size="2">
-                      {description}
-                    </Text>
-                    <Text as="p" color="gray" size="2">
+                    <Text as="p">{description}</Text>
+                    <Text color="gray" size="2">
                       {dateFormatter.format(new Date(createdAt))}
                     </Text>
                   </Flex>
