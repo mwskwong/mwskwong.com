@@ -82,6 +82,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
             <IconButton
               key={name}
               asChild
+              aria-label={name}
               color="gray"
               size="3"
               variant="ghost"
