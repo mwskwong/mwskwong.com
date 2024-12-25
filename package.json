@@ -3,6 +3,7 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "npm run prisma:migrate:deploy",
     "build": "next build",
     "dev": "next dev",
     "postinstall": "npm run prisma:generate",
