@@ -47,7 +47,13 @@ const nav = [routes.experience, routes.education, routes.blog];
 export type SidebarProps = Omit<FlexProps, 'asChild' | 'children'>;
 export const Sidebar: FC<SidebarProps> = (props) => {
   return (
-    <Flex asChild direction="column" height={{ md: '100dvh' }} {...props}>
+    <Flex
+      asChild
+      align={{ md: 'start' }}
+      direction="column"
+      height={{ md: '100dvh' }}
+      {...props}
+    >
       <Section>
         <Heading size="9">
           {firstName} {lastName}
