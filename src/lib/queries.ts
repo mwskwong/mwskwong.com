@@ -1,7 +1,8 @@
 import { personalPortrait, resume } from '@/constants/contentful-ids';
 
-import { contentful } from './clients';
+import { contentful, prisma } from './clients';
 import {
+  type ArticleSkeleton,
   type EducationSkeleton,
   type ExperienceSkeleton,
   type SkillCategorySkeleton,
@@ -150,3 +151,32 @@ export const getEducations = async () => {
     ),
   }));
 };
+
+export const getArticles = async () => {
+  'use cache';
+
+  const [{ items }, blogMetadata] = await Promise.all([
+    contentful.getEntries<ArticleSkeleton>({
+      content_type: 'blog',
+      order: ['-sys.createdAt'],
+    }),
+    getBlogsMetadata(),
+  ]);
+
+  return items.map((item) => ({
+    id: item.sys.id,
+    createdAt: item.sys.createdAt,
+    updatedAt: item.sys.updatedAt,
+    coverPhoto:
+      item.fields.coverPhoto?.fields.file &&
+      `https:${item.fields.coverPhoto.fields.file.url}`,
+    categories: item.fields.categories,
+    title: item.fields.title,
+    slug: item.fields.slug,
+    description: item.fields.description,
+    content: item.fields.content,
+    view: blogMetadata.find(({ id }) => id === item.sys.id)?.view ?? 0,
+  }));
+};
+
+export const getBlogsMetadata = () => prisma.blogMetadata.findMany();

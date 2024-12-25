@@ -1,0 +1,16 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins", "nativeDistinct", "omitApi", "strictUndefinedChecks"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model BlogMetadata {
+  id   String @id
+  view Int    @default(0)
+
+  @@map("blog_metadata")
+}

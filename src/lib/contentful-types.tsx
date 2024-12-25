@@ -67,3 +67,15 @@ export interface OrganizationSkeleton {
     logoDark?: EntryFieldTypes.AssetLink;
   };
 }
+
+export interface ArticleSkeleton {
+  contentTypeId: 'blog';
+  fields: {
+    coverPhoto: EntryFieldTypes.AssetLink;
+    categories?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    title: EntryFieldTypes.Symbol;
+    slug: EntryFieldTypes.Symbol;
+    description: EntryFieldTypes.Text;
+    content?: EntryFieldTypes.Text;
+  };
+}
