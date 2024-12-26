@@ -67,13 +67,13 @@ const ExperiencePage = async () => {
         <Flex asChild align="center" direction="column">
           <Section>
             <Heading align="center" as="h2" size="8">
-              Contribution To Open Source Projects
+              Open-source Contribution
             </Heading>
             <Text align="center" as="p" className="max-w-[60ch]" mt="4">
               Periodically, I engage in open-source contributions. Below are the
               projects I&apos;ve contributed to thus far.
             </Text>
-            <Flex gap="4" my="6" wrap="wrap">
+            <Flex gap="4" justify="center" my="6" wrap="wrap">
               {contributedProjects.map(
                 ({ id, name, logo, url }) =>
                   logo && (
