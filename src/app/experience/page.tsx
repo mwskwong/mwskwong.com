@@ -27,7 +27,7 @@ const ExperiencePage = async () => {
 
   return (
     <>
-      <Container asChild>
+      <Container>
         <main>
           <Section>
             <Button asChild highContrast size="3" variant="ghost">
