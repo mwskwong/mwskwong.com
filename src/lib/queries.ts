@@ -3,6 +3,8 @@ import { personalPortrait, resume } from '@/constants/contentful-ids';
 import { contentful, prisma } from './clients';
 import {
   type ArticleSkeleton,
+  type CourseCategory,
+  type CourseSkeleton,
   type EducationSkeleton,
   type ExperienceSkeleton,
   type ProjectSkeleton,
@@ -198,5 +200,42 @@ export const getContributedProjects = async () => {
     logo:
       item.fields.logo?.fields.file &&
       `https:${item.fields.logo.fields.file.url}`,
+  }));
+};
+
+export const getCourseCategories = async () => {
+  'use cache';
+
+  const course = await contentful.getContentType('course');
+  return course.fields
+    .find(({ id }) => id === 'categories')
+    ?.items?.validations[0]?.in?.toSorted() as CourseCategory[] | undefined;
+};
+
+export const getCourses = async () => {
+  'use cache';
+
+  const { items } = await contentful.getEntries<CourseSkeleton>({
+    content_type: 'course',
+    order: ['fields.name'],
+  });
+
+  return items.map((item) => ({
+    id: item.sys.id,
+    ...item.fields,
+    institution: item.fields.institution && {
+      id: item.fields.institution.sys.id,
+      name: item.fields.institution.fields.name,
+      logo:
+        item.fields.institution.fields.logo?.fields.file &&
+        `https:${item.fields.institution.fields.logo.fields.file.url}`,
+    },
+    certificate:
+      item.fields.certificate?.fields.file &&
+      `https:${item.fields.certificate.fields.file.url}`,
+    categories: item.fields.categories,
+    description:
+      'This five-day instructor-led course provides students who administer and maintain SQL Server databases with the knowledge and skills to administer a SQL server database infrastructure. Additionally, it will be of use to individuals who develop applications that deliver content from SQL Server databases.', // TODO: real description
+    completedOn: new Date().toISOString(),
   }));
 };

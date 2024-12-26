@@ -62,9 +62,7 @@ export interface OrganizationSkeleton {
   fields: {
     name: EntryFieldTypes.Symbol;
     url?: EntryFieldTypes.Symbol;
-    logoUniversal?: EntryFieldTypes.AssetLink;
-    logoLight?: EntryFieldTypes.AssetLink;
-    logoDark?: EntryFieldTypes.AssetLink;
+    logo?: EntryFieldTypes.AssetLink;
   };
 }
 
@@ -77,5 +75,23 @@ export interface ArticleSkeleton {
     slug: EntryFieldTypes.Symbol;
     description: EntryFieldTypes.Text;
     content?: EntryFieldTypes.Text;
+  };
+}
+export type CourseCategory =
+  | 'Database'
+  | 'Desktop Virtualization'
+  | 'Development'
+  | 'DevOps'
+  | 'Marketing'
+  | 'Operating System'
+  | 'Project Management'
+  | 'Security';
+export interface CourseSkeleton {
+  contentTypeId: 'course';
+  fields: {
+    name: EntryFieldTypes.Symbol;
+    institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
+    certificate?: EntryFieldTypes.AssetLink;
+    categories?: EntryFieldTypes.Array<EntryFieldTypes.Symbol<CourseCategory>>;
   };
 }
