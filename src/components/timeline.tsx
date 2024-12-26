@@ -81,7 +81,7 @@ export const Item: FC<ItemProps> = ({
           )}
         </Flex>
         {media.length > 0 && (
-          <Flex gap="3">
+          <Flex gap="3" wrap="wrap">
             {media.map(({ name = '', url, thumbnail }) => (
               <Card key={name} asChild>
                 <a aria-label={name} href={url} rel="noopener" target="_blank">
