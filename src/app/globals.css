@@ -8,26 +8,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply m-0;
-  }
-
-  ol,
-  ul {
-    @apply m-0 p-0;
-  }
-
-  img,
-  svg {
-    @apply block;
-  }
-
-  *,
-  ::before,
-  ::after {
-    @apply border-0 border-solid;
-  }
+img {
+  height: revert-layer;
 }
 
 .radix-themes {

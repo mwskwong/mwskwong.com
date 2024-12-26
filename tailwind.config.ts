@@ -8,9 +8,6 @@ const config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   plugins: [],
-  corePlugins: {
-    preflight: false,
-  },
   experimental: {
     optimizeUniversalDefaults: true,
   },
