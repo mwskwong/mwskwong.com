@@ -73,7 +73,7 @@ export const Item: FC<ItemProps> = ({
             {organization?.name}
           </Link>
           {descriptions.length > 0 && (
-            <ul className="list-disc pl-[20px] [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1">
+            <ul className="pl-[20px] [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1">
               {descriptions.map((description) => (
                 <li key={description}>{description}</li>
               ))}
