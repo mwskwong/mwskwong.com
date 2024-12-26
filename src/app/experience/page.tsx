@@ -43,24 +43,23 @@ const ExperiencePage = async () => {
               {experiences.map(
                 ({
                   id,
-                  from,
-                  to,
+
                   jobTitle,
                   company,
                   jobDuties,
                   skills,
                   projects = [],
                   supportingDocuments = [],
+                  ...experience
                 }) => (
                   <Timeline.Item
                     key={id}
                     descriptions={jobDuties}
-                    from={new Date(from)}
                     media={[...projects, ...supportingDocuments]}
                     organization={company}
                     tags={skills}
                     title={jobTitle}
-                    to={to ? new Date(to) : undefined}
+                    {...experience}
                   />
                 ),
               )}

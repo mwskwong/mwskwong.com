@@ -58,7 +58,7 @@ export const FeaturedArticles: FC<FeaturedArticlesProps> = async (props) => {
                       </Heading>
                       <Text as="p">{description}</Text>
                       <Text color="gray" size="2">
-                        {dateFormatter.format(new Date(createdAt))}
+                        {dateFormatter.format(createdAt)}
                       </Text>
                     </Flex>
                   </Flex>

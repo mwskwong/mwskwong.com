@@ -89,6 +89,8 @@ export const getExperiences = async () => {
   return items.map((item) => ({
     id: item.sys.id,
     ...item.fields,
+    from: new Date(item.fields.from),
+    to: item.fields.to && new Date(item.fields.to),
     company: item.fields.company && {
       name: item.fields.company.fields.name,
       url: item.fields.company.fields.url,
@@ -136,6 +138,8 @@ export const getEducations = async () => {
   return items.map((item) => ({
     id: item.sys.id,
     ...item.fields,
+    from: new Date(item.fields.from),
+    to: item.fields.to && new Date(item.fields.to),
     school: item.fields.school && {
       name: item.fields.school.fields.name,
       url: item.fields.school.fields.url,
@@ -168,8 +172,8 @@ export const getArticles = async () => {
 
   return items.map((item) => ({
     id: item.sys.id,
-    createdAt: item.sys.createdAt,
-    updatedAt: item.sys.updatedAt,
+    createdAt: new Date(item.sys.createdAt),
+    updatedAt: new Date(item.sys.updatedAt),
     coverPhoto:
       item.fields.coverPhoto?.fields.file &&
       `https:${item.fields.coverPhoto.fields.file.url}`,
@@ -234,8 +238,6 @@ export const getCourses = async () => {
       item.fields.certificate?.fields.file &&
       `https:${item.fields.certificate.fields.file.url}`,
     categories: item.fields.categories,
-    description:
-      'This five-day instructor-led course provides students who administer and maintain SQL Server databases with the knowledge and skills to administer a SQL server database infrastructure. Additionally, it will be of use to individuals who develop applications that deliver content from SQL Server databases.', // TODO: real description
-    completedOn: new Date().toISOString(),
+    completedOn: new Date(item.fields.completedOn),
   }));
 };

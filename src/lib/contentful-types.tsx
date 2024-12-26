@@ -86,6 +86,7 @@ export type CourseCategory =
   | 'Operating System'
   | 'Project Management'
   | 'Security';
+
 export interface CourseSkeleton {
   contentTypeId: 'course';
   fields: {
@@ -93,5 +94,6 @@ export interface CourseSkeleton {
     institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
     certificate?: EntryFieldTypes.AssetLink;
     categories?: EntryFieldTypes.Array<EntryFieldTypes.Symbol<CourseCategory>>;
+    completedOn: EntryFieldTypes.Date;
   };
 }

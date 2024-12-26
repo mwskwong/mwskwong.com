@@ -78,20 +78,17 @@ const EducationPage = async () => {
               {educations.map(
                 ({
                   id,
-                  from,
-                  to,
                   program,
                   school,
-
                   supportingDocuments,
+                  ...education
                 }) => (
                   <Timeline.Item
                     key={id}
-                    from={new Date(from)}
                     media={supportingDocuments}
                     organization={school}
                     title={program}
-                    to={to ? new Date(to) : undefined}
+                    {...education}
                   />
                 ),
               )}
@@ -107,7 +104,6 @@ const EducationPage = async () => {
                   id,
                   name,
                   institution,
-                  description,
                   completedOn,
                   certificate,
                   categories,
@@ -131,10 +127,7 @@ const EducationPage = async () => {
                           {name}
                         </Heading>
                         <Text as="p" color="gray" mt="2" size="2">
-                          {dateFormatter.format(new Date(completedOn))}
-                        </Text>
-                        <Text as="p" className="line-clamp-3" mt="4">
-                          {description}
+                          Completed on {dateFormatter.format(completedOn)}
                         </Text>
                         {categories ? (
                           <Flex gap="3" mt="auto" pt="4">
