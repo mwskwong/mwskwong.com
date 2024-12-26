@@ -8,6 +8,10 @@
 @tailwind components;
 @tailwind utilities;
 
+img {
+  height: revert-layer;
+}
+
 .radix-themes {
   --default-font-family: var(--font-noto-sans);
   --code-font-family: var(--font-noto-sans-mono);

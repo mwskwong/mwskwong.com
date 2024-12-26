@@ -89,7 +89,7 @@ export const Item: FC<ItemProps> = ({
                     {thumbnail ? (
                       <Image
                         alt={name}
-                        className="h-[revert-layer] object-cover"
+                        className="object-cover"
                         height={9 * 12}
                         src={thumbnail}
                         width={16 * 12}

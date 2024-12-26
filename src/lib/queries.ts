@@ -5,6 +5,7 @@ import {
   type ArticleSkeleton,
   type EducationSkeleton,
   type ExperienceSkeleton,
+  type ProjectSkeleton,
   type SkillCategorySkeleton,
   type SkillSkeleton,
 } from './contentful-types';
@@ -180,3 +181,22 @@ export const getArticles = async () => {
 };
 
 export const getBlogsMetadata = () => prisma.blogMetadata.findMany();
+
+export const getContributedProjects = async () => {
+  'use cache';
+
+  const { items } = await contentful.getEntries<ProjectSkeleton>({
+    content_type: 'project',
+    'metadata.tags.sys.id[in]': ['contributed'],
+    order: ['fields.name'],
+  });
+
+  return items.map((item) => ({
+    id: item.sys.id,
+    name: item.fields.name,
+    url: item.fields.url,
+    logo:
+      item.fields.logo?.fields.file &&
+      `https:${item.fields.logo.fields.file.url}`,
+  }));
+};

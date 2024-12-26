@@ -14,7 +14,7 @@ export const Footer: FC<FooterProps> = async (props) => {
         <Text as="p" className="max-w-[60ch]" color="gray" size="2">
           {techFocus}
         </Text>
-        <Text as="p" className="max-w-[60ch]" color="gray" mt="2" size="1">
+        <Text as="p" color="gray" mt="2" size="1">
           Copyright © {new Date().getFullYear()} {legalName}
         </Text>
       </footer>
