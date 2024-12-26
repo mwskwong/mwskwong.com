@@ -32,38 +32,38 @@ export const FeaturedArticles: FC<FeaturedArticlesProps> = async (props) => {
         <Flex direction="column" gap="8">
           {articles.map(
             ({ id, createdAt, coverPhoto, slug, title, description }) => (
-              <Flex
-                key={id}
-                asChild
-                align="start"
-                direction={{ initial: 'column-reverse', sm: 'row' }}
-                gap="4"
-              >
+              <Card key={id} asChild variant="ghost">
                 <Link href={`${routes.blog.pathname}/${slug}`}>
-                  <Card className="shrink-0">
-                    <Inset>
-                      {coverPhoto ? (
-                        <Image
-                          alt={title}
-                          className="h-[108px] w-[192px] sm:h-[90px] sm:w-[160px]"
-                          height={9 * 12}
-                          src={coverPhoto}
-                          width={16 * 12}
-                        />
-                      ) : null}
-                    </Inset>
-                  </Card>
-                  <Flex direction="column" gap="2">
-                    <Heading as="h3" size="4">
-                      {title}
-                    </Heading>
-                    <Text as="p">{description}</Text>
-                    <Text color="gray" size="2">
-                      {dateFormatter.format(new Date(createdAt))}
-                    </Text>
+                  <Flex
+                    align="start"
+                    direction={{ initial: 'column-reverse', sm: 'row' }}
+                    gap="4"
+                  >
+                    <Card className="shrink-0">
+                      <Inset>
+                        {coverPhoto ? (
+                          <Image
+                            alt={title}
+                            className="h-[108px] w-[192px] sm:h-[90px] sm:w-[160px]"
+                            height={9 * 12}
+                            src={coverPhoto}
+                            width={16 * 12}
+                          />
+                        ) : null}
+                      </Inset>
+                    </Card>
+                    <Flex direction="column" gap="2">
+                      <Heading as="h3" size="4">
+                        {title}
+                      </Heading>
+                      <Text as="p">{description}</Text>
+                      <Text color="gray" size="2">
+                        {dateFormatter.format(new Date(createdAt))}
+                      </Text>
+                    </Flex>
                   </Flex>
                 </Link>
-              </Flex>
+              </Card>
             ),
           )}
         </Flex>
