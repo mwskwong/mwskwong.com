@@ -114,40 +114,42 @@ const EducationPage = async () => {
                 }) => (
                   <Card key={id} asChild>
                     <a href={certificate} rel="noopener" target="_blank">
-                      {institution?.logo ? (
-                        <Flex align="center" justify="between">
-                          <Image
-                            alt={institution.name}
-                            className="object-scale-down"
-                            height={24}
-                            src={institution.logo}
-                            width={24}
-                          />
-                          <Text>{institution.name}</Text>
-                        </Flex>
-                      ) : null}
-                      <Heading as="h3" mt="4" size="4">
-                        {name}
-                      </Heading>
-                      <Text as="p" color="gray" mt="2" size="2">
-                        {dateFormatter.format(new Date(completedOn))}
-                      </Text>
-                      <Text as="p" className="line-clamp-3" mt="4">
-                        {description}
-                      </Text>
-                      {categories ? (
-                        <Flex gap="3" mt="4">
-                          {categories.map((category) => (
-                            <Badge
-                              key={category}
-                              color={courseCategoryColors[category]}
-                              size="3"
-                            >
-                              {category}
-                            </Badge>
-                          ))}
-                        </Flex>
-                      ) : null}
+                      <Flex direction="column" height="100%">
+                        {institution?.logo ? (
+                          <Flex align="center" justify="between">
+                            <Image
+                              alt={institution.name}
+                              className="object-scale-down"
+                              height={24}
+                              src={institution.logo}
+                              width={24}
+                            />
+                            <Badge color="gray">{institution.name}</Badge>
+                          </Flex>
+                        ) : null}
+                        <Heading as="h3" mt="4" size="4">
+                          {name}
+                        </Heading>
+                        <Text as="p" color="gray" mt="2" size="2">
+                          {dateFormatter.format(new Date(completedOn))}
+                        </Text>
+                        <Text as="p" className="line-clamp-3" mt="4">
+                          {description}
+                        </Text>
+                        {categories ? (
+                          <Flex gap="3" mt="auto" pt="4">
+                            {categories.map((category) => (
+                              <Badge
+                                key={category}
+                                color={courseCategoryColors[category]}
+                                size="3"
+                              >
+                                {category}
+                              </Badge>
+                            ))}
+                          </Flex>
+                        ) : null}
+                      </Flex>
                     </a>
                   </Card>
                 ),
