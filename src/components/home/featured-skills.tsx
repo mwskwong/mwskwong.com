@@ -8,50 +8,14 @@ import {
   Section,
   Text,
 } from '@radix-ui/themes';
-import {
-  type Icon,
-  IconActivity,
-  IconArrowRight,
-  IconBrain,
-  IconDatabase,
-  IconDeviceDesktopCog,
-  IconDevices,
-  IconLayout,
-  IconServer,
-  IconSettings,
-  IconTestPipe,
-  IconTools,
-} from '@tabler/icons-react';
+import { IconArrowRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import { type FC } from 'react';
 
-import {
-  backend,
-  cms,
-  database,
-  devOps,
-  frontend,
-  machineLearning,
-  mobile,
-  monitoring,
-  qa,
-  toolsAndPlatforms,
-} from '@/constants/contentful-ids';
 import { routes } from '@/constants/site-config';
 import { getSkillSet } from '@/lib/queries';
 
-const SkillCategoryIcons = {
-  [backend]: IconServer,
-  [cms]: IconDeviceDesktopCog,
-  [database]: IconDatabase,
-  [devOps]: IconSettings,
-  [frontend]: IconLayout,
-  [machineLearning]: IconBrain,
-  [mobile]: IconDevices,
-  [qa]: IconTestPipe,
-  [monitoring]: IconActivity,
-  [toolsAndPlatforms]: IconTools,
-} as Record<string, Icon>;
+import { SkillCategoryIcons } from '../skill-category-icons';
 
 export type FeaturedSkillsProps = Omit<FlexProps, 'asChild' | 'children'>;
 export const FeaturedSkills: FC<FeaturedSkillsProps> = async (props) => {
