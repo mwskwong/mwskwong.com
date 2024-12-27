@@ -106,7 +106,7 @@ export const FeaturedSkills: FC<FeaturedSkillsProps> = async (props) => {
           })}
         </Flex>
         <Button asChild highContrast size="3" variant="ghost">
-          <Link href={routes.education.pathname}>
+          <Link href={routes.skills.pathname}>
             View all Skills <IconArrowRight size={20} />
           </Link>
         </Button>
