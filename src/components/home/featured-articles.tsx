@@ -4,7 +4,6 @@ import {
   Flex,
   type FlexProps,
   Heading,
-  Inset,
   Section,
   Text,
 } from '@radix-ui/themes';
@@ -39,19 +38,18 @@ export const FeaturedArticles: FC<FeaturedArticlesProps> = async (props) => {
                     direction={{ initial: 'column-reverse', sm: 'row' }}
                     gap="4"
                   >
-                    <Card className="shrink-0">
-                      <Inset>
-                        {coverPhoto ? (
-                          <Image
-                            alt={title}
-                            className="h-[108px] w-[192px] sm:h-[90px] sm:w-[160px]"
-                            height={9 * 12}
-                            src={coverPhoto}
-                            width={16 * 12}
-                          />
-                        ) : null}
-                      </Inset>
-                    </Card>
+                    {coverPhoto ? (
+                      <Image
+                        alt={title}
+                        className="h-[108px] w-[192px] rounded-[var(--card-border-radius)] sm:h-[90px] sm:w-[160px]"
+                        height={9 * 12}
+                        src={coverPhoto}
+                        width={16 * 12}
+                        style={{
+                          boxShadow: 'var(--base-card-surface-box-shadow)',
+                        }}
+                      />
+                    ) : null}
                     <Flex direction="column" gap="2">
                       <Heading as="h3" size="4">
                         {title}

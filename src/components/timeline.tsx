@@ -7,7 +7,6 @@ import {
   type GridProps,
   Heading,
   type HeadingProps,
-  Inset,
   Link,
   Text,
 } from '@radix-ui/themes';
@@ -88,19 +87,18 @@ export const Item: FC<ItemProps> = ({
             {media.map(({ name = '', url, thumbnail }) => (
               <Card key={name} asChild variant="ghost">
                 <a aria-label={name} href={url} rel="noopener" target="_blank">
-                  <Card>
-                    <Inset>
-                      {thumbnail ? (
-                        <Image
-                          alt={name}
-                          className="object-cover"
-                          height={9 * 12}
-                          src={thumbnail}
-                          width={16 * 12}
-                        />
-                      ) : null}
-                    </Inset>
-                  </Card>
+                  {thumbnail ? (
+                    <Image
+                      alt={name}
+                      className="rounded-[var(--card-border-radius)] object-cover"
+                      height={9 * 12}
+                      src={thumbnail}
+                      width={16 * 12}
+                      style={{
+                        boxShadow: 'var(--base-card-surface-box-shadow)',
+                      }}
+                    />
+                  ) : null}
                 </a>
               </Card>
             ))}

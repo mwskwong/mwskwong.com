@@ -17,6 +17,7 @@ const config = {
           '.rt-DataList',
           '.rt-BaseDialog',
           '.rt-HoverCard',
+          '.rt-Inset',
           '.rt-Popover',
           '.rt-Progress',
           '.rt-BaseRadio',
