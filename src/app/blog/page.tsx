@@ -168,6 +168,9 @@ const BlogPage: FC = async () => {
 
 export const metadata = {
   title: routes.blog.name,
+  alternates: {
+    types: { 'application/rss+xml': routes.blogRssFeed.pathname },
+  },
 } satisfies Metadata;
 
 export default BlogPage;
