@@ -61,6 +61,7 @@ const BlogPage: FC = async () => {
                       {featuredArticle.coverPhoto ? (
                         <Image
                           fill
+                          priority
                           alt={featuredArticle.title}
                           className="object-cover"
                           src={featuredArticle.coverPhoto}
