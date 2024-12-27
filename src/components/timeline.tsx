@@ -6,6 +6,7 @@ import {
   Grid,
   type GridProps,
   Heading,
+  type HeadingProps,
   Inset,
   Link,
   Text,
@@ -38,6 +39,7 @@ export interface ItemProps extends Omit<GridProps, 'children'> {
     thumbnail?: string | StaticImageData;
   }[];
   tags?: { name: string; url?: string }[];
+  titleAs?: HeadingProps['as'];
 }
 
 export const Item: FC<ItemProps> = ({
@@ -48,6 +50,7 @@ export const Item: FC<ItemProps> = ({
   descriptions = [],
   media = [],
   tags = [],
+  titleAs = 'h3',
   ...props
 }) => {
   const duration = to
@@ -66,7 +69,7 @@ export const Item: FC<ItemProps> = ({
       </Text>
       <Flex className="sm:col-span-3" direction="column" gap="4">
         <Flex align="start" direction="column" gap="2">
-          <Heading as="h3" size="4">
+          <Heading as={titleAs} size="4">
             {title}
           </Heading>
           <Link href={organization?.url} rel="noopener" target="_blank">

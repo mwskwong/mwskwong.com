@@ -88,6 +88,7 @@ const EducationPage = async () => {
                     media={supportingDocuments}
                     organization={school}
                     title={program}
+                    titleAs="h2"
                     {...education}
                   />
                 ),

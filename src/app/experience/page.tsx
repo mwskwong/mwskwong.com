@@ -43,7 +43,6 @@ const ExperiencePage = async () => {
               {experiences.map(
                 ({
                   id,
-
                   jobTitle,
                   company,
                   jobDuties,
@@ -59,6 +58,7 @@ const ExperiencePage = async () => {
                     organization={company}
                     tags={skills}
                     title={jobTitle}
+                    titleAs="h2"
                     {...experience}
                   />
                 ),
