@@ -83,19 +83,21 @@ export const Item: FC<ItemProps> = ({
         {media.length > 0 && (
           <Flex gap="3" wrap="wrap">
             {media.map(({ name = '', url, thumbnail }) => (
-              <Card key={name} asChild>
+              <Card key={name} asChild variant="ghost">
                 <a aria-label={name} href={url} rel="noopener" target="_blank">
-                  <Inset>
-                    {thumbnail ? (
-                      <Image
-                        alt={name}
-                        className="object-cover"
-                        height={9 * 12}
-                        src={thumbnail}
-                        width={16 * 12}
-                      />
-                    ) : null}
-                  </Inset>
+                  <Card>
+                    <Inset>
+                      {thumbnail ? (
+                        <Image
+                          alt={name}
+                          className="object-cover"
+                          height={9 * 12}
+                          src={thumbnail}
+                          width={16 * 12}
+                        />
+                      ) : null}
+                    </Inset>
+                  </Card>
                 </a>
               </Card>
             ))}
