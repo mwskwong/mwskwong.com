@@ -87,7 +87,11 @@ export const generateMetadata = async () => {
     description: selfIntroduction,
     authors: { name, url: siteUrl },
     metadataBase: new URL(siteUrl),
-    openGraph: { url: '/', type: 'website' },
+    openGraph: {
+      url: '/',
+      type: 'website',
+      siteName: name,
+    },
     robots: { 'max-image-preview': 'large' },
     icons: {
       icon: [
