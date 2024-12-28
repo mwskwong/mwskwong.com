@@ -4,11 +4,7 @@ import { Theme } from '@radix-ui/themes';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { type Metadata } from 'next';
-import {
-  Noto_Sans as NotoSans,
-  Noto_Sans_Mono as NotoSansMono,
-  Noto_Serif as NotoSerif,
-} from 'next/font/google';
+import { Geist, Geist_Mono as GeistMono } from 'next/font/google';
 import { type FC, type PropsWithChildren } from 'react';
 
 import {
@@ -21,32 +17,20 @@ import { siteUrl } from '@/constants/site-config';
 import { getPersonalPortrait } from '@/lib/queries';
 import { cn } from '@/lib/utils';
 
-const notoSans = NotoSans({
-  variable: '--font-noto-sans',
+const geist = Geist({
+  variable: '--font-geist',
   subsets: ['latin'],
 });
 
-const notoSansMono = NotoSansMono({
-  variable: '--font-noto-sans-mono',
-  subsets: ['latin'],
-  preload: false,
-});
-
-const notoSerif = NotoSerif({
-  variable: '--font-noto-serif',
+const geistMono = GeistMono({
+  variable: '--font-geist-mono',
   subsets: ['latin'],
   preload: false,
 });
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en">
-    <body
-      className={cn(
-        notoSans.variable,
-        notoSerif.variable,
-        notoSansMono.variable,
-      )}
-    >
+    <body className={cn(geist.variable, geistMono.variable)}>
       <Theme>{children}</Theme>
       <Analytics
         mode={
