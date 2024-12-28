@@ -14,10 +14,16 @@ import { email } from '@/constants/me';
 const NotFound: FC = () => (
   <Container>
     <Section asChild>
-      <Flex align="center" direction={{ initial: 'column', sm: 'row' }} gap="8">
-        {/* tabler 404 illustration */}
+      <Flex
+        align="center"
+        direction={{ initial: 'column', md: 'row' }}
+        gap="8"
+        justify="center"
+        minHeight="100dvh"
+      >
+        {/* Tabler 404 illustration */}
         <svg
-          className="flex-1"
+          className="max-w-[568px]"
           fill="none"
           viewBox="0 0 800 600"
           width="100%"
@@ -268,16 +274,11 @@ const NotFound: FC = () => (
             fill="#232B41"
           />
         </svg>
-        <Flex
-          align={{ sm: 'start' }}
-          className="flex-1"
-          direction="column"
-          gap="6"
-        >
+        <Flex align={{ sm: 'start' }} direction="column" gap="6" width="100%">
           <Heading size="9">
             Oops, <Text data-accent-color="">nothing</Text> here...
           </Heading>
-          <Text>
+          <Text className="max-w-[60ch]">
             Un oh, we can&apos;t seem to find the page you&apos;re looking for.
             Try going back to previous page or{' '}
             <Link href={`mailto:${email}`}>contact me</Link> for more
