@@ -44,7 +44,7 @@ export const Footer: FC<FooterProps> = async (props) => {
   return (
     <Section asChild {...props}>
       <footer>
-        <Text as="p" className="max-w-[60ch]" color="gray" size="2">
+        <Text as="p" className="max-w-[50ch]" color="gray" size="2">
           {techFocus}
         </Text>
         <Flex gap="5" mt="6">
