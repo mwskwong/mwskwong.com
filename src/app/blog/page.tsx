@@ -45,7 +45,7 @@ const BlogPage: FC = async () => {
           <Heading mt="2" size="9">
             Blog
           </Heading>
-          <Card asChild mt="8" variant="ghost">
+          <Card asChild mt="8" size={{ sm: '2', md: '3' }} variant="ghost">
             <Link href={`${routes.blog.pathname}/${featuredArticle.slug}`}>
               <Grid asChild columns={{ sm: '2' }} gapX="5" gapY="4">
                 <article>
