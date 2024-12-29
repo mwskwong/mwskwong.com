@@ -7,7 +7,7 @@ import { incrementArticleView } from '@/lib/actions';
 export interface IncrViewProps {
   id: string;
 }
-export const IncrView: FC<IncrViewProps> = ({ id }) => {
+export const IncrementView: FC<IncrViewProps> = ({ id }) => {
   useEffect(() => void incrementArticleView(id), [id]);
   return null;
 };
