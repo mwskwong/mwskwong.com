@@ -30,7 +30,7 @@ export interface SideBarProps extends Omit<BoxProps, 'asChild' | 'children'> {
   article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
 }
 
-export const SideBar: FC<SideBarProps> = async ({ article }) => {
+export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
   const [{ url: personalPortrait }, featuredArticles] = await Promise.all([
     getPersonalPortrait(),
     getArticles().then((articles) =>
@@ -67,7 +67,7 @@ export const SideBar: FC<SideBarProps> = async ({ article }) => {
   ];
 
   return (
-    <Box asChild>
+    <Box asChild {...props}>
       <aside>
         <Heading size="4">Posted By</Heading>
         <Card asChild mt="4" variant="ghost">
