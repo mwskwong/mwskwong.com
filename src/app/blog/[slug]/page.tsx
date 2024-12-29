@@ -15,16 +15,8 @@ interface ArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
-const ArticlePage: FC<ArticlePageProps> = ({ params }) => {
-  return (
-    <Suspense>
-      <Article params={params} />
-    </Suspense>
-  );
-};
-
 // FIXME: confirm whether I can use "use cache" in dynamic route while accessing params
-const Article: FC<ArticlePageProps> = ({ params }) => {
+const ArticlePage: FC<ArticlePageProps> = ({ params }) => {
   const slug = params.then(({ slug }) => slug);
 
   return (
