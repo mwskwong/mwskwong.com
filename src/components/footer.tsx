@@ -47,7 +47,7 @@ export const Footer: FC<FooterProps> = async (props) => {
         <Text as="p" className="max-w-[50ch]" color="gray" size="2">
           {techFocus}
         </Text>
-        <Flex gap="5" mt="6">
+        <Flex gap="4" mt="6">
           {links.map(({ Icon, href, name }) => (
             <IconButton key={href} asChild color="gray" variant="ghost">
               <a aria-label={name} href={href} rel="noopener" target="_blank">

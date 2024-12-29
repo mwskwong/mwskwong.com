@@ -197,8 +197,8 @@ export const getArticleBySlug = async (slug: string) => {
   return (
     item && {
       id: item.sys.id,
-      createdAt: item.sys.createdAt,
-      updatedAt: item.sys.updatedAt,
+      createdAt: new Date(item.sys.createdAt),
+      updatedAt: new Date(item.sys.updatedAt),
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,
