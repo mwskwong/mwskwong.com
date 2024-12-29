@@ -7,8 +7,8 @@ import { getArticles } from '@/lib/queries';
 const name = `${firstName} ${lastName}`;
 
 export const GET = async () => {
-  const blogs = await getArticles();
-  const blogFeed = new Feed({
+  const articles = await getArticles();
+  const feed = new Feed({
     title: `${name} ${routes.blog.name}`,
     description: 'Personal perspectives on a broad range of topics.',
     id: siteUrl + routes.blogRssFeed.pathname,
@@ -21,8 +21,8 @@ export const GET = async () => {
     },
   });
 
-  for (const { title, slug, description, createdAt, updatedAt } of blogs) {
-    blogFeed.addItem({
+  for (const { title, slug, description, createdAt, updatedAt } of articles) {
+    feed.addItem({
       guid: `${siteUrl}${routes.blog.pathname}/${slug}`,
       title,
       link: `${siteUrl}${routes.blog.pathname}/${slug}`,
@@ -33,7 +33,7 @@ export const GET = async () => {
     });
   }
 
-  return new Response(blogFeed.rss2(), {
+  return new Response(feed.rss2(), {
     headers: { 'Content-Type': 'text/xml' },
   });
 };
