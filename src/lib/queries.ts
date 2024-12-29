@@ -159,9 +159,9 @@ export const getEducations = async () => {
   }));
 };
 
-export const getArticles = async () => {
-  'use cache';
-
+// WORKAROUND: for usage in sitemap, which will throw a build error if we use "use cache"
+// ref: https://github.com/vercel/next.js/issues/74146
+export const getArticlesUncached = async () => {
   const [{ items }, articlesMetadata] = await Promise.all([
     contentful.getEntries<ArticleSkeleton>({
       content_type: 'blog',
@@ -182,6 +182,11 @@ export const getArticles = async () => {
     description: item.fields.description,
     view: articlesMetadata.find(({ id }) => id === item.sys.id)?.view ?? 0,
   }));
+};
+
+export const getArticles = async () => {
+  'use cache';
+  return getArticlesUncached();
 };
 
 export const getArticleBySlug = async (slug: string) => {

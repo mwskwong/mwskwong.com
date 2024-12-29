@@ -46,6 +46,8 @@ interface ArticlePageProps {
 }
 
 const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
+  'use cache';
+
   const slug = (await params).slug;
   const [article, { url: personalPortrait }, latestJobTitle] =
     await Promise.all([
