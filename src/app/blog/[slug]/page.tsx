@@ -32,14 +32,19 @@ const ArticlePage: FC<ArticlePageProps> = ({ params }) => {
             </Button>
             <Flex
               asChild
+              align="start"
               direction={{ initial: 'column', md: 'row' }}
               gap="8"
-              mt="8"
             >
               <article>
                 <Suspense>
                   <MainContent className="flex-1" slug={slug} />
-                  <SideBar slug={slug} width={{ md: '350px' }} />
+                  <SideBar
+                    position={{ md: 'sticky' }}
+                    slug={slug}
+                    top="calc(var(--space-9) + 36px)" // container padding + Blog button button height
+                    width={{ md: '350px' }}
+                  />
                 </Suspense>
               </article>
             </Flex>

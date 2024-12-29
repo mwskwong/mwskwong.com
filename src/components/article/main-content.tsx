@@ -1,4 +1,11 @@
-import { Box, type BoxProps, Flex, Heading, Text } from '@radix-ui/themes';
+import {
+  Box,
+  Flex,
+  Heading,
+  Section,
+  type SectionProps,
+  Text,
+} from '@radix-ui/themes';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { type FC } from 'react';
@@ -8,7 +15,7 @@ import { dateFormatter } from '@/lib/utils';
 
 import { IncrementView } from './increment-view';
 
-export interface MainContentProps extends Omit<BoxProps, 'children'> {
+export interface MainContentProps extends Omit<SectionProps, 'children'> {
   slug: Promise<string>;
 }
 
@@ -19,7 +26,7 @@ export const MainContent: FC<MainContentProps> = async ({ slug, ...props }) => {
 
   return (
     <>
-      <Box {...props}>
+      <Section {...props}>
         <Flex direction="column" gap="5">
           <Text color="gray">{dateFormatter.format(article.createdAt)}</Text>
           <Heading size={{ initial: '8', xs: '9' }}>{article.title}</Heading>
@@ -39,7 +46,7 @@ export const MainContent: FC<MainContentProps> = async ({ slug, ...props }) => {
           </Box>
         ) : null}
         content...
-      </Box>
+      </Section>
       <IncrementView id={article.id} />
     </>
   );

@@ -1,10 +1,10 @@
 import {
-  Box,
-  type BoxProps,
   Card,
   Flex,
   Heading,
   IconButton,
+  Section,
+  type SectionProps,
   Text,
 } from '@radix-ui/themes';
 import {
@@ -27,7 +27,8 @@ import {
 } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
 
-export interface SideBarProps extends Omit<BoxProps, 'asChild' | 'children'> {
+export interface SideBarProps
+  extends Omit<SectionProps, 'asChild' | 'children'> {
   slug: Promise<string>;
 }
 
@@ -71,7 +72,7 @@ export const SideBar: FC<SideBarProps> = async ({ slug, ...props }) => {
   ];
 
   return (
-    <Box asChild {...props}>
+    <Section asChild {...props}>
       <aside>
         <Heading size="4">Posted By</Heading>
         <Card asChild mt="4" variant="ghost">
@@ -153,6 +154,6 @@ export const SideBar: FC<SideBarProps> = async ({ slug, ...props }) => {
           </Flex>
         </Flex>
       </aside>
-    </Box>
+    </Section>
   );
 };
