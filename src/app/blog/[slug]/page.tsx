@@ -173,10 +173,12 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
   );
 };
 
-export const generateStaticParams = () =>
-  getArticles().then((articles) =>
-    articles.map(({ slug }) => ({ slug })),
-  ) satisfies Promise<Awaited<ArticlePageProps['params']>[]>;
+export const generateStaticParams = async () => {
+  const articles = await getArticles();
+  return articles.map(({ slug }) => ({ slug })) satisfies Awaited<
+    ArticlePageProps['params']
+  >[];
+};
 
 export const generateMetadata = async ({ params }: ArticlePageProps) => {
   const slug = (await params).slug;
