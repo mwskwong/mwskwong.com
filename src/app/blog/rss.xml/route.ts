@@ -21,14 +21,7 @@ export const GET = async () => {
     },
   });
 
-  for (const {
-    title,
-    slug,
-    description,
-    categories = [],
-    createdAt,
-    updatedAt,
-  } of blogs) {
+  for (const { title, slug, description, createdAt, updatedAt } of blogs) {
     blogFeed.addItem({
       guid: `${siteUrl}${routes.blog.pathname}/${slug}`,
       title,
@@ -37,7 +30,6 @@ export const GET = async () => {
       author: [{ name, email }],
       published: createdAt,
       date: updatedAt,
-      category: categories.map((category) => ({ name: category })),
     });
   }
 
