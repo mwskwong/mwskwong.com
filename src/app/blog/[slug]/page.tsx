@@ -1,34 +1,42 @@
 import {
   Box,
   Button,
-  Card,
   Container,
   Flex,
   Heading,
-  IconButton,
   Section,
   Text,
 } from '@radix-ui/themes';
-import {
-  IconArrowLeft,
-  IconBrandFacebook,
-  IconBrandLinkedin,
-  IconBrandReddit,
-  IconBrandX,
-} from '@tabler/icons-react';
+import { IconArrowLeft } from '@tabler/icons-react';
 import { type Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { type FC } from 'react';
-import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
+import {
+  type BlogPosting,
+  type BreadcrumbList,
+  type Graph,
+  type Person,
+} from 'schema-dts';
 
+import { SideBar } from '@/components/article/sidebar';
 import { Footer } from '@/components/footer';
-import { firstName, headline, lastName } from '@/constants/me';
+import {
+  address,
+  email,
+  firstName,
+  github,
+  lastName,
+  linkedin,
+  selfIntroduction,
+  stackoverflow,
+} from '@/constants/me';
 import { routes, siteUrl } from '@/constants/site-config';
 import {
   getArticleBySlug,
   getArticles,
+  getExperiences,
   getPersonalPortrait,
 } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
@@ -39,42 +47,14 @@ interface ArticlePageProps {
 
 const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
   const slug = (await params).slug;
-  const [article, articles, { url: personalPortrait }] = await Promise.all([
-    getArticleBySlug(slug),
-    getArticles(),
-    getPersonalPortrait(),
-  ]);
+  const [article, { url: personalPortrait }, latestJobTitle] =
+    await Promise.all([
+      getArticleBySlug(slug),
+      getPersonalPortrait(),
+      getExperiences().then((experience) => experience[0]?.jobTitle),
+    ]);
+
   if (!article) notFound();
-
-  const featuredArticles = articles
-    .filter(({ id }) => id !== article.id)
-    .toSorted((a, b) => b.view - a.view)
-    .slice(0, 3);
-
-  const url = `${siteUrl}${routes.blog.pathname}/${slug}`;
-  const shareContent = `"${article.title}" by ${firstName} ${lastName}`;
-  const shareOptions = [
-    {
-      Icon: IconBrandX,
-      name: 'X',
-      href: `https://twitter.com/intent/tweet?text=${shareContent}&url=${url}`,
-    },
-    {
-      Icon: IconBrandFacebook,
-      name: 'Facebook',
-      href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-    },
-    {
-      Icon: IconBrandLinkedin,
-      name: 'LinkedIn',
-      href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-    },
-    {
-      Icon: IconBrandReddit,
-      name: 'Reddit',
-      href: `http://www.reddit.com/submit/?url=${url}&title=${article.title}`,
-    },
-  ];
 
   return (
     <>
@@ -124,90 +104,7 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
                   ) : null}
                   content...
                 </Box>
-                <Box asChild width={{ md: '350px' }}>
-                  <aside>
-                    <Heading size="4">Posted By</Heading>
-                    <Card asChild mt="4" variant="ghost">
-                      <Link href={routes.home.pathname}>
-                        <Flex align="center" gap="3">
-                          {personalPortrait ? (
-                            <Image
-                              alt="personal portrait"
-                              className="rounded-full border-2 border-accentA-8"
-                              height={40}
-                              src={personalPortrait}
-                              width={40}
-                            />
-                          ) : null}
-                          <div>
-                            <Heading asChild size="3">
-                              <p>
-                                {firstName} {lastName}
-                              </p>
-                            </Heading>
-                            <Text color="gray" size="2">
-                              {headline}
-                            </Text>
-                          </div>
-                        </Flex>
-                      </Link>
-                    </Card>
-                    <Heading mt="8" size="4">
-                      More articles
-                    </Heading>
-                    <Flex direction="column" gap="4" mt="4">
-                      {featuredArticles.map(
-                        ({ id, createdAt, coverPhoto, slug, title }) => (
-                          <Card key={id} asChild variant="ghost">
-                            <Link href={`${routes.blog.pathname}/${slug}`}>
-                              <Flex align="start" gap="4">
-                                {coverPhoto ? (
-                                  <Image
-                                    alt={title}
-                                    className="rounded-[var(--card-border-radius)]"
-                                    height={9 * 6}
-                                    src={coverPhoto}
-                                    width={16 * 6}
-                                    style={{
-                                      boxShadow:
-                                        'var(--base-card-surface-box-shadow)',
-                                    }}
-                                  />
-                                ) : null}
-                                <div>
-                                  <Heading className="line-clamp-2" size="3">
-                                    {title}
-                                  </Heading>
-                                  <Text color="gray" size="2">
-                                    {dateFormatter.format(createdAt)}
-                                  </Text>
-                                </div>
-                              </Flex>
-                            </Link>
-                          </Card>
-                        ),
-                      )}
-                    </Flex>
-                    <Flex align="center" gap="4" justify="between" mt="8">
-                      <Text>Share:</Text>
-                      <Flex gap="4">
-                        {shareOptions.map(({ Icon, href, name }) => (
-                          <IconButton
-                            key={name}
-                            asChild
-                            aria-label={name}
-                            color="gray"
-                            variant="ghost"
-                          >
-                            <a href={href} rel="noopener" target="_blank">
-                              <Icon size={20} />
-                            </a>
-                          </IconButton>
-                        ))}
-                      </Flex>
-                    </Flex>
-                  </aside>
-                </Box>
+                <SideBar article={article} width={{ md: '350px' }} />
               </article>
             </Flex>
           </main>
@@ -226,8 +123,8 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
                 image: article.coverPhoto,
                 datePublished: article.createdAt.toISOString(),
                 dateModified: article.updatedAt.toISOString(),
-                url,
-                // author: { '@id': person['@id'] },
+                url: `${siteUrl}${routes.blog.pathname}/${slug}`,
+                author: { '@id': 'mwskwong' },
               } satisfies BlogPosting,
               {
                 '@type': 'BreadcrumbList',
@@ -252,7 +149,19 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
                 ],
                 name: 'Breadcrumbs',
               } satisfies BreadcrumbList,
-              // person,
+              {
+                '@id': 'mwskwong',
+                '@type': 'Person',
+                name: `${firstName} ${lastName}`,
+                alternateName: 'mwskwong',
+                jobTitle: latestJobTitle,
+                email,
+                address,
+                url: siteUrl,
+                image: personalPortrait,
+                sameAs: [github, linkedin, stackoverflow],
+                description: selfIntroduction,
+              } satisfies Person,
             ],
           } satisfies Graph),
         }}

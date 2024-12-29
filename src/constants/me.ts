@@ -1,4 +1,5 @@
 export const email = 'contact@mwskwong.com';
+export const address = 'Hong Kong';
 
 export const headline = 'Assistant Technical Manager @ HKJC';
 
