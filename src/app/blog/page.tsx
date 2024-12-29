@@ -1,5 +1,4 @@
 import {
-  Badge,
   Box,
   Button,
   Card,
@@ -75,16 +74,6 @@ const BlogPage: FC = async () => {
                     </Box>
                   </div>
                   <Flex direction="column" gap={{ initial: '2', sm: '3' }}>
-                    {featuredArticle.categories &&
-                    featuredArticle.categories.length > 0 ? (
-                      <Flex gap="3">
-                        {featuredArticle.categories.map((category) => (
-                          <Badge key={category} size="3">
-                            {category}
-                          </Badge>
-                        ))}
-                      </Flex>
-                    ) : null}
                     <Heading size={{ initial: '4', xs: '6', md: '8' }}>
                       {featuredArticle.title}
                     </Heading>
@@ -102,18 +91,15 @@ const BlogPage: FC = async () => {
               </Grid>
             </Link>
           </Card>
-          <Grid columns={{ xs: '2', md: '3' }} gap="5" mt="8">
+          <Grid
+            columns={{ xs: '2', md: '3' }}
+            gap="5"
+            mt={{ initial: '5', xs: '8' }}
+          >
             {articles
               .filter(({ id }) => id !== featuredArticle.id)
               .map(
-                ({
-                  id,
-                  createdAt,
-                  coverPhoto,
-                  slug,
-                  title,
-                  categories = [],
-                }) => (
+                ({ id, createdAt, coverPhoto, slug, title, description }) => (
                   <Card key={id} asChild variant="ghost">
                     <Link href={`${routes.blog.pathname}/${slug}`}>
                       <article>
@@ -141,14 +127,10 @@ const BlogPage: FC = async () => {
                           ) : null}
                         </Box>
                         <Flex direction="column" gap="2" mt="4">
-                          {categories.length > 0 ? (
-                            <Flex gap="2" wrap="wrap">
-                              {categories.map((category) => (
-                                <Badge key={category}>{category}</Badge>
-                              ))}
-                            </Flex>
-                          ) : null}
-                          <Heading size="3">{title}</Heading>
+                          <Heading size="4">{title}</Heading>
+                          <Text as="p" className="line-clamp-3" size="3">
+                            {description}
+                          </Text>
                           <Text as="p" color="gray" size="2">
                             {dateFormatter.format(createdAt)}
                           </Text>

@@ -162,12 +162,12 @@ export const getEducations = async () => {
 export const getArticles = async () => {
   'use cache';
 
-  const [{ items }, blogMetadata] = await Promise.all([
+  const [{ items }, articlesMetadata] = await Promise.all([
     contentful.getEntries<ArticleSkeleton>({
       content_type: 'blog',
       order: ['-sys.createdAt'],
     }),
-    getBlogsMetadata(),
+    prisma.articleMetadata.findMany(),
   ]);
 
   return items.map((item) => ({
@@ -177,16 +177,38 @@ export const getArticles = async () => {
     coverPhoto:
       item.fields.coverPhoto?.fields.file &&
       `https:${item.fields.coverPhoto.fields.file.url}`,
-    categories: item.fields.categories,
     title: item.fields.title,
     slug: item.fields.slug,
     description: item.fields.description,
-    content: item.fields.content,
-    view: blogMetadata.find(({ id }) => id === item.sys.id)?.view ?? 0,
+    view: articlesMetadata.find(({ id }) => id === item.sys.id)?.view ?? 0,
   }));
 };
 
-export const getBlogsMetadata = () => prisma.blogMetadata.findMany();
+export const getArticleBySlug = async (slug: string) => {
+  'use cache';
+
+  const { items } = await contentful.getEntries<ArticleSkeleton>({
+    content_type: 'blog',
+    'fields.slug[in]': [slug],
+    limit: 1,
+  });
+
+  const item = items[0];
+  return (
+    item && {
+      id: item.sys.id,
+      createdAt: item.sys.createdAt,
+      updatedAt: item.sys.updatedAt,
+      coverPhoto:
+        item.fields.coverPhoto?.fields.file &&
+        `https:${item.fields.coverPhoto.fields.file.url}`,
+      title: item.fields.title,
+      slug: item.fields.slug,
+      description: item.fields.description,
+      content: item.fields.content,
+    }
+  );
+};
 
 export const getContributedProjects = async () => {
   'use cache';
