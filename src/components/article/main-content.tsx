@@ -9,6 +9,7 @@ import {
 import Image from 'next/image';
 import { type FC } from 'react';
 
+import { containerMaxWidth, md } from '@/constants/site-config';
 import { type getArticleBySlug } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
 
@@ -35,7 +36,17 @@ export const MainContent: FC<MainContentProps> = ({ article, ...props }) => (
           boxShadow: 'var(--base-card-surface-box-shadow)',
         }}
       >
-        <Image fill priority alt={article.title} src={article.coverPhoto} />
+        <Image
+          fill
+          priority
+          alt={article.title}
+          src={article.coverPhoto}
+          sizes={[
+            `(min-width: ${containerMaxWidth}px) ${containerMaxWidth - 350}px`,
+            `(min-width: ${md}px) calc(100vw - 350px)`,
+            '100vw',
+          ].join(',')}
+        />
       </Box>
     ) : null}
     content...

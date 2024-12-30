@@ -47,7 +47,7 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
                 <SideBar
                   article={article}
                   position={{ md: 'sticky' }}
-                  top="calc(var(--space-9) + 36px)" // container padding + Blog button button height
+                  top="calc(var(--space-9) + 24px)" // container padding + breadcrumb's height
                   width={{ md: '350px' }}
                 />
               </article>
