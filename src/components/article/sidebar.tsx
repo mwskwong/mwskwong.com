@@ -109,9 +109,9 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
                       <Image
                         alt={title}
                         className="rounded-[var(--card-border-radius)]"
-                        height={9 * 6}
+                        height={9 * 7}
                         src={coverPhoto}
-                        width={16 * 6}
+                        width={16 * 7}
                         style={{
                           boxShadow: 'var(--base-card-surface-box-shadow)',
                         }}
