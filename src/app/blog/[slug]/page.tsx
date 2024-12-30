@@ -1,5 +1,5 @@
 import { Container, Flex, Section } from '@radix-ui/themes';
-import { type Metadata } from 'next';
+import { type Metadata, type ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { type FC } from 'react';
 
@@ -17,7 +17,8 @@ interface ArticlePageProps {
 }
 
 const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
-  const article = await getArticleBySlug((await params).slug);
+  const slug = (await params).slug;
+  const article = await getArticleBySlug(slug);
 
   if (!article) notFound();
 
@@ -32,7 +33,7 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
                 routes.blog,
                 {
                   name: article.title,
-                  pathname: `${routes.blog.pathname}/${article.slug}`,
+                  pathname: `${routes.blog.pathname}/${slug}`,
                 },
               ]}
             />
@@ -69,17 +70,21 @@ export const generateStaticParams = async () => {
   >[];
 };
 
-export const generateMetadata = async ({ params }: ArticlePageProps) => {
+export const generateMetadata = async (
+  { params }: ArticlePageProps,
+  parent: ResolvingMetadata,
+) => {
   const slug = (await params).slug;
   const article = await getArticleBySlug(slug);
-  if (!article) return;
 
+  if (!article) return;
   const { title, description, coverPhoto, createdAt, updatedAt } = article;
 
   return {
     title,
     description,
     openGraph: {
+      ...(await parent).openGraph,
       type: 'article',
       authors: siteUrl,
       publishedTime: createdAt,
