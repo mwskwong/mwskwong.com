@@ -2,8 +2,10 @@ import { Button, Container, Flex, Section } from '@radix-ui/themes';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { type Metadata } from 'next';
 import Link from 'next/link';
-import { type FC, Suspense } from 'react';
+import { notFound } from 'next/navigation';
+import { type FC } from 'react';
 
+import { IncrementView } from '@/components/article/increment-view';
 import { JsonLd } from '@/components/article/json-ld';
 import { MainContent } from '@/components/article/main-content';
 import { SideBar } from '@/components/article/sidebar';
@@ -15,9 +17,10 @@ interface ArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
-// FIXME: confirm whether I can use "use cache" in dynamic route while accessing params
-const ArticlePage: FC<ArticlePageProps> = ({ params }) => {
-  const slug = params.then(({ slug }) => slug);
+const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
+  const article = await getArticleBySlug((await params).slug);
+
+  if (!article) notFound();
 
   return (
     <>
@@ -37,24 +40,21 @@ const ArticlePage: FC<ArticlePageProps> = ({ params }) => {
               gap="8"
             >
               <article>
-                <Suspense>
-                  <MainContent className="flex-1" slug={slug} />
-                  <SideBar
-                    position={{ md: 'sticky' }}
-                    slug={slug}
-                    top="calc(var(--space-9) + 36px)" // container padding + Blog button button height
-                    width={{ md: '350px' }}
-                  />
-                </Suspense>
+                <MainContent article={article} className="flex-1" />
+                <SideBar
+                  article={article}
+                  position={{ md: 'sticky' }}
+                  top="calc(var(--space-9) + 36px)" // container padding + Blog button button height
+                  width={{ md: '350px' }}
+                />
               </article>
             </Flex>
           </main>
         </Section>
         <Footer />
       </Container>
-      <Suspense>
-        <JsonLd slug={slug} />
-      </Suspense>
+      <IncrementView id={article.id} />
+      <JsonLd article={article} />
     </>
   );
 };

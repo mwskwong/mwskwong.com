@@ -1,12 +1,10 @@
 import { type MetadataRoute } from 'next';
 
 import { routes, siteUrl } from '@/constants/site-config';
-import { getArticlesUncached } from '@/lib/queries';
+import { getArticles } from '@/lib/queries';
 
 const sitemap = async () => {
-  // WORKAROUND: sitemap will throw a build error if we use "use cache"
-  // ref: https://github.com/vercel/next.js/issues/74146
-  const articles = await getArticlesUncached();
+  const articles = await getArticles();
 
   return [
     ...Object.values(routes).map(({ pathname }) => ({

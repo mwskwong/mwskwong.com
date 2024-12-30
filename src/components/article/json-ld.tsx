@@ -1,4 +1,3 @@
-import { notFound } from 'next/navigation';
 import { type ComponentProps, type FC } from 'react';
 import {
   type BlogPosting,
@@ -19,24 +18,20 @@ import {
 } from '@/constants/me';
 import { routes, siteUrl } from '@/constants/site-config';
 import {
-  getArticleBySlug,
+  type getArticleBySlug,
   getExperiences,
   getPersonalPortrait,
 } from '@/lib/queries';
 
 export interface JsonLdProps extends ComponentProps<'script'> {
-  slug: Promise<string>;
+  article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
 }
 
-export const JsonLd: FC<JsonLdProps> = async ({ slug, ...props }) => {
-  const [article, { url: personalPortrait }, latestJobTitle] =
-    await Promise.all([
-      getArticleBySlug(await slug),
-      getPersonalPortrait(),
-      getExperiences().then((experience) => experience[0]?.jobTitle),
-    ]);
-
-  if (!article) notFound();
+export const JsonLd: FC<JsonLdProps> = async ({ article, ...props }) => {
+  const [{ url: personalPortrait }, latestJobTitle] = await Promise.all([
+    getPersonalPortrait(),
+    getExperiences().then((experience) => experience[0]?.jobTitle),
+  ]);
 
   return (
     <script
@@ -51,7 +46,7 @@ export const JsonLd: FC<JsonLdProps> = async ({ slug, ...props }) => {
               image: article.coverPhoto,
               datePublished: article.createdAt.toISOString(),
               dateModified: article.updatedAt.toISOString(),
-              url: `${siteUrl}${routes.blog.pathname}/${await slug}`,
+              url: `${siteUrl}${routes.blog.pathname}/${article.slug}`,
               author: { '@id': 'mwskwong' },
             } satisfies BlogPosting,
             {

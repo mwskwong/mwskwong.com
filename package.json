@@ -27,7 +27,7 @@
     "contentful": "^11.3.4",
     "dedent": "^1.5.3",
     "feed": "^4.2.2",
-    "next": "canary",
+    "next": "^15.1.3",
     "radix-themes-tw": "^0.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -35,8 +35,8 @@
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "canary",
-    "@next/eslint-plugin-next": "canary",
+    "@next/bundle-analyzer": "^15.1.3",
+    "@next/eslint-plugin-next": "^15.1.3",
     "@total-typescript/ts-reset": "^0.6.1",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",

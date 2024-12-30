@@ -11,28 +11,23 @@ import {
   type SkillCategorySkeleton,
   type SkillSkeleton,
 } from './contentful-types';
-import { generatePdfThumbnail } from './utils';
+import { cache, generatePdfThumbnail } from './utils';
 
-export const getPersonalPortrait = async () => {
-  'use cache';
-
+export const getPersonalPortrait = cache(async () => {
   const asset = await contentful.getAsset(personalPortrait);
+
   return {
     url: asset.fields.file && `https:${asset.fields.file.url}`,
     contentType: asset.fields.file?.contentType,
   };
-};
+});
 
-export const getResume = async () => {
-  'use cache';
-
+export const getResume = cache(async () => {
   const asset = await contentful.getAsset(resume);
   return asset.fields.file && `https:${asset.fields.file.url}`;
-};
+});
 
-export const getSkillSet = async () => {
-  'use cache';
-
+export const getSkillSet = cache(async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     contentful.getEntries<SkillSkeleton>({
       content_type: 'skill',
@@ -57,11 +52,9 @@ export const getSkillSet = async () => {
         url: skill.fields.url,
       })),
   }));
-};
+});
 
-export const getExperiences = async () => {
-  'use cache';
-
+export const getExperiences = cache(async () => {
   // Goal: sort experience in DESC order by `to` date,
   // while having records with `to = undefined` (denote "Present") sorted at the top
 
@@ -117,11 +110,9 @@ export const getExperiences = async () => {
       .filter(Boolean)
       .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
   }));
-};
+});
 
-export const getEducations = async () => {
-  'use cache';
-
+export const getEducations = cache(async () => {
   // Goal: sort educations in DESC order by `to` date,
   // while having records with `to = undefined` (denote "Present") sorted at the top
 
@@ -157,11 +148,9 @@ export const getEducations = async () => {
       }),
     ),
   }));
-};
+});
 
-// WORKAROUND: for usage in sitemap, which will throw a build error if we use "use cache"
-// ref: https://github.com/vercel/next.js/issues/74146
-export const getArticlesUncached = async () => {
+export const getArticles = cache(async () => {
   const [{ items }, articlesMetadata] = await Promise.all([
     contentful.getEntries<ArticleSkeleton>({
       content_type: 'blog',
@@ -182,16 +171,9 @@ export const getArticlesUncached = async () => {
     description: item.fields.description,
     view: articlesMetadata.find(({ id }) => id === item.sys.id)?.view ?? 0,
   }));
-};
+});
 
-export const getArticles = async () => {
-  'use cache';
-  return getArticlesUncached();
-};
-
-export const getArticleBySlug = async (slug: string) => {
-  'use cache';
-
+export const getArticleBySlug = cache(async (slug: string) => {
   const { items } = await contentful.getEntries<ArticleSkeleton>({
     content_type: 'blog',
     'fields.slug[in]': [slug],
@@ -213,11 +195,9 @@ export const getArticleBySlug = async (slug: string) => {
       content: item.fields.content,
     }
   );
-};
+});
 
-export const getContributedProjects = async () => {
-  'use cache';
-
+export const getContributedProjects = cache(async () => {
   const { items } = await contentful.getEntries<ProjectSkeleton>({
     content_type: 'project',
     'metadata.tags.sys.id[in]': ['contributed'],
@@ -232,20 +212,17 @@ export const getContributedProjects = async () => {
       item.fields.logo?.fields.file &&
       `https:${item.fields.logo.fields.file.url}`,
   }));
-};
+});
 
-export const getCourseCategories = async () => {
-  'use cache';
-
+export const getCourseCategories = cache(async () => {
   const course = await contentful.getContentType('course');
+
   return course.fields
     .find(({ id }) => id === 'categories')
     ?.items?.validations[0]?.in?.toSorted() as CourseCategory[] | undefined;
-};
+});
 
-export const getCourses = async () => {
-  'use cache';
-
+export const getCourses = cache(async () => {
   const { items } = await contentful.getEntries<CourseSkeleton>({
     content_type: 'course',
     order: ['fields.name'],
@@ -267,4 +244,4 @@ export const getCourses = async () => {
     categories: item.fields.categories,
     completedOn: new Date(item.fields.completedOn),
   }));
-};
+});

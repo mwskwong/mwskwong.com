@@ -15,13 +15,12 @@ import {
 } from '@tabler/icons-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import { type FC } from 'react';
 
 import { firstName, headline, lastName } from '@/constants/me';
 import { routes, siteUrl } from '@/constants/site-config';
 import {
-  getArticleBySlug,
+  type getArticleBySlug,
   getArticles,
   getPersonalPortrait,
 } from '@/lib/queries';
@@ -29,22 +28,19 @@ import { dateFormatter } from '@/lib/utils';
 
 export interface SideBarProps
   extends Omit<SectionProps, 'asChild' | 'children'> {
-  slug: Promise<string>;
+  article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
 }
 
-export const SideBar: FC<SideBarProps> = async ({ slug, ...props }) => {
-  const [article, { url: personalPortrait }, articles] = await Promise.all([
-    getArticleBySlug(await slug),
+export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
+  const [{ url: personalPortrait }, featuredArticles] = await Promise.all([
     getPersonalPortrait(),
-    getArticles(),
+    getArticles().then((articles) =>
+      articles
+        .filter(({ id }) => id !== article.id)
+        .toSorted((a, b) => b.view - a.view)
+        .slice(0, 3),
+    ),
   ]);
-
-  if (!article) notFound();
-
-  const featuredArticles = articles
-    .filter(({ id }) => id !== article.id)
-    .toSorted((a, b) => b.view - a.view)
-    .slice(0, 3);
 
   const url = `${siteUrl}${routes.blog.pathname}/${article.slug}`;
   const shareContent = `"${article.title}" by ${firstName} ${lastName}`;

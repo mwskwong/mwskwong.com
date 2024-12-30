@@ -1,4 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
+import { unstable_cache as nextCache } from 'next/cache';
+import { cache as reactCache } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const cn = (...args: ClassValue[]) => twMerge(clsx(args));
@@ -9,3 +11,6 @@ export const generatePdfThumbnail = (url: string, width = 16 * 12 * 4) =>
 export const dateFormatter = new Intl.DateTimeFormat('en', {
   dateStyle: 'medium',
 });
+
+export const cache: typeof nextCache = (cb, keyParts, options) =>
+  reactCache(nextCache(cb, keyParts, { revalidate: 15 * 60, ...options }));
