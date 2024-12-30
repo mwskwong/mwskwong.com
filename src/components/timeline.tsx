@@ -66,7 +66,7 @@ export const Item: FC<ItemProps> = ({
       >
         {duration}
       </Text>
-      <Flex className="sm:col-span-3" direction="column" gap="4">
+      <Flex direction="column" gap="4" gridColumn={{ sm: 'span 3' }}>
         <Flex align="start" direction="column" gap="2">
           <Heading as={titleAs} size="4">
             {title}

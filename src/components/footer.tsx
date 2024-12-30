@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   IconButton,
   Section,
@@ -40,9 +41,11 @@ export type FooterProps = Omit<SectionProps, 'asChild' | 'children'>;
 export const Footer: FC<FooterProps> = (props) => (
   <Section asChild {...props}>
     <footer>
-      <Text as="p" className="max-w-[50ch]" color="gray" size="2">
-        {techFocus}
-      </Text>
+      <Box asChild maxWidth="50ch">
+        <Text as="p" color="gray" size="2">
+          {techFocus}
+        </Text>
+      </Box>
       <Flex gap="4" mt="6">
         {links.map(({ Icon, href, name }) => (
           <IconButton key={href} asChild color="gray" variant="ghost">

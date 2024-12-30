@@ -61,9 +61,11 @@ export const Sidebar: FC<SidebarProps> = (props) => {
         <Heading as="h2" data-accent-color="" mt="3" size="7">
           {headline}
         </Heading>
-        <Text as="p" className="max-w-screen-xs" mt="4">
-          {techFocus}
-        </Text>
+        <Box asChild maxWidth="50ch">
+          <Text as="p" mt="4">
+            {techFocus}
+          </Text>
+        </Box>
         <Box asChild display={{ initial: 'none', md: 'block' }} mt="9">
           <nav>
             {nav.map(({ name, pathname }) => (

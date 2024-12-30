@@ -15,7 +15,6 @@ import {
 } from '@/constants/me';
 import { siteUrl } from '@/constants/site-config';
 import { getPersonalPortrait } from '@/lib/queries';
-import { cn } from '@/lib/utils';
 
 const geist = Geist({
   variable: '--font-geist',
@@ -30,7 +29,7 @@ const geistMono = GeistMono({
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en">
-    <body className={cn(geist.variable, geistMono.variable)}>
+    <body className={`${geist.variable} ${geistMono.variable}`}>
       <Theme>{children}</Theme>
       <Analytics
         mode={

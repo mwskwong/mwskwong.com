@@ -17,13 +17,9 @@ import { type FC } from 'react';
 
 import { Footer } from '@/components/footer';
 import { firstName, lastName } from '@/constants/me';
-import { routes } from '@/constants/site-config';
+import { containerMaxWidth, md, routes, sm } from '@/constants/site-config';
 import { getArticles } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
-
-const sm = 768;
-const md = 1024;
-const containerMaxWidth = 1136;
 
 const BlogPage: FC = async () => {
   const articles = await getArticles();

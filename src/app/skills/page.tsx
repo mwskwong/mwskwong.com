@@ -38,7 +38,7 @@ const SkillsPage = async () => {
               Skills
             </Heading>
             <Box
-              className="sm:column gap-rx-5 md:columns-3 [&>*:not(:first-child)]:mt-rx-5"
+              className="gap-rx-5 sm:columns-2 md:columns-3 [&>*:not(:first-child)]:mt-rx-5"
               mt="8"
             >
               {skillSet.map(({ id, name, skills }) => {

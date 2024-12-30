@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   Flex,
@@ -74,10 +75,12 @@ const ExperiencePage = async () => {
               <Heading align="center" as="h2" size="8">
                 Open-source Contribution
               </Heading>
-              <Text align="center" as="p" className="max-w-[60ch]" mt="4">
-                Periodically, I engage in open-source contributions. Below are
-                the projects I&apos;ve contributed to thus far.
-              </Text>
+              <Box asChild maxWidth="60ch" mt="4">
+                <Text align="center" as="p">
+                  Periodically, I engage in open-source contributions. Below are
+                  the projects I&apos;ve contributed to thus far.
+                </Text>
+              </Box>
               <Flex gap="4" justify="center" my="6" wrap="wrap">
                 {contributedProjects.map(
                   ({ id, name, logo, url }) =>

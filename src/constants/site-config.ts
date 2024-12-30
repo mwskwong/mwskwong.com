@@ -33,3 +33,8 @@ const getSiteUrl = () => {
 };
 
 export const siteUrl = getSiteUrl();
+
+// extract from Radix Themes
+export const sm = 768;
+export const md = 1024;
+export const containerMaxWidth = 1136;

@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   type FlexProps,
@@ -24,13 +25,15 @@ export const About: FC<AboutProps> = async (props) => {
       <Section>
         <Heading as="h2" size="9">
           {personalPortrait ? (
-            <Image
-              alt="personal portrait"
-              className="mr-rx-4 inline-block rounded-full border-2 border-accentA-8 align-top"
-              height={60}
-              src={personalPortrait}
-              width={60}
-            />
+            <Box asChild display="inline-block" mr="4">
+              <Image
+                alt="personal portrait"
+                className="rounded-full border-2 border-accentA-8 align-top"
+                height={60}
+                src={personalPortrait}
+                width={60}
+              />
+            </Box>
           ) : null}
           I develop <Text data-accent-color="">full stack web apps</Text>
         </Heading>
