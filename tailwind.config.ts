@@ -8,9 +8,6 @@ const config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   plugins: [],
-  experimental: {
-    optimizeUniversalDefaults: true,
-  },
 } satisfies Config;
 
 export default config;
