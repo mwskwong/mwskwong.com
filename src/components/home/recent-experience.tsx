@@ -28,6 +28,8 @@ export const RecentExperience: FC<RecentExperienceProps> = async (props) => {
           {recentExperiences.map(
             ({
               id,
+              from,
+              to,
               jobTitle,
               company,
               jobDuties,
@@ -40,11 +42,13 @@ export const RecentExperience: FC<RecentExperienceProps> = async (props) => {
                 key={id}
                 columns={{ sm: '4', md: '' }}
                 descriptions={jobDuties}
+                from={new Date(from)}
                 gap={{ sm: '4', md: '' }}
                 media={[...projects, ...supportingDocuments]}
                 organization={company}
                 tags={skills}
                 title={jobTitle}
+                to={to ? new Date(to) : undefined}
                 {...experience}
               />
             ),

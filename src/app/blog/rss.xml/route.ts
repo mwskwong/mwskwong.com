@@ -28,8 +28,8 @@ export const GET = async () => {
       link: `${siteUrl}${routes.blog.pathname}/${slug}`,
       description,
       author: [{ name, email }],
-      published: createdAt,
-      date: updatedAt,
+      published: new Date(createdAt),
+      date: new Date(updatedAt),
     });
   }
 

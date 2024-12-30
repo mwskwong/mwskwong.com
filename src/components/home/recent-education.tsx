@@ -28,6 +28,8 @@ export const RecentEducation: FC<RecentEducationProps> = async (props) => {
           {recentEducations.map(
             ({
               id,
+              from,
+              to,
               program,
               school,
               supportingDocuments = [],
@@ -36,10 +38,12 @@ export const RecentEducation: FC<RecentEducationProps> = async (props) => {
               <Timeline.Item
                 key={id}
                 columns={{ sm: '4', md: '' }}
+                from={new Date(from)}
                 gap={{ sm: '4', md: '' }}
                 media={supportingDocuments}
                 organization={school}
                 title={program}
+                to={to ? new Date(to) : undefined}
                 {...education}
               />
             ),

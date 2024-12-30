@@ -82,8 +82,6 @@ export const getExperiences = cache(async () => {
   return items.map((item) => ({
     id: item.sys.id,
     ...item.fields,
-    from: new Date(item.fields.from),
-    to: item.fields.to && new Date(item.fields.to),
     company: item.fields.company && {
       name: item.fields.company.fields.name,
       url: item.fields.company.fields.url,
@@ -129,8 +127,6 @@ export const getEducations = cache(async () => {
   return items.map((item) => ({
     id: item.sys.id,
     ...item.fields,
-    from: new Date(item.fields.from),
-    to: item.fields.to && new Date(item.fields.to),
     school: item.fields.school && {
       name: item.fields.school.fields.name,
       url: item.fields.school.fields.url,
@@ -161,8 +157,8 @@ export const getArticles = cache(async () => {
 
   return items.map((item) => ({
     id: item.sys.id,
-    createdAt: new Date(item.sys.createdAt),
-    updatedAt: new Date(item.sys.updatedAt),
+    createdAt: item.sys.createdAt,
+    updatedAt: item.sys.updatedAt,
     coverPhoto:
       item.fields.coverPhoto?.fields.file &&
       `https:${item.fields.coverPhoto.fields.file.url}`,
@@ -184,8 +180,8 @@ export const getArticleBySlug = cache(async (slug: string) => {
   return (
     item && {
       id: item.sys.id,
-      createdAt: new Date(item.sys.createdAt),
-      updatedAt: new Date(item.sys.updatedAt),
+      createdAt: item.sys.createdAt,
+      updatedAt: item.sys.updatedAt,
       coverPhoto:
         item.fields.coverPhoto?.fields.file &&
         `https:${item.fields.coverPhoto.fields.file.url}`,
@@ -242,6 +238,5 @@ export const getCourses = cache(async () => {
       item.fields.certificate?.fields.file &&
       `https:${item.fields.certificate.fields.file.url}`,
     categories: item.fields.categories,
-    completedOn: new Date(item.fields.completedOn),
   }));
 });

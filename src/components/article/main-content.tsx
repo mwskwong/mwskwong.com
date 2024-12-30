@@ -19,7 +19,9 @@ export interface MainContentProps extends Omit<SectionProps, 'children'> {
 export const MainContent: FC<MainContentProps> = ({ article, ...props }) => (
   <Section {...props}>
     <Flex direction="column" gap="5">
-      <Text color="gray">{dateFormatter.format(article.createdAt)}</Text>
+      <Text color="gray">
+        {dateFormatter.format(new Date(article.createdAt))}
+      </Text>
       <Heading size={{ initial: '8', xs: '9' }}>{article.title}</Heading>
       <Text size="5">{article.description}</Text>
     </Flex>

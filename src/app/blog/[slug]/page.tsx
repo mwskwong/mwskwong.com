@@ -79,8 +79,8 @@ export const generateMetadata = async ({ params }: ArticlePageProps) => {
     openGraph: {
       type: 'article',
       authors: siteUrl,
-      publishedTime: createdAt.toISOString(),
-      modifiedTime: updatedAt.toISOString(),
+      publishedTime: createdAt,
+      modifiedTime: updatedAt,
       url: `${routes.blog.pathname}/${slug}`,
       images: coverPhoto,
     },

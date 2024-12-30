@@ -84,7 +84,9 @@ const BlogPage: FC = async () => {
                       {featuredArticle.description}
                     </Text>
                     <Text as="p" color="gray" size={{ initial: '2', md: '3' }}>
-                      {dateFormatter.format(featuredArticle.createdAt)}
+                      {dateFormatter.format(
+                        new Date(featuredArticle.createdAt),
+                      )}
                     </Text>
                   </Flex>
                 </article>
@@ -132,7 +134,7 @@ const BlogPage: FC = async () => {
                             {description}
                           </Text>
                           <Text as="p" color="gray" size="2">
-                            {dateFormatter.format(createdAt)}
+                            {dateFormatter.format(new Date(createdAt))}
                           </Text>
                         </Flex>
                       </article>
