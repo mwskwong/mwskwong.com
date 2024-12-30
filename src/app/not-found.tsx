@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Container,
   Flex,
   Heading,
@@ -7,11 +8,11 @@ import {
   Section,
   Text,
 } from '@radix-ui/themes';
+import NextLink from 'next/link';
 import { type FC } from 'react';
 
-import { BackButton } from '@/components/back-button';
 import { email } from '@/constants/me';
-import { containerMaxWidth } from '@/constants/site-config';
+import { containerMaxWidth, routes } from '@/constants/site-config';
 
 const NotFound: FC = () => (
   <Container>
@@ -289,9 +290,9 @@ const NotFound: FC = () => (
               information.
             </Text>
           </Box>
-          <BackButton highContrast color="gray" size="4">
-            Go Back
-          </BackButton>
+          <Button asChild highContrast color="gray" size="4">
+            <NextLink href={routes.home.pathname}>Back To Home</NextLink>
+          </Button>
         </Flex>
       </Flex>
     </Section>
