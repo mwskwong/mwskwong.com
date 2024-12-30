@@ -9,7 +9,6 @@ import '@radix-ui/themes/tokens/colors/lime.css';
 
 import {
   Badge,
-  Button,
   Card,
   Container,
   Flex,
@@ -18,15 +17,13 @@ import {
   Section,
   Text,
 } from '@radix-ui/themes';
-import { IconArrowLeft } from '@tabler/icons-react';
 import { type Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { type BreadcrumbList, type Graph } from 'schema-dts';
 
+import { Breadcrumb } from '@/components/breadcrumb';
 import { Footer } from '@/components/footer';
 import * as Timeline from '@/components/timeline';
-import { firstName, lastName } from '@/constants/me';
 import { routes, siteUrl } from '@/constants/site-config';
 import { getCourseCategories, getCourses, getEducations } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
@@ -65,12 +62,7 @@ const EducationPage = async () => {
       <Container>
         <main>
           <Section>
-            <Button asChild highContrast size="3" variant="ghost">
-              <Link href={routes.home.pathname}>
-                <IconArrowLeft size={20} />
-                {firstName} {lastName}
-              </Link>
-            </Button>
+            <Breadcrumb routes={[routes.home, routes.education]} />
             <Heading mt="2" size="9">
               Education
             </Heading>

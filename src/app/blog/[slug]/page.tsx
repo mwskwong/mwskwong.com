@@ -1,7 +1,5 @@
-import { Button, Container, Flex, Section } from '@radix-ui/themes';
-import { IconArrowLeft } from '@tabler/icons-react';
+import { Container, Flex, Section } from '@radix-ui/themes';
 import { type Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { type FC } from 'react';
 
@@ -9,6 +7,7 @@ import { IncrementView } from '@/components/article/increment-view';
 import { JsonLd } from '@/components/article/json-ld';
 import { MainContent } from '@/components/article/main-content';
 import { SideBar } from '@/components/article/sidebar';
+import { Breadcrumb } from '@/components/breadcrumb';
 import { Footer } from '@/components/footer';
 import { routes, siteUrl } from '@/constants/site-config';
 import { getArticleBySlug, getArticles } from '@/lib/queries';
@@ -27,12 +26,16 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
       <Container>
         <Section asChild>
           <main>
-            <Button asChild highContrast size="3" variant="ghost">
-              <Link href={routes.blog.pathname}>
-                <IconArrowLeft size={20} />
-                Blog
-              </Link>
-            </Button>
+            <Breadcrumb
+              routes={[
+                routes.home,
+                routes.blog,
+                {
+                  name: article.title,
+                  pathname: `${routes.blog.pathname}/${article.slug}`,
+                },
+              ]}
+            />
             <Flex
               asChild
               align="start"

@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   Container,
   Flex,
@@ -9,14 +8,13 @@ import {
   Section,
   Text,
 } from '@radix-ui/themes';
-import { IconArrowLeft } from '@tabler/icons-react';
 import { type Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { type FC } from 'react';
 
+import { Breadcrumb } from '@/components/breadcrumb';
 import { Footer } from '@/components/footer';
-import { firstName, lastName } from '@/constants/me';
 import { containerMaxWidth, md, routes, sm } from '@/constants/site-config';
 import { getArticles } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
@@ -31,12 +29,7 @@ const BlogPage: FC = async () => {
     <Container>
       <Section asChild>
         <main>
-          <Button asChild highContrast size="3" variant="ghost">
-            <Link href={routes.home.pathname}>
-              <IconArrowLeft size={20} />
-              {firstName} {lastName}
-            </Link>
-          </Button>
+          <Breadcrumb routes={[routes.home, routes.blog]} />
           <Heading mt="2" size="9">
             Blog
           </Heading>

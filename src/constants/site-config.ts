@@ -1,12 +1,14 @@
 import { type UrlObject } from 'node:url';
 
+import { firstName, lastName } from './me';
+
 export interface Route extends UrlObject {
   name: string;
   pathname: string;
 }
 
 export const routes = {
-  home: { name: 'Home', pathname: '/' },
+  home: { name: `${firstName} ${lastName}`, pathname: '/' },
   experience: { name: 'Experience', pathname: '/experience' },
   education: { name: 'Education', pathname: '/education' },
   skills: { name: 'Skills', pathname: '/skills' },

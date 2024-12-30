@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Container,
   Flex,
   Heading,
@@ -8,15 +7,13 @@ import {
   Text,
   Tooltip,
 } from '@radix-ui/themes';
-import { IconArrowLeft } from '@tabler/icons-react';
 import { type Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { type BreadcrumbList, type Graph } from 'schema-dts';
 
+import { Breadcrumb } from '@/components/breadcrumb';
 import { Footer } from '@/components/footer';
 import * as Timeline from '@/components/timeline';
-import { firstName, lastName } from '@/constants/me';
 import { routes, siteUrl } from '@/constants/site-config';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
@@ -31,12 +28,7 @@ const ExperiencePage = async () => {
       <Container>
         <main>
           <Section>
-            <Button asChild highContrast size="3" variant="ghost">
-              <Link href={routes.home.pathname}>
-                <IconArrowLeft size={20} />
-                {firstName} {lastName}
-              </Link>
-            </Button>
+            <Breadcrumb routes={[routes.home, routes.experience]} />
             <Heading mt="2" size="9">
               Experience
             </Heading>
