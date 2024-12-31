@@ -1,8 +1,10 @@
 import {
   Box,
+  Card,
   Code,
   Flex,
   Heading,
+  Inset,
   Link,
   ScrollArea,
   Section,
@@ -10,14 +12,6 @@ import {
   Strong,
   Text,
 } from '@radix-ui/themes';
-import {
-  type Icon,
-  IconBrandJavascript,
-  IconBrandReact,
-  IconBrandTypescript,
-  IconFile,
-  IconJson,
-} from '@tabler/icons-react';
 import { type MDXComponents } from 'mdx/types';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -30,6 +24,8 @@ import { containerMaxWidth, md } from '@/constants/site-config';
 import { type getArticleBySlug } from '@/lib/queries';
 import { cn, dateFormatter } from '@/lib/utils';
 
+import { CopyCodeButton } from './copy-code-button';
+
 declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
     'data-language'?: string;
@@ -38,16 +34,6 @@ declare module 'react' {
     'data-highlighted-chars'?: '';
   }
 }
-
-const LanguageIcons = {
-  jsx: IconBrandReact,
-  tsx: IconBrandReact,
-  ts: IconBrandTypescript,
-  js: IconBrandJavascript,
-  mjs: IconBrandJavascript,
-  json: IconJson,
-  jsonc: IconJson,
-} as Record<string, Icon>;
 
 const components = {
   h2: ({ children, id, color, ...props }) => (
@@ -133,51 +119,44 @@ const components = {
 
     const { className, ...rest } = props;
     return (
-      <Text asChild className={cn('bg-accent-2 p-rx-3', className)} size="2">
+      <Text
+        asChild
+        size="2"
+        className={cn(
+          'bg-accent-2 py-[var(--card-padding)] pl-[var(--card-padding)] pr-[40px]',
+          className,
+        )}
+      >
         <code {...rest} />
       </Text>
     );
   },
   figure: (props) => (
-    <Box
-      asChild
-      className="overflow-hidden rounded-4"
-      my="4"
-      style={{ boxShadow: 'var(--base-card-surface-box-shadow)' }}
-    >
+    <Box asChild my="5">
       <figure {...props} />
     </Box>
   ),
-  figcaption: ({ children, ...props }) => {
-    const Icon = /\.[^.]+$/.test(children?.toString() ?? '')
-      ? (LanguageIcons[props['data-language'] ?? ''] ?? IconFile)
-      : null;
-
-    return (
-      <Flex asChild align="center" gap="2">
-        <Text
-          asChild
-          className="p-rx-3"
-          size="2"
-          style={{ boxShadow: 'inset 0 -1px 0 0 var(--gray-a5)' }}
-        >
-          <figcaption {...props}>
-            {Icon ? <Icon size={18} /> : null}
+  figcaption: (props) => (
+    <Heading asChild mb="2" mx="3" size="2">
+      <figcaption {...props} />
+    </Heading>
+  ),
+  pre: ({ tabIndex: _, children, ...props }) => (
+    <Card>
+      <Inset>
+        <ScrollArea>
+          <pre {...props}>
             {children}
-          </figcaption>
-        </Text>
-      </Flex>
-    );
-  },
-  pre: ({ tabIndex: _, ...props }) => (
-    <ScrollArea>
-      <pre {...props} />
-    </ScrollArea>
+            <CopyCodeButton className="absolute right-[12px] top-[14px]" />
+          </pre>
+        </ScrollArea>
+      </Inset>
+    </Card>
   ),
   span: ({ className, ...props }) => (
     <span
       className={cn(
-        '[&[data-highlighted-line]]:-mx-rx-3 [&[data-highlighted-line]]:bg-accentA-3 [&[data-highlighted-line]]:px-rx-3',
+        '[&[data-highlighted-line]]:-ml-[var(--card-padding)] [&[data-highlighted-line]]:-mr-[40px] [&[data-highlighted-line]]:bg-accentA-3 [&[data-highlighted-line]]:pl-[var(--card-padding)] [&[data-highlighted-line]]:pr-[40px]',
         className,
       )}
       {...props}
