@@ -47,8 +47,7 @@ const LanguageIcons = {
   mjs: IconBrandJavascript,
   json: IconJson,
   jsonc: IconJson,
-  diff: null,
-} as Record<string, Icon | null>;
+} as Record<string, Icon>;
 
 const components = {
   h2: ({ children, id, color, ...props }) => (
@@ -150,10 +149,9 @@ const components = {
     </Box>
   ),
   figcaption: ({ children, ...props }) => {
-    const Icon =
-      LanguageIcons[props['data-language'] ?? ''] === undefined // null value means no icon, so we only check for undefined here
-        ? IconFile
-        : LanguageIcons[props['data-language'] ?? ''];
+    const Icon = /\.[^.]+$/.test(children?.toString() ?? '')
+      ? (LanguageIcons[props['data-language'] ?? ''] ?? IconFile)
+      : null;
 
     return (
       <Flex asChild align="center" gap="2">
