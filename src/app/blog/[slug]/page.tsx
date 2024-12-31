@@ -44,7 +44,12 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
               gap="8"
             >
               <article>
-                <MainContent article={article} className="flex-1" />
+                <MainContent
+                  article={article}
+                  className="flex-1"
+                  minWidth="0"
+                  width="100%"
+                />
                 <SideBar
                   article={article}
                   position={{ md: 'sticky' }}
