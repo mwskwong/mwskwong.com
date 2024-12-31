@@ -1,3 +1,7 @@
+import '@radix-ui/themes/tokens/colors/blue.css';
+import '@radix-ui/themes/tokens/colors/amber.css';
+import '@radix-ui/themes/tokens/colors/red.css';
+
 import {
   Box,
   Card,
@@ -12,13 +16,27 @@ import {
   Strong,
   Text,
 } from '@radix-ui/themes';
+import * as Callout from '@radix-ui/themes/callout';
+import {
+  IconAlertTriangle,
+  IconExclamationCircle,
+  IconInfoCircle,
+} from '@tabler/icons-react';
 import { type MDXComponents } from 'mdx/types';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { type FC } from 'react';
+import {
+  type DetailedHTMLProps,
+  type FC,
+  type HTMLAttributes,
+  type PropsWithChildren,
+  type ReactElement,
+  isValidElement,
+} from 'react';
 import { type Options, rehypePrettyCode } from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
+import { remarkAlert } from 'remark-github-blockquote-alert';
 
 import { containerMaxWidth, md } from '@/constants/site-config';
 import { type getArticleBySlug } from '@/lib/queries';
@@ -34,6 +52,22 @@ declare module 'react' {
     'data-highlighted-chars'?: '';
   }
 }
+
+const getCalloutSeverity = ({
+  className,
+}: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => {
+  if (className?.includes('markdown-alert-note')) {
+    return { color: 'blue', Icon: IconInfoCircle } as const;
+  }
+
+  if (className?.includes('markdown-alert-warning')) {
+    return { color: 'amber', Icon: IconAlertTriangle } as const;
+  }
+
+  if (className?.includes('markdown-alert-caution')) {
+    return { color: 'red', Icon: IconExclamationCircle } as const;
+  }
+};
 
 const components = {
   h2: ({ children, id, color, ...props }) => (
@@ -162,6 +196,24 @@ const components = {
       {...props}
     />
   ),
+  div: (props) => {
+    const callout = props.className?.includes('markdown-alert');
+    if (callout) {
+      const { color, Icon } = getCalloutSeverity(props) ?? {};
+      const message = (
+        props.children as ReactElement<PropsWithChildren>[]
+      ).filter(isValidElement)[1]?.props.children;
+
+      return (
+        <Callout.Root color={color} size="3">
+          <Callout.Icon>{Icon ? <Icon size={20} /> : null}</Callout.Icon>
+          <Callout.Text>{message}</Callout.Text>
+        </Callout.Root>
+      );
+    }
+
+    return <div {...props} />;
+  },
 } satisfies MDXComponents;
 
 export interface MainContentProps extends Omit<SectionProps, 'children'> {
@@ -216,6 +268,7 @@ export const MainContent: FC<MainContentProps> = ({ article, ...props }) => (
               ],
               rehypeSlug,
             ],
+            remarkPlugins: [remarkAlert],
           },
         }}
       />
