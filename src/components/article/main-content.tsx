@@ -31,7 +31,6 @@ import {
   type FC,
   type HTMLAttributes,
   type PropsWithChildren,
-  type ReactElement,
   isValidElement,
 } from 'react';
 import { type Options, rehypePrettyCode } from 'rehype-pretty-code';
@@ -200,9 +199,9 @@ const components = {
     const callout = props.className?.includes('markdown-alert');
     if (callout) {
       const { color, Icon } = getCalloutSeverity(props) ?? {};
-      const message = (
-        props.children as ReactElement<PropsWithChildren>[]
-      ).filter(isValidElement)[1]?.props.children;
+      const message = (props.children as unknown[]).filter(
+        isValidElement<PropsWithChildren>,
+      )[1]?.props.children;
 
       return (
         <Callout.Root color={color} size="3">
