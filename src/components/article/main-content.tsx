@@ -156,7 +156,8 @@ const components = {
         asChild
         size="2"
         className={cn(
-          'bg-accent-2 py-[var(--card-padding)] pl-[var(--card-padding)] pr-[40px]',
+          'bg-accent-2 p-[var(--card-padding)] pr-[40px]',
+          '[&>span[data-highlighted-line]]:-ml-[var(--card-padding)] [&>span[data-highlighted-line]]:-mr-[40px] [&>span[data-highlighted-line]]:bg-accentA-3 [&>span[data-highlighted-line]]:pl-[var(--card-padding)] [&>span[data-highlighted-line]]:pr-[40px]',
           className,
         )}
       >
@@ -185,15 +186,6 @@ const components = {
         </ScrollArea>
       </Inset>
     </Card>
-  ),
-  span: ({ className, ...props }) => (
-    <span
-      className={cn(
-        '[&[data-highlighted-line]]:-ml-[var(--card-padding)] [&[data-highlighted-line]]:-mr-[40px] [&[data-highlighted-line]]:bg-accentA-3 [&[data-highlighted-line]]:pl-[var(--card-padding)] [&[data-highlighted-line]]:pr-[40px]',
-        className,
-      )}
-      {...props}
-    />
   ),
   div: (props) => {
     const callout = props.className?.includes('markdown-alert');
