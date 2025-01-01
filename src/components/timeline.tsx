@@ -1,5 +1,6 @@
 import {
   Badge,
+  Box,
   Card,
   Flex,
   type FlexProps,
@@ -75,11 +76,13 @@ export const Item: FC<ItemProps> = ({
             {organization?.name}
           </Link>
           {descriptions.length > 0 && (
-            <ul className="list-disc pl-[20px] [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1">
-              {descriptions.map((description) => (
-                <li key={description}>{description}</li>
-              ))}
-            </ul>
+            <Box asChild pl="20px">
+              <ul className="list-disc [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1">
+                {descriptions.map((description) => (
+                  <li key={description}>{description}</li>
+                ))}
+              </ul>
+            </Box>
           )}
         </Flex>
         {media.length > 0 && (

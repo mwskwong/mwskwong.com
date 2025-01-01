@@ -129,13 +129,15 @@ const components = {
   },
   strong: Strong,
   ul: ({ className, ...props }) => (
-    <ul
-      className={cn(
-        'list-disc pl-[20px] [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1',
-        className,
-      )}
-      {...props}
-    />
+    <Box asChild pl="20px">
+      <ul
+        className={cn(
+          'list-disc [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1',
+          className,
+        )}
+        {...props}
+      />
+    </Box>
   ),
   ol: ({ className, ...props }) => (
     <ol
