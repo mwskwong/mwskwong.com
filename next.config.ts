@@ -1,5 +1,3 @@
-import './src/env';
-
 import NextBundleAnalyzer from '@next/bundle-analyzer';
 import dedent from 'dedent';
 import { type NextConfig } from 'next';
@@ -9,9 +7,6 @@ const withBundleAnalyzer = NextBundleAnalyzer({
 });
 
 const config = {
-  compiler: {
-    emotion: true,
-  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -19,12 +14,14 @@ const config = {
         protocol: 'https',
         hostname: 'images.ctfassets.net',
         port: '',
+        search: '',
       },
       {
         protocol: 'https',
         hostname: 'image.thum.io',
         port: '',
         pathname: '/get/pdfSource/width/**',
+        search: '',
       },
     ],
   },
@@ -82,9 +79,7 @@ const config = {
   logging: { fetches: { fullUrl: true } },
   experimental: {
     reactCompiler: true,
-    ppr: true,
-    // dynamicIO: true,
-    optimizePackageImports: ['@mui/joy'],
+    optimizePackageImports: ['@radix-ui/themes'],
   },
 } satisfies NextConfig;
 

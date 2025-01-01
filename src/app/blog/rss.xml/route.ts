@@ -1,37 +1,28 @@
 import { Feed } from 'feed';
 
-import { email, firstName, lastName, middleName } from '@/constants/content';
+import { email, firstName, lastName, legalName } from '@/constants/me';
 import { routes, siteUrl } from '@/constants/site-config';
-import { getBlogs } from '@/lib/queries';
-
-export const dynamic = 'force-static';
+import { getArticles } from '@/lib/queries';
 
 const name = `${firstName} ${lastName}`;
 
 export const GET = async () => {
-  const blogs = await getBlogs();
-  const blogFeed = new Feed({
+  const articles = await getArticles();
+  const feed = new Feed({
     title: `${name} ${routes.blog.name}`,
     description: 'Personal perspectives on a broad range of topics.',
     id: siteUrl + routes.blogRssFeed.pathname,
     link: siteUrl + routes.blog.pathname,
     language: 'en',
-    copyright: `Copyright © ${new Date().getFullYear()} ${lastName.toUpperCase()}, ${firstName} ${middleName}`,
+    copyright: `Copyright © ${new Date().getFullYear()} ${legalName}`,
     feedLinks: {
       rss: siteUrl + routes.blogRssFeed.pathname,
       atom: 'self',
     },
   });
 
-  for (const {
-    title,
-    slug,
-    description,
-    categories = [],
-    createdAt,
-    updatedAt,
-  } of blogs) {
-    blogFeed.addItem({
+  for (const { title, slug, description, createdAt, updatedAt } of articles) {
+    feed.addItem({
       guid: `${siteUrl}${routes.blog.pathname}/${slug}`,
       title,
       link: `${siteUrl}${routes.blog.pathname}/${slug}`,
@@ -39,11 +30,10 @@ export const GET = async () => {
       author: [{ name, email }],
       published: new Date(createdAt),
       date: new Date(updatedAt),
-      category: categories.map((category) => ({ name: category })),
     });
   }
 
-  return new Response(blogFeed.rss2(), {
+  return new Response(feed.rss2(), {
     headers: { 'Content-Type': 'text/xml' },
   });
 };

@@ -5,7 +5,7 @@ const { JAVASCRIPT_FILES } = require('@vercel/style-guide/eslint/constants');
 const project = resolve(__dirname, 'tsconfig.json');
 
 /** @type {import('eslint').Linter.Config} */
-module.exports = {
+const config = {
   root: true,
   extends: [
     require.resolve('@vercel/style-guide/eslint/browser'),
@@ -18,27 +18,17 @@ module.exports = {
   plugins: ['eslint-plugin-react-compiler'],
   settings: {
     'import/resolver': { typescript: { project } },
-    /**
-     * enable MUI Joy components to be checked
-     * @see {@link https://github.com/jsx-eslint/eslint-plugin-jsx-a11y?tab=readme-ov-file#configurations}
-     */
     'jsx-a11y': {
-      polymorphicPropName: 'component',
+      polymorphicPropName: 'as',
       components: {
         Button: 'button',
         IconButton: 'button',
         Image: 'img',
-        Input: 'input',
         Link: 'a',
-        List: 'ul',
-        ListDivider: 'li',
-        ListItem: 'li',
-        ListItemButton: 'button',
-        NextImage: 'img',
-        NextLink: 'a',
-        Textarea: 'textarea',
+        NavLink: 'a',
       },
     },
+    linkComponents: ['Link', 'NavLink'],
   },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -130,3 +120,5 @@ module.exports = {
     },
   ],
 };
+
+module.exports = config;

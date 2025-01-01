@@ -1,6 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["relationJoins", "nativeDistinct", "omitApi", "strictUndefinedChecks"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -8,23 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model BlogMetadata {
+model ArticleMetadata {
   id   String @id
   view Int    @default(0)
 
-  @@map("blog_metadata")
-}
-
-model ContactFormSubmission {
-  id              Int      @id @default(autoincrement())
-  name            String
-  email           String?
-  subject         String?
-  message         String
-  showInGuestbook Boolean  @default(false) @map("show_in_guestbook")
-  submittedAt     DateTime @default(now()) @map("submitted_at")
-  siteOwner       Boolean  @default(false) @map("site_owner")
-
-  @@index([showInGuestbook(sort: Desc), submittedAt(sort: Asc)])
-  @@map("contact_form_submission")
+  @@map("article_metadata")
 }

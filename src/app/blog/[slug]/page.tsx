@@ -1,265 +1,103 @@
-import { SiRss } from '@icons-pack/react-simple-icons';
-import {
-  Box,
-  Button,
-  Chip,
-  Container,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
-} from '@mui/joy';
-import { type Metadata } from 'next';
-import NextLink from 'next/link';
+import { Container, Flex, Section } from '@radix-ui/themes';
+import { type Metadata, type ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
-import { type FC, Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { type BlogPosting, type BreadcrumbList, type Graph } from 'schema-dts';
+import { type FC } from 'react';
 
-import { BlogCoverImage } from '@/components/blog/blog-cover-image';
-import { CopyUrlButton } from '@/components/blog/copy-url-button';
-import { IncrBlogView } from '@/components/blog/incr-blog-view';
-import { ShareDropdown } from '@/components/blog/share-dropdown';
-import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
-import { Icon } from '@/components/contentful';
-import { Image } from '@/components/image';
-import { Mdx } from '@/components/mdx';
-import { SectionDivider } from '@/components/section-divider';
-import { firstName, headline, lastName } from '@/constants/content';
+import { IncrementView } from '@/components/article/increment-view';
+import { JsonLd } from '@/components/article/json-ld';
+import { MainContent } from '@/components/article/main-content';
+import { SideBar } from '@/components/article/sidebar';
+import { Breadcrumb } from '@/components/breadcrumb';
+import { Footer } from '@/components/footer';
 import { routes, siteUrl } from '@/constants/site-config';
-import { getPerson } from '@/lib/json-ld';
-import {
-  getBlogBySlug,
-  getBlogs,
-  getPersonalPhoto,
-  getSocialMediaProfiles,
-} from '@/lib/queries';
+import { getArticleBySlug } from '@/lib/queries';
 
-const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'full' });
-
-const contactMeBgColor = 'primary.900';
-
-interface BlogProps {
+interface ArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
-const Blog: FC<BlogProps> = async ({ params }) => {
-  const [blog, personalPhoto, socialMediaProfiles, person] = await Promise.all([
-    getBlogBySlug((await params).slug),
-    getPersonalPhoto(),
-    getSocialMediaProfiles(),
-    getPerson(),
-  ]);
-  if (!blog) notFound();
+const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
+  const slug = (await params).slug;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) notFound();
 
   return (
     <>
-      <IncrBlogView blogId={blog.id} />
-      <main>
-        <Container
-          component="article"
-          maxWidth="md"
-          sx={{ py: 'var(--Section-paddingY)' }}
-        >
-          <Typography level="body-sm">
-            {dateFormatter.format(new Date(blog.createdAt))}
-          </Typography>
-          <Typography level="h1" sx={{ mb: 3, mt: 1 }}>
-            {blog.title}
-          </Typography>
-          <Grid container spacing={2} sx={{ alignItems: 'center', mb: 2 }}>
-            <Grid sm xs={12}>
-              <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
-                {blog.categories?.map((category) => (
-                  <Chip key={category} color="primary">
-                    {category}
-                  </Chip>
-                ))}
-              </Stack>
-            </Grid>
-            <Grid sm="auto" xs={12}>
-              <Stack
-                direction="row"
-                spacing={1}
-                sx={{ alignItems: 'center', justifyContent: 'space-around' }}
-              >
-                <ErrorBoundary fallback={<ViewsError sx={{ mx: 0.75 }} />}>
-                  <Suspense fallback={<ViewsSkeleton sx={{ mx: 0.75 }} />}>
-                    <Views blogId={blog.id} sx={{ mx: 0.75 }} />
-                  </Suspense>
-                </ErrorBoundary>
-                <CopyUrlButton />
-                <ShareDropdown blog={blog} />
-              </Stack>
-            </Grid>
-          </Grid>
-          <BlogCoverImage
-            priority
-            alt={`Cover photo for ${blog.title}`}
-            src={blog.coverPhoto}
-          />
-          {blog.content ? <Mdx source={blog.content} /> : null}
-        </Container>
-        <SectionDivider sx={{ bgcolor: contactMeBgColor }} />
-        <Box
-          component="section"
-          data-joy-color-scheme="dark"
-          sx={{ bgcolor: contactMeBgColor }}
-        >
-          <Container>
-            <Stack
-              spacing={8}
-              sx={{ alignItems: { sm: 'center' }, textAlign: 'center' }}
+      <Container>
+        <Section asChild>
+          <main>
+            <Breadcrumb
+              routes={[
+                routes.home,
+                routes.blog,
+                {
+                  name: article.title,
+                  pathname: `${routes.blog.pathname}/${slug}`,
+                },
+              ]}
+            />
+            <Flex
+              asChild
+              align="start"
+              direction={{ initial: 'column', md: 'row' }}
+              gap="8"
             >
-              <Typography level="h2">Written By</Typography>
-              <Stack spacing={2} sx={{ alignItems: 'center' }}>
-                <Image
-                  alt={`${firstName} ${lastName}`}
-                  height={100}
-                  src={personalPhoto}
-                  width={100}
-                  sx={{
-                    borderRadius: '50%',
-                    border: 1,
-                    borderColor: 'neutral.outlinedBorder',
-                  }}
+              <article>
+                <MainContent
+                  article={article}
+                  className="flex-1"
+                  minWidth="0"
+                  width="100%"
                 />
-                <div>
-                  <Typography level="title-lg">
-                    {firstName} {lastName}
-                  </Typography>
-                  <Typography>{headline}</Typography>
-                </div>
-                <Stack direction="row" spacing={1}>
-                  {socialMediaProfiles.map(
-                    ({ socialMedia, url }) =>
-                      socialMedia && (
-                        <IconButton
-                          key={socialMedia.id}
-                          aria-label={`${socialMedia.name} profile`}
-                          component="a"
-                          href={url}
-                          size="sm"
-                          target="_blank"
-                        >
-                          <Icon contentfulId={socialMedia.id} />
-                        </IconButton>
-                      ),
-                  )}
-                  <IconButton
-                    aria-label={routes.blogRssFeed.name}
-                    component="a"
-                    href={routes.blogRssFeed.pathname}
-                    size="sm"
-                    target="_blank"
-                  >
-                    <SiRss className="si" />
-                  </IconButton>
-                </Stack>
-              </Stack>
-              <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={2}
-                sx={{ justifyContent: 'center' }}
-              >
-                <Button component={NextLink} href={routes.home} size="lg">
-                  More About Me
-                </Button>
-                <Button
-                  color="neutral"
-                  component={NextLink}
-                  href={routes.blog}
-                  size="lg"
-                  variant="outlined"
-                >
-                  More Articles
-                </Button>
-              </Stack>
-            </Stack>
-          </Container>
-        </Box>
-      </main>
-      <SectionDivider
-        sx={{ color: contactMeBgColor, bgcolor: 'var(--Footer-bg)' }}
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@graph': [
-              {
-                '@type': 'BlogPosting',
-                headline: blog.title,
-                description: blog.description,
-                image: blog.coverPhoto,
-                datePublished: blog.createdAt,
-                dateModified: blog.updatedAt,
-                url: `${siteUrl}${routes.blog.pathname}/${(await params).slug}`,
-                author: { '@id': person['@id'] },
-                keywords: blog.categories,
-              } satisfies BlogPosting,
-              {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                  {
-                    '@type': 'ListItem',
-                    name: routes.home.name,
-                    item: siteUrl,
-                    position: 1,
-                  },
-                  {
-                    '@type': 'ListItem',
-                    name: routes.blog.name,
-                    item: siteUrl + routes.blog.pathname,
-                    position: 2,
-                  },
-                  {
-                    '@type': 'ListItem',
-                    name: blog.title,
-                    position: 3,
-                  },
-                ],
-                name: 'Breadcrumbs',
-              } satisfies BreadcrumbList,
-              person,
-            ],
-          } satisfies Graph),
-        }}
-        type="application/ld+json"
-      />
+                <SideBar
+                  article={article}
+                  position={{ md: 'sticky' }}
+                  top="calc(var(--space-9) + 24px)" // container padding + breadcrumb's height
+                  width={{ md: '350px' }}
+                />
+              </article>
+            </Flex>
+          </main>
+        </Section>
+        <Footer />
+      </Container>
+      <IncrementView id={article.id} />
+      <JsonLd article={article} />
     </>
   );
 };
 
-export const generateStaticParams = () =>
-  getBlogs().then((blogs) =>
-    blogs.map(({ slug }) => ({ slug })),
-  ) satisfies Promise<Awaited<BlogProps['params']>[]>;
+// allow blog to revalidate in runtime, but statically render all paths the first time they're visited
+// https://nextjs.org/docs/app/api-reference/functions/generate-static-params#all-paths-at-runtime
+export const generateStaticParams = () => [];
 
-export const generateMetadata = async ({ params }: BlogProps) => {
-  const blog = await getBlogBySlug((await params).slug);
-  if (!blog) return;
+export const generateMetadata = async (
+  { params }: ArticlePageProps,
+  parent: ResolvingMetadata,
+) => {
+  const slug = (await params).slug;
+  const article = await getArticleBySlug(slug);
 
-  const { title, description, coverPhoto, createdAt, updatedAt, categories } =
-    blog;
+  if (!article) return;
+  const { title, description, coverPhoto, createdAt, updatedAt } = article;
 
   return {
     title,
     description,
     openGraph: {
+      ...(await parent).openGraph,
       type: 'article',
       authors: siteUrl,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
-      tags: categories,
-      url: `${routes.blog.pathname}/${(await params).slug}`,
+      url: `${routes.blog.pathname}/${slug}`,
       images: coverPhoto,
     },
     alternates: {
-      canonical: `${routes.blog.pathname}/${(await params).slug}`,
       types: { 'application/rss+xml': routes.blogRssFeed.pathname },
     },
   } satisfies Metadata;
 };
 
-export default Blog;
+export default ArticlePage;

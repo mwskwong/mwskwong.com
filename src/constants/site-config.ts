@@ -1,63 +1,42 @@
-import { capitalize } from 'lodash-es';
+import { type UrlObject } from 'node:url';
 
-export const siteUrl = (() => {
-  const localUrl = `http://localhost:${process.env.PORT ?? 3000}`;
-  if (!process.env.NEXT_PUBLIC_VERCEL_ENV) return localUrl;
+import { firstName, lastName } from './me';
 
-  const previewDeploymentHostname =
-    process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
-    process.env.NEXT_PUBLIC_VERCEL_URL;
-  const previewDeploymentUrl = previewDeploymentHostname
-    ? `https://${previewDeploymentHostname}`
-    : undefined;
-  if (
-    process.env.NODE_ENV === 'production' &&
-    previewDeploymentUrl &&
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-  ) {
-    return previewDeploymentUrl;
-  }
-
-  return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
-})();
-
-export const siteDisplayName = capitalize(
-  process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL,
-);
-
-export interface Route {
+export interface Route extends UrlObject {
   name: string;
   pathname: string;
-  hash?: string;
 }
 
 export const routes = {
-  home: { name: 'Home', pathname: '/' } as Route,
-  about: { name: 'About', pathname: '/', hash: 'about' } as Route,
-  experience: {
-    name: 'Experience',
-    pathname: '/',
-    hash: 'experience',
-  } as Route,
-  education: {
-    name: 'Education',
-    pathname: '/',
-    hash: 'education',
-  } as Route,
-  contact: { name: 'Contact', pathname: '/', hash: 'contact' } as Route,
-  contactForm: {
-    name: 'Contact Form',
-    pathname: '/',
-    hash: 'contactForm',
-  } as Route,
-  blog: { name: 'Blog', pathname: '/blog' } as Route,
-  blogRssFeed: {
-    name: 'Blog RSS Feed',
-    pathname: '/blog/rss.xml',
-  } as Route,
-  guestbook: { name: 'Guestbook', pathname: '/guestbook' } as Route,
-  privacyPolicy: {
-    name: 'Privacy Policy',
-    pathname: '/privacy-policy',
-  } as Route,
+  home: { name: `${firstName} ${lastName}`, pathname: '/' },
+  experience: { name: 'Experience', pathname: '/experience' },
+  education: { name: 'Education', pathname: '/education' },
+  skills: { name: 'Skills', pathname: '/skills' },
+  blog: { name: 'Blog', pathname: '/blog' },
+  blogRssFeed: { name: 'Blog RSS Feed', pathname: '/blog/rss.xml' },
+} satisfies Record<string, Route>;
+
+const getSiteUrl = () => {
+  if (
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' &&
+    process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+  ) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+
+  if (
+    process.env.NEXT_PUBLIC_VERCEL_ENV &&
+    process.env.NEXT_PUBLIC_VERCEL_URL
+  ) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+  }
+
+  return `http://localhost:${process.env.PORT ?? 3000}`;
 };
+
+export const siteUrl = getSiteUrl();
+
+// extract from Radix Themes
+export const sm = 768;
+export const md = 1024;
+export const containerMaxWidth = 1136;
