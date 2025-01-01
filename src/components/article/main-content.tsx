@@ -16,7 +16,7 @@ import {
   Strong,
   Text,
 } from '@radix-ui/themes';
-import * as Callout from '@radix-ui/themes/callout';
+import * as Callout from '@radix-ui/themes/components/callout'; // compound component needs to be imported from individual entry point to avoid the entire @radix-ui/themes being bundled in the client bundle
 import {
   IconAlertTriangle,
   IconExclamationCircle,

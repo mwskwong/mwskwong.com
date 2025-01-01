@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.1.0",
-    "@radix-ui/themes": "^3.2.0-rc.3",
+    "@radix-ui/themes": "^3.2.0-rc.5",
     "@tabler/icons-react": "^3.26.0",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
