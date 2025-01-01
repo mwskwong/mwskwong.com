@@ -10,7 +10,7 @@ import { SideBar } from '@/components/article/sidebar';
 import { Breadcrumb } from '@/components/breadcrumb';
 import { Footer } from '@/components/footer';
 import { routes, siteUrl } from '@/constants/site-config';
-import { getArticleBySlug, getArticles } from '@/lib/queries';
+import { getArticleBySlug } from '@/lib/queries';
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -68,12 +68,9 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
   );
 };
 
-export const generateStaticParams = async () => {
-  const articles = await getArticles();
-  return articles.map(({ slug }) => ({ slug })) satisfies Awaited<
-    ArticlePageProps['params']
-  >[];
-};
+// allow blog to revalidate in runtime, but statically render all paths the first time they're visited
+// https://nextjs.org/docs/app/api-reference/functions/generate-static-params#all-paths-at-runtime
+export const generateStaticParams = () => [];
 
 export const generateMetadata = async (
   { params }: ArticlePageProps,
