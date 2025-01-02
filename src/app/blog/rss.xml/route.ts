@@ -21,14 +21,14 @@ export const GET = async () => {
     },
   });
 
-  for (const { title, slug, description, createdAt, updatedAt } of articles) {
+  for (const { title, slug, description, updatedAt } of articles) {
     feed.addItem({
       guid: `${siteUrl}${routes.blog.pathname}/${slug}`,
       title,
       link: `${siteUrl}${routes.blog.pathname}/${slug}`,
       description,
       author: [{ name, email }],
-      published: new Date(createdAt),
+      published: new Date(updatedAt),
       date: new Date(updatedAt),
     });
   }
