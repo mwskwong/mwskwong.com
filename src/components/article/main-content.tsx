@@ -43,7 +43,7 @@ import { cn, dateFormatter } from '@/lib/utils';
 
 import { CopyCodeButton } from './copy-code-button';
 
-const getCalloutSeverity = = <T extends HTMLAttributes<HTMLElement>>({
+const getCalloutSeverity = <T extends HTMLAttributes<HTMLElement>>({
   className,
 }: T) => {
   if (className?.includes('markdown-alert-note')) {
