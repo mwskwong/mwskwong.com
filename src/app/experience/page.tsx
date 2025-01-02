@@ -17,6 +17,8 @@ import * as Timeline from '@/components/timeline';
 import { routes, siteUrl } from '@/constants/site-config';
 import { getContributedProjects, getExperiences } from '@/lib/queries';
 
+import styles from './page.module.css';
+
 const ExperiencePage = async () => {
   const [experiences, contributedProjects] = await Promise.all([
     getExperiences(),
@@ -81,7 +83,7 @@ const ExperiencePage = async () => {
                         <a href={url} rel="noopener" target="_blank">
                           <Image
                             alt={name}
-                            className="object-scale-down"
+                            className={styles.projectLogo}
                             height={36}
                             src={logo}
                             width={36}

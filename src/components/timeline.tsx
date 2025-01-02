@@ -14,6 +14,8 @@ import {
 import Image, { type StaticImageData } from 'next/image';
 import { type FC } from 'react';
 
+import styles from './timeline.module.css';
+
 export type RootProps = FlexProps;
 export const Root: FC<RootProps> = (props) => {
   return <Flex direction="column" gap="8" width="100%" {...props} />;
@@ -59,12 +61,7 @@ export const Item: FC<ItemProps> = ({
 
   return (
     <Grid columns={{ sm: '4' }} gap={{ sm: '4' }} {...props}>
-      <Text
-        as="div"
-        className="leading-[var(--heading-line-height-4)]"
-        color="gray"
-        size="2"
-      >
+      <Text as="div" className={styles.duration} color="gray" size="2">
         {duration}
       </Text>
       <Flex direction="column" gap="4" gridColumn={{ sm: 'span 3' }}>
@@ -76,8 +73,8 @@ export const Item: FC<ItemProps> = ({
             {organization?.name}
           </Link>
           {descriptions.length > 0 && (
-            <Box asChild pl="20px">
-              <ul className="list-disc [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1">
+            <Box asChild className={styles.description} pl="20px">
+              <ul>
                 {descriptions.map((description) => (
                   <li key={description}>{description}</li>
                 ))}
@@ -93,13 +90,10 @@ export const Item: FC<ItemProps> = ({
                   {thumbnail ? (
                     <Image
                       alt={name}
-                      className="rounded-[var(--card-border-radius)] object-cover"
+                      className={styles.mediaImage}
                       height={9 * 12}
                       src={thumbnail}
                       width={16 * 12}
-                      style={{
-                        boxShadow: 'var(--base-card-surface-box-shadow)',
-                      }}
                     />
                   ) : null}
                 </a>

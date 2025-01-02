@@ -46,7 +46,8 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
               <article>
                 <MainContent
                   article={article}
-                  className="flex-1"
+                  flexGrow="1"
+                  flexShrink="1"
                   minWidth="0"
                   width="100%"
                 />

@@ -30,6 +30,8 @@ import {
 } from '@/constants/me';
 import { routes } from '@/constants/site-config';
 
+import styles from './sidebar.module.css';
+
 const links = [
   { Icon: IconMail, href: `mailto:${email}`, name: 'Email' },
   { Icon: IconBrandLinkedin, href: linkedin, name: 'LinkedIn' },
@@ -74,7 +76,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
                 <Link asChild color="gray">
                   <NextLink href={pathname}>
                     <Box
-                      className="bg-[currentColor]"
+                      className={styles.navLinkIndicator}
                       height="1px"
                       width="32px"
                     />

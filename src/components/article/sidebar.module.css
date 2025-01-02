@@ -1,0 +1,17 @@
+.personalPortrait {
+  border-width: 2px;
+  border-color: var(--accent-a8);
+  border-radius: 9999px;
+}
+
+.coverPhoto {
+  box-shadow: var(--base-card-surface-box-shadow);
+  border-radius: var(--card-border-radius);
+}
+
+.title {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

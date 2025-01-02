@@ -19,6 +19,8 @@ import { containerMaxWidth, md, routes, sm } from '@/constants/site-config';
 import { getArticles } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
 
+import styles from './page.module.css';
+
 const BlogPage: FC = async () => {
   const articles = await getArticles();
   const featuredArticle = articles.reduce((highestViewedArticle, article) =>
@@ -39,19 +41,16 @@ const BlogPage: FC = async () => {
                 <article>
                   <div>
                     <Box
-                      className="aspect-video rounded-[var(--card-border-radius)]"
+                      className={styles.coverPhotoContainer}
                       overflow="hidden"
                       position="relative"
-                      style={{
-                        boxShadow: 'var(--base-card-surface-box-shadow)',
-                      }}
                     >
                       {featuredArticle.coverPhoto ? (
                         <Image
                           fill
                           priority
                           alt={featuredArticle.title}
-                          className="object-cover"
+                          className={styles.coverPhoto}
                           src={featuredArticle.coverPhoto}
                           sizes={[
                             `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 2}px`,
@@ -67,7 +66,7 @@ const BlogPage: FC = async () => {
                       {featuredArticle.title}
                     </Heading>
                     <Text
-                      className="line-clamp-3"
+                      className={styles.description}
                       size={{ initial: '3', md: '4' }}
                     >
                       {featuredArticle.description}
@@ -95,7 +94,7 @@ const BlogPage: FC = async () => {
                     <Link href={`${routes.blog.pathname}/${slug}`}>
                       <article>
                         <Box
-                          className="aspect-video rounded-[var(--card-border-radius)]"
+                          className={styles.coverPhotoContainer}
                           overflow="hidden"
                           position="relative"
                           style={{
@@ -106,7 +105,7 @@ const BlogPage: FC = async () => {
                             <Image
                               fill
                               alt={title}
-                              className="object-cover"
+                              className={styles.coverPhoto}
                               src={coverPhoto}
                               sizes={[
                                 `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 3}px`,
@@ -119,7 +118,7 @@ const BlogPage: FC = async () => {
                         </Box>
                         <Flex direction="column" gap="2" mt="4">
                           <Heading size="4">{title}</Heading>
-                          <Text as="p" className="line-clamp-3" size="3">
+                          <Text as="p" className={styles.description} size="3">
                             {description}
                           </Text>
                           <Text as="p" color="gray" size="2">

@@ -22,6 +22,7 @@ import {
   IconExclamationCircle,
   IconInfoCircle,
 } from '@tabler/icons-react';
+import { clsx } from 'clsx';
 import { type MDXComponents } from 'mdx/types';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -38,9 +39,10 @@ import { remarkAlert } from 'remark-github-blockquote-alert';
 
 import { containerMaxWidth, md } from '@/constants/site-config';
 import { type getArticleBySlug } from '@/lib/queries';
-import { cn, dateFormatter } from '@/lib/utils';
+import { dateFormatter } from '@/lib/utils';
 
 import { CopyCodeButton } from './copy-code-button';
+import styles from './main-content.module.css';
 
 const getCalloutSeverity = <T extends HTMLAttributes<HTMLElement>>({
   className,
@@ -119,21 +121,10 @@ const components = {
   },
   strong: Strong,
   ul: ({ className, ...props }) => (
-    <Box asChild pl="20px">
-      <ul
-        className={cn(
-          'list-disc [&>*:not(:first-child)]:pt-1 [&>*:not(:last-child)]:pb-1',
-          className,
-        )}
-        {...props}
-      />
-    </Box>
+    <ul className={clsx(styles.list, className)} {...props} />
   ),
   ol: ({ className, ...props }) => (
-    <ol
-      className={cn('list-decimal pl-[20px] [&>*]:my-2', className)}
-      {...props}
-    />
+    <ol className={clsx(styles.list, className)} {...props} />
   ),
   code: (props) => {
     const inlineCode = props.style === undefined;
@@ -144,15 +135,7 @@ const components = {
 
     const { className, ...rest } = props;
     return (
-      <Text
-        asChild
-        size="2"
-        className={cn(
-          'bg-accent-2 p-[var(--card-padding)] pr-[40px]',
-          '[&>span[data-highlighted-line]]:-ml-[var(--card-padding)] [&>span[data-highlighted-line]]:-mr-[40px] [&>span[data-highlighted-line]]:bg-accentA-3 [&>span[data-highlighted-line]]:pl-[var(--card-padding)] [&>span[data-highlighted-line]]:pr-[40px]',
-          className,
-        )}
-      >
+      <Text asChild className={clsx(styles.code, className)} size="2">
         <code {...rest} />
       </Text>
     );
@@ -173,7 +156,7 @@ const components = {
         <ScrollArea>
           <pre {...props}>
             {children}
-            <CopyCodeButton className="absolute right-[12px] top-[14px]" />
+            <CopyCodeButton className={styles.copyCodeButton} />
           </pre>
         </ScrollArea>
       </Inset>
@@ -214,13 +197,10 @@ export const MainContent: FC<MainContentProps> = ({ article, ...props }) => (
     </Flex>
     {article.coverPhoto ? (
       <Box
-        className="aspect-video rounded-6"
+        className={styles.coverPhotoContainer}
         my="8"
         overflow="hidden"
         position="relative"
-        style={{
-          boxShadow: 'var(--base-card-surface-box-shadow)',
-        }}
       >
         <Image
           fill

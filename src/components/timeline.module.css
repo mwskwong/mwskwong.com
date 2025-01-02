@@ -1,0 +1,19 @@
+.duration {
+  line-height: var(--heading-line-height-4);
+}
+
+.description {
+  margin-top: calc(-1 * var(--space-1));
+  margin-bottom: calc(-1 * var(--space-1));
+
+  & > li {
+    padding-top: var(--space-1);
+    padding-bottom: var(--space-1);
+  }
+}
+
+.mediaImage {
+  box-shadow: var(--base-card-surface-box-shadow);
+  border-radius: var(--card-border-radius);
+  object-fit: cover;
+}

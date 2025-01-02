@@ -16,6 +16,8 @@ import { routes } from '@/constants/site-config';
 import { getArticles } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
 
+import styles from './featured-articles.module.css';
+
 export type FeaturedArticlesProps = Omit<FlexProps, 'asChild' | 'children'>;
 export const FeaturedArticles: FC<FeaturedArticlesProps> = async (props) => {
   const articles = (await getArticles())
@@ -41,13 +43,10 @@ export const FeaturedArticles: FC<FeaturedArticlesProps> = async (props) => {
                     {coverPhoto ? (
                       <Image
                         alt={title}
-                        className="h-[108px] w-[192px] rounded-[var(--card-border-radius)] sm:h-[90px] sm:w-[160px]"
+                        className={styles.coverPhoto}
                         height={9 * 12}
                         src={coverPhoto}
                         width={16 * 12}
-                        style={{
-                          boxShadow: 'var(--base-card-surface-box-shadow)',
-                        }}
                       />
                     ) : null}
                     <Flex direction="column" gap="2">

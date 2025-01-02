@@ -17,6 +17,8 @@ import { SkillCategoryIcons } from '@/components/skill-category-icons';
 import { routes, siteUrl } from '@/constants/site-config';
 import { getSkillSet } from '@/lib/queries';
 
+import styles from './page.module.css';
+
 const SkillsPage = async () => {
   const skillSet = await getSkillSet();
 
@@ -29,10 +31,7 @@ const SkillsPage = async () => {
             <Heading mt="2" size="9">
               Skills
             </Heading>
-            <Box
-              className="gap-rx-5 sm:columns-2 md:columns-3 [&>*:not(:first-child)]:mt-rx-5"
-              mt="8"
-            >
+            <Box className={styles.skillSetContainer} mt="8">
               {skillSet.map(({ id, name, skills }) => {
                 const Icon = SkillCategoryIcons[id];
                 return (
@@ -62,10 +61,7 @@ const SkillsPage = async () => {
                       ))}
                     </Flex>
                     {Icon ? (
-                      <Icon
-                        className="absolute -bottom-rx-8 -right-rx-8 -z-[1] -rotate-12 text-accent-2"
-                        size={200}
-                      />
+                      <Icon className={styles.backgroundIcon} size={200} />
                     ) : null}
                   </Card>
                 );

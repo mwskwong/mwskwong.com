@@ -1,0 +1,6 @@
+.personalPortrait {
+  vertical-align: top;
+  border-width: 2px;
+  border-color: var(--accent-a8);
+  border-radius: 9999px;
+}

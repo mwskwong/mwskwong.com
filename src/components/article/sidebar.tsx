@@ -26,6 +26,8 @@ import {
 } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
 
+import styles from './sidebar.module.css';
+
 export interface SideBarProps
   extends Omit<SectionProps, 'asChild' | 'children'> {
   article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
@@ -77,7 +79,7 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
               {personalPortrait ? (
                 <Image
                   alt="personal portrait"
-                  className="rounded-full border-2 border-accentA-8"
+                  className={styles.personalPortrait}
                   height={40}
                   src={personalPortrait}
                   width={40}
@@ -108,17 +110,14 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
                     {coverPhoto ? (
                       <Image
                         alt={title}
-                        className="rounded-[var(--card-border-radius)]"
+                        className={styles.coverPhoto}
                         height={9 * 7}
                         src={coverPhoto}
                         width={16 * 7}
-                        style={{
-                          boxShadow: 'var(--base-card-surface-box-shadow)',
-                        }}
                       />
                     ) : null}
                     <div>
-                      <Heading className="line-clamp-2" size="3">
+                      <Heading className={styles.title} size="3">
                         {title}
                       </Heading>
                       <Text color="gray" size="2">

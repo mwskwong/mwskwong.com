@@ -6,7 +6,7 @@ const config = {
   plugins: [
     ...vercelPrettierConfig.plugins,
     'prettier-plugin-prisma',
-    'prettier-plugin-tailwindcss',
+    'prettier-plugin-css-order',
   ],
 };
 

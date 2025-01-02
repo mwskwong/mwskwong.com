@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { Theme } from '@radix-ui/themes';
+import { Reset, Theme } from '@radix-ui/themes';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { type Metadata } from 'next';
@@ -15,7 +15,6 @@ import {
 } from '@/constants/me';
 import { siteUrl } from '@/constants/site-config';
 import { getPersonalPortrait } from '@/lib/queries';
-import { cn } from '@/lib/utils';
 
 const geist = Geist({
   variable: '--font-geist',
@@ -26,19 +25,25 @@ const geistMono = GeistMono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
   preload: false,
+  adjustFontFallback: false,
+  fallback: ['monospace'],
 });
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en">
-    <body className={cn(geist.variable, geistMono.variable)}>
-      <Theme>{children}</Theme>
-      <Analytics
-        mode={
-          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
-        }
-      />
-      <SpeedInsights />
-    </body>
+    <Reset>
+      <body className={`${geist.variable} ${geistMono.variable}`}>
+        <Theme>{children}</Theme>
+        <Analytics
+          mode={
+            process.env.VERCEL_ENV === 'production'
+              ? 'production'
+              : 'development'
+          }
+        />
+        <SpeedInsights />
+      </body>
+    </Reset>
   </html>
 );
 

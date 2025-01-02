@@ -13,6 +13,8 @@ import { type FC } from 'react';
 import { selfIntroduction } from '@/constants/me';
 import { getPersonalPortrait, getResume } from '@/lib/queries';
 
+import styles from './about.module.css';
+
 export type AboutProps = Omit<FlexProps, 'asChild' | 'children'>;
 export const About: FC<AboutProps> = async (props) => {
   const [{ url: personalPortrait }, resume] = await Promise.all([
@@ -28,7 +30,7 @@ export const About: FC<AboutProps> = async (props) => {
             <Box asChild display="inline-block" mr="4">
               <Image
                 alt="personal portrait"
-                className="rounded-full border-2 border-accentA-8 align-top"
+                className={styles.personalPortrait}
                 height={60}
                 src={personalPortrait}
                 width={60}

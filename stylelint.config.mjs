@@ -2,21 +2,14 @@
 const config = {
   extends: ['stylelint-config-standard'],
   rules: {
-    'at-rule-no-unknown': [
-      true,
+    'import-notation': 'string',
+    'selector-class-pattern': [
+      '^[a-z][a-zA-Z0-9]*$',
       {
-        ignoreAtRules: [
-          'apply',
-          'layer',
-          'responsive',
-          'screen',
-          'tailwind',
-          'variants',
-        ],
+        message: (selector) =>
+          `Expected class selector "${selector}" to be camelCase`,
       },
     ],
-    'import-notation': 'string',
-    'selector-class-pattern': null,
   },
 };
 

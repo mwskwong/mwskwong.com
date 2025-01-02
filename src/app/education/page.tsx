@@ -9,6 +9,7 @@ import '@radix-ui/themes/tokens/colors/lime.css';
 
 import {
   Badge,
+  type BadgeProps,
   Card,
   Container,
   Flex,
@@ -28,6 +29,8 @@ import { routes, siteUrl } from '@/constants/site-config';
 import { getCourseCategories, getCourses, getEducations } from '@/lib/queries';
 import { dateFormatter } from '@/lib/utils';
 
+import styles from './page.module.css';
+
 const colors = [
   'gold',
   'amber',
@@ -38,7 +41,7 @@ const colors = [
   'jade',
   'lime',
   'gray',
-] as const;
+] as const satisfies BadgeProps['color'][];
 
 const EducationPage = async () => {
   const [educations, courseCategories = [], courses] = await Promise.all([
@@ -111,7 +114,7 @@ const EducationPage = async () => {
                         <Flex align="center" justify="between">
                           <Image
                             alt={institution.name}
-                            className="object-scale-down"
+                            className={styles.institutionLogo}
                             height={24}
                             src={institution.logo}
                             width={24}
