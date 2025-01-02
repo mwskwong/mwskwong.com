@@ -3,9 +3,6 @@
 }
 
 .description {
-  margin-top: calc(-1 * var(--space-1));
-  margin-bottom: calc(-1 * var(--space-1));
-
   & > li {
     padding-top: var(--space-1);
     padding-bottom: var(--space-1);

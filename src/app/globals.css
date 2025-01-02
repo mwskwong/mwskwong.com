@@ -11,7 +11,12 @@
   border-style: solid;
 }
 
-body {
+body,
+blockquote,
+dl,
+dd,
+figure,
+pre {
   margin: 0;
 }
 

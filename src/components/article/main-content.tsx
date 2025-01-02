@@ -121,10 +121,14 @@ const components = {
   },
   strong: Strong,
   ul: ({ className, ...props }) => (
-    <ul className={clsx(styles.list, className)} {...props} />
+    <Box asChild my="4" pl="20px">
+      <ul className={clsx(styles.list, className)} {...props} />
+    </Box>
   ),
   ol: ({ className, ...props }) => (
-    <ol className={clsx(styles.list, className)} {...props} />
+    <Box asChild my="4" pl="20px">
+      <ol className={clsx(styles.list, className)} {...props} />
+    </Box>
   ),
   code: (props) => {
     const inlineCode = props.style === undefined;

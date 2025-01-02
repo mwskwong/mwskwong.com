@@ -11,9 +11,6 @@
 }
 
 .list {
-  margin-top: calc(-1 * var(--space-1));
-  margin-bottom: calc(-1 * var(--space-1));
-
   & > li {
     padding-top: var(--space-1);
     padding-bottom: var(--space-1);
@@ -26,7 +23,7 @@
   padding-right: 40px;
 
   & > span[data-highlighted-line] {
-    margin-right: 40px;
+    margin-right: -40px;
     margin-left: calc(-1 * var(--card-padding));
     background-color: var(--accent-a3);
     padding-right: 40px;
