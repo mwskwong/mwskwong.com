@@ -29,7 +29,6 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import {
   type FC,
   type HTMLAttributes,
-  type HTMLElement,
   type PropsWithChildren,
   isValidElement,
 } from 'react';
