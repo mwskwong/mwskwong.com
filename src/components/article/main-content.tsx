@@ -27,9 +27,9 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import {
-  type DetailedHTMLProps,
   type FC,
   type HTMLAttributes,
+  type HTMLElement,
   type PropsWithChildren,
   isValidElement,
 } from 'react';
@@ -43,18 +43,9 @@ import { cn, dateFormatter } from '@/lib/utils';
 
 import { CopyCodeButton } from './copy-code-button';
 
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    'data-language'?: string;
-    'data-rehype-pretty-code-figure'?: '';
-    'data-rehype-pretty-code-title'?: '';
-    'data-highlighted-chars'?: '';
-  }
-}
-
-const getCalloutSeverity = ({
+const getCalloutSeverity = = <T extends HTMLAttributes<HTMLElement>>({
   className,
-}: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => {
+}: T) => {
   if (className?.includes('markdown-alert-note')) {
     return { color: 'blue', Icon: IconInfoCircle } as const;
   }
