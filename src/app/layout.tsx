@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { Reset, Theme } from '@radix-ui/themes';
+import { Theme } from '@radix-ui/themes';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { type Metadata } from 'next';
@@ -31,19 +31,15 @@ const geistMono = GeistMono({
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en">
-    <Reset>
-      <body className={`${geist.variable} ${geistMono.variable}`}>
-        <Theme>{children}</Theme>
-        <Analytics
-          mode={
-            process.env.VERCEL_ENV === 'production'
-              ? 'production'
-              : 'development'
-          }
-        />
-        <SpeedInsights />
-      </body>
-    </Reset>
+    <body className={`${geist.variable} ${geistMono.variable}`}>
+      <Theme>{children}</Theme>
+      <Analytics
+        mode={
+          process.env.VERCEL_ENV === 'production' ? 'production' : 'development'
+        }
+      />
+      <SpeedInsights />
+    </body>
   </html>
 );
 

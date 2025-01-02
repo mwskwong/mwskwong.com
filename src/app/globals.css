@@ -11,8 +11,18 @@
   border-style: solid;
 }
 
+body: {
+  margin: 0;
+}
+
 img {
   display: block;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */

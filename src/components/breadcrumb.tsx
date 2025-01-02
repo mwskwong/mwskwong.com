@@ -15,18 +15,17 @@ export const Breadcrumb: FC<BreadcrumbProps> = ({ routes, ...props }) => (
       <ul>
         {routes.map(({ name, pathname }, index) => (
           <Fragment key={name}>
-            <Reset>
-              <li>
-                {index === routes.length - 1 ? (
-                  <Text size="2">{name}</Text>
-                ) : (
-                  // eslint-disable-next-line jsx-a11y/anchor-is-valid -- wrapping next/link
-                  <Link asChild color="gray" size="2">
-                    <NextLink href={pathname}>{name}</NextLink>
-                  </Link>
-                )}
-              </li>
-            </Reset>
+            <li>
+              {index === routes.length - 1 ? (
+                <Text size="2">{name}</Text>
+              ) : (
+                // eslint-disable-next-line jsx-a11y/anchor-is-valid -- wrapping next/link
+                <Link asChild color="gray" size="2">
+                  <NextLink href={pathname}>{name}</NextLink>
+                </Link>
+              )}
+            </li>
+
             {index !== routes.length - 1 && (
               <Text asChild color="gray" size="2">
                 <li>/</li>
