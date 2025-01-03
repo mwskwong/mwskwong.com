@@ -4,16 +4,13 @@ import { type FC, Fragment } from "react";
 
 import { type Route } from "@/constants/site-config";
 
-export interface BreadcrumbProperties
+export interface BreadcrumbProps
   extends Omit<FlexProps, "asChild" | "children"> {
   routes: Route[];
 }
 
-export const Breadcrumb: FC<BreadcrumbProperties> = ({
-  routes,
-  ...properties
-}) => (
-  <Flex asChild align="center" gap="2" wrap="wrap" {...properties}>
+export const Breadcrumb: FC<BreadcrumbProps> = ({ routes, ...props }) => (
+  <Flex asChild align="center" gap="2" wrap="wrap" {...props}>
     <ul>
       {routes.map(({ name, pathname }, index) => (
         <Fragment key={name}>

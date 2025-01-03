@@ -60,8 +60,8 @@ const getCalloutSeverity = ({ className }: HTMLAttributes<HTMLElement>) => {
 };
 
 const components = {
-  h2: ({ children, id, color, ...properties }) => (
-    <Heading as="h2" id={id} mb="3" mt="8" size="6" {...properties}>
+  h2: ({ children, id, color, ...props }) => (
+    <Heading as="h2" id={id} mb="3" mt="8" size="6" {...props}>
       <Link
         highContrast
         color="gray"
@@ -73,8 +73,8 @@ const components = {
       </Link>
     </Heading>
   ),
-  h3: ({ children, id, color, ...properties }) => (
-    <Heading as="h3" id={id} mb="2" mt="7" size="4" {...properties}>
+  h3: ({ children, id, color, ...props }) => (
+    <Heading as="h3" id={id} mb="2" mt="7" size="4" {...props}>
       <Link
         highContrast
         color="gray"
@@ -86,8 +86,8 @@ const components = {
       </Link>
     </Heading>
   ),
-  h4: ({ children, id, color, ...properties }) => (
-    <Heading as="h4" id={id} mb="2" mt="6" size="3" {...properties}>
+  h4: ({ children, id, color, ...props }) => (
+    <Heading as="h4" id={id} mb="2" mt="6" size="3" {...props}>
       <Link
         highContrast
         color="gray"
@@ -99,10 +99,10 @@ const components = {
       </Link>
     </Heading>
   ),
-  p: ({ color, ...properties }) => (
-    <Text as="p" mb="4" style={{ color }} {...properties} />
+  p: ({ color, ...props }) => (
+    <Text as="p" mb="4" style={{ color }} {...props} />
   ),
-  a: ({ color, href = "", children, ...properties }) => {
+  a: ({ color, href = "", children, ...props }) => {
     const internal = href.startsWith("/");
 
     return (
@@ -112,52 +112,52 @@ const components = {
         rel={internal ? undefined : "noreferrer"}
         style={{ color }}
         target={internal ? undefined : "_blank"}
-        {...properties}
+        {...props}
       >
         {internal ? <NextLink href={href}>{children}</NextLink> : children}
       </Link>
     );
   },
   strong: Strong,
-  ul: ({ className, ...properties }) => (
+  ul: ({ className, ...props }) => (
     <Box asChild my="4" pl="20px">
-      <ul className={clsx(styles.list, className)} {...properties} />
+      <ul className={clsx(styles.list, className)} {...props} />
     </Box>
   ),
-  ol: ({ className, ...properties }) => (
+  ol: ({ className, ...props }) => (
     <Box asChild my="4" pl="20px">
-      <ol className={clsx(styles.list, className)} {...properties} />
+      <ol className={clsx(styles.list, className)} {...props} />
     </Box>
   ),
-  code: (properties) => {
-    const inlineCode = properties.style === undefined;
+  code: (props) => {
+    const inlineCode = props.style === undefined;
     if (inlineCode) {
-      const { color, ...rest } = properties;
+      const { color, ...rest } = props;
       return <Code color="indigo" style={{ color }} {...rest} />;
     }
 
-    const { className, ...rest } = properties;
+    const { className, ...rest } = props;
     return (
       <Text asChild className={clsx(styles.code, className)} size="2">
         <code {...rest} />
       </Text>
     );
   },
-  figure: (properties) => (
+  figure: (props) => (
     <Box asChild my="5">
-      <figure {...properties} />
+      <figure {...props} />
     </Box>
   ),
-  figcaption: (properties) => (
+  figcaption: (props) => (
     <Heading asChild mb="2" mx="3" size="2">
-      <figcaption {...properties} />
+      <figcaption {...props} />
     </Heading>
   ),
-  pre: ({ tabIndex: _, children, ...properties }) => (
+  pre: ({ tabIndex: _, children, ...props }) => (
     <Card>
       <Inset>
         <ScrollArea>
-          <pre {...properties}>
+          <pre {...props}>
             {children}
             <CopyCodeButton className={styles.copyCodeButton} />
           </pre>
@@ -165,11 +165,11 @@ const components = {
       </Inset>
     </Card>
   ),
-  div: (properties) => {
-    const callout = properties.className?.includes("markdown-alert");
+  div: (props) => {
+    const callout = props.className?.includes("markdown-alert");
     if (callout) {
-      const { color, Icon } = getCalloutSeverity(properties) ?? {};
-      const message = (properties.children as unknown[]).filter((child) =>
+      const { color, Icon } = getCalloutSeverity(props) ?? {};
+      const message = (props.children as unknown[]).filter((child) =>
         isValidElement<PropsWithChildren>(child),
       )[1]?.props.children;
 
@@ -181,19 +181,16 @@ const components = {
       );
     }
 
-    return <div {...properties} />;
+    return <div {...props} />;
   },
 } satisfies MDXComponents;
 
-export interface MainContentProperties extends Omit<SectionProps, "children"> {
+export interface MainContentProps extends Omit<SectionProps, "children"> {
   article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
 }
 
-export const MainContent: FC<MainContentProperties> = ({
-  article,
-  ...properties
-}) => (
-  <Section {...properties}>
+export const MainContent: FC<MainContentProps> = ({ article, ...props }) => (
+  <Section {...props}>
     <Flex direction="column" gap="5">
       <Text color="gray">
         {dateFormatter.format(new Date(article.createdAt))}

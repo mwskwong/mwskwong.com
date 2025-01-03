@@ -19,22 +19,14 @@ import { dateFormatter } from "@/lib/utils";
 import styles from "./featured-articles.module.css";
 
 export type FeaturedArticlesProps = Omit<FlexProps, "asChild" | "children">;
-export const FeaturedArticles: FC<FeaturedArticlesProps> = async (
-  properties,
-) => {
+export const FeaturedArticles: FC<FeaturedArticlesProps> = async (props) => {
   const articles = await getArticles();
   const featuredArticles = articles
     .toSorted((a, b) => b.view - a.view)
     .slice(0, 2);
 
   return (
-    <Flex
-      asChild
-      align={{ sm: "start" }}
-      direction="column"
-      gap="8"
-      {...properties}
-    >
+    <Flex asChild align={{ sm: "start" }} direction="column" gap="8" {...props}>
       <Section>
         <Heading as="h2" size="8">
           Featured Articles

@@ -5,8 +5,8 @@ import { legalName, techFocus } from "@/constants/me";
 
 export type FooterProps = Omit<SectionProps, "asChild" | "children">;
 
-export const Footer: FC<FooterProps> = (properties) => (
-  <Section asChild {...properties}>
+export const Footer: FC<FooterProps> = (props) => (
+  <Section asChild {...props}>
     <footer>
       <Box asChild maxWidth="50ch">
         <Text as="p" color="gray" size="2">

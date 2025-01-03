@@ -15,20 +15,12 @@ import { getExperiences } from "@/lib/queries";
 import * as Timeline from "../timeline";
 
 export type RecentExperienceProps = Omit<FlexProps, "asChild" | "children">;
-export const RecentExperience: FC<RecentExperienceProps> = async (
-  properties,
-) => {
+export const RecentExperience: FC<RecentExperienceProps> = async (props) => {
   const experiences = await getExperiences();
   const recentExperiences = experiences.slice(0, 2);
 
   return (
-    <Flex
-      asChild
-      align={{ sm: "start" }}
-      direction="column"
-      gap="8"
-      {...properties}
-    >
+    <Flex asChild align={{ sm: "start" }} direction="column" gap="8" {...props}>
       <Section>
         <Heading as="h2" size="8">
           Recent Experience

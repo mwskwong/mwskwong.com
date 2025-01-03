@@ -18,7 +18,7 @@ import { getSkillSet } from "@/lib/queries";
 import { SkillCategoryIcons } from "../skill-category-icons";
 
 export type FeaturedSkillsProps = Omit<FlexProps, "asChild" | "children">;
-export const FeaturedSkills: FC<FeaturedSkillsProps> = async (properties) => {
+export const FeaturedSkills: FC<FeaturedSkillsProps> = async (props) => {
   const skillSet = await getSkillSet();
   const featuredSkillSet = skillSet
     .map(({ skills, ...category }) => ({
@@ -28,13 +28,7 @@ export const FeaturedSkills: FC<FeaturedSkillsProps> = async (properties) => {
     .filter(({ skills }) => skills.length > 0);
 
   return (
-    <Flex
-      asChild
-      align={{ sm: "start" }}
-      direction="column"
-      gap="8"
-      {...properties}
-    >
+    <Flex asChild align={{ sm: "start" }} direction="column" gap="8" {...props}>
       <Section>
         <Heading as="h2" size="8">
           Featured Skills

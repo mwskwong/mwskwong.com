@@ -16,14 +16,14 @@ import { getPersonalPortrait, getResume } from "@/lib/queries";
 import styles from "./about.module.css";
 
 export type AboutProps = Omit<FlexProps, "asChild" | "children">;
-export const About: FC<AboutProps> = async (properties) => {
+export const About: FC<AboutProps> = async (props) => {
   const [{ url: personalPortrait }, resume] = await Promise.all([
     getPersonalPortrait(),
     getResume(),
   ]);
 
   return (
-    <Flex asChild align={{ sm: "start" }} direction="column" {...properties}>
+    <Flex asChild align={{ sm: "start" }} direction="column" {...props}>
       <Section>
         <Heading as="h2" size="9">
           {personalPortrait && (

@@ -5,7 +5,7 @@ import { IconCheck, IconCopy } from "@tabler/icons-react";
 import { type FC, useEffect, useRef, useState } from "react";
 
 export type CopyCodeButtonProps = Omit<IconButtonProps, "children">;
-export const CopyCodeButton: FC<CopyCodeButtonProps> = (properties) => {
+export const CopyCodeButton: FC<CopyCodeButtonProps> = (props) => {
   const [copied, setCopied] = useState(false);
   const timeout = useRef<NodeJS.Timeout>(undefined);
 
@@ -32,7 +32,7 @@ export const CopyCodeButton: FC<CopyCodeButtonProps> = (properties) => {
           }, 1000);
         }
       }}
-      {...properties}
+      {...props}
     >
       {copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
     </IconButton>

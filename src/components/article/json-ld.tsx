@@ -23,14 +23,11 @@ import {
   getPersonalPortrait,
 } from "@/lib/queries";
 
-export interface JsonLdProperties extends ComponentProps<"script"> {
+export interface JsonLdProps extends ComponentProps<"script"> {
   article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
 }
 
-export const JsonLd: FC<JsonLdProperties> = async ({
-  article,
-  ...properties
-}) => {
+export const JsonLd: FC<JsonLdProps> = async ({ article, ...props }) => {
   const [{ url: personalPortrait }, latestJobTitle] = await Promise.all([
     getPersonalPortrait(),
     getExperiences().then((experience) => experience[0]?.jobTitle),
@@ -92,7 +89,7 @@ export const JsonLd: FC<JsonLdProperties> = async ({
         } satisfies Graph),
       }}
       type="application/ld+json"
-      {...properties}
+      {...props}
     />
   );
 };

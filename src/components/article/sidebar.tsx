@@ -28,15 +28,12 @@ import { dateFormatter } from "@/lib/utils";
 
 import styles from "./sidebar.module.css";
 
-export interface SideBarProperties
+export interface SideBarProps
   extends Omit<SectionProps, "asChild" | "children"> {
   article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
 }
 
-export const SideBar: FC<SideBarProperties> = async ({
-  article,
-  ...properties
-}) => {
+export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
   const [{ url: personalPortrait }, featuredArticles] = await Promise.all([
     getPersonalPortrait(),
     getArticles().then((articles) =>
@@ -73,7 +70,7 @@ export const SideBar: FC<SideBarProperties> = async ({
   ];
 
   return (
-    <Section asChild {...properties}>
+    <Section asChild {...props}>
       <aside>
         <Heading size="4">Posted By</Heading>
         <Card asChild mt="4" variant="ghost">

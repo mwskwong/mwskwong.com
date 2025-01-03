@@ -17,8 +17,8 @@ import { type FC } from "react";
 import styles from "./timeline.module.css";
 
 export type RootProps = FlexProps;
-export const Root: FC<RootProps> = (properties) => {
-  return <Flex direction="column" gap="8" width="100%" {...properties} />;
+export const Root: FC<RootProps> = (props) => {
+  return <Flex direction="column" gap="8" width="100%" {...props} />;
 };
 
 const dateFormatter = new Intl.DateTimeFormat("en", {
@@ -26,7 +26,7 @@ const dateFormatter = new Intl.DateTimeFormat("en", {
   year: "numeric",
 });
 
-export interface ItemProperties extends Omit<GridProps, "children"> {
+export interface ItemProps extends Omit<GridProps, "children"> {
   from?: Date;
   to?: Date;
   title?: string;
@@ -44,7 +44,7 @@ export interface ItemProperties extends Omit<GridProps, "children"> {
   titleAs?: HeadingProps["as"];
 }
 
-export const Item: FC<ItemProperties> = ({
+export const Item: FC<ItemProps> = ({
   from = new Date(),
   to,
   title,
@@ -53,14 +53,14 @@ export const Item: FC<ItemProperties> = ({
   media = [],
   tags = [],
   titleAs = "h3",
-  ...properties
+  ...props
 }) => {
   const duration = to
     ? dateFormatter.formatRange(from, to)
     : `${dateFormatter.format(from)} – Present`;
 
   return (
-    <Grid columns={{ sm: "4" }} gap={{ sm: "4" }} {...properties}>
+    <Grid columns={{ sm: "4" }} gap={{ sm: "4" }} {...props}>
       <Text as="div" className={styles.duration} color="gray" size="2">
         {duration}
       </Text>

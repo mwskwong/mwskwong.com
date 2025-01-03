@@ -12,11 +12,11 @@ import { Footer } from "@/components/footer";
 import { routes, siteUrl } from "@/constants/site-config";
 import { getArticleBySlug } from "@/lib/queries";
 
-interface ArticlePageProperties {
+interface ArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
-const ArticlePage: FC<ArticlePageProperties> = async ({ params }) => {
+const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
 
@@ -74,7 +74,7 @@ const ArticlePage: FC<ArticlePageProperties> = async ({ params }) => {
 export const generateStaticParams = () => [];
 
 export const generateMetadata = async (
-  { params }: ArticlePageProperties,
+  { params }: ArticlePageProps,
   parent: ResolvingMetadata,
 ) => {
   const { slug } = await params;
