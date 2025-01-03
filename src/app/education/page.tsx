@@ -145,11 +145,7 @@ const EducationPage = async () => {
                   return (
                     <Card key={id} asChild={Boolean(certificate)}>
                       {certificate ? (
-                        <a
-                          href={certificate}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
+                        <a href={certificate} target="_blank" rel="noreferrer">
                           {content}
                         </a>
                       ) : (

@@ -63,7 +63,7 @@ export const FeaturedSkills: FC<FeaturedSkillsProps> = async (properties) => {
                       size="3"
                     >
                       {url ? (
-                        <a href={url} rel="noopener noreferrer" target="_blank">
+                        <a href={url} rel="noreferrer" target="_blank">
                           {name}
                         </a>
                       ) : (

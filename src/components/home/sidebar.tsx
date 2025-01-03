@@ -97,7 +97,7 @@ export const Sidebar: FC<SidebarProps> = (properties) => {
               size="3"
               variant="ghost"
             >
-              <a href={href} rel="noopener noreferrer" target="_blank">
+              <a href={href} rel="noreferrer" target="_blank">
                 <Icon />
               </a>
             </IconButton>

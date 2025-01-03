@@ -109,7 +109,7 @@ const components = {
       <Link
         asChild={internal}
         href={internal ? undefined : href}
-        rel={internal ? undefined : "noopener"}
+        rel={internal ? undefined : "noreferrer"}
         style={{ color }}
         target={internal ? undefined : "_blank"}
         {...properties}

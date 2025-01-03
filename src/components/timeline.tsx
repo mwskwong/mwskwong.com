@@ -69,7 +69,7 @@ export const Item: FC<ItemProperties> = ({
           <Heading as={titleAs} size="4">
             {title}
           </Heading>
-          <Link href={organization?.url} rel="noopener" target="_blank">
+          <Link href={organization?.url} rel="noreferrer" target="_blank">
             {organization?.name}
           </Link>
           {descriptions.length > 0 && (
@@ -89,7 +89,7 @@ export const Item: FC<ItemProperties> = ({
                 <a
                   aria-label={name}
                   href={url}
-                  rel="noopener noreferrer"
+                  rel="noreferrer"
                   target="_blank"
                 >
                   {thumbnail ? (
@@ -111,7 +111,7 @@ export const Item: FC<ItemProperties> = ({
             {tags.map(({ name, url }) => (
               <Badge key={name} asChild={Boolean(url)} size="3">
                 {url ? (
-                  <a href={url} rel="noopener noreferrer" target="_blank">
+                  <a href={url} rel="noreferrer" target="_blank">
                     {name}
                   </a>
                 ) : (

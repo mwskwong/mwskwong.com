@@ -49,12 +49,7 @@ export const Footer: FC<FooterProps> = (properties) => (
       <Flex gap="4" mt="6">
         {links.map(({ Icon, href, name }) => (
           <IconButton key={href} asChild color="gray" variant="ghost">
-            <a
-              aria-label={name}
-              href={href}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <a aria-label={name} href={href} rel="noreferrer" target="_blank">
               <Icon size={20} />
             </a>
           </IconButton>

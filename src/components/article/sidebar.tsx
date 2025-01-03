@@ -144,7 +144,7 @@ export const SideBar: FC<SideBarProperties> = async ({
                 color="gray"
                 variant="ghost"
               >
-                <a href={href} rel="noopener noreferrer" target="_blank">
+                <a href={href} rel="noreferrer" target="_blank">
                   <Icon size={20} />
                 </a>
               </IconButton>

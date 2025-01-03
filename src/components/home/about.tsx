@@ -43,7 +43,7 @@ export const About: FC<AboutProps> = async (properties) => {
           {selfIntroduction}
         </Text>
         <Button asChild highContrast color="gray" mt="6" size="4">
-          <a href={resume} rel="noopener noreferrer" target="_blank">
+          <a href={resume} rel="noreferrer" target="_blank">
             Download Resume
           </a>
         </Button>

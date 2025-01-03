@@ -80,7 +80,7 @@ const ExperiencePage = async () => {
                   ({ id, name, logo, url }) =>
                     logo && (
                       <Tooltip key={id} content={name}>
-                        <a href={url} rel="noopener noreferrer" target="_blank">
+                        <a href={url} rel="noreferrer" target="_blank">
                           <Image
                             alt={name}
                             className={styles.projectLogo}
