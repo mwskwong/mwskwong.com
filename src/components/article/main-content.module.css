@@ -11,6 +11,14 @@
 }
 
 .list {
+  ol& {
+    list-style-type: decimal;
+  }
+
+  ul& {
+    list-style-type: disc;
+  }
+
   & > li {
     padding-top: var(--space-1);
     padding-bottom: var(--space-1);

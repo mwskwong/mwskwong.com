@@ -6,30 +6,217 @@
 @import '@radix-ui/themes/components.css';
 @import '@radix-ui/themes/utilities.css';
 
+/* CSS reset. Ref: https://tailwindcss.com/docs/preflight */
+
 *,
 ::before,
 ::after {
+  box-sizing: border-box;
   border-width: 0;
   border-style: solid;
 }
 
-body,
+body {
+  margin: 0;
+}
+
+hr {
+  border-top-width: 1px;
+  height: 0;
+  color: inherit;
+}
+
+abbr {
+  &:where([title]) {
+    text-decoration: underline dotted;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-size: 1em;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+table {
+  border-color: inherit;
+  border-collapse: collapse;
+  text-indent: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font-weight: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  font-family: inherit;
+  font-variation-settings: inherit;
+  font-feature-settings: inherit;
+  letter-spacing: inherit;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  appearance: button;
+  background-image: none;
+  background-color: transparent;
+}
+
+:-moz-focusring {
+  outline: auto;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+::-webkit-search-decoration {
+  appearance: none;
+}
+
+::-webkit-file-upload-button {
+  appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+summary {
+  display: list-item;
+}
+
 blockquote,
 dl,
 dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
 figure,
+p,
 pre {
   margin: 0;
 }
 
-img {
-  display: block;
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
 }
 
 ol,
-ul {
+ul,
+menu {
   margin: 0;
   padding: 0;
+  list-style: none;
+}
+
+dialog {
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+[hidden] {
+  &:where(:not([hidden='until-found'])) {
+    display: none;
+  }
 }
 
 .radix-themes {

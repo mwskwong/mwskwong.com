@@ -3,6 +3,8 @@
 }
 
 .description {
+  list-style: disc;
+
   & > li {
     padding-top: var(--space-1);
     padding-bottom: var(--space-1);
