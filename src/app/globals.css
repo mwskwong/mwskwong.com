@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 @import '@radix-ui/themes/tokens/base.css';
 @import '@radix-ui/themes/tokens/colors/indigo.css';
 @import '@radix-ui/themes/tokens/colors/slate.css';
@@ -30,30 +32,32 @@ ul {
   padding: 0;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .radix-themes {
   --default-font-family: var(--font-geist);
   --code-font-family: var(--font-geist-mono);
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
+.rt-BaseButton {
+  &:where(.rt-variant-solid) {
+    &:where(:active:not([data-state='open'])) {
+      @media (pointer: coarse) {
+        outline-style: none;
+      }
+    }
+  }
+}
+
 .rt-Container {
   padding-right: var(--space-5);
   padding-left: var(--space-5);
 }
 
-@media (pointer: coarse) {
-  /* stylelint-disable-next-line selector-class-pattern */
-  .rt-BaseButton:where(.rt-variant-solid):where(
-      :active:not([data-state='open'])
-    ) {
-    outline-style: none;
-  }
-
-  /* stylelint-disable-next-line selector-class-pattern */
-  .rt-Link:where(:any-link, button):where(
-      :active:not(:focus-visible, [data-state='open'])
-    ) {
-    outline-style: none;
+.rt-Link {
+  &:where(:any-link, button) {
+    &:where(:active:not(:focus-visible, [data-state='open'])) {
+      @media (pointer: coarse) {
+        outline-style: none;
+      }
+    }
   }
 }
