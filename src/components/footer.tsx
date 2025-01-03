@@ -41,23 +41,32 @@ export type FooterProps = Omit<SectionProps, "asChild" | "children">;
 export const Footer: FC<FooterProps> = (props) => (
   <Section asChild {...props}>
     <footer>
-      <Box asChild maxWidth="50ch">
-        <Text as="p" color="gray" size="2">
-          {techFocus}
-        </Text>
-      </Box>
-      <Flex gap="4" mt="6">
-        {links.map(({ Icon, href, name }) => (
-          <IconButton key={href} asChild color="gray" variant="ghost">
-            <a aria-label={name} href={href} rel="noreferrer" target="_blank">
-              <Icon size={20} />
-            </a>
-          </IconButton>
-        ))}
+      <Flex
+        align={{ sm: "center" }}
+        direction={{ initial: "column", sm: "row" }}
+        gap="8"
+        justify="between"
+      >
+        <Flex direction="column" gap="2">
+          <Box asChild maxWidth="50ch">
+            <Text as="p" color="gray" size="2">
+              {techFocus}
+            </Text>
+          </Box>
+          <Text as="p" color="gray" size="1">
+            Copyright © {new Date().getFullYear()} {legalName}
+          </Text>
+        </Flex>
+        <Flex gap="4">
+          {links.map(({ Icon, href, name }) => (
+            <IconButton key={href} asChild color="gray" variant="ghost">
+              <a aria-label={name} href={href} rel="noreferrer" target="_blank">
+                <Icon size={20} />
+              </a>
+            </IconButton>
+          ))}
+        </Flex>
       </Flex>
-      <Text as="p" color="gray" mt="9" size="1">
-        Copyright © {new Date().getFullYear()} {legalName}
-      </Text>
     </footer>
   </Section>
 );
