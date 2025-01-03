@@ -1,6 +1,3 @@
-import styles from "./about.module.css";
-import { selfIntroduction } from "@/constants/me";
-import { getPersonalPortrait, getResume } from "@/lib/queries";
 import {
   Box,
   Button,
@@ -12,6 +9,11 @@ import {
 } from "@radix-ui/themes";
 import Image from "next/image";
 import { type FC } from "react";
+
+import { selfIntroduction } from "@/constants/me";
+import { getPersonalPortrait, getResume } from "@/lib/queries";
+
+import styles from "./about.module.css";
 
 export type AboutProps = Omit<FlexProps, "asChild" | "children">;
 export const About: FC<AboutProps> = async (properties) => {

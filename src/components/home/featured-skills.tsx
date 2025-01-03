@@ -1,6 +1,3 @@
-import { SkillCategoryIcons } from "../skill-category-icons";
-import { routes } from "@/constants/site-config";
-import { getSkillSet } from "@/lib/queries";
 import {
   Badge,
   Box,
@@ -14,6 +11,11 @@ import {
 import { IconArrowRight } from "@tabler/icons-react";
 import Link from "next/link";
 import { type FC } from "react";
+
+import { routes } from "@/constants/site-config";
+import { getSkillSet } from "@/lib/queries";
+
+import { SkillCategoryIcons } from "../skill-category-icons";
 
 export type FeaturedSkillsProps = Omit<FlexProps, "asChild" | "children">;
 export const FeaturedSkills: FC<FeaturedSkillsProps> = async (properties) => {

@@ -1,13 +1,4 @@
 import {
-  email,
-  github,
-  legalName,
-  linkedin,
-  stackoverflow,
-  techFocus,
-} from "@/constants/me";
-import { routes } from "@/constants/site-config";
-import {
   Box,
   Flex,
   IconButton,
@@ -23,6 +14,16 @@ import {
   IconRss,
 } from "@tabler/icons-react";
 import { type FC } from "react";
+
+import {
+  email,
+  github,
+  legalName,
+  linkedin,
+  stackoverflow,
+  techFocus,
+} from "@/constants/me";
+import { routes } from "@/constants/site-config";
 
 const links = [
   { Icon: IconMail, href: `mailto:${email}`, name: "Email" },

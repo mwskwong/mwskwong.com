@@ -1,9 +1,3 @@
-import styles from "./page.module.css";
-import { Breadcrumb } from "@/components/breadcrumb";
-import { Footer } from "@/components/footer";
-import { SkillCategoryIcons } from "@/components/skill-category-icons";
-import { routes, siteUrl } from "@/constants/site-config";
-import { getSkillSet } from "@/lib/queries";
 import {
   Avatar,
   Badge,
@@ -16,6 +10,14 @@ import {
 } from "@radix-ui/themes";
 import { type Metadata } from "next";
 import { type BreadcrumbList, type Graph } from "schema-dts";
+
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import { SkillCategoryIcons } from "@/components/skill-category-icons";
+import { routes, siteUrl } from "@/constants/site-config";
+import { getSkillSet } from "@/lib/queries";
+
+import styles from "./page.module.css";
 
 const SkillsPage = async () => {
   const skillSet = await getSkillSet();

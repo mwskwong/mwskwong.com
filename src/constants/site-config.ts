@@ -1,5 +1,6 @@
-import { firstName, lastName } from "./me";
 import { type UrlObject } from "node:url";
+
+import { firstName, lastName } from "./me";
 
 export interface Route extends UrlObject {
   name: string;

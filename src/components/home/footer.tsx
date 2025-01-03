@@ -1,6 +1,7 @@
-import { legalName, techFocus } from "@/constants/me";
 import { Box, Section, type SectionProps, Text } from "@radix-ui/themes";
 import { type FC } from "react";
+
+import { legalName, techFocus } from "@/constants/me";
 
 export type FooterProps = Omit<SectionProps, "asChild" | "children">;
 

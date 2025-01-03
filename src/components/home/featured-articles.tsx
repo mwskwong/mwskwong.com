@@ -1,7 +1,3 @@
-import styles from "./featured-articles.module.css";
-import { routes } from "@/constants/site-config";
-import { getArticles } from "@/lib/queries";
-import { dateFormatter } from "@/lib/utils";
 import {
   Button,
   Card,
@@ -15,6 +11,12 @@ import { IconArrowRight } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { type FC } from "react";
+
+import { routes } from "@/constants/site-config";
+import { getArticles } from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
+
+import styles from "./featured-articles.module.css";
 
 export type FeaturedArticlesProps = Omit<FlexProps, "asChild" | "children">;
 export const FeaturedArticles: FC<FeaturedArticlesProps> = async (

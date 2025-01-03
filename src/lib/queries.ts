@@ -1,3 +1,5 @@
+import { personalPortrait, resume } from "@/constants/contentful-ids";
+
 import { contentful, prisma } from "./clients";
 import {
   type ArticleSkeleton,
@@ -10,7 +12,6 @@ import {
   type SkillSkeleton,
 } from "./contentful-types";
 import { cache, generatePdfThumbnail } from "./utils";
-import { personalPortrait, resume } from "@/constants/contentful-ids";
 
 export const getPersonalPortrait = cache(async () => {
   const asset = await contentful.getAsset(personalPortrait);

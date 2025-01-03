@@ -1,3 +1,8 @@
+import { Container, Flex, Section } from "@radix-ui/themes";
+import { type Metadata, type ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import { type FC } from "react";
+
 import { IncrementView } from "@/components/article/increment-view";
 import { JsonLd } from "@/components/article/json-ld";
 import { MainContent } from "@/components/article/main-content";
@@ -6,10 +11,6 @@ import { Breadcrumb } from "@/components/breadcrumb";
 import { Footer } from "@/components/footer";
 import { routes, siteUrl } from "@/constants/site-config";
 import { getArticleBySlug } from "@/lib/queries";
-import { Container, Flex, Section } from "@radix-ui/themes";
-import { type Metadata, type ResolvingMetadata } from "next";
-import { notFound } from "next/navigation";
-import { type FC } from "react";
 
 interface ArticlePageProperties {
   params: Promise<{ slug: string }>;

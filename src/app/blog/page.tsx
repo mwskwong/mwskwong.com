@@ -1,9 +1,3 @@
-import styles from "./page.module.css";
-import { Breadcrumb } from "@/components/breadcrumb";
-import { Footer } from "@/components/footer";
-import { containerMaxWidth, md, routes, sm } from "@/constants/site-config";
-import { getArticles } from "@/lib/queries";
-import { dateFormatter } from "@/lib/utils";
 import {
   Box,
   Card,
@@ -18,6 +12,14 @@ import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { type FC } from "react";
+
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import { containerMaxWidth, md, routes, sm } from "@/constants/site-config";
+import { getArticles } from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
+
+import styles from "./page.module.css";
 
 const BlogPage: FC = async () => {
   const articles = await getArticles();

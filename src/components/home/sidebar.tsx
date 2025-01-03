@@ -1,15 +1,3 @@
-import styles from "./sidebar.module.css";
-import {
-  email,
-  firstName,
-  github,
-  headline,
-  lastName,
-  linkedin,
-  stackoverflow,
-  techFocus,
-} from "@/constants/me";
-import { routes } from "@/constants/site-config";
 import {
   Box,
   Flex,
@@ -29,6 +17,20 @@ import {
 } from "@tabler/icons-react";
 import NextLink from "next/link";
 import { type FC } from "react";
+
+import {
+  email,
+  firstName,
+  github,
+  headline,
+  lastName,
+  linkedin,
+  stackoverflow,
+  techFocus,
+} from "@/constants/me";
+import { routes } from "@/constants/site-config";
+
+import styles from "./sidebar.module.css";
 
 const links = [
   { Icon: IconMail, href: `mailto:${email}`, name: "Email" },

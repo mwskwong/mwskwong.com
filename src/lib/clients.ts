@@ -1,6 +1,7 @@
+import "server-only";
+
 import { PrismaClient } from "@prisma/client";
 import { createClient } from "contentful";
-import "server-only";
 
 export const contentful = createClient({
   space: process.env.CONTENTFUL_SPACE_ID ?? "",

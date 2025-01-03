@@ -1,10 +1,12 @@
-import styles from "./page.module.css";
-import { Breadcrumb } from "@/components/breadcrumb";
-import { Footer } from "@/components/footer";
-import * as Timeline from "@/components/timeline";
-import { routes, siteUrl } from "@/constants/site-config";
-import { getCourseCategories, getCourses, getEducations } from "@/lib/queries";
-import { dateFormatter } from "@/lib/utils";
+import "@radix-ui/themes/tokens/colors/amber.css";
+import "@radix-ui/themes/tokens/colors/blue.css";
+import "@radix-ui/themes/tokens/colors/cyan.css";
+import "@radix-ui/themes/tokens/colors/gold.css";
+import "@radix-ui/themes/tokens/colors/jade.css";
+import "@radix-ui/themes/tokens/colors/lime.css";
+import "@radix-ui/themes/tokens/colors/ruby.css";
+import "@radix-ui/themes/tokens/colors/violet.css";
+
 import {
   Badge,
   type BadgeProps,
@@ -16,17 +18,18 @@ import {
   Section,
   Text,
 } from "@radix-ui/themes";
-import "@radix-ui/themes/tokens/colors/amber.css";
-import "@radix-ui/themes/tokens/colors/blue.css";
-import "@radix-ui/themes/tokens/colors/cyan.css";
-import "@radix-ui/themes/tokens/colors/gold.css";
-import "@radix-ui/themes/tokens/colors/jade.css";
-import "@radix-ui/themes/tokens/colors/lime.css";
-import "@radix-ui/themes/tokens/colors/ruby.css";
-import "@radix-ui/themes/tokens/colors/violet.css";
 import { type Metadata } from "next";
 import Image from "next/image";
 import { type BreadcrumbList, type Graph } from "schema-dts";
+
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import * as Timeline from "@/components/timeline";
+import { routes, siteUrl } from "@/constants/site-config";
+import { getCourseCategories, getCourses, getEducations } from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
+
+import styles from "./page.module.css";
 
 const colors = [
   "gold",

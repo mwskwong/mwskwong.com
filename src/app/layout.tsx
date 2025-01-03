@@ -1,4 +1,12 @@
 import "./globals.css";
+
+import { Theme } from "@radix-ui/themes";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { type Metadata } from "next";
+import { Geist, Geist_Mono as GeistMono } from "next/font/google";
+import { type FC, type PropsWithChildren } from "react";
+
 import {
   firstName,
   headline,
@@ -7,12 +15,6 @@ import {
 } from "@/constants/me";
 import { siteUrl } from "@/constants/site-config";
 import { getPersonalPortrait } from "@/lib/queries";
-import { Theme } from "@radix-ui/themes";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { type Metadata } from "next";
-import { Geist, Geist_Mono as GeistMono } from "next/font/google";
-import { type FC, type PropsWithChildren } from "react";
 
 const geist = Geist({
   variable: "--font-geist",

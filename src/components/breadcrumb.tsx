@@ -1,7 +1,8 @@
-import { type Route } from "@/constants/site-config";
 import { Flex, type FlexProps, Link, Text } from "@radix-ui/themes";
 import NextLink from "next/link";
 import { type FC, Fragment } from "react";
+
+import { type Route } from "@/constants/site-config";
 
 export interface BreadcrumbProperties
   extends Omit<FlexProps, "asChild" | "children"> {

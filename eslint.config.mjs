@@ -90,6 +90,7 @@ const config = tseslint.config(
           allowRegExp: false,
         },
       ],
+      "import/order": "off",
       "react-compiler/react-compiler": "error",
       "unicorn/prevent-abbreviations": [
         "error",

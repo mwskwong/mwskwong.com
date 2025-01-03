@@ -1,5 +1,6 @@
-import { siteUrl } from "@/constants/site-config";
 import { type MetadataRoute } from "next";
+
+import { siteUrl } from "@/constants/site-config";
 
 const robots = () =>
   ({

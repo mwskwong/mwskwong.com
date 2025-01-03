@@ -1,7 +1,8 @@
+import { Feed } from "feed";
+
 import { email, firstName, lastName, legalName } from "@/constants/me";
 import { routes, siteUrl } from "@/constants/site-config";
 import { getArticles } from "@/lib/queries";
-import { Feed } from "feed";
 
 const name = `${firstName} ${lastName}`;
 

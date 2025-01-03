@@ -8,6 +8,10 @@ const config = {
     "prettier-plugin-prisma",
     "prettier-plugin-css-order",
   ],
+  importOrder: ["^@/(.*)$", "^[./]"],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  importOrderSideEffects: false,
   cssDeclarationSorterKeepOverrides: false,
 };
 

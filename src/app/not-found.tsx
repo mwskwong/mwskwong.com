@@ -1,5 +1,3 @@
-import { email } from "@/constants/me";
-import { containerMaxWidth, routes } from "@/constants/site-config";
 import {
   Box,
   Button,
@@ -12,6 +10,9 @@ import {
 } from "@radix-ui/themes";
 import NextLink from "next/link";
 import { type FC } from "react";
+
+import { email } from "@/constants/me";
+import { containerMaxWidth, routes } from "@/constants/site-config";
 
 const NotFound: FC = () => (
   <Container>

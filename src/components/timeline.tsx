@@ -1,4 +1,3 @@
-import styles from "./timeline.module.css";
 import {
   Badge,
   Box,
@@ -14,6 +13,8 @@ import {
 } from "@radix-ui/themes";
 import Image, { type StaticImageData } from "next/image";
 import { type FC } from "react";
+
+import styles from "./timeline.module.css";
 
 export type RootProps = FlexProps;
 export const Root: FC<RootProps> = (properties) => {

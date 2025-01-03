@@ -1,3 +1,11 @@
+import { type ComponentProps, type FC } from "react";
+import {
+  type BlogPosting,
+  type BreadcrumbList,
+  type Graph,
+  type Person,
+} from "schema-dts";
+
 import {
   address,
   email,
@@ -14,13 +22,6 @@ import {
   getExperiences,
   getPersonalPortrait,
 } from "@/lib/queries";
-import { type ComponentProps, type FC } from "react";
-import {
-  type BlogPosting,
-  type BreadcrumbList,
-  type Graph,
-  type Person,
-} from "schema-dts";
 
 export interface JsonLdProperties extends ComponentProps<"script"> {
   article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;

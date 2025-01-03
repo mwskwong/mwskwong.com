@@ -1,3 +1,7 @@
+import { Box, Container, Flex } from "@radix-ui/themes";
+import { type FC } from "react";
+import { type BreadcrumbList, type Graph, type WebSite } from "schema-dts";
+
 import { About } from "@/components/home/about";
 import { FeaturedArticles } from "@/components/home/featured-articles";
 import { FeaturedSkills } from "@/components/home/featured-skills";
@@ -7,9 +11,6 @@ import { RecentExperience } from "@/components/home/recent-experience";
 import { Sidebar } from "@/components/home/sidebar";
 import { firstName, lastName } from "@/constants/me";
 import { routes, siteUrl } from "@/constants/site-config";
-import { Box, Container, Flex } from "@radix-ui/themes";
-import { type FC } from "react";
-import { type BreadcrumbList, type Graph, type WebSite } from "schema-dts";
 
 const Home: FC = () => {
   return (

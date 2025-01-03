@@ -1,7 +1,8 @@
 "use client";
 
-import { incrementArticleView } from "@/lib/actions";
 import { type FC, useEffect } from "react";
+
+import { incrementArticleView } from "@/lib/actions";
 
 export interface IncrViewProperties {
   id: string;

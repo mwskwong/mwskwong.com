@@ -1,12 +1,3 @@
-import styles from "./sidebar.module.css";
-import { firstName, headline, lastName } from "@/constants/me";
-import { routes, siteUrl } from "@/constants/site-config";
-import {
-  type getArticleBySlug,
-  getArticles,
-  getPersonalPortrait,
-} from "@/lib/queries";
-import { dateFormatter } from "@/lib/utils";
 import {
   Card,
   Flex,
@@ -25,6 +16,17 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { type FC } from "react";
+
+import { firstName, headline, lastName } from "@/constants/me";
+import { routes, siteUrl } from "@/constants/site-config";
+import {
+  type getArticleBySlug,
+  getArticles,
+  getPersonalPortrait,
+} from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
+
+import styles from "./sidebar.module.css";
 
 export interface SideBarProperties
   extends Omit<SectionProps, "asChild" | "children"> {

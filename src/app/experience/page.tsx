@@ -1,9 +1,3 @@
-import styles from "./page.module.css";
-import { Breadcrumb } from "@/components/breadcrumb";
-import { Footer } from "@/components/footer";
-import * as Timeline from "@/components/timeline";
-import { routes, siteUrl } from "@/constants/site-config";
-import { getContributedProjects, getExperiences } from "@/lib/queries";
 import {
   Box,
   Container,
@@ -16,6 +10,14 @@ import {
 import { type Metadata } from "next";
 import Image from "next/image";
 import { type BreadcrumbList, type Graph } from "schema-dts";
+
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import * as Timeline from "@/components/timeline";
+import { routes, siteUrl } from "@/constants/site-config";
+import { getContributedProjects, getExperiences } from "@/lib/queries";
+
+import styles from "./page.module.css";
 
 const ExperiencePage = async () => {
   const [experiences, contributedProjects] = await Promise.all([

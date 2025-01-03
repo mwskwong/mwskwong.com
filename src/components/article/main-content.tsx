@@ -1,8 +1,7 @@
-import { CopyCodeButton } from "./copy-code-button";
-import styles from "./main-content.module.css";
-import { containerMaxWidth, md } from "@/constants/site-config";
-import { type getArticleBySlug } from "@/lib/queries";
-import { dateFormatter } from "@/lib/utils";
+import "@radix-ui/themes/tokens/colors/amber.css";
+import "@radix-ui/themes/tokens/colors/blue.css";
+import "@radix-ui/themes/tokens/colors/red.css";
+
 import {
   Box,
   Card,
@@ -19,9 +18,6 @@ import {
 } from "@radix-ui/themes";
 // compound component needs to be imported from individual entry point to avoid the entire @radix-ui/themes being bundled in the client bundle
 import * as Callout from "@radix-ui/themes/components/callout";
-import "@radix-ui/themes/tokens/colors/amber.css";
-import "@radix-ui/themes/tokens/colors/blue.css";
-import "@radix-ui/themes/tokens/colors/red.css";
 import {
   IconAlertTriangle,
   IconExclamationCircle,
@@ -41,6 +37,13 @@ import {
 import { type Options, rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { remarkAlert } from "remark-github-blockquote-alert";
+
+import { containerMaxWidth, md } from "@/constants/site-config";
+import { type getArticleBySlug } from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
+
+import { CopyCodeButton } from "./copy-code-button";
+import styles from "./main-content.module.css";
 
 const getCalloutSeverity = ({ className }: HTMLAttributes<HTMLElement>) => {
   if (className?.includes("markdown-alert-note")) {
