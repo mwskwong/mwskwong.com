@@ -233,8 +233,8 @@ video {
   &:where(:any-link, button) {
     &:where(:active:not(:focus-visible, [data-state="open"])) {
       @media (pointer: coarse) {
-        outline: none;
-        box-shadow: 0 0 0 0.15em var(--accent-a4);
+        outline: 0.15em solid var(--accent-a4);
+        outline-offset: 0;
         background-color: var(--accent-a4);
       }
     }
