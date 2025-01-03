@@ -92,6 +92,15 @@ const config = tseslint.config(
         },
       ],
       "import/order": "off",
+      "react/jsx-sort-props": [
+        "warn",
+        {
+          callbacksLast: true,
+          shorthandFirst: true,
+          multiline: "last",
+          reservedFirst: true,
+        },
+      ],
       "react-compiler/react-compiler": "error",
       "unicorn/prevent-abbreviations": [
         "error",
