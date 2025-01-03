@@ -1,3 +1,9 @@
+import styles from "./page.module.css";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import { containerMaxWidth, md, routes, sm } from "@/constants/site-config";
+import { getArticles } from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
 import {
   Box,
   Card,
@@ -7,22 +13,15 @@ import {
   Heading,
   Section,
   Text,
-} from '@radix-ui/themes';
-import { type Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { type FC } from 'react';
-
-import { Breadcrumb } from '@/components/breadcrumb';
-import { Footer } from '@/components/footer';
-import { containerMaxWidth, md, routes, sm } from '@/constants/site-config';
-import { getArticles } from '@/lib/queries';
-import { dateFormatter } from '@/lib/utils';
-
-import styles from './page.module.css';
+} from "@radix-ui/themes";
+import { type Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { type FC } from "react";
 
 const BlogPage: FC = async () => {
   const articles = await getArticles();
+  // eslint-disable-next-line unicorn/no-array-reduce
   const featuredArticle = articles.reduce((highestViewedArticle, article) =>
     article.view > highestViewedArticle.view ? article : highestViewedArticle,
   );
@@ -35,9 +34,9 @@ const BlogPage: FC = async () => {
           <Heading mt="2" size="9">
             Blog
           </Heading>
-          <Card asChild mt="8" size={{ sm: '2', md: '3' }} variant="ghost">
+          <Card asChild mt="8" size={{ sm: "2", md: "3" }} variant="ghost">
             <Link href={`${routes.blog.pathname}/${featuredArticle.slug}`}>
-              <Grid asChild columns={{ sm: '2' }} gapX="5" gapY="4">
+              <Grid asChild columns={{ sm: "2" }} gapX="5" gapY="4">
                 <article>
                   <div>
                     <Box
@@ -55,23 +54,23 @@ const BlogPage: FC = async () => {
                           sizes={[
                             `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 2}px`,
                             `(min-width: ${sm}px) 50vw`,
-                            '100vw',
-                          ].join(',')}
+                            "100vw",
+                          ].join(",")}
                         />
-                      ) : null}
+                      ) : undefined}
                     </Box>
                   </div>
-                  <Flex direction="column" gap={{ initial: '2', sm: '3' }}>
-                    <Heading size={{ initial: '4', xs: '6', md: '8' }}>
+                  <Flex direction="column" gap={{ initial: "2", sm: "3" }}>
+                    <Heading size={{ initial: "4", xs: "6", md: "8" }}>
                       {featuredArticle.title}
                     </Heading>
                     <Text
                       className={styles.description}
-                      size={{ initial: '3', md: '4' }}
+                      size={{ initial: "3", md: "4" }}
                     >
                       {featuredArticle.description}
                     </Text>
-                    <Text as="p" color="gray" size={{ initial: '2', md: '3' }}>
+                    <Text as="p" color="gray" size={{ initial: "2", md: "3" }}>
                       {dateFormatter.format(
                         new Date(featuredArticle.createdAt),
                       )}
@@ -82,9 +81,9 @@ const BlogPage: FC = async () => {
             </Link>
           </Card>
           <Grid
-            columns={{ xs: '2', md: '3' }}
+            columns={{ xs: "2", md: "3" }}
             gap="5"
-            mt={{ initial: '5', xs: '8' }}
+            mt={{ initial: "5", xs: "8" }}
           >
             {articles
               .filter(({ id }) => id !== featuredArticle.id)
@@ -98,7 +97,7 @@ const BlogPage: FC = async () => {
                           overflow="hidden"
                           position="relative"
                           style={{
-                            boxShadow: 'var(--base-card-surface-box-shadow)',
+                            boxShadow: "var(--base-card-surface-box-shadow)",
                           }}
                         >
                           {coverPhoto ? (
@@ -111,10 +110,10 @@ const BlogPage: FC = async () => {
                                 `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 3}px`,
                                 `(min-width: ${md}px) 33vw`,
                                 `(min-width: ${sm}px) 50vw`,
-                                '100vw',
-                              ].join(',')}
+                                "100vw",
+                              ].join(",")}
                             />
-                          ) : null}
+                          ) : undefined}
                         </Box>
                         <Flex direction="column" gap="2" mt="4">
                           <Heading size="4">{title}</Heading>
@@ -141,7 +140,7 @@ const BlogPage: FC = async () => {
 export const metadata = {
   title: routes.blog.name,
   alternates: {
-    types: { 'application/rss+xml': routes.blogRssFeed.pathname },
+    types: { "application/rss+xml": routes.blogRssFeed.pathname },
   },
 } satisfies Metadata;
 

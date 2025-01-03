@@ -1,6 +1,6 @@
-'use server';
+"use server";
 
-import { prisma } from './clients';
+import { prisma } from "./clients";
 
 export const incrementArticleView = async (id: string) =>
   await prisma.articleMetadata.upsert({

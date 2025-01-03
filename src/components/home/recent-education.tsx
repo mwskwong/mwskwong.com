@@ -1,25 +1,30 @@
+import * as Timeline from "../timeline";
+import { routes } from "@/constants/site-config";
+import { getEducations } from "@/lib/queries";
 import {
   Button,
   Flex,
   type FlexProps,
   Heading,
   Section,
-} from '@radix-ui/themes';
-import { IconArrowRight } from '@tabler/icons-react';
-import Link from 'next/link';
-import { type FC } from 'react';
+} from "@radix-ui/themes";
+import { IconArrowRight } from "@tabler/icons-react";
+import Link from "next/link";
+import { type FC } from "react";
 
-import { routes } from '@/constants/site-config';
-import { getEducations } from '@/lib/queries';
-
-import * as Timeline from '../timeline';
-
-export type RecentEducationProps = Omit<FlexProps, 'asChild' | 'children'>;
-export const RecentEducation: FC<RecentEducationProps> = async (props) => {
-  const recentEducations = (await getEducations()).slice(0, 2);
+export type RecentEducationProps = Omit<FlexProps, "asChild" | "children">;
+export const RecentEducation: FC<RecentEducationProps> = async (properties) => {
+  const educations = await getEducations();
+  const recentEducations = educations.slice(0, 2);
 
   return (
-    <Flex asChild align={{ sm: 'start' }} direction="column" gap="8" {...props}>
+    <Flex
+      asChild
+      align={{ sm: "start" }}
+      direction="column"
+      gap="8"
+      {...properties}
+    >
       <Section>
         <Heading as="h2" size="8">
           Recent Education
@@ -37,13 +42,13 @@ export const RecentEducation: FC<RecentEducationProps> = async (props) => {
             }) => (
               <Timeline.Item
                 key={id}
-                columns={{ sm: '4', md: '' }}
+                columns={{ sm: "4", md: "" }}
                 from={new Date(from)}
-                gap={{ sm: '4', md: '' }}
+                gap={{ sm: "4", md: "" }}
                 media={supportingDocuments}
                 organization={school}
                 title={program}
-                to={to ? new Date(to) : undefined}
+                to={to && new Date(to)}
                 {...education}
               />
             ),

@@ -1,6 +1,5 @@
-import { type UrlObject } from 'node:url';
-
-import { firstName, lastName } from './me';
+import { firstName, lastName } from "./me";
+import { type UrlObject } from "node:url";
 
 export interface Route extends UrlObject {
   name: string;
@@ -8,17 +7,17 @@ export interface Route extends UrlObject {
 }
 
 export const routes = {
-  home: { name: `${firstName} ${lastName}`, pathname: '/' },
-  experience: { name: 'Experience', pathname: '/experience' },
-  education: { name: 'Education', pathname: '/education' },
-  skills: { name: 'Skills', pathname: '/skills' },
-  blog: { name: 'Blog', pathname: '/blog' },
-  blogRssFeed: { name: 'Blog RSS Feed', pathname: '/blog/rss.xml' },
+  home: { name: `${firstName} ${lastName}`, pathname: "/" },
+  experience: { name: "Experience", pathname: "/experience" },
+  education: { name: "Education", pathname: "/education" },
+  skills: { name: "Skills", pathname: "/skills" },
+  blog: { name: "Blog", pathname: "/blog" },
+  blogRssFeed: { name: "Blog RSS Feed", pathname: "/blog/rss.xml" },
 } satisfies Record<string, Route>;
 
 const getSiteUrl = () => {
   if (
-    process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' &&
+    process.env.NEXT_PUBLIC_VERCEL_ENV === "production" &&
     process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
   ) {
     return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;

@@ -1,7 +1,6 @@
-import { type MetadataRoute } from 'next';
-
-import { routes, siteUrl } from '@/constants/site-config';
-import { getArticles } from '@/lib/queries';
+import { routes, siteUrl } from "@/constants/site-config";
+import { getArticles } from "@/lib/queries";
+import { type MetadataRoute } from "next";
 
 const sitemap = async () => {
   const articles = await getArticles();

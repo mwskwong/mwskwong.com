@@ -1,3 +1,6 @@
+import styles from "./about.module.css";
+import { selfIntroduction } from "@/constants/me";
+import { getPersonalPortrait, getResume } from "@/lib/queries";
 import {
   Box,
   Button,
@@ -6,27 +9,22 @@ import {
   Heading,
   Section,
   Text,
-} from '@radix-ui/themes';
-import Image from 'next/image';
-import { type FC } from 'react';
+} from "@radix-ui/themes";
+import Image from "next/image";
+import { type FC } from "react";
 
-import { selfIntroduction } from '@/constants/me';
-import { getPersonalPortrait, getResume } from '@/lib/queries';
-
-import styles from './about.module.css';
-
-export type AboutProps = Omit<FlexProps, 'asChild' | 'children'>;
-export const About: FC<AboutProps> = async (props) => {
+export type AboutProps = Omit<FlexProps, "asChild" | "children">;
+export const About: FC<AboutProps> = async (properties) => {
   const [{ url: personalPortrait }, resume] = await Promise.all([
     getPersonalPortrait(),
     getResume(),
   ]);
 
   return (
-    <Flex asChild align={{ sm: 'start' }} direction="column" {...props}>
+    <Flex asChild align={{ sm: "start" }} direction="column" {...properties}>
       <Section>
         <Heading as="h2" size="9">
-          {personalPortrait ? (
+          {personalPortrait && (
             <Box asChild display="inline-block" mr="4">
               <Image
                 alt="personal portrait"
@@ -36,14 +34,14 @@ export const About: FC<AboutProps> = async (props) => {
                 width={60}
               />
             </Box>
-          ) : null}
+          )}
           I develop <Text data-accent-color="">full stack web apps</Text>
         </Heading>
         <Text as="p" mt="5">
           {selfIntroduction}
         </Text>
         <Button asChild highContrast color="gray" mt="6" size="4">
-          <a href={resume} rel="noopener" target="_blank">
+          <a href={resume} rel="noopener noreferrer" target="_blank">
             Download Resume
           </a>
         </Button>

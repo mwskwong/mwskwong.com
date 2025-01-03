@@ -1,10 +1,10 @@
 /* stylelint-disable selector-class-pattern */
 
-@import '@radix-ui/themes/tokens/base.css';
-@import '@radix-ui/themes/tokens/colors/indigo.css';
-@import '@radix-ui/themes/tokens/colors/slate.css';
-@import '@radix-ui/themes/components.css';
-@import '@radix-ui/themes/utilities.css';
+@import "@radix-ui/themes/tokens/base.css";
+@import "@radix-ui/themes/tokens/colors/indigo.css";
+@import "@radix-ui/themes/tokens/colors/slate.css";
+@import "@radix-ui/themes/components.css";
+@import "@radix-ui/themes/utilities.css";
 
 /* CSS reset. Ref: https://tailwindcss.com/docs/preflight */
 
@@ -108,9 +108,9 @@ select {
 }
 
 button,
-input:where([type='button']),
-input:where([type='reset']),
-input:where([type='submit']) {
+input:where([type="button"]),
+input:where([type="reset"]),
+input:where([type="submit"]) {
   appearance: button;
   background-image: none;
   background-color: transparent;
@@ -133,7 +133,7 @@ progress {
   height: auto;
 }
 
-[type='search'] {
+[type="search"] {
   appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -214,7 +214,7 @@ video {
 }
 
 [hidden] {
-  &:where(:not([hidden='until-found'])) {
+  &:where(:not([hidden="until-found"])) {
     display: none;
   }
 }
@@ -226,7 +226,7 @@ video {
 
 .rt-BaseButton {
   &:where(.rt-variant-solid) {
-    &:where(:active:not([data-state='open'])) {
+    &:where(:active:not([data-state="open"])) {
       @media (pointer: coarse) {
         outline-style: none;
       }
@@ -241,7 +241,7 @@ video {
 
 .rt-Link {
   &:where(:any-link, button) {
-    &:where(:active:not(:focus-visible, [data-state='open'])) {
+    &:where(:active:not(:focus-visible, [data-state="open"])) {
       @media (pointer: coarse) {
         outline-style: none;
       }

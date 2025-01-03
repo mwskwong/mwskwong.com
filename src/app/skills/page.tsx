@@ -1,3 +1,9 @@
+import styles from "./page.module.css";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import { SkillCategoryIcons } from "@/components/skill-category-icons";
+import { routes, siteUrl } from "@/constants/site-config";
+import { getSkillSet } from "@/lib/queries";
 import {
   Avatar,
   Badge,
@@ -7,17 +13,9 @@ import {
   Flex,
   Heading,
   Section,
-} from '@radix-ui/themes';
-import { type Metadata } from 'next';
-import { type BreadcrumbList, type Graph } from 'schema-dts';
-
-import { Breadcrumb } from '@/components/breadcrumb';
-import { Footer } from '@/components/footer';
-import { SkillCategoryIcons } from '@/components/skill-category-icons';
-import { routes, siteUrl } from '@/constants/site-config';
-import { getSkillSet } from '@/lib/queries';
-
-import styles from './page.module.css';
+} from "@radix-ui/themes";
+import { type Metadata } from "next";
+import { type BreadcrumbList, type Graph } from "schema-dts";
 
 const SkillsPage = async () => {
   const skillSet = await getSkillSet();
@@ -38,7 +36,7 @@ const SkillsPage = async () => {
                   <Card key={id}>
                     <Flex asChild align="center" gap="3">
                       <Heading as="h2" size="4">
-                        {Icon ? <Avatar fallback={<Icon />} size="4" /> : null}
+                        {Icon && <Avatar fallback={<Icon />} size="4" />}
                         {name}
                       </Heading>
                     </Flex>
@@ -51,7 +49,11 @@ const SkillsPage = async () => {
                           size="3"
                         >
                           {url ? (
-                            <a href={url} rel="noopener" target="_blank">
+                            <a
+                              href={url}
+                              rel="noopener noreferrer"
+                              target="_blank"
+                            >
                               {name}
                             </a>
                           ) : (
@@ -60,9 +62,9 @@ const SkillsPage = async () => {
                         </Badge>
                       ))}
                     </Flex>
-                    {Icon ? (
+                    {Icon && (
                       <Icon className={styles.backgroundIcon} size={200} />
-                    ) : null}
+                    )}
                   </Card>
                 );
               })}
@@ -74,24 +76,24 @@ const SkillsPage = async () => {
       <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@graph': [
+            "@context": "https://schema.org",
+            "@graph": [
               {
-                '@type': 'BreadcrumbList',
+                "@type": "BreadcrumbList",
                 itemListElement: [
                   {
-                    '@type': 'ListItem',
+                    "@type": "ListItem",
                     name: routes.home.name,
                     item: siteUrl,
                     position: 1,
                   },
                   {
-                    '@type': 'ListItem',
+                    "@type": "ListItem",
                     name: routes.skills.name,
                     position: 2,
                   },
                 ],
-                name: 'Breadcrumbs',
+                name: "Breadcrumbs",
               } satisfies BreadcrumbList,
             ],
           } satisfies Graph),

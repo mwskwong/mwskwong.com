@@ -1,16 +1,18 @@
-import { Flex, type FlexProps, Link, Text } from '@radix-ui/themes';
-import NextLink from 'next/link';
-import { type FC, Fragment } from 'react';
+import { type Route } from "@/constants/site-config";
+import { Flex, type FlexProps, Link, Text } from "@radix-ui/themes";
+import NextLink from "next/link";
+import { type FC, Fragment } from "react";
 
-import { type Route } from '@/constants/site-config';
-
-export interface BreadcrumbProps
-  extends Omit<FlexProps, 'asChild' | 'children'> {
+export interface BreadcrumbProperties
+  extends Omit<FlexProps, "asChild" | "children"> {
   routes: Route[];
 }
 
-export const Breadcrumb: FC<BreadcrumbProps> = ({ routes, ...props }) => (
-  <Flex asChild align="center" gap="2" wrap="wrap" {...props}>
+export const Breadcrumb: FC<BreadcrumbProperties> = ({
+  routes,
+  ...properties
+}) => (
+  <Flex asChild align="center" gap="2" wrap="wrap" {...properties}>
     <ul>
       {routes.map(({ name, pathname }, index) => (
         <Fragment key={name}>

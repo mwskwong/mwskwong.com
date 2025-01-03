@@ -1,26 +1,25 @@
-import { Box, Container, Flex } from '@radix-ui/themes';
-import { type FC } from 'react';
-import { type BreadcrumbList, type Graph, type WebSite } from 'schema-dts';
-
-import { About } from '@/components/home/about';
-import { FeaturedArticles } from '@/components/home/featured-articles';
-import { FeaturedSkills } from '@/components/home/featured-skills';
-import { Footer } from '@/components/home/footer';
-import { RecentEducation } from '@/components/home/recent-education';
-import { RecentExperience } from '@/components/home/recent-experience';
-import { Sidebar } from '@/components/home/sidebar';
-import { firstName, lastName } from '@/constants/me';
-import { routes, siteUrl } from '@/constants/site-config';
+import { About } from "@/components/home/about";
+import { FeaturedArticles } from "@/components/home/featured-articles";
+import { FeaturedSkills } from "@/components/home/featured-skills";
+import { Footer } from "@/components/home/footer";
+import { RecentEducation } from "@/components/home/recent-education";
+import { RecentExperience } from "@/components/home/recent-experience";
+import { Sidebar } from "@/components/home/sidebar";
+import { firstName, lastName } from "@/constants/me";
+import { routes, siteUrl } from "@/constants/site-config";
+import { Box, Container, Flex } from "@radix-ui/themes";
+import { type FC } from "react";
+import { type BreadcrumbList, type Graph, type WebSite } from "schema-dts";
 
 const Home: FC = () => {
   return (
     <>
       <Container>
-        <Flex direction={{ initial: 'column', md: 'row' }} gapX="160px">
+        <Flex direction={{ initial: "column", md: "row" }} gapX="160px">
           <Sidebar
-            position={{ md: 'sticky' }}
+            position={{ md: "sticky" }}
             top="0"
-            width={{ md: '350px' }}
+            width={{ md: "350px" }}
           />
           <Box asChild flexBasis="1" flexGrow="1">
             <main>
@@ -37,24 +36,24 @@ const Home: FC = () => {
       <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@graph': [
+            "@context": "https://schema.org",
+            "@graph": [
               {
-                '@type': 'WebSite',
+                "@type": "WebSite",
                 name: `${firstName} ${lastName}`,
-                alternateName: ['mwskwong', 'MK'],
+                alternateName: ["mwskwong", "MK"],
                 url: siteUrl,
               } satisfies WebSite,
               {
-                '@type': 'BreadcrumbList',
+                "@type": "BreadcrumbList",
                 itemListElement: [
                   {
-                    '@type': 'ListItem',
+                    "@type": "ListItem",
                     name: routes.home.name,
                     position: 1,
                   },
                 ],
-                name: 'Breadcrumbs',
+                name: "Breadcrumbs",
               } satisfies BreadcrumbList,
             ],
           } satisfies Graph),

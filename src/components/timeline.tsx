@@ -1,3 +1,4 @@
+import styles from "./timeline.module.css";
 import {
   Badge,
   Box,
@@ -10,23 +11,21 @@ import {
   type HeadingProps,
   Link,
   Text,
-} from '@radix-ui/themes';
-import Image, { type StaticImageData } from 'next/image';
-import { type FC } from 'react';
-
-import styles from './timeline.module.css';
+} from "@radix-ui/themes";
+import Image, { type StaticImageData } from "next/image";
+import { type FC } from "react";
 
 export type RootProps = FlexProps;
-export const Root: FC<RootProps> = (props) => {
-  return <Flex direction="column" gap="8" width="100%" {...props} />;
+export const Root: FC<RootProps> = (properties) => {
+  return <Flex direction="column" gap="8" width="100%" {...properties} />;
 };
 
-const dateFormatter = new Intl.DateTimeFormat('en', {
-  month: 'short',
-  year: 'numeric',
+const dateFormatter = new Intl.DateTimeFormat("en", {
+  month: "short",
+  year: "numeric",
 });
 
-export interface ItemProps extends Omit<GridProps, 'children'> {
+export interface ItemProperties extends Omit<GridProps, "children"> {
   from?: Date;
   to?: Date;
   title?: string;
@@ -41,10 +40,10 @@ export interface ItemProps extends Omit<GridProps, 'children'> {
     thumbnail?: string | StaticImageData;
   }[];
   tags?: { name: string; url?: string }[];
-  titleAs?: HeadingProps['as'];
+  titleAs?: HeadingProps["as"];
 }
 
-export const Item: FC<ItemProps> = ({
+export const Item: FC<ItemProperties> = ({
   from = new Date(),
   to,
   title,
@@ -52,19 +51,19 @@ export const Item: FC<ItemProps> = ({
   descriptions = [],
   media = [],
   tags = [],
-  titleAs = 'h3',
-  ...props
+  titleAs = "h3",
+  ...properties
 }) => {
   const duration = to
     ? dateFormatter.formatRange(from, to)
     : `${dateFormatter.format(from)} – Present`;
 
   return (
-    <Grid columns={{ sm: '4' }} gap={{ sm: '4' }} {...props}>
+    <Grid columns={{ sm: "4" }} gap={{ sm: "4" }} {...properties}>
       <Text as="div" className={styles.duration} color="gray" size="2">
         {duration}
       </Text>
-      <Flex direction="column" gap="4" gridColumn={{ sm: 'span 3' }}>
+      <Flex direction="column" gap="4" gridColumn={{ sm: "span 3" }}>
         <Flex align="start" direction="column" gap="2">
           <Heading as={titleAs} size="4">
             {title}
@@ -84,9 +83,14 @@ export const Item: FC<ItemProps> = ({
         </Flex>
         {media.length > 0 && (
           <Flex gap="3" wrap="wrap">
-            {media.map(({ name = '', url, thumbnail }) => (
+            {media.map(({ name = "", url, thumbnail }) => (
               <Card key={name} asChild variant="ghost">
-                <a aria-label={name} href={url} rel="noopener" target="_blank">
+                <a
+                  aria-label={name}
+                  href={url}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   {thumbnail ? (
                     <Image
                       alt={name}
@@ -95,7 +99,7 @@ export const Item: FC<ItemProps> = ({
                       src={thumbnail}
                       width={16 * 12}
                     />
-                  ) : null}
+                  ) : undefined}
                 </a>
               </Card>
             ))}
@@ -106,7 +110,7 @@ export const Item: FC<ItemProps> = ({
             {tags.map(({ name, url }) => (
               <Badge key={name} asChild={Boolean(url)} size="3">
                 {url ? (
-                  <a href={url} rel="noopener" target="_blank">
+                  <a href={url} rel="noopener noreferrer" target="_blank">
                     {name}
                   </a>
                 ) : (

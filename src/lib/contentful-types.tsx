@@ -1,7 +1,7 @@
-import { type EntryFieldTypes } from 'contentful';
+import { type EntryFieldTypes } from "contentful";
 
 export interface SkillSkeleton {
-  contentTypeId: 'skill';
+  contentTypeId: "skill";
   fields: {
     name: EntryFieldTypes.Symbol;
     category?: EntryFieldTypes.EntryLink<SkillCategorySkeleton>;
@@ -11,7 +11,7 @@ export interface SkillSkeleton {
 }
 
 export interface SkillCategorySkeleton {
-  contentTypeId: 'skillCategory';
+  contentTypeId: "skillCategory";
   fields: {
     name: EntryFieldTypes.Symbol;
     proficiency?: EntryFieldTypes.Integer;
@@ -19,10 +19,10 @@ export interface SkillCategorySkeleton {
 }
 
 export interface ProjectSkeleton {
-  contentTypeId: 'project';
+  contentTypeId: "project";
   fields: {
     name: EntryFieldTypes.Symbol;
-    type: EntryFieldTypes.Symbol<'Library' | 'Platform' | 'Website'>;
+    type: EntryFieldTypes.Symbol<"Library" | "Platform" | "Website">;
     url: EntryFieldTypes.Symbol;
     thumbnail?: EntryFieldTypes.AssetLink;
     logo?: EntryFieldTypes.AssetLink;
@@ -30,7 +30,7 @@ export interface ProjectSkeleton {
 }
 
 export interface ExperienceSkeleton {
-  contentTypeId: 'experience';
+  contentTypeId: "experience";
   fields: {
     from: EntryFieldTypes.Date;
     to?: EntryFieldTypes.Date;
@@ -46,7 +46,7 @@ export interface ExperienceSkeleton {
 }
 
 export interface EducationSkeleton {
-  contentTypeId: 'education';
+  contentTypeId: "education";
   fields: {
     from: EntryFieldTypes.Date;
     to?: EntryFieldTypes.Date;
@@ -58,7 +58,7 @@ export interface EducationSkeleton {
 }
 
 export interface OrganizationSkeleton {
-  contentTypeId: 'organization';
+  contentTypeId: "organization";
   fields: {
     name: EntryFieldTypes.Symbol;
     url?: EntryFieldTypes.Symbol;
@@ -67,7 +67,7 @@ export interface OrganizationSkeleton {
 }
 
 export interface ArticleSkeleton {
-  contentTypeId: 'blog';
+  contentTypeId: "blog";
   fields: {
     coverPhoto: EntryFieldTypes.AssetLink;
     title: EntryFieldTypes.Symbol;
@@ -77,17 +77,17 @@ export interface ArticleSkeleton {
   };
 }
 export type CourseCategory =
-  | 'Database'
-  | 'Desktop Virtualization'
-  | 'Development'
-  | 'DevOps'
-  | 'Marketing'
-  | 'Operating System'
-  | 'Project Management'
-  | 'Security';
+  | "Database"
+  | "Desktop Virtualization"
+  | "Development"
+  | "DevOps"
+  | "Marketing"
+  | "Operating System"
+  | "Project Management"
+  | "Security";
 
 export interface CourseSkeleton {
-  contentTypeId: 'course';
+  contentTypeId: "course";
   fields: {
     name: EntryFieldTypes.Symbol;
     institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;

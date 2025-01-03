@@ -1,12 +1,10 @@
-import '@radix-ui/themes/tokens/colors/gold.css';
-import '@radix-ui/themes/tokens/colors/amber.css';
-import '@radix-ui/themes/tokens/colors/ruby.css';
-import '@radix-ui/themes/tokens/colors/violet.css';
-import '@radix-ui/themes/tokens/colors/blue.css';
-import '@radix-ui/themes/tokens/colors/cyan.css';
-import '@radix-ui/themes/tokens/colors/jade.css';
-import '@radix-ui/themes/tokens/colors/lime.css';
-
+import styles from "./page.module.css";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import * as Timeline from "@/components/timeline";
+import { routes, siteUrl } from "@/constants/site-config";
+import { getCourseCategories, getCourses, getEducations } from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
 import {
   Badge,
   type BadgeProps,
@@ -17,31 +15,30 @@ import {
   Heading,
   Section,
   Text,
-} from '@radix-ui/themes';
-import { type Metadata } from 'next';
-import Image from 'next/image';
-import { type BreadcrumbList, type Graph } from 'schema-dts';
-
-import { Breadcrumb } from '@/components/breadcrumb';
-import { Footer } from '@/components/footer';
-import * as Timeline from '@/components/timeline';
-import { routes, siteUrl } from '@/constants/site-config';
-import { getCourseCategories, getCourses, getEducations } from '@/lib/queries';
-import { dateFormatter } from '@/lib/utils';
-
-import styles from './page.module.css';
+} from "@radix-ui/themes";
+import "@radix-ui/themes/tokens/colors/amber.css";
+import "@radix-ui/themes/tokens/colors/blue.css";
+import "@radix-ui/themes/tokens/colors/cyan.css";
+import "@radix-ui/themes/tokens/colors/gold.css";
+import "@radix-ui/themes/tokens/colors/jade.css";
+import "@radix-ui/themes/tokens/colors/lime.css";
+import "@radix-ui/themes/tokens/colors/ruby.css";
+import "@radix-ui/themes/tokens/colors/violet.css";
+import { type Metadata } from "next";
+import Image from "next/image";
+import { type BreadcrumbList, type Graph } from "schema-dts";
 
 const colors = [
-  'gold',
-  'amber',
-  'ruby',
-  'violet',
-  'blue',
-  'cyan',
-  'jade',
-  'lime',
-  'gray',
-] as const satisfies BadgeProps['color'][];
+  "gold",
+  "amber",
+  "ruby",
+  "violet",
+  "blue",
+  "cyan",
+  "jade",
+  "lime",
+  "gray",
+] as const satisfies BadgeProps["color"][];
 
 const EducationPage = async () => {
   const [educations, courseCategories = [], courses] = await Promise.all([
@@ -50,14 +47,11 @@ const EducationPage = async () => {
     getCourses(),
   ]);
 
-  const courseCategoryColors = courseCategories.reduce<
-    Record<string, (typeof colors)[number]>
-  >(
-    (acc, category, index) => ({
-      ...acc,
-      [category]: colors[index] ?? 'gray',
-    }),
-    {},
+  const courseCategoryColors = Object.fromEntries(
+    courseCategories.map((category, index) => [
+      category,
+      colors[index] ?? "gray",
+    ]),
   );
 
   return (
@@ -98,7 +92,7 @@ const EducationPage = async () => {
             <Heading as="h2" size="8">
               Self-studies
             </Heading>
-            <Grid columns={{ sm: '2', md: '3' }} gap="5" mt="8">
+            <Grid columns={{ sm: "2", md: "3" }} gap="5" mt="8">
               {courses.map(
                 ({
                   id,
@@ -110,7 +104,7 @@ const EducationPage = async () => {
                 }) => {
                   const content = (
                     <Flex direction="column" height="100%">
-                      {institution?.logo ? (
+                      {institution?.logo && (
                         <Flex align="center" justify="between">
                           <Image
                             alt={institution.name}
@@ -121,15 +115,15 @@ const EducationPage = async () => {
                           />
                           <Badge color="gray">{institution.name}</Badge>
                         </Flex>
-                      ) : null}
+                      )}
                       <Heading as="h3" mt="4" size="4">
                         {name}
                       </Heading>
                       <Text as="p" color="gray" mt="2" size="2">
-                        Completed on{' '}
+                        Completed on{" "}
                         {dateFormatter.format(new Date(completedOn))}
                       </Text>
-                      {categories ? (
+                      {categories && (
                         <Flex gap="3" mt="auto" pt="4">
                           {categories.map((category) => (
                             <Badge
@@ -141,14 +135,18 @@ const EducationPage = async () => {
                             </Badge>
                           ))}
                         </Flex>
-                      ) : null}
+                      )}
                     </Flex>
                   );
 
                   return (
                     <Card key={id} asChild={Boolean(certificate)}>
                       {certificate ? (
-                        <a href={certificate} rel="noopener" target="_blank">
+                        <a
+                          href={certificate}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
                           {content}
                         </a>
                       ) : (
@@ -166,24 +164,24 @@ const EducationPage = async () => {
       <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@graph': [
+            "@context": "https://schema.org",
+            "@graph": [
               {
-                '@type': 'BreadcrumbList',
+                "@type": "BreadcrumbList",
                 itemListElement: [
                   {
-                    '@type': 'ListItem',
+                    "@type": "ListItem",
                     name: routes.home.name,
                     item: siteUrl,
                     position: 1,
                   },
                   {
-                    '@type': 'ListItem',
+                    "@type": "ListItem",
                     name: routes.education.name,
                     position: 2,
                   },
                 ],
-                name: 'Breadcrumbs',
+                name: "Breadcrumbs",
               } satisfies BreadcrumbList,
             ],
           } satisfies Graph),

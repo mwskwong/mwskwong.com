@@ -19,7 +19,7 @@ Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see 
       - Environment ID naming: `canary_YYYY-MM-DDTHH.mm.ss.SSSZ`
 
         ```js
-        `canary_${new Date().toISOString().replaceAll(':', '.')}`;
+        `canary_${new Date().toISOString().replaceAll(":", ".")}`;
         ```
 
       - Cloned from: `development` environment
@@ -41,7 +41,7 @@ Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see 
       - Environment ID naming: `canary_YYYY-MM-DDTHH.mm.ss.SSSZ`
 
         ```js
-        `canary_${new Date().toISOString().replaceAll(':', '.')}`;
+        `canary_${new Date().toISOString().replaceAll(":", ".")}`;
         ```
 
       - Cloned from: `development` environment

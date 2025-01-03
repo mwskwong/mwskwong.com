@@ -1,4 +1,16 @@
 import {
+  backend,
+  cms,
+  database,
+  devOps,
+  frontend,
+  machineLearning,
+  mobile,
+  monitoring,
+  qa,
+  toolsAndPlatforms,
+} from "@/constants/contentful-ids";
+import {
   type Icon,
   IconActivity,
   IconBrain,
@@ -10,20 +22,7 @@ import {
   IconSettings,
   IconTestPipe,
   IconTools,
-} from '@tabler/icons-react';
-
-import {
-  backend,
-  cms,
-  database,
-  devOps,
-  frontend,
-  machineLearning,
-  mobile,
-  monitoring,
-  qa,
-  toolsAndPlatforms,
-} from '@/constants/contentful-ids';
+} from "@tabler/icons-react";
 
 export const SkillCategoryIcons = {
   [backend]: IconServer,

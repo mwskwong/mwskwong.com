@@ -1,3 +1,9 @@
+import styles from "./page.module.css";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import * as Timeline from "@/components/timeline";
+import { routes, siteUrl } from "@/constants/site-config";
+import { getContributedProjects, getExperiences } from "@/lib/queries";
 import {
   Box,
   Container,
@@ -6,18 +12,10 @@ import {
   Section,
   Text,
   Tooltip,
-} from '@radix-ui/themes';
-import { type Metadata } from 'next';
-import Image from 'next/image';
-import { type BreadcrumbList, type Graph } from 'schema-dts';
-
-import { Breadcrumb } from '@/components/breadcrumb';
-import { Footer } from '@/components/footer';
-import * as Timeline from '@/components/timeline';
-import { routes, siteUrl } from '@/constants/site-config';
-import { getContributedProjects, getExperiences } from '@/lib/queries';
-
-import styles from './page.module.css';
+} from "@radix-ui/themes";
+import { type Metadata } from "next";
+import Image from "next/image";
+import { type BreadcrumbList, type Graph } from "schema-dts";
 
 const ExperiencePage = async () => {
   const [experiences, contributedProjects] = await Promise.all([
@@ -80,7 +78,7 @@ const ExperiencePage = async () => {
                   ({ id, name, logo, url }) =>
                     logo && (
                       <Tooltip key={id} content={name}>
-                        <a href={url} rel="noopener" target="_blank">
+                        <a href={url} rel="noopener noreferrer" target="_blank">
                           <Image
                             alt={name}
                             className={styles.projectLogo}
@@ -102,24 +100,24 @@ const ExperiencePage = async () => {
       <script
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@graph': [
+            "@context": "https://schema.org",
+            "@graph": [
               {
-                '@type': 'BreadcrumbList',
+                "@type": "BreadcrumbList",
                 itemListElement: [
                   {
-                    '@type': 'ListItem',
+                    "@type": "ListItem",
                     name: routes.home.name,
                     item: siteUrl,
                     position: 1,
                   },
                   {
-                    '@type': 'ListItem',
+                    "@type": "ListItem",
                     name: routes.experience.name,
                     position: 2,
                   },
                 ],
-                name: 'Breadcrumbs',
+                name: "Breadcrumbs",
               } satisfies BreadcrumbList,
             ],
           } satisfies Graph),

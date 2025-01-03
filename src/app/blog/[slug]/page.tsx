@@ -1,23 +1,22 @@
-import { Container, Flex, Section } from '@radix-ui/themes';
-import { type Metadata, type ResolvingMetadata } from 'next';
-import { notFound } from 'next/navigation';
-import { type FC } from 'react';
+import { IncrementView } from "@/components/article/increment-view";
+import { JsonLd } from "@/components/article/json-ld";
+import { MainContent } from "@/components/article/main-content";
+import { SideBar } from "@/components/article/sidebar";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import { routes, siteUrl } from "@/constants/site-config";
+import { getArticleBySlug } from "@/lib/queries";
+import { Container, Flex, Section } from "@radix-ui/themes";
+import { type Metadata, type ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import { type FC } from "react";
 
-import { IncrementView } from '@/components/article/increment-view';
-import { JsonLd } from '@/components/article/json-ld';
-import { MainContent } from '@/components/article/main-content';
-import { SideBar } from '@/components/article/sidebar';
-import { Breadcrumb } from '@/components/breadcrumb';
-import { Footer } from '@/components/footer';
-import { routes, siteUrl } from '@/constants/site-config';
-import { getArticleBySlug } from '@/lib/queries';
-
-interface ArticlePageProps {
+interface ArticlePageProperties {
   params: Promise<{ slug: string }>;
 }
 
-const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
-  const slug = (await params).slug;
+const ArticlePage: FC<ArticlePageProperties> = async ({ params }) => {
+  const { slug } = await params;
   const article = await getArticleBySlug(slug);
 
   if (!article) notFound();
@@ -40,7 +39,7 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
             <Flex
               asChild
               align="start"
-              direction={{ initial: 'column', md: 'row' }}
+              direction={{ initial: "column", md: "row" }}
               gap="8"
             >
               <article>
@@ -53,9 +52,9 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
                 />
                 <SideBar
                   article={article}
-                  position={{ md: 'sticky' }}
+                  position={{ md: "sticky" }}
                   top="calc(var(--space-9) + 24px)" // container padding + breadcrumb's height
-                  width={{ md: '350px' }}
+                  width={{ md: "350px" }}
                 />
               </article>
             </Flex>
@@ -74,11 +73,12 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
 export const generateStaticParams = () => [];
 
 export const generateMetadata = async (
-  { params }: ArticlePageProps,
+  { params }: ArticlePageProperties,
   parent: ResolvingMetadata,
 ) => {
-  const slug = (await params).slug;
+  const { slug } = await params;
   const article = await getArticleBySlug(slug);
+  const { openGraph } = await parent;
 
   if (!article) return;
   const { title, description, coverPhoto, createdAt, updatedAt } = article;
@@ -87,8 +87,8 @@ export const generateMetadata = async (
     title,
     description,
     openGraph: {
-      ...(await parent).openGraph,
-      type: 'article',
+      ...openGraph,
+      type: "article",
       authors: siteUrl,
       publishedTime: createdAt,
       modifiedTime: updatedAt,
@@ -96,7 +96,7 @@ export const generateMetadata = async (
       images: coverPhoto,
     },
     alternates: {
-      types: { 'application/rss+xml': routes.blogRssFeed.pathname },
+      types: { "application/rss+xml": routes.blogRssFeed.pathname },
     },
   } satisfies Metadata;
 };

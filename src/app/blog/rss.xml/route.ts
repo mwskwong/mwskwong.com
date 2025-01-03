@@ -1,8 +1,7 @@
-import { Feed } from 'feed';
-
-import { email, firstName, lastName, legalName } from '@/constants/me';
-import { routes, siteUrl } from '@/constants/site-config';
-import { getArticles } from '@/lib/queries';
+import { email, firstName, lastName, legalName } from "@/constants/me";
+import { routes, siteUrl } from "@/constants/site-config";
+import { getArticles } from "@/lib/queries";
+import { Feed } from "feed";
 
 const name = `${firstName} ${lastName}`;
 
@@ -10,14 +9,14 @@ export const GET = async () => {
   const articles = await getArticles();
   const feed = new Feed({
     title: `${name} ${routes.blog.name}`,
-    description: 'Personal perspectives on a broad range of topics.',
+    description: "Personal perspectives on a broad range of topics.",
     id: siteUrl + routes.blogRssFeed.pathname,
     link: siteUrl + routes.blog.pathname,
-    language: 'en',
+    language: "en",
     copyright: `Copyright © ${new Date().getFullYear()} ${legalName}`,
     feedLinks: {
       rss: siteUrl + routes.blogRssFeed.pathname,
-      atom: 'self',
+      atom: "self",
     },
   });
 
@@ -34,6 +33,6 @@ export const GET = async () => {
   }
 
   return new Response(feed.rss2(), {
-    headers: { 'Content-Type': 'text/xml' },
+    headers: { "Content-Type": "text/xml" },
   });
 };

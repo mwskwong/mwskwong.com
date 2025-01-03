@@ -1,3 +1,6 @@
+import { SkillCategoryIcons } from "../skill-category-icons";
+import { routes } from "@/constants/site-config";
+import { getSkillSet } from "@/lib/queries";
 import {
   Badge,
   Box,
@@ -7,19 +10,15 @@ import {
   Heading,
   Section,
   Text,
-} from '@radix-ui/themes';
-import { IconArrowRight } from '@tabler/icons-react';
-import Link from 'next/link';
-import { type FC } from 'react';
+} from "@radix-ui/themes";
+import { IconArrowRight } from "@tabler/icons-react";
+import Link from "next/link";
+import { type FC } from "react";
 
-import { routes } from '@/constants/site-config';
-import { getSkillSet } from '@/lib/queries';
-
-import { SkillCategoryIcons } from '../skill-category-icons';
-
-export type FeaturedSkillsProps = Omit<FlexProps, 'asChild' | 'children'>;
-export const FeaturedSkills: FC<FeaturedSkillsProps> = async (props) => {
-  const skillSet = (await getSkillSet())
+export type FeaturedSkillsProps = Omit<FlexProps, "asChild" | "children">;
+export const FeaturedSkills: FC<FeaturedSkillsProps> = async (properties) => {
+  const skillSet = await getSkillSet();
+  const featuredSkillSet = skillSet
     .map(({ skills, ...category }) => ({
       ...category,
       skills: skills.filter(({ proficiency }) => proficiency >= 4),
@@ -27,23 +26,29 @@ export const FeaturedSkills: FC<FeaturedSkillsProps> = async (props) => {
     .filter(({ skills }) => skills.length > 0);
 
   return (
-    <Flex asChild align={{ sm: 'start' }} direction="column" gap="8" {...props}>
+    <Flex
+      asChild
+      align={{ sm: "start" }}
+      direction="column"
+      gap="8"
+      {...properties}
+    >
       <Section>
         <Heading as="h2" size="8">
           Featured Skills
         </Heading>
         <Flex direction="column" gap="8">
-          {skillSet.map(({ id, name, skills }) => {
+          {featuredSkillSet.map(({ id, name, skills }) => {
             const Icon = SkillCategoryIcons[id];
             return (
               <Box key={id}>
                 <Flex asChild gap="2">
                   <Heading as="h3" size="4">
-                    {Icon ? (
+                    {Icon && (
                       <Text asChild data-accent-color="">
                         <Icon />
                       </Text>
-                    ) : null}
+                    )}
                     {name}
                   </Heading>
                 </Flex>
@@ -56,7 +61,7 @@ export const FeaturedSkills: FC<FeaturedSkillsProps> = async (props) => {
                       size="3"
                     >
                       {url ? (
-                        <a href={url} rel="noopener" target="_blank">
+                        <a href={url} rel="noopener noreferrer" target="_blank">
                           {name}
                         </a>
                       ) : (

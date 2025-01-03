@@ -1,14 +1,13 @@
-import 'server-only';
-
-import { PrismaClient } from '@prisma/client';
-import { createClient } from 'contentful';
+import { PrismaClient } from "@prisma/client";
+import { createClient } from "contentful";
+import "server-only";
 
 export const contentful = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID ?? '',
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN ?? '',
+  space: process.env.CONTENTFUL_SPACE_ID ?? "",
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN ?? "",
   environment: process.env.CONTENTFUL_ENVIRONMENT,
 }).withoutUnresolvableLinks;
 
 export const prisma = new PrismaClient({
-  log: ['query', 'info', 'warn', 'error'],
+  log: ["query", "info", "warn", "error"],
 });

@@ -1,3 +1,12 @@
+import styles from "./sidebar.module.css";
+import { firstName, headline, lastName } from "@/constants/me";
+import { routes, siteUrl } from "@/constants/site-config";
+import {
+  type getArticleBySlug,
+  getArticles,
+  getPersonalPortrait,
+} from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
 import {
   Card,
   Flex,
@@ -6,34 +15,26 @@ import {
   Section,
   type SectionProps,
   Text,
-} from '@radix-ui/themes';
+} from "@radix-ui/themes";
 import {
   IconBrandFacebook,
   IconBrandLinkedin,
   IconBrandReddit,
   IconBrandX,
-} from '@tabler/icons-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { type FC } from 'react';
+} from "@tabler/icons-react";
+import Image from "next/image";
+import Link from "next/link";
+import { type FC } from "react";
 
-import { firstName, headline, lastName } from '@/constants/me';
-import { routes, siteUrl } from '@/constants/site-config';
-import {
-  type getArticleBySlug,
-  getArticles,
-  getPersonalPortrait,
-} from '@/lib/queries';
-import { dateFormatter } from '@/lib/utils';
-
-import styles from './sidebar.module.css';
-
-export interface SideBarProps
-  extends Omit<SectionProps, 'asChild' | 'children'> {
+export interface SideBarProperties
+  extends Omit<SectionProps, "asChild" | "children"> {
   article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
 }
 
-export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
+export const SideBar: FC<SideBarProperties> = async ({
+  article,
+  ...properties
+}) => {
   const [{ url: personalPortrait }, featuredArticles] = await Promise.all([
     getPersonalPortrait(),
     getArticles().then((articles) =>
@@ -49,34 +50,34 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
   const shareOptions = [
     {
       Icon: IconBrandX,
-      name: 'X',
+      name: "X",
       href: `https://twitter.com/intent/tweet?text=${shareContent}&url=${url}`,
     },
     {
       Icon: IconBrandFacebook,
-      name: 'Facebook',
+      name: "Facebook",
       href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
     },
     {
       Icon: IconBrandLinkedin,
-      name: 'LinkedIn',
+      name: "LinkedIn",
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
     },
     {
       Icon: IconBrandReddit,
-      name: 'Reddit',
+      name: "Reddit",
       href: `http://www.reddit.com/submit/?url=${url}&title=${article.title}`,
     },
   ];
 
   return (
-    <Section asChild {...props}>
+    <Section asChild {...properties}>
       <aside>
         <Heading size="4">Posted By</Heading>
         <Card asChild mt="4" variant="ghost">
           <Link href={routes.home.pathname}>
             <Flex align="center" gap="3">
-              {personalPortrait ? (
+              {personalPortrait && (
                 <Image
                   alt="personal portrait"
                   className={styles.personalPortrait}
@@ -84,7 +85,7 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
                   src={personalPortrait}
                   width={40}
                 />
-              ) : null}
+              )}
               <div>
                 <Heading asChild size="3">
                   <p>
@@ -107,7 +108,7 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
               <Card key={id} asChild variant="ghost">
                 <Link href={`${routes.blog.pathname}/${slug}`}>
                   <Flex align="start" gap="4">
-                    {coverPhoto ? (
+                    {coverPhoto && (
                       <Image
                         alt={title}
                         className={styles.coverPhoto}
@@ -115,7 +116,7 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
                         src={coverPhoto}
                         width={16 * 7}
                       />
-                    ) : null}
+                    )}
                     <div>
                       <Heading className={styles.title} size="3">
                         {title}
@@ -141,7 +142,7 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
                 color="gray"
                 variant="ghost"
               >
-                <a href={href} rel="noopener" target="_blank">
+                <a href={href} rel="noopener noreferrer" target="_blank">
                   <Icon size={20} />
                 </a>
               </IconButton>

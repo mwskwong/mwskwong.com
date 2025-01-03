@@ -1,6 +1,4 @@
-import { personalPortrait, resume } from '@/constants/contentful-ids';
-
-import { contentful, prisma } from './clients';
+import { contentful, prisma } from "./clients";
 import {
   type ArticleSkeleton,
   type CourseCategory,
@@ -10,8 +8,9 @@ import {
   type ProjectSkeleton,
   type SkillCategorySkeleton,
   type SkillSkeleton,
-} from './contentful-types';
-import { cache, generatePdfThumbnail } from './utils';
+} from "./contentful-types";
+import { cache, generatePdfThumbnail } from "./utils";
+import { personalPortrait, resume } from "@/constants/contentful-ids";
 
 export const getPersonalPortrait = cache(async () => {
   const asset = await contentful.getAsset(personalPortrait);
@@ -30,13 +29,13 @@ export const getResume = cache(async () => {
 export const getSkillSet = cache(async () => {
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     contentful.getEntries<SkillSkeleton>({
-      content_type: 'skill',
-      'fields.category[exists]': true,
-      order: ['fields.name'],
+      content_type: "skill",
+      "fields.category[exists]": true,
+      order: ["fields.name"],
     }),
     contentful.getEntries<SkillCategorySkeleton>({
-      content_type: 'skillCategory',
-      order: ['-fields.proficiency', 'fields.name'],
+      content_type: "skillCategory",
+      order: ["-fields.proficiency", "fields.name"],
     }),
   ]);
 
@@ -62,8 +61,8 @@ export const getExperiences = cache(async () => {
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
   const { items } = await contentful.getEntries<ExperienceSkeleton>({
-    content_type: 'experience',
-    order: ['fields.to'],
+    content_type: "experience",
+    order: ["fields.to"],
   });
 
   items.reverse();
@@ -71,7 +70,7 @@ export const getExperiences = cache(async () => {
     item.fields.skills.sort((a, b) => {
       if (a && b) {
         return a.fields.name.localeCompare(b.fields.name, undefined, {
-          sensitivity: 'base',
+          sensitivity: "base",
         });
       }
 
@@ -118,8 +117,8 @@ export const getEducations = cache(async () => {
   // so we first sort in ASC and then reverse it
   // such that it's in DESC order while undefined values are at the top
   const { items } = await contentful.getEntries<EducationSkeleton>({
-    content_type: 'education',
-    order: ['fields.to'],
+    content_type: "education",
+    order: ["fields.to"],
   });
 
   items.reverse();
@@ -149,8 +148,8 @@ export const getEducations = cache(async () => {
 export const getArticles = cache(async () => {
   const [{ items }, articlesMetadata] = await Promise.all([
     contentful.getEntries<ArticleSkeleton>({
-      content_type: 'blog',
-      order: ['-sys.createdAt'],
+      content_type: "blog",
+      order: ["-sys.createdAt"],
     }),
     prisma.articleMetadata.findMany(),
   ]);
@@ -171,8 +170,8 @@ export const getArticles = cache(async () => {
 
 export const getArticleBySlug = cache(async (slug: string) => {
   const { items } = await contentful.getEntries<ArticleSkeleton>({
-    content_type: 'blog',
-    'fields.slug[in]': [slug],
+    content_type: "blog",
+    "fields.slug[in]": [slug],
     limit: 1,
   });
 
@@ -195,9 +194,9 @@ export const getArticleBySlug = cache(async (slug: string) => {
 
 export const getContributedProjects = cache(async () => {
   const { items } = await contentful.getEntries<ProjectSkeleton>({
-    content_type: 'project',
-    'metadata.tags.sys.id[in]': ['contributed'],
-    order: ['fields.name'],
+    content_type: "project",
+    "metadata.tags.sys.id[in]": ["contributed"],
+    order: ["fields.name"],
   });
 
   return items.map((item) => ({
@@ -211,17 +210,17 @@ export const getContributedProjects = cache(async () => {
 });
 
 export const getCourseCategories = cache(async () => {
-  const course = await contentful.getContentType('course');
+  const course = await contentful.getContentType("course");
 
   return course.fields
-    .find(({ id }) => id === 'categories')
+    .find(({ id }) => id === "categories")
     ?.items?.validations[0]?.in?.toSorted() as CourseCategory[] | undefined;
 });
 
 export const getCourses = cache(async () => {
   const { items } = await contentful.getEntries<CourseSkeleton>({
-    content_type: 'course',
-    order: ['fields.name'],
+    content_type: "course",
+    order: ["fields.name"],
   });
 
   return items.map((item) => ({

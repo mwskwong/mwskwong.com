@@ -1,12 +1,11 @@
-import { type MetadataRoute } from 'next';
-
-import { siteUrl } from '@/constants/site-config';
+import { siteUrl } from "@/constants/site-config";
+import { type MetadataRoute } from "next";
 
 const robots = () =>
   ({
     rules: {
-      userAgent: '*',
-      disallow: process.env.VERCEL_ENV === 'production' ? undefined : '/',
+      userAgent: "*",
+      disallow: process.env.VERCEL_ENV === "production" ? undefined : "/",
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   }) satisfies MetadataRoute.Robots;
