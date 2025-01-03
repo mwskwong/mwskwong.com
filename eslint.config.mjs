@@ -97,7 +97,6 @@ const config = tseslint.config(
         {
           replacements: {
             props: false,
-            devops: false,
           },
           allowList: {
             devOps: true,
