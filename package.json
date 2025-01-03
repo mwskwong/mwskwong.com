@@ -42,7 +42,7 @@
     "next-mdx-remote": "^5.0.0",
     "react": "rc",
     "react-dom": "rc",
-    "react-email": "^3.0.3",
+    "react-email": "^3.0.4",
     "react-error-boundary": "^4.1.2",
     "react-hook-form": "^7.53.2",
     "rehype-pretty-code": "^0.14.0",
