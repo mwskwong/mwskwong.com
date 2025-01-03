@@ -61,6 +61,7 @@ const config = tseslint.config(
         },
       },
       react: { version: "detect" },
+      linkComponents: ["Link"],
     },
     rules: {
       "@typescript-eslint/no-misused-promises": [
