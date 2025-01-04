@@ -1,6 +1,6 @@
 /** @type {import('stylelint').Config} */
 const config = {
-  extends: ["stylelint-config-standard"],
+  extends: ["stylelint-config-standard", "stylelint-config-recess-order"],
   rules: {
     "import-notation": "string",
     "selector-class-pattern": [

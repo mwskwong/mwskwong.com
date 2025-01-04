@@ -1,4 +1,8 @@
 // @ts-check
+
+import path from "node:path";
+import url from "node:url";
+
 import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
@@ -6,8 +10,6 @@ import * as eslintPluginImport from "eslint-plugin-import";
 import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
 import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
-import path from "node:path";
-import url from "node:url";
 import tseslint from "typescript-eslint";
 
 const __filename = url.fileURLToPath(import.meta.url);
@@ -92,7 +94,21 @@ const config = tseslint.config(
           allowRegExp: false,
         },
       ],
-      "import/order": "off",
+      "import/order": [
+        "warn",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+          ],
+          "newlines-between": "always",
+          alphabetize: { order: "asc" },
+        },
+      ],
       "react/jsx-sort-props": [
         "warn",
         {
@@ -103,6 +119,7 @@ const config = tseslint.config(
         },
       ],
       "react-compiler/react-compiler": "error",
+      "sort-imports": ["warn", { ignoreDeclarationSort: true }],
       "unicorn/prevent-abbreviations": [
         "error",
         {
