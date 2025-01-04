@@ -1,25 +1,17 @@
-import { type MetadataRoute } from 'next';
+import { type MetadataRoute } from "next";
 
-import { routes, siteUrl } from '@/constants/site-config';
-import { getBlogs, getPrivacyPolicy } from '@/lib/queries';
+import { routes, siteUrl } from "@/constants/site-config";
+import { getArticles } from "@/lib/queries";
 
 const sitemap = async () => {
-  const [privacyPolicy, blogs] = await Promise.all([
-    getPrivacyPolicy(),
-    getBlogs(),
-  ]);
+  const articles = await getArticles();
 
   return [
-    ...Object.values(routes)
-      .filter(({ hash }) => !hash)
-      .map(({ pathname }) => ({
-        url: siteUrl + pathname,
-        lastModified:
-          pathname === routes.privacyPolicy.pathname
-            ? privacyPolicy.updatedAt
-            : new Date(),
-      })),
-    ...blogs.map(({ slug, updatedAt }) => ({
+    ...Object.values(routes).map(({ pathname }) => ({
+      url: siteUrl + pathname,
+      lastModified: new Date(),
+    })),
+    ...articles.map(({ slug, updatedAt }) => ({
       url: `${siteUrl}${routes.blog.pathname}/${slug}`,
       lastModified: updatedAt,
     })),

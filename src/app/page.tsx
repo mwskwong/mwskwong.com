@@ -1,94 +1,68 @@
-import { Box } from '@mui/joy';
-import { type FC } from 'react';
-import { type BreadcrumbList, type Graph, type WebSite } from 'schema-dts';
+import { Box, Container, Flex } from "@radix-ui/themes";
+import { type FC } from "react";
+import { type BreadcrumbList, type Graph, type WebSite } from "schema-dts";
 
-import { About } from '@/components/home/about';
-import { Contact } from '@/components/home/contact';
-import { Education } from '@/components/home/education';
-import { Experience } from '@/components/home/experience';
-import { Hero } from '@/components/home/hero';
-import { InterestingFact } from '@/components/home/interesting-fact';
-import { SectionDivider } from '@/components/section-divider';
-import { firstName, lastName } from '@/constants/content';
-import { routes, siteUrl } from '@/constants/site-config';
+import { About } from "@/components/home/about";
+import { FeaturedArticles } from "@/components/home/featured-articles";
+import { FeaturedSkills } from "@/components/home/featured-skills";
+import { Footer } from "@/components/home/footer";
+import { RecentEducation } from "@/components/home/recent-education";
+import { RecentExperience } from "@/components/home/recent-experience";
+import { Sidebar } from "@/components/home/sidebar";
+import { firstName, lastName } from "@/constants/me";
+import { routes, siteUrl } from "@/constants/site-config";
 
-const bgcolors = {
-  hero: 'background.body',
-  about: 'background.surface',
-  interestingFact: 'primary.900',
-  experience: 'background.body',
-  education: 'background.surface',
-  contact: 'background.body',
+const Home: FC = () => {
+  return (
+    <>
+      <Container>
+        <Flex direction={{ initial: "column", md: "row" }} gapX="160px">
+          <Sidebar
+            position={{ md: "sticky" }}
+            top="0"
+            width={{ md: "350px" }}
+          />
+          <Box asChild flexBasis="1" flexGrow="1">
+            <main>
+              <About />
+              <RecentExperience />
+              <RecentEducation />
+              <FeaturedSkills />
+              <FeaturedArticles />
+              <Footer />
+            </main>
+          </Box>
+        </Flex>
+      </Container>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebSite",
+                name: `${firstName} ${lastName}`,
+                alternateName: ["mwskwong", "MK"],
+                url: siteUrl,
+              } satisfies WebSite,
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    name: routes.home.name,
+                    position: 1,
+                  },
+                ],
+                name: "Breadcrumbs",
+              } satisfies BreadcrumbList,
+            ],
+          } satisfies Graph),
+        }}
+        type="application/ld+json"
+      />
+    </>
+  );
 };
-
-const Home: FC = () => (
-  <>
-    <Box
-      component="main"
-      sx={{
-        '& h2, h3, h4': {
-          scrollMarginTop:
-            'calc(var(--Header-height) + var(--Section-paddingY))',
-        },
-      }}
-    >
-      <Hero sx={{ bgcolor: bgcolors.hero }} />
-      <SectionDivider sx={{ color: bgcolors.hero, bgcolor: bgcolors.about }} />
-
-      <About sx={{ bgcolor: bgcolors.about }} />
-      <SectionDivider
-        sx={{ color: bgcolors.about, bgcolor: bgcolors.interestingFact }}
-      />
-
-      <InterestingFact
-        data-joy-color-scheme="dark"
-        sx={{ bgcolor: bgcolors.interestingFact }}
-      />
-      <SectionDivider
-        sx={{ color: bgcolors.interestingFact, bgcolor: bgcolors.experience }}
-      />
-
-      <Experience sx={{ bgcolor: bgcolors.experience }} />
-      <SectionDivider
-        sx={{ color: bgcolors.experience, bgcolor: bgcolors.education }}
-      />
-
-      <Education sx={{ bgcolor: bgcolors.education }} />
-      <SectionDivider
-        sx={{ color: bgcolors.education, bgcolor: bgcolors.contact }}
-      />
-
-      <Contact sx={{ bgcolor: bgcolors.contact }} />
-    </Box>
-    <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
-    <script
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@graph': [
-            {
-              '@type': 'WebSite',
-              name: `${firstName} ${lastName}`,
-              alternateName: ['mwskwong', 'MK'],
-              url: siteUrl,
-            } satisfies WebSite,
-            {
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                {
-                  '@type': 'ListItem',
-                  name: routes.home.name,
-                  position: 1,
-                },
-              ],
-              name: 'Breadcrumbs',
-            } satisfies BreadcrumbList,
-          ],
-        } satisfies Graph),
-      }}
-      type="application/ld+json"
-    />
-  </>
-);
 
 export default Home;

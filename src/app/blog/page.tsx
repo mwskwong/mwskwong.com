@@ -1,147 +1,149 @@
 import {
+  Box,
   Card,
-  CardContent,
   Container,
-  Divider,
+  Flex,
   Grid,
-  Link,
-  Stack,
-  Typography,
-} from '@mui/joy';
-import { type Metadata, type ResolvingMetadata } from 'next';
-import NextLink from 'next/link';
-import { type FC, Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { type BreadcrumbList, type WithContext } from 'schema-dts';
+  Heading,
+  Section,
+  Text,
+} from "@radix-ui/themes";
+import { type Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { type FC } from "react";
 
-import { BlogCardImage } from '@/components/blog/blog-card-image';
-import { Views, ViewsError, ViewsSkeleton } from '@/components/blog/views';
-import { SectionDivider } from '@/components/section-divider';
-import { routes, siteUrl } from '@/constants/site-config';
-import { getBlogs } from '@/lib/queries';
+import { Breadcrumb } from "@/components/breadcrumb";
+import { Footer } from "@/components/footer";
+import { containerMaxWidth, md, routes, sm } from "@/constants/site-config";
+import { getArticles } from "@/lib/queries";
+import { dateFormatter } from "@/lib/utils";
 
-const dateFormatter = new Intl.DateTimeFormat('en', { dateStyle: 'medium' });
+import styles from "./page.module.css";
 
-const description = 'Personal perspectives on a broad range of topics.';
-
-const Blogs: FC = async () => {
-  const blogs = await getBlogs();
+const BlogPage: FC = async () => {
+  const articles = await getArticles();
+  // eslint-disable-next-line unicorn/no-array-reduce
+  const featuredArticle = articles.reduce((highestViewedArticle, article) =>
+    article.view > highestViewedArticle.view ? article : highestViewedArticle,
+  );
 
   return (
-    <>
-      <Container component="main" sx={{ py: 'var(--Section-paddingY)' }}>
-        <Stack spacing={8}>
-          <Stack spacing={2} sx={{ textAlign: 'center' }}>
-            <Typography level="h1">{routes.blog.name}</Typography>
-            <Typography>{description}</Typography>
-          </Stack>
-
-          <Grid container spacing={2}>
-            {blogs.map(
-              (
-                { id, createdAt, coverPhoto, slug, title, description },
-                index,
-              ) => (
-                <Grid key={id} md={4} sm={6} xs={12}>
-                  <Card component="article" sx={{ height: { sm: '100%' } }}>
-                    <BlogCardImage
-                      alt={`Thumbnail for ${title}`}
-                      priority={index === 0}
-                      src={coverPhoto}
-                    />
-                    <CardContent>
-                      <Link
-                        overlay
-                        color="neutral"
-                        component={NextLink}
-                        href={`${routes.blog.pathname}/${slug}`}
-                        level="title-lg"
-                        sx={{
-                          display: '-webkit-box',
-                          overflow: 'hidden',
-                          WebkitLineClamp: 2,
-                          WebkitBoxOrient: 'vertical',
-                          color: 'text.primary',
-                        }}
-                      >
-                        {title}
-                      </Link>
-                      <Typography
-                        sx={{
-                          display: '-webkit-box',
-                          overflow: 'hidden',
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: 'vertical',
-                        }}
-                      >
-                        {description}
-                      </Typography>
-                    </CardContent>
-                    <CardContent orientation="horizontal" sx={{ flex: 0 }}>
-                      <Typography level="body-sm">
-                        {dateFormatter.format(new Date(createdAt))}
-                      </Typography>
-                      <Divider orientation="vertical" />
-                      <ErrorBoundary
-                        fallback={<ViewsError hideIcon level="body-sm" />}
-                      >
-                        <Suspense
-                          fallback={<ViewsSkeleton hideIcon level="body-sm" />}
+    <Container>
+      <Section asChild>
+        <main>
+          <Breadcrumb routes={[routes.home, routes.blog]} />
+          <Heading mt="2" size="9">
+            Blog
+          </Heading>
+          <Card asChild mt="8" size={{ sm: "2", md: "3" }} variant="ghost">
+            <Link href={`${routes.blog.pathname}/${featuredArticle.slug}`}>
+              <Grid asChild columns={{ sm: "2" }} gapX="5" gapY="4">
+                <article>
+                  <div>
+                    <Box
+                      className={styles.coverPhotoContainer}
+                      overflow="hidden"
+                      position="relative"
+                    >
+                      {featuredArticle.coverPhoto ? (
+                        <Image
+                          fill
+                          priority
+                          alt={featuredArticle.title}
+                          className={styles.coverPhoto}
+                          src={featuredArticle.coverPhoto}
+                          sizes={[
+                            `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 2}px`,
+                            `(min-width: ${sm}px) 50vw`,
+                            "100vw",
+                          ].join(",")}
+                        />
+                      ) : undefined}
+                    </Box>
+                  </div>
+                  <Flex direction="column" gap={{ initial: "2", sm: "3" }}>
+                    <Heading size={{ initial: "4", xs: "6", md: "8" }}>
+                      {featuredArticle.title}
+                    </Heading>
+                    <Text
+                      className={styles.description}
+                      size={{ initial: "3", md: "4" }}
+                    >
+                      {featuredArticle.description}
+                    </Text>
+                    <Text as="p" color="gray" size={{ initial: "2", md: "3" }}>
+                      {dateFormatter.format(
+                        new Date(featuredArticle.createdAt),
+                      )}
+                    </Text>
+                  </Flex>
+                </article>
+              </Grid>
+            </Link>
+          </Card>
+          <Grid
+            columns={{ xs: "2", md: "3" }}
+            gap="5"
+            mt={{ initial: "5", xs: "8" }}
+          >
+            {articles
+              .filter(({ id }) => id !== featuredArticle.id)
+              .map(
+                ({ id, createdAt, coverPhoto, slug, title, description }) => (
+                  <Card key={id} asChild variant="ghost">
+                    <Link href={`${routes.blog.pathname}/${slug}`}>
+                      <article>
+                        <Box
+                          className={styles.coverPhotoContainer}
+                          overflow="hidden"
+                          position="relative"
+                          style={{
+                            boxShadow: "var(--base-card-surface-box-shadow)",
+                          }}
                         >
-                          <Views batch hideIcon blogId={id} level="body-sm" />
-                        </Suspense>
-                      </ErrorBoundary>
-                    </CardContent>
+                          {coverPhoto ? (
+                            <Image
+                              fill
+                              alt={title}
+                              className={styles.coverPhoto}
+                              src={coverPhoto}
+                              sizes={[
+                                `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 3}px`,
+                                `(min-width: ${md}px) 33vw`,
+                                `(min-width: ${sm}px) 50vw`,
+                                "100vw",
+                              ].join(",")}
+                            />
+                          ) : undefined}
+                        </Box>
+                        <Flex direction="column" gap="2" mt="4">
+                          <Heading size="4">{title}</Heading>
+                          <Text as="p" className={styles.description} size="3">
+                            {description}
+                          </Text>
+                          <Text as="p" color="gray" size="2">
+                            {dateFormatter.format(new Date(createdAt))}
+                          </Text>
+                        </Flex>
+                      </article>
+                    </Link>
                   </Card>
-                </Grid>
-              ),
-            )}
+                ),
+              )}
           </Grid>
-        </Stack>
-      </Container>
-      <SectionDivider sx={{ bgcolor: 'var(--Footer-bg)' }} />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                name: routes.home.name,
-                item: siteUrl,
-                position: 1,
-              },
-              {
-                '@type': 'ListItem',
-                name: routes.blog.name,
-                position: 2,
-              },
-            ],
-            name: 'Breadcrumbs',
-          } satisfies WithContext<BreadcrumbList>),
-        }}
-        type="application/ld+json"
-      />
-    </>
+        </main>
+      </Section>
+      <Footer />
+    </Container>
   );
 };
 
-export const generateMetadata = async (
-  _: unknown,
-  parent: ResolvingMetadata,
-) => {
-  const { openGraph } = await parent;
+export const metadata = {
+  title: routes.blog.name,
+  alternates: {
+    types: { "application/rss+xml": routes.blogRssFeed.pathname },
+  },
+} satisfies Metadata;
 
-  return {
-    title: routes.blog.name,
-    description,
-    openGraph: { ...openGraph, url: routes.blog.pathname },
-    alternates: {
-      canonical: routes.blog.pathname,
-      types: { 'application/rss+xml': routes.blogRssFeed.pathname },
-    },
-  } satisfies Metadata;
-};
-
-export default Blogs;
+export default BlogPage;

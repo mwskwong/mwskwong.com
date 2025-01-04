@@ -1,0 +1,11 @@
+.coverPhoto {
+  box-shadow: var(--base-card-surface-box-shadow);
+  border-radius: var(--card-border-radius);
+  width: calc(16px * 12);
+  height: calc(9px * 12);
+
+  @media (--sm) {
+    width: calc(16px * 10);
+    height: calc(9px * 10);
+  }
+}

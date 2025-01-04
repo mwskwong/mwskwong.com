@@ -1,48 +1,53 @@
-import { Box, type BoxProps, Container, Stack, Typography } from '@mui/joy';
-import { type FC } from 'react';
+import {
+  Box,
+  Button,
+  Flex,
+  type FlexProps,
+  Heading,
+  Section,
+  Text,
+} from "@radix-ui/themes";
+import Image from "next/image";
+import { type FC } from "react";
 
-import { firstName, lastName, selfIntroduction } from '@/constants/content';
-import { routes } from '@/constants/site-config';
-import { getPersonalPhoto, getSkillSet } from '@/lib/queries';
+import { selfIntroduction } from "@/constants/me";
+import { getPersonalPortrait, getResume } from "@/lib/queries";
 
-import { Image } from '../image';
+import styles from "./about.module.css";
 
-import { SkillSet } from './skill-set';
-
-export type AboutProps = Omit<BoxProps<'section'>, 'children'>;
+export type AboutProps = Omit<FlexProps, "asChild" | "children">;
 export const About: FC<AboutProps> = async (props) => {
-  const [personalPhoto, skillSet] = await Promise.all([
-    getPersonalPhoto(),
-    getSkillSet(),
+  const [{ url: personalPortrait }, resume] = await Promise.all([
+    getPersonalPortrait(),
+    getResume(),
   ]);
 
   return (
-    <Box component="section" {...props}>
-      <Container>
-        <Stack spacing={8} sx={{ alignItems: 'center' }}>
-          <Typography id={routes.about.hash} level="h2">
-            About
-          </Typography>
-          <Stack spacing={4} sx={{ alignItems: 'center' }}>
-            <Image
-              priority
-              alt={`${firstName} ${lastName}`}
-              height={200}
-              src={personalPhoto}
-              width={200}
-              sx={{
-                borderRadius: '50%',
-                border: 1,
-                borderColor: 'neutral.outlinedBorder',
-              }}
-            />
-            <Typography sx={{ maxWidth: 'sm', textAlign: 'center' }}>
-              {selfIntroduction}
-            </Typography>
-          </Stack>
-          <SkillSet skillSet={skillSet} />
-        </Stack>
-      </Container>
-    </Box>
+    <Flex asChild align={{ sm: "start" }} direction="column" {...props}>
+      <Section>
+        <Heading as="h2" size="9">
+          {personalPortrait && (
+            <Box asChild display="inline-block" mr="4">
+              <Image
+                alt="personal portrait"
+                className={styles.personalPortrait}
+                height={60}
+                src={personalPortrait}
+                width={60}
+              />
+            </Box>
+          )}
+          I develop <Text data-accent-color="">full stack web apps</Text>
+        </Heading>
+        <Text as="p" mt="5">
+          {selfIntroduction}
+        </Text>
+        <Button asChild highContrast color="gray" mt="6" size="4">
+          <a href={resume} rel="noreferrer" target="_blank">
+            Download Resume
+          </a>
+        </Button>
+      </Section>
+    </Flex>
   );
 };

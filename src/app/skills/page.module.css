@@ -1,0 +1,24 @@
+.skillSetContainer {
+  column-gap: var(--space-5);
+
+  @media (--sm) {
+    columns: 2;
+  }
+
+  @media (--md) {
+    columns: 3;
+  }
+
+  & > *:not(:first-child) {
+    margin-top: var(--space-5);
+  }
+}
+
+.backgroundIcon {
+  position: absolute;
+  right: calc(-1 * var(--space-8));
+  bottom: calc(-1 * var(--space-8));
+  rotate: -12deg;
+  z-index: -1;
+  color: var(--accent-2);
+}

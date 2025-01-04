@@ -1,0 +1,40 @@
+.copyCodeButton {
+  position: absolute;
+  top: 14px;
+  right: 12px;
+}
+
+.coverPhotoContainer {
+  box-shadow: var(--base-card-surface-box-shadow);
+  border-radius: var(--radius-6);
+  aspect-ratio: 16 / 9;
+}
+
+.list {
+  ol& {
+    list-style-type: decimal;
+  }
+
+  ul& {
+    list-style-type: disc;
+  }
+
+  & > li {
+    padding-top: var(--space-1);
+    padding-bottom: var(--space-1);
+  }
+}
+
+.code {
+  background-color: var(--accent-2);
+  padding: var(--card-padding);
+  padding-right: 40px;
+
+  & > span[data-highlighted-line] {
+    margin-right: -40px;
+    margin-left: calc(-1 * var(--card-padding));
+    background-color: var(--accent-a3);
+    padding-right: 40px;
+    padding-left: var(--card-padding);
+  }
+}

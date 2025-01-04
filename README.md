@@ -1,13 +1,6 @@
-<p align="center">
-  <a href="https://mwskwong.com" rel="noopener" target="_blank">
-    <picture>
-      <source srcset="https://mwskwong.com/icon-dark.svg" media="(prefers-color-scheme: dark)" />
-      <img src="https://mwskwong.com/icon-light.svg" alt="mwskwomg.com logo" width="150" />
-    </picture>
-  </a>
-</p>
-
-<h1 align="center">mwskwong.com</h1>
+<h1 align="center">
+  <a href="https://mwskwong.com" rel="noopener" target="_blank">mwskwong.com</a>
+</h1>
 
 ## Greetings 👋.
 
@@ -26,7 +19,7 @@ Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see 
       - Environment ID naming: `canary_YYYY-MM-DDTHH.mm.ss.SSSZ`
 
         ```js
-        `canary_${new Date().toISOString().replaceAll(':', '.')}`;
+        `canary_${new Date().toISOString().replaceAll(":", ".")}`;
         ```
 
       - Cloned from: `development` environment
@@ -48,7 +41,7 @@ Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see 
       - Environment ID naming: `canary_YYYY-MM-DDTHH.mm.ss.SSSZ`
 
         ```js
-        `canary_${new Date().toISOString().replaceAll(':', '.')}`;
+        `canary_${new Date().toISOString().replaceAll(":", ".")}`;
         ```
 
       - Cloned from: `development` environment
