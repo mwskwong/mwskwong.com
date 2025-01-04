@@ -18,7 +18,7 @@
   position: absolute;
   right: calc(-1 * var(--space-8));
   bottom: calc(-1 * var(--space-8));
-  rotate: -12deg;
   z-index: -1;
   color: var(--accent-2);
+  rotate: -12deg;
 }

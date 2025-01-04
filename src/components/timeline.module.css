@@ -12,7 +12,7 @@
 }
 
 .mediaImage {
-  box-shadow: var(--base-card-surface-box-shadow);
-  border-radius: var(--card-border-radius);
   object-fit: cover;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--base-card-surface-box-shadow);
 }

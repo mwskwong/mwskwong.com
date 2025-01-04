@@ -1,7 +1,7 @@
 .coverPhotoContainer {
-  box-shadow: var(--base-card-surface-box-shadow);
-  border-radius: var(--radius-6);
   aspect-ratio: 16 / 9;
+  border-radius: var(--radius-6);
+  box-shadow: var(--base-card-surface-box-shadow);
 }
 
 .list {
@@ -20,15 +20,15 @@
 }
 
 .code {
-  background-color: var(--accent-2);
   padding: var(--card-padding);
   padding-right: 40px;
+  background-color: var(--accent-2);
 
   & > span[data-highlighted-line] {
+    padding-right: 40px;
+    padding-left: var(--card-padding);
     margin-right: -40px;
     margin-left: calc(-1 * var(--card-padding));
     background-color: var(--accent-a3);
-    padding-right: 40px;
-    padding-left: var(--card-padding);
   }
 }

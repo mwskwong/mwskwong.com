@@ -1,12 +1,12 @@
 .personalPortrait {
-  border-width: 2px;
   border-color: var(--accent-a8);
+  border-width: 2px;
   border-radius: 9999px;
 }
 
 .coverPhoto {
-  box-shadow: var(--base-card-surface-box-shadow);
   border-radius: var(--card-border-radius);
+  box-shadow: var(--base-card-surface-box-shadow);
 }
 
 .title {

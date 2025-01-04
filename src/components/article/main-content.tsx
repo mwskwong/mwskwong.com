@@ -25,9 +25,9 @@ import {
 } from "@tabler/icons-react";
 import { clsx } from "clsx";
 import { type MDXComponents } from "mdx/types";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import NextLink from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import {
   type FC,
   type HTMLAttributes,
