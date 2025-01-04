@@ -83,6 +83,7 @@ const config = tseslint.config(
       "@typescript-eslint/restrict-template-expressions": [
         "error",
         {
+          allow: [{ name: ["Error", "URL", "URLSearchParams"], from: "lib" }],
           allowAny: false,
           allowBoolean: false,
           allowNever: false,
