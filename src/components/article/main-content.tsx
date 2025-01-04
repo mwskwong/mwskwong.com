@@ -120,13 +120,13 @@ const components = {
   },
   strong: Strong,
   ul: ({ className, ...props }) => (
-    <Box asChild my="4" pl="20px">
-      <ul className={clsx(styles.list, className)} {...props} />
+    <Box asChild className={clsx(styles.list, className)} my="4" pl="20px">
+      <ul {...props} />
     </Box>
   ),
   ol: ({ className, ...props }) => (
-    <Box asChild my="4" pl="20px">
-      <ol className={clsx(styles.list, className)} {...props} />
+    <Box asChild className={clsx(styles.list, className)} my="4" pl="20px">
+      <ol {...props} />
     </Box>
   ),
   code: (props) => {
@@ -159,7 +159,9 @@ const components = {
         <ScrollArea>
           <pre {...props}>
             {children}
-            <CopyCodeButton className={styles.copyCodeButton} />
+            <Box asChild position="absolute" right="12px" top="14px">
+              <CopyCodeButton />
+            </Box>
           </pre>
         </ScrollArea>
       </Inset>
