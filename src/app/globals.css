@@ -1,29 +1,33 @@
-/* stylelint-disable selector-class-pattern */
-
 @import "@radix-ui/themes/tokens/base.css";
 @import "@radix-ui/themes/tokens/colors/indigo.css";
 @import "@radix-ui/themes/tokens/colors/slate.css";
 @import "@radix-ui/themes/components.css";
 @import "@radix-ui/themes/utilities.css";
 
-/* CSS reset. Ref: https://tailwindcss.com/docs/preflight */
+/* CSS reset. Ref: https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/preflight.css */
 
 *,
+::after,
 ::before,
-::after {
+::backdrop,
+::file-selector-button {
   box-sizing: border-box;
-  border-style: solid;
-  border-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0 solid;
+}
+
+html,
+:host {
+  font-family: var(--default-font-family);
+  line-height: 1.5;
+  tab-size: 4;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  margin: 0;
-}
-
-hr {
-  height: 0;
-  color: inherit;
-  border-top-width: 1px;
+  line-height: inherit;
 }
 
 abbr {
@@ -56,6 +60,7 @@ code,
 kbd,
 samp,
 pre {
+  font-family: var(--code-font-family);
   font-size: 1em;
 }
 
@@ -85,116 +90,22 @@ table {
   border-color: inherit;
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
-  padding: 0;
-  margin: 0;
-  font-family: inherit;
-  font-size: 100%;
-  font-variation-settings: inherit;
-  font-weight: inherit;
-  font-feature-settings: inherit;
-  line-height: inherit;
-  color: inherit;
-  letter-spacing: inherit;
-}
-
-button,
-select {
-  text-transform: none;
-}
-
-button,
-input:where([type="button"]),
-input:where([type="reset"]),
-input:where([type="submit"]) {
-  appearance: button;
-  background-color: transparent;
-  background-image: none;
-}
-
 :-moz-focusring {
   outline: auto;
-}
-
-:-moz-ui-invalid {
-  box-shadow: none;
 }
 
 progress {
   vertical-align: baseline;
 }
 
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-  height: auto;
-}
-
-[type="search"] {
-  appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
-}
-
-::-webkit-search-decoration {
-  appearance: none;
-}
-
-::-webkit-file-upload-button {
-  font: inherit; /* 2 */
-  appearance: button; /* 1 */
-}
-
 summary {
   display: list-item;
-}
-
-blockquote,
-dl,
-dd,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-figure,
-p,
-pre {
-  margin: 0;
-}
-
-fieldset {
-  padding: 0;
-  margin: 0;
-}
-
-legend {
-  padding: 0;
 }
 
 ol,
 ul,
 menu {
-  padding: 0;
-  margin: 0;
   list-style: none;
-}
-
-dialog {
-  padding: 0;
-}
-
-textarea {
-  resize: vertical;
-}
-
-input::placeholder,
-textarea::placeholder {
-  opacity: 1;
 }
 
 img,
@@ -206,6 +117,7 @@ iframe,
 embed,
 object {
   display: block;
+  vertical-align: middle;
 }
 
 img,
@@ -213,11 +125,96 @@ video {
   max-width: 100%;
 }
 
-[hidden] {
-  &:where(:not([hidden="until-found"])) {
-    display: none;
+button,
+input,
+select,
+optgroup,
+textarea,
+::file-selector-button {
+  font: inherit;
+  font-variation-settings: inherit;
+  font-feature-settings: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  background-color: transparent;
+  border-radius: 0;
+  opacity: 1;
+}
+
+:where(select:is([multiple], [size])) {
+  & optgroup {
+    font-weight: bolder;
+
+    & option {
+      padding-inline-start: 20px;
+    }
   }
 }
+
+::file-selector-button {
+  margin-inline-end: 4px;
+}
+
+::placeholder {
+  color: color-mix(in oklab, currentcolor 50%, transparent);
+  opacity: 1;
+}
+
+textarea {
+  resize: vertical;
+}
+
+::-webkit-search-decoration {
+  appearance: none;
+}
+
+::-webkit-date-and-time-value {
+  min-height: 1lh;
+  text-align: inherit;
+}
+
+::-webkit-datetime-edit {
+  display: inline-flex;
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+::-webkit-datetime-edit,
+::-webkit-datetime-edit-year-field,
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-hour-field,
+::-webkit-datetime-edit-minute-field,
+::-webkit-datetime-edit-second-field,
+::-webkit-datetime-edit-millisecond-field,
+::-webkit-datetime-edit-meridiem-field {
+  padding-block: 0;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+button,
+input:where([type="button"], [type="reset"], [type="submit"]),
+::file-selector-button {
+  appearance: button;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[hidden] {
+  &:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+}
+
+/* stylelint-disable selector-class-pattern */
 
 .radix-themes {
   --default-font-family: var(--font-geist);
