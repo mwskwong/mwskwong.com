@@ -17,7 +17,7 @@ import styles from "./about.module.css";
 
 export type AboutProps = Omit<FlexProps, "asChild" | "children">;
 export const About: FC<AboutProps> = async (props) => {
-  const [{ url: personalPortrait }, resume] = await Promise.all([
+  const [personalPortrait, resume] = await Promise.all([
     getPersonalPortrait(),
     getResume(),
   ]);

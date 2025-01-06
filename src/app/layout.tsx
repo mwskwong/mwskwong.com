@@ -4,6 +4,7 @@ import { Theme } from "@radix-ui/themes";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
+import { type Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { Geist, Geist_Mono as GeistMono } from "next/font/google";
 import { type FC, type PropsWithChildren } from "react";
 
@@ -44,27 +45,24 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
 );
 
 const name = `${firstName} ${lastName}`;
-export const generateMetadata = async () => {
-  const { url: personalPortrait, contentType } = await getPersonalPortrait();
+const iconSizes = [16, 32, 48, 192, 512];
+const generateIcon = async (size: number, rounded = false) => {
+  const personalPortrait = await getPersonalPortrait();
+  const icon = new URL(personalPortrait ?? "");
+  icon.searchParams.set("fm", "png");
+  icon.searchParams.set("w", String(size));
+  icon.searchParams.set("h", String(size));
+  icon.searchParams.set("fit", "fill");
 
-  const icon16 = new URL(personalPortrait ?? "");
-  icon16.searchParams.set("fm", "png");
-  icon16.searchParams.set("w", "16");
-  icon16.searchParams.set("h", "16");
-  icon16.searchParams.set("r", "max");
+  if (rounded) {
+    icon.searchParams.set("r", "max");
+  }
 
-  const icon32 = new URL(personalPortrait ?? "");
-  icon32.searchParams.set("fm", "png");
-  icon32.searchParams.set("w", "32");
-  icon32.searchParams.set("h", "32");
-  icon32.searchParams.set("r", "max");
+  return { url: icon.toString(), type: "image/png" } satisfies Icon;
+};
 
-  const appleIcon = new URL(personalPortrait ?? "");
-  icon32.searchParams.set("fm", "png");
-  appleIcon.searchParams.set("w", "180");
-  appleIcon.searchParams.set("h", "180");
-
-  return {
+export const generateMetadata = async () =>
+  ({
     title: {
       default: `${name} - ${headline}`,
       template: `%s | ${name}`,
@@ -79,14 +77,15 @@ export const generateMetadata = async () => {
     },
     robots: { "max-image-preview": "large" },
     icons: {
-      icon: [
-        { url: icon16.toString(), type: contentType, sizes: "16x16" },
-        { url: icon32.toString(), type: contentType, sizes: "32x32" },
-      ],
-      apple: { url: appleIcon.toString(), type: contentType, sizes: "180x180" },
+      icon: await Promise.all(
+        iconSizes.map(async (size) => {
+          const icon = await generateIcon(size, true);
+          return { ...icon, sizes: `${size}x${size}` };
+        }),
+      ),
+      apple: { ...(await generateIcon(180)), sizes: "180x180" },
     },
     archives: ["https://v2.mwskwong.com", "https://v3.mwskwong.com"],
-  } satisfies Metadata;
-};
+  }) satisfies Metadata;
 
 export default RootLayout;

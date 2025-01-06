@@ -28,7 +28,7 @@ export interface JsonLdProps extends ComponentProps<"script"> {
 }
 
 export const JsonLd: FC<JsonLdProps> = async ({ article, ...props }) => {
-  const [{ url: personalPortrait }, latestJobTitle] = await Promise.all([
+  const [personalPortrait, latestJobTitle] = await Promise.all([
     getPersonalPortrait(),
     getExperiences().then((experience) => experience[0]?.jobTitle),
   ]);
