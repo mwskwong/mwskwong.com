@@ -3,9 +3,9 @@ export const address = "Hong Kong";
 
 export const headline = "Assistant Technical Manager @ HKJC";
 
-export const firstName = "Matthew";
-export const middleName = "Wang Shun";
-export const lastName = "Kwong";
+export const firstName = "Matthew" as const;
+export const middleName = "Wang Shun" as const;
+export const lastName = "Kwong" as const;
 export const legalName = `${lastName.toUpperCase()}, ${firstName} ${middleName}`;
 
 export const selfIntroduction =
