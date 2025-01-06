@@ -13,7 +13,7 @@ import {
   lastName,
   selfIntroduction,
 } from "@/constants/me";
-import { siteUrl } from "@/constants/site-config";
+import { siteName, siteUrl } from "@/constants/site-config";
 import { getPersonalPortrait } from "@/lib/queries";
 
 const geist = Geist({
@@ -75,7 +75,7 @@ export const generateMetadata = async () => {
     openGraph: {
       url: "/",
       type: "website",
-      siteName: name,
+      siteName,
     },
     robots: { "max-image-preview": "large" },
     icons: {
