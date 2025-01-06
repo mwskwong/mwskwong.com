@@ -9,8 +9,12 @@ import { Footer } from "@/components/home/footer";
 import { RecentEducation } from "@/components/home/recent-education";
 import { RecentExperience } from "@/components/home/recent-experience";
 import { Sidebar } from "@/components/home/sidebar";
-import { firstName, lastName } from "@/constants/me";
-import { routes, siteUrl } from "@/constants/site-config";
+import {
+  alternateSiteNames,
+  routes,
+  siteName,
+  siteUrl,
+} from "@/constants/site-config";
 
 const Home: FC = () => {
   return (
@@ -41,8 +45,8 @@ const Home: FC = () => {
             "@graph": [
               {
                 "@type": "WebSite",
-                name: `${firstName} ${lastName}`,
-                alternateName: ["mwskwong", "MK"],
+                name: siteName,
+                alternateName: alternateSiteNames,
                 url: siteUrl,
               } satisfies WebSite,
               {

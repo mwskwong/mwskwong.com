@@ -1,6 +1,6 @@
 import { type UrlObject } from "node:url";
 
-import { firstName, lastName } from "./me";
+import { firstName, lastName, middleName } from "./me";
 
 export interface Route extends UrlObject {
   name: string;
@@ -35,6 +35,15 @@ const getSiteUrl = () => {
 };
 
 export const siteUrl = getSiteUrl();
+export const siteName = `${firstName} ${middleName
+  .split(" ")
+  .map((word) => word[0] ?? "" + ".")
+  .join("")} ${lastName}`;
+export const alternateSiteNames = [
+  `${firstName} ${lastName}`,
+  "mwskwong",
+  `${firstName[0] ?? ""}${lastName[0] ?? ""}`,
+];
 
 // extract from Radix Themes
 export const sm = 768;
