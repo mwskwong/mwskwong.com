@@ -39,7 +39,7 @@ export const siteName = `${firstName} ${middleName
   .split(" ")
   .map((word) => word[0])
   .join(".")} ${lastName}`;
-export const alternateSiteName = [
+export const alternateSiteNames = [
   `${firstName} ${lastName}`,
   "mwskwong",
   `${firstName[0]}${lastName[0]}`,
