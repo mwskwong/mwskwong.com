@@ -39,6 +39,11 @@ export const siteName = `${firstName} ${middleName
   .split(" ")
   .map((word) => word[0])
   .join(".")} ${lastName}`;
+export const alternateSiteName = [
+  `${firstName} ${lastName}`,
+  "mwskwong",
+  `${firstName[0]}${lastName[0]}`,
+];
 
 // extract from Radix Themes
 export const sm = 768;
