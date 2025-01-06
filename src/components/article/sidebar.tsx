@@ -34,7 +34,7 @@ export interface SideBarProps
 }
 
 export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
-  const [{ url: personalPortrait }, featuredArticles] = await Promise.all([
+  const [personalPortrait, featuredArticles] = await Promise.all([
     getPersonalPortrait(),
     getArticles().then((articles) =>
       articles

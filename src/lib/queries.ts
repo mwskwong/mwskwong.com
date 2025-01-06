@@ -15,11 +15,7 @@ import { cache, generatePdfThumbnail } from "./utils";
 
 export const getPersonalPortrait = cache(async () => {
   const asset = await contentful.getAsset(personalPortrait);
-
-  return {
-    url: asset.fields.file && `https:${asset.fields.file.url}`,
-    contentType: asset.fields.file?.contentType,
-  };
+  return asset.fields.file && `https:${asset.fields.file.url}`;
 });
 
 export const getResume = cache(async () => {
