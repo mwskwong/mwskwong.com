@@ -42,7 +42,7 @@ export const siteName = `${firstName} ${middleName
 export const alternateSiteNames = [
   `${firstName} ${lastName}`,
   "mwskwong",
-  `${firstName[0]}${lastName[0]}`,
+  `${firstName[0] ?? ""}${lastName[0] ?? ""}`,
 ];
 
 // extract from Radix Themes
