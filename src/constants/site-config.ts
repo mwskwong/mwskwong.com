@@ -37,12 +37,12 @@ const getSiteUrl = () => {
 export const siteUrl = getSiteUrl();
 export const siteName = `${firstName} ${middleName
   .split(" ")
-  .map((word) => word[0]+ ".")
+  .map((word) => word[0] ?? "" + ".")
   .join("")} ${lastName}`;
 export const alternateSiteNames = [
   `${firstName} ${lastName}`,
   "mwskwong",
-  `${firstName[0]}${lastName[0]}`,
+  `${firstName[0] ?? ""}${lastName[0] ?? ""}`,
 ];
 
 // extract from Radix Themes
