@@ -1,6 +1,8 @@
 import { Code, Container, Link, Section } from "@radix-ui/themes";
 import * as DataList from "@radix-ui/themes/components/data-list";
 
+import { siteUrl } from "@/constants/site-config";
+
 const ParamsPage = () => (
   <Container asChild>
     <main>
@@ -21,6 +23,14 @@ const ParamsPage = () => (
                   {process.env.VERCEL_GIT_COMMIT_SHA}
                 </Link>
               </Code>
+            </DataList.Value>
+          </DataList.Item>
+          <DataList.Item>
+            <DataList.Label>Site URL</DataList.Label>
+            <DataList.Value>
+              <Link href={siteUrl} rel="noreferrer" target="_blank">
+                {siteUrl}
+              </Link>
             </DataList.Value>
           </DataList.Item>
         </DataList.Root>
