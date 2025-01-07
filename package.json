@@ -20,7 +20,7 @@
   "dependencies": {
     "@prisma/client": "^6.1.0",
     "@radix-ui/themes": "^3.2.0-rc.5",
-    "@tabler/icons-react": "^3.26.0",
+    "@tabler/icons-react": "^3.27.1",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "clsx": "^2.1.1",
@@ -75,6 +75,6 @@
     "stylelint-config-recess-order": "^5.1.1",
     "stylelint-config-standard": "^36.0.1",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.19.0"
+    "typescript-eslint": "^8.19.1"
   }
 }
