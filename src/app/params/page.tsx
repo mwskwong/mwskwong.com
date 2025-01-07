@@ -33,6 +33,12 @@ const ParamsPage = () => (
               </Link>
             </DataList.Value>
           </DataList.Item>
+          <DataList.Item>
+            <DataList.Label>Contentful ENV</DataList.Label>
+            <DataList.Value>
+              <Code variant="ghost">{process.env.CONTENTFUL_ENVIRONMENT}</Code>
+            </DataList.Value>
+          </DataList.Item>
         </DataList.Root>
       </Section>
     </main>
