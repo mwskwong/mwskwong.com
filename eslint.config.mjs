@@ -129,6 +129,7 @@ const config = tseslint.config(
           allowList: {
             devOps: true,
             generateStaticParams: true,
+            ParamsPage: true,
           },
         },
       ],
