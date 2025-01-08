@@ -8,8 +8,7 @@ export const dateFormatter = new Intl.DateTimeFormat("en", {
   dateStyle: "medium",
 });
 
-// simulate "use cache" behavior
 export const cache: typeof nextCache = (callback, keyParts, options) =>
   reactCache(
-    nextCache(callback, keyParts, { revalidate: 15 * 60, ...options }),
+    nextCache(callback, keyParts, { revalidate: 60 * 60, ...options }),
   );
