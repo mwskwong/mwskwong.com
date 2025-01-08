@@ -40,6 +40,7 @@ const config = tseslint.config(
   compat.extends("plugin:react-hooks/recommended"),
   compat.extends("plugin:@next/next/recommended"),
   compat.plugins("react-compiler"),
+  compat.extends("plugin:drizzle/recommended"),
   eslintConfigPrettier,
   {
     languageOptions: {

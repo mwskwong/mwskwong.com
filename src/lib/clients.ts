@@ -1,7 +1,11 @@
 import "server-only";
 
-import { PrismaClient } from "@prisma/client";
+import { neon } from "@neondatabase/serverless";
 import { createClient } from "contentful";
+import { config } from "dotenv";
+import { drizzle } from "drizzle-orm/neon-http";
+
+config({ path: ".env" });
 
 export const contentful = createClient({
   space: process.env.CONTENTFUL_SPACE_ID ?? "",
@@ -9,6 +13,7 @@ export const contentful = createClient({
   environment: process.env.CONTENTFUL_ENVIRONMENT,
 }).withoutUnresolvableLinks;
 
-export const prisma = new PrismaClient({
-  log: ["query", "info", "warn", "error"],
+export const database = drizzle({
+  client: neon(process.env.DATABASE_URL ?? ""),
+  casing: "snake_case",
 });

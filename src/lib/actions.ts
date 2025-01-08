@@ -1,10 +1,19 @@
 "use server";
 
-import { prisma } from "./clients";
+import { sql } from "drizzle-orm";
 
-export const incrementArticleView = async (id: string) =>
-  await prisma.articleMetadata.upsert({
-    where: { id },
-    update: { view: { increment: 1 } },
-    create: { id },
-  });
+import { database } from "./clients";
+import { articleMetadata } from "./schema";
+
+export const incrementArticleView = async (id: string) => {
+  const rows = await database
+    .insert(articleMetadata)
+    .values({ id })
+    .onConflictDoUpdate({
+      target: articleMetadata.id,
+      set: { view: sql`${articleMetadata.view} + 1` },
+    })
+    .returning();
+
+  return rows[0];
+};

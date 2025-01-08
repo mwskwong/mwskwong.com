@@ -1,1 +1,0 @@
-ALTER TABLE "blog_metadata" RENAME TO "article_metadata";

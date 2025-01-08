@@ -1,6 +1,6 @@
 import { personalPortrait, resume } from "@/constants/contentful-ids";
 
-import { contentful, prisma } from "./clients";
+import { contentful, database } from "./clients";
 import {
   type ArticleSkeleton,
   type CourseCategory,
@@ -11,6 +11,7 @@ import {
   type SkillCategorySkeleton,
   type SkillSkeleton,
 } from "./contentful-types";
+import { articleMetadata } from "./schema";
 import { cache, generatePdfThumbnail } from "./utils";
 
 export const getPersonalPortrait = cache(async () => {
@@ -148,7 +149,7 @@ export const getArticles = cache(async () => {
       content_type: "blog",
       order: ["-sys.createdAt"],
     }),
-    prisma.articleMetadata.findMany(),
+    database.select().from(articleMetadata),
   ]);
 
   return items.map((item) => ({
