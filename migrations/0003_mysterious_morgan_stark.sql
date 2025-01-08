@@ -1,0 +1,1 @@
+ALTER TABLE "article_metadata" ALTER COLUMN "view" SET NOT NULL;

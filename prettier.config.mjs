@@ -2,7 +2,7 @@
 
 /** @type {import('prettier').Config} */
 const config = {
-  plugins: ["prettier-plugin-packagejson", "prettier-plugin-prisma"],
+  plugins: ["prettier-plugin-packagejson"],
 };
 
 export default config;

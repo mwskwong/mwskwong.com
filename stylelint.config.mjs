@@ -9,6 +9,7 @@ const config = {
   overrides: [
     {
       files: ["**/*.module.css"],
+      extends: ["stylelint-config-css-modules"],
       rules: {
         "selector-class-pattern": [
           "^[a-z][a-zA-Z0-9]*$",
