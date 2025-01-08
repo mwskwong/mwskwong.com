@@ -1,6 +1,5 @@
 import "server-only";
 
-import { neon } from "@neondatabase/serverless";
 import { createClient } from "contentful";
 import { config } from "dotenv";
 import { drizzle } from "drizzle-orm/neon-http";
@@ -14,6 +13,6 @@ export const contentful = createClient({
 }).withoutUnresolvableLinks;
 
 export const database = drizzle({
-  client: neon(process.env.DATABASE_URL ?? ""),
+  connection: process.env.DATABASE_URL ?? "",
   casing: "snake_case",
 });

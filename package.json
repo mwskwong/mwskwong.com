@@ -15,7 +15,6 @@
     "upgrade": "npm update && npm run postinstall && tsc && npm run lint -- --fix && npm run stylelint -- --fix && npm run prettier:write"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4",
     "@radix-ui/themes": "^3.2.0-rc.5",
     "@tabler/icons-react": "^3.28.1",
     "@vercel/analytics": "^1.4.1",
