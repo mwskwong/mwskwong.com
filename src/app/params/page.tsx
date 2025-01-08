@@ -3,6 +3,8 @@ import * as DataList from "@radix-ui/themes/components/data-list";
 
 import { siteUrl } from "@/constants/site-config";
 
+import styles from "./page.module.css";
+
 const ParamsPage = () => (
   <Container asChild>
     <main>
@@ -11,7 +13,7 @@ const ParamsPage = () => (
           <DataList.Item>
             <DataList.Label>Git SHA</DataList.Label>
             <DataList.Value>
-              <Code asChild variant="ghost">
+              <Code asChild className={styles.codeValue} variant="ghost">
                 <Link
                   rel="noreferrer"
                   target="_blank"
@@ -36,7 +38,9 @@ const ParamsPage = () => (
           <DataList.Item>
             <DataList.Label>Contentful ENV</DataList.Label>
             <DataList.Value>
-              <Code variant="ghost">{process.env.CONTENTFUL_ENVIRONMENT}</Code>
+              <Code className={styles.codeValue} variant="ghost">
+                {process.env.CONTENTFUL_ENVIRONMENT}
+              </Code>
             </DataList.Value>
           </DataList.Item>
         </DataList.Root>

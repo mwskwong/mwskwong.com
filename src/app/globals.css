@@ -237,7 +237,3 @@ input:where([type="button"], [type="reset"], [type="submit"]),
     }
   }
 }
-
-.rt-DataListValue {
-  align-items: center;
-}
