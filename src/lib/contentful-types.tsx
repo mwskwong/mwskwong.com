@@ -1,37 +1,51 @@
-import { type EntryFieldTypes } from "contentful";
+import { type EntryFieldTypes, type EntrySkeletonType } from "contentful";
 
-export interface SkillSkeleton {
-  contentTypeId: "skill";
-  fields: {
+export type ArticleSkeleton = EntrySkeletonType<
+  {
+    coverPhoto: EntryFieldTypes.AssetLink;
+    title: EntryFieldTypes.Symbol;
+    slug: EntryFieldTypes.Symbol;
+    description: EntryFieldTypes.Text;
+    content?: EntryFieldTypes.Text;
+  },
+  "blog"
+>;
+
+export type CourseCategory =
+  | "Database"
+  | "Desktop Virtualization"
+  | "DevOps"
+  | "Development"
+  | "Marketing"
+  | "Operating System"
+  | "Project Management"
+  | "Security";
+
+export type CourseSkeleton = EntrySkeletonType<
+  {
     name: EntryFieldTypes.Symbol;
-    category?: EntryFieldTypes.EntryLink<SkillCategorySkeleton>;
-    proficiency: EntryFieldTypes.Integer;
-    url?: EntryFieldTypes.Symbol;
-  };
-}
+    institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
+    certificate?: EntryFieldTypes.AssetLink;
+    categories?: EntryFieldTypes.Array<EntryFieldTypes.Symbol<CourseCategory>>;
+    completedOn: EntryFieldTypes.Date;
+  },
+  "course"
+>;
 
-export interface SkillCategorySkeleton {
-  contentTypeId: "skillCategory";
-  fields: {
-    name: EntryFieldTypes.Symbol;
-    proficiency?: EntryFieldTypes.Integer;
-  };
-}
+export type EducationSkeleton = EntrySkeletonType<
+  {
+    from: EntryFieldTypes.Date;
+    to?: EntryFieldTypes.Date;
+    program: EntryFieldTypes.Symbol;
+    school: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
+    grade?: EntryFieldTypes.Symbol;
+    supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
+  },
+  "education"
+>;
 
-export interface ProjectSkeleton {
-  contentTypeId: "project";
-  fields: {
-    name: EntryFieldTypes.Symbol;
-    type: EntryFieldTypes.Symbol<"Library" | "Platform" | "Website">;
-    url: EntryFieldTypes.Symbol;
-    thumbnail?: EntryFieldTypes.AssetLink;
-    logo?: EntryFieldTypes.AssetLink;
-  };
-}
-
-export interface ExperienceSkeleton {
-  contentTypeId: "experience";
-  fields: {
+export type ExperienceSkeleton = EntrySkeletonType<
+  {
     from: EntryFieldTypes.Date;
     to?: EntryFieldTypes.Date;
     jobTitle: EntryFieldTypes.Symbol;
@@ -41,58 +55,45 @@ export interface ExperienceSkeleton {
       EntryFieldTypes.EntryLink<ProjectSkeleton>
     >;
     supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
-    skills: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<SkillSkeleton>>;
-  };
-}
+    skills?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<SkillSkeleton>>;
+  },
+  "experience"
+>;
 
-export interface EducationSkeleton {
-  contentTypeId: "education";
-  fields: {
-    from: EntryFieldTypes.Date;
-    to?: EntryFieldTypes.Date;
-    program: EntryFieldTypes.Symbol;
-    school: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
-    grade?: EntryFieldTypes.Symbol;
-    supportingDocuments?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
-  };
-}
-
-export interface OrganizationSkeleton {
-  contentTypeId: "organization";
-  fields: {
+export type OrganizationSkeleton = EntrySkeletonType<
+  {
     name: EntryFieldTypes.Symbol;
     url?: EntryFieldTypes.Symbol;
     logo?: EntryFieldTypes.AssetLink;
-  };
-}
+  },
+  "organization"
+>;
 
-export interface ArticleSkeleton {
-  contentTypeId: "blog";
-  fields: {
-    coverPhoto: EntryFieldTypes.AssetLink;
-    title: EntryFieldTypes.Symbol;
-    slug: EntryFieldTypes.Symbol;
-    description: EntryFieldTypes.Text;
-    content?: EntryFieldTypes.Text;
-  };
-}
-export type CourseCategory =
-  | "Database"
-  | "Desktop Virtualization"
-  | "Development"
-  | "DevOps"
-  | "Marketing"
-  | "Operating System"
-  | "Project Management"
-  | "Security";
-
-export interface CourseSkeleton {
-  contentTypeId: "course";
-  fields: {
+export type ProjectSkeleton = EntrySkeletonType<
+  {
     name: EntryFieldTypes.Symbol;
-    institution: EntryFieldTypes.EntryLink<OrganizationSkeleton>;
-    certificate?: EntryFieldTypes.AssetLink;
-    categories?: EntryFieldTypes.Array<EntryFieldTypes.Symbol<CourseCategory>>;
-    completedOn: EntryFieldTypes.Date;
-  };
-}
+    type: EntryFieldTypes.Symbol<"Library" | "Platform" | "Website">;
+    url: EntryFieldTypes.Symbol;
+    thumbnail?: EntryFieldTypes.AssetLink;
+    logo?: EntryFieldTypes.AssetLink;
+  },
+  "project"
+>;
+
+export type SkillSkeleton = EntrySkeletonType<
+  {
+    name: EntryFieldTypes.Symbol;
+    category?: EntryFieldTypes.EntryLink<SkillCategorySkeleton>;
+    proficiency: EntryFieldTypes.Integer;
+    url?: EntryFieldTypes.Symbol;
+  },
+  "skill"
+>;
+
+export type SkillCategorySkeleton = EntrySkeletonType<
+  {
+    name: EntryFieldTypes.Symbol;
+    proficiency?: EntryFieldTypes.Integer;
+  },
+  "skillCategory"
+>;
