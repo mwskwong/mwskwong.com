@@ -67,6 +67,10 @@ const config = tseslint.config(
       linkComponents: ["Link"],
     },
     rules: {
+      "@typescript-eslint/consistent-type-imports": [
+        "warn",
+        { fixStyle: "inline-type-imports" },
+      ],
       "@typescript-eslint/no-misused-promises": [
         "error",
         { checksVoidReturn: { attributes: false } },

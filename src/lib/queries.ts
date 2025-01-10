@@ -65,7 +65,7 @@ export const getExperiences = cache(async () => {
 
   items.reverse();
   for (const item of items) {
-    item.fields.skills.sort((a, b) => {
+    item.fields.skills?.sort((a, b) => {
       if (a && b) {
         return a.fields.name.localeCompare(b.fields.name, undefined, {
           sensitivity: "base",
@@ -102,7 +102,7 @@ export const getExperiences = cache(async () => {
       }),
     ),
     skills: item.fields.skills
-      .filter(Boolean)
+      ?.filter(Boolean)
       .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
   }));
 });
