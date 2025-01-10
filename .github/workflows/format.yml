@@ -1,4 +1,4 @@
-name: Prettify Code
+name: Format Code
 on: push
 
 jobs:
