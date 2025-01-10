@@ -6,13 +6,13 @@
     "prebuild": "drizzle-kit migrate",
     "build": "next build",
     "dev": "next dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "postinstall": "patch-package",
     "lint": "next lint --no-cache",
-    "prettier:check": "prettier --check .",
-    "prettier:write": "prettier --write .",
     "start": "next start",
     "stylelint": "stylelint **/*.css",
-    "upgrade": "npm update && npm run postinstall && tsc && npm run lint -- --fix && npm run stylelint -- --fix && npm run prettier:write"
+    "upgrade": "npm update && npm run postinstall && tsc && npm run lint -- --fix && npm run stylelint -- --fix && npm run format"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
