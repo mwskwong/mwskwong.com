@@ -29,7 +29,7 @@ export const FeaturedBlogPosts: FC<FeaturedBlogPostsProps> = async (props) => {
     <Flex asChild align={{ sm: "start" }} direction="column" gap="8" {...props}>
       <Section>
         <Heading as="h2" size="8">
-          Featured BlogPosts
+          Featured Blog Posts
         </Heading>
         <Flex direction="column" gap="8">
           {featuredBlogPosts.map(
