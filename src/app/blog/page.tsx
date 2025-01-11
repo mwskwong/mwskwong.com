@@ -25,9 +25,9 @@ const BlogPage: FC = async () => {
   const blogPosts = await getBlogPosts();
   // eslint-disable-next-line unicorn/no-array-reduce
   const featuredBlogPost = blogPosts.reduce(
-    (highestViewedBlogPost, blogpost) =>
-      blogpost.view > highestViewedBlogPost.view
-        ? blogpost
+    (highestViewedBlogPost, blogPost) =>
+      blogPost.view > highestViewedBlogPost.view
+        ? blogPost
         : highestViewedBlogPost,
   );
 
