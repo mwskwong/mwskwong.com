@@ -44,7 +44,7 @@ export const JsonLd: FC<JsonLdProps> = async ({ blogPost, ...props }) => {
               headline: blogPost.title,
               description: blogPost.summary,
               image: blogPost.coverImage,
-              datePublished: blogPost.createdAt,
+              datePublished: blogPost.publishedAt,
               dateModified: blogPost.updatedAt,
               url: `${siteUrl}${routes.blog.pathname}/${blogPost.slug}`,
               author: { "@id": "mwskwong" },
