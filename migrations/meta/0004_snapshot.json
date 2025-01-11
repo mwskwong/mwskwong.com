@@ -1,0 +1,45 @@
+{
+  "id": "01d88d9c-fa28-4188-8811-529ad043b2c9",
+  "prevId": "b6b40786-cde8-4fea-872b-0fd2ade03752",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.blog_post_metadata": {
+      "name": "blog_post_metadata",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "view": {
+          "name": "view",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

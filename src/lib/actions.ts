@@ -3,15 +3,15 @@
 import { sql } from "drizzle-orm";
 
 import { database } from "./clients";
-import { articleMetadata } from "./schema";
+import { blogPostMetadata } from "./schema";
 
-export const incrementArticleView = async (id: string) => {
+export const incrementBlogPostView = async (id: string) => {
   const rows = await database
-    .insert(articleMetadata)
+    .insert(blogPostMetadata)
     .values({ id })
     .onConflictDoUpdate({
-      target: articleMetadata.id,
-      set: { view: sql`${articleMetadata.view} + 1` },
+      target: blogPostMetadata.id,
+      set: { view: sql`${blogPostMetadata.view} + 1` },
     })
     .returning();
 

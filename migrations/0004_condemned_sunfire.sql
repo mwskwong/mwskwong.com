@@ -1,0 +1,1 @@
+ALTER TABLE "article_metadata" RENAME TO "blog_post_metadata";

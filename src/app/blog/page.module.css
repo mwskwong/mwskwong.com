@@ -1,14 +1,14 @@
-.coverPhotoContainer {
+.coverImageContainer {
   aspect-ratio: 16 / 9;
   border-radius: var(--card-border-radius);
   box-shadow: var(--base-card-surface-box-shadow);
 }
 
-.coverPhoto {
+.coverImage {
   object-fit: cover;
 }
 
-.description {
+.summary {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;

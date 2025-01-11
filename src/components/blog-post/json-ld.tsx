@@ -18,16 +18,16 @@ import {
 } from "@/constants/me";
 import { routes, siteUrl } from "@/constants/site-config";
 import {
-  type getArticleBySlug,
+  type getBlogPostBySlug,
   getExperiences,
   getPersonalPortrait,
 } from "@/lib/queries";
 
 export interface JsonLdProps extends ComponentProps<"script"> {
-  article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
+  blogPost: NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
 }
 
-export const JsonLd: FC<JsonLdProps> = async ({ article, ...props }) => {
+export const JsonLd: FC<JsonLdProps> = async ({ blogPost, ...props }) => {
   const [personalPortrait, latestJobTitle] = await Promise.all([
     getPersonalPortrait(),
     getExperiences().then((experience) => experience[0]?.jobTitle),
@@ -41,12 +41,12 @@ export const JsonLd: FC<JsonLdProps> = async ({ article, ...props }) => {
           "@graph": [
             {
               "@type": "BlogPosting",
-              headline: article.title,
-              description: article.description,
-              image: article.coverPhoto,
-              datePublished: article.createdAt,
-              dateModified: article.updatedAt,
-              url: `${siteUrl}${routes.blog.pathname}/${article.slug}`,
+              headline: blogPost.title,
+              description: blogPost.summary,
+              image: blogPost.coverImage,
+              datePublished: blogPost.createdAt,
+              dateModified: blogPost.updatedAt,
+              url: `${siteUrl}${routes.blog.pathname}/${blogPost.slug}`,
               author: { "@id": "mwskwong" },
             } satisfies BlogPosting,
             {
@@ -66,7 +66,7 @@ export const JsonLd: FC<JsonLdProps> = async ({ article, ...props }) => {
                 },
                 {
                   "@type": "ListItem",
-                  name: article.title,
+                  name: blogPost.title,
                   position: 3,
                 },
               ],

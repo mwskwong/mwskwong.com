@@ -2,12 +2,12 @@ import { Feed } from "feed";
 
 import { email, firstName, lastName, legalName } from "@/constants/me";
 import { routes, siteUrl } from "@/constants/site-config";
-import { getArticles } from "@/lib/queries";
+import { getBlogPosts } from "@/lib/queries";
 
 const name = `${firstName} ${lastName}`;
 
 export const GET = async () => {
-  const articles = await getArticles();
+  const blogPosts = await getBlogPosts();
   const feed = new Feed({
     title: `${name} ${routes.blog.name}`,
     description: "Personal perspectives on a broad range of topics.",
@@ -21,12 +21,12 @@ export const GET = async () => {
     },
   });
 
-  for (const { title, slug, description, updatedAt } of articles) {
+  for (const { title, slug, summary, updatedAt } of blogPosts) {
     feed.addItem({
       guid: `${siteUrl}${routes.blog.pathname}/${slug}`,
       title,
       link: `${siteUrl}${routes.blog.pathname}/${slug}`,
-      description,
+      description: summary,
       author: [{ name, email }],
       published: new Date(updatedAt),
       date: new Date(updatedAt),

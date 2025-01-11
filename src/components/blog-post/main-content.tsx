@@ -39,7 +39,7 @@ import rehypeSlug from "rehype-slug";
 import { remarkAlert } from "remark-github-blockquote-alert";
 
 import { containerMaxWidth, md } from "@/constants/site-config";
-import { type getArticleBySlug } from "@/lib/queries";
+import { type getBlogPostBySlug } from "@/lib/queries";
 import { dateFormatter } from "@/lib/utils";
 
 import { CopyCodeButton } from "./copy-code-button";
@@ -188,21 +188,21 @@ const components = {
 } satisfies MDXComponents;
 
 export interface MainContentProps extends Omit<SectionProps, "children"> {
-  article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
+  blogPost: NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
 }
 
-export const MainContent: FC<MainContentProps> = ({ article, ...props }) => (
+export const MainContent: FC<MainContentProps> = ({ blogPost, ...props }) => (
   <Section {...props}>
     <Flex direction="column" gap="5">
       <Text color="gray">
-        {dateFormatter.format(new Date(article.createdAt))}
+        {dateFormatter.format(new Date(blogPost.publishedAt))}
       </Text>
-      <Heading size="8">{article.title}</Heading>
-      <Text size="4">{article.description}</Text>
+      <Heading size="8">{blogPost.title}</Heading>
+      <Text size="4">{blogPost.summary}</Text>
     </Flex>
-    {article.coverPhoto && (
+    {blogPost.coverImage && (
       <Box
-        className={styles.coverPhotoContainer}
+        className={styles.coverImageContainer}
         my="8"
         overflow="hidden"
         position="relative"
@@ -210,8 +210,8 @@ export const MainContent: FC<MainContentProps> = ({ article, ...props }) => (
         <Image
           fill
           priority
-          alt={article.title}
-          src={article.coverPhoto}
+          alt={blogPost.title}
+          src={blogPost.coverImage}
           sizes={[
             `(min-width: ${containerMaxWidth}px) ${containerMaxWidth - 350}px`, // 350px is the side bar width
             `(min-width: ${md}px) calc(100vw - 350px)`,
@@ -220,10 +220,10 @@ export const MainContent: FC<MainContentProps> = ({ article, ...props }) => (
         />
       </Box>
     )}
-    {article.content && (
+    {blogPost.content && (
       <MDXRemote
         components={components}
-        source={article.content}
+        source={blogPost.content}
         options={{
           mdxOptions: {
             rehypePlugins: [

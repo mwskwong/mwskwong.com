@@ -20,8 +20,8 @@ import { type FC } from "react";
 import { firstName, headline, lastName } from "@/constants/me";
 import { routes, siteUrl } from "@/constants/site-config";
 import {
-  type getArticleBySlug,
-  getArticles,
+  type getBlogPostBySlug,
+  getBlogPosts,
   getPersonalPortrait,
 } from "@/lib/queries";
 import { dateFormatter } from "@/lib/utils";
@@ -30,22 +30,22 @@ import styles from "./sidebar.module.css";
 
 export interface SideBarProps
   extends Omit<SectionProps, "asChild" | "children"> {
-  article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>;
+  blogPost: NonNullable<Awaited<ReturnType<typeof getBlogPostBySlug>>>;
 }
 
-export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
-  const [personalPortrait, featuredArticles] = await Promise.all([
+export const SideBar: FC<SideBarProps> = async ({ blogPost, ...props }) => {
+  const [personalPortrait, featuredBlogPosts] = await Promise.all([
     getPersonalPortrait(),
-    getArticles().then((articles) =>
-      articles
-        .filter(({ id }) => id !== article.id)
+    getBlogPosts().then((blogPosts) =>
+      blogPosts
+        .filter(({ id }) => id !== blogPost.id)
         .toSorted((a, b) => b.view - a.view)
         .slice(0, 3),
     ),
   ]);
 
-  const url = `${siteUrl}${routes.blog.pathname}/${article.slug}`;
-  const shareContent = `"${article.title}" by ${firstName} ${lastName}`;
+  const url = `${siteUrl}${routes.blog.pathname}/${blogPost.slug}`;
+  const shareContent = `"${blogPost.title}" by ${firstName} ${lastName}`;
   const shareOptions = [
     {
       Icon: IconBrandX,
@@ -65,7 +65,7 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
     {
       Icon: IconBrandReddit,
       name: "Reddit",
-      href: `http://www.reddit.com/submit/?url=${url}&title=${article.title}`,
+      href: `http://www.reddit.com/submit/?url=${url}&title=${blogPost.title}`,
     },
   ];
 
@@ -99,20 +99,20 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
           </Link>
         </Card>
         <Heading mt="8" size="4">
-          More articles
+          More Blog Posts
         </Heading>
         <Flex direction="column" gap="4" mt="4">
-          {featuredArticles.map(
-            ({ id, createdAt, coverPhoto, slug, title }) => (
+          {featuredBlogPosts.map(
+            ({ id, publishedAt, coverImage, slug, title }) => (
               <Card key={id} asChild variant="ghost">
                 <Link href={`${routes.blog.pathname}/${slug}`}>
                   <Flex align="start" gap="4">
-                    {coverPhoto && (
+                    {coverImage && (
                       <Image
                         alt={title}
-                        className={styles.coverPhoto}
+                        className={styles.coverImage}
                         height={9 * 7}
-                        src={coverPhoto}
+                        src={coverImage}
                         width={16 * 7}
                       />
                     )}
@@ -121,7 +121,7 @@ export const SideBar: FC<SideBarProps> = async ({ article, ...props }) => {
                         {title}
                       </Heading>
                       <Text color="gray" size="2">
-                        {dateFormatter.format(new Date(createdAt))}
+                        {dateFormatter.format(new Date(publishedAt))}
                       </Text>
                     </div>
                   </Flex>
