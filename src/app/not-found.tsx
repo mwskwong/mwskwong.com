@@ -282,14 +282,12 @@ const NotFound: FC = () => (
           <Heading size="9">
             Oops, <Text data-accent-color="">nothing</Text> here...
           </Heading>
-          <Box asChild maxWidth="60ch">
-            <Text>
-              Un oh, we can&apos;t seem to find the page you&apos;re looking
-              for. Try going back to previous page or{" "}
-              <Link href={`mailto:${email}`}>contact me</Link> for more
-              information.
-            </Text>
-          </Box>
+          <Text as="p">
+            Un oh, we can&apos;t seem to find the page you&apos;re looking for.
+            Try going back to previous page or{" "}
+            <Link href={`mailto:${email}`}>contact me</Link> for more
+            information.
+          </Text>
           <Button asChild highContrast color="gray" size="4">
             <NextLink href={routes.home.pathname}>Back To Home</NextLink>
           </Button>
