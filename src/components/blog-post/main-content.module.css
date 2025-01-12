@@ -1,4 +1,4 @@
-.coverPhotoContainer {
+.coverImageContainer {
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-6);
   box-shadow: var(--base-card-surface-box-shadow);

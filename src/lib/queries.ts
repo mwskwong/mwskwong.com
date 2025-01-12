@@ -2,7 +2,7 @@ import { personalPortrait, resume } from "@/constants/contentful-ids";
 
 import { contentful, database } from "./clients";
 import {
-  type ArticleSkeleton,
+  type BlogPostSkeleton,
   type CourseCategory,
   type CourseSkeleton,
   type EducationSkeleton,
@@ -11,7 +11,7 @@ import {
   type SkillCategorySkeleton,
   type SkillSkeleton,
 } from "./contentful-types";
-import { articleMetadata } from "./schema";
+import { blogPostMetadata } from "./schema";
 import { cache, generatePdfThumbnail } from "./utils";
 
 export const getPersonalPortrait = cache(async () => {
@@ -143,32 +143,32 @@ export const getEducations = cache(async () => {
   }));
 });
 
-export const getArticles = cache(async () => {
-  const [{ items }, articlesMetadata] = await Promise.all([
-    contentful.getEntries<ArticleSkeleton>({
-      content_type: "blog",
-      order: ["-sys.createdAt"],
+export const getBlogPosts = cache(async () => {
+  const [{ items }, blogPostsMetadata] = await Promise.all([
+    contentful.getEntries<BlogPostSkeleton>({
+      content_type: "blogPost",
+      order: ["-fields.publishedAt"],
     }),
-    database.select().from(articleMetadata),
+    database.select().from(blogPostMetadata),
   ]);
 
   return items.map((item) => ({
     id: item.sys.id,
-    createdAt: item.sys.createdAt,
+    publishedAt: item.fields.publishedAt,
     updatedAt: item.sys.updatedAt,
-    coverPhoto:
-      item.fields.coverPhoto?.fields.file &&
-      `https:${item.fields.coverPhoto.fields.file.url}`,
+    coverImage:
+      item.fields.coverImage?.fields.file &&
+      `https:${item.fields.coverImage.fields.file.url}`,
     title: item.fields.title,
     slug: item.fields.slug,
-    description: item.fields.description,
-    view: articlesMetadata.find(({ id }) => id === item.sys.id)?.view ?? 0,
+    summary: item.fields.summary,
+    view: blogPostsMetadata.find(({ id }) => id === item.sys.id)?.view ?? 0,
   }));
 });
 
-export const getArticleBySlug = cache(async (slug: string) => {
-  const { items } = await contentful.getEntries<ArticleSkeleton>({
-    content_type: "blog",
+export const getBlogPostBySlug = cache(async (slug: string) => {
+  const { items } = await contentful.getEntries<BlogPostSkeleton>({
+    content_type: "blogPost",
     "fields.slug[in]": [slug],
     limit: 1,
   });
@@ -177,14 +177,14 @@ export const getArticleBySlug = cache(async (slug: string) => {
   return (
     item && {
       id: item.sys.id,
-      createdAt: item.sys.createdAt,
+      publishedAt: item.fields.publishedAt,
       updatedAt: item.sys.updatedAt,
-      coverPhoto:
-        item.fields.coverPhoto?.fields.file &&
-        `https:${item.fields.coverPhoto.fields.file.url}`,
+      coverImage:
+        item.fields.coverImage?.fields.file &&
+        `https:${item.fields.coverImage.fields.file.url}`,
       title: item.fields.title,
       slug: item.fields.slug,
-      description: item.fields.description,
+      summary: item.fields.summary,
       content: item.fields.content,
     }
   );

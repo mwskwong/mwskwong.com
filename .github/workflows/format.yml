@@ -1,4 +1,4 @@
-name: Prettify Code
+name: Format Code
 on: push
 
 jobs:
@@ -12,4 +12,4 @@ jobs:
           node-version: 22
           cache: "npm"
       - run: npm ci
-      - run: npm run prettier:check
+      - run: npm run format:check

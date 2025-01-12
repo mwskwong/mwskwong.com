@@ -3,24 +3,24 @@ import { type Metadata, type ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { type FC } from "react";
 
-import { IncrementView } from "@/components/article/increment-view";
-import { JsonLd } from "@/components/article/json-ld";
-import { MainContent } from "@/components/article/main-content";
-import { SideBar } from "@/components/article/sidebar";
+import { IncrementView } from "@/components/blog-post/increment-view";
+import { JsonLd } from "@/components/blog-post/json-ld";
+import { MainContent } from "@/components/blog-post/main-content";
+import { SideBar } from "@/components/blog-post/sidebar";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { Footer } from "@/components/footer";
 import { routes, siteUrl } from "@/constants/site-config";
-import { getArticleBySlug } from "@/lib/queries";
+import { getBlogPostBySlug } from "@/lib/queries";
 
-interface ArticlePageProps {
+interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
+const BlogPostPage: FC<BlogPostPageProps> = async ({ params }) => {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const blogPost = await getBlogPostBySlug(slug);
 
-  if (!article) notFound();
+  if (!blogPost) notFound();
 
   return (
     <>
@@ -32,7 +32,7 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
                 routes.home,
                 routes.blog,
                 {
-                  name: article.title,
+                  name: blogPost.title,
                   pathname: `${routes.blog.pathname}/${slug}`,
                 },
               ]}
@@ -45,14 +45,14 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
             >
               <article>
                 <MainContent
-                  article={article}
+                  blogPost={blogPost}
                   flexGrow="1"
                   flexShrink="1"
                   minWidth="0"
                   width="100%"
                 />
                 <SideBar
-                  article={article}
+                  blogPost={blogPost}
                   position={{ md: "sticky" }}
                   top="calc(var(--space-9) + 24px)" // container padding + breadcrumb's height
                   width={{ md: "350px" }}
@@ -63,8 +63,8 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
         </Section>
         <Footer />
       </Container>
-      <IncrementView id={article.id} />
-      <JsonLd article={article} />
+      <IncrementView id={blogPost.id} />
+      <JsonLd blogPost={blogPost} />
     </>
   );
 };
@@ -74,27 +74,27 @@ const ArticlePage: FC<ArticlePageProps> = async ({ params }) => {
 export const generateStaticParams = () => [];
 
 export const generateMetadata = async (
-  { params }: ArticlePageProps,
+  { params }: BlogPostPageProps,
   parent: ResolvingMetadata,
 ) => {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const blogPost = await getBlogPostBySlug(slug);
   const { openGraph } = await parent;
 
-  if (!article) return;
-  const { title, description, coverPhoto, createdAt, updatedAt } = article;
+  if (!blogPost) return;
+  const { title, summary, coverImage, publishedAt, updatedAt } = blogPost;
 
   return {
     title,
-    description,
+    description: summary,
     openGraph: {
       ...openGraph,
       type: "article",
       authors: siteUrl,
-      publishedTime: createdAt,
+      publishedTime: publishedAt,
       modifiedTime: updatedAt,
       url: `${routes.blog.pathname}/${slug}`,
-      images: coverPhoto,
+      images: coverImage,
     },
     alternates: {
       types: { "application/rss+xml": routes.blogRssFeed.pathname },
@@ -102,4 +102,4 @@ export const generateMetadata = async (
   } satisfies Metadata;
 };
 
-export default ArticlePage;
+export default BlogPostPage;

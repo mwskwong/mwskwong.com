@@ -4,7 +4,7 @@
   border-radius: 9999px;
 }
 
-.coverPhoto {
+.coverImage {
   border-radius: var(--card-border-radius);
   box-shadow: var(--base-card-surface-box-shadow);
 }

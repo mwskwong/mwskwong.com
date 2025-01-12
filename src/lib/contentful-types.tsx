@@ -1,14 +1,15 @@
 import { type EntryFieldTypes, type EntrySkeletonType } from "contentful";
 
-export type ArticleSkeleton = EntrySkeletonType<
+export type BlogPostSkeleton = EntrySkeletonType<
   {
-    coverPhoto: EntryFieldTypes.AssetLink;
     title: EntryFieldTypes.Symbol;
     slug: EntryFieldTypes.Symbol;
-    description: EntryFieldTypes.Text;
-    content?: EntryFieldTypes.Text;
+    publishedAt: EntryFieldTypes.Date;
+    summary: EntryFieldTypes.Symbol;
+    coverImage: EntryFieldTypes.AssetLink;
+    content: EntryFieldTypes.Text;
   },
-  "blog"
+  "blogPost"
 >;
 
 export type CourseCategory =

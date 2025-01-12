@@ -16,16 +16,19 @@ import { type FC } from "react";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { Footer } from "@/components/footer";
 import { containerMaxWidth, md, routes, sm } from "@/constants/site-config";
-import { getArticles } from "@/lib/queries";
+import { getBlogPosts } from "@/lib/queries";
 import { dateFormatter } from "@/lib/utils";
 
 import styles from "./page.module.css";
 
 const BlogPage: FC = async () => {
-  const articles = await getArticles();
+  const blogPosts = await getBlogPosts();
   // eslint-disable-next-line unicorn/no-array-reduce
-  const featuredArticle = articles.reduce((highestViewedArticle, article) =>
-    article.view > highestViewedArticle.view ? article : highestViewedArticle,
+  const featuredBlogPost = blogPosts.reduce(
+    (highestViewedBlogPost, blogPost) =>
+      blogPost.view > highestViewedBlogPost.view
+        ? blogPost
+        : highestViewedBlogPost,
   );
 
   return (
@@ -37,22 +40,22 @@ const BlogPage: FC = async () => {
             Blog
           </Heading>
           <Card asChild mt="8" size={{ sm: "2", md: "3" }} variant="ghost">
-            <Link href={`${routes.blog.pathname}/${featuredArticle.slug}`}>
+            <Link href={`${routes.blog.pathname}/${featuredBlogPost.slug}`}>
               <Grid asChild columns={{ sm: "2" }} gapX="5" gapY="4">
                 <article>
                   <div>
                     <Box
-                      className={styles.coverPhotoContainer}
+                      className={styles.coverImageContainer}
                       overflow="hidden"
                       position="relative"
                     >
-                      {featuredArticle.coverPhoto ? (
+                      {featuredBlogPost.coverImage ? (
                         <Image
                           fill
                           priority
-                          alt={featuredArticle.title}
-                          className={styles.coverPhoto}
-                          src={featuredArticle.coverPhoto}
+                          alt={featuredBlogPost.title}
+                          className={styles.coverImage}
+                          src={featuredBlogPost.coverImage}
                           sizes={[
                             `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 2}px`,
                             `(min-width: ${sm}px) 50vw`,
@@ -64,17 +67,17 @@ const BlogPage: FC = async () => {
                   </div>
                   <Flex direction="column" gap={{ initial: "2", sm: "3" }}>
                     <Heading size={{ initial: "4", xs: "6", md: "8" }}>
-                      {featuredArticle.title}
+                      {featuredBlogPost.title}
                     </Heading>
                     <Text
-                      className={styles.description}
+                      className={styles.summary}
                       size={{ initial: "3", md: "4" }}
                     >
-                      {featuredArticle.description}
+                      {featuredBlogPost.summary}
                     </Text>
                     <Text as="p" color="gray" size={{ initial: "2", md: "3" }}>
                       {dateFormatter.format(
-                        new Date(featuredArticle.createdAt),
+                        new Date(featuredBlogPost.publishedAt),
                       )}
                     </Text>
                   </Flex>
@@ -87,50 +90,48 @@ const BlogPage: FC = async () => {
             gap="5"
             mt={{ initial: "5", xs: "8" }}
           >
-            {articles
-              .filter(({ id }) => id !== featuredArticle.id)
-              .map(
-                ({ id, createdAt, coverPhoto, slug, title, description }) => (
-                  <Card key={id} asChild variant="ghost">
-                    <Link href={`${routes.blog.pathname}/${slug}`}>
-                      <article>
-                        <Box
-                          className={styles.coverPhotoContainer}
-                          overflow="hidden"
-                          position="relative"
-                          style={{
-                            boxShadow: "var(--base-card-surface-box-shadow)",
-                          }}
-                        >
-                          {coverPhoto ? (
-                            <Image
-                              fill
-                              alt={title}
-                              className={styles.coverPhoto}
-                              src={coverPhoto}
-                              sizes={[
-                                `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 3}px`,
-                                `(min-width: ${md}px) 33vw`,
-                                `(min-width: ${sm}px) 50vw`,
-                                "100vw",
-                              ].join(",")}
-                            />
-                          ) : undefined}
-                        </Box>
-                        <Flex direction="column" gap="2" mt="4">
-                          <Heading size="4">{title}</Heading>
-                          <Text as="p" className={styles.description} size="3">
-                            {description}
-                          </Text>
-                          <Text as="p" color="gray" size="2">
-                            {dateFormatter.format(new Date(createdAt))}
-                          </Text>
-                        </Flex>
-                      </article>
-                    </Link>
-                  </Card>
-                ),
-              )}
+            {blogPosts
+              .filter(({ id }) => id !== featuredBlogPost.id)
+              .map(({ id, publishedAt, coverImage, slug, title, summary }) => (
+                <Card key={id} asChild variant="ghost">
+                  <Link href={`${routes.blog.pathname}/${slug}`}>
+                    <article>
+                      <Box
+                        className={styles.coverImageContainer}
+                        overflow="hidden"
+                        position="relative"
+                        style={{
+                          boxShadow: "var(--base-card-surface-box-shadow)",
+                        }}
+                      >
+                        {coverImage ? (
+                          <Image
+                            fill
+                            alt={title}
+                            className={styles.coverImage}
+                            src={coverImage}
+                            sizes={[
+                              `(min-width: ${containerMaxWidth}px) ${containerMaxWidth / 3}px`,
+                              `(min-width: ${md}px) 33vw`,
+                              `(min-width: ${sm}px) 50vw`,
+                              "100vw",
+                            ].join(",")}
+                          />
+                        ) : undefined}
+                      </Box>
+                      <Flex direction="column" gap="2" mt="4">
+                        <Heading size="4">{title}</Heading>
+                        <Text as="p" className={styles.summary} size="3">
+                          {summary}
+                        </Text>
+                        <Text as="p" color="gray" size="2">
+                          {dateFormatter.format(new Date(publishedAt))}
+                        </Text>
+                      </Flex>
+                    </article>
+                  </Link>
+                </Card>
+              ))}
           </Grid>
         </main>
       </Section>
