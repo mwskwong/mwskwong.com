@@ -200,7 +200,7 @@ textarea {
 button,
 input:where([type="button"], [type="reset"], [type="submit"]),
 ::file-selector-button {
-  appearance: button;
+  appearance: auto;
 }
 
 ::-webkit-inner-spin-button,
