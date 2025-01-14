@@ -67,7 +67,7 @@ export const FeaturedBlogPosts: FC<FeaturedBlogPostsProps> = async (props) => {
         </Flex>
         <Button asChild highContrast size="3" variant="ghost">
           <Link href={routes.blog.pathname}>
-            View all BlogPosts <IconArrowRight size={20} />
+            View all Blog Posts <IconArrowRight size={20} />
           </Link>
         </Button>
       </Section>

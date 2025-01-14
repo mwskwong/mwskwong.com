@@ -3,9 +3,14 @@
 import { sql } from "drizzle-orm";
 
 import { database } from "./clients";
+import { getBlogPosts } from "./queries";
 import { blogPostMetadata } from "./schema";
 
 export const incrementBlogPostView = async (id: string) => {
+  const blogPosts = await getBlogPosts();
+  const validBlogPostIds = blogPosts.map(({ id }) => id);
+  if (!validBlogPostIds.includes(id)) return;
+
   const rows = await database
     .insert(blogPostMetadata)
     .values({ id })

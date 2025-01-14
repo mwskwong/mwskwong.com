@@ -5,6 +5,7 @@ import url from "node:url";
 
 import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
+import eslintPluginComments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import eslintConfigPrettier from "eslint-config-prettier";
 import * as eslintPluginImport from "eslint-plugin-import";
 import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
@@ -21,9 +22,9 @@ const compat = new FlatCompat({
 
 const config = tseslint.config(
   eslint.configs.recommended,
-  // eslint-disable-next-line import/no-named-as-default-member
+
   tseslint.configs.strictTypeChecked,
-  // eslint-disable-next-line import/no-named-as-default-member
+
   tseslint.configs.stylisticTypeChecked,
   eslintPluginUnicorn.configs["flat/recommended"],
   {
@@ -33,10 +34,15 @@ const config = tseslint.config(
       eslintPluginImport.flatConfigs?.react,
     ],
   },
-  compat.extends("plugin:eslint-comments/recommended"),
+  // @ts-expect-error -- type error, but it is actually working
+  eslintPluginComments.recommended,
   eslintPluginJsxA11y.flatConfigs.strict,
-  eslintPluginReact.configs.flat?.recommended ?? {},
-  eslintPluginReact.configs.flat?.["jsx-runtime"] ?? {},
+  {
+    extends: [
+      eslintPluginReact.configs.flat?.recommended,
+      eslintPluginReact.configs.flat?.["jsx-runtime"],
+    ],
+  },
   compat.extends("plugin:react-hooks/recommended"),
   compat.extends("plugin:@next/next/recommended"),
   compat.plugins("react-compiler"),
@@ -90,7 +96,6 @@ const config = tseslint.config(
       "@typescript-eslint/restrict-template-expressions": [
         "error",
         {
-          allow: [{ name: ["Error", "URL", "URLSearchParams"], from: "lib" }],
           allowAny: false,
           allowBoolean: false,
           allowNever: false,
@@ -99,6 +104,10 @@ const config = tseslint.config(
           allowRegExp: false,
         },
       ],
+      "import/namespace": "off",
+      "import/default": "off",
+      "import/no-named-as-default-member": "off",
+      "import/no-unresolved": "off",
       "import/order": [
         "warn",
         {
@@ -142,7 +151,7 @@ const config = tseslint.config(
   },
   {
     files: ["**/*.*js"],
-    // eslint-disable-next-line import/no-named-as-default-member
+
     extends: [tseslint.configs.disableTypeChecked],
   },
 );

@@ -69,8 +69,8 @@ const ExperiencePage = async () => {
               <Heading align="center" as="h2" size="8">
                 Open-source Contribution
               </Heading>
-              <Box asChild maxWidth="60ch" mt="4">
-                <Text align="center" as="p">
+              <Box asChild maxWidth="60ch">
+                <Text align="center" as="p" mt="4">
                   Periodically, I engage in open-source contributions. Below are
                   the projects I&apos;ve contributed to thus far.
                 </Text>
