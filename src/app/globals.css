@@ -218,6 +218,8 @@ input:where([type="button"], [type="reset"], [type="submit"]),
 
 .radix-themes {
   --default-font-family: var(--font-geist);
+  --em-font-family: var(--font-ibm-plex-serif);
+  --quote-font-family: var(--font-ibm-plex-serif);
   --code-font-family: var(--font-geist-mono);
 }
 

@@ -6,6 +6,7 @@ import {
   Box,
   Card,
   Code,
+  Em,
   Flex,
   Heading,
   Inset,
@@ -185,6 +186,7 @@ const components = {
 
     return <div {...props} />;
   },
+  em: Em,
 } satisfies MDXComponents;
 
 export interface MainContentProps extends Omit<SectionProps, "children"> {
