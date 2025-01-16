@@ -3,9 +3,10 @@ import "./globals.css";
 import { Theme } from "@radix-ui/themes";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import clsx from "clsx";
 import { type Metadata } from "next";
 import { type Icon } from "next/dist/lib/metadata/types/metadata-types";
-import { Geist, Geist_Mono as GeistMono } from "next/font/google";
+import { Geist, Geist_Mono, IBM_Plex_Serif } from "next/font/google";
 import { type FC, type PropsWithChildren } from "react";
 
 import {
@@ -22,7 +23,7 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = GeistMono({
+const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
   preload: false,
@@ -30,9 +31,22 @@ const geistMono = GeistMono({
   fallback: ["monospace"],
 });
 
+const ibmPlexSerif = IBM_Plex_Serif({
+  variable: "--font-ibm-plex-serif",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  preload: false,
+});
+
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
   <html lang="en">
-    <body className={`${geist.variable} ${geistMono.variable}`}>
+    <body
+      className={clsx(
+        geist.variable,
+        geistMono.variable,
+        ibmPlexSerif.variable,
+      )}
+    >
       <Theme>{children}</Theme>
       <Analytics
         mode={
