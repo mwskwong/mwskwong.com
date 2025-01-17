@@ -1,10 +1,5 @@
 import { type ComponentProps, type FC } from "react";
-import {
-  type BlogPosting,
-  type BreadcrumbList,
-  type Graph,
-  type Person,
-} from "schema-dts";
+import { type BlogPosting, type BreadcrumbList, type Graph } from "schema-dts";
 
 import {
   address,
@@ -47,7 +42,18 @@ export const JsonLd: FC<JsonLdProps> = async ({ blogPost, ...props }) => {
               datePublished: blogPost.publishedAt,
               dateModified: blogPost.updatedAt,
               url: `${siteUrl}${routes.blog.pathname}/${blogPost.slug}`,
-              author: { "@id": "mwskwong" },
+              author: {
+                "@type": "Person",
+                name: `${firstName} ${lastName}`,
+                alternateName: "mwskwong",
+                jobTitle: latestJobTitle,
+                email,
+                address,
+                url: siteUrl,
+                image: personalPortrait,
+                sameAs: [github, linkedin, stackoverflow],
+                description: selfIntroduction,
+              },
             } satisfies BlogPosting,
             {
               "@type": "BreadcrumbList",
@@ -72,19 +78,6 @@ export const JsonLd: FC<JsonLdProps> = async ({ blogPost, ...props }) => {
               ],
               name: "Breadcrumbs",
             } satisfies BreadcrumbList,
-            {
-              "@id": "mwskwong",
-              "@type": "Person",
-              name: `${firstName} ${lastName}`,
-              alternateName: "mwskwong",
-              jobTitle: latestJobTitle,
-              email,
-              address,
-              url: siteUrl,
-              image: personalPortrait,
-              sameAs: [github, linkedin, stackoverflow],
-              description: selfIntroduction,
-            } satisfies Person,
           ],
         } satisfies Graph),
       }}
