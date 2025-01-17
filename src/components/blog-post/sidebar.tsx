@@ -26,6 +26,7 @@ import {
 } from "@/lib/queries";
 import { dateFormatter } from "@/lib/utils";
 
+import { CopyLinkButton } from "./copy-link-button";
 import styles from "./sidebar.module.css";
 
 export interface SideBarProps
@@ -133,6 +134,7 @@ export const SideBar: FC<SideBarProps> = async ({ blogPost, ...props }) => {
         <Flex align="center" gap="4" justify="between" mt="8">
           <Text>Share:</Text>
           <Flex gap="4">
+            <CopyLinkButton />
             {shareOptions.map(({ Icon, href, name }) => (
               <IconButton
                 key={name}
