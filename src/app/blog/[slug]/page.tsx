@@ -2,15 +2,29 @@ import { Container, Flex, Section } from "@radix-ui/themes";
 import { type Metadata, type ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { type FC } from "react";
+import { type BlogPosting, type BreadcrumbList, type Graph } from "schema-dts";
 
 import { IncrementView } from "@/components/blog-post/increment-view";
-import { JsonLd } from "@/components/blog-post/json-ld";
 import { MainContent } from "@/components/blog-post/main-content";
 import { SideBar } from "@/components/blog-post/sidebar";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { Footer } from "@/components/footer";
+import {
+  address,
+  email,
+  firstName,
+  github,
+  lastName,
+  linkedin,
+  selfIntroduction,
+  stackoverflow,
+} from "@/constants/me";
 import { routes, siteUrl } from "@/constants/site-config";
-import { getBlogPostBySlug } from "@/lib/queries";
+import {
+  getBlogPostBySlug,
+  getExperiences,
+  getPersonalPortrait,
+} from "@/lib/queries";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -19,11 +33,16 @@ interface BlogPostPageProps {
 const BlogPostPage: FC<BlogPostPageProps> = async ({ params }) => {
   const { slug } = await params;
   const blogPost = await getBlogPostBySlug(slug);
-
   if (!blogPost) notFound();
+
+  const [personalPortrait, latestJobTitle] = await Promise.all([
+    getPersonalPortrait(),
+    getExperiences().then((experience) => experience[0]?.jobTitle),
+  ]);
 
   return (
     <>
+      <IncrementView id={blogPost.id} />
       <Container>
         <Section asChild>
           <main>
@@ -63,8 +82,60 @@ const BlogPostPage: FC<BlogPostPageProps> = async ({ params }) => {
         </Section>
         <Footer />
       </Container>
-      <IncrementView id={blogPost.id} />
-      <JsonLd blogPost={blogPost} />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BlogPosting",
+                headline: blogPost.title,
+                description: blogPost.summary,
+                image: blogPost.coverImage,
+                datePublished: blogPost.publishedAt,
+                dateModified: blogPost.updatedAt,
+                url: `${siteUrl}${routes.blog.pathname}/${blogPost.slug}`,
+                author: {
+                  "@type": "Person",
+                  name: `${firstName} ${lastName}`,
+                  alternateName: "mwskwong",
+                  jobTitle: latestJobTitle,
+                  email,
+                  address,
+                  url: siteUrl,
+                  image: personalPortrait,
+                  sameAs: [github, linkedin, stackoverflow],
+                  description: selfIntroduction,
+                },
+              } satisfies BlogPosting,
+              {
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    name: routes.home.name,
+                    item: siteUrl,
+                    position: 1,
+                  },
+                  {
+                    "@type": "ListItem",
+                    name: routes.blog.name,
+                    item: siteUrl + routes.blog.pathname,
+                    position: 2,
+                  },
+                  {
+                    "@type": "ListItem",
+                    name: blogPost.title,
+                    position: 3,
+                  },
+                ],
+                name: "Breadcrumbs",
+              } satisfies BreadcrumbList,
+            ],
+          } satisfies Graph),
+        }}
+        type="application/ld+json"
+      />
     </>
   );
 };
