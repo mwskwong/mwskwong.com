@@ -232,9 +232,9 @@ input:where([type="button"], [type="reset"], [type="submit"]),
   &:where(:any-link, button) {
     &:where(:active:not(:focus-visible, [data-state="open"])) {
       @media (pointer: coarse) {
-        background-color: var(--accent-a4);
         outline: 0.15em solid var(--accent-a4);
         outline-offset: 0;
+        background-color: var(--accent-a4);
       }
     }
   }
