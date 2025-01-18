@@ -9,12 +9,7 @@ export const CopyCodeButton: FC<CopyCodeButtonProps> = (props) => {
   const [copied, setCopied] = useState(false);
   const timeout = useRef<NodeJS.Timeout>(undefined);
 
-  useEffect(
-    () => () => {
-      clearTimeout(timeout.current);
-    },
-    [],
-  );
+  useEffect(() => () => clearTimeout(timeout.current), []);
 
   return (
     <IconButton
@@ -27,9 +22,7 @@ export const CopyCodeButton: FC<CopyCodeButtonProps> = (props) => {
         if (code?.textContent) {
           await navigator.clipboard.writeText(code.textContent);
           setCopied(true);
-          timeout.current = setTimeout(() => {
-            setCopied(false);
-          }, 1000);
+          timeout.current = setTimeout(() => setCopied(false), 1000);
         }
       }}
       {...props}

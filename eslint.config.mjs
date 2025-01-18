@@ -22,9 +22,7 @@ const compat = new FlatCompat({
 
 const config = tseslint.config(
   eslint.configs.recommended,
-
   tseslint.configs.strictTypeChecked,
-
   tseslint.configs.stylisticTypeChecked,
   eslintPluginUnicorn.configs["flat/recommended"],
   {
@@ -80,6 +78,10 @@ const config = tseslint.config(
       "@typescript-eslint/no-misused-promises": [
         "error",
         { checksVoidReturn: { attributes: false } },
+      ],
+      "@typescript-eslint/no-confusing-void-expression": [
+        "error",
+        { ignoreArrowShorthand: true },
       ],
       "@typescript-eslint/no-unused-vars": [
         "error",
@@ -151,7 +153,6 @@ const config = tseslint.config(
   },
   {
     files: ["**/*.*js"],
-
     extends: [tseslint.configs.disableTypeChecked],
   },
 );
