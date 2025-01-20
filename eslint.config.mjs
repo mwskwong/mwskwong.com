@@ -24,7 +24,7 @@ const compat = new FlatCompat({
 const config = tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
-  tseslint.configs.stylisticTypeChecked,  
+  tseslint.configs.stylisticTypeChecked,
   eslintPluginUnicorn.configs["flat/recommended"],
   {
     extends: [
@@ -46,7 +46,7 @@ const config = tseslint.config(
   compat.extends("plugin:@next/next/recommended"),
   {
     plugins: {
-      'react-compiler': eslintPluginReactCompiler,
+      "react-compiler": eslintPluginReactCompiler,
     },
   },
   compat.extends("plugin:drizzle/recommended"),
@@ -159,7 +159,7 @@ const config = tseslint.config(
   {
     files: ["**/*.*js"],
     extends: [tseslint.configs.disableTypeChecked],
-  },
+  }
 );
 
 export default config;
