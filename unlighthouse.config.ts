@@ -10,7 +10,8 @@ const config = {
     },
   },
   scanner: {
-    samples: 5,
+    samples: 3,
+    throttle: true,
   },
 };
 
