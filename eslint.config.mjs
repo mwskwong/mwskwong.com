@@ -5,13 +5,13 @@ import url from "node:url";
 
 import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
-import eslintPluginComments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-import eslintConfigPrettier from "eslint-config-prettier";
-import * as eslintPluginImport from "eslint-plugin-import";
-import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
-import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
-import eslintPluginReact from "eslint-plugin-react";
-import eslintPluginUnicorn from "eslint-plugin-unicorn";
+import commentsPlugin from "@eslint-community/eslint-plugin-eslint-comments/configs";
+import prettierConfig from "eslint-config-prettier";
+import * as importPlugin from "eslint-plugin-import";
+import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
+import reactPlugin from "eslint-plugin-react";
+import reactCompilerPlugin from "eslint-plugin-react-compiler";
+import unicornPlugin from "eslint-plugin-unicorn";
 import tseslint from "typescript-eslint";
 
 const __filename = url.fileURLToPath(import.meta.url);
@@ -25,32 +25,28 @@ const config = tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
-  eslintPluginUnicorn.configs["flat/recommended"],
+  unicornPlugin.configs["flat/recommended"],
   {
     extends: [
-      eslintPluginImport.flatConfigs?.recommended,
-      eslintPluginImport.flatConfigs?.typescript,
-      eslintPluginImport.flatConfigs?.react,
+      importPlugin.flatConfigs?.recommended,
+      importPlugin.flatConfigs?.typescript,
+      importPlugin.flatConfigs?.react,
     ],
   },
   // @ts-expect-error -- type error, but it is actually working
-  eslintPluginComments.recommended,
-  eslintPluginJsxA11y.flatConfigs.strict,
-  {
-    extends: [
-      eslintPluginReact.configs.flat?.recommended,
-      eslintPluginReact.configs.flat?.["jsx-runtime"],
-    ],
-  },
+  commentsPlugin.recommended,
+  jsxA11yPlugin.flatConfigs.strict,
+  reactPlugin.configs.flat.recommended,
+  reactPlugin.configs.flat["jsx-runtime"],
   compat.extends("plugin:react-hooks/recommended"),
   compat.extends("plugin:@next/next/recommended"),
   {
     plugins: {
-      "react-compiler": eslintPluginReactCompiler,
+      "react-compiler": reactCompilerPlugin,
     },
   },
   compat.extends("plugin:drizzle/recommended"),
-  eslintConfigPrettier,
+  prettierConfig,
   {
     languageOptions: {
       parserOptions: {
