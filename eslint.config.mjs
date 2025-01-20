@@ -8,6 +8,7 @@ import eslint from "@eslint/js";
 import eslintPluginComments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import eslintConfigPrettier from "eslint-config-prettier";
 import * as eslintPluginImport from "eslint-plugin-import";
+import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
 import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
 import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
@@ -23,7 +24,7 @@ const compat = new FlatCompat({
 const config = tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
-  tseslint.configs.stylisticTypeChecked,
+  tseslint.configs.stylisticTypeChecked,  
   eslintPluginUnicorn.configs["flat/recommended"],
   {
     extends: [
@@ -43,7 +44,11 @@ const config = tseslint.config(
   },
   compat.extends("plugin:react-hooks/recommended"),
   compat.extends("plugin:@next/next/recommended"),
-  compat.plugins("react-compiler"),
+  {
+    plugins: {
+      'react-compiler': eslintPluginReactCompiler,
+    },
+  },
   compat.extends("plugin:drizzle/recommended"),
   eslintConfigPrettier,
   {
