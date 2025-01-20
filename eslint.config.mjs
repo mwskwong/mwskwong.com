@@ -159,7 +159,7 @@ const config = tseslint.config(
   {
     files: ["**/*.*js"],
     extends: [tseslint.configs.disableTypeChecked],
-  }
+  },
 );
 
 export default config;
