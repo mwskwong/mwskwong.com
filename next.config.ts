@@ -71,13 +71,14 @@ const config = {
             form-action 'self';
             frame-ancestors 'none';
             upgrade-insecure-requests;
-          `.replace(/\n/g, ""),
+          `.replaceAll("\n", ""),
         },
       ],
     },
   ],
   logging: { fetches: { fullUrl: true } },
   experimental: {
+    typedEnv: true,
     reactCompiler: true,
     optimizePackageImports: ["@radix-ui/themes"],
   },
