@@ -30,7 +30,7 @@ const ExperiencePage = async () => {
       <Container>
         <main>
           <Section>
-            <Breadcrumb routes={[routes.home, routes.experience]} />
+            <Breadcrumb routes={[routes.home]} />
             <Heading mt="2" size="9">
               Experience
             </Heading>

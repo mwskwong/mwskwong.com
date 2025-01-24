@@ -46,16 +46,7 @@ const BlogPostPage: FC<BlogPostPageProps> = async ({ params }) => {
       <Container>
         <Section asChild>
           <main>
-            <Breadcrumb
-              routes={[
-                routes.home,
-                routes.blog,
-                {
-                  name: blogPost.title,
-                  pathname: `${routes.blog.pathname}/${slug}`,
-                },
-              ]}
-            />
+            <Breadcrumb routes={[routes.home, routes.blog]} />
             <Flex
               asChild
               align="start"

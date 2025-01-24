@@ -35,7 +35,7 @@ const BlogPage: FC = async () => {
     <Container>
       <Section asChild>
         <main>
-          <Breadcrumb routes={[routes.home, routes.blog]} />
+          <Breadcrumb routes={[routes.home]} />
           <Heading mt="2" size="9">
             Blog
           </Heading>
