@@ -2,7 +2,7 @@ name: Format Code
 on: push
 
 jobs:
-  prettier:
+  format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
