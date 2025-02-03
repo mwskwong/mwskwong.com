@@ -12,6 +12,7 @@ const config = {
   scanner: {
     samples: 3,
     throttle: true,
+    crawler: false,
   },
 };
 
