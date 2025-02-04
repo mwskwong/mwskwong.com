@@ -10,7 +10,7 @@ const ParamsPage = () => (
   <Container asChild>
     <main>
       <Section>
-        <Heading size="9">{routes.params.name}</Heading>
+        <Heading size="6">{routes.params.name}</Heading>
         <DataList.Root mt="8">
           <DataList.Item>
             <DataList.Label>Commit</DataList.Label>
