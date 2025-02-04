@@ -11,7 +11,7 @@ const ParamsPage = () => (
       <Section>
         <DataList.Root>
           <DataList.Item>
-            <DataList.Label>Git SHA</DataList.Label>
+            <DataList.Label>Commit</DataList.Label>
             <DataList.Value>
               <Code asChild className={styles.codeValue} variant="ghost">
                 <Link
@@ -32,8 +32,8 @@ const ParamsPage = () => (
             <DataList.Value>
               <Code className={styles.codeValue} variant="ghost">
                 {process.env.VERCEL_REGION}
-              </Code>{" "}
-              (
+              </Code>
+              &nbsp;(
               <Link
                 href="https://vercel.com/docs/edge-network/regions#region-list"
                 rel="noreferrer"
