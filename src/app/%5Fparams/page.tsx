@@ -36,6 +36,7 @@ const ParamsPage = () => (
               (
               <Link
                 href="https://vercel.com/docs/edge-network/regions#region-list"
+                rel="noreferrer"
                 target="_blank"
               >
                 region list
@@ -54,8 +55,18 @@ const ParamsPage = () => (
           <DataList.Item>
             <DataList.Label>Contentful ENV</DataList.Label>
             <DataList.Value>
-              <Code className={styles.codeValue} variant="ghost">
-                {process.env.CONTENTFUL_ENVIRONMENT}
+              <Code asChild className={styles.codeValue} variant="ghost">
+                <Link
+                  rel="noreferrer"
+                  target="_blank"
+                  href={
+                    process.env.CONTENTFUL_SPACE_ID &&
+                    process.env.CONTENTFUL_ENVIRONMENT &&
+                    `https://app.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`
+                  }
+                >
+                  {process.env.CONTENTFUL_ENVIRONMENT}
+                </Link>
               </Code>
             </DataList.Value>
           </DataList.Item>
