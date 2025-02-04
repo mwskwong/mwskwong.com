@@ -14,6 +14,7 @@ export const routes = {
   skills: { name: "Skills", pathname: "/skills" },
   blog: { name: "Blog", pathname: "/blog" },
   blogRssFeed: { name: "Blog RSS Feed", pathname: "/blog/rss.xml" },
+  params: { name: "Parameters", pathname: "/_params" },
 } as const satisfies Record<string, Route>;
 
 const getSiteUrl = () => {

@@ -1,8 +1,5 @@
 // @ts-check
 
-import path from "node:path";
-import url from "node:url";
-
 import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
 import commentsPlugin from "@eslint-community/eslint-plugin-eslint-comments/configs";
@@ -14,11 +11,8 @@ import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import unicornPlugin from "eslint-plugin-unicorn";
 import tseslint from "typescript-eslint";
 
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: import.meta.dirname,
 });
 
 const config = tseslint.config(
