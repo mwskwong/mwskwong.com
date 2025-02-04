@@ -28,6 +28,14 @@ const ParamsPage = () => (
             </DataList.Value>
           </DataList.Item>
           <DataList.Item>
+            <DataList.Label>Region</DataList.Label>
+            <DataList.Value>
+              <Code className={styles.codeValue} variant="ghost">
+                {process.env.VERCEL_REGION}
+              </Code>
+            </DataList.Value>
+          </DataList.Item>
+          <DataList.Item>
             <DataList.Label>Site URL</DataList.Label>
             <DataList.Value>
               <Link href={siteUrl} rel="noreferrer" target="_blank">
@@ -49,4 +57,5 @@ const ParamsPage = () => (
   </Container>
 );
 
+export const dynamic = "force-dynamic";
 export default ParamsPage;
