@@ -1,7 +1,8 @@
-import { Code, Container, Link, Section } from "@radix-ui/themes";
+import { Code, Container, Heading, Link, Section } from "@radix-ui/themes";
 import * as DataList from "@radix-ui/themes/components/data-list";
+import { type Metadata } from "next";
 
-import { siteUrl } from "@/constants/site-config";
+import { routes, siteUrl } from "@/constants/site-config";
 
 import styles from "./page.module.css";
 
@@ -9,7 +10,8 @@ const ParamsPage = () => (
   <Container asChild>
     <main>
       <Section>
-        <DataList.Root>
+        <Heading size="9">{routes.params.name}</Heading>
+        <DataList.Root mt="8">
           <DataList.Item>
             <DataList.Label>Commit</DataList.Label>
             <DataList.Value>
@@ -76,5 +78,7 @@ const ParamsPage = () => (
   </Container>
 );
 
+export const metadata = { title: routes.params.name } satisfies Metadata;
 export const dynamic = "force-dynamic";
+
 export default ParamsPage;
