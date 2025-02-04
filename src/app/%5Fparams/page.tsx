@@ -1,12 +1,13 @@
 import { Code, Container, Heading, Link, Section } from "@radix-ui/themes";
 import * as DataList from "@radix-ui/themes/components/data-list";
 import { type Metadata } from "next";
+import { type FC } from "react";
 
 import { routes, siteUrl } from "@/constants/site-config";
 
 import styles from "./page.module.css";
 
-const ParamsPage = () => (
+const ParamsPage: FC = () => (
   <Container asChild>
     <main>
       <Section>
