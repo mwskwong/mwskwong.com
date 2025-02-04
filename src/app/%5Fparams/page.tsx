@@ -32,7 +32,15 @@ const ParamsPage = () => (
             <DataList.Value>
               <Code className={styles.codeValue} variant="ghost">
                 {process.env.VERCEL_REGION}
-              </Code>
+              </Code>{" "}
+              (
+              <Link
+                href="https://vercel.com/docs/edge-network/regions#region-list"
+                target="_blank"
+              >
+                region list
+              </Link>
+              )
             </DataList.Value>
           </DataList.Item>
           <DataList.Item>
