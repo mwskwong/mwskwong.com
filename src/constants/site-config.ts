@@ -17,6 +17,7 @@ export const routes = {
   params: { name: "Parameters", pathname: "/_params" },
 } as const satisfies Record<string, Route>;
 
+// ref: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#default-value
 const getSiteUrl = () => {
   if (
     process.env.NEXT_PUBLIC_VERCEL_ENV === "production" &&
@@ -26,10 +27,14 @@ const getSiteUrl = () => {
   }
 
   if (
-    process.env.NEXT_PUBLIC_VERCEL_ENV &&
-    process.env.NEXT_PUBLIC_VERCEL_URL
+    process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" &&
+    (process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ||
+      process.env.NEXT_PUBLIC_VERCEL_URL)
   ) {
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+    return `https://${
+      process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
+      process.env.NEXT_PUBLIC_VERCEL_URL
+    }`;
   }
 
   return `http://localhost:${process.env.PORT ?? 3000}`;
