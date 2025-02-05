@@ -6,7 +6,8 @@ const robots = () =>
   ({
     rules: {
       userAgent: "*",
-      disallow: process.env.VERCEL_ENV === "production" ? routes.params.pathname : "/",
+      disallow:
+        process.env.VERCEL_ENV === "production" ? routes.params.pathname : "/",
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   }) satisfies MetadataRoute.Robots;
