@@ -26,15 +26,11 @@ const getSiteUrl = () => {
     return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
   }
 
-  if (
-    process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" &&
-    (process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ||
-      process.env.NEXT_PUBLIC_VERCEL_URL)
-  ) {
-    return `https://${
-      process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
-      process.env.NEXT_PUBLIC_VERCEL_URL
-    }`;
+  const previewOrigin =
+    process.env.NEXT_PUBLIC_VERCEL_BRANCH_URL ??
+    process.env.NEXT_PUBLIC_VERCEL_URL;
+  if (process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" && previewOrigin) {
+    return `https://${previewOrigin}`;
   }
 
   return `http://localhost:${process.env.PORT ?? 3000}`;
