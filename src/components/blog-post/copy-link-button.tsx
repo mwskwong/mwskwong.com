@@ -21,7 +21,7 @@ export const CopyLinkButton: FC<CopyLinkButtonProps> = (props) => {
       color="gray"
       variant="ghost"
       onClick={async () => {
-        await navigator.clipboard.writeText(`${siteUrl}${pathname}`);
+        await navigator.clipboard.writeText(siteUrl + pathname);
         setCopied(true);
         timeout.current = setTimeout(() => setCopied(false), 1000);
       }}
