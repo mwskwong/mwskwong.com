@@ -89,7 +89,6 @@ export const generateMetadata = async () =>
       type: "website",
       siteName,
     },
-    robots: { "max-image-preview": "large" },
     icons: {
       icon: await Promise.all(
         iconSizes.map(async (size) => {
