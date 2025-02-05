@@ -18,7 +18,7 @@ Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see 
 
         ```js
         navigator.clipboard.writeText(
-          `canary_${new Date().toISOString().replaceAll(":", "-")}`
+          `canary_${new Date().toISOString().replaceAll(":", "-")}`,
         );
         ```
 
