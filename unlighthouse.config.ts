@@ -10,8 +10,8 @@ const config = {
       seo: 63, // minus point from non-PROD not being indexable
     },
   },
-  scanner: {    
-    exclude: ["http*"]
+  scanner: {
+    exclude: ["http*"],
   },
   lighthouseOptions: {
     throttling: {
