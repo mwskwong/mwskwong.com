@@ -7,10 +7,12 @@ const sitemap = async () => {
   const blogPosts = await getBlogPosts();
 
   return [
-    ...Object.values(routes).map(({ pathname }) => ({
-      url: siteUrl + pathname,
-      lastModified: new Date(),
-    })),
+    ...Object.values(routes)
+      .filter(({ pathname }) => !pathname.includes("/_"))
+      .map(({ pathname }) => ({
+        url: siteUrl + pathname,
+        lastModified: new Date(),
+      })),
     ...blogPosts.map(({ slug, updatedAt }) => ({
       url: `${siteUrl}${routes.blog.pathname}/${slug}`,
       lastModified: updatedAt,
