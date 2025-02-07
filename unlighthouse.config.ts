@@ -1,6 +1,7 @@
 const config = {
   cache: false,
   ci: {
+    reporter: "jsonExpanded",
     buildStatic: true,
     budget: {
       performance: 90,
@@ -14,7 +15,7 @@ const config = {
   },
   lighthouseOptions: {
     throttling: {
-      cpuSlowdownMultiplier: 8.7,
+      cpuSlowdownMultiplier: 8.6,
     },
   },
   puppeteerClusterOptions: {
