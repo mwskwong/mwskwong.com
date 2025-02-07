@@ -10,9 +10,6 @@ const config = {
       seo: 63, // minus point from non-PROD not being indexable
     },
   },
-  scanner: {
-    crawler: false,
-  },
   lighthouseOptions: {
     throttling: {
       cpuSlowdownMultiplier: 8.6,
