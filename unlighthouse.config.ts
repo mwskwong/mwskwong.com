@@ -15,7 +15,7 @@ const config = {
   },
   lighthouseOptions: {
     throttling: {
-      cpuSlowdownMultiplier: 4,
+      cpuSlowdownMultiplier: 8.7,
     },
   },
   puppeteerClusterOptions: {
