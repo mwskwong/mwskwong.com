@@ -10,7 +10,6 @@ const config = {
     },
   },
   scanner: {
-    samples: 3,
     crawler: false,
   },
   lighthouseOptions: {
