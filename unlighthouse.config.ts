@@ -11,7 +11,7 @@ const config = {
     },
   },
   scanner: {
-    exclude: ["http*"],
+    crawler: false,
   },
   lighthouseOptions: {
     throttling: {
