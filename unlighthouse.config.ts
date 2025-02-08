@@ -1,4 +1,14 @@
 const config = {
+  site: process.env.DEPLOYMENT_URL,
+  urls: async () => {
+    const response = await fetch(
+      `${process.env.DEPLOYMENT_URL ?? ""}/sitemap.xml`,
+    );
+    const sitemap = await response.text();
+    return sitemap
+      .match(/<loc>(.*?)<\/loc>/g)
+      ?.map((loc) => loc.replaceAll(/<\/?loc>/g, ""));
+  },
   cache: false,
   ci: {
     reporter: "jsonExpanded",
@@ -9,9 +19,6 @@ const config = {
       "best-practices": 100,
       seo: 63, // minus point from non-PROD not being indexable
     },
-  },
-  scanner: {
-    crawler: false,
   },
   lighthouseOptions: {
     throttling: {
