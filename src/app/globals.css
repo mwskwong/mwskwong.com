@@ -4,7 +4,7 @@
 @import "@radix-ui/themes/components.css";
 @import "@radix-ui/themes/utilities.css";
 
-/* CSS reset. Ref: https://github.com/tailwindlabs/tailwindcss/blob/next/packages/tailwindcss/preflight.css */
+/* CSS reset. Ref: https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/preflight.css */
 
 *,
 ::after,
@@ -24,6 +24,12 @@ html,
   tab-size: 4;
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+}
+
+hr {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
 }
 
 body {
