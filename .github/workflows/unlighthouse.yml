@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "npm"
+          # cache: "npm" # TODO: https://github.com/actions/cache/issues/319
       - run: npm install -g @unlighthouse/cli puppeteer
       - run: npm list -g @unlighthouse/cli
       - run: unlighthouse-ci
