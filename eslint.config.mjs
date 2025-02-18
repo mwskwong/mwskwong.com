@@ -19,7 +19,7 @@ const config = tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
-  unicornPlugin.configs["flat/recommended"],
+  unicornPlugin.configs.recommended,
   {
     extends: [
       importPlugin.flatConfigs?.recommended,
@@ -136,6 +136,7 @@ const config = tseslint.config(
         {
           replacements: {
             props: false,
+            utils: false,
           },
           allowList: {
             devOps: true,
