@@ -20,10 +20,10 @@ const config = {
       seo: 63, // minus point from non-PROD not being indexable
     },
   },
+  extraHeaders: {
+    "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+  },
   lighthouseOptions: {
-    extraHeaders: {
-      "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
-    },
     throttling: {
       cpuSlowdownMultiplier: 8.6,
     },
