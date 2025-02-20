@@ -21,6 +21,9 @@ const config = {
     },
   },
   lighthouseOptions: {
+    extraHeaders: {
+      "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+    },
     throttling: {
       cpuSlowdownMultiplier: 8.6,
     },
