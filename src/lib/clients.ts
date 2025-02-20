@@ -10,6 +10,6 @@ export const contentful = createClient({
 }).withoutUnresolvableLinks;
 
 export const db = drizzle({
-  connection: process.env.db_URL ?? "",
+  connection: process.env.DATABASE_URL ?? "",
   casing: "snake_case",
 });
