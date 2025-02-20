@@ -1,6 +1,6 @@
 import { personalPortrait, resume } from "@/constants/contentful-ids";
 
-import { contentful, database } from "./clients";
+import { contentful, db } from "./clients";
 import {
   type BlogPostSkeleton,
   type CourseCategory,
@@ -149,7 +149,7 @@ export const getBlogPosts = cache(async () => {
       content_type: "blogPost",
       order: ["-fields.publishedAt"],
     }),
-    database.select().from(blogPostMetadata),
+    db.select().from(blogPostMetadata),
   ]);
 
   return items.map((item) => ({

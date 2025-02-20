@@ -2,7 +2,7 @@
 
 import { sql } from "drizzle-orm";
 
-import { database } from "./clients";
+import { db } from "./clients";
 import { getBlogPosts } from "./queries";
 import { blogPostMetadata } from "./schema";
 
@@ -11,7 +11,7 @@ export const incrementBlogPostView = async (id: string) => {
   const validBlogPostIds = blogPosts.map(({ id }) => id);
   if (!validBlogPostIds.includes(id)) return;
 
-  const rows = await database
+  const rows = await db
     .insert(blogPostMetadata)
     .values({ id })
     .onConflictDoUpdate({

@@ -9,7 +9,7 @@ export const contentful = createClient({
   environment: process.env.CONTENTFUL_ENVIRONMENT,
 }).withoutUnresolvableLinks;
 
-export const database = drizzle({
-  connection: process.env.DATABASE_URL ?? "",
+export const db = drizzle({
+  connection: process.env.db_URL ?? "",
   casing: "snake_case",
 });
