@@ -131,7 +131,7 @@ const config = tseslint.config(
       ],
       "react-compiler/react-compiler": "error",
       "sort-imports": ["warn", { ignoreDeclarationSort: true }],
-      "unicorn/prevent-abbreviations": "off"
+      "unicorn/prevent-abbreviations": "off",
     },
   },
   {
