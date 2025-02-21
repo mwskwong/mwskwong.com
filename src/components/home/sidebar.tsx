@@ -1,13 +1,10 @@
-import {
-  Box,
-  Flex,
-  type FlexProps,
-  Heading,
-  IconButton,
-  Link,
-  Section,
-  Text,
-} from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes/components/box";
+import { Flex, type FlexProps } from "@radix-ui/themes/components/flex";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { IconButton } from "@radix-ui/themes/components/icon-button";
+import { Link } from "@radix-ui/themes/components/link";
+import { Section } from "@radix-ui/themes/components/section";
+import { Text } from "@radix-ui/themes/components/text";
 import {
   IconBrandGithub,
   IconBrandLinkedin,

@@ -1,4 +1,6 @@
-import { Container, Flex, Section } from "@radix-ui/themes";
+import { Container } from "@radix-ui/themes/components/container";
+import { Flex } from "@radix-ui/themes/components/flex";
+import { Section } from "@radix-ui/themes/components/section";
 import { type Metadata, type ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { type FC } from "react";

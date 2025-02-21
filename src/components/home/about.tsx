@@ -1,12 +1,9 @@
-import {
-  Box,
-  Button,
-  Flex,
-  type FlexProps,
-  Heading,
-  Section,
-  Text,
-} from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes/components/box";
+import { Button } from "@radix-ui/themes/components/button";
+import { Flex, type FlexProps } from "@radix-ui/themes/components/flex";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { Section } from "@radix-ui/themes/components/section";
+import { Text } from "@radix-ui/themes/components/text";
 import Image from "next/image";
 import { type FC } from "react";
 

@@ -1,12 +1,10 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Section,
-  Text,
-  Tooltip,
-} from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes/components/box";
+import { Container } from "@radix-ui/themes/components/container";
+import { Flex } from "@radix-ui/themes/components/flex";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { Section } from "@radix-ui/themes/components/section";
+import { Text } from "@radix-ui/themes/components/text";
+import { Tooltip } from "@radix-ui/themes/components/tooltip";
 import { type Metadata } from "next";
 import Image from "next/image";
 import { type BreadcrumbList, type Graph } from "schema-dts";

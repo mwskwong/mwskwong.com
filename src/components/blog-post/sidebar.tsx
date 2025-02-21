@@ -1,12 +1,12 @@
+import { Card } from "@radix-ui/themes/components/card";
+import { Flex } from "@radix-ui/themes/components/flex";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { IconButton } from "@radix-ui/themes/components/icon-button";
 import {
-  Card,
-  Flex,
-  Heading,
-  IconButton,
   Section,
   type SectionProps,
-  Text,
-} from "@radix-ui/themes";
+} from "@radix-ui/themes/components/section";
+import { Text } from "@radix-ui/themes/components/text";
 import {
   IconBrandFacebook,
   IconBrandLinkedin,

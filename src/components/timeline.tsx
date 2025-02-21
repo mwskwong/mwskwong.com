@@ -1,25 +1,23 @@
+import { Badge } from "@radix-ui/themes/components/badge";
+import { Box } from "@radix-ui/themes/components/box";
+import { Card } from "@radix-ui/themes/components/card";
+import { Flex, type FlexProps } from "@radix-ui/themes/components/flex";
+import { Grid, type GridProps } from "@radix-ui/themes/components/grid";
 import {
-  Badge,
-  Box,
-  Card,
-  Flex,
-  type FlexProps,
-  Grid,
-  type GridProps,
   Heading,
   type HeadingProps,
-  Link,
-  Text,
-} from "@radix-ui/themes";
+} from "@radix-ui/themes/components/heading";
+import { Link } from "@radix-ui/themes/components/link";
+import { Text } from "@radix-ui/themes/components/text";
 import Image, { type StaticImageData } from "next/image";
 import { type FC } from "react";
 
 import styles from "./timeline.module.css";
 
 export type RootProps = FlexProps;
-export const Root: FC<RootProps> = (props) => {
-  return <Flex direction="column" gap="8" width="100%" {...props} />;
-};
+export const Root: FC<RootProps> = (props) => (
+  <Flex direction="column" gap="8" width="100%" {...props} />
+);
 
 const dateFormatter = new Intl.DateTimeFormat("en", {
   month: "short",

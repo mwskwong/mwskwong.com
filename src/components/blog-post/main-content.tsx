@@ -2,23 +2,22 @@ import "@radix-ui/themes/tokens/colors/amber.css";
 import "@radix-ui/themes/tokens/colors/blue.css";
 import "@radix-ui/themes/tokens/colors/red.css";
 
+import { Box } from "@radix-ui/themes/components/box";
+import * as Callout from "@radix-ui/themes/components/callout";
+import { Card } from "@radix-ui/themes/components/card";
+import { Code } from "@radix-ui/themes/components/code";
+import { Em } from "@radix-ui/themes/components/em";
+import { Flex } from "@radix-ui/themes/components/flex";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { Inset } from "@radix-ui/themes/components/inset";
+import { Link } from "@radix-ui/themes/components/link";
+import { ScrollArea } from "@radix-ui/themes/components/scroll-area";
 import {
-  Box,
-  Card,
-  Code,
-  Em,
-  Flex,
-  Heading,
-  Inset,
-  Link,
-  ScrollArea,
   Section,
   type SectionProps,
-  Strong,
-  Text,
-} from "@radix-ui/themes";
-// compound component needs to be imported from individual entry point to avoid the entire @radix-ui/themes being bundled in the client bundle
-import * as Callout from "@radix-ui/themes/components/callout";
+} from "@radix-ui/themes/components/section";
+import { Strong } from "@radix-ui/themes/components/strong";
+import { Text } from "@radix-ui/themes/components/text";
 import {
   IconAlertTriangle,
   IconExclamationCircle,

@@ -1,5 +1,9 @@
-import { Code, Container, Heading, Link, Section } from "@radix-ui/themes";
+import { Code } from "@radix-ui/themes/components/code";
+import { Container } from "@radix-ui/themes/components/container";
 import * as DataList from "@radix-ui/themes/components/data-list";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { Link } from "@radix-ui/themes/components/link";
+import { Section } from "@radix-ui/themes/components/section";
 import { type Metadata } from "next";
 import { type FC } from "react";
 

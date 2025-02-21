@@ -1,4 +1,6 @@
-import { Box, Container, Flex } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes/components/box";
+import { Container } from "@radix-ui/themes/components/container";
+import { Flex } from "@radix-ui/themes/components/flex";
 import { type FC } from "react";
 import { type BreadcrumbList, type Graph, type WebSite } from "schema-dts";
 
