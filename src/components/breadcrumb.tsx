@@ -1,4 +1,6 @@
-import { Flex, type FlexProps, Link, Text } from "@radix-ui/themes";
+import { Flex, type FlexProps } from "@radix-ui/themes/components/flex";
+import { Link } from "@radix-ui/themes/components/link";
+import { Text } from "@radix-ui/themes/components/text";
 import { IconChevronRight } from "@tabler/icons-react";
 import NextLink from "next/link";
 import { type FC, Fragment } from "react";

@@ -1,13 +1,11 @@
-import {
-  Box,
-  Card,
-  Container,
-  Flex,
-  Grid,
-  Heading,
-  Section,
-  Text,
-} from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes/components/box";
+import { Card } from "@radix-ui/themes/components/card";
+import { Container } from "@radix-ui/themes/components/container";
+import { Flex } from "@radix-ui/themes/components/flex";
+import { Grid } from "@radix-ui/themes/components/grid";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { Section } from "@radix-ui/themes/components/section";
+import { Text } from "@radix-ui/themes/components/text";
 import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";

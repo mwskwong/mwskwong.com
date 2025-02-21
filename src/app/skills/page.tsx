@@ -1,13 +1,11 @@
-import {
-  Avatar,
-  Badge,
-  Box,
-  Card,
-  Container,
-  Flex,
-  Heading,
-  Section,
-} from "@radix-ui/themes";
+import { Avatar } from "@radix-ui/themes/components/avatar";
+import { Badge } from "@radix-ui/themes/components/badge";
+import { Box } from "@radix-ui/themes/components/box";
+import { Card } from "@radix-ui/themes/components/card";
+import { Container } from "@radix-ui/themes/components/container";
+import { Flex } from "@radix-ui/themes/components/flex";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { Section } from "@radix-ui/themes/components/section";
 import { type Metadata } from "next";
 import { type BreadcrumbList, type Graph } from "schema-dts";
 

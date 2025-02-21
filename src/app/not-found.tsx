@@ -1,13 +1,11 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Link,
-  Section,
-  Text,
-} from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes/components/box";
+import { Button } from "@radix-ui/themes/components/button";
+import { Container } from "@radix-ui/themes/components/container";
+import { Flex } from "@radix-ui/themes/components/flex";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { Link } from "@radix-ui/themes/components/link";
+import { Section } from "@radix-ui/themes/components/section";
+import { Text } from "@radix-ui/themes/components/text";
 import NextLink from "next/link";
 import { type FC } from "react";
 

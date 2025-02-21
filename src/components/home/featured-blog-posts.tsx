@@ -1,12 +1,9 @@
-import {
-  Button,
-  Card,
-  Flex,
-  type FlexProps,
-  Heading,
-  Section,
-  Text,
-} from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes/components/button";
+import { Card } from "@radix-ui/themes/components/card";
+import { Flex, type FlexProps } from "@radix-ui/themes/components/flex";
+import { Heading } from "@radix-ui/themes/components/heading";
+import { Section } from "@radix-ui/themes/components/section";
+import { Text } from "@radix-ui/themes/components/text";
 import { IconArrowRight } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";

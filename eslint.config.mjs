@@ -15,11 +15,14 @@ const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
 
+const radixThemesRestrictedImportMessage =
+  'Please use `import { <Component> } from "@radix-ui/themes/components/<component>"`instead, to avoid unnecessary Radix dependencies being bundled to the client bundle, due to Next.js bundling behavior and Radix Themes now imports from `radix-ui` instead of `@radix-ui/<component>`.';
+
 const config = tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
   tseslint.configs.stylisticTypeChecked,
-  unicornPlugin.configs["flat/recommended"],
+  unicornPlugin.configs.recommended,
   {
     extends: [
       importPlugin.flatConfigs?.recommended,
@@ -70,13 +73,28 @@ const config = tseslint.config(
         "warn",
         { fixStyle: "inline-type-imports" },
       ],
+      "@typescript-eslint/no-confusing-void-expression": [
+        "error",
+        { ignoreArrowShorthand: true },
+      ],
       "@typescript-eslint/no-misused-promises": [
         "error",
         { checksVoidReturn: { attributes: false } },
       ],
-      "@typescript-eslint/no-confusing-void-expression": [
+      "@typescript-eslint/no-restricted-imports": [
         "error",
-        { ignoreArrowShorthand: true },
+        {
+          paths: [
+            {
+              message: radixThemesRestrictedImportMessage,
+              name: "@radix-ui/themes",
+            },
+            {
+              message: radixThemesRestrictedImportMessage,
+              name: "@radix-ui/themes/components/index",
+            },
+          ],
+        },
       ],
       "@typescript-eslint/no-unused-vars": [
         "error",
@@ -86,8 +104,8 @@ const config = tseslint.config(
           caughtErrors: "all",
           caughtErrorsIgnorePattern: "^_",
           destructuredArrayIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
           ignoreRestSiblings: true,
+          varsIgnorePattern: "^_",
         },
       ],
       "@typescript-eslint/restrict-template-expressions": [
@@ -101,13 +119,14 @@ const config = tseslint.config(
           allowRegExp: false,
         },
       ],
-      "import/namespace": "off",
       "import/default": "off",
+      "import/namespace": "off",
       "import/no-named-as-default-member": "off",
       "import/no-unresolved": "off",
       "import/order": [
         "warn",
         {
+          alphabetize: { order: "asc" },
           groups: [
             "builtin",
             "external",
@@ -117,33 +136,20 @@ const config = tseslint.config(
             "index",
           ],
           "newlines-between": "always",
-          alphabetize: { order: "asc" },
         },
       ],
+      "react-compiler/react-compiler": "error",
       "react/jsx-sort-props": [
         "warn",
         {
           callbacksLast: true,
-          shorthandFirst: true,
           multiline: "last",
           reservedFirst: true,
+          shorthandFirst: true,
         },
       ],
-      "react-compiler/react-compiler": "error",
       "sort-imports": ["warn", { ignoreDeclarationSort: true }],
-      "unicorn/prevent-abbreviations": [
-        "error",
-        {
-          replacements: {
-            props: false,
-          },
-          allowList: {
-            devOps: true,
-            generateStaticParams: true,
-            ParamsPage: true,
-          },
-        },
-      ],
+      "unicorn/prevent-abbreviations": "off",
     },
   },
   {

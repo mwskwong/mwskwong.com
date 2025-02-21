@@ -1,4 +1,9 @@
-import { Box, Section, type SectionProps, Text } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes/components/box";
+import {
+  Section,
+  type SectionProps,
+} from "@radix-ui/themes/components/section";
+import { Text } from "@radix-ui/themes/components/text";
 import { type FC } from "react";
 
 import { legalName, techFocus } from "@/constants/me";

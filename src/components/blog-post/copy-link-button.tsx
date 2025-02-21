@@ -1,6 +1,9 @@
 "use client";
 
-import { IconButton, type IconButtonProps } from "@radix-ui/themes";
+import {
+  IconButton,
+  type IconButtonProps,
+} from "@radix-ui/themes/components/icon-button";
 import { IconCheck, IconLink } from "@tabler/icons-react";
 import { usePathname } from "next/navigation";
 import { type FC, useEffect, useRef, useState } from "react";
