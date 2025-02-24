@@ -24,7 +24,7 @@ const config = {
     "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
   },
   scanner: {
-    samples: 3
+    samples: 3,
   },
   lighthouseOptions: {
     throttling: {
