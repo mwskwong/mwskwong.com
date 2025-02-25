@@ -10,5 +10,5 @@ export const dateFormatter = new Intl.DateTimeFormat("en", {
 
 export const cache: typeof nextCache = (callback, keyParts, options) =>
   reactCache(
-    nextCache(callback, keyParts, { revalidate: 5 * 60, ...options }), // simulate "use cache" default behavior
+    nextCache(callback, keyParts, { revalidate: 60 * 60, ...options }), // default 1 hr revalidation period
   );

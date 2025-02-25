@@ -5,22 +5,21 @@ jobs:
   unlighthouse:
     if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
-    env:
-      DEPLOYMENT_URL: ${{ github.event.deployment_status.environment_url }}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          # cache: "npm" # TODO: https://github.com/actions/cache/issues/319
+          # cache: "npm" # cache not supported in deployment_status, ref: https://github.com/actions/cache/issues/319
       - run: npm install -g @unlighthouse/cli puppeteer
       - run: npm list -g @unlighthouse/cli
       - run: unlighthouse-ci
         env:
+          DEPLOYMENT_URL: ${{ github.event.deployment_status.environment_url }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - if: always()
+        uses: actions/upload-artifact@v4
         with:
           path: ./.unlighthouse/
           include-hidden-files: true
