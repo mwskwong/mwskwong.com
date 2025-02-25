@@ -15,9 +15,6 @@ const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
 
-const radixThemesRestrictedImportMessage =
-  'Please use `import { <Component> } from "@radix-ui/themes/components/<component>"`instead, to avoid unnecessary Radix dependencies being bundled to the client bundle, due to Next.js bundling behavior and Radix Themes now imports from `radix-ui` instead of `@radix-ui/<component>`.';
-
 const config = tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.strictTypeChecked,
@@ -84,14 +81,11 @@ const config = tseslint.config(
       "@typescript-eslint/no-restricted-imports": [
         "error",
         {
-          paths: [
+          patterns: [
             {
-              message: radixThemesRestrictedImportMessage,
-              name: "@radix-ui/themes",
-            },
-            {
-              message: radixThemesRestrictedImportMessage,
-              name: "@radix-ui/themes/components/index",
+              regex: "^@radix-ui/themes(/components/index)?$",
+              message:
+                'Please use `import { <Component> } from "@radix-ui/themes/components/<component>"`instead, to avoid unnecessary Radix dependencies being bundled to the client bundle, due to Next.js bundling behavior and Radix Themes now imports from `radix-ui` instead of `@radix-ui/<component>`.',
             },
           ],
         },

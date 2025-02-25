@@ -23,6 +23,9 @@ const config = {
   extraHeaders: {
     "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
   },
+  scanner: {
+    samples: 3,
+  },
   lighthouseOptions: {
     throttling: {
       cpuSlowdownMultiplier: 8.6, // matches GitHub Action Ubuntu performance
