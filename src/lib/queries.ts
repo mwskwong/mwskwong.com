@@ -12,19 +12,25 @@ import {
   type SkillSkeleton,
 } from "./contentful-types";
 import { blogPostMetadata } from "./schema";
-import { cache, generatePdfThumbnail } from "./utils";
+import { generatePdfThumbnail } from "./utils";
 
-export const getPersonalPortrait = cache(async () => {
+export const getPersonalPortrait = async () => {
+  "use cache";
+
   const asset = await cms.getAsset(personalPortrait);
   return asset.fields.file && `https:${asset.fields.file.url}`;
-});
+};
 
-export const getResume = cache(async () => {
+export const getResume = async () => {
+  "use cache";
+
   const asset = await cms.getAsset(resume);
   return asset.fields.file && `https:${asset.fields.file.url}`;
-});
+};
 
-export const getSkillSet = cache(async () => {
+export const getSkillSet = async () => {
+  "use cache";
+
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     cms.getEntries<SkillSkeleton>({
       content_type: "skill",
@@ -49,9 +55,11 @@ export const getSkillSet = cache(async () => {
         url: skill.fields.url,
       })),
   }));
-});
+};
 
-export const getExperiences = cache(async () => {
+export const getExperiences = async () => {
+  "use cache";
+
   // Goal: sort experience in DESC order by `to` date,
   // while having records with `to = undefined` (denote "Present") sorted at the top
 
@@ -79,6 +87,8 @@ export const getExperiences = cache(async () => {
   return items.map((item) => ({
     id: item.sys.id,
     ...item.fields,
+    from: new Date(item.fields.from),
+    to: item.fields.to && new Date(item.fields.to),
     company: item.fields.company && {
       name: item.fields.company.fields.name,
       url: item.fields.company.fields.url,
@@ -105,9 +115,11 @@ export const getExperiences = cache(async () => {
       ?.filter(Boolean)
       .map((skill) => ({ name: skill.fields.name, url: skill.fields.url })),
   }));
-});
+};
 
-export const getEducations = cache(async () => {
+export const getEducations = async () => {
+  "use cache";
+
   // Goal: sort educations in DESC order by `to` date,
   // while having records with `to = undefined` (denote "Present") sorted at the top
 
@@ -124,6 +136,8 @@ export const getEducations = cache(async () => {
   return items.map((item) => ({
     id: item.sys.id,
     ...item.fields,
+    from: new Date(item.fields.from),
+    to: item.fields.to && new Date(item.fields.to),
     school: item.fields.school && {
       name: item.fields.school.fields.name,
       url: item.fields.school.fields.url,
@@ -141,9 +155,11 @@ export const getEducations = cache(async () => {
       }),
     ),
   }));
-});
+};
 
-export const getBlogPosts = cache(async () => {
+export const getBlogPosts = async () => {
+  "use cache";
+
   const [{ items }, blogPostsMetadata] = await Promise.all([
     cms.getEntries<BlogPostSkeleton>({
       content_type: "blogPost",
@@ -154,8 +170,8 @@ export const getBlogPosts = cache(async () => {
 
   return items.map((item) => ({
     id: item.sys.id,
-    publishedAt: item.fields.publishedAt,
-    updatedAt: item.sys.updatedAt,
+    publishedAt: new Date(item.fields.publishedAt),
+    updatedAt: new Date(item.sys.updatedAt),
     coverImage:
       item.fields.coverImage?.fields.file &&
       `https:${item.fields.coverImage.fields.file.url}`,
@@ -164,9 +180,11 @@ export const getBlogPosts = cache(async () => {
     summary: item.fields.summary,
     view: blogPostsMetadata.find(({ id }) => id === item.sys.id)?.view ?? 0,
   }));
-});
+};
 
-export const getBlogPostBySlug = cache(async (slug: string) => {
+export const getBlogPostBySlug = async (slug: string) => {
+  "use cache";
+
   const { items } = await cms.getEntries<BlogPostSkeleton>({
     content_type: "blogPost",
     "fields.slug[in]": [slug],
@@ -177,8 +195,8 @@ export const getBlogPostBySlug = cache(async (slug: string) => {
   return (
     item && {
       id: item.sys.id,
-      publishedAt: item.fields.publishedAt,
-      updatedAt: item.sys.updatedAt,
+      publishedAt: new Date(item.fields.publishedAt),
+      updatedAt: new Date(item.sys.updatedAt),
       coverImage:
         item.fields.coverImage?.fields.file &&
         `https:${item.fields.coverImage.fields.file.url}`,
@@ -188,9 +206,11 @@ export const getBlogPostBySlug = cache(async (slug: string) => {
       content: item.fields.content,
     }
   );
-});
+};
 
-export const getContributedProjects = cache(async () => {
+export const getContributedProjects = async () => {
+  "use cache";
+
   const { items } = await cms.getEntries<ProjectSkeleton>({
     content_type: "project",
     "metadata.tags.sys.id[in]": ["contributed"],
@@ -205,17 +225,21 @@ export const getContributedProjects = cache(async () => {
       item.fields.logo?.fields.file &&
       `https:${item.fields.logo.fields.file.url}`,
   }));
-});
+};
 
-export const getCourseCategories = cache(async () => {
+export const getCourseCategories = async () => {
+  "use cache";
+
   const course = await cms.getContentType("course");
 
   return course.fields
     .find(({ id }) => id === "categories")
     ?.items?.validations[0]?.in?.toSorted() as CourseCategory[] | undefined;
-});
+};
 
-export const getCourses = cache(async () => {
+export const getCourses = async () => {
+  "use cache";
+
   const { items } = await cms.getEntries<CourseSkeleton>({
     content_type: "course",
     order: ["fields.name"],
@@ -224,6 +248,7 @@ export const getCourses = cache(async () => {
   return items.map((item) => ({
     id: item.sys.id,
     ...item.fields,
+    completedOn: new Date(item.fields.completedOn),
     institution: item.fields.institution && {
       id: item.fields.institution.sys.id,
       name: item.fields.institution.fields.name,
@@ -236,4 +261,4 @@ export const getCourses = cache(async () => {
       `https:${item.fields.certificate.fields.file.url}`,
     categories: item.fields.categories,
   }));
-});
+};

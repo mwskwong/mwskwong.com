@@ -122,7 +122,7 @@ export const SideBar: FC<SideBarProps> = async ({ blogPost, ...props }) => {
                         {title}
                       </Heading>
                       <Text color="gray" size="2">
-                        {dateFormatter.format(new Date(publishedAt))}
+                        {dateFormatter.format(publishedAt)}
                       </Text>
                     </div>
                   </Flex>
