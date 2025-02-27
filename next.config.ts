@@ -80,13 +80,6 @@ const config = {
   experimental: {
     typedEnv: true,
     useCache: true,
-    cacheLife: {
-      default: {
-        stale: 5 * 60,
-        revalidate: 60 * 60,
-        expire: Infinity,
-      },
-    },
     reactCompiler: true,
     optimizePackageImports: ["@radix-ui/themes", "radix-ui"],
   },

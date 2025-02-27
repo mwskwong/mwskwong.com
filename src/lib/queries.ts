@@ -1,3 +1,5 @@
+import { unstable_cacheLife as cacheLife } from "next/cache";
+
 import { personalPortrait, resume } from "@/constants/contentful-ids";
 
 import { cms, db } from "./clients";
@@ -16,6 +18,7 @@ import { generatePdfThumbnail } from "./utils";
 
 export const getPersonalPortrait = async () => {
   "use cache";
+  cacheLife("hours");
 
   const asset = await cms.getAsset(personalPortrait);
   return asset.fields.file && `https:${asset.fields.file.url}`;
@@ -23,6 +26,7 @@ export const getPersonalPortrait = async () => {
 
 export const getResume = async () => {
   "use cache";
+  cacheLife("hours");
 
   const asset = await cms.getAsset(resume);
   return asset.fields.file && `https:${asset.fields.file.url}`;
@@ -30,6 +34,7 @@ export const getResume = async () => {
 
 export const getSkillSet = async () => {
   "use cache";
+  cacheLife("hours");
 
   const [{ items: skills }, { items: skillCategories }] = await Promise.all([
     cms.getEntries<SkillSkeleton>({
@@ -59,6 +64,7 @@ export const getSkillSet = async () => {
 
 export const getExperiences = async () => {
   "use cache";
+  cacheLife("hours");
 
   // Goal: sort experience in DESC order by `to` date,
   // while having records with `to = undefined` (denote "Present") sorted at the top
@@ -119,6 +125,7 @@ export const getExperiences = async () => {
 
 export const getEducations = async () => {
   "use cache";
+  cacheLife("hours");
 
   // Goal: sort educations in DESC order by `to` date,
   // while having records with `to = undefined` (denote "Present") sorted at the top
@@ -159,6 +166,7 @@ export const getEducations = async () => {
 
 export const getBlogPosts = async () => {
   "use cache";
+  cacheLife("hours");
 
   const [{ items }, blogPostsMetadata] = await Promise.all([
     cms.getEntries<BlogPostSkeleton>({
@@ -184,6 +192,7 @@ export const getBlogPosts = async () => {
 
 export const getBlogPostBySlug = async (slug: string) => {
   "use cache";
+  cacheLife("hours");
 
   const { items } = await cms.getEntries<BlogPostSkeleton>({
     content_type: "blogPost",
@@ -210,6 +219,7 @@ export const getBlogPostBySlug = async (slug: string) => {
 
 export const getContributedProjects = async () => {
   "use cache";
+  cacheLife("hours");
 
   const { items } = await cms.getEntries<ProjectSkeleton>({
     content_type: "project",
@@ -229,6 +239,7 @@ export const getContributedProjects = async () => {
 
 export const getCourseCategories = async () => {
   "use cache";
+  cacheLife("hours");
 
   const course = await cms.getContentType("course");
 
@@ -239,6 +250,7 @@ export const getCourseCategories = async () => {
 
 export const getCourses = async () => {
   "use cache";
+  cacheLife("hours");
 
   const { items } = await cms.getEntries<CourseSkeleton>({
     content_type: "course",
