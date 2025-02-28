@@ -74,9 +74,7 @@ const BlogPage: FC = async () => {
                       {featuredBlogPost.summary}
                     </Text>
                     <Text as="p" color="gray" size={{ initial: "2", md: "3" }}>
-                      {dateFormatter.format(
-                        new Date(featuredBlogPost.publishedAt),
-                      )}
+                      {dateFormatter.format(featuredBlogPost.publishedAt)}
                     </Text>
                   </Flex>
                 </article>
@@ -123,7 +121,7 @@ const BlogPage: FC = async () => {
                           {summary}
                         </Text>
                         <Text as="p" color="gray" size="2">
-                          {dateFormatter.format(new Date(publishedAt))}
+                          {dateFormatter.format(publishedAt)}
                         </Text>
                       </Flex>
                     </article>
