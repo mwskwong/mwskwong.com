@@ -53,7 +53,7 @@ export const FeaturedBlogPosts: FC<FeaturedBlogPostsProps> = async (props) => {
                       </Heading>
                       <Text as="p">{summary}</Text>
                       <Text color="gray" size="2">
-                        {dateFormatter.format(new Date(publishedAt))}
+                        {dateFormatter.format(publishedAt)}
                       </Text>
                     </Flex>
                   </Flex>

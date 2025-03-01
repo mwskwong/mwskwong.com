@@ -79,6 +79,7 @@ const config = {
   logging: { fetches: { fullUrl: true } },
   experimental: {
     typedEnv: true,
+    useCache: true,
     reactCompiler: true,
     optimizePackageImports: ["@radix-ui/themes", "radix-ui"],
   },

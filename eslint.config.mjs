@@ -8,6 +8,7 @@ import * as importPlugin from "eslint-plugin-import";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 import reactPlugin from "eslint-plugin-react";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
 import unicornPlugin from "eslint-plugin-unicorn";
 import tseslint from "typescript-eslint";
 
@@ -32,7 +33,7 @@ const config = tseslint.config(
   jsxA11yPlugin.flatConfigs.strict,
   reactPlugin.configs.flat.recommended,
   reactPlugin.configs.flat["jsx-runtime"],
-  compat.extends("plugin:react-hooks/recommended"),
+  reactHooksPlugin.configs["recommended-latest"],
   compat.extends("plugin:@next/next/recommended"),
   {
     plugins: {
