@@ -13,6 +13,7 @@ import {
 } from "@tabler/icons-react";
 
 import {
+  analyticsAndMonitoring,
   backend,
   cms,
   database,
@@ -20,7 +21,6 @@ import {
   frontend,
   machineLearning,
   mobile,
-  monitoring,
   qa,
   toolsAndPlatforms,
 } from "@/constants/contentful-ids";
@@ -34,6 +34,6 @@ export const SkillCategoryIcons = {
   [machineLearning]: IconBrain,
   [mobile]: IconDevices,
   [qa]: IconTestPipe,
-  [monitoring]: IconActivity,
+  [analyticsAndMonitoring]: IconActivity,
   [toolsAndPlatforms]: IconTools,
 } as Record<string, Icon>;

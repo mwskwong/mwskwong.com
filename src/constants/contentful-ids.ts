@@ -9,5 +9,5 @@ export const frontend = "3sdnCkE0j79D4kRSGuUjhp";
 export const machineLearning = "4nOEnXVl1fCJGetHGVnsZ8";
 export const mobile = "3biweEjbkRyZaII8ZgkQhI";
 export const qa = "119H1LBXMmT8xLTdnAq1PS";
-export const monitoring = "632XHEYS6JH9L1l61PHQLx";
+export const analyticsAndMonitoring = "7ME7zHzOGhQshLDlNhtiVF";
 export const toolsAndPlatforms = "49VijdvfwgdRLADfqZ3vTk";
