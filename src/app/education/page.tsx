@@ -60,7 +60,7 @@ const EducationPage = async () => {
         <main>
           <Section>
             <Breadcrumb routes={[routes.home]} />
-            <Heading mt="2" size="9">
+            <Heading mt="2" size="8">
               Education
             </Heading>
             <Timeline.Root mt="8">

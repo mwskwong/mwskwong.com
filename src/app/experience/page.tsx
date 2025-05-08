@@ -29,7 +29,7 @@ const ExperiencePage = async () => {
         <main>
           <Section>
             <Breadcrumb routes={[routes.home]} />
-            <Heading mt="2" size="9">
+            <Heading mt="2" size="8">
               Experience
             </Heading>
             <Timeline.Root mt="8">
