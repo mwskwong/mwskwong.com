@@ -26,7 +26,7 @@ const SkillsPage = async () => {
         <main>
           <Section>
             <Breadcrumb routes={[routes.home]} />
-            <Heading mt="2" size="9">
+            <Heading mt="2" size="8">
               Skills
             </Heading>
             <Box className={styles.skillSetContainer} mt="8">

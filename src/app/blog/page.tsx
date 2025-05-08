@@ -34,7 +34,7 @@ const BlogPage: FC = async () => {
       <Section asChild>
         <main>
           <Breadcrumb routes={[routes.home]} />
-          <Heading mt="2" size="9">
+          <Heading mt="2" size="8">
             Blog
           </Heading>
           <Card asChild mt="8" size={{ sm: "2", md: "3" }} variant="ghost">
@@ -64,7 +64,7 @@ const BlogPage: FC = async () => {
                     </Box>
                   </div>
                   <Flex direction="column" gap={{ initial: "2", sm: "3" }}>
-                    <Heading size={{ initial: "4", xs: "6", md: "8" }}>
+                    <Heading size={{ initial: "4", xs: "6" }}>
                       {featuredBlogPost.title}
                     </Heading>
                     <Text
