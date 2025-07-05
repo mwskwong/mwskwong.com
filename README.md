@@ -9,11 +9,9 @@ Welcome to the source code of [mwskwong.com](https://mwskwong.com). You can see 
 1. Create a PR from `canary` to `main`. Let the GitHub Actions run automatically.
 
 2. In [Contentful](https://app.contentful.com/)
-
    1. Update the `master` alias target to the untargeted canary environment (check the **Created** date, it should be newer than the currently targeted environment).
 
    2. Delete the untargeted canary environment (i.e. the one previously targeted by `master`) and add a new one.
-
       - Environment ID naming: `canary_YYYY-MM-DDTHH-mm-ss-SSSZ`
 
         ```js
