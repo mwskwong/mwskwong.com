@@ -18,8 +18,11 @@
   text-align: center;
 }
 
-.logo {
+.profilePic {
   margin-bottom: var(--mantine-spacing-md);
+  outline: 3px solid var(--mantine-primary-color-filled);
+  outline-offset: 6px;
+  border-radius: 100%;
 }
 
 .paragraph {

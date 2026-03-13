@@ -14,7 +14,7 @@ import {
   title,
 } from "@/config";
 
-import logo from "./apple-icon.png";
+import profilePic from "./apple-icon.png";
 import styles from "./page.module.css";
 
 const Home = () => (
@@ -23,7 +23,12 @@ const Home = () => (
       <ColorSchemeToggle className={styles.colorSchemeToggle} />
 
       <header className={styles.header}>
-        <Image alt="logo" className={styles.logo} height={128} src={logo} />
+        <Image
+          alt="profile pic"
+          className={styles.profilePic}
+          height={128}
+          src={profilePic}
+        />
         <Title>
           <Text c="teal" inherit span>
             {firstName}
