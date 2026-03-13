@@ -19,7 +19,7 @@ import styles from "./page.module.css";
 
 const Home = () => (
   <>
-    <Container className={styles.container} component="main">
+    <Container className={styles.container} component="main" size="sm">
       <ColorSchemeToggle className={styles.colorSchemeToggle} />
 
       <header className={styles.header}>
@@ -34,20 +34,21 @@ const Home = () => (
       </header>
 
       <Text className={styles.paragraph}>
-        Hi, my name is {firstName}. I am a {currentRole.jobTitle} currently
-        working at{" "}
+        Hey, my name is Matthew Kwong. I&apos;m a {currentRole.jobTitle} at{" "}
         <Anchor href={currentRole.company.url} rel="noreferrer" target="_blank">
           {currentRole.company.name}
         </Anchor>
-        . Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat.
+        . I mainly work on{" "}
+        <Anchor href="https://bet.hkjc.com" rel="noreferrer" target="_blank">
+          eWin
+        </Anchor>
+        , handling everything from new features and platform maintenance to
+        integrating data analytics. I really enjoy solving problems and seeing
+        the actual impact the work makes for users.
       </Text>
       <Text className={styles.paragraph}>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        If you&apos;d like to connect or chat about tech and web development,
+        feel free to reach out via the links below.
       </Text>
 
       <footer className={styles.footer}>
