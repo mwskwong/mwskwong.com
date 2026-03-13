@@ -3,3 +3,13 @@
     --mantine-color-body: var(--mantine-color-dark-9);
   }
 }
+
+::selection {
+  @mixin light {
+    background-color: var(--mantine-primary-color-1);
+  }
+
+  @mixin dark {
+    background-color: var(--mantine-primary-color-9);
+  }
+}
