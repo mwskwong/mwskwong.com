@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@mantine/core": "^8.3.16",
-    "@mantine/hooks": "^8.3.16",
     "@tabler/icons-react": "^3.40.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",

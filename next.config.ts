@@ -63,7 +63,7 @@ const nextConfig: NextConfig = {
     turbopackFileSystemCacheForBuild: true,
     turbopackUseSystemTlsCerts: true,
     typedEnv: true,
-    optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
+    optimizePackageImports: ["@mantine/core"],
   },
 };
 
