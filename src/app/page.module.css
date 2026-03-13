@@ -2,6 +2,12 @@
   padding-block: calc(var(--mantine-spacing-xl) * 2.5);
 }
 
+.colorSchemeToggle {
+  position: absolute;
+  top: var(--mantine-spacing-xl);
+  right: var(--mantine-spacing-xl);
+}
+
 .header {
   margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
   text-align: center;

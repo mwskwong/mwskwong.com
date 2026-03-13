@@ -1,3 +1,5 @@
+import "./global.css";
+
 import { Anchor, Container, Divider, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import { type WebSite, type WithContext } from "schema-dts";
@@ -13,14 +15,20 @@ import {
 
 import logo from "./apple-icon.png";
 import styles from "./page.module.css";
+import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
 
 const Home = () => (
   <>
     <Container className={styles.container} component="main">
+      <ColorSchemeToggle className={styles.colorSchemeToggle} />
+
       <header className={styles.header}>
         <Image alt="logo" className={styles.logo} height={128} src={logo} />
         <Title>
-          {firstName} {lastName}
+          <Text span inherit c="brightBlue">
+            {firstName}
+          </Text>{" "}
+          {lastName}
         </Title>
         <Text>{title}</Text>
       </header>

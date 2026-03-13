@@ -118,6 +118,15 @@ const eslintConfig = defineConfig(
           reservedFirst: true,
         },
       ],
+
+      "unicorn/prevent-abbreviations": [
+        "error",
+        {
+          props: {
+            properties: false,
+          },
+        },
+      ],
     },
   },
   {
