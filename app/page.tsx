@@ -36,7 +36,12 @@ const Home = () => {
       </Text>
 
       <footer className={styles.footer}>
-        <Anchor href="mailto:me@mwskwong.com" rel="noreferrer" target="_blank">
+        <Anchor
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          href={`mailto:me@${process.env.VERCEL_PROJECT_PRODUCTION_URL!}`}
+          rel="noreferrer"
+          target="_blank"
+        >
           Email
         </Anchor>
         <Divider orientation="vertical" />

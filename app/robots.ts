@@ -7,7 +7,8 @@ const robots = (): MetadataRoute.Robots => ({
       disallow: process.env.VERCEL_ENV === "production" ? undefined : "/",
     },
   ],
-  sitemap: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}/sitemap.xml`,
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  sitemap: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL!}/sitemap.xml`,
 });
 
 export default robots;
