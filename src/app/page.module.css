@@ -20,8 +20,8 @@
 
 .profilePic {
   margin-bottom: var(--mantine-spacing-md);
-  outline: 6px solid var(--mantine-primary-color-filled);
-  outline-offset: 6px;
+  outline: 4px solid var(--mantine-primary-color-filled);
+  outline-offset: 4px;
   border-radius: 100%;
 }
 
