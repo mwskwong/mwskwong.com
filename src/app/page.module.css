@@ -20,7 +20,7 @@
 
 .profilePic {
   margin-bottom: var(--mantine-spacing-md);
-  outline: 3px solid var(--mantine-primary-color-filled);
+  outline: 6px solid var(--mantine-primary-color-filled);
   outline-offset: 6px;
   border-radius: 100%;
 }
