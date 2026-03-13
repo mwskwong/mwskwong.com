@@ -122,8 +122,10 @@ const eslintConfig = defineConfig(
       "unicorn/prevent-abbreviations": [
         "error",
         {
-          props: {
-            properties: false,
+          replacements: {
+            props: {
+              properties: false,
+            },
           },
         },
       ],
