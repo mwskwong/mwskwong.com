@@ -1,7 +1,5 @@
 .dark {
-  @mixin dark {
-    display: none;
-  }
+  display: none;
 
   @mixin light {
     display: block;
@@ -9,9 +7,7 @@
 }
 
 .light {
-  @mixin light {
-    display: none;
-  }
+  display: none;
 
   @mixin dark {
     display: block;
