@@ -2,8 +2,6 @@ import "@mantine/core/styles.css";
 
 import {
   ColorSchemeScript,
-  DefaultMantineColor,
-  MantineColorsTuple,
   MantineProvider,
   createTheme,
   mantineHtmlProps,
@@ -11,39 +9,18 @@ import {
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Geist, Geist_Mono, Orbitron } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 
 import { firstName, lastName, siteFqdn } from "@/config";
 
-const orbitron = Orbitron({ subsets: ["latin"] });
 const geist = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"], preload: false });
-
-declare module "@mantine/core" {
-  export interface MantineThemeColorsOverride {
-    colors: Record<"brightBlue" | DefaultMantineColor, MantineColorsTuple>;
-  }
-}
 
 const theme = createTheme({
   fontFamily: geist.style.fontFamily,
   fontFamilyMonospace: geistMono.style.fontFamily,
-  headings: { fontFamily: orbitron.style.fontFamily },
-  colors: {
-    brightBlue: [
-      "#e5f3ff",
-      "#cde2ff",
-      "#9ac2ff",
-      "#64a0ff",
-      "#3884fe",
-      "#1d72fe",
-      "#0063ff",
-      "#0058e4",
-      "#004ecd",
-      "#0043b5",
-    ],
-  },
-  primaryColor: "brightBlue",
+  primaryColor: "teal",
+  primaryShade: { light: 7, dark: 5 },
 });
 
 export const metadata: Metadata = {

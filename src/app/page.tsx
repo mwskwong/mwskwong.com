@@ -25,7 +25,7 @@ const Home = () => (
       <header className={styles.header}>
         <Image alt="logo" className={styles.logo} height={128} src={logo} />
         <Title>
-          <Text span inherit c="brightBlue">
+          <Text span inherit c="teal">
             {firstName}
           </Text>{" "}
           {lastName}
