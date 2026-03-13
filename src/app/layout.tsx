@@ -20,7 +20,7 @@ const theme = createTheme({
   fontFamily: geist.style.fontFamily,
   fontFamilyMonospace: geistMono.style.fontFamily,
   primaryColor: "teal",
-  primaryShade: { light: 7, dark: 5 },
+  primaryShade: { light: 9, dark: 5 },
 });
 
 export const metadata: Metadata = {
