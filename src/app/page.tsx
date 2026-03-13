@@ -9,8 +9,8 @@ import {
   currentRole,
   firstName,
   lastName,
-  middleName,
   siteFqdn,
+  siteName,
   title,
 } from "@/config";
 
@@ -84,10 +84,7 @@ const Home = () => (
         __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
-          name: `${firstName} ${middleName
-            .split(" ")
-            .map((word) => word.charAt(0) + ".")
-            .join("")} ${lastName}`,
+          name: siteName,
           url: `https://${siteFqdn}`,
         } satisfies WithContext<WebSite>),
       }}

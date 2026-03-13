@@ -1,9 +1,13 @@
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const siteFqdn = process.env.VERCEL_PROJECT_PRODUCTION_URL!;
-
 export const firstName = "Matthew";
 export const middleName = "Wang Shun";
 export const lastName = "Kwong";
+
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+export const siteFqdn = process.env.VERCEL_PROJECT_PRODUCTION_URL!;
+export const siteName = `${firstName} ${middleName
+  .split(" ")
+  .map((word) => word.charAt(0) + ".")
+  .join("")} ${lastName}`;
 
 export const title = "Tech Lead — Full Stack Web Developer";
 export const currentRole = {
