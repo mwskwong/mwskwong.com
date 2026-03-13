@@ -1,0 +1,23 @@
+.container {
+  padding-block: calc(var(--mantine-spacing-xl) * 2.5);
+}
+
+.header {
+  margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
+  text-align: center;
+}
+
+.logo {
+  margin-bottom: var(--mantine-spacing-md);
+}
+
+.paragraph {
+  margin-block: var(--mantine-spacing-md);
+}
+
+.footer {
+  display: flex;
+  gap: var(--mantine-spacing-md);
+  justify-content: center;
+  margin-top: calc(var(--mantine-spacing-xl) * 1.5);
+}

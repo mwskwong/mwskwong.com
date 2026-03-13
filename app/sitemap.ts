@@ -8,7 +8,8 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
 
   return [
     {
-      url: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}`,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      url: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL!}`,
       lastModified: new Date(),
     },
   ];

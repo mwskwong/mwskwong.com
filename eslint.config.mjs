@@ -44,9 +44,11 @@ const eslintConfig = defineConfig(
       "jsx-a11y": {
         components: {
           Image: "img",
+          Anchor: "a",
         },
       },
       react: { version: "detect" },
+      linkComponents: ["Anchor"],
     },
     rules: {
       "@typescript-eslint/consistent-type-imports": [
