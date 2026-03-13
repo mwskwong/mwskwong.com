@@ -1,0 +1,20 @@
+name: Code Quality Checks
+on: push
+permissions:
+  contents: read
+
+jobs:
+  code-quality-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typegen
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run stylelint
+      - run: npm run format
