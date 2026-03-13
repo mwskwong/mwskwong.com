@@ -11,7 +11,14 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { currentRole, firstName, lastName, siteFqdn, title } from "@/config";
+import {
+  currentRole,
+  firstName,
+  lastName,
+  siteFqdn,
+  siteName,
+  title,
+} from "@/config";
 
 const geist = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"], preload: false });
@@ -28,7 +35,7 @@ export const metadata: Metadata = {
   description: `Hey, I'm ${firstName} ${lastName}, ${currentRole.jobTitle} at ${currentRole.company.name} working on eWin. I handle new features, maintenance, and data analytics while solving problems that create real impact for users.`,
   metadataBase: new URL(`https://${siteFqdn}`),
   authors: { name: `${firstName} ${lastName}`, url: `https://${siteFqdn}` },
-  openGraph: { url: "/", type: "website" },
+  openGraph: { siteName, url: "/", type: "website" },
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
