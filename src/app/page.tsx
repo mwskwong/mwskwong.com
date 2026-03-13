@@ -57,11 +57,7 @@ const Home = () => (
       </Text>
 
       <footer className={styles.footer}>
-        <Anchor
-          href={`mailto:me@${siteFqdn}}`}
-          rel="noreferrer"
-          target="_blank"
-        >
+        <Anchor href={`mailto:me@${siteFqdn}`} rel="noreferrer" target="_blank">
           Email
         </Anchor>
         <Divider orientation="vertical" />
