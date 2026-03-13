@@ -1,5 +1,7 @@
 import { type MetadataRoute } from "next";
 
+import { siteFqdn } from "@/config";
+
 const robots = (): MetadataRoute.Robots => ({
   rules: [
     {
@@ -7,8 +9,7 @@ const robots = (): MetadataRoute.Robots => ({
       disallow: process.env.VERCEL_ENV === "production" ? undefined : "/",
     },
   ],
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  sitemap: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL!}/sitemap.xml`,
+  sitemap: `https://${siteFqdn}/sitemap.xml`,
 });
 
 export default robots;

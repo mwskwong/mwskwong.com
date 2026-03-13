@@ -1,19 +1,17 @@
 import { Anchor, Container, Divider, Text, Title } from "@mantine/core";
 import Image from "next/image";
+import { type WebSite, type WithContext } from "schema-dts";
 
+import { firstName, lastName, middleName, siteFqdn } from "@/config";
+
+import logo from "./apple-icon.png";
 import styles from "./page.module.css";
 
-const Home = () => {
-  return (
+const Home = () => (
+  <>
     <Container className={styles.container} component="main">
       <header className={styles.header}>
-        <Image
-          alt="logo"
-          className={styles.logo}
-          height={128}
-          src="/apple-icon.png"
-          width={128}
-        />
+        <Image alt="logo" className={styles.logo} height={128} src={logo} />
         <Title>Matthew Kwong</Title>
         <Text>Full Stack Web Engineer</Text>
       </header>
@@ -37,8 +35,7 @@ const Home = () => {
 
       <footer className={styles.footer}>
         <Anchor
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          href={`mailto:me@${process.env.VERCEL_PROJECT_PRODUCTION_URL!}`}
+          href={`mailto:me@${siteFqdn}}`}
           rel="noreferrer"
           target="_blank"
         >
@@ -62,7 +59,22 @@ const Home = () => {
         </Anchor>
       </footer>
     </Container>
-  );
-};
+
+    <script
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: `${firstName} ${middleName
+            .split(" ")
+            .map((word) => word.charAt(0) + ".")
+            .join("")} ${lastName}`,
+          url: `https://${siteFqdn}`,
+        } satisfies WithContext<WebSite>),
+      }}
+      type="application/ld+json"
+    />
+  </>
+);
 
 export default Home;

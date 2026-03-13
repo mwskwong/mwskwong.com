@@ -1,6 +1,8 @@
 import { type MetadataRoute } from "next";
 import { cacheLife } from "next/cache";
 
+import { siteFqdn } from "@/config";
+
 // eslint-disable-next-line @typescript-eslint/require-await
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   "use cache";
@@ -8,8 +10,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
 
   return [
     {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      url: `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL!}`,
+      url: `https://${siteFqdn}`,
       lastModified: new Date(),
     },
   ];
