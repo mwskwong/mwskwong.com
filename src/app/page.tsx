@@ -4,6 +4,7 @@ import { Anchor, Container, Divider, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import { type WebSite, type WithContext } from "schema-dts";
 
+import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
 import {
   currentRole,
   firstName,
@@ -15,7 +16,6 @@ import {
 
 import logo from "./apple-icon.png";
 import styles from "./page.module.css";
-import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
 
 const Home = () => (
   <>
@@ -25,7 +25,7 @@ const Home = () => (
       <header className={styles.header}>
         <Image alt="logo" className={styles.logo} height={128} src={logo} />
         <Title>
-          <Text span inherit c="teal">
+          <Text c="teal" inherit span>
             {firstName}
           </Text>{" "}
           {lastName}
