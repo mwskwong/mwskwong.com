@@ -5,11 +5,5 @@
 }
 
 ::selection {
-  @mixin light {
-    background-color: var(--mantine-primary-color-1);
-  }
-
-  @mixin dark {
-    background-color: var(--mantine-primary-color-9);
-  }
+  background-color: var(--mantine-primary-color-light);
 }
