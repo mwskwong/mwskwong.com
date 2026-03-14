@@ -9,12 +9,12 @@
 
 .colorSchemeToggle {
   position: absolute;
-  top: var(--mantine-spacing-xl);
-  right: var(--mantine-spacing-xl);
+  top: var(--mantine-spacing-md);
+  right: var(--mantine-spacing-md);
 
-  @media (max-width: $mantine-breakpoint-sm) {
-    top: var(--mantine-spacing-md);
-    right: var(--mantine-spacing-md);
+  @media (width > $mantine-breakpoint-sm) {
+    top: var(--mantine-spacing-xl);
+    right: var(--mantine-spacing-xl);
   }
 }
 
