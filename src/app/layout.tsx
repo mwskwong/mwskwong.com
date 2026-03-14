@@ -28,6 +28,7 @@ const theme = createTheme({
   fontFamilyMonospace: geistMono.style.fontFamily,
   primaryColor: "teal",
   primaryShade: { light: 9, dark: 5 },
+  respectReducedMotion: true,
 });
 
 export const metadata: Metadata = {

@@ -9,12 +9,12 @@
 
 .colorSchemeToggle {
   position: absolute;
-  top: var(--mantine-spacing-xl);
-  right: var(--mantine-spacing-xl);
+  top: var(--mantine-spacing-md);
+  right: var(--mantine-spacing-md);
 
-  @media (max-width: $mantine-breakpoint-sm) {
-    top: var(--mantine-spacing-md);
-    right: var(--mantine-spacing-md);
+  @media (min-width: $mantine-breakpoint-sm) {
+    top: var(--mantine-spacing-xl);
+    right: var(--mantine-spacing-xl);
   }
 }
 
@@ -25,8 +25,8 @@
 
 .profilePic {
   margin-bottom: var(--mantine-spacing-md);
-  outline: 4px solid var(--mantine-primary-color-filled);
-  outline-offset: 4px;
+  outline: rem(4px) solid var(--mantine-primary-color-filled);
+  outline-offset: rem(4px);
   border-radius: 100%;
 }
 
