@@ -9,7 +9,8 @@ import { IconMoon, IconSun } from "@tabler/icons-react";
 
 import styles from "./color-scheme-toggle.module.css";
 
-export const ColorSchemeToggle = (props: ActionIconProps) => {
+export type ColorSchemeToggleProps = Omit<ActionIconProps, "children">;
+export const ColorSchemeToggle = (props: ColorSchemeToggleProps) => {
   const { toggleColorScheme } = useMantineColorScheme();
 
   return (
