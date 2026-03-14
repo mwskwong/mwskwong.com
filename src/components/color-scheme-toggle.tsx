@@ -3,7 +3,6 @@
 import {
   ActionIcon,
   type ActionIconProps,
-  useComputedColorScheme,
   useMantineColorScheme,
 } from "@mantine/core";
 import { IconMoonStars, IconSun } from "@tabler/icons-react";
@@ -11,14 +10,13 @@ import { IconMoonStars, IconSun } from "@tabler/icons-react";
 import styles from "./color-scheme-toggle.module.css";
 
 export const ColorSchemeToggle = (props: ActionIconProps) => {
-  const { setColorScheme } = useMantineColorScheme();
-  const colorScheme = useComputedColorScheme();
+  const { toggleColorScheme } = useMantineColorScheme();
 
   return (
     <ActionIcon
       aria-label="Toggle color scheme"
       variant="default"
-      onClick={() => setColorScheme(colorScheme === "light" ? "dark" : "light")}
+      onClick={toggleColorScheme}
       {...props}
     >
       <IconSun className={styles.light} size={18} />
