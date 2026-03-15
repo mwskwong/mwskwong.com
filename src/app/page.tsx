@@ -18,7 +18,7 @@ import {
 
 import styles from "./page.module.css";
 
-const Home = () => (
+const HomePage = () => (
   <>
     <Container className={styles.container} component="main" size="sm">
       <ColorSchemeToggle className={styles.colorSchemeToggle} />
@@ -89,4 +89,4 @@ const Home = () => (
   </>
 );
 
-export default Home;
+export default HomePage;
