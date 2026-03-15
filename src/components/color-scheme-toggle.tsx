@@ -3,17 +3,15 @@
 import {
   ActionIcon,
   type ActionIconProps,
-  type PolymorphicComponentProps,
+  type ElementProps,
   useMantineColorScheme,
 } from "@mantine/core";
 import { IconMoon, IconSun } from "@tabler/icons-react";
 
 import styles from "./color-scheme-toggle.module.css";
 
-export type ColorSchemeToggleProps = Omit<
-  PolymorphicComponentProps<"button", ActionIconProps>,
-  "children"
->;
+export type ColorSchemeToggleProps = ActionIconProps &
+  ElementProps<"button", keyof ActionIconProps | "children">;
 export const ColorSchemeToggle = ({
   onClick,
   ...props

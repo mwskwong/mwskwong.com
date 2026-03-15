@@ -13,11 +13,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import {
   currentRole,
+  displayTitle,
   firstName,
   lastName,
   siteFqdn,
   siteName,
-  title,
 } from "@/config";
 
 const geist = Geist({ subsets: ["latin"] });
@@ -32,7 +32,7 @@ const theme = createTheme({
 });
 
 export const metadata: Metadata = {
-  title: `${firstName} ${lastName} · ${title}`,
+  title: `${firstName} ${lastName} · ${displayTitle}`,
   description: `Hey, I'm ${firstName} ${lastName}, ${currentRole.jobTitle} at ${currentRole.company.name} working on eWin. I handle new features, maintenance, and data analytics while solving problems that create real impact for users.`,
   metadataBase: new URL(`https://${siteFqdn}`),
   authors: { name: `${firstName} ${lastName}`, url: `https://${siteFqdn}` },

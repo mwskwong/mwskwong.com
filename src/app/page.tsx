@@ -1,20 +1,21 @@
 import "./global.css";
 
-import { Anchor, Container, Divider, Text, Title } from "@mantine/core";
+import { Anchor, Container, Divider, Text } from "@mantine/core";
 import Image from "next/image";
 import { type WebSite, type WithContext } from "schema-dts";
 
+import headShot from "@/assets/head-shot.jpg";
 import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
+import { Title } from "@/components/title";
 import {
   currentRole,
+  displayTitle,
   firstName,
   lastName,
   siteFqdn,
   siteName,
-  title,
 } from "@/config";
 
-import profilePic from "./apple-icon.png";
 import styles from "./page.module.css";
 
 const Home = () => (
@@ -24,18 +25,13 @@ const Home = () => (
 
       <header className={styles.header}>
         <Image
-          alt="profile pic"
-          className={styles.profilePic}
+          alt={`head shot of ${firstName} ${lastName}`}
+          className={styles.headShot}
           height={128}
-          src={profilePic}
+          src={headShot}
         />
-        <Title>
-          <Text c="teal" inherit span>
-            {firstName}
-          </Text>{" "}
-          {lastName}
-        </Title>
-        <Text>{title}</Text>
+        <Title />
+        <Text>{displayTitle}</Text>
       </header>
 
       <Text className={styles.paragraph}>
