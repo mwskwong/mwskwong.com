@@ -18,7 +18,7 @@
     "upgrade": "npm update && npm run typegen && npm run typecheck && npm run lint:fix && npm run stylelint:fix && npm run format:fix"
   },
   "dependencies": {
-    "@mantine/core": "^8.3.16",
+    "@mantine/core": "^8.3.17",
     "@tabler/icons-react": "^3.40.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
