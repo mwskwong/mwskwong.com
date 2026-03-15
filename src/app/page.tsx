@@ -1,18 +1,19 @@
 import "./global.css";
 
-import { Anchor, Container, Divider, Text, Title } from "@mantine/core";
+import { Anchor, Container, Divider, Text } from "@mantine/core";
 import Image from "next/image";
 import { type WebSite, type WithContext } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
 import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
+import { Title } from "@/components/title";
 import {
   currentRole,
+  displayTitle,
   firstName,
   lastName,
   siteFqdn,
   siteName,
-  title,
 } from "@/config";
 
 import styles from "./page.module.css";
@@ -29,13 +30,8 @@ const Home = () => (
           height={128}
           src={headShot}
         />
-        <Title>
-          <Text c="teal" inherit span>
-            {firstName}
-          </Text>{" "}
-          {lastName}
-        </Title>
-        <Text>{title}</Text>
+        <Title />
+        <Text>{displayTitle}</Text>
       </header>
 
       <Text className={styles.paragraph}>
