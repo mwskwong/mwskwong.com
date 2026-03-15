@@ -5,8 +5,7 @@ import Image from "next/image";
 import { type WebSite, type WithContext } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
-import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
-import { Title } from "@/components/title";
+import { ColorSchemeToggle, Title } from "@/client-components";
 import {
   currentRole,
   displayTitle,

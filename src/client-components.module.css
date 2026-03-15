@@ -1,0 +1,7 @@
+.colorSchemeToggleIconLight {
+  display: light-dark(block, none);
+}
+
+.colorSchemeToggleIconDark {
+  display: light-dark(none, block);
+}
