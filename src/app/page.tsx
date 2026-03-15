@@ -5,8 +5,7 @@ import Image from "next/image";
 import { type WebSite, type WithContext } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
-import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
-import { Title } from "@/components/title";
+import { ColorSchemeToggle, Title } from "@/client-components";
 import {
   currentRole,
   displayTitle,
@@ -18,7 +17,7 @@ import {
 
 import styles from "./page.module.css";
 
-const Home = () => (
+const HomePage = () => (
   <>
     <Container className={styles.container} component="main" size="sm">
       <ColorSchemeToggle className={styles.colorSchemeToggle} />
@@ -89,4 +88,4 @@ const Home = () => (
   </>
 );
 
-export default Home;
+export default HomePage;
