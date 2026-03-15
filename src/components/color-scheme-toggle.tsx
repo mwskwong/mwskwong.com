@@ -10,10 +10,8 @@ import { IconMoon, IconSun } from "@tabler/icons-react";
 
 import styles from "./color-scheme-toggle.module.css";
 
-export type ColorSchemeToggleProps = Omit<
-  ActionIconProps & ElementProps<"button", keyof ActionIconProps>,
-  "children"
->;
+export type ColorSchemeToggleProps = ActionIconProps &
+  ElementProps<"button", keyof ActionIconProps | "children">;
 export const ColorSchemeToggle = ({
   onClick,
   ...props
