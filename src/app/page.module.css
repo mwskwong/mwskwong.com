@@ -23,11 +23,11 @@
   text-align: center;
 }
 
-.profilePic {
+.headShot {
   margin-bottom: var(--mantine-spacing-md);
   outline: rem(4px) solid var(--mantine-primary-color-filled);
   outline-offset: rem(4px);
-  border-radius: 100%;
+  border-radius: calc(infinity * rem(1px));
 }
 
 .paragraph {
