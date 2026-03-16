@@ -33,7 +33,7 @@ const theme = createTheme({
 
 export const metadata: Metadata = {
   title: `${firstName} ${lastName} · ${displayTitle}`,
-  description: `Hey, I'm ${firstName} ${lastName}, ${currentRole.jobTitle} at ${currentRole.company.name} working on eWin. I handle new features, maintenance, and data analytics while solving problems that create real impact for users.`,
+  description: `Tech Lead & Full Stack Web Developer at ${currentRole.company.name} working on eWin. Transitioned from System DBA to building visual, user-friendly web applications that ordinary people can understand. Polite, straight to the point, and driven by solving meaningful problems that create real impact.`,
   metadataBase: new URL(`https://${siteFqdn}`),
   authors: { name: `${firstName} ${lastName}`, url: `https://${siteFqdn}` },
   openGraph: { siteName, url: "/", type: "website" },
