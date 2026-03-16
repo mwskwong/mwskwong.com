@@ -34,21 +34,29 @@ const HomePage = () => (
       </header>
 
       <Text className={styles.paragraph}>
-        Hey, my name is Matthew Kwong. I&apos;m a {currentRole.jobTitle} at{" "}
+        Hey, my name is {firstName} {lastName}. I&apos;m a{" "}
+        {currentRole.jobTitle} at{" "}
         <Anchor href={currentRole.company.url} rel="noreferrer" target="_blank">
           {currentRole.company.name}
-        </Anchor>
-        . I mainly work on{" "}
+        </Anchor>{" "}
+        working on{" "}
         <Anchor href="https://bet.hkjc.com" rel="noreferrer" target="_blank">
           eWin
         </Anchor>
-        , handling everything from new features and platform maintenance to
-        integrating data analytics. I really enjoy solving problems and seeing
-        the actual impact the work makes for users.
+        .
       </Text>
       <Text className={styles.paragraph}>
-        If you&apos;d like to connect or chat about tech and web development,
-        feel free to reach out via the links below.
+        My journey into web development began at university. After starting my
+        career as a System DBA, I discovered I much prefer building visual,
+        user-friendly applications that ordinary people can easily understand —
+        even though I&apos;m quite terrible at visual design and anything
+        artistic.
+      </Text>
+      <Text className={styles.paragraph}>
+        I&apos;m polite and straight to the point. What drives me is solving
+        meaningful problems and seeing the solutions I build create real impact.
+        If you&apos;d like to connect or chat about web development and
+        technology, feel free to reach out via the links below.
       </Text>
 
       <footer className={styles.footer}>
