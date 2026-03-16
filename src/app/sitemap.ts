@@ -5,7 +5,7 @@ import { siteFqdn } from "@/config";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
-  "use cache";
+  "use cache: remote";
   cacheLife("max");
 
   return [
