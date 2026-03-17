@@ -34,7 +34,8 @@ const HomePage = () => (
       </header>
 
       <Text className={styles.paragraph}>
-        Hey, I&apos;m {firstName} {lastName}. I&apos;m a {currentRole.jobTitle} at{" "}
+        Hey, I&apos;m {firstName} {lastName}. I&apos;m a {currentRole.jobTitle}{" "}
+        at{" "}
         <Anchor href={currentRole.company.url} rel="noreferrer" target="_blank">
           {currentRole.company.name}
         </Anchor>{" "}
