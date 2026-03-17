@@ -34,8 +34,7 @@ const HomePage = () => (
       </header>
 
       <Text className={styles.paragraph}>
-        Hey, my name is {firstName} {lastName}. I&apos;m a{" "}
-        {currentRole.jobTitle} at{" "}
+        Hey, I'm {firstName} {lastName}. I&apos;m a {currentRole.jobTitle} at{" "}
         <Anchor href={currentRole.company.url} rel="noreferrer" target="_blank">
           {currentRole.company.name}
         </Anchor>{" "}
@@ -46,8 +45,8 @@ const HomePage = () => (
         .
       </Text>
       <Text className={styles.paragraph}>
-        My journey into web development began at university. After starting my
-        career as a System DBA, I discovered I much prefer building visual,
+        My journey into web development started at university. After beginning
+        my career as a System DBA, I realized I much prefer building visual,
         user-friendly applications that ordinary people can easily understand —
         even though I&apos;m quite terrible at visual design and anything
         artistic.
