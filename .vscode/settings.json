@@ -1,9 +1,4 @@
 {
-  // CSS Variable Autocomplete
-  "emmet.includeLanguages": {
-    "postcss": "css"
-  },
-
   // CSS Variable Autocomplete with Mantine
   "cssVariables.lookupFiles": [
     "**/*.css",
