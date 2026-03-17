@@ -10,7 +10,6 @@
     "wayou.vscode-todo-highlight",
     "pflannery.vscode-versionlens",
     "stylelint.vscode-stylelint",
-    "vunguyentuan.vscode-css-variables",
-    "vunguyentuan.vscode-postcss"
+    "vunguyentuan.vscode-css-variables"
   ]
 }
