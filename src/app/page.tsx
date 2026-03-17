@@ -54,7 +54,10 @@ const HomePage = () => (
       </Text>
       <Text className={styles.paragraph}>
         I&apos;m polite and straight to the point. What drives me is solving
-        meaningful problems and seeing the solutions I build create real impact.
+        meaningful problems and seeing the solutions that I build create real
+        impact.
+      </Text>
+      <Text className={styles.paragraph}>
         If you&apos;d like to connect or chat about web development and
         technology, feel free to reach out via the links below.
       </Text>
