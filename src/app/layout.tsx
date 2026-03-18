@@ -13,7 +13,7 @@ import { type Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import {
-  currentRole,
+  description,
   displayTitle,
   firstName,
   lastName,
@@ -34,7 +34,7 @@ const theme = createTheme({
 
 export const metadata: Metadata = {
   title: `${firstName} ${lastName} · ${displayTitle}`,
-  description: `Tech Lead & Full Stack Web Developer at ${currentRole.company.name} working on eWin. Transitioned from System DBA to building visual, user-friendly web applications that ordinary people can understand. Polite, straight to the point, and driven by solving meaningful problems that create real impact.`,
+  description,
   metadataBase: new URL(`https://${siteFqdn}`),
   authors: { name: `${firstName} ${lastName}`, url: `https://${siteFqdn}` },
   openGraph: { siteName, url: "/", type: "website" },
