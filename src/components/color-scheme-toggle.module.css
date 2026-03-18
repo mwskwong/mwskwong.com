@@ -1,7 +1,7 @@
-.colorSchemeToggleIconLight {
+.iconLight {
   display: light-dark(block, none);
 }
 
-.colorSchemeToggleIconDark {
+.iconDark {
   display: light-dark(none, block);
 }
