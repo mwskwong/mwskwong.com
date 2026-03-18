@@ -104,22 +104,10 @@ const HomePage = () => (
               alternateName: `${firstName} ${middleName} ${lastName}`,
               jobTitle: currentRole.jobTitle,
               description,
-              image: headShot.src,
+              image: `https://${siteFqdn}${headShot.src}`,
               url: `https://${siteFqdn}`,
               email,
               worksFor: { "@type": "Organization", ...currentRole.company },
-              alumniOf: [
-                {
-                  "@type": "CollegeOrUniversity",
-                  name: "The Hong Kong University of Science and Technology",
-                  url: "https://hkust.edu.hk/",
-                },
-                {
-                  "@type": "CollegeOrUniversity",
-                  name: "The University of Hong Kong",
-                  url: "https://www.hku.hk/",
-                },
-              ],
               sameAs: [linkedin, github],
               knowsAbout: [
                 "Full Stack Web Development",
