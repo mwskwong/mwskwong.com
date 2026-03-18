@@ -1,11 +1,9 @@
-import "./global.css";
-
-import { Anchor, Container, Divider, Text } from "@mantine/core";
+import { Anchor, Container, Divider, Text, Title } from "@mantine/core";
 import Image from "next/image";
 import { type WebSite, type WithContext } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
-import { ColorSchemeToggle, Title } from "@/client-components";
+import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
 import {
   currentRole,
   displayTitle,
@@ -29,7 +27,12 @@ const HomePage = () => (
           height={128}
           src={headShot}
         />
-        <Title />
+        <Title>
+          <Text c="teal" inherit span>
+            {firstName}
+          </Text>{" "}
+          {lastName}
+        </Title>
         <Text>{displayTitle}</Text>
       </header>
 
