@@ -72,9 +72,7 @@ const HomePage = () => (
       </Text>
 
       <footer className={styles.footer}>
-        <Anchor href={`mailto:${email}`} rel="noreferrer" target="_blank">
-          Email
-        </Anchor>
+        <Anchor href={`mailto:${email}`}> Email</Anchor>
         <Divider orientation="vertical" />
         <Anchor href={linkedin} rel="noreferrer" target="_blank">
           LinkedIn
