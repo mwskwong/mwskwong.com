@@ -1,19 +1,25 @@
 import { Anchor, Container, Divider, Text, Title } from "@mantine/core";
 import Image from "next/image";
-import { type WebSite, type WithContext } from "schema-dts";
+import { type Graph, type Person, type WebSite } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
 import { ColorSchemeToggle } from "@/components/color-scheme-toggle";
 import {
   currentRole,
+  description,
   displayTitle,
   firstName,
   lastName,
+  middleName,
   siteFqdn,
   siteName,
 } from "@/config";
 
 import styles from "./page.module.css";
+
+const email = `me@${siteFqdn}`;
+const linkedin = "https://www.linkedin.com/in/mwskwong";
+const github = "https://github.com/mwskwong";
 
 const HomePage = () => (
   <>
@@ -66,23 +72,13 @@ const HomePage = () => (
       </Text>
 
       <footer className={styles.footer}>
-        <Anchor href={`mailto:me@${siteFqdn}`} rel="noreferrer" target="_blank">
-          Email
-        </Anchor>
+        <Anchor href={`mailto:${email}`}> Email</Anchor>
         <Divider orientation="vertical" />
-        <Anchor
-          href="https://www.linkedin.com/in/mwskwong"
-          rel="noreferrer"
-          target="_blank"
-        >
+        <Anchor href={linkedin} rel="noreferrer" target="_blank">
           LinkedIn
         </Anchor>
         <Divider orientation="vertical" />
-        <Anchor
-          href="https://github.com/mwskwong"
-          rel="noreferrer"
-          target="_blank"
-        >
+        <Anchor href={github} rel="noreferrer" target="_blank">
           GitHub
         </Anchor>
       </footer>
@@ -92,10 +88,34 @@ const HomePage = () => (
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: siteName,
-          url: `https://${siteFqdn}`,
-        } satisfies WithContext<WebSite>),
+          "@graph": [
+            {
+              "@type": "WebSite",
+              name: siteName,
+              url: `https://${siteFqdn}`,
+              author: { "@id": "#person" },
+            } satisfies WebSite,
+            {
+              "@type": "Person",
+              "@id": "#person",
+              name: `${firstName} ${lastName}`,
+              alternateName: `${firstName} ${middleName} ${lastName}`,
+              jobTitle: currentRole.jobTitle,
+              description,
+              image: `https://${siteFqdn}${headShot.src}`,
+              url: `https://${siteFqdn}`,
+              email,
+              worksFor: { "@type": "Organization", ...currentRole.company },
+              sameAs: [linkedin, github],
+              knowsAbout: [
+                "Full Stack Web Development",
+                "React",
+                "Next.js",
+                "TypeScript",
+              ],
+            } satisfies Person,
+          ],
+        } satisfies Graph),
       }}
       type="application/ld+json"
     />
