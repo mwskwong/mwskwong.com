@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
           // ref: https://nextjs.org/docs/app/guides/content-security-policy#without-nonces
           value: `
             default-src 'self';
-            script-src 'self' va.vercel-scripts.com 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""};
+            script-src 'self' 'unsafe-inline' va.vercel-scripts.com ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""} ${process.env.VERCEL_ENV === "production" ? "" : "vercel.live"};
             style-src 'self' 'unsafe-inline';
             img-src 'self' blob: data:;
             font-src 'self';
