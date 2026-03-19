@@ -17,6 +17,9 @@
     "typegen": "next typegen",
     "upgrade": "npm update && npm run typegen && npm run typecheck && npm run lint:fix && npm run stylelint:fix && npm run format:fix"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
     "@mantine/core": "^8.3.18",
     "@tabler/icons-react": "^3.40.0",
