@@ -45,6 +45,7 @@ const nextConfig: NextConfig = {
             script-src 'self' 'unsafe-inline' va.vercel-scripts.com ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""} ${process.env.VERCEL_ENV === "production" ? "" : "vercel.live"};
             style-src 'self' 'unsafe-inline';
             img-src 'self' blob: data:;
+            frame-src 'self' ${process.env.VERCEL_ENV === "production" ? "" : "vercel.live"};
             font-src 'self';
             object-src 'none';
             base-uri 'self';
