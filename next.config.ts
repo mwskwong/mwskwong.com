@@ -40,13 +40,15 @@ const nextConfig: NextConfig = {
         {
           key: "Content-Security-Policy",
           // ref: https://nextjs.org/docs/app/guides/content-security-policy#without-nonces
+          // ref: https://vercel.com/docs/vercel-toolbar/managing-toolbar#using-a-content-security-policy
           value: `
             default-src 'self';
-            script-src 'self' 'unsafe-inline' va.vercel-scripts.com ${process.env.NODE_ENV === "development" ? "'unsafe-eval'" : ""} ${process.env.VERCEL_ENV === "production" ? "" : "vercel.live"};
-            style-src 'self' 'unsafe-inline';
-            img-src 'self' blob: data:;
-            frame-src 'self' ${process.env.VERCEL_ENV === "production" ? "" : "vercel.live"};
-            font-src 'self';
+            script-src 'self' https://va.vercel-scripts.com https://vercel.live 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""};
+            connect-src 'self' https://vercel.live wss://ws-us3.pusher.com;
+            img-src 'self' https://vercel.live https://vercel.com blob: data:;
+            frame-src 'self' https://vercel.live;
+            style-src 'self' https://vercel.live 'unsafe-inline';            
+            font-src 'self' https://vercel.live https://assets.vercel.com;
             object-src 'none';
             base-uri 'self';
             form-action 'self';
