@@ -1,7 +1,6 @@
-// @ts-check
+import { type Config } from "postcss-load-config";
 
-/** @type {import('postcss-load-config').Config} */
-const postcssConfig = {
+const postcssConfig: Config = {
   plugins: {
     "postcss-preset-mantine": {},
     "postcss-simple-vars": {
