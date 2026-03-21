@@ -99,7 +99,7 @@ const HomePage = () => (
               "@type": "Person",
               "@id": "#person",
               name: `${firstName} ${lastName}`,
-              alternateName: `${firstName} ${middleName} ${lastName}`,
+              alternateName: `${lastName.toUpperCase()}, ${firstName} ${middleName}`,
               jobTitle: currentRole.jobTitle,
               description,
               image: `https://${siteFqdn}${headShot.src}`,
