@@ -56,7 +56,7 @@ const cssVariablesResolver: CSSVariablesResolver = (theme) => {
       "--mantine-color-body": theme.colors.dark[9],
       "--mantine-color-primary-text":
         theme.colors[theme.primaryColor][primaryShadeDark],
-      " --mantine-color-anchor":
+      "--mantine-color-anchor":
         theme.colors[theme.primaryColor][primaryShadeDark],
     },
   };
