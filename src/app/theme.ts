@@ -1,7 +1,21 @@
 "use client";
 
-import { createTheme, virtualColor } from "@mantine/core";
+import {
+  type DefaultMantineColor,
+  type MantineColorsTuple,
+  createTheme,
+  virtualColor,
+} from "@mantine/core";
 import { Geist, Geist_Mono } from "next/font/google";
+
+declare module "@mantine/core" {
+  export interface MantineThemeColorsOverride {
+    colors: Record<
+      "primary" | "walnut" | "birch" | DefaultMantineColor,
+      MantineColorsTuple
+    >;
+  }
+}
 
 const geist = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"], preload: false });

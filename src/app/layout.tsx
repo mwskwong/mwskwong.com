@@ -3,8 +3,6 @@ import "./global.css";
 
 import {
   ColorSchemeScript,
-  type DefaultMantineColor,
-  type MantineColorsTuple,
   MantineProvider,
   mantineHtmlProps,
 } from "@mantine/core";
@@ -22,15 +20,6 @@ import {
 } from "@/config";
 
 import { theme } from "./theme";
-
-declare module "@mantine/core" {
-  export interface MantineThemeColorsOverride {
-    colors: Record<
-      "primary" | "walnut" | "birch" | DefaultMantineColor,
-      MantineColorsTuple
-    >;
-  }
-}
 
 export const metadata: Metadata = {
   title: `${firstName} ${lastName} · ${displayTitle}`,
