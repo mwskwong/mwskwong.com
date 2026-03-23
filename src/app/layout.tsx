@@ -1,16 +1,9 @@
-import "@mantine/core/styles.css";
 import "./global.css";
 
-import {
-  ColorSchemeScript,
-  MantineProvider,
-  createTheme,
-  mantineHtmlProps,
-} from "@mantine/core";
+import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 
 import {
   description,
@@ -21,16 +14,7 @@ import {
   siteName,
 } from "@/config";
 
-const geist = Geist({ subsets: ["latin"] });
-const geistMono = Geist_Mono({ subsets: ["latin"], preload: false });
-
-const theme = createTheme({
-  fontFamily: geist.style.fontFamily,
-  fontFamilyMonospace: geistMono.style.fontFamily,
-  primaryColor: "teal",
-  primaryShade: { light: 9, dark: 5 },
-  respectReducedMotion: true,
-});
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: `${firstName} ${lastName} · ${displayTitle}`,
@@ -46,9 +30,7 @@ const RootLayout = ({ children }: LayoutProps<"/">) => (
       <ColorSchemeScript defaultColorScheme="auto" />
     </head>
     <body>
-      <MantineProvider defaultColorScheme="auto" theme={theme}>
-        {children}
-      </MantineProvider>
+      <Providers defaultColorScheme="auto">{children}</Providers>
       <Analytics />
       <SpeedInsights />
     </body>
