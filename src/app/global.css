@@ -1,6 +1,8 @@
-:root {
-  @mixin dark-root {
+body {
+  @mixin dark {
     --mantine-color-body: var(--mantine-color-dark-9);
+    --mantine-color-primary-text: var(--mantine-color-primary-filled);
+    --mantine-color-anchor: var(--mantine-color-primary-filled);
   }
 }
 

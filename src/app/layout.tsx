@@ -41,7 +41,7 @@ const theme = createTheme({
   fontFamily: geist.style.fontFamily,
   fontFamilyMonospace: geistMono.style.fontFamily,
   primaryColor: "primary",
-  primaryShade: { light: 9, dark: 4 },
+  primaryShade: { light: 9, dark: 3 },
   colors: {
     // wood accent
     primary: [
