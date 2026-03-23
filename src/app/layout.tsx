@@ -3,6 +3,8 @@ import "./global.css";
 
 import {
   ColorSchemeScript,
+  type DefaultMantineColor,
+  type MantineColorsTuple,
   MantineProvider,
   createTheme,
   mantineHtmlProps,
@@ -24,11 +26,32 @@ import {
 const geist = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"], preload: false });
 
+declare module "@mantine/core" {
+  export interface MantineThemeColorsOverride {
+    colors: Record<"primary" | DefaultMantineColor, MantineColorsTuple>;
+  }
+}
+
 const theme = createTheme({
   fontFamily: geist.style.fontFamily,
   fontFamilyMonospace: geistMono.style.fontFamily,
-  primaryColor: "teal",
-  primaryShade: { light: 9, dark: 5 },
+  primaryColor: "primary",
+  primaryShade: { light: 9, dark: 3 },
+  colors: {
+    // wood accent
+    primary: [
+      "#fff1e9",
+      "#f5e3da",
+      "#e3c6b8",
+      "#d2a792",
+      "#c38d71",
+      "#bb7c5d",
+      "#b56f4c",
+      "#a16141",
+      "#915638",
+      "#80482c",
+    ],
+  },
   respectReducedMotion: true,
 });
 

@@ -34,7 +34,7 @@ const HomePage = () => (
           src={headShot}
         />
         <Title>
-          <Text c="teal" inherit span>
+          <Text c="primary" inherit span>
             {firstName}
           </Text>{" "}
           {lastName}
