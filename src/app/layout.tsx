@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
 
+import { Providers } from "@/components/providers";
 import {
   description,
   displayTitle,
@@ -13,8 +14,6 @@ import {
   siteFqdn,
   siteName,
 } from "@/config";
-
-import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: `${firstName} ${lastName} · ${displayTitle}`,
