@@ -1,3 +1,4 @@
+import "@mantine/core/styles.css";
 import "./global.css";
 
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
@@ -5,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
 
-import { Providers } from "@/components/providers";
+import { ThemeProvider } from "@/components/theme-provider";
 import {
   description,
   displayTitle,
@@ -29,7 +30,7 @@ const RootLayout = ({ children }: LayoutProps<"/">) => (
       <ColorSchemeScript defaultColorScheme="auto" />
     </head>
     <body>
-      <Providers defaultColorScheme="auto">{children}</Providers>
+      <ThemeProvider defaultColorScheme="auto">{children}</ThemeProvider>
       <Analytics />
       <SpeedInsights />
     </body>
