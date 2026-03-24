@@ -16,7 +16,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 declare module "@mantine/core" {
   export interface MantineThemeColorsOverride {
     colors: Record<
-      "primary" | "caramel" | "wood" | DefaultMantineColor,
+      "primary" | "lightWood" | "darkWood" | DefaultMantineColor,
       MantineColorsTuple
     >;
   }
@@ -31,20 +31,12 @@ const theme = createTheme({
   primaryColor: "primary",
   primaryShade: { light: 9, dark: 3 },
   colors: {
-    primary: virtualColor({ name: "primary", light: "caramel", dark: "wood" }),
-    caramel: [
-      "#fef4e7",
-      "#f1e8db",
-      "#ddcfbd",
-      "#c8b59b",
-      "#b39977",
-      "#ac906b",
-      "#a78960",
-      "#93754f",
-      "#836843",
-      "#735935",
-    ],
-    wood: [
+    primary: virtualColor({
+      name: "primary",
+      light: "darkWood",
+      dark: "lightWood",
+    }),
+    lightWood: [
       "#fff3e5",
       "#f9e5d4",
       "#eecaac",
@@ -55,6 +47,18 @@ const theme = createTheme({
       "#bb6b28",
       "#a75e20",
       "#925016",
+    ],
+    darkWood: [
+      "#fff1e9",
+      "#f5e3da",
+      "#e3c6b8",
+      "#d2a792",
+      "#c38d71",
+      "#bb7c5d",
+      "#b56f4c",
+      "#a16141",
+      "#915638",
+      "#80482c",
     ],
   },
   respectReducedMotion: true,
