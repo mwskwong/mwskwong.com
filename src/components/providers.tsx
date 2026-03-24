@@ -9,16 +9,12 @@ import {
   MantineProvider,
   type MantineProviderProps,
   createTheme,
-  virtualColor,
 } from "@mantine/core";
 import { Geist, Geist_Mono } from "next/font/google";
 
 declare module "@mantine/core" {
   export interface MantineThemeColorsOverride {
-    colors: Record<
-      "primary" | "lightWood" | "darkWood" | DefaultMantineColor,
-      MantineColorsTuple
-    >;
+    colors: Record<"primary" | DefaultMantineColor, MantineColorsTuple>;
   }
 }
 
@@ -29,36 +25,20 @@ const theme = createTheme({
   fontFamily: geist.style.fontFamily,
   fontFamilyMonospace: geistMono.style.fontFamily,
   primaryColor: "primary",
-  primaryShade: { light: 9, dark: 3 },
+  primaryShade: { light: 9, dark: 4 },
   colors: {
-    primary: virtualColor({
-      name: "primary",
-      light: "darkWood",
-      dark: "lightWood",
-    }),
-    lightWood: [
-      "#fff3e5",
-      "#f9e5d4",
-      "#eecaac",
-      "#e0a472",
-      "#da955b",
-      "#d58543",
-      "#d37d35",
-      "#bb6b28",
-      "#a75e20",
-      "#925016",
-    ],
-    darkWood: [
-      "#fff1e9",
-      "#f5e3da",
-      "#e3c6b8",
-      "#d2a792",
-      "#c38d71",
-      "#bb7c5d",
-      "#b56f4c",
-      "#a16141",
-      "#915638",
-      "#80482c",
+    // camel
+    primary: [
+      "#fef4e7",
+      "#f1e8db",
+      "#ddcfbd",
+      "#c8b59b",
+      "#b39977",
+      "#ac906b",
+      "#a78960",
+      "#93754f",
+      "#836843",
+      "#735935",
     ],
   },
   respectReducedMotion: true,
