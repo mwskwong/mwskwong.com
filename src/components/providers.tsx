@@ -31,7 +31,7 @@ const theme = createTheme({
   primaryColor: "primary",
   primaryShade: { light: 9, dark: 3 },
   colors: {
-    primary: virtualColor({ name: "primary", light: "carmel", dark: "wood" }),
+    primary: virtualColor({ name: "primary", light: "caramel", dark: "wood" }),
     caramel: [
       "#fef4e7",
       "#f1e8db",
