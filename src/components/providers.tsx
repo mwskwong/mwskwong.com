@@ -15,7 +15,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 declare module "@mantine/core" {
   export interface MantineThemeColorsOverride {
-    colors: Record<"primary" | DefaultMantineColor, MantineColorsTuple>;
+    colors: Record<
+      "primary" | "caramel" | "wood" | DefaultMantineColor,
+      MantineColorsTuple
+    >;
   }
 }
 
