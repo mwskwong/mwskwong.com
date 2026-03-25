@@ -59,9 +59,6 @@ const theme = createTheme({
 const cssVariablesResolver: CSSVariablesResolver = ({
   primaryColor,
   primaryShade,
-  black,
-  white,
-  colors,
 }) => {
   const primaryShadeDark =
     typeof primaryShade === "number" ? primaryShade : primaryShade.dark;
@@ -69,14 +66,14 @@ const cssVariablesResolver: CSSVariablesResolver = ({
   return {
     variables: {},
     light: {
-      "--mantine-color-dimmed": colors.gray[8],
+      "--mantine-color-dimmed": "var(--mantine-color-gray-8)",
     },
     dark: {
-      "--mantine-color-body": black,
-      "--mantine-color-text": white,
-      "--mantine-color-dimmed": colors.gray[5],
-      "--mantine-color-primary-text": colors[primaryColor][primaryShadeDark],
-      "--mantine-color-anchor": colors[primaryColor][primaryShadeDark],
+      "--mantine-color-body": "var(--mantine-color-black)",
+      "--mantine-color-text": "var(--mantine-color-white)",
+      "--mantine-color-dimmed": "var(--mantine-color-gray-5)",
+      "--mantine-color-primary-text": `var(--mantine-color-${primaryColor}-${primaryShadeDark})`,
+      "--mantine-color-anchor": `var(--mantine-color-${primaryColor}-${primaryShadeDark})`,
     },
   };
 };
