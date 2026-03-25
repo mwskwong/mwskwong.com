@@ -34,12 +34,12 @@ const HomePage = () => (
           src={headShot}
         />
         <Title>
-          <Text c="teal" inherit span>
+          <Text c="primary" inherit span>
             {firstName}
           </Text>{" "}
           {lastName}
         </Title>
-        <Text>{displayTitle}</Text>
+        <Text c="dimmed">{displayTitle}</Text>
       </header>
 
       <Text className={styles.paragraph}>
