@@ -35,9 +35,9 @@ const theme = createTheme({
       "#EDD9C4",
       "#E0C7AB",
       "#D0B28F",
-      "#BA977D", //  main accent for dark mode
+      "#BA977D", // accent for dark mode
       "#A67F63",
-      "#74492A", //  main accent for light mode
+      "#74492A", // accent for light mode
       "#5C3A23",
       "#3F2719",
     ],
@@ -47,10 +47,10 @@ const theme = createTheme({
       "#cecdcd",
       "#b1b1b1",
       "#9a9a9a",
-      "#8b8b8b",
+      "#8b8b8b", // dimmed for dark mode
       "#848383",
       "#747172",
-      "#686365",
+      "#686365", // dimmed for light mode
       "#5f5357",
     ],
   },
@@ -74,7 +74,7 @@ const cssVariablesResolver: CSSVariablesResolver = ({
     dark: {
       "--mantine-color-body": black,
       "--mantine-color-text": white,
-      "--mantine-color-dimmed": colors.gray[4],
+      "--mantine-color-dimmed": colors.gray[5],
       "--mantine-color-primary-text": colors[primaryColor][primaryShadeDark],
       "--mantine-color-anchor": colors[primaryColor][primaryShadeDark],
     },
