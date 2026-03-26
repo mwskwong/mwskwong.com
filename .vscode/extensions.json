@@ -9,7 +9,6 @@
     "yoavbls.pretty-ts-errors",
     "wayou.vscode-todo-highlight",
     "pflannery.vscode-versionlens",
-    "stylelint.vscode-stylelint",
-    "vunguyentuan.vscode-css-variables"
+    "bradlc.vscode-tailwindcss"
   ]
 }

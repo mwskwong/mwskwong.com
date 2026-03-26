@@ -1,12 +1,10 @@
-import "@mantine/core/styles.css";
-import "./global.css";
+import "./globals.css";
 
-import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 
-import { ThemeProvider } from "@/components/theme-provider";
 import {
   description,
   displayTitle,
@@ -25,12 +23,9 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
-  <html lang="en" {...mantineHtmlProps}>
-    <head>
-      <ColorSchemeScript defaultColorScheme="auto" />
-    </head>
+  <html lang="en" suppressHydrationWarning>
     <body>
-      <ThemeProvider defaultColorScheme="auto">{children}</ThemeProvider>
+      <ThemeProvider>{children}</ThemeProvider>
       <Analytics />
       <SpeedInsights />
     </body>
