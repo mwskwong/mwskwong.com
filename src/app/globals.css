@@ -4,6 +4,7 @@
 /* 
  * Accent: #74492A
  * Generated from: https://heroui.com/themes?chroma=0.07400421396058689&hue=55.342692450381584&lightness=0.4477603155199682&fontFamily=geist
+ * Make --muted and --field-placeholder darker to compliant to WCAG AA on normal text
  */
 
 :root,
@@ -21,10 +22,10 @@
   --default-foreground: oklch(21.03% 0.0059 55.34);
   --field-background: oklch(100% 0.0008 55.34);
   --field-foreground: oklch(21.03% 0.0015 55.34);
-  --field-placeholder: oklch(55.17% 0.003 55.34);
+  --field-placeholder: oklch(50.17% 0.003 55.34);
   --focus: oklch(44.78% 0.074 55.34);
   --foreground: oklch(21.03% 0.0015 55.34);
-  --muted: oklch(55.17% 0.003 55.34);
+  --muted: oklch(50.17% 0.003 55.34);
   --overlay: oklch(100% 0.0004 55.34);
   --overlay-foreground: oklch(21.03% 0.0015 55.34);
   --scrollbar: oklch(87.1% 0.0015 55.34);
