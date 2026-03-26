@@ -70,7 +70,7 @@ const HomePage = () => (
       </p>
 
       <footer className="mt-12 flex justify-center gap-4">
-        <Link href={`mailto:${email}`}> Email</Link>
+        <Link href={`mailto:${email}`}>Email</Link>
         <Separator orientation="vertical" />
         <Link href={linkedin} rel="noreferrer" target="_blank">
           LinkedIn
