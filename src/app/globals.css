@@ -98,3 +98,9 @@
     @apply bg-accent-soft;
   }
 }
+
+@layer components {
+  .link {
+    @apply decoration-accent hover:decoration-accent-hover;
+  }
+}
