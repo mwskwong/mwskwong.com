@@ -21,9 +21,9 @@ const github = "https://github.com/mwskwong";
 
 const HomePage = () => (
   <>
-    <main className="mx-auto flex min-h-dvh max-w-3xl flex-col justify-center px-4 pt-20 pb-32">
+    <main className="relative mx-auto flex min-h-dvh max-w-2xl flex-col justify-center px-4 pt-20 pb-32">
       <ThemeToggle
-        className="absolute top-4 right-4 sm:top-8 sm:right-8"
+        className="absolute top-4 right-4 md:top-8 md:right-0"
         size="sm"
       />
 
