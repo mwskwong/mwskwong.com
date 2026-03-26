@@ -1,12 +1,12 @@
-import "@mantine/core/styles.css";
-import "./global.css";
+import "./globals.css";
 
-import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
+import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 
-import { ThemeProvider } from "@/components/theme-provider";
 import {
   description,
   displayTitle,
@@ -15,6 +15,17 @@ import {
   siteFqdn,
   siteName,
 } from "@/config";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  preload: false,
+});
 
 export const metadata: Metadata = {
   title: `${firstName} ${lastName} · ${displayTitle}`,
@@ -25,12 +36,13 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
-  <html lang="en" {...mantineHtmlProps}>
-    <head>
-      <ColorSchemeScript defaultColorScheme="auto" />
-    </head>
+  <html
+    className={cn(geistSans.variable, geistMono.variable)}
+    lang="en"
+    suppressHydrationWarning
+  >
     <body>
-      <ThemeProvider defaultColorScheme="auto">{children}</ThemeProvider>
+      <ThemeProvider>{children}</ThemeProvider>
       <Analytics />
       <SpeedInsights />
     </body>

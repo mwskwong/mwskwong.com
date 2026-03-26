@@ -1,23 +1,17 @@
 {
-  // CSS Variable Autocomplete with Mantine
-  "cssVariables.lookupFiles": [
-    "**/*.css",
-    "**/*.scss",
-    "**/*.sass",
-    "**/*.less",
-    "node_modules/@mantine/core/styles.css"
-  ],
+  // Tailwind CSS IntelliSense
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
 
-  // Stylelint
-  "css.validate": false,
-  "less.validate": false,
-  "scss.validate": false,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
 
-  // fix auto-fixable problems found by Prettier, ESlint and Stylelint on save, in this particular order
+  // fix auto-fixable problems found by Prettier, ESlint on save, in this particular order
   "editor.codeActionsOnSave": {
     "source.fixAll.prettier": "explicit",
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
+    "source.fixAll.eslint": "explicit"
   },
 
   // Prettier

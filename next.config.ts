@@ -16,11 +16,9 @@ const nextConfig: NextConfig = {
       ],
     },
   ],
-  logging: { fetches: { fullUrl: true } },
   experimental: {
     turbopackFileSystemCacheForBuild: true,
     typedEnv: true,
-    optimizePackageImports: ["@mantine/core"],
   },
 };
 
