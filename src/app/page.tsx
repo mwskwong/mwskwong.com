@@ -64,7 +64,7 @@ const HomePage = () => (
         meaningful problems and seeing the solutions that I build create real
         impact.
       </p>
-      <p className="mb-4 text-pretty hyphens-auto">
+      <p className="text-pretty hyphens-auto">
         If you&apos;d like to connect or chat about web development and
         technology, feel free to reach out via the links below.
       </p>
