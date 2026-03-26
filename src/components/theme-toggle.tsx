@@ -14,6 +14,7 @@ export const ThemeToggle = ({
 
   return (
     <Button
+      aria-label="toggle theme"
       isDisabled={!resolvedTheme && isDisabled}
       isIconOnly
       variant="ghost"
