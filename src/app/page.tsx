@@ -1,4 +1,4 @@
-import { Link } from "@heroui/react";
+import { Link, Separator } from "@heroui/react";
 import Image from "next/image";
 import { type Graph, type Person, type WebSite } from "schema-dts";
 
@@ -62,6 +62,18 @@ const HomePage = () => (
         If you&apos;d like to connect or chat about web development and
         technology, feel free to reach out via the links below.
       </p>
+
+      <footer className="mt-12 flex justify-center gap-4">
+        <Link href={`mailto:${email}`}> Email</Link>
+        <Separator orientation="vertical" />
+        <Link href={linkedin} rel="noreferrer" target="_blank">
+          LinkedIn
+        </Link>
+        <Separator orientation="vertical" />
+        <Link href={github} rel="noreferrer" target="_blank">
+          GitHub
+        </Link>
+      </footer>
     </main>
 
     <script
