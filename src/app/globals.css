@@ -101,6 +101,6 @@
 
 @layer components {
   .link {
-    @apply decoration-accent hover:decoration-accent-hover text-[length:inherit];
+    @apply decoration-accent hover:decoration-accent text-[length:inherit] decoration-1 hover:decoration-2;
   }
 }

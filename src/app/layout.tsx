@@ -42,7 +42,7 @@ const RootLayout = ({ children }: LayoutProps<"/">) => (
     suppressHydrationWarning
   >
     <body>
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>
       <Analytics />
       <SpeedInsights />
     </body>
