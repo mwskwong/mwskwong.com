@@ -1,7 +1,0 @@
-.iconLight {
-  display: light-dark(block, none);
-}
-
-.iconDark {
-  display: light-dark(none, block);
-}
