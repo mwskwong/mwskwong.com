@@ -3,6 +3,7 @@ import Image from "next/image";
 import { type Graph, type Person, type WebSite } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   currentRole,
   description,
@@ -21,6 +22,11 @@ const github = "https://github.com/mwskwong";
 const HomePage = () => (
   <>
     <main className="mx-auto flex min-h-dvh max-w-3xl flex-col justify-center px-4 pt-20 pb-32">
+      <ThemeToggle
+        className="absolute top-4 right-4 sm:top-8 sm:right-8"
+        size="sm"
+      />
+
       <header className="mb-12 text-center">
         <Image
           alt={`head shot of ${firstName} ${lastName}`}

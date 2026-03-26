@@ -16,6 +16,7 @@
     "upgrade": "npm update && npm run typegen && npm run typecheck && npm run format:fix"
   },
   "dependencies": {
+    "@gravity-ui/icons": "^2.18.0",
     "@heroui/react": "^3.0.1",
     "@heroui/styles": "^3.0.1",
     "@vercel/analytics": "^2.0.1",
