@@ -1,9 +1,11 @@
+import Image from "next/image";
 import { type Graph, type Person, type WebSite } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
 import {
   currentRole,
   description,
+  displayTitle,
   firstName,
   lastName,
   middleName,
@@ -17,7 +19,20 @@ const github = "https://github.com/mwskwong";
 
 const HomePage = () => (
   <>
-    <div>test</div>
+    <main className="mx-auto flex min-h-dvh max-w-3xl flex-col justify-center px-4 pt-20 pb-32">
+      <header className="mb-12 text-center">
+        <Image
+          alt={`head shot of ${firstName} ${lastName}`}
+          className="outline-accent mx-auto mb-4 rounded-full outline-4 outline-offset-4"
+          height={128}
+          src={headShot}
+        />
+        <h1 className="text-4xl font-bold">
+          <span className="text-accent">{firstName}</span> {lastName}
+        </h1>
+        <p className="text-muted">{displayTitle}</p>
+      </header>
+    </main>
 
     <script
       dangerouslySetInnerHTML={{
