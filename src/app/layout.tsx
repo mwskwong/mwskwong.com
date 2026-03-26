@@ -1,8 +1,10 @@
 import "./globals.css";
 
+import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -14,6 +16,16 @@ import {
   siteName,
 } from "@/config";
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: `${firstName} ${lastName} · ${displayTitle}`,
   description,
@@ -23,7 +35,11 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
-  <html lang="en" suppressHydrationWarning>
+  <html
+    className={cn(geistSans.variable, geistMono.variable)}
+    lang="en"
+    suppressHydrationWarning
+  >
     <body>
       <ThemeProvider>{children}</ThemeProvider>
       <Analytics />
