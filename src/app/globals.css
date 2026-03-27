@@ -100,6 +100,15 @@
   }
 }
 
+@custom-variant hover {
+  @media (hover: hover) {
+    &:hover,
+    &[data-hovered="true"] {
+      @slot;
+    }
+  }
+}
+
 @layer components {
   .link {
     @apply decoration-accent hover:decoration-accent-hover text-[length:inherit];
