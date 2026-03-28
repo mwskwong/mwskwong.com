@@ -102,7 +102,7 @@
 
 @layer components {
   .link {
-    @apply decoration-accent hover:decoration-accent-hover text-[length:inherit];
+    @apply text-[length:inherit] decoration-accent hover:decoration-accent-hover;
   }
 }
 

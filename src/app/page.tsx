@@ -27,7 +27,7 @@ const HomePage = () => (
       <header className="mb-12 text-center">
         <Image
           alt={`head shot of ${firstName} ${lastName}`}
-          className="outline-accent mx-auto mb-4 rounded-full outline-4 outline-offset-4"
+          className="mx-auto mb-4 rounded-full outline-4 outline-offset-4 outline-accent"
           height={128}
           src={headShot}
         />
