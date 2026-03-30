@@ -13,7 +13,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "typegen": "next typegen",
-    "upgrade": "npm update && npm run typegen && npm run typecheck && npm run lint:fix && npm run format:fix"
+    "upgrade": "npm update && npm run typegen && npm run typecheck && npm run format:fix && npm run lint:fix"
   },
   "dependencies": {
     "@gravity-ui/icons": "^2.18.0",

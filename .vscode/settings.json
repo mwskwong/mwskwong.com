@@ -3,17 +3,16 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-
   "editor.quickSuggestions": {
     "strings": "on"
   },
+
+  // Prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   // fix auto-fixable problems found by Prettier, ESlint on save, in this particular order
   "editor.codeActionsOnSave": {
     "source.fixAll.prettier": "explicit",
     "source.fixAll.eslint": "explicit"
-  },
-
-  // Prettier
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
