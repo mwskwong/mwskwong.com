@@ -89,6 +89,12 @@ const eslintConfig = defineConfig(
         },
       ],
 
+      // ref: https://typescript-eslint.io/troubleshooting/typed-linting/performance/#eslint-plugin-import
+      "import-x/named": "off",
+      "import-x/namespace": "off",
+      "import-x/default": "off",
+      "import-x/no-named-as-default-member": "off",
+      "import-x/no-unresolved": "off",
       "import-x/order": [
         "warn",
         {
@@ -105,13 +111,6 @@ const eslintConfig = defineConfig(
           named: true,
         },
       ],
-
-      // ref: https://typescript-eslint.io/troubleshooting/typed-linting/performance/#eslint-plugin-import
-      "import-x/named": "off",
-      "import-x/namespace": "off",
-      "import-x/default": "off",
-      "import-x/no-named-as-default-member": "off",
-      "import-x/no-unresolved": "off",
 
       "react/jsx-sort-props": [
         "warn",
