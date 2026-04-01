@@ -6,7 +6,6 @@ import { includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import next from "@next/eslint-plugin-next";
-import tsParser from "@typescript-eslint/parser";
 import { defineConfig } from "eslint/config";
 import prettier from "eslint-config-prettier/flat";
 import { importX } from "eslint-plugin-import-x";
@@ -33,7 +32,7 @@ const eslintConfig = defineConfig(
   prettier,
   {
     languageOptions: {
-      parser: tsParser,
+      parser: ts.parser,
       ecmaVersion: "latest",
       sourceType: "module",
       parserOptions: {
