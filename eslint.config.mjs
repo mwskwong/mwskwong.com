@@ -8,7 +8,7 @@ import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import next from "@next/eslint-plugin-next";
 import { defineConfig } from "eslint/config";
 import prettier from "eslint-config-prettier/flat";
-import importPlugin from "eslint-plugin-import";
+import { importX } from "eslint-plugin-import-x";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -20,11 +20,11 @@ const eslintConfig = defineConfig(
   ts.configs.strictTypeChecked,
   ts.configs.stylisticTypeChecked,
   unicorn.configs.recommended,
-  importPlugin.flatConfigs.recommended,
-  importPlugin.flatConfigs.typescript,
-  importPlugin.flatConfigs.react,
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
+  importX.flatConfigs.react,
   comments.recommended,
-  jsxA11y.flatConfigs.recommended,
+  jsxA11y.flatConfigs.strict,
   react.configs.flat.recommended,
   react.configs.flat["jsx-runtime"],
   reactHooks.configs.flat["recommended-latest"],
@@ -32,17 +32,17 @@ const eslintConfig = defineConfig(
   prettier,
   {
     languageOptions: {
+      parser: ts.parser,
+      ecmaVersion: "latest",
+      sourceType: "module",
       parserOptions: {
         projectService: true,
       },
     },
     settings: {
-      "import/resolver": {
-        typescript: true,
-        node: true,
-      },
       "jsx-a11y": {
         components: {
+          Button: "button",
           Image: "img",
           Link: "a",
         },
@@ -87,10 +87,15 @@ const eslintConfig = defineConfig(
         },
       ],
 
-      "import/order": [
+      // ref: https://typescript-eslint.io/troubleshooting/typed-linting/performance/#eslint-plugin-import
+      "import-x/named": "off",
+      "import-x/namespace": "off",
+      "import-x/default": "off",
+      "import-x/no-named-as-default-member": "off",
+      "import-x/no-unresolved": "off",
+      "import-x/order": [
         "warn",
         {
-          alphabetize: { order: "asc" },
           groups: [
             "builtin",
             "external",
@@ -100,16 +105,10 @@ const eslintConfig = defineConfig(
             "index",
           ],
           "newlines-between": "always",
+          alphabetize: { order: "asc" },
+          named: true,
         },
       ],
-      "sort-imports": ["warn", { ignoreDeclarationSort: true }],
-
-      // ref: https://typescript-eslint.io/troubleshooting/typed-linting/performance/#eslint-plugin-import
-      "import/named": "off",
-      "import/namespace": "off",
-      "import/default": "off",
-      "import/no-named-as-default-member": "off",
-      "import/no-unresolved": "off",
 
       "react/jsx-sort-props": [
         "warn",

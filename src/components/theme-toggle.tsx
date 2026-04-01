@@ -4,7 +4,7 @@ import { Moon, Sun } from "@gravity-ui/icons";
 import { Button, type ButtonProps } from "@heroui/react";
 import { useTheme } from "next-themes";
 
-export type ThemeToggleProps = Omit<ButtonProps, "children">;
+export type ThemeToggleProps = Omit<ButtonProps, "isIconOnly" | "children">;
 export const ThemeToggle = ({ onClick, ...props }: ThemeToggleProps) => {
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -19,7 +19,7 @@ export const ThemeToggle = ({ onClick, ...props }: ThemeToggleProps) => {
       }}
       {...props}
     >
-      <Sun className="block dark:hidden" />
+      <Sun className="dark:hidden" />
       <Moon className="hidden dark:block" />
     </Button>
   );
