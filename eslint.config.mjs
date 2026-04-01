@@ -24,7 +24,7 @@ const eslintConfig = defineConfig(
   importX.flatConfigs.typescript,
   importX.flatConfigs.react,
   comments.recommended,
-  jsxA11y.flatConfigs.recommended,
+  jsxA11y.flatConfigs.strict,
   react.configs.flat.recommended,
   react.configs.flat["jsx-runtime"],
   reactHooks.configs.flat["recommended-latest"],
@@ -42,6 +42,7 @@ const eslintConfig = defineConfig(
     settings: {
       "jsx-a11y": {
         components: {
+          Button: "button",
           Image: "img",
           Link: "a",
         },
