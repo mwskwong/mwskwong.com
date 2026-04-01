@@ -19,7 +19,7 @@ export const ThemeToggle = ({ onClick, ...props }: ThemeToggleProps) => {
       }}
       {...props}
     >
-      <Sun className="block dark:hidden" />
+      <Sun className="dark:hidden" />
       <Moon className="hidden dark:block" />
     </Button>
   );
