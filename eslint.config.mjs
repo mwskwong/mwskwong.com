@@ -6,9 +6,10 @@ import { includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
 import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import next from "@next/eslint-plugin-next";
+import tsParser from "@typescript-eslint/parser";
 import { defineConfig } from "eslint/config";
 import prettier from "eslint-config-prettier/flat";
-import importPlugin from "eslint-plugin-import";
+import { importX } from "eslint-plugin-import-x";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -20,9 +21,9 @@ const eslintConfig = defineConfig(
   ts.configs.strictTypeChecked,
   ts.configs.stylisticTypeChecked,
   unicorn.configs.recommended,
-  importPlugin.flatConfigs.recommended,
-  importPlugin.flatConfigs.typescript,
-  importPlugin.flatConfigs.react,
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
+  importX.flatConfigs.react,
   comments.recommended,
   jsxA11y.flatConfigs.recommended,
   react.configs.flat.recommended,
@@ -37,9 +38,10 @@ const eslintConfig = defineConfig(
       },
     },
     settings: {
-      "import/resolver": {
-        typescript: true,
-        node: true,
+      languageOptions: {
+        parser: tsParser,
+        ecmaVersion: "latest",
+        sourceType: "module",
       },
       "jsx-a11y": {
         components: {
@@ -87,10 +89,9 @@ const eslintConfig = defineConfig(
         },
       ],
 
-      "import/order": [
+      "import-x/order": [
         "warn",
         {
-          alphabetize: { order: "asc" },
           groups: [
             "builtin",
             "external",
@@ -100,16 +101,17 @@ const eslintConfig = defineConfig(
             "index",
           ],
           "newlines-between": "always",
+          alphabetize: { order: "asc" },
+          named: true,
         },
       ],
-      "sort-imports": ["warn", { ignoreDeclarationSort: true }],
 
       // ref: https://typescript-eslint.io/troubleshooting/typed-linting/performance/#eslint-plugin-import
-      "import/named": "off",
-      "import/namespace": "off",
-      "import/default": "off",
-      "import/no-named-as-default-member": "off",
-      "import/no-unresolved": "off",
+      "import-x/named": "off",
+      "import-x/namespace": "off",
+      "import-x/default": "off",
+      "import-x/no-named-as-default-member": "off",
+      "import-x/no-unresolved": "off",
 
       "react/jsx-sort-props": [
         "warn",
