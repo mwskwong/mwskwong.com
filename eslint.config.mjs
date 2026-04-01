@@ -33,16 +33,14 @@ const eslintConfig = defineConfig(
   prettier,
   {
     languageOptions: {
+      parser: tsParser,
+      ecmaVersion: "latest",
+      sourceType: "module",
       parserOptions: {
         projectService: true,
       },
     },
     settings: {
-      languageOptions: {
-        parser: tsParser,
-        ecmaVersion: "latest",
-        sourceType: "module",
-      },
       "jsx-a11y": {
         components: {
           Image: "img",
