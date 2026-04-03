@@ -9,8 +9,8 @@ import { ThemeProvider } from "next-themes";
 
 import {
   description,
-  displayTitle,
   firstName,
+  headline,
   lastName,
   siteFqdn,
   siteName,
@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${firstName} ${lastName} · ${displayTitle}`,
+  title: `${firstName} ${lastName} · ${headline}`,
   description,
   metadataBase: new URL(`https://${siteFqdn}`),
   authors: { name: `${firstName} ${lastName}`, url: `https://${siteFqdn}` },

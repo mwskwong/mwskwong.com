@@ -7,8 +7,8 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import {
   currentRole,
   description,
-  displayTitle,
   firstName,
+  headline,
   lastName,
   middleName,
   siteFqdn,
@@ -34,7 +34,7 @@ const HomePage = () => (
         <h1 className="text-4xl font-bold">
           <span className="text-accent">{firstName}</span> {lastName}
         </h1>
-        <p className="text-muted">{displayTitle}</p>
+        <p className="text-muted">{headline}</p>
       </header>
 
       <p className="mb-4 text-pretty hyphens-auto">
