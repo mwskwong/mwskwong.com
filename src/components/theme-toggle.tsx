@@ -10,7 +10,7 @@ export const ThemeToggle = ({ onClick, ...props }: ThemeToggleProps) => {
 
   return (
     <Button
-      aria-label="toggle theme"
+      aria-label="Toggle theme"
       isIconOnly
       variant="ghost"
       onClick={(event) => {
