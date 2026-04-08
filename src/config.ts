@@ -8,8 +8,12 @@ export const currentRole = {
   company: { name: "The Hong Kong Jockey Club", url: "https://www.hkjc.com" },
 };
 
-export const siteFqdn =
-  process.env.VERCEL_PROJECT_PRODUCTION_URL ?? "mwskwong.com";
+export const siteUrl = new URL(
+  process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : `http://localhost:${process.env.PORT ?? 3000}`,
+);
+
 export const siteName = `${firstName} ${middleName
   .split(" ")
   .map((word) => word.charAt(0) + ".")

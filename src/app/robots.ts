@@ -1,6 +1,6 @@
 import { type MetadataRoute } from "next";
 
-import { siteFqdn } from "@/config";
+import { siteUrl } from "@/config";
 
 const robots = (): MetadataRoute.Robots => ({
   rules: [
@@ -9,7 +9,7 @@ const robots = (): MetadataRoute.Robots => ({
       disallow: process.env.VERCEL_ENV === "production" ? undefined : "/",
     },
   ],
-  sitemap: `https://${siteFqdn}/sitemap.xml`,
+  sitemap: `${siteUrl}/sitemap.xml`,
 });
 
 export default robots;

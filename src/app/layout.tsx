@@ -12,8 +12,8 @@ import {
   firstName,
   headline,
   lastName,
-  siteFqdn,
   siteName,
+  siteUrl,
 } from "@/config";
 
 const geistSans = Geist({
@@ -30,8 +30,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: `${firstName} ${lastName} · ${headline}`,
   description,
-  metadataBase: new URL(`https://${siteFqdn}`),
-  authors: { name: `${firstName} ${lastName}`, url: `https://${siteFqdn}` },
+  metadataBase: siteUrl,
+  authors: { name: `${firstName} ${lastName}`, url: siteUrl },
   openGraph: { siteName, url: "/", type: "website" },
 };
 
