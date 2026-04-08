@@ -1,7 +1,7 @@
 import { type MetadataRoute } from "next";
 import { cacheLife } from "next/cache";
 
-import { siteFqdn } from "@/config";
+import { siteUrl } from "@/config";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
@@ -10,7 +10,7 @@ const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
 
   return [
     {
-      url: `https://${siteFqdn}`,
+      url: siteUrl.toString(),
       lastModified: new Date(),
     },
   ];

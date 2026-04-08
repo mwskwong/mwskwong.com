@@ -11,11 +11,11 @@ import {
   headline,
   lastName,
   middleName,
-  siteFqdn,
   siteName,
+  siteUrl,
 } from "@/config";
 
-const email = `me@${siteFqdn}`;
+const email = `me@mwskwong.com`;
 const linkedin = "https://www.linkedin.com/in/mwskwong";
 const github = "https://github.com/mwskwong";
 
@@ -87,7 +87,7 @@ const HomePage = () => (
             {
               "@type": "WebSite",
               name: siteName,
-              url: `https://${siteFqdn}`,
+              url: siteUrl.toString(),
               author: { "@id": "#person" },
             } satisfies WebSite,
             {
@@ -97,8 +97,8 @@ const HomePage = () => (
               alternateName: `${lastName.toUpperCase()}, ${firstName} ${middleName}`,
               jobTitle: currentRole.jobTitle,
               description,
-              image: `https://${siteFqdn}${headShot.src}`,
-              url: `https://${siteFqdn}`,
+              image: `${siteUrl}${headShot.src}`,
+              url: siteUrl.toString(),
               email,
               worksFor: { "@type": "Organization", ...currentRole.company },
               sameAs: [linkedin, github],
