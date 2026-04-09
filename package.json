@@ -21,16 +21,16 @@
     "@heroui/styles": "^3.0.2",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "next": "^16.2.2",
+    "next": "^16.2.3",
     "next-themes": "^0.4.6",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.7.1",
-    "@eslint/compat": "^2.0.4",
+    "@eslint/compat": "^2.0.5",
     "@eslint/js": "^9.39.4",
-    "@next/eslint-plugin-next": "^16.2.2",
+    "@next/eslint-plugin-next": "^16.2.3",
     "@tailwindcss/postcss": "^4.2.2",
     "@tsconfig/bases": "^1.0.23",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
