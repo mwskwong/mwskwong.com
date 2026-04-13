@@ -1,4 +1,7 @@
 {
+  // https://nextjs.org/docs/app/api-reference/config/typescript#ide-plugin
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+
   // Tailwind CSS IntelliSense
   "files.associations": {
     "*.css": "tailwindcss"
