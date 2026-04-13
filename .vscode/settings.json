@@ -1,6 +1,6 @@
 {
   // https://nextjs.org/docs/app/api-reference/config/typescript#statically-typed-links#ide-plugin
-  "js/ts.tsdk.path": "node_modules\\typescript\\lib",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
 
   // Tailwind CSS IntelliSense
   "files.associations": {
