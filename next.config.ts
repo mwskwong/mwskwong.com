@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   typedRoutes: true,
   images: { formats: ["image/avif", "image/webp"] },
-  poweredByHeader: false,
   headers: () => [
     {
       source: "/:path*",
