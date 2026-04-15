@@ -31,7 +31,7 @@ const HomePage = () => (
           height={128}
           src={headShot}
         />
-        <h1 className="text-4xl font-bold">
+        <h1 className="text-4xl">
           <span className="text-accent">{firstName}</span> {lastName}
         </h1>
         <p className="text-muted">{headline}</p>

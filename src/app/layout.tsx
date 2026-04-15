@@ -4,7 +4,7 @@ import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fugaz_One, Work_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -16,15 +16,15 @@ import {
   siteUrl,
 } from "@/config";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fugazOne = Fugaz_One({
+  variable: "--font-fugaz-one",
   subsets: ["latin"],
+  weight: "400"
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const workSans = Work_Sans({
+  variable: "--font-work-sans",
   subsets: ["latin"],
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
   <html
-    className={cn(geistSans.variable, geistMono.variable)}
+    className={cn(fugazOne.variable, workSans.variable)}
     lang="en"
     suppressHydrationWarning
   >
