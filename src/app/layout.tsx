@@ -17,7 +17,7 @@ import {
 } from "@/config";
 
 const domine = Domine({
-  variable: "--font-variable",
+  variable: "--font-domine",
   subsets: ["latin"],
 });
 
