@@ -4,7 +4,7 @@ import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
+import { Inter, Spectral } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -16,9 +16,10 @@ import {
   siteUrl,
 } from "@/config";
 
-const lora = Lora({
-  variable: "--font-lora",
+const spectral = Spectral({
+  variable: "--font-spectral",
   subsets: ["latin"],
+  weight: "700",
 });
 
 const inter = Inter({
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
   <html
-    className={cn(lora.variable, inter.variable)}
+    className={cn(spectral.variable, inter.variable)}
     lang="en"
     suppressHydrationWarning
   >
