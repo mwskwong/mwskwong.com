@@ -19,7 +19,7 @@ import {
 const fugazOne = Fugaz_One({
   variable: "--font-fugaz-one",
   subsets: ["latin"],
-  weight: "400"
+  weight: "400",
 });
 
 const workSans = Work_Sans({
