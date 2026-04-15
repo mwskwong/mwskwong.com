@@ -4,7 +4,7 @@ import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Domine, Inter } from "next/font/google";
+import { Inter, Lora } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -16,8 +16,8 @@ import {
   siteUrl,
 } from "@/config";
 
-const domine = Domine({
-  variable: "--font-domine",
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
 });
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
   <html
-    className={cn(domine.variable, inter.variable)}
+    className={cn(lora.variable, inter.variable)}
     lang="en"
     suppressHydrationWarning
   >
