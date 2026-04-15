@@ -4,7 +4,7 @@ import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Fugaz_One, Work_Sans } from "next/font/google";
+import { Merriweather, Merriweather_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -16,14 +16,13 @@ import {
   siteUrl,
 } from "@/config";
 
-const fugazOne = Fugaz_One({
-  variable: "--font-fugaz-one",
+const merriweather = Merriweather({
+  variable: "--font-merriweather",
   subsets: ["latin"],
-  weight: "400",
 });
 
-const workSans = Work_Sans({
-  variable: "--font-work-sans",
+const merriweatherSans = Merriweather_Sans({
+  variable: "--font-merriweather-sans",
   subsets: ["latin"],
 });
 
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
   <html
-    className={cn(fugazOne.variable, workSans.variable)}
+    className={cn(merriweather.variable, merriweatherSans.variable)}
     lang="en"
     suppressHydrationWarning
   >
