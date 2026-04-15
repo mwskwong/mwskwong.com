@@ -4,7 +4,7 @@ import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Merriweather, Merriweather_Sans } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -16,13 +16,13 @@ import {
   siteUrl,
 } from "@/config";
 
-const merriweather = Merriweather({
-  variable: "--font-merriweather",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
   subsets: ["latin"],
 });
 
-const merriweatherSans = Merriweather_Sans({
-  variable: "--font-merriweather-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
   <html
-    className={cn(merriweather.variable, merriweatherSans.variable)}
+    className={cn(playfairDisplay.variable, inter.variable)}
     lang="en"
     suppressHydrationWarning
   >
