@@ -1,8 +1,7 @@
 {
   "extends": ["@tsconfig/bases/strictest", "@tsconfig/bases/next"],
   "compilerOptions": {
-    "noPropertyAccessFromIndexSignature": false, // keep using obj.prop syntax consistent
-    "verbatimModuleSyntax": true,
+    "noPropertyAccessFromIndexSignature": false,
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"]
