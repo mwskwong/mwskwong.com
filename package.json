@@ -31,7 +31,7 @@
     "@eslint/compat": "^2.1.0",
     "@eslint/js": "^9.39.4",
     "@next/eslint-plugin-next": "^16.2.6",
-    "@tailwindcss/postcss": "^4.2.4",
+    "@tailwindcss/postcss": "^4.3.0",
     "@tsconfig/bases": "^1.0.23",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "@types/node": "^24.12.3",
@@ -51,7 +51,7 @@
     "prettier-plugin-packagejson": "^3.0.2",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "schema-dts": "^2.0.0",
-    "tailwindcss": "^4.2.4",
+    "tailwindcss": "^4.3.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.59.2"
   }
