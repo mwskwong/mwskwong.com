@@ -37,34 +37,36 @@ const HomePage = () => (
         <Text className="text-muted">{headline}</Text>
       </header>
 
-      <Text className="mb-4 text-pretty">
-        Hey, I&apos;m {firstName} {lastName}. I&apos;m a {currentRole.jobTitle}{" "}
-        at{" "}
-        <Link href={currentRole.company.url} rel="noreferrer" target="_blank">
-          {currentRole.company.name}
-        </Link>{" "}
-        working on{" "}
-        <Link href="https://bet.hkjc.com" rel="noreferrer" target="_blank">
-          eWin
-        </Link>
-        .
-      </Text>
-      <Text className="mb-4 text-pretty">
-        My journey into web development started at university. After beginning
-        my career as a System DBA, I realized I much prefer building visual,
-        user-friendly applications that ordinary people can easily understand —
-        even though I&apos;m quite terrible at visual design and anything
-        artistic.
-      </Text>
-      <Text className="mb-4 text-pretty">
-        I&apos;m polite and straight to the point. What drives me is solving
-        meaningful problems and seeing the solutions that I build create real
-        impact.
-      </Text>
-      <Text className="text-pretty">
-        If you&apos;d like to connect or chat about web development and
-        technology, feel free to reach out via the links below.
-      </Text>
+      <section className="flex flex-col gap-4 text-pretty">
+        <Text>
+          Hey, I&apos;m {firstName} {lastName}. I&apos;m a{" "}
+          {currentRole.jobTitle} at{" "}
+          <Link href={currentRole.company.url} rel="noreferrer" target="_blank">
+            {currentRole.company.name}
+          </Link>{" "}
+          working on{" "}
+          <Link href="https://bet.hkjc.com" rel="noreferrer" target="_blank">
+            eWin
+          </Link>
+          .
+        </Text>
+        <Text>
+          My journey into web development started at university. After beginning
+          my career as a System DBA, I realized I much prefer building visual,
+          user-friendly applications that ordinary people can easily understand
+          — even though I&apos;m quite terrible at visual design and anything
+          artistic.
+        </Text>
+        <Text>
+          I&apos;m polite and straight to the point. What drives me is solving
+          meaningful problems and seeing the solutions that I build create real
+          impact.
+        </Text>
+        <Text>
+          If you&apos;d like to connect or chat about web development and
+          technology, feel free to reach out via the links below.
+        </Text>
+      </section>
 
       <footer className="mt-12 flex justify-center gap-4">
         <Link href={`mailto:${email}`}>Email</Link>
