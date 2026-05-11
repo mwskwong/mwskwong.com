@@ -4,7 +4,7 @@ import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
+import { Ubuntu_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -16,13 +16,8 @@ import {
   siteUrl,
 } from "@/config";
 
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
+const ubuntuSans = Ubuntu_Sans({
+  variable: "--font-ubuntu-sans",
   subsets: ["latin"],
 });
 
@@ -35,11 +30,7 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
-  <html
-    className={cn(lora.variable, inter.variable)}
-    lang="en"
-    suppressHydrationWarning
-  >
+  <html className={ubuntuSans.variable} lang="en" suppressHydrationWarning>
     <body>
       <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>
       <Analytics />
