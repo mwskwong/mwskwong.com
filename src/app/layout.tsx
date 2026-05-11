@@ -3,7 +3,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Ubuntu_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -15,8 +15,8 @@ import {
   siteUrl,
 } from "@/config";
 
-const ubuntuSans = Ubuntu_Sans({
-  variable: "--font-ubuntu-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
-  <html className={ubuntuSans.variable} lang="en" suppressHydrationWarning>
+  <html className={inter.variable} lang="en" suppressHydrationWarning>
     <body>
       <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>
       <Analytics />
