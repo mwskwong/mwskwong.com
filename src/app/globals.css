@@ -91,7 +91,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground/87;
+    @apply bg-background text-foreground/90;
   }
 
   ::selection {
