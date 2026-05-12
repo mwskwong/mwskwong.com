@@ -34,7 +34,7 @@
     "@tailwindcss/postcss": "^4.3.0",
     "@tsconfig/bases": "^1.0.23",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
-    "@types/node": "^24.12.3",
+    "@types/node": "^24.12.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
@@ -53,6 +53,6 @@
     "schema-dts": "^2.0.0",
     "tailwindcss": "^4.3.0",
     "typescript": "~6.0.3",
-    "typescript-eslint": "^8.59.2"
+    "typescript-eslint": "^8.59.3"
   }
 }
