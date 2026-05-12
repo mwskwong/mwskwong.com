@@ -3,7 +3,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -15,9 +15,25 @@ import {
   siteUrl,
 } from "@/config";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const ubuntuSansBolder = localFont({
+  src: [
+    {
+      path: "../assets/UbuntuSansBolder-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../assets/UbuntuSansBolder-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../assets/UbuntuSansBolder-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-ubuntu-sans-bolder",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +45,11 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
-  <html className={inter.variable} lang="en" suppressHydrationWarning>
+  <html
+    className={ubuntuSansBolder.variable}
+    lang="en"
+    suppressHydrationWarning
+  >
     <body>
       <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>
       <Analytics />
