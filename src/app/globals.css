@@ -46,8 +46,7 @@
   --radius: 0.5rem;
   --field-radius: 0.75rem;
 
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-lora);
+  --font-sans: var(--font-ubuntu-sans-bolder);
 }
 
 /* 
@@ -92,7 +91,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground/87;
+    @apply bg-background text-foreground/90;
   }
 
   ::selection {
@@ -115,7 +114,7 @@
     h4,
     h5,
     h6 {
-      @apply font-serif text-foreground;
+      @apply text-foreground;
     }
   }
 
@@ -125,7 +124,7 @@
   .text--h4,
   .text--h5,
   .text--h6 {
-    @apply font-serif text-foreground;
+    @apply text-foreground;
   }
 }
 

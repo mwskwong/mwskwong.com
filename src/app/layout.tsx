@@ -1,10 +1,9 @@
 import "./globals.css";
 
-import { cn } from "@heroui/styles";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { type Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
+import localFont from "next/font/local";
 import { ThemeProvider } from "next-themes";
 
 import {
@@ -16,14 +15,25 @@ import {
   siteUrl,
 } from "@/config";
 
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const ubuntuSansBolder = localFont({
+  src: [
+    {
+      path: "../assets/UbuntuSansBolder-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../assets/UbuntuSansBolder-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../assets/UbuntuSansBolder-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-ubuntu-sans-bolder",
 });
 
 export const metadata: Metadata = {
@@ -36,7 +46,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
   <html
-    className={cn(lora.variable, inter.variable)}
+    className={ubuntuSansBolder.variable}
     lang="en"
     suppressHydrationWarning
   >
