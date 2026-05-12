@@ -15,25 +15,25 @@ import {
   siteUrl,
 } from "@/config";
 
-const ubuntuSansBolder = localFont({
+const ubuntuSansBook = localFont({
   src: [
     {
-      path: "../assets/UbuntuSansBolder-Regular.woff2",
+      path: "../assets/UbuntuSansBook-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../assets/UbuntuSansBolder-Medium.woff2",
+      path: "../assets/UbuntuSansBook-Medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../assets/UbuntuSansBolder-SemiBold.woff2",
+      path: "../assets/UbuntuSansBook-SemiBold.woff2",
       weight: "600",
       style: "normal",
     },
   ],
-  variable: "--font-ubuntu-sans-bolder",
+  variable: "--font-ubuntu-sans-book",
 });
 
 export const metadata: Metadata = {
@@ -45,11 +45,7 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
-  <html
-    className={ubuntuSansBolder.variable}
-    lang="en"
-    suppressHydrationWarning
-  >
+  <html className={ubuntuSansBook.variable} lang="en" suppressHydrationWarning>
     <body>
       <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>
       <Analytics />
