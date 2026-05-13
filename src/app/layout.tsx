@@ -18,17 +18,17 @@ import {
 const ubuntuSansBook = localFont({
   src: [
     {
-      path: "../assets/UbuntuSansBook-Regular.woff2",
+      path: "../assets/UbuntuSansBook-Regular-latin.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../assets/UbuntuSansBook-Medium.woff2",
+      path: "../assets/UbuntuSansBook-Medium-latin.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../assets/UbuntuSansBook-SemiBold.woff2",
+      path: "../assets/UbuntuSansBook-SemiBold-latin.woff2",
       weight: "600",
       style: "normal",
     },
