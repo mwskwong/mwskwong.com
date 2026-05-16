@@ -1,4 +1,4 @@
-import { Link, Separator, Text } from "@heroui/react";
+import { Link, Separator, Typography } from "@heroui/react";
 import Image from "next/image";
 import { type Graph, type Person, type WebSite } from "schema-dts";
 
@@ -24,21 +24,23 @@ const HomePage = () => (
     <main className="relative mx-auto flex min-h-dvh max-w-2xl flex-col justify-center px-4 pt-20 pb-32">
       <ThemeToggle className="absolute top-4 right-4 md:top-8" size="sm" />
 
-      <header className="mb-12 text-center">
+      <header className="mb-12">
         <Image
           alt={`head shot of ${firstName} ${lastName}`}
           className="mx-auto mb-4 rounded-full outline-4 outline-offset-4 outline-accent"
           height={128}
           src={headShot}
         />
-        <Text type="h1">
+        <Typography align="center" type="h1">
           <span className="text-accent">{firstName}</span> {lastName}
-        </Text>
-        <Text className="text-muted">{headline}</Text>
+        </Typography>
+        <Typography align="center" color="muted">
+          {headline}
+        </Typography>
       </header>
 
       <section className="flex flex-col gap-4 text-pretty">
-        <Text>
+        <Typography>
           Hey, I&apos;m {firstName} {lastName}. I&apos;m a{" "}
           {currentRole.jobTitle} at{" "}
           <Link href={currentRole.company.url} rel="noreferrer" target="_blank">
@@ -49,23 +51,23 @@ const HomePage = () => (
             eWin
           </Link>
           .
-        </Text>
-        <Text>
+        </Typography>
+        <Typography>
           My journey into web development started at university. After beginning
           my career as a System DBA, I realized I much prefer building visual,
           user-friendly applications that ordinary people can easily understand
           — even though I&apos;m quite terrible at visual design and anything
           artistic.
-        </Text>
-        <Text>
+        </Typography>
+        <Typography>
           I&apos;m polite and straight to the point. What drives me is solving
           meaningful problems and seeing the solutions that I build create real
           impact.
-        </Text>
-        <Text>
+        </Typography>
+        <Typography>
           If you&apos;d like to connect or chat about web development and
           technology, feel free to reach out via the links below.
-        </Text>
+        </Typography>
       </section>
 
       <footer className="mt-12 flex justify-center gap-4">
