@@ -24,17 +24,19 @@ const HomePage = () => (
     <main className="relative mx-auto flex min-h-dvh max-w-2xl flex-col justify-center px-4 pt-20 pb-32">
       <ThemeToggle className="absolute top-4 right-4 md:top-8" size="sm" />
 
-      <header className="mb-12 text-center">
+      <header className="mb-12">
         <Image
           alt={`head shot of ${firstName} ${lastName}`}
           className="mx-auto mb-4 rounded-full outline-4 outline-offset-4 outline-accent"
           height={128}
           src={headShot}
         />
-        <Typography type="h1">
+        <Typography align="center" type="h1">
           <span className="text-accent">{firstName}</span> {lastName}
         </Typography>
-        <Typography color="muted">{headline}</Typography>
+        <Typography align="center" color="muted">
+          {headline}
+        </Typography>
       </header>
 
       <section className="flex flex-col gap-4 text-pretty">
