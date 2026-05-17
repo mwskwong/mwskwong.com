@@ -104,27 +104,17 @@
     @apply text-[length:inherit] decoration-accent decoration-[12.5%] underline-offset-[25%] hover:decoration-accent-hover;
   }
 
-  .text,
-  .text-prose {
+  .typography--color-default {
     @apply text-inherit;
 
-    & h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    &.typography--h1,
+    &.typography--h2,
+    &.typography--h3,
+    &.typography--h4,
+    &.typography--h5,
+    &.typography--h6 {
       @apply text-foreground;
     }
-  }
-
-  .text--h1,
-  .text--h2,
-  .text--h3,
-  .text--h4,
-  .text--h5,
-  .text--h6 {
-    @apply text-foreground;
   }
 }
 
