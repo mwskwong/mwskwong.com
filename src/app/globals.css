@@ -101,7 +101,7 @@
 
 @layer components {
   .link {
-    @apply text-[length:inherit] decoration-accent decoration-[12.5%] underline-offset-[25%] hover:decoration-accent-hover;
+    @apply text-[length:inherit] decoration-accent decoration-[6.25%] underline-offset-[25%] hover:decoration-accent hover:decoration-[12.5%];
   }
 
   .typography--color-default {
