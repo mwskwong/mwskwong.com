@@ -16,7 +16,7 @@
     "upgrade": "npm update && npm run typegen && npm run typecheck && npm run format:fix && npm run lint:fix"
   },
   "dependencies": {
-    "@gravity-ui/icons": "^2.18.0",
+    "@gravity-ui/icons": "^2.19.0",
     "@heroui/react": "^3.2.1",
     "@heroui/styles": "^3.2.1",
     "@vercel/analytics": "^2.0.1",
@@ -47,7 +47,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-unicorn": "^65.0.1",
     "postcss-load-config": "^6.0.1",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.0",
     "prettier-plugin-packagejson": "^3.0.2",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "schema-dts": "^2.0.0",
