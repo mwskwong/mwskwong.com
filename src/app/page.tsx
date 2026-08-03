@@ -55,8 +55,8 @@ const HomePage = () => (
         <Typography>
           My journey into web development started at university. After beginning
           my career as a System DBA, I realized I much prefer building visual,
-          user-friendly applications that ordinary people can easily understand
-          — even though I&apos;m quite terrible at visual design and anything
+          user-friendly applications that ordinary people can easily understand,
+          even though I&apos;m quite terrible at visual design and anything
           artistic.
         </Typography>
         <Typography>
