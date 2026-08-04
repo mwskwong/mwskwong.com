@@ -2,6 +2,7 @@ import { type NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
+  partialPrefetching: true,
   reactCompiler: true,
   typedRoutes: true,
   images: { formats: ["image/avif", "image/webp"] },
@@ -17,7 +18,7 @@ const nextConfig: NextConfig = {
     },
   ],
   experimental: {
-    turbopackFileSystemCacheForBuild: true,
+    turbopackRustReactCompiler: true,
     typedEnv: true,
   },
 };
