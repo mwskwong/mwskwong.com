@@ -1,6 +1,6 @@
 import { Link, Separator, Typography } from "@heroui/react";
 import Image from "next/image";
-import { type Graph, type Person, type WebSite } from "schema-dts";
+import type { Graph, Person, WebSite } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -81,6 +81,7 @@ const HomePage = () => (
     </main>
 
     <script
+      // oxlint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "https://schema.org",

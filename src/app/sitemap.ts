@@ -1,4 +1,4 @@
-import { type MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { cacheLife } from "next/cache";
 
 import { siteUrl } from "@/config";

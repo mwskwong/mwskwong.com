@@ -14,10 +14,10 @@
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
 
-  // fix auto-fixable problems found by Oxfmt, ESlint on save, in this particular order
+  // fix auto-fixable problems found by Oxlint on save
   "editor.codeActionsOnSave": {
-    // "source.fixAll.prettier": "explicit",
-    // "source.fixAll.eslint": "explicit"
+    "source.fixAll.oxc": "always"
   },
-  "cSpell.words": ["heroui", "mwskwong", "oxfmt"]
+
+  "cSpell.words": ["heroui", "mwskwong", "oxfmt", "oxlint", "tsgolint"]
 }
