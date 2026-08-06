@@ -7,7 +7,7 @@
     "analyze": "next experimental-analyze",
     "build": "next build",
     "dev": "next dev",
-    "fmt": "fmt --check",
+    "fmt": "oxfmt --check",
     "fmt:fix": "oxfmt",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
