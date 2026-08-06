@@ -42,6 +42,16 @@ const oxlintConfig = defineConfig({
       rules: { "import/no-default-export": "off" },
     },
   ],
+  settings: {
+    "jsx-a11y": {
+      components: {
+        Button: "button",
+        Image: "img",
+        Link: "a",
+      },
+    },
+    react: { linkComponents: ["Link"] },
+  },
 });
 
 export default oxlintConfig;
