@@ -1,6 +1,6 @@
 import { Link, Separator, Typography } from "@heroui/react";
 import Image from "next/image";
-import { type Graph, type Person, type WebSite } from "schema-dts";
+import type { Graph, Person, WebSite } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -41,8 +41,7 @@ const HomePage = () => (
 
       <section className="flex flex-col gap-4 text-pretty">
         <Typography>
-          Hey, I&apos;m {firstName} {lastName}. I&apos;m a{" "}
-          {currentRole.jobTitle} at{" "}
+          Hey, I&apos;m {firstName} {lastName}. I&apos;m a {currentRole.jobTitle} at{" "}
           <Link href={currentRole.company.url} rel="noreferrer" target="_blank">
             {currentRole.company.name}
           </Link>{" "}
@@ -53,20 +52,18 @@ const HomePage = () => (
           .
         </Typography>
         <Typography>
-          My journey into web development started at university. After beginning
-          my career as a System DBA, I realized I much prefer building visual,
-          user-friendly applications that ordinary people can easily understand,
-          even though I&apos;m quite terrible at visual design and anything
-          artistic.
+          My journey into web development started at university. After beginning my career as a
+          System DBA, I realized I much prefer building visual, user-friendly applications that
+          ordinary people can easily understand, even though I&apos;m quite terrible at visual
+          design and anything artistic.
         </Typography>
         <Typography>
-          I&apos;m polite and straight to the point. What drives me is solving
-          meaningful problems and seeing the solutions that I build create real
-          impact.
+          I&apos;m polite and straight to the point. What drives me is solving meaningful problems
+          and seeing the solutions that I build create real impact.
         </Typography>
         <Typography>
-          If you&apos;d like to connect or chat about web development and
-          technology, feel free to reach out via the links below.
+          If you&apos;d like to connect or chat about web development and technology, feel free to
+          reach out via the links below.
         </Typography>
       </section>
 
@@ -84,6 +81,7 @@ const HomePage = () => (
     </main>
 
     <script
+      // oxlint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "https://schema.org",
@@ -106,12 +104,7 @@ const HomePage = () => (
               email,
               worksFor: { "@type": "Organization", ...currentRole.company },
               sameAs: [linkedin, github],
-              knowsAbout: [
-                "Full Stack Web Development",
-                "React",
-                "Next.js",
-                "TypeScript",
-              ],
+              knowsAbout: ["Full Stack Web Development", "React", "Next.js", "TypeScript"],
             } satisfies Person,
           ],
         } satisfies Graph),
