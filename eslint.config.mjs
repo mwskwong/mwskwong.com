@@ -1,18 +1,17 @@
 // @ts-check
 
-import { URL, fileURLToPath } from "node:url";
-
+import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import { includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
-import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import next from "@next/eslint-plugin-next";
-import { defineConfig } from "eslint/config";
 import prettier from "eslint-config-prettier/flat";
 import { importX } from "eslint-plugin-import-x";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import unicorn from "eslint-plugin-unicorn";
+import { defineConfig } from "eslint/config";
+import { URL, fileURLToPath } from "node:url";
 import ts from "typescript-eslint";
 
 const eslintConfig = defineConfig(
@@ -51,14 +50,8 @@ const eslintConfig = defineConfig(
       linkComponents: ["Link"],
     },
     rules: {
-      "@typescript-eslint/consistent-type-imports": [
-        "warn",
-        { fixStyle: "inline-type-imports" },
-      ],
-      "@typescript-eslint/no-confusing-void-expression": [
-        "error",
-        { ignoreArrowShorthand: true },
-      ],
+      "@typescript-eslint/consistent-type-imports": ["warn", { fixStyle: "inline-type-imports" }],
+      "@typescript-eslint/no-confusing-void-expression": ["error", { ignoreArrowShorthand: true }],
       "@typescript-eslint/no-misused-promises": [
         "error",
         { checksVoidReturn: { attributes: false } },
@@ -96,14 +89,7 @@ const eslintConfig = defineConfig(
       "import-x/order": [
         "warn",
         {
-          groups: [
-            "builtin",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-            "index",
-          ],
+          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
           "newlines-between": "always",
           alphabetize: { order: "asc" },
           named: true,

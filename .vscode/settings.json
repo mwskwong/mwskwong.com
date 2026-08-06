@@ -10,12 +10,14 @@
     "strings": "on"
   },
 
-  // Prettier
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Oxfmt
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
 
-  // fix auto-fixable problems found by Prettier, ESlint on save, in this particular order
+  // fix auto-fixable problems found by Oxfmt, ESlint on save, in this particular order
   "editor.codeActionsOnSave": {
-    "source.fixAll.prettier": "explicit",
-    "source.fixAll.eslint": "explicit"
-  }
+    // "source.fixAll.prettier": "explicit",
+    // "source.fixAll.eslint": "explicit"
+  },
+  "cSpell.words": ["heroui", "mwskwong", "oxfmt"]
 }

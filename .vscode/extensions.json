@@ -3,12 +3,11 @@
     "formulahendry.auto-complete-tag",
     "streetsidesoftware.code-spell-checker",
     "usernamehw.errorl",
-    "dbaeumer.vscode-eslint",
     "wix.vscode-import-cost",
-    "esbenp.prettier-vscode",
     "yoavbls.pretty-ts-errors",
     "wayou.vscode-todo-highlight",
     "pflannery.vscode-versionlens",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "oxc.oxc-vscode"
   ]
 }
