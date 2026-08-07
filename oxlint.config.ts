@@ -11,7 +11,9 @@ const oxlintConfig = defineConfig({
       "error",
       "prefer-top-level-if-only-type-imports",
     ],
+    "typescript/strict-boolean-expressions": "off",
   },
+  options: { typeAware: true, typeCheck: true },
   settings: {
     "jsx-a11y": {
       components: {
