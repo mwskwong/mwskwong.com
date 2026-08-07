@@ -2,18 +2,16 @@
   "name": "mwskwong.com",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "analyze": "next experimental-analyze",
-    "build": "next build",
     "dev": "next dev",
-    "format": "prettier --check .",
-    "format:fix": "prettier --write .",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
+    "analyze": "next experimental-analyze",
     "typegen": "next typegen",
-    "upgrade": "npm update && npm run typegen && npm run typecheck && npm run format:fix && npm run lint:fix"
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "upgrade": "npm update && npm run typegen && npm run fix"
   },
   "dependencies": {
     "@gravity-ui/icons": "^2.21.0",
@@ -27,31 +25,19 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@eslint-community/eslint-plugin-eslint-comments": "^4.7.2",
-    "@eslint/compat": "^2.1.0",
-    "@eslint/js": "^9.39.5",
-    "@next/eslint-plugin-next": "^16.3.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@tsconfig/bases": "^1.0.26",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "eslint": "^9.39.5",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-import-resolver-typescript": "^4.4.5",
-    "eslint-plugin-import-x": "^4.17.1",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-unicorn": "^65.0.1",
+    "oxfmt": "^0.62.0",
+    "oxlint": "^1.77.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "postcss-load-config": "^6.0.1",
-    "prettier": "^3.9.6",
-    "prettier-plugin-packagejson": "^3.0.2",
-    "prettier-plugin-tailwindcss": "^0.8.1",
     "schema-dts": "^2.0.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "~6.0.3",
-    "typescript-eslint": "^8.66.0"
+    "typescript": "^7.0.2",
+    "ultracite": "^7.10.1"
   }
 }

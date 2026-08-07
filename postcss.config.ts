@@ -1,4 +1,4 @@
-import { type Config } from "postcss-load-config";
+import type { Config } from "postcss-load-config";
 
 const postcssConfig: Config = {
   plugins: {

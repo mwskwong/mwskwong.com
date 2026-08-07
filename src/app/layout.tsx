@@ -1,10 +1,10 @@
+// oxlint-disable-next-line import/no-unassigned-import
 import "./globals.css";
-
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { type Metadata } from "next";
-import localFont from "next/font/local";
+import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
+import localFont from "next/font/local";
 
 import {
   description,

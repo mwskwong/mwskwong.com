@@ -1,6 +1,6 @@
 import { Link, Separator, Typography } from "@heroui/react";
 import Image from "next/image";
-import { type Graph, type Person, type WebSite } from "schema-dts";
+import type { Graph, Person, WebSite } from "schema-dts";
 
 import headShot from "@/assets/head-shot.jpg";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -84,34 +84,36 @@ const HomePage = () => (
     </main>
 
     <script
+      // oxlint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "https://schema.org",
           "@graph": [
             {
               "@type": "WebSite",
+              author: { "@id": "#person" },
               name: siteName,
               url: siteUrl.toString(),
-              author: { "@id": "#person" },
             } satisfies WebSite,
             {
-              "@type": "Person",
               "@id": "#person",
-              name: `${firstName} ${lastName}`,
+              "@type": "Person",
               alternateName: `${lastName.toUpperCase()}, ${firstName} ${middleName}`,
-              jobTitle: currentRole.jobTitle,
-              description,
-              image: `${siteUrl}${headShot.src}`,
-              url: siteUrl.toString(),
               email,
-              worksFor: { "@type": "Organization", ...currentRole.company },
-              sameAs: [linkedin, github],
+              description,
+
+              image: `${siteUrl}${headShot.src}`,
+              jobTitle: currentRole.jobTitle,
               knowsAbout: [
                 "Full Stack Web Development",
                 "React",
                 "Next.js",
                 "TypeScript",
               ],
+              name: `${firstName} ${lastName}`,
+              sameAs: [linkedin, github],
+              url: siteUrl.toString(),
+              worksFor: { "@type": "Organization", ...currentRole.company },
             } satisfies Person,
           ],
         } satisfies Graph),

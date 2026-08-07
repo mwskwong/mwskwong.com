@@ -1,6 +1,5 @@
 {
-  // https://nextjs.org/docs/app/api-reference/config/typescript#ide-plugin
-  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "emmet.showExpandedAbbreviation": "never",
 
   // Tailwind CSS IntelliSense
   "files.associations": {
@@ -10,12 +9,23 @@
     "strings": "on"
   },
 
-  // Prettier
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Oxfmt
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
 
-  // fix auto-fixable problems found by Prettier, ESlint on save, in this particular order
+  // Oxlint
   "editor.codeActionsOnSave": {
-    "source.fixAll.prettier": "explicit",
-    "source.fixAll.eslint": "explicit"
-  }
+    "source.fixAll.oxc": "explicit"
+  },
+  "cSpell.words": [
+    "heroui",
+    "mwskwong",
+    "oklch",
+    "oxfmt",
+    "oxlint",
+    "tsgolint",
+    "turbopack",
+    "ultracite",
+    "WCAG"
+  ]
 }
