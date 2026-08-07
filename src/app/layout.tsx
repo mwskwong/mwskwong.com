@@ -1,4 +1,3 @@
-// oxlint-disable-next-line import/no-unassigned-import
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";

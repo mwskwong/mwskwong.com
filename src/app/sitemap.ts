@@ -3,7 +3,7 @@ import { cacheLife } from "next/cache";
 
 import { siteUrl } from "@/config";
 
-// oxlint-disable-next-line oxc/no-async-await require-await -- `use cache` requires an async function
+// oxlint-disable-next-line require-await -- `use cache` requires an async function
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   "use cache: remote";
   cacheLife("max");
