@@ -4,16 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "analyze": "next experimental-analyze",
-    "build": "next build",
     "dev": "next dev",
-    "fmt": "oxfmt --check",
-    "fmt:fix": "oxfmt",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
+    "build": "next build",
     "start": "next start",
+    "analyze": "next experimental-analyze",
     "typegen": "next typegen",
-    "upgrade": "npm update && npm run typegen && npm run fmt:fix && npm run lint:fix"
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "upgrade": "npm update && npm run typegen && npm run fix"
   },
   "dependencies": {
     "@gravity-ui/icons": "^2.21.0",
@@ -39,6 +37,7 @@
     "postcss-load-config": "^6.0.1",
     "schema-dts": "^2.0.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "~7.0.2"
+    "typescript": "^7.0.2",
+    "ultracite": "^7.10.1"
   }
 }

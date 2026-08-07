@@ -1,12 +1,12 @@
 import { defineConfig } from "oxfmt";
+import ultracite from "ultracite/oxfmt";
 
 const oxfmtConfig = defineConfig({
-  sortImports: true,
+  ...ultracite,
   sortTailwindcss: {
     stylesheet: "./src/app/globals.css",
     functions: ["cn"],
   },
-  sortPackageJson: { sortScripts: true },
 });
 
 export default oxfmtConfig;

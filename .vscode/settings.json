@@ -1,6 +1,5 @@
 {
-  // https://nextjs.org/docs/app/api-reference/config/typescript#ide-plugin
-  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "emmet.showExpandedAbbreviation": "never",
 
   // Tailwind CSS IntelliSense
   "files.associations": {
@@ -14,10 +13,16 @@
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
 
-  // fix auto-fixable problems found by Oxlint on save
+  // Oxlint
   "editor.codeActionsOnSave": {
-    "source.fixAll.oxc": "always"
+    "source.fixAll.oxc": "explicit"
   },
-
-  "cSpell.words": ["heroui", "mwskwong", "oxfmt", "oxlint", "tsgolint"]
+  "cSpell.words": [
+    "heroui",
+    "mwskwong",
+    "oxfmt",
+    "oxlint",
+    "tsgolint",
+    "ultracite"
+  ]
 }

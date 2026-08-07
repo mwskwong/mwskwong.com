@@ -1,47 +1,17 @@
 import { defineConfig } from "oxlint";
+import core from "ultracite/oxlint/core";
+import next from "ultracite/oxlint/next";
+import react from "ultracite/oxlint/react";
 
 const oxlintConfig = defineConfig({
-  plugins: ["eslint", "typescript", "unicorn", "react", "nextjs", "oxc", "import", "jsx-a11y"],
-  categories: {
-    correctness: "error",
-    suspicious: "error",
-    pedantic: "error",
-    perf: "warn",
-    restriction: "warn",
-  },
+  extends: [core, react, next],
   rules: {
-    "eslint/no-undefined": "off",
-    "typescript/prefer-readonly-parameter-types": "off",
-    "typescript/strict-boolean-expressions": "off",
-    "typescript/explicit-module-boundary-types": "off",
-    "typescript/explicit-function-return-type": "off",
-    "react/forbid-component-props": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": "off",
-    "react/jsx-no-literals": "off",
-    "react/react-compiler": "error",
-    "react/only-export-components": "off",
-    "oxc/no-rest-spread-properties": "off",
-    "oxc/no-optional-chaining": "off",
+    "sort-keys": "off",
+    "import/consistent-type-specifier-style": [
+      "error",
+      "prefer-top-level-if-only-type-imports",
+    ],
   },
-  options: { typeAware: true, typeCheck: true },
-  overrides: [
-    {
-      files: ["**/*.tsx"],
-      rules: { "eslint/max-lines-per-function": "off" },
-    },
-    {
-      files: [
-        "next.config.ts",
-        "oxlint.config.ts",
-        "oxfmt.config.ts",
-        "postcss.config.ts",
-        "src/app/**/{page,layout}.tsx",
-        "src/app/{robots,sitemap}.ts",
-      ],
-      rules: { "import/no-default-export": "off" },
-    },
-  ],
   settings: {
     "jsx-a11y": {
       components: {
@@ -52,6 +22,7 @@ const oxlintConfig = defineConfig({
     },
     react: { linkComponents: ["Link"] },
   },
+  ignorePatterns: core.ignorePatterns ?? [],
 });
 
 export default oxlintConfig;

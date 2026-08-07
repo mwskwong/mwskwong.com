@@ -6,7 +6,14 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
 
-import { description, firstName, headline, lastName, siteName, siteUrl } from "@/config";
+import {
+  description,
+  firstName,
+  headline,
+  lastName,
+  siteName,
+  siteUrl,
+} from "@/config";
 
 const ubuntuSansBook = localFont({
   src: [

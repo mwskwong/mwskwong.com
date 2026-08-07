@@ -11,11 +11,11 @@ export const currentRole = {
 export const siteUrl = new URL(
   process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : `http://localhost:${process.env.PORT ?? 3000}`,
+    : `http://localhost:${process.env.PORT ?? 3000}`
 );
 
 export const siteName = `${firstName} ${middleName
   .split(" ")
-  .map((word) => word.charAt(0) + ".")
+  .map((word) => `${word.charAt(0)}.`)
   .join("")} ${lastName}`;
 export const description = `Tech Lead & Full Stack Web Developer at ${currentRole.company.name} working on eWin. Transitioned from System DBA to building visual, user-friendly web applications that ordinary people can understand. Polite, straight to the point, and driven by solving meaningful problems that create real impact.`;
