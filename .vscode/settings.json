@@ -24,6 +24,7 @@
     "oxfmt",
     "oxlint",
     "tsgolint",
+    "turbopack",
     "ultracite",
     "WCAG"
   ]
