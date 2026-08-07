@@ -15,7 +15,7 @@ import {
   siteUrl,
 } from "@/config";
 
-const email = `me@mwskwong.com`;
+const email = "me@mwskwong.com";
 const linkedin = "https://www.linkedin.com/in/mwskwong";
 const github = "https://github.com/mwskwong";
 
@@ -91,29 +91,28 @@ const HomePage = () => (
           "@graph": [
             {
               "@type": "WebSite",
-              author: { "@id": "#person" },
               name: siteName,
               url: siteUrl.toString(),
+              author: { "@id": "#person" },
             } satisfies WebSite,
             {
-              "@id": "#person",
               "@type": "Person",
+              "@id": "#person",
+              name: `${firstName} ${lastName}`,
               alternateName: `${lastName.toUpperCase()}, ${firstName} ${middleName}`,
-              email,
-              description,
-
-              image: `${siteUrl}${headShot.src}`,
               jobTitle: currentRole.jobTitle,
+              description,
+              image: `${siteUrl}${headShot.src}`,
+              url: siteUrl.toString(),
+              email,
+              worksFor: { "@type": "Organization", ...currentRole.company },
+              sameAs: [linkedin, github],
               knowsAbout: [
                 "Full Stack Web Development",
                 "React",
                 "Next.js",
                 "TypeScript",
               ],
-              name: `${firstName} ${lastName}`,
-              sameAs: [linkedin, github],
-              url: siteUrl.toString(),
-              worksFor: { "@type": "Organization", ...currentRole.company },
             } satisfies Person,
           ],
         } satisfies Graph),
