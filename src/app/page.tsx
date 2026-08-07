@@ -26,15 +26,15 @@ const HomePage = () => (
 
       <header className="mb-12">
         <Image
-          alt={`head shot of ${firstName} ${lastName}`}
-          className="mx-auto mb-4 rounded-full outline-4 outline-offset-4 outline-accent"
-          height={128}
           src={headShot}
+          alt={`head shot of ${firstName} ${lastName}`}
+          height={128}
+          className="mx-auto mb-4 rounded-full outline-4 outline-offset-4 outline-accent"
         />
-        <Typography align="center" type="h1">
+        <Typography type="h1" align="center">
           <span className="text-accent">{firstName}</span> {lastName}
         </Typography>
-        <Typography align="center" color="muted">
+        <Typography color="muted" align="center">
           {headline}
         </Typography>
       </header>
@@ -43,11 +43,11 @@ const HomePage = () => (
         <Typography>
           Hey, I&apos;m {firstName} {lastName}. I&apos;m a{" "}
           {currentRole.jobTitle} at{" "}
-          <Link href={currentRole.company.url} rel="noreferrer" target="_blank">
+          <Link href={currentRole.company.url} target="_blank" rel="noreferrer">
             {currentRole.company.name}
           </Link>{" "}
           working on{" "}
-          <Link href="https://bet.hkjc.com" rel="noreferrer" target="_blank">
+          <Link href="https://bet.hkjc.com" target="_blank" rel="noreferrer">
             eWin
           </Link>
           .
@@ -73,11 +73,11 @@ const HomePage = () => (
       <footer className="mt-12 flex justify-center gap-4">
         <Link href={`mailto:${email}`}>Email</Link>
         <Separator orientation="vertical" />
-        <Link href={linkedin} rel="noreferrer" target="_blank">
+        <Link href={linkedin} target="_blank" rel="noreferrer">
           LinkedIn
         </Link>
         <Separator orientation="vertical" />
-        <Link href={github} rel="noreferrer" target="_blank">
+        <Link href={github} target="_blank" rel="noreferrer">
           GitHub
         </Link>
       </footer>
