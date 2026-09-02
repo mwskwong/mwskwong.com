@@ -1,9 +1,10 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { clsx } from "clsx";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import localFont from "next/font/local";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 
 import {
   description,
@@ -14,25 +15,14 @@ import {
   siteUrl,
 } from "@/config";
 
-const ubuntuSansBook = localFont({
-  src: [
-    {
-      path: "../assets/UbuntuSansBook-Regular-latin.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../assets/UbuntuSansBook-Medium-latin.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../assets/UbuntuSansBook-SemiBold-latin.woff2",
-      weight: "600",
-      style: "normal",
-    },
-  ],
-  variable: "--font-ubuntu-sans-book",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage-grotesque",
 });
 
 export const metadata: Metadata = {
@@ -44,7 +34,11 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => (
-  <html className={ubuntuSansBook.variable} lang="en" suppressHydrationWarning>
+  <html
+    className={clsx(inter.variable, bricolageGrotesque.variable)}
+    lang="en"
+    suppressHydrationWarning
+  >
     <body>
       <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>
       <Analytics />
