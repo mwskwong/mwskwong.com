@@ -80,7 +80,11 @@
   }
 
   .typography--color-default {
-    @apply text-foreground/90;
+    &.typography--body,
+    &.typography--body-sm,
+    &.typography--body-xs {
+      @apply text-foreground/90;
+    }
   }
 
   .typography--h1,
