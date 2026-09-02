@@ -12,8 +12,9 @@
   --radius: 1rem;
   --field-radius: 2rem;
 
-  /* Default Font Family */
+  /* Fonts */
   --font-sans: var(--font-inter);
+  --font-display: var(--font-bricolage-grotesque);
 }
 
 :root,
@@ -93,7 +94,7 @@
   .typography--h4,
   .typography--h5,
   .typography--h6 {
-    font-family: var(--font-bricolage-grotesque);
+    font-family: var(--font-display);
   }
 
   .typography-prose {
@@ -103,7 +104,7 @@
     & h4,
     & h5,
     & h6 {
-      font-family: var(--font-bricolage-grotesque);
+      font-family: var(--font-display);
     }
   }
 }
