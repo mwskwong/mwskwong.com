@@ -30,7 +30,7 @@
     "@tsconfig/bases": "^1.0.27",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
+    "@types/react-dom": "^19.2.7",
     "oxfmt": "^0.66.0",
     "oxlint": "^1.81.0",
     "oxlint-tsgolint": "^7.0.2001",
@@ -38,6 +38,6 @@
     "schema-dts": "^2.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
-    "ultracite": "^7.10.7"
+    "ultracite": "^7.10.8"
   }
 }
