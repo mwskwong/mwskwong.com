@@ -5,6 +5,7 @@ import { Button, type ButtonProps } from "@heroui/react";
 import { useTheme } from "next-themes";
 
 export type ThemeToggleProps = Omit<ButtonProps, "isIconOnly" | "children">;
+
 export const ThemeToggle = ({ onClick, ...props }: ThemeToggleProps) => {
   const { resolvedTheme, setTheme } = useTheme();
 
