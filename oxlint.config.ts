@@ -5,6 +5,11 @@ import next from "ultracite/oxlint/next";
 import react from "ultracite/oxlint/react";
 
 const oxlintConfig = defineConfig({
+  env: {
+    ...core.env,
+    node: true,
+    builtin: true,
+  },
   extends: [core, react, next, antiSlop],
   rules: {
     "sort-keys": "off",
