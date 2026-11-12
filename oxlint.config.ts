@@ -12,7 +12,6 @@ const oxlintConfig = defineConfig({
   },
   extends: [core, react, next, antiSlop],
   rules: {
-    "sort-keys": "off",
     "import/consistent-type-specifier-style": [
       "error",
       "prefer-top-level-if-only-type-imports",
