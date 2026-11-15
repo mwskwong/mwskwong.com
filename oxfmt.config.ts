@@ -4,7 +4,7 @@ import ultracite from "ultracite/oxfmt";
 const oxfmtConfig = defineConfig({
   ...ultracite,
   sortTailwindcss: {
-    functions: ["clsx", "cva", "tw", "twMerge", "cn", "twJoin", "tv"],
+    ...ultracite.sortTailwindcss,
     stylesheet: "./src/app/globals.css",
   },
 });
