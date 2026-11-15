@@ -29,7 +29,7 @@ const oxlintConfig = defineConfig({
     },
     react: { linkComponents: ["Link"] },
   },
-  ignorePatterns: core.ignorePatterns ?? [],
+  ignorePatterns: core.ignorePatterns,
 });
 
 export default oxlintConfig;

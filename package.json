@@ -38,6 +38,6 @@
     "schema-dts": "^2.1.0",
     "tailwindcss": "^4.3.5",
     "typescript": "^7.0.2",
-    "ultracite": "^8.2.0"
+    "ultracite": "^8.2.1"
   }
 }
