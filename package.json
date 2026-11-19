@@ -38,6 +38,6 @@
     "tailwindcss": "^4.3.5",
     "tsrs": "^0.25.0-ts7.1.0-beta",
     "typescript": "^7.0.2",
-    "ultracite": "^8.3.0"
+    "ultracite": "^8.3.1"
   }
 }
