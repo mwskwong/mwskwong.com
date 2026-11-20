@@ -36,7 +36,7 @@
     "postcss-load-config": "^6.0.1",
     "schema-dts": "^2.1.0",
     "tailwindcss": "^4.3.5",
-    "tsrs": "^0.25.0-ts7.1.0-beta",
+    "tsrs": "^7.1.0-beta.tsrs3",
     "typescript": "^7.0.2",
     "ultracite": "^8.3.1"
   }
